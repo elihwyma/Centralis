@@ -1,0 +1,26 @@
+//
+//  HomeMenuCell.swift
+//  Centralis
+//
+//  Created by Amy While on 01/12/2020.
+//
+
+import UIKit
+
+class HomeMenuCell: UICollectionViewCell {
+
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var name: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.setup()
+    }
+    
+    private func setup() {
+        self.image.layer.masksToBounds = true
+        self.name.adjustsFontSizeToFitWidth = true
+        self.image.layer.cornerRadius = self.frame.height / 2
+    }
+
+}

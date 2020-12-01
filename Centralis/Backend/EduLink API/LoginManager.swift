@@ -99,7 +99,7 @@ class LoginManager {
                     
                     self.personalMenu(result)
                     self.schoolScraping(result)
-                    self.hax()
+                    NotificationCenter.default.post(name: .SuccesfulLogin, object: nil)
                 } else {
                     self.fail()
                 }
@@ -257,9 +257,5 @@ class LoginManager {
             }
         }
     }
-    
-    private func hax() {
-        let auth = EduLinkAPI.shared.authorisedUser
-        print("Logged in as \(auth.forename!) \(auth.surname!) at school [redacted]. Fuck you Overnet Data :)")
-    }
+
 }

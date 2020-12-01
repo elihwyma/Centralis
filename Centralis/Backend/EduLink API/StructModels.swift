@@ -7,6 +7,24 @@
 
 import UIKit
 
+struct SavedLogin: Codable {
+    var username: String!
+    var password: String!
+    var schoolCode: String!
+    var image: Data!
+    var schoolName: String!
+    var forename: String!
+    
+    init(_ username: String!, _ password: String, _ schoolCode: String!, _ image: Data!, _ schoolName: String!, _ forename: String!) {
+        self.username = username
+        self.password = password
+        self.schoolCode = schoolCode
+        self.image = image
+        self.schoolName = schoolName
+        self.forename = forename
+    }
+}
+
 struct AuthorisedUser {
     var authToken: String!
     var school: String!

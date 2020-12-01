@@ -27,6 +27,21 @@ class EduLinkAPI {
         let loginManager = LoginManager()
         loginManager.authenticate(schoolCode: schoolCode, username: username, password: password)
     }
+    
+    public func clear() {
+        self.authorisedUser = AuthorisedUser()
+        self.authorisedSchool = AuthorisedSchool()
+        self.personalMenus = [PersonalMenu]()
+        self.rooms = [Room]()
+        self.yearGroups = [YearGroup]()
+        self.communityGroups = [CommunityGroup]()
+        self.admissionGroups = [AdmissionGroup]()
+        self.intakeGroups = [IntakeGroup]()
+        self.formGroups = [FormGroup]()
+        self.teachingGroups = [TeachingGroup]()
+        self.subjects = [Subject]()
+        self.reportCardTargetTypes = [ReportCardTargetType]()
+    }
 }
 
 

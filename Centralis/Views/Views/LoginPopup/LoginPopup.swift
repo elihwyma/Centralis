@@ -17,6 +17,8 @@ class LoginPopup: UIView {
     @IBOutlet weak var login: UIButton!
     @IBOutlet weak var cancel: UIButton!
     @IBOutlet weak var popover: UIView!
+    
+    var workingCover: WorkingCover = .fromNib()
         
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -53,16 +55,13 @@ class LoginPopup: UIView {
         self.schoolCode.delegate = self
         self.username.delegate = self
         self.password.delegate = self
-        
-        self.schoolCode.text = "calday"
-        self.username.text = "WhileC"
-        self.password.text = "@TwentyThousand-22/"
     
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         self.addGestureRecognizer(tapGesture)
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(succesfulLogin), name: .SuccesfulLogin, object: nil)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -79,6 +78,39 @@ class LoginPopup: UIView {
         }
     }
     
+    @objc private func succesfulLogin() {
+        DispatchQueue.main.async {
+            if let schoolCode = self.schoolCode.text, let username = self.username.text, let password = self.password.text {
+                if self.saveLogin.isOn {
+                    if let png = EduLinkAPI.shared.authorisedSchool.schoolLogo.pngData() {
+                        let decoder = JSONDecoder()
+                        let encoder = JSONEncoder()
+                        
+                        var l = UserDefaults.standard.object(forKey: "SavedLogins") as? [Data] ?? [Data]()
+                        var logins = [SavedLogin]()
+                        for login in l {
+                            if let a = try? decoder.decode(SavedLogin.self, from: login) {
+                                logins.append(a)
+                            }
+                        }
+                        
+                        for login in logins where ((login.schoolCode == schoolCode) && (login.username == username) && (login.password == password)) {
+                            return
+                        }
+
+                        let newLogin = SavedLogin(username, password, schoolCode, png, EduLinkAPI.shared.authorisedUser.school!, EduLinkAPI.shared.authorisedUser.forename!)
+
+                        if let encoded = try? encoder.encode(newLogin) {
+                            l.append(encoded)
+                        }
+
+                        UserDefaults.standard.setValue(l, forKey: "SavedLogins")
+                    }
+                }
+            }
+        }
+    }
+    
     @IBAction func hideView(_ sender: Any) {
         self.dismissKeyboard(self)
         NotificationCenter.default.post(name: .HidePopup, object: nil)
@@ -88,6 +120,30 @@ class LoginPopup: UIView {
         if let schoolCode = self.schoolCode.text, let username = self.username.text, let password = self.password.text {
             EduLinkAPI.shared.login(schoolCode: schoolCode, username: username, password: password)
         }
+    }
+    
+    private func startWorking() {
+        self.workingCover.frame = self.frame
+        self.workingCover.alpha = 0
+        self.addSubview(workingCover)
+        UIView.animate(withDuration: 0.5,
+                         delay: 0, usingSpringWithDamping: 1.0,
+                         initialSpringVelocity: 1.0,
+                         options: .curveEaseInOut, animations: {
+                            self.workingCover.alpha = 1
+                         }, completion: { (value: Bool) in
+          })
+    }
+    
+    private func stopWorking() {
+        UIView.animate(withDuration: 0.5,
+                         delay: 0, usingSpringWithDamping: 1.0,
+                         initialSpringVelocity: 1.0,
+                         options: .curveEaseInOut, animations: {
+                            self.workingCover.alpha = 0
+                         }, completion: { (value: Bool) in
+                            self.workingCover.removeFromSuperview()
+          })
     }
 }
 

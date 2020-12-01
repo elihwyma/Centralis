@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		53CA2DE2257580A500E3A02B /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DE1257580A500E3A02B /* LoginManager.swift */; };
 		53CA2DE52575896F00E3A02B /* StructModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DE42575896F00E3A02B /* StructModels.swift */; };
+		53CA2DE82576C08500E3A02B /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DE72576C08400E3A02B /* UserDefaults+Extension.swift */; };
+		53CA2DEE2576CC9E00E3A02B /* LoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DEC2576CC9D00E3A02B /* LoginCell.swift */; };
+		53CA2DEF2576CC9E00E3A02B /* LoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53CA2DED2576CC9D00E3A02B /* LoginCell.xib */; };
+		53CA2DF32576D67A00E3A02B /* WorkingCover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53CA2DF22576D67900E3A02B /* WorkingCover.xib */; };
+		53CA2DF62576D69A00E3A02B /* WorkingCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DF52576D69A00E3A02B /* WorkingCover.swift */; };
+		53CA2DFC2576DA5800E3A02B /* HomeMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DFA2576DA5700E3A02B /* HomeMenuCell.swift */; };
+		53CA2DFD2576DA5900E3A02B /* HomeMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53CA2DFB2576DA5700E3A02B /* HomeMenuCell.xib */; };
+		53CA2E012576DD2A00E3A02B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2E002576DD2A00E3A02B /* HomeViewController.swift */; };
 		53CB50722572D1780077DDAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50712572D1780077DDAE /* AppDelegate.swift */; };
 		53CB50742572D1780077DDAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50732572D1780077DDAE /* SceneDelegate.swift */; };
 		53CB50792572D1780077DDAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53CB50772572D1780077DDAE /* Main.storyboard */; };
@@ -29,6 +37,14 @@
 /* Begin PBXFileReference section */
 		53CA2DE1257580A500E3A02B /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		53CA2DE42575896F00E3A02B /* StructModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructModels.swift; sourceTree = "<group>"; };
+		53CA2DE72576C08400E3A02B /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
+		53CA2DEC2576CC9D00E3A02B /* LoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCell.swift; sourceTree = "<group>"; };
+		53CA2DED2576CC9D00E3A02B /* LoginCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginCell.xib; sourceTree = "<group>"; };
+		53CA2DF22576D67900E3A02B /* WorkingCover.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkingCover.xib; sourceTree = "<group>"; };
+		53CA2DF52576D69A00E3A02B /* WorkingCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingCover.swift; sourceTree = "<group>"; };
+		53CA2DFA2576DA5700E3A02B /* HomeMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuCell.swift; sourceTree = "<group>"; };
+		53CA2DFB2576DA5700E3A02B /* HomeMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeMenuCell.xib; sourceTree = "<group>"; };
+		53CA2E002576DD2A00E3A02B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		53CB506E2572D1780077DDAE /* Centralis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Centralis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53CB50712572D1780077DDAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		53CB50732572D1780077DDAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +75,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		53CA2DEA2576CC4300E3A02B /* Table Cells */ = {
+			isa = PBXGroup;
+			children = (
+				53CA2DEB2576CC4B00E3A02B /* LoginCell */,
+			);
+			path = "Table Cells";
+			sourceTree = "<group>";
+		};
+		53CA2DEB2576CC4B00E3A02B /* LoginCell */ = {
+			isa = PBXGroup;
+			children = (
+				53CA2DEC2576CC9D00E3A02B /* LoginCell.swift */,
+				53CA2DED2576CC9D00E3A02B /* LoginCell.xib */,
+			);
+			path = LoginCell;
+			sourceTree = "<group>";
+		};
+		53CA2DF12576D65E00E3A02B /* WorkingCover */ = {
+			isa = PBXGroup;
+			children = (
+				53CA2DF22576D67900E3A02B /* WorkingCover.xib */,
+				53CA2DF52576D69A00E3A02B /* WorkingCover.swift */,
+			);
+			path = WorkingCover;
+			sourceTree = "<group>";
+		};
+		53CA2DF82576DA2F00E3A02B /* Collection View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				53CA2DF92576DA3500E3A02B /* Home Menu Cell */,
+			);
+			path = "Collection View Cells";
+			sourceTree = "<group>";
+		};
+		53CA2DF92576DA3500E3A02B /* Home Menu Cell */ = {
+			isa = PBXGroup;
+			children = (
+				53CA2DFA2576DA5700E3A02B /* HomeMenuCell.swift */,
+				53CA2DFB2576DA5700E3A02B /* HomeMenuCell.xib */,
+			);
+			path = "Home Menu Cell";
+			sourceTree = "<group>";
+		};
 		53CB50652572D1770077DDAE = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				53CB509C2572D92F0077DDAE /* LoginViewController.swift */,
+				53CA2E002576DD2A00E3A02B /* HomeViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -127,6 +187,8 @@
 		53CB508F2572D6850077DDAE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				53CA2DF82576DA2F00E3A02B /* Collection View Cells */,
+				53CA2DEA2576CC4300E3A02B /* Table Cells */,
 				53CB50902572D69A0077DDAE /* Views */,
 			);
 			path = Views;
@@ -135,6 +197,7 @@
 		53CB50902572D69A0077DDAE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				53CA2DF12576D65E00E3A02B /* WorkingCover */,
 				53CB50A52572F26F0077DDAE /* LoginPopup */,
 				53CB509F2572F07A0077DDAE /* ResizedTableView */,
 				53CB50912572D6B20077DDAE /* DynamicColourView */,
@@ -156,6 +219,7 @@
 				53CB50962572D7BA0077DDAE /* CAGradientLayer+Extensions.swift */,
 				53CB50AD2572F8540077DDAE /* NSNotification+Extensions.swift */,
 				53CB50992572D7C40077DDAE /* UIView+Extensions.swift */,
+				53CA2DE72576C08400E3A02B /* UserDefaults+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -261,10 +325,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53CA2DEF2576CC9E00E3A02B /* LoginCell.xib in Resources */,
 				53CB50A72572F3040077DDAE /* LoginPopup.xib in Resources */,
+				53CA2DFD2576DA5900E3A02B /* HomeMenuCell.xib in Resources */,
 				53CB507E2572D1880077DDAE /* LaunchScreen.storyboard in Resources */,
 				53CB507B2572D1880077DDAE /* Assets.xcassets in Resources */,
 				53CB50792572D1780077DDAE /* Main.storyboard in Resources */,
+				53CA2DF32576D67A00E3A02B /* WorkingCover.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,17 +342,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53CA2DFC2576DA5800E3A02B /* HomeMenuCell.swift in Sources */,
 				53CB50AB2572F6D70077DDAE /* LoginPopup.swift in Sources */,
 				53CB509D2572D9300077DDAE /* LoginViewController.swift in Sources */,
+				53CA2DEE2576CC9E00E3A02B /* LoginCell.swift in Sources */,
 				53CB50B7257312E70077DDAE /* NetworkManager.swift in Sources */,
+				53CA2E012576DD2A00E3A02B /* HomeViewController.swift in Sources */,
 				53CB50722572D1780077DDAE /* AppDelegate.swift in Sources */,
 				53CB50932572D6B20077DDAE /* DynamicColourView.swift in Sources */,
 				53CA2DE2257580A500E3A02B /* LoginManager.swift in Sources */,
+				53CA2DE82576C08500E3A02B /* UserDefaults+Extension.swift in Sources */,
 				53CB50BC2573E42F0077DDAE /* EduLinkAPI.swift in Sources */,
 				53CB509A2572D7C40077DDAE /* UIView+Extensions.swift in Sources */,
 				53CB50972572D7BB0077DDAE /* CAGradientLayer+Extensions.swift in Sources */,
 				53CB50AE2572F8550077DDAE /* NSNotification+Extensions.swift in Sources */,
 				53CB50742572D1780077DDAE /* SceneDelegate.swift in Sources */,
+				53CA2DF62576D69A00E3A02B /* WorkingCover.swift in Sources */,
 				53CB50A12572F0B50077DDAE /* ResizedTableView.swift in Sources */,
 				53CA2DE52575896F00E3A02B /* StructModels.swift in Sources */,
 			);

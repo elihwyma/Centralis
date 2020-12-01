@@ -13,4 +13,5 @@ extension NSNotification.Name {
     static let NetworkError = Notification.Name("NetworkError")
     static let InvalidSchool = Notification.Name("InvalidSchool")
     static let InvalidLogin = Notification.Name("InvalidLogin")
+    static let SuccesfulLogin = Notification.Name("SuccesfulLogin")
 }
