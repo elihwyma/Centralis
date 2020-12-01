@@ -35,15 +35,24 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func logout(_ sender: Any) {
+        self.performSegue(withIdentifier: "logout", sender: self)
     }
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let padding: CGFloat = 15
-        let collectionViewSize = collectionView.frame.size.width - padding
 
-        return CGSize(width: collectionViewSize/2, height: collectionViewSize/2)
+        let noOfCellsInRow = 3
+
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+
+        let totalSpace = flowLayout.sectionInset.left
+            + flowLayout.sectionInset.right
+            + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
+
+        let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
+
+        return CGSize(width: size, height: size)
     }
 }
 

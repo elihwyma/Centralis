@@ -18,13 +18,13 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tempicon" translatesAutoresizingMaskIntoConstraints="NO" id="bJk-74-ItW">
-                        <rect key="frame" x="45" y="15" width="60" height="60"/>
+                        <rect key="frame" x="30.5" y="5" width="89" height="89"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="bJk-74-ItW" secondAttribute="height" multiplier="1:1" id="pyT-Wm-cUh"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVQ-jR-wB9">
-                        <rect key="frame" x="15" y="90" width="120" height="20.5"/>
+                        <rect key="frame" x="15" y="109" width="120" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -34,8 +34,8 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="bJk-74-ItW" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="2IH-Gw-1Ds"/>
-                <constraint firstAttribute="centerY" secondItem="bJk-74-ItW" secondAttribute="bottom" id="7tT-o3-xGq"/>
-                <constraint firstItem="bJk-74-ItW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="RH6-ne-XO8"/>
+                <constraint firstAttribute="centerY" secondItem="bJk-74-ItW" secondAttribute="bottom" multiplier="0.8" id="7tT-o3-xGq"/>
+                <constraint firstItem="bJk-74-ItW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="RH6-ne-XO8"/>
                 <constraint firstAttribute="trailing" secondItem="VVQ-jR-wB9" secondAttribute="trailing" constant="15" id="US6-4L-Ho0"/>
                 <constraint firstItem="VVQ-jR-wB9" firstAttribute="top" secondItem="bJk-74-ItW" secondAttribute="bottom" constant="15" id="X8C-k1-ie5"/>
                 <constraint firstItem="VVQ-jR-wB9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="das-fD-aXu"/>

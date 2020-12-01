@@ -126,7 +126,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bwC-zi-Imx">
                                 <rect key="frame" x="15" y="165" width="384" height="672"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ecz-J3-kjr">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ecz-J3-kjr">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -159,6 +159,7 @@
                                 </state>
                                 <connections>
                                     <action selector="logout:" destination="aVJ-aQ-wsn" eventType="touchUpInside" id="FKQ-gU-F6g"/>
+                                    <action selector="logout:" destination="pK9-8D-YZo" eventType="touchUpInside" id="Z3i-gW-kgq"/>
                                 </connections>
                             </button>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -167,6 +168,7 @@
                     <connections>
                         <outlet property="collectionView" destination="bwC-zi-Imx" id="DOM-ph-dt1"/>
                         <outlet property="dynamicColourView" destination="2k0-kQ-h3e" id="3jM-Cd-4Yz"/>
+                        <segue destination="aVJ-aQ-wsn" kind="unwind" identifier="logout" unwindAction="logout:" id="STw-DN-QlN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VlT-xE-Ef3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

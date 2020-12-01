@@ -133,7 +133,10 @@ class LoginViewController: UIViewController {
                             self.containerView.alpha = 0.8
                             self.popupView.frame = self.view.bounds
           }, completion: nil)
-        
+    }
+    
+    @IBAction func logout( _ seg: UIStoryboardSegue) {
+        EduLinkAPI.shared.clear()
     }
 }
 
