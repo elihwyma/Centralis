@@ -23,6 +23,7 @@ class EduLinkAPI {
     var subjects = [Subject]()
     var reportCardTargetTypes = [ReportCardTargetType]()
     var status = Status()
+    var catering = Catering()
     
     public func login(schoolCode: String!, username: String!, password: String!) {
         let loginManager = LoginManager()
@@ -43,7 +44,6 @@ class EduLinkAPI {
         self.subjects = [Subject]()
         self.reportCardTargetTypes = [ReportCardTargetType]()
         self.status = Status()
+        self.catering = Catering()
     }
 }
-
-

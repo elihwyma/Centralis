@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		532434252578193900875BAD /* EduLink_Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532434242578193900875BAD /* EduLink_Status.swift */; };
+		5324342B25781FA000875BAD /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5324342A25781F9F00875BAD /* UUID.swift */; };
+		5324342E2578234900875BAD /* EduLink_Catering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5324342D2578234800875BAD /* EduLink_Catering.swift */; };
+		532434312578268900875BAD /* CateringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532434302578268900875BAD /* CateringViewController.swift */; };
+		53243436257828A300875BAD /* CateringCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53243434257828A200875BAD /* CateringCell.swift */; };
+		53243437257828A300875BAD /* CateringCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53243435257828A200875BAD /* CateringCell.xib */; };
 		53CA2DE2257580A500E3A02B /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DE1257580A500E3A02B /* LoginManager.swift */; };
 		53CA2DE52575896F00E3A02B /* StructModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DE42575896F00E3A02B /* StructModels.swift */; };
 		53CA2DE82576C08500E3A02B /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DE72576C08400E3A02B /* UserDefaults+Extension.swift */; };
@@ -37,6 +42,11 @@
 
 /* Begin PBXFileReference section */
 		532434242578193900875BAD /* EduLink_Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Status.swift; sourceTree = "<group>"; };
+		5324342A25781F9F00875BAD /* UUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUID.swift; sourceTree = "<group>"; };
+		5324342D2578234800875BAD /* EduLink_Catering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Catering.swift; sourceTree = "<group>"; };
+		532434302578268900875BAD /* CateringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CateringViewController.swift; sourceTree = "<group>"; };
+		53243434257828A200875BAD /* CateringCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CateringCell.swift; sourceTree = "<group>"; };
+		53243435257828A200875BAD /* CateringCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CateringCell.xib; sourceTree = "<group>"; };
 		53CA2DE1257580A500E3A02B /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		53CA2DE42575896F00E3A02B /* StructModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructModels.swift; sourceTree = "<group>"; };
 		53CA2DE72576C08400E3A02B /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
@@ -81,13 +91,24 @@
 			isa = PBXGroup;
 			children = (
 				532434242578193900875BAD /* EduLink_Status.swift */,
+				5324342D2578234800875BAD /* EduLink_Catering.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		532434332578288500875BAD /* CateringCell */ = {
+			isa = PBXGroup;
+			children = (
+				53243434257828A200875BAD /* CateringCell.swift */,
+				53243435257828A200875BAD /* CateringCell.xib */,
+			);
+			path = CateringCell;
 			sourceTree = "<group>";
 		};
 		53CA2DEA2576CC4300E3A02B /* Table Cells */ = {
 			isa = PBXGroup;
 			children = (
+				532434332578288500875BAD /* CateringCell */,
 				53CA2DEB2576CC4B00E3A02B /* LoginCell */,
 			);
 			path = "Table Cells";
@@ -190,6 +211,7 @@
 			children = (
 				53CB509C2572D92F0077DDAE /* LoginViewController.swift */,
 				53CA2E002576DD2A00E3A02B /* HomeViewController.swift */,
+				532434302578268900875BAD /* CateringViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -273,6 +295,7 @@
 			children = (
 				5324342825781A4800875BAD /* Models */,
 				53CB50BB2573E42F0077DDAE /* EduLinkAPI.swift */,
+				5324342A25781F9F00875BAD /* UUID.swift */,
 				53CA2DE1257580A500E3A02B /* LoginManager.swift */,
 				53CA2DE42575896F00E3A02B /* StructModels.swift */,
 			);
@@ -342,6 +365,7 @@
 				53CB507E2572D1880077DDAE /* LaunchScreen.storyboard in Resources */,
 				53CB507B2572D1880077DDAE /* Assets.xcassets in Resources */,
 				53CB50792572D1780077DDAE /* Main.storyboard in Resources */,
+				53243437257828A300875BAD /* CateringCell.xib in Resources */,
 				53CA2DF32576D67A00E3A02B /* WorkingCover.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,13 +378,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				53CA2DFC2576DA5800E3A02B /* HomeMenuCell.swift in Sources */,
+				53243436257828A300875BAD /* CateringCell.swift in Sources */,
 				53CB50AB2572F6D70077DDAE /* LoginPopup.swift in Sources */,
 				53CB509D2572D9300077DDAE /* LoginViewController.swift in Sources */,
+				5324342E2578234900875BAD /* EduLink_Catering.swift in Sources */,
 				53CA2DEE2576CC9E00E3A02B /* LoginCell.swift in Sources */,
 				53CB50B7257312E70077DDAE /* NetworkManager.swift in Sources */,
 				53CA2E012576DD2A00E3A02B /* HomeViewController.swift in Sources */,
 				53CB50722572D1780077DDAE /* AppDelegate.swift in Sources */,
 				53CB50932572D6B20077DDAE /* DynamicColourView.swift in Sources */,
+				532434312578268900875BAD /* CateringViewController.swift in Sources */,
 				53CA2DE2257580A500E3A02B /* LoginManager.swift in Sources */,
 				53CA2DE82576C08500E3A02B /* UserDefaults+Extension.swift in Sources */,
 				53CB50BC2573E42F0077DDAE /* EduLinkAPI.swift in Sources */,
@@ -369,6 +396,7 @@
 				53CB50AE2572F8550077DDAE /* NSNotification+Extensions.swift in Sources */,
 				532434252578193900875BAD /* EduLink_Status.swift in Sources */,
 				53CB50742572D1780077DDAE /* SceneDelegate.swift in Sources */,
+				5324342B25781FA000875BAD /* UUID.swift in Sources */,
 				53CA2DF62576D69A00E3A02B /* WorkingCover.swift in Sources */,
 				53CB50A12572F0B50077DDAE /* ResizedTableView.swift in Sources */,
 				53CA2DE52575896F00E3A02B /* StructModels.swift in Sources */,

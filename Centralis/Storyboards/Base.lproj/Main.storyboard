@@ -96,6 +96,37 @@
             </objects>
             <point key="canvasLocation" x="1480" y="115"/>
         </scene>
+        <!--Catering View Controller-->
+        <scene sceneID="9aS-t7-lbD">
+            <objects>
+                <viewController id="GwH-8S-tIz" customClass="CateringViewController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1Og-ec-XiG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KUQ-CC-yeg">
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lJU-x5-LC6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="lJU-x5-LC6" firstAttribute="trailing" secondItem="KUQ-CC-yeg" secondAttribute="trailing" id="AlH-06-uNe"/>
+                            <constraint firstItem="lJU-x5-LC6" firstAttribute="bottom" secondItem="KUQ-CC-yeg" secondAttribute="bottom" id="BJd-pw-cXf"/>
+                            <constraint firstItem="KUQ-CC-yeg" firstAttribute="leading" secondItem="lJU-x5-LC6" secondAttribute="leading" id="NQr-qr-9fq"/>
+                            <constraint firstItem="KUQ-CC-yeg" firstAttribute="top" secondItem="lJU-x5-LC6" secondAttribute="top" id="TRl-kI-e4y"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="WAZ-OL-wFk"/>
+                    <connections>
+                        <outlet property="tableView" destination="KUQ-CC-yeg" id="Z29-m7-nyi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hSp-ZJ-IIz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4509" y="-922"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="mkH-2E-WEz">
             <objects>
@@ -142,12 +173,12 @@
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="VRb-XJ-ChV">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eLn-rU-eIT">
-                                <rect key="frame" x="-23" y="-15" width="20" height="22"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eLn-rU-eIT">
+                                <rect key="frame" x="357" y="10" width="37" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="tintColor" systemColor="labelColor"/>
-                                <state key="normal" title="0">
+                                <state key="normal">
                                     <color key="titleColor" systemColor="labelColor"/>
                                     <imageReference key="image" image="envelope.circle.fill" catalog="system" symbolScale="large"/>
                                 </state>
@@ -156,7 +187,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="bwC-zi-Imx" id="DOM-ph-dt1"/>
+                        <outlet property="inboxButton" destination="eLn-rU-eIT" id="fcL-EO-I5c"/>
                         <segue destination="aVJ-aQ-wsn" kind="unwind" identifier="logout" unwindAction="logout:" id="STw-DN-QlN"/>
+                        <segue destination="GwH-8S-tIz" kind="show" identifier="Centralis.Catering" id="jAN-Ki-nKd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VlT-xE-Ef3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -10,6 +10,9 @@ import UIKit
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var inboxButton: UIButton!
+    
+    let status = EduLink_Status()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +24,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.title = "\(EduLinkAPI.shared.authorisedUser.forename!) \(EduLinkAPI.shared.authorisedUser.surname!)"
+        self.status.status()
     }
     
     private func setup() {
@@ -30,10 +34,18 @@ class HomeViewController: UIViewController {
         self.collectionView.showsHorizontalScrollIndicator = false
         self.collectionView.backgroundColor = .none
         self.collectionView.register(UINib(nibName: "HomeMenuCell", bundle: nil), forCellWithReuseIdentifier: "Centralis.HomeMenuCell")
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.updateStatus), name: .SuccesfulStatus, object: nil)
     }
     
     @IBAction func logout(_ sender: Any) {
         self.performSegue(withIdentifier: "logout", sender: self)
+    }
+    
+    @objc private func updateStatus() {
+        DispatchQueue.main.async {
+            self.inboxButton.setTitle("\(EduLinkAPI.shared.status.new_messages!)", for: .normal)
+        }
     }
 }
 
@@ -56,7 +68,11 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //
+        let menu = EduLinkAPI.shared.personalMenus[indexPath.row]
+        switch menu.name {
+        case "Catering": self.performSegue(withIdentifier: "Centralis.Catering", sender: nil)
+        default: break
+        }
     }
 }
 
