@@ -15,18 +15,22 @@ class LoginManager {
     
     private func invalidLogin() {
         NotificationCenter.default.post(name: .InvalidLogin, object: nil)
+        print("Invalid Login")
     }
     
     private func invalidSchool() {
         NotificationCenter.default.post(name: .InvalidSchool, object: nil)
+        print("Invalid School")
     }
     
     private func fail() {
         NotificationCenter.default.post(name: .FailedLogin, object: nil)
+        print("Failed Login")
     }
     
     private func network() {
         NotificationCenter.default.post(name: .NetworkError, object: nil)
+        print("Network Error")
     }
     
     public func authenticate(schoolCode: String!, username: String!, password: String!) {
@@ -257,5 +261,52 @@ class LoginManager {
             }
         }
     }
+    
+    public func saveLogins(schoolCode: String, username: String, password: String) {
+        if let png = EduLinkAPI.shared.authorisedSchool.schoolLogo.pngData() {
+            let decoder = JSONDecoder()
+            let encoder = JSONEncoder()
+            
+            var l = UserDefaults.standard.object(forKey: "SavedLogins") as? [Data] ?? [Data]()
+            var logins = [SavedLogin]()
+            for login in l {
+                if let a = try? decoder.decode(SavedLogin.self, from: login) {
+                    logins.append(a)
+                }
+            }
+            
+            var changePassword = -1
+            for (index, login) in logins.enumerated() where ((login.schoolCode == schoolCode) && (login.username == username)) {
+                logins[index].password = password
+                changePassword = index
+                l.remove(at: index)
+            }
+            
+            let newLogin = ((changePassword != -1) ? logins[changePassword] : SavedLogin(username, password, schoolCode, png, EduLinkAPI.shared.authorisedUser.school!, EduLinkAPI.shared.authorisedUser.forename!))
 
+            if let encoded = try? encoder.encode(newLogin) {
+                l.append(encoded)
+            }
+
+            UserDefaults.standard.setValue(l, forKey: "SavedLogins")
+        }
+    }
+
+    public func removeLogin(uwuIn: SavedLogin) {
+        let decoder = JSONDecoder()
+        
+        var l = UserDefaults.standard.object(forKey: "SavedLogins") as? [Data] ?? [Data]()
+        var logins = [SavedLogin]()
+        for login in l {
+            if let a = try? decoder.decode(SavedLogin.self, from: login) {
+                logins.append(a)
+            }
+        }
+        
+        for (index, login) in logins.enumerated() where ((login.schoolCode == uwuIn.schoolCode) && (login.username == uwuIn.username) && (login.password == uwuIn.password)) {
+            l.remove(at: index)
+        }
+        
+        UserDefaults.standard.setValue(l, forKey: "SavedLogins")
+    }
 }

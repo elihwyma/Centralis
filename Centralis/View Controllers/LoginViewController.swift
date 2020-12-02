@@ -49,6 +49,8 @@ class LoginViewController: UIViewController {
         self.tableView.dataSource = self
         //Bouncy Boi
         self.tableView.alwaysBounceVertical = false
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(LoginViewController.removeLogin))
+        self.tableView.addGestureRecognizer(longPress)
         
         NotificationCenter.default.addObserver(self, selector: #selector(hidePopup), name: .HidePopup, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(goHome), name: .SuccesfulLogin, object: nil)
@@ -137,6 +139,24 @@ class LoginViewController: UIViewController {
     
     @IBAction func logout( _ seg: UIStoryboardSegue) {
         EduLinkAPI.shared.clear()
+    }
+    
+    @objc func removeLogin(longPressGestureRecognizer: UILongPressGestureRecognizer) {
+        if longPressGestureRecognizer.state == UIGestureRecognizer.State.began {
+            let touchPoint = longPressGestureRecognizer.location(in: tableView)
+            if let indexPath = tableView.indexPathForRow(at: touchPoint) {
+                let login = self.logins[indexPath.row]
+                let alert = UIAlertController(title: "Remove Login", message: "Do you want to delete the login for \(login.forename!) at \(login.schoolName!)?", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { action in
+                    let loginManager = LoginManager()
+                    loginManager.removeLogin(uwuIn: login)
+                    self.organiseLogins()
+                    self.tableView.reloadData()
+                }))
+                alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+            }
+        }
     }
 }
 

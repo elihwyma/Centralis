@@ -82,30 +82,9 @@ class LoginPopup: UIView {
         DispatchQueue.main.async {
             if let schoolCode = self.schoolCode.text, let username = self.username.text, let password = self.password.text {
                 if self.saveLogin.isOn {
-                    if let png = EduLinkAPI.shared.authorisedSchool.schoolLogo.pngData() {
-                        let decoder = JSONDecoder()
-                        let encoder = JSONEncoder()
-                        
-                        var l = UserDefaults.standard.object(forKey: "SavedLogins") as? [Data] ?? [Data]()
-                        var logins = [SavedLogin]()
-                        for login in l {
-                            if let a = try? decoder.decode(SavedLogin.self, from: login) {
-                                logins.append(a)
-                            }
-                        }
-                        
-                        for login in logins where ((login.schoolCode == schoolCode) && (login.username == username) && (login.password == password)) {
-                            return
-                        }
-
-                        let newLogin = SavedLogin(username, password, schoolCode, png, EduLinkAPI.shared.authorisedUser.school!, EduLinkAPI.shared.authorisedUser.forename!)
-
-                        if let encoded = try? encoder.encode(newLogin) {
-                            l.append(encoded)
-                        }
-
-                        UserDefaults.standard.setValue(l, forKey: "SavedLogins")
-                    }
+                    let loginManager = LoginManager()
+                    loginManager.saveLogins(schoolCode: schoolCode, username: username, password: password)
+                    self.stopWorking()
                 }
             }
         }
@@ -118,6 +97,7 @@ class LoginPopup: UIView {
     
     @IBAction func login(_ sender: Any) {
         if let schoolCode = self.schoolCode.text, let username = self.username.text, let password = self.password.text {
+            self.startWorking()
             EduLinkAPI.shared.login(schoolCode: schoolCode, username: username, password: password)
         }
     }
