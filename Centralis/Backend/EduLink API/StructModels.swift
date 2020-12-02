@@ -14,14 +14,16 @@ struct SavedLogin: Codable {
     var image: Data!
     var schoolName: String!
     var forename: String!
+    var surname: String!
     
-    init(_ username: String!, _ password: String, _ schoolCode: String!, _ image: Data!, _ schoolName: String!, _ forename: String!) {
+    init(_ username: String!, _ password: String, _ schoolCode: String!, _ image: Data!, _ schoolName: String!, _ forename: String!, _ surname: String!) {
         self.username = username
         self.password = password
         self.schoolCode = schoolCode
         self.image = image
         self.schoolName = schoolName
         self.forename = forename
+        self.surname = surname
     }
 }
 
@@ -101,6 +103,10 @@ struct ReportCardTargetType {
     var id: Int!
     var code: String!
     var description: String!
+}
+
+struct Status {
+    var new_messages: Int!
 }
 
 

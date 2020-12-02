@@ -18,13 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E44-aI-H5x" customClass="DynamicColourView" customModule="Centralis" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="enableRandomColour" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Be-hq-RVK">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
@@ -84,20 +77,15 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="E44-aI-H5x" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="49k-qA-KLh"/>
-                            <constraint firstAttribute="bottom" secondItem="E44-aI-H5x" secondAttribute="bottom" id="ABa-K2-r8I"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3Be-hq-RVK" secondAttribute="trailing" id="GuM-ez-MbM"/>
                             <constraint firstItem="3Be-hq-RVK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TWD-Ji-SP2"/>
-                            <constraint firstItem="E44-aI-H5x" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="USZ-Kb-FlN"/>
-                            <constraint firstItem="E44-aI-H5x" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Utv-E9-M9z"/>
                             <constraint firstItem="3Be-hq-RVK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="eEd-9t-TLb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3Be-hq-RVK" secondAttribute="bottom" id="wOE-5D-1zp"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="dynamicColourView" destination="E44-aI-H5x" id="R3j-hL-sHp"/>
                         <outlet property="newLoggin" destination="ghk-Nk-grP" id="est-1e-Ysh"/>
                         <outlet property="tableView" destination="oqs-FO-vu2" id="I27-RL-pi6"/>
                         <outlet property="titleLabel" destination="WL8-6p-FcA" id="yRP-Ml-nTw"/>
@@ -116,13 +104,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2k0-kQ-h3e" customClass="DynamicColourView" customModule="Centralis" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="enableRandomColour" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bwC-zi-Imx">
                                 <rect key="frame" x="15" y="165" width="384" height="672"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -139,13 +120,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="bwC-zi-Imx" firstAttribute="leading" secondItem="WHh-Jo-hjL" secondAttribute="leading" constant="15" id="3IJ-cf-zlQ"/>
-                            <constraint firstItem="2k0-kQ-h3e" firstAttribute="top" secondItem="Sk2-zP-WjG" secondAttribute="top" id="AHP-3M-3TU"/>
-                            <constraint firstAttribute="bottom" secondItem="2k0-kQ-h3e" secondAttribute="bottom" id="JgQ-OY-u5U"/>
                             <constraint firstItem="WHh-Jo-hjL" firstAttribute="bottom" secondItem="bwC-zi-Imx" secondAttribute="bottom" constant="25" id="Vda-S1-dov"/>
                             <constraint firstItem="bwC-zi-Imx" firstAttribute="top" secondItem="WHh-Jo-hjL" secondAttribute="top" constant="25" id="ZhM-hY-mtY"/>
-                            <constraint firstItem="2k0-kQ-h3e" firstAttribute="leading" secondItem="WHh-Jo-hjL" secondAttribute="leading" id="cfh-1E-xHH"/>
                             <constraint firstItem="WHh-Jo-hjL" firstAttribute="trailing" secondItem="bwC-zi-Imx" secondAttribute="trailing" constant="15" id="fG2-P0-NrY"/>
-                            <constraint firstItem="2k0-kQ-h3e" firstAttribute="trailing" secondItem="WHh-Jo-hjL" secondAttribute="trailing" id="fho-mk-yJb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Forename : Surname" largeTitleDisplayMode="always" id="dB8-w3-G9N">
@@ -164,10 +141,21 @@
                             </button>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="VRb-XJ-ChV">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eLn-rU-eIT">
+                                <rect key="frame" x="-23" y="-15" width="20" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <state key="normal" title="0">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                    <imageReference key="image" image="envelope.circle.fill" catalog="system" symbolScale="large"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="bwC-zi-Imx" id="DOM-ph-dt1"/>
-                        <outlet property="dynamicColourView" destination="2k0-kQ-h3e" id="3jM-Cd-4Yz"/>
                         <segue destination="aVJ-aQ-wsn" kind="unwind" identifier="logout" unwindAction="logout:" id="STw-DN-QlN"/>
                     </connections>
                 </viewController>
@@ -198,6 +186,7 @@
     </scenes>
     <resources>
         <image name="arrow.down.left.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="envelope.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

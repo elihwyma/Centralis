@@ -263,6 +263,7 @@ class LoginManager {
     }
     
     public func saveLogins(schoolCode: String, username: String, password: String) {
+        if schoolCode.isEmpty || username.isEmpty || password.isEmpty { return }
         if let png = EduLinkAPI.shared.authorisedSchool.schoolLogo.pngData() {
             let decoder = JSONDecoder()
             let encoder = JSONEncoder()
@@ -282,7 +283,7 @@ class LoginManager {
                 l.remove(at: index)
             }
             
-            let newLogin = ((changePassword != -1) ? logins[changePassword] : SavedLogin(username, password, schoolCode, png, EduLinkAPI.shared.authorisedUser.school!, EduLinkAPI.shared.authorisedUser.forename!))
+            let newLogin = ((changePassword != -1) ? logins[changePassword] : SavedLogin(username, password, schoolCode, png, EduLinkAPI.shared.authorisedUser.school!, EduLinkAPI.shared.authorisedUser.forename!, EduLinkAPI.shared.authorisedUser.surname!))
 
             if let encoded = try? encoder.encode(newLogin) {
                 l.append(encoded)

@@ -10,7 +10,6 @@ import UIKit
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var dynamicColourView: DynamicColourView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +24,6 @@ class HomeViewController: UIViewController {
     }
     
     private func setup() {
-        self.dynamicColourView.setup()
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.showsVerticalScrollIndicator = false

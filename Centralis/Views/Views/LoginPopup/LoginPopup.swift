@@ -97,6 +97,7 @@ class LoginPopup: UIView {
     
     @IBAction func login(_ sender: Any) {
         if let schoolCode = self.schoolCode.text, let username = self.username.text, let password = self.password.text {
+            if schoolCode.isEmpty || username.isEmpty || password.isEmpty { return }
             self.startWorking()
             EduLinkAPI.shared.login(schoolCode: schoolCode, username: username, password: password)
         }

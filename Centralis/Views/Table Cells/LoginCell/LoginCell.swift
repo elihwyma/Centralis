@@ -13,11 +13,18 @@ class LoginCell: UITableViewCell {
     @IBOutlet weak var schoolName: UILabel!
     @IBOutlet weak var forename: UILabel!
     @IBOutlet weak var blurView: UIView!
+    @IBInspectable weak var minHeight: NSNumber! = 75
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         self.setup()
+    }
+
+    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+        let size = super.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: horizontalFittingPriority, verticalFittingPriority: verticalFittingPriority)
+        guard let minHeight = minHeight else { return size }
+        return CGSize(width: size.width, height: max(size.height, (minHeight as! CGFloat)))
     }
     
     private func setup() {

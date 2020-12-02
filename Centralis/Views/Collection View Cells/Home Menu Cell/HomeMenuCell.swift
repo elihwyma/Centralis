@@ -18,6 +18,8 @@ class HomeMenuCell: UICollectionViewCell {
     }
     
     private func setup() {
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = 15
         self.image.layer.masksToBounds = true
         self.name.adjustsFontSizeToFitWidth = true
         self.image.layer.cornerRadius = self.image.frame.height / 2

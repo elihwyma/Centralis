@@ -9,7 +9,6 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var dynamicColourView: DynamicColourView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: ResizedTableView!
     @IBOutlet weak var newLoggin: UIButton!
@@ -27,40 +26,36 @@ class LoginViewController: UIViewController {
     
     private func setup() {
         self.organiseLogins()
-        self.dynamicColourView.setup()
         self.newLoggin.layer.masksToBounds = true
         self.newLoggin.layer.borderColor = UIColor.label.cgColor
         self.newLoggin.layer.borderWidth = 2
         self.newLoggin.layer.cornerRadius = 15
     
-        //Make it transparent
-        self.tableView.backgroundColor = .none
-        //Removes cells that don't exist
+        self.tableView.backgroundColor = .systemGray5
         self.tableView.tableFooterView = UIView()
-        //Disable the seperator lines, make it look nice :)
-        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        //Disable the scroll indicators
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
         self.tableView.showsVerticalScrollIndicator = false
         self.tableView.showsHorizontalScrollIndicator = false
-        //Register the cell from nib
         self.tableView.register(UINib(nibName: "LoginCell", bundle: nil), forCellReuseIdentifier: "Centralis.LoginCell")
-        //Set the delegate/source
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        //Bouncy Boi
         self.tableView.alwaysBounceVertical = false
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(LoginViewController.removeLogin))
         self.tableView.addGestureRecognizer(longPress)
+        self.tableView.layer.masksToBounds = true
+        self.tableView.layer.cornerRadius = 15
         
         NotificationCenter.default.addObserver(self, selector: #selector(hidePopup), name: .HidePopup, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(goHome), name: .SuccesfulLogin, object: nil)
     }
     
     private func organiseLogins() {
+        self.logins.removeAll()
         let decoder = JSONDecoder()
         let l = UserDefaults.standard.object(forKey: "SavedLogins") as? [Data] ?? [Data]()
         for login in l {
             if let a = try? decoder.decode(SavedLogin.self, from: login) {
+                print("Appending \(a)")
                 self.logins.append(a)
             }
         }
@@ -139,6 +134,8 @@ class LoginViewController: UIViewController {
     
     @IBAction func logout( _ seg: UIStoryboardSegue) {
         EduLinkAPI.shared.clear()
+        self.organiseLogins()
+        self.tableView.reloadData()
     }
     
     @objc func removeLogin(longPressGestureRecognizer: UILongPressGestureRecognizer) {
@@ -184,7 +181,7 @@ extension LoginViewController : UITableViewDataSource {
         if let image = UIImage(data: savedLogin.image) {
             cell.schoolLogo.image = image
         }
-        cell.forename.text = savedLogin.forename
+        cell.forename.text = "\(savedLogin.forename!) \(savedLogin.surname!)"
         cell.schoolName.text = savedLogin.schoolName
         return cell
     }

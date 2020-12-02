@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		532434252578193900875BAD /* EduLink_Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532434242578193900875BAD /* EduLink_Status.swift */; };
 		53CA2DE2257580A500E3A02B /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DE1257580A500E3A02B /* LoginManager.swift */; };
 		53CA2DE52575896F00E3A02B /* StructModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DE42575896F00E3A02B /* StructModels.swift */; };
 		53CA2DE82576C08500E3A02B /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DE72576C08400E3A02B /* UserDefaults+Extension.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		532434242578193900875BAD /* EduLink_Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Status.swift; sourceTree = "<group>"; };
 		53CA2DE1257580A500E3A02B /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		53CA2DE42575896F00E3A02B /* StructModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructModels.swift; sourceTree = "<group>"; };
 		53CA2DE72576C08400E3A02B /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
@@ -75,6 +77,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5324342825781A4800875BAD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				532434242578193900875BAD /* EduLink_Status.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		53CA2DEA2576CC4300E3A02B /* Table Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +271,7 @@
 		53CB50B9257313280077DDAE /* EduLink API */ = {
 			isa = PBXGroup;
 			children = (
+				5324342825781A4800875BAD /* Models */,
 				53CB50BB2573E42F0077DDAE /* EduLinkAPI.swift */,
 				53CA2DE1257580A500E3A02B /* LoginManager.swift */,
 				53CA2DE42575896F00E3A02B /* StructModels.swift */,
@@ -356,6 +367,7 @@
 				53CB509A2572D7C40077DDAE /* UIView+Extensions.swift in Sources */,
 				53CB50972572D7BB0077DDAE /* CAGradientLayer+Extensions.swift in Sources */,
 				53CB50AE2572F8550077DDAE /* NSNotification+Extensions.swift in Sources */,
+				532434252578193900875BAD /* EduLink_Status.swift in Sources */,
 				53CB50742572D1780077DDAE /* SceneDelegate.swift in Sources */,
 				53CA2DF62576D69A00E3A02B /* WorkingCover.swift in Sources */,
 				53CB50A12572F0B50077DDAE /* ResizedTableView.swift in Sources */,
