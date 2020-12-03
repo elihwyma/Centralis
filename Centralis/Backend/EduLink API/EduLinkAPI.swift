@@ -30,6 +30,16 @@ class EduLinkAPI {
         loginManager.authenticate(schoolCode: schoolCode, username: username, password: password)
     }
     
+    public func quickLogin(_ savedLogin: SavedLogin) {
+        let loginManager = LoginManager()
+        loginManager.schoolCode = savedLogin.schoolCode
+        loginManager.username = savedLogin.username
+        loginManager.password = savedLogin.password
+        self.authorisedSchool.school_id = savedLogin.schoolID
+        self.authorisedSchool.server = savedLogin.schoolServer
+        loginManager.login()
+    }
+    
     public func clear() {
         self.authorisedUser = AuthorisedUser()
         self.authorisedSchool = AuthorisedSchool()

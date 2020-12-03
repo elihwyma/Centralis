@@ -11,19 +11,23 @@ struct SavedLogin: Codable {
     var username: String!
     var password: String!
     var schoolCode: String!
-    var image: Data!
+    var schoolServer: String!
     var schoolName: String!
+    var schoolID: Int!
+    var image: Data!
     var forename: String!
     var surname: String!
     
-    init(_ username: String!, _ password: String, _ schoolCode: String!, _ image: Data!, _ schoolName: String!, _ forename: String!, _ surname: String!) {
+    init(_ username: String!, _ password: String, _ schoolServer: String!, _ image: Data!, _ schoolName: String!, _ forename: String!, _ surname: String!, _ schoolID: Int!, _ schoolCode: String!) {
         self.username = username
         self.password = password
-        self.schoolCode = schoolCode
+        self.schoolServer = schoolServer
         self.image = image
         self.schoolName = schoolName
         self.forename = forename
         self.surname = surname
+        self.schoolID = schoolID
+        self.schoolCode = schoolCode
     }
 }
 

@@ -66,7 +66,7 @@ class LoginManager {
         })
     }
     
-    private func login() {
+    public func login() {
         let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.Login")!
         let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.Login\",\"params\":{\"from_app\":false,\"ui_info\":{\"format\":2,\"version\":\"0.5.113\",\"git_sha\":\"FuckYouOvernetData\"},\"fcm_token_old\":\"none\",\"username\":\"\(username!)\",\"password\":\"\(password!)\",\"establishment_id\":2},\"uuid\":\"FuckYouOvernetData\",\"id\":\"1\"}"
@@ -283,7 +283,7 @@ class LoginManager {
                 l.remove(at: index)
             }
             
-            let newLogin = ((changePassword != -1) ? logins[changePassword] : SavedLogin(username, password, schoolCode, png, EduLinkAPI.shared.authorisedUser.school!, EduLinkAPI.shared.authorisedUser.forename!, EduLinkAPI.shared.authorisedUser.surname!))
+            let newLogin = ((changePassword != -1) ? logins[changePassword] : SavedLogin(username, password, schoolCode, png, EduLinkAPI.shared.authorisedUser.school!, EduLinkAPI.shared.authorisedUser.forename!, EduLinkAPI.shared.authorisedUser.surname!, EduLinkAPI.shared.authorisedSchool.school_id, EduLinkAPI.shared.authorisedSchool.server))
 
             if let encoded = try? encoder.encode(newLogin) {
                 l.append(encoded)

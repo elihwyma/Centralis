@@ -162,7 +162,7 @@ extension LoginViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.startWorking()
         let login = self.logins[indexPath.row]
-        EduLinkAPI.shared.login(schoolCode: login.schoolCode!, username: login.username!, password: login.password!)
+        EduLinkAPI.shared.quickLogin(login)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
