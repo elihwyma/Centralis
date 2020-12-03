@@ -125,7 +125,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hSp-ZJ-IIz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4509" y="-922"/>
+            <point key="canvasLocation" x="4516" y="-1444"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="mkH-2E-WEz">
@@ -173,7 +173,7 @@
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="VRb-XJ-ChV">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eLn-rU-eIT">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eLn-rU-eIT">
                                 <rect key="frame" x="357" y="10" width="37" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
@@ -190,12 +190,44 @@
                         <outlet property="inboxButton" destination="eLn-rU-eIT" id="fcL-EO-I5c"/>
                         <segue destination="aVJ-aQ-wsn" kind="unwind" identifier="logout" unwindAction="logout:" id="STw-DN-QlN"/>
                         <segue destination="GwH-8S-tIz" kind="show" identifier="Centralis.Catering" id="jAN-Ki-nKd"/>
+                        <segue destination="Quy-fp-T57" kind="show" identifier="Centralis.Achievement" id="y4o-R7-2Mv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VlT-xE-Ef3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="aVJ-aQ-wsn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3571.0144927536235" y="114.50892857142857"/>
+        </scene>
+        <!--Achievement View Controller-->
+        <scene sceneID="cE7-HH-zMD">
+            <objects>
+                <viewController id="Quy-fp-T57" customClass="AchievementViewController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9Yi-1d-Lge">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eov-es-CS4">
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0d8-Ny-CwE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eov-es-CS4" firstAttribute="leading" secondItem="0d8-Ny-CwE" secondAttribute="leading" id="7vc-N7-HSt"/>
+                            <constraint firstItem="eov-es-CS4" firstAttribute="top" secondItem="0d8-Ny-CwE" secondAttribute="top" id="8Mm-4F-pLa"/>
+                            <constraint firstItem="0d8-Ny-CwE" firstAttribute="bottom" secondItem="eov-es-CS4" secondAttribute="bottom" id="9nx-OE-7hJ"/>
+                            <constraint firstItem="0d8-Ny-CwE" firstAttribute="trailing" secondItem="eov-es-CS4" secondAttribute="trailing" id="EKt-5p-ye4"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="jnN-0D-DKy"/>
+                    <connections>
+                        <outlet property="tableView" destination="eov-es-CS4" id="Gkm-ts-LF3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3cZ-F9-0m3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4516" y="-783"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XBx-DF-U5t">

@@ -163,7 +163,7 @@ class LoginManager {
                     roomMemory.id = Int((room["id"])!)
                     roomMemory.code = room["code"]
                     roomMemory.name = room["name"]
-                    EduLinkAPI.shared.rooms.append(roomMemory)
+                    EduLinkAPI.shared.schoolInfo.rooms.append(roomMemory)
                 }
             }
             
@@ -173,7 +173,7 @@ class LoginManager {
                     var yg = YearGroup()
                     yg.id = Int((yearGroup["id"])!)
                     yg.name = yearGroup["name"]
-                    EduLinkAPI.shared.yearGroups.append(yg)
+                    EduLinkAPI.shared.schoolInfo.yearGroups.append(yg)
                 }
             }
             
@@ -183,7 +183,7 @@ class LoginManager {
                     var cg = CommunityGroup()
                     cg.id = Int((communityGroup["id"])!)
                     cg.name = communityGroup["name"]
-                    EduLinkAPI.shared.communityGroups.append(cg)
+                    EduLinkAPI.shared.schoolInfo.communityGroups.append(cg)
                 }
             }
             
@@ -193,7 +193,7 @@ class LoginManager {
                     var ag = AdmissionGroup()
                     ag.id = Int((admissionGroup["id"])!)
                     ag.name = admissionGroup["name"]
-                    EduLinkAPI.shared.admissionGroups.append(ag)
+                    EduLinkAPI.shared.schoolInfo.admissionGroups.append(ag)
                 }
             }
             
@@ -203,7 +203,7 @@ class LoginManager {
                     var ig = IntakeGroup()
                     ig.id = Int((intakeGroup["id"])!)
                     ig.name = intakeGroup["name"]
-                    EduLinkAPI.shared.intakeGroups.append(ig)
+                    EduLinkAPI.shared.schoolInfo.intakeGroups.append(ig)
                 }
             }
             
@@ -219,7 +219,7 @@ class LoginManager {
                     for yg in ygid! {
                         fg.year_group_ids.append(Int(yg)!)
                     }
-                    EduLinkAPI.shared.formGroups.append(fg)
+                    EduLinkAPI.shared.schoolInfo.formGroups.append(fg)
                 }
             }
             
@@ -234,7 +234,7 @@ class LoginManager {
                     for tgida in tgid! {
                         tg.year_group_ids.append(Int(tgida)!)
                     }
-                    EduLinkAPI.shared.teachingGroups.append(tg)
+                    EduLinkAPI.shared.schoolInfo.teachingGroups.append(tg)
                 }
             }
             
@@ -245,7 +245,7 @@ class LoginManager {
                     s.id = Int((subject["id"] as! String))
                     s.name = subject["name"] as? String
                     s.active = subject["active"] as? Bool
-                    EduLinkAPI.shared.subjects.append(s)
+                    EduLinkAPI.shared.schoolInfo.subjects.append(s)
                 }
             }
             
@@ -256,7 +256,7 @@ class LoginManager {
                     rc.id = reportCard["id"] as? Int
                     rc.code = reportCard["name"] as? String
                     rc.description = reportCard["description"] as? String
-                    EduLinkAPI.shared.reportCardTargetTypes.append(rc)
+                    EduLinkAPI.shared.schoolInfo.reportCardTargetTypes.append(rc)
                 }
             }
         }
@@ -277,13 +277,13 @@ class LoginManager {
             }
             
             var changePassword = -1
-            for (index, login) in logins.enumerated() where ((login.schoolCode == schoolCode) && (login.username == username)) {
+            for (index, login) in logins.enumerated() where (((login.schoolCode == schoolCode) || (login.schoolServer == EduLinkAPI.shared.authorisedSchool.server ?? "")) && (login.username == username)) {
                 logins[index].password = password
                 changePassword = index
                 l.remove(at: index)
             }
             
-            let newLogin = ((changePassword != -1) ? logins[changePassword] : SavedLogin(username, password, schoolCode, png, EduLinkAPI.shared.authorisedUser.school!, EduLinkAPI.shared.authorisedUser.forename!, EduLinkAPI.shared.authorisedUser.surname!, EduLinkAPI.shared.authorisedSchool.school_id, EduLinkAPI.shared.authorisedSchool.server))
+            let newLogin = ((changePassword != -1) ? logins[changePassword] : SavedLogin(username: username, password: password, schoolServer: EduLinkAPI.shared.authorisedSchool.server, image: png, schoolName: EduLinkAPI.shared.authorisedUser.school!, forename: EduLinkAPI.shared.authorisedUser.forename!, surname: EduLinkAPI.shared.authorisedUser.surname!, schoolID: EduLinkAPI.shared.authorisedSchool.school_id, schoolCode: schoolCode))
 
             if let encoded = try? encoder.encode(newLogin) {
                 l.append(encoded)

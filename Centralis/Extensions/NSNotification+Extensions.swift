@@ -24,4 +24,8 @@ extension NSNotification.Name {
     //Catering
     static let FailedCatering = Notification.Name("FailedCatering")
     static let SuccesfulCatering = Notification.Name("SuccesfulCatering")
+    
+    //Achievement
+    static let FailedAchievement = Notification.Name("FailedAchievement")
+    static let SuccesfulAchievement = Notification.Name("SuccesfulAchievement")
 }

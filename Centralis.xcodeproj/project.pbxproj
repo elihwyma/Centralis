@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		531870CE2579673A000191FD /* EduLink_Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531870CD25796739000191FD /* EduLink_Achievement.swift */; };
+		531870D1257968BD000191FD /* AchievementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531870D0257968BD000191FD /* AchievementViewController.swift */; };
+		531870D4257977D0000191FD /* EduLink_Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531870D3257977D0000191FD /* EduLink_Employee.swift */; };
 		532434252578193900875BAD /* EduLink_Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532434242578193900875BAD /* EduLink_Status.swift */; };
 		5324342B25781FA000875BAD /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5324342A25781F9F00875BAD /* UUID.swift */; };
 		5324342E2578234900875BAD /* EduLink_Catering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5324342D2578234800875BAD /* EduLink_Catering.swift */; };
@@ -41,6 +44,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		531870CD25796739000191FD /* EduLink_Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Achievement.swift; sourceTree = "<group>"; };
+		531870D0257968BD000191FD /* AchievementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementViewController.swift; sourceTree = "<group>"; };
+		531870D3257977D0000191FD /* EduLink_Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Employee.swift; sourceTree = "<group>"; };
 		532434242578193900875BAD /* EduLink_Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Status.swift; sourceTree = "<group>"; };
 		5324342A25781F9F00875BAD /* UUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUID.swift; sourceTree = "<group>"; };
 		5324342D2578234800875BAD /* EduLink_Catering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Catering.swift; sourceTree = "<group>"; };
@@ -92,6 +98,8 @@
 			children = (
 				532434242578193900875BAD /* EduLink_Status.swift */,
 				5324342D2578234800875BAD /* EduLink_Catering.swift */,
+				531870CD25796739000191FD /* EduLink_Achievement.swift */,
+				531870D3257977D0000191FD /* EduLink_Employee.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -212,6 +220,7 @@
 				53CB509C2572D92F0077DDAE /* LoginViewController.swift */,
 				53CA2E002576DD2A00E3A02B /* HomeViewController.swift */,
 				532434302578268900875BAD /* CateringViewController.swift */,
+				531870D0257968BD000191FD /* AchievementViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -393,13 +402,16 @@
 				53CB50BC2573E42F0077DDAE /* EduLinkAPI.swift in Sources */,
 				53CB509A2572D7C40077DDAE /* UIView+Extensions.swift in Sources */,
 				53CB50972572D7BB0077DDAE /* CAGradientLayer+Extensions.swift in Sources */,
+				531870CE2579673A000191FD /* EduLink_Achievement.swift in Sources */,
 				53CB50AE2572F8550077DDAE /* NSNotification+Extensions.swift in Sources */,
 				532434252578193900875BAD /* EduLink_Status.swift in Sources */,
 				53CB50742572D1780077DDAE /* SceneDelegate.swift in Sources */,
 				5324342B25781FA000875BAD /* UUID.swift in Sources */,
 				53CA2DF62576D69A00E3A02B /* WorkingCover.swift in Sources */,
+				531870D4257977D0000191FD /* EduLink_Employee.swift in Sources */,
 				53CB50A12572F0B50077DDAE /* ResizedTableView.swift in Sources */,
 				53CA2DE52575896F00E3A02B /* StructModels.swift in Sources */,
+				531870D1257968BD000191FD /* AchievementViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

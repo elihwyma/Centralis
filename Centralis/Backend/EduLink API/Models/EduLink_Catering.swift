@@ -15,7 +15,6 @@ class EduLink_Catering {
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.Catering\",\"params\":{\"last_visible\":0,\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
         NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
             if success {
-                print(dict)
                 if let result = dict["result"] as? [String : Any] {
                     if !(result["success"] as! Bool) {
                         NotificationCenter.default.post(name: .FailedCatering, object: nil)

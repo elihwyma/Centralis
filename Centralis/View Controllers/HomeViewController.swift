@@ -71,6 +71,7 @@ extension HomeViewController: UICollectionViewDelegate {
         let menu = EduLinkAPI.shared.personalMenus[indexPath.row]
         switch menu.name {
         case "Catering": self.performSegue(withIdentifier: "Centralis.Catering", sender: nil)
+        case "Achievement": self.performSegue(withIdentifier: "Centralis.Achievement", sender: nil)
         default: break
         }
     }

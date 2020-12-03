@@ -55,7 +55,6 @@ class LoginViewController: UIViewController {
         let l = UserDefaults.standard.object(forKey: "SavedLogins") as? [Data] ?? [Data]()
         for login in l {
             if let a = try? decoder.decode(SavedLogin.self, from: login) {
-                print("Appending \(a)")
                 self.logins.append(a)
             }
         }
