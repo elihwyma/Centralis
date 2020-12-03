@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CateringCell: UITableViewCell {
+class TextViewCell: UITableViewCell {
 
     @IBOutlet weak var transactionsView: UITextView!
     

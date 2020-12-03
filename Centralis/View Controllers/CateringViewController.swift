@@ -36,7 +36,7 @@ class CateringViewController: UIViewController {
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
         self.tableView.showsVerticalScrollIndicator = false
         self.tableView.showsHorizontalScrollIndicator = false
-        self.tableView.register(UINib(nibName: "CateringCell", bundle: nil), forCellReuseIdentifier: "Centralis.CateringCell")
+        self.tableView.register(UINib(nibName: "TextViewCell", bundle: nil), forCellReuseIdentifier: "Centralis.TextViewCell")
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.alwaysBounceVertical = false
@@ -72,7 +72,7 @@ extension CateringViewController : UITableViewDataSource {
 
     //This is what handles all the images and text etc, using the class mainScreenTableCells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.CateringCell", for: indexPath) as! CateringCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.TextViewCell", for: indexPath) as! TextViewCell
         let transaction = EduLinkAPI.shared.catering.transactions[indexPath.row]
         let boldAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 17, weight: .bold)

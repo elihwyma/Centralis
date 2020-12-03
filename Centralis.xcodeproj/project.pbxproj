@@ -11,8 +11,8 @@
 		5324342B25781FA000875BAD /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5324342A25781F9F00875BAD /* UUID.swift */; };
 		5324342E2578234900875BAD /* EduLink_Catering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5324342D2578234800875BAD /* EduLink_Catering.swift */; };
 		532434312578268900875BAD /* CateringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532434302578268900875BAD /* CateringViewController.swift */; };
-		53243436257828A300875BAD /* CateringCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53243434257828A200875BAD /* CateringCell.swift */; };
-		53243437257828A300875BAD /* CateringCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53243435257828A200875BAD /* CateringCell.xib */; };
+		53243436257828A300875BAD /* TextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53243434257828A200875BAD /* TextViewCell.swift */; };
+		53243437257828A300875BAD /* TextViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53243435257828A200875BAD /* TextViewCell.xib */; };
 		53CA2DE2257580A500E3A02B /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DE1257580A500E3A02B /* LoginManager.swift */; };
 		53CA2DE52575896F00E3A02B /* StructModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DE42575896F00E3A02B /* StructModels.swift */; };
 		53CA2DE82576C08500E3A02B /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DE72576C08400E3A02B /* UserDefaults+Extension.swift */; };
@@ -45,8 +45,8 @@
 		5324342A25781F9F00875BAD /* UUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUID.swift; sourceTree = "<group>"; };
 		5324342D2578234800875BAD /* EduLink_Catering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Catering.swift; sourceTree = "<group>"; };
 		532434302578268900875BAD /* CateringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CateringViewController.swift; sourceTree = "<group>"; };
-		53243434257828A200875BAD /* CateringCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CateringCell.swift; sourceTree = "<group>"; };
-		53243435257828A200875BAD /* CateringCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CateringCell.xib; sourceTree = "<group>"; };
+		53243434257828A200875BAD /* TextViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewCell.swift; sourceTree = "<group>"; };
+		53243435257828A200875BAD /* TextViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextViewCell.xib; sourceTree = "<group>"; };
 		53CA2DE1257580A500E3A02B /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		53CA2DE42575896F00E3A02B /* StructModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructModels.swift; sourceTree = "<group>"; };
 		53CA2DE72576C08400E3A02B /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
@@ -96,19 +96,19 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		532434332578288500875BAD /* CateringCell */ = {
+		532434332578288500875BAD /* TextViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				53243434257828A200875BAD /* CateringCell.swift */,
-				53243435257828A200875BAD /* CateringCell.xib */,
+				53243434257828A200875BAD /* TextViewCell.swift */,
+				53243435257828A200875BAD /* TextViewCell.xib */,
 			);
-			path = CateringCell;
+			path = TextViewCell;
 			sourceTree = "<group>";
 		};
 		53CA2DEA2576CC4300E3A02B /* Table Cells */ = {
 			isa = PBXGroup;
 			children = (
-				532434332578288500875BAD /* CateringCell */,
+				532434332578288500875BAD /* TextViewCell */,
 				53CA2DEB2576CC4B00E3A02B /* LoginCell */,
 			);
 			path = "Table Cells";
@@ -365,7 +365,7 @@
 				53CB507E2572D1880077DDAE /* LaunchScreen.storyboard in Resources */,
 				53CB507B2572D1880077DDAE /* Assets.xcassets in Resources */,
 				53CB50792572D1780077DDAE /* Main.storyboard in Resources */,
-				53243437257828A300875BAD /* CateringCell.xib in Resources */,
+				53243437257828A300875BAD /* TextViewCell.xib in Resources */,
 				53CA2DF32576D67A00E3A02B /* WorkingCover.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,7 +378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53CA2DFC2576DA5800E3A02B /* HomeMenuCell.swift in Sources */,
-				53243436257828A300875BAD /* CateringCell.swift in Sources */,
+				53243436257828A300875BAD /* TextViewCell.swift in Sources */,
 				53CB50AB2572F6D70077DDAE /* LoginPopup.swift in Sources */,
 				53CB509D2572D9300077DDAE /* LoginViewController.swift in Sources */,
 				5324342E2578234900875BAD /* EduLink_Catering.swift in Sources */,
