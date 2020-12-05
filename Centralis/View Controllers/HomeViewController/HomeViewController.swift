@@ -47,19 +47,31 @@ class HomeViewController: UIViewController {
             self.inboxButton.setTitle("\(EduLinkAPI.shared.status.new_messages!)", for: .normal)
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Centralis.TextViewController" {
+            let indexPaths: NSArray = self.collectionView.indexPathsForSelectedItems! as NSArray
+            let indexPath: IndexPath = indexPaths[0] as! IndexPath
+            let menu = EduLinkAPI.shared.personalMenus[indexPath.row]
+            let controller = segue.destination as! TextViewController
+            switch menu.name! {
+            case "Achievement": controller.context = .achievement
+            case "Catering": controller.context = .catering
+            case "Account Info": controller.context = .personal
+            default: fatalError("Not implemented yet")
+            }
+        }
+    }
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         let noOfCellsInRow = 3
-
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-
         let totalSpace = flowLayout.sectionInset.left
             + flowLayout.sectionInset.right
             + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
-
         let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
 
         return CGSize(width: size, height: size)
@@ -68,12 +80,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let menu = EduLinkAPI.shared.personalMenus[indexPath.row]
-        switch menu.name {
-        case "Catering": self.performSegue(withIdentifier: "Centralis.Catering", sender: nil)
-        case "Achievement": self.performSegue(withIdentifier: "Centralis.Achievement", sender: nil)
-        default: break
-        }
+        self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
     }
 }
 

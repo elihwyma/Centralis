@@ -96,10 +96,10 @@
             </objects>
             <point key="canvasLocation" x="1480" y="115"/>
         </scene>
-        <!--Catering View Controller-->
+        <!--Text View Controller-->
         <scene sceneID="9aS-t7-lbD">
             <objects>
-                <viewController id="GwH-8S-tIz" customClass="CateringViewController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GwH-8S-tIz" customClass="TextViewController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Og-ec-XiG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -120,12 +120,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="WAZ-OL-wFk"/>
                     <connections>
-                        <outlet property="tableView" destination="KUQ-CC-yeg" id="Z29-m7-nyi"/>
+                        <outlet property="tableView" destination="KUQ-CC-yeg" id="bVU-Nv-tiD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hSp-ZJ-IIz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4516" y="-1444"/>
+            <point key="canvasLocation" x="4407" y="-601"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="mkH-2E-WEz">
@@ -189,45 +189,51 @@
                         <outlet property="collectionView" destination="bwC-zi-Imx" id="DOM-ph-dt1"/>
                         <outlet property="inboxButton" destination="eLn-rU-eIT" id="fcL-EO-I5c"/>
                         <segue destination="aVJ-aQ-wsn" kind="unwind" identifier="logout" unwindAction="logout:" id="STw-DN-QlN"/>
-                        <segue destination="GwH-8S-tIz" kind="show" identifier="Centralis.Catering" id="jAN-Ki-nKd"/>
-                        <segue destination="Quy-fp-T57" kind="show" identifier="Centralis.Achievement" id="y4o-R7-2Mv"/>
+                        <segue destination="GwH-8S-tIz" kind="show" identifier="Centralis.TextViewController" id="jAN-Ki-nKd"/>
+                        <segue destination="kBp-2V-rds" kind="show" id="hzM-6K-E2k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VlT-xE-Ef3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="aVJ-aQ-wsn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3571.0144927536235" y="114.50892857142857"/>
+            <point key="canvasLocation" x="3506" y="123"/>
         </scene>
-        <!--Achievement View Controller-->
-        <scene sceneID="cE7-HH-zMD">
+        <!--Paging Detail Controller-->
+        <scene sceneID="abo-Tx-Sxi">
             <objects>
-                <viewController id="Quy-fp-T57" customClass="AchievementViewController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="9Yi-1d-Lge">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="kBp-2V-rds" customClass="PagingDetailController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="3z8-Y0-u52"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GAV-CH-qfS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4468" y="123"/>
+        </scene>
+        <!--Paging Table View Controller-->
+        <scene sceneID="JbK-fO-tsr">
+            <objects>
+                <viewController id="mBu-s9-xEw" customClass="PagingTableViewController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hvm-ya-y9j">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eov-es-CS4">
-                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DrX-xO-BwR">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="0d8-Ny-CwE"/>
+                        <viewLayoutGuide key="safeArea" id="aUC-da-fPa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="eov-es-CS4" firstAttribute="leading" secondItem="0d8-Ny-CwE" secondAttribute="leading" id="7vc-N7-HSt"/>
-                            <constraint firstItem="eov-es-CS4" firstAttribute="top" secondItem="0d8-Ny-CwE" secondAttribute="top" id="8Mm-4F-pLa"/>
-                            <constraint firstItem="0d8-Ny-CwE" firstAttribute="bottom" secondItem="eov-es-CS4" secondAttribute="bottom" id="9nx-OE-7hJ"/>
-                            <constraint firstItem="0d8-Ny-CwE" firstAttribute="trailing" secondItem="eov-es-CS4" secondAttribute="trailing" id="EKt-5p-ye4"/>
+                            <constraint firstItem="DrX-xO-BwR" firstAttribute="top" secondItem="aUC-da-fPa" secondAttribute="top" id="LP8-Wn-9Jy"/>
+                            <constraint firstItem="aUC-da-fPa" firstAttribute="bottom" secondItem="DrX-xO-BwR" secondAttribute="bottom" id="Ubz-Cw-SPN"/>
+                            <constraint firstItem="aUC-da-fPa" firstAttribute="trailing" secondItem="DrX-xO-BwR" secondAttribute="trailing" id="jDn-xL-N0i"/>
+                            <constraint firstItem="DrX-xO-BwR" firstAttribute="leading" secondItem="aUC-da-fPa" secondAttribute="leading" id="nDi-pD-iyj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="jnN-0D-DKy"/>
-                    <connections>
-                        <outlet property="tableView" destination="eov-es-CS4" id="Gkm-ts-LF3"/>
-                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3cZ-F9-0m3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w3W-g9-t7d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4516" y="-783"/>
+            <point key="canvasLocation" x="5455" y="123"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XBx-DF-U5t">

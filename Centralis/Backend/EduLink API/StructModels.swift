@@ -208,4 +208,26 @@ struct AchievementBehaviourLookup {
     var behaviour_types = [BehaviourType]()
 }
 
-
+struct Personal {
+    var id: Int!
+    var forename: String!
+    var surname: String!
+    var gender: String!
+    var admission_number: Int!
+    var unique_pupil_number: String!
+    var unique_learner_number: Int!
+    var date_of_birth: String!
+    var admission_date: String!
+    var email: String!
+    var phone: String!
+    var address: String!
+    var form: String!
+    var room_code: String!
+    var form_teacher: String!
+    var ethnicity: String!
+    var national_id: String!
+    var languages = [String]()
+    var note: String!
+    var year: String!
+    var house_group: String!
+}

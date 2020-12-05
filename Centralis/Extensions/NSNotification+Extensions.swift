@@ -28,4 +28,8 @@ extension NSNotification.Name {
     //Achievement
     static let FailedAchievement = Notification.Name("FailedAchievement")
     static let SuccesfulAchievement = Notification.Name("SuccesfulAchievement")
+    
+    //Personal
+    static let FailedPersonal = Notification.Name("FailedPersonal")
+    static let SuccesfulPersonal = Notification.Name("SuccesfulPersonal")
 }

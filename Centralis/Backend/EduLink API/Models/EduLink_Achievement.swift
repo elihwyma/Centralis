@@ -63,7 +63,11 @@ class EduLink_Achievement {
                             EduLinkAPI.shared.achievementBehaviourLookups.achievements.append(a)
                         }
                     }
-                    self.achievementBehaviourLookups()
+                    if EduLinkAPI.shared.achievementBehaviourLookups.achievement_types.isEmpty {
+                        self.achievementBehaviourLookups()
+                    } else {
+                        NotificationCenter.default.post(name: .SuccesfulAchievement, object: nil)
+                    }
                 } else {
                     NotificationCenter.default.post(name: .FailedAchievement, object: nil)
                 }

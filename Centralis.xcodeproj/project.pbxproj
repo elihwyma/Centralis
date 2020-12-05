@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		531870CE2579673A000191FD /* EduLink_Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531870CD25796739000191FD /* EduLink_Achievement.swift */; };
-		531870D1257968BD000191FD /* AchievementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531870D0257968BD000191FD /* AchievementViewController.swift */; };
+		531870D1257968BD000191FD /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531870D0257968BD000191FD /* TextViewController.swift */; };
 		531870D4257977D0000191FD /* EduLink_Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531870D3257977D0000191FD /* EduLink_Employee.swift */; };
+		53196927257AE1E20056BF51 /* EduLink_Personal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53196926257AE1E20056BF51 /* EduLink_Personal.swift */; };
+		5319692F257BC8A70056BF51 /* HomeWorkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319692E257BC8A70056BF51 /* HomeWorkController.swift */; };
+		53196933257BC8FE0056BF51 /* HomeWorkScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53196932257BC8FE0056BF51 /* HomeWorkScrollController.swift */; };
 		532434252578193900875BAD /* EduLink_Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532434242578193900875BAD /* EduLink_Status.swift */; };
 		5324342B25781FA000875BAD /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5324342A25781F9F00875BAD /* UUID.swift */; };
 		5324342E2578234900875BAD /* EduLink_Catering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5324342D2578234800875BAD /* EduLink_Catering.swift */; };
-		532434312578268900875BAD /* CateringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532434302578268900875BAD /* CateringViewController.swift */; };
 		53243436257828A300875BAD /* TextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53243434257828A200875BAD /* TextViewCell.swift */; };
 		53243437257828A300875BAD /* TextViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53243435257828A200875BAD /* TextViewCell.xib */; };
 		53CA2DE2257580A500E3A02B /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DE1257580A500E3A02B /* LoginManager.swift */; };
@@ -45,12 +47,14 @@
 
 /* Begin PBXFileReference section */
 		531870CD25796739000191FD /* EduLink_Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Achievement.swift; sourceTree = "<group>"; };
-		531870D0257968BD000191FD /* AchievementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementViewController.swift; sourceTree = "<group>"; };
+		531870D0257968BD000191FD /* TextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		531870D3257977D0000191FD /* EduLink_Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Employee.swift; sourceTree = "<group>"; };
+		53196926257AE1E20056BF51 /* EduLink_Personal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Personal.swift; sourceTree = "<group>"; };
+		5319692E257BC8A70056BF51 /* HomeWorkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorkController.swift; sourceTree = "<group>"; };
+		53196932257BC8FE0056BF51 /* HomeWorkScrollController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorkScrollController.swift; sourceTree = "<group>"; };
 		532434242578193900875BAD /* EduLink_Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Status.swift; sourceTree = "<group>"; };
 		5324342A25781F9F00875BAD /* UUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUID.swift; sourceTree = "<group>"; };
 		5324342D2578234800875BAD /* EduLink_Catering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Catering.swift; sourceTree = "<group>"; };
-		532434302578268900875BAD /* CateringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CateringViewController.swift; sourceTree = "<group>"; };
 		53243434257828A200875BAD /* TextViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewCell.swift; sourceTree = "<group>"; };
 		53243435257828A200875BAD /* TextViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextViewCell.xib; sourceTree = "<group>"; };
 		53CA2DE1257580A500E3A02B /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
@@ -93,6 +97,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		53196929257BC83E0056BF51 /* LoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				53CB509C2572D92F0077DDAE /* LoginViewController.swift */,
+			);
+			path = LoginViewController;
+			sourceTree = "<group>";
+		};
+		5319692B257BC84A0056BF51 /* HomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				53CA2E002576DD2A00E3A02B /* HomeViewController.swift */,
+			);
+			path = HomeViewController;
+			sourceTree = "<group>";
+		};
+		5319692C257BC8560056BF51 /* TextViewController */ = {
+			isa = PBXGroup;
+			children = (
+				531870D0257968BD000191FD /* TextViewController.swift */,
+			);
+			path = TextViewController;
+			sourceTree = "<group>";
+		};
+		5319692D257BC8610056BF51 /* PagingDetailController */ = {
+			isa = PBXGroup;
+			children = (
+				5319692E257BC8A70056BF51 /* HomeWorkController.swift */,
+				53196932257BC8FE0056BF51 /* HomeWorkScrollController.swift */,
+			);
+			path = PagingDetailController;
+			sourceTree = "<group>";
+		};
 		5324342825781A4800875BAD /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +137,7 @@
 				5324342D2578234800875BAD /* EduLink_Catering.swift */,
 				531870CD25796739000191FD /* EduLink_Achievement.swift */,
 				531870D3257977D0000191FD /* EduLink_Employee.swift */,
+				53196926257AE1E20056BF51 /* EduLink_Personal.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -217,10 +255,10 @@
 		53CB508E2572D6800077DDAE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				53CB509C2572D92F0077DDAE /* LoginViewController.swift */,
-				53CA2E002576DD2A00E3A02B /* HomeViewController.swift */,
-				532434302578268900875BAD /* CateringViewController.swift */,
-				531870D0257968BD000191FD /* AchievementViewController.swift */,
+				5319692D257BC8610056BF51 /* PagingDetailController */,
+				5319692C257BC8560056BF51 /* TextViewController */,
+				5319692B257BC84A0056BF51 /* HomeViewController */,
+				53196929257BC83E0056BF51 /* LoginViewController */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -393,11 +431,13 @@
 				5324342E2578234900875BAD /* EduLink_Catering.swift in Sources */,
 				53CA2DEE2576CC9E00E3A02B /* LoginCell.swift in Sources */,
 				53CB50B7257312E70077DDAE /* NetworkManager.swift in Sources */,
+				53196933257BC8FE0056BF51 /* HomeWorkScrollController.swift in Sources */,
 				53CA2E012576DD2A00E3A02B /* HomeViewController.swift in Sources */,
 				53CB50722572D1780077DDAE /* AppDelegate.swift in Sources */,
 				53CB50932572D6B20077DDAE /* DynamicColourView.swift in Sources */,
-				532434312578268900875BAD /* CateringViewController.swift in Sources */,
+				53196927257AE1E20056BF51 /* EduLink_Personal.swift in Sources */,
 				53CA2DE2257580A500E3A02B /* LoginManager.swift in Sources */,
+				5319692F257BC8A70056BF51 /* HomeWorkController.swift in Sources */,
 				53CA2DE82576C08500E3A02B /* UserDefaults+Extension.swift in Sources */,
 				53CB50BC2573E42F0077DDAE /* EduLinkAPI.swift in Sources */,
 				53CB509A2572D7C40077DDAE /* UIView+Extensions.swift in Sources */,
@@ -411,7 +451,7 @@
 				531870D4257977D0000191FD /* EduLink_Employee.swift in Sources */,
 				53CB50A12572F0B50077DDAE /* ResizedTableView.swift in Sources */,
 				53CA2DE52575896F00E3A02B /* StructModels.swift in Sources */,
-				531870D1257968BD000191FD /* AchievementViewController.swift in Sources */,
+				531870D1257968BD000191FD /* TextViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
