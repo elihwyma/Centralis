@@ -22,27 +22,26 @@ class HomeWorkController: UIPageViewController {
         let homework = EduLink_Homework()
         homework.homework()
         self.dataSource = self
+        self.decoratePageControl()
         self.setupViews()
-        
-        
     }
     
     private func setupViews() {
         self.views.removeAll()
         let current = UIViewController()
-        let cview = HomeworkTable()
-        cview.context = .current
-        current.view = cview
+        current.view = HomeworkTable(context: .current)
         self.views.append(current)
         
         let past = UIViewController()
-        let pview = HomeworkTable()
-        pview.context = .past
-        past.view = pview
+        past.view = HomeworkTable(context: .past)
         self.views.append(past)
     }
     
-
+    private func decoratePageControl() {
+        let pc = UIPageControl.appearance(whenContainedInInstancesOf: [HomeWorkController.self])
+        pc.currentPageIndicatorTintColor = .lightGray
+        pc.pageIndicatorTintColor = .darkGray
+    }
 }
 
 extension HomeWorkController: UIPageViewControllerDataSource {

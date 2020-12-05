@@ -206,10 +206,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uMN-p3-Bq6">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hs9-ca-YYG">
                                 <rect key="frame" x="0.0" y="140" width="414" height="722"/>
                                 <connections>
-                                    <segue destination="MfN-hv-yeY" kind="embed" id="fBk-iV-4TP"/>
+                                    <segue destination="hRZ-oz-9Ix" kind="embed" id="N9U-s5-sIW"/>
                                 </connections>
                             </containerView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="zCa-fc-EhL">
@@ -219,11 +219,11 @@
                         <viewLayoutGuide key="safeArea" id="WNV-Id-Z58"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="uMN-p3-Bq6" firstAttribute="top" secondItem="WNV-Id-Z58" secondAttribute="top" id="58J-q9-YRS"/>
+                            <constraint firstItem="hs9-ca-YYG" firstAttribute="top" secondItem="WNV-Id-Z58" secondAttribute="top" id="6NC-sb-Tqh"/>
                             <constraint firstItem="zCa-fc-EhL" firstAttribute="centerX" secondItem="iwL-LS-ySb" secondAttribute="centerX" id="78U-I8-4Ab"/>
-                            <constraint firstItem="uMN-p3-Bq6" firstAttribute="leading" secondItem="WNV-Id-Z58" secondAttribute="leading" id="Dif-Ne-n8E"/>
-                            <constraint firstItem="WNV-Id-Z58" firstAttribute="trailing" secondItem="uMN-p3-Bq6" secondAttribute="trailing" id="Mte-XY-WJK"/>
-                            <constraint firstItem="WNV-Id-Z58" firstAttribute="bottom" secondItem="uMN-p3-Bq6" secondAttribute="bottom" id="YC4-Pn-FiH"/>
+                            <constraint firstItem="WNV-Id-Z58" firstAttribute="trailing" secondItem="hs9-ca-YYG" secondAttribute="trailing" id="WES-j8-h7J"/>
+                            <constraint firstItem="hs9-ca-YYG" firstAttribute="leading" secondItem="WNV-Id-Z58" secondAttribute="leading" id="ckx-mh-qsx"/>
+                            <constraint firstItem="WNV-Id-Z58" firstAttribute="bottom" secondItem="hs9-ca-YYG" secondAttribute="bottom" id="flj-QF-GH8"/>
                             <constraint firstItem="zCa-fc-EhL" firstAttribute="centerY" secondItem="iwL-LS-ySb" secondAttribute="centerY" id="rhR-ub-rft"/>
                         </constraints>
                     </view>
@@ -235,6 +235,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5lb-ng-LSt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3965" y="1486"/>
+        </scene>
+        <!--Home Work Controller-->
+        <scene sceneID="XYe-ww-6X9">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="hRZ-oz-9Ix" customClass="HomeWorkController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dcb-nG-7ze" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4746" y="1494"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XBx-DF-U5t">
@@ -254,20 +262,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wC7-zy-kqb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2660.8695652173915" y="114.50892857142857"/>
-        </scene>
-        <!--Home Work Controller-->
-        <scene sceneID="rh2-Zu-fOc">
-            <objects>
-                <viewController id="MfN-hv-yeY" customClass="HomeWorkController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="MxN-v8-04n">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="722"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SN0-5x-Qja" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4710" y="1486"/>
         </scene>
     </scenes>
     <resources>
