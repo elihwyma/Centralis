@@ -190,7 +190,7 @@
                         <outlet property="inboxButton" destination="eLn-rU-eIT" id="fcL-EO-I5c"/>
                         <segue destination="aVJ-aQ-wsn" kind="unwind" identifier="logout" unwindAction="logout:" id="STw-DN-QlN"/>
                         <segue destination="GwH-8S-tIz" kind="show" identifier="Centralis.TextViewController" id="jAN-Ki-nKd"/>
-                        <segue destination="kBp-2V-rds" kind="show" id="hzM-6K-E2k"/>
+                        <segue destination="fZR-sa-AoW" kind="show" identifier="Centralis.Homework" id="W1m-vz-dao"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VlT-xE-Ef3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -198,42 +198,43 @@
             </objects>
             <point key="canvasLocation" x="3506" y="123"/>
         </scene>
-        <!--Paging Detail Controller-->
-        <scene sceneID="abo-Tx-Sxi">
+        <!--Homework Container Controller-->
+        <scene sceneID="k3R-y6-piN">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="kBp-2V-rds" customClass="PagingDetailController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="3z8-Y0-u52"/>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GAV-CH-qfS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4468" y="123"/>
-        </scene>
-        <!--Paging Table View Controller-->
-        <scene sceneID="JbK-fO-tsr">
-            <objects>
-                <viewController id="mBu-s9-xEw" customClass="PagingTableViewController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hvm-ya-y9j">
+                <viewController id="fZR-sa-AoW" customClass="HomeworkContainerController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iwL-LS-ySb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DrX-xO-BwR">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uMN-p3-Bq6">
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <connections>
+                                    <segue destination="MfN-hv-yeY" kind="embed" id="fBk-iV-4TP"/>
+                                </connections>
+                            </containerView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="zCa-fc-EhL">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="aUC-da-fPa"/>
+                        <viewLayoutGuide key="safeArea" id="WNV-Id-Z58"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="DrX-xO-BwR" firstAttribute="top" secondItem="aUC-da-fPa" secondAttribute="top" id="LP8-Wn-9Jy"/>
-                            <constraint firstItem="aUC-da-fPa" firstAttribute="bottom" secondItem="DrX-xO-BwR" secondAttribute="bottom" id="Ubz-Cw-SPN"/>
-                            <constraint firstItem="aUC-da-fPa" firstAttribute="trailing" secondItem="DrX-xO-BwR" secondAttribute="trailing" id="jDn-xL-N0i"/>
-                            <constraint firstItem="DrX-xO-BwR" firstAttribute="leading" secondItem="aUC-da-fPa" secondAttribute="leading" id="nDi-pD-iyj"/>
+                            <constraint firstItem="uMN-p3-Bq6" firstAttribute="top" secondItem="WNV-Id-Z58" secondAttribute="top" id="58J-q9-YRS"/>
+                            <constraint firstItem="zCa-fc-EhL" firstAttribute="centerX" secondItem="iwL-LS-ySb" secondAttribute="centerX" id="78U-I8-4Ab"/>
+                            <constraint firstItem="uMN-p3-Bq6" firstAttribute="leading" secondItem="WNV-Id-Z58" secondAttribute="leading" id="Dif-Ne-n8E"/>
+                            <constraint firstItem="WNV-Id-Z58" firstAttribute="trailing" secondItem="uMN-p3-Bq6" secondAttribute="trailing" id="Mte-XY-WJK"/>
+                            <constraint firstItem="WNV-Id-Z58" firstAttribute="bottom" secondItem="uMN-p3-Bq6" secondAttribute="bottom" id="YC4-Pn-FiH"/>
+                            <constraint firstItem="zCa-fc-EhL" firstAttribute="centerY" secondItem="iwL-LS-ySb" secondAttribute="centerY" id="rhR-ub-rft"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Wyh-az-cjR"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="zCa-fc-EhL" id="GaZ-AK-g0n"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="w3W-g9-t7d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5lb-ng-LSt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5455" y="123"/>
+            <point key="canvasLocation" x="3965" y="1486"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XBx-DF-U5t">
@@ -253,6 +254,20 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wC7-zy-kqb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2660.8695652173915" y="114.50892857142857"/>
+        </scene>
+        <!--Home Work Controller-->
+        <scene sceneID="rh2-Zu-fOc">
+            <objects>
+                <viewController id="MfN-hv-yeY" customClass="HomeWorkController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MxN-v8-04n">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="722"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SN0-5x-Qja" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4710" y="1486"/>
         </scene>
     </scenes>
     <resources>

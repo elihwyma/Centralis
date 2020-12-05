@@ -46,5 +46,20 @@ class EduLink_Catering {
             }
         })
     }
-    
+}
+
+struct CateringTransaction {
+    var id: Int!
+    var date: String!
+    var items = [CateringItem]()
+}
+
+struct CateringItem {
+    var item: String!
+    var price: Double!
+}
+
+struct Catering {
+    var balance: Double!
+    var transactions = [CateringTransaction]()
 }

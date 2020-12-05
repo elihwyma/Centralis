@@ -19,6 +19,7 @@ class EduLinkAPI {
     var employees = [Employee]()
     var achievementBehaviourLookups = AchievementBehaviourLookup()
     var personal = Personal()
+    var homework = Homeworks()
     
     public func login(schoolCode: String!, username: String!, password: String!) {
         let loginManager = LoginManager()

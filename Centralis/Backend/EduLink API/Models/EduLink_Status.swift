@@ -31,3 +31,8 @@ class EduLink_Status {
         })
     }
 }
+
+struct Status {
+    var new_messages: Int!
+    var new_forms: Int!
+}

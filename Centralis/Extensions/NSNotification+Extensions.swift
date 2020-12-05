@@ -32,4 +32,8 @@ extension NSNotification.Name {
     //Personal
     static let FailedPersonal = Notification.Name("FailedPersonal")
     static let SuccesfulPersonal = Notification.Name("SuccesfulPersonal")
+
+    //Homework
+    static let FailedHomework = Notification.Name("FailedHomework")
+    static let SuccesfulHomework = Notification.Name("SuccesfulHomework")
 }

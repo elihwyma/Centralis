@@ -80,7 +80,13 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
+        switch EduLinkAPI.shared.personalMenus[indexPath.row].name {
+        case "Achievement": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
+        case "Catering": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
+        case "Account Info": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
+        case "Homework": self.performSegue(withIdentifier: "Centralis.Homework", sender: nil)
+        default: print("Not yet implemented")
+        }
     }
 }
 

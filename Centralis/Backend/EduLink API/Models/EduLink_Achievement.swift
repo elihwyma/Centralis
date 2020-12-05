@@ -134,3 +134,63 @@ class EduLink_Achievement {
     }
 }
 
+
+struct Achievement {
+    var id: Int!
+    var type_ids: [Int]!
+    var activity_id: Int!
+    var date: String!
+    var employee_id: Int!
+    var comments: String!
+    var points: Int!
+    var lesson_information: String!
+    var live: Bool!
+}
+
+struct AchievementType {
+    var id: Int!
+    var active: Bool!
+    var code: String!
+    var description: String!
+    var position: Int!
+    var points: Int!
+    var system: Bool!
+}
+
+struct AchievementActivityType {
+    var id: Int!
+    var code: String!
+    var description: String!
+    var active: Bool!
+}
+
+struct AchievementAwardType {
+    var id: Int!
+    var name: String!
+}
+
+struct BehaviourType {
+    var id: Int!
+    var active: Bool!
+    var code: String!
+    var description: String!
+    var position: Int!
+    var points: Int!
+    var system: Bool!
+    var include_in_register: Bool!
+    var is_bullying_type: Bool!
+}
+
+struct AchievementBehaviourLookup {
+    var achievements = [Achievement]()
+    
+    var achievement_types = [AchievementType]()
+    var achievement_activity_types = [AchievementActivityType]()
+    var achievement_award_types = [AchievementAwardType]()
+    
+    var achievement_points_editable: Bool!
+    var detentionmanagement_enabled: Bool!
+    
+    var behaviour_types = [BehaviourType]()
+}
+
