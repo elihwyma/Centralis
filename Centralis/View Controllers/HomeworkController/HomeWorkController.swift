@@ -14,7 +14,6 @@ class HomeWorkController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         self.setup()
     }
     
@@ -24,16 +23,25 @@ class HomeWorkController: UIPageViewController {
         self.dataSource = self
         self.decoratePageControl()
         self.setupViews()
+        if let firstViewController = self.views.first {
+            setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
+        }
     }
     
     private func setupViews() {
         self.views.removeAll()
         let current = UIViewController()
-        current.view = HomeworkTable(context: .current)
+        let cview: HomeworkTableViewController = .fromNib()
+        cview.context = .current
+        cview.sender = self
+        current.view = cview
         self.views.append(current)
         
         let past = UIViewController()
-        past.view = HomeworkTable(context: .past)
+        let pview: HomeworkTableViewController = .fromNib()
+        pview.context = .past
+        pview.sender = self
+        past.view = pview
         self.views.append(past)
     }
     
@@ -45,39 +53,29 @@ class HomeWorkController: UIPageViewController {
 }
 
 extension HomeWorkController: UIPageViewControllerDataSource {
-    func pageViewController(_: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = self.views.firstIndex(of: viewController) else {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard var index = self.views.firstIndex(of: viewController) else {
             return nil
         }
-        
-        let previousIndex = viewControllerIndex - 1
-        
-        guard previousIndex >= 0 else {
-            return self.views.last
-        }
-        
-        guard self.views.count > previousIndex else {
+        if (index == 0) || (index == NSNotFound) {
             return nil
         }
-        
-        return self.views[previousIndex]
+        index -= 1
+        return self.views[index]
     }
-    
-    func pageViewController(_: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = self.views.firstIndex(of: viewController) else {
+
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard var index = self.views.firstIndex(of: viewController) else {
             return nil
         }
-        
-        let nextIndex = viewControllerIndex + 1
-        guard self.views.count != nextIndex else {
-            return self.views.first
-        }
-        
-        guard self.views.count > nextIndex else {
+        if index == NSNotFound {
             return nil
         }
-        
-        return self.views[nextIndex]
+        index += 1
+        if index == self.views.count {
+            return nil
+        }
+        return self.views[index]
     }
     
     func presentationCount(for _: UIPageViewController) -> Int {

@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="HomeworkTable" customModule="Centralis" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="HomeworkTableViewController" customModule="Centralis" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -29,7 +29,7 @@
                 <constraint firstItem="zdm-9m-YQb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="qK0-VW-caW"/>
             </constraints>
             <connections>
-                <outlet property="tableView" destination="zdm-9m-YQb" id="ftC-b2-pT8"/>
+                <outlet property="tableView" destination="zdm-9m-YQb" id="D6N-Ih-pDf"/>
             </connections>
             <point key="canvasLocation" x="133" y="130"/>
         </view>

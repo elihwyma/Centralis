@@ -9,18 +9,11 @@ import UIKit
 
 extension NSMutableAttributedString {
     func addPair(bold: String, normal: String) {
-        let leftp = NSMutableParagraphStyle()
-        leftp.alignment = .left
-        let rightp = NSMutableParagraphStyle()
-        rightp.alignment = .right
-        
         let boldAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 17, weight: .bold),
-            .paragraphStyle: leftp
+            .font: UIFont.systemFont(ofSize: 17, weight: .bold)
         ]
         let fontAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 17),
-            .paragraphStyle: rightp
+            .font: UIFont.systemFont(ofSize: 17)
         ]
         
         let boldText = NSAttributedString(string: bold, attributes: boldAttributes)

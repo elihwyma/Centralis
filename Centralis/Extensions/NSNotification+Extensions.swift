@@ -36,4 +36,6 @@ extension NSNotification.Name {
     //Homework
     static let FailedHomework = Notification.Name("FailedHomework")
     static let SuccesfulHomework = Notification.Name("SuccesfulHomework")
+    static let SuccesfulHomeworkToggle = Notification.Name("SuccesfulToggle")
+    static let SuccesfulHomeworkDetail = Notification.Name("SuccesfulHomeworkDetail")
 }

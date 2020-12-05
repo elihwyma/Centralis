@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="HomeworkDetailView" customModule="Centralis" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="djN-SN-Jnb">
+                    <rect key="frame" x="5" y="59" width="404" height="733"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="textColor" systemColor="labelColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ObW-Jx-Fzp">
+                    <rect key="frame" x="184" y="807" width="46" height="30"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" systemColor="labelColor"/>
+                    </state>
+                    <connections>
+                        <action selector="completeButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="zSZ-en-ZlT"/>
+                    </connections>
+                </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="CT8-q5-8bz">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                </activityIndicatorView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="ObW-Jx-Fzp" firstAttribute="top" secondItem="djN-SN-Jnb" secondAttribute="bottom" constant="15" id="8BU-rW-u96"/>
+                <constraint firstItem="CT8-q5-8bz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ctY-zA-WLw"/>
+                <constraint firstItem="CT8-q5-8bz" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="eqp-20-N2d"/>
+                <constraint firstItem="djN-SN-Jnb" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="15" id="g8Z-K1-hcg"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="djN-SN-Jnb" secondAttribute="trailing" constant="5" id="hZp-UF-YQ9"/>
+                <constraint firstItem="djN-SN-Jnb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="oes-ju-Vg0"/>
+                <constraint firstItem="ObW-Jx-Fzp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="rGs-hm-s76"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ObW-Jx-Fzp" secondAttribute="bottom" constant="25" id="srE-wT-lx3"/>
+            </constraints>
+            <connections>
+                <outlet property="activityIndicator" destination="CT8-q5-8bz" id="GUt-qg-0HR"/>
+                <outlet property="completeButton" destination="ObW-Jx-Fzp" id="lVw-O0-3cL"/>
+                <outlet property="textView" destination="djN-SN-Jnb" id="k9u-DP-1QS"/>
+            </connections>
+            <point key="canvasLocation" x="132" y="125"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

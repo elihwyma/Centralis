@@ -38,6 +38,61 @@ class EduLink_Homework {
         })
     }
     
+    public func homeworkDetails(_ index: Int!, _ homework: Homework!, _ context: HomeworkContext) {
+        let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.HomeworkDetails")!
+        let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
+        let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.HomeworkDetails\",\"params\":{\"homework_id\":\"\(homework.id!)\",\"source\":\"EduLink\",\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
+        NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
+            if success {
+                if let result = dict["result"] as? [String : Any] {
+                    if !(result["success"] as! Bool) {
+                        NotificationCenter.default.post(name: .FailedHomework, object: nil)
+                        return
+                    }
+                    if let ab = result["homework"] as? [String : Any] {
+                        var hw = homework
+                        hw?.description = ab["description"] as? String ?? "Not Given"
+                        switch context {
+                        case .current: EduLinkAPI.shared.homework.current[index] = hw!
+                        case .past: EduLinkAPI.shared.homework.past[index] = hw!
+                        }
+                    }
+                    NotificationCenter.default.post(name: .SuccesfulHomeworkDetail, object: nil)
+                } else {
+                    NotificationCenter.default.post(name: .FailedHomework, object: nil)
+                }
+            } else {
+                NotificationCenter.default.post(name: .NetworkError, object: nil)
+            }
+        })
+    }
+    
+    public func completeHomework(_ completed: Bool, _ index: Int, _ context: HomeworkContext) {
+        let homework: Homework!
+        switch context{
+        case .current: homework = EduLinkAPI.shared.homework.current[index]
+        case .past: homework = EduLinkAPI.shared.homework.past[index]
+        }
+        let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.HomeworkCompleted")!
+        let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
+        let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.HomeworkCompleted\",\"params\":{\"completed\":\"\(completed ? "true" : "false")\",\"homework_id\":\"\(homework.id!)\",\"learner_id\":\"\(EduLinkAPI.shared.authorisedUser.id!)\",\"source\":\"EduLink\",\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
+        NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
+            if success {
+                if let result = dict["result"] as? [String : Any] {
+                    if result["success"] as! Bool {
+                        switch context {
+                        case .current: EduLinkAPI.shared.homework.current[index].completed = completed
+                        case .past: EduLinkAPI.shared.homework.past[index].completed = completed
+                        }
+                        NotificationCenter.default.post(name: .SuccesfulHomeworkToggle, object: nil)
+                    }
+                }
+            } else {
+                NotificationCenter.default.post(name: .NetworkError, object: nil)
+            }
+        })
+    }
+    
     private func scrapeLeWork(_ context: HomeworkContext, dict: [[String : Any]]) {
         switch context {
         case .current: EduLinkAPI.shared.homework.current.removeAll()
@@ -55,7 +110,6 @@ class EduLink_Homework {
             homework.due_text = h["due_text"] as? String ?? "Not Given"
             homework.available_text = h["available_text"] as? String ?? "Not Given"
             homework.status = h["status"] as? String ?? "Not Given"
-            homework.description = h["description"] as? String ?? "Not Given"
             switch context {
             case .current: EduLinkAPI.shared.homework.current.append(homework)
             case .past: EduLinkAPI.shared.homework.past.append(homework)

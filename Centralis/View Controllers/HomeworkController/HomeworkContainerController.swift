@@ -10,7 +10,6 @@ import UIKit
 class HomeworkContainerController: UIViewController {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,6 +24,9 @@ class HomeworkContainerController: UIViewController {
     
     private func setup() {
         self.title = "Homework"
+        if !(EduLinkAPI.shared.homework.current.isEmpty || EduLinkAPI.shared.homework.past.isEmpty) {
+            self.activityIndicator.isHidden = true
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(hide), name: .SuccesfulHomework, object: nil)
     }
 }

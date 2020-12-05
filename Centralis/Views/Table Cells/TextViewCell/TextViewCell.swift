@@ -16,6 +16,14 @@ class TextViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    private func spacing() {
+        let style = NSMutableParagraphStyle()
+        let labelWidth = self.transactionsView.frame.size.width
+        style.tabStops = [NSTextTab(textAlignment: .left, location: 0.0, options: [:]),
+          NSTextTab(textAlignment: .right, location: labelWidth, options: [:])]
+        self.att?.addAttribute(.paragraphStyle, value: style, range: NSRange(location: 0, length: self.att?.string.count ?? 0 - 1))
+    }
 
     public func achievement(_ achievement: Achievement) {
         self.att = NSMutableAttributedString()

@@ -156,7 +156,7 @@
                             <constraint firstItem="WHh-Jo-hjL" firstAttribute="trailing" secondItem="bwC-zi-Imx" secondAttribute="trailing" constant="15" id="fG2-P0-NrY"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Forename : Surname" largeTitleDisplayMode="always" id="dB8-w3-G9N">
+                    <navigationItem key="navigationItem" title="Forename : Surname" id="dB8-w3-G9N">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="fEU-Bh-wdd">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wU3-yJ-OKM">
                                 <rect key="frame" x="20" y="10" width="25" height="24"/>
@@ -207,7 +207,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hs9-ca-YYG">
-                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="756"/>
                                 <connections>
                                     <segue destination="hRZ-oz-9Ix" kind="embed" id="N9U-s5-sIW"/>
                                 </connections>
@@ -219,11 +219,11 @@
                         <viewLayoutGuide key="safeArea" id="WNV-Id-Z58"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="hs9-ca-YYG" firstAttribute="top" secondItem="WNV-Id-Z58" secondAttribute="top" id="6NC-sb-Tqh"/>
+                            <constraint firstItem="hs9-ca-YYG" firstAttribute="leading" secondItem="WNV-Id-Z58" secondAttribute="leading" id="25o-PI-Tbw"/>
                             <constraint firstItem="zCa-fc-EhL" firstAttribute="centerX" secondItem="iwL-LS-ySb" secondAttribute="centerX" id="78U-I8-4Ab"/>
-                            <constraint firstItem="WNV-Id-Z58" firstAttribute="trailing" secondItem="hs9-ca-YYG" secondAttribute="trailing" id="WES-j8-h7J"/>
-                            <constraint firstItem="hs9-ca-YYG" firstAttribute="leading" secondItem="WNV-Id-Z58" secondAttribute="leading" id="ckx-mh-qsx"/>
-                            <constraint firstItem="WNV-Id-Z58" firstAttribute="bottom" secondItem="hs9-ca-YYG" secondAttribute="bottom" id="flj-QF-GH8"/>
+                            <constraint firstItem="hs9-ca-YYG" firstAttribute="trailing" secondItem="WNV-Id-Z58" secondAttribute="trailing" id="8FI-2i-BTh"/>
+                            <constraint firstAttribute="bottom" secondItem="hs9-ca-YYG" secondAttribute="bottom" id="FO3-00-rVd"/>
+                            <constraint firstItem="hs9-ca-YYG" firstAttribute="top" secondItem="WNV-Id-Z58" secondAttribute="top" id="PHm-di-wT7"/>
                             <constraint firstItem="zCa-fc-EhL" firstAttribute="centerY" secondItem="iwL-LS-ySb" secondAttribute="centerY" id="rhR-ub-rft"/>
                         </constraints>
                     </view>
@@ -234,7 +234,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5lb-ng-LSt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3965" y="1486"/>
+            <point key="canvasLocation" x="3963.7681159420295" y="1485.9375"/>
         </scene>
         <!--Home Work Controller-->
         <scene sceneID="XYe-ww-6X9">

@@ -82,7 +82,7 @@ class LoginManager {
                         self.fail()
                         return
                     }
-                    EduLinkAPI.shared.authorisedUser.authToken = result["authtoken"] as? String
+                    EduLinkAPI.shared.authorisedUser.authToken =  result["authtoken"] as? String
                     if let user = result["user"] as? [String : Any] {
                         EduLinkAPI.shared.authorisedUser.id = Int((user["id"] as? String)!)
                         EduLinkAPI.shared.authorisedUser.gender = user["gender"] as? String
