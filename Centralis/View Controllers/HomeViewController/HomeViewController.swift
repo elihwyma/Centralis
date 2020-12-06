@@ -100,7 +100,20 @@ extension HomeViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Centralis.HomeMenuCell", for: indexPath) as! HomeMenuCell
         let menu = EduLinkAPI.shared.personalMenus[indexPath.row]
         cell.name.text = menu.name
-        
+        switch menu.name {
+        case "Exams": cell.image.image = UIImage(systemName: "mail.fill")
+        case "Documents": cell.image.image = UIImage(systemName: "doc.plaintext.fill")
+        case "Timetable": cell.image.image = UIImage(systemName: "clock.fill")
+        case "Account Info": cell.image.image = UIImage(systemName: "person.fill")
+        case "Clubs": cell.image.image = UIImage(systemName: "figure.walk")
+        case "Links": cell.image.image = UIImage(systemName: "network")
+        case "Homework": cell.image.image = UIImage(systemName: "briefcase.fill")
+        case "Catering": cell.image.image = UIImage(systemName: "pills.fill")
+        case "Attendance": cell.image.image = UIImage(systemName: "chart.bar.fill")
+        case "Behaviour": cell.image.image = UIImage(systemName: "hand.raised.slash.fill")
+        case "Achievement": cell.image.image = UIImage(systemName: "wand.and.stars")
+        default: break
+        }
         return cell
     }
 }

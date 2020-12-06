@@ -24,12 +24,10 @@
 		5387450E257BDB7100174D07 /* HomeworkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5387450C257BDB7100174D07 /* HomeworkCell.swift */; };
 		5387450F257BDB7100174D07 /* HomeworkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5387450D257BDB7100174D07 /* HomeworkCell.xib */; };
 		53874512257BDCD400174D07 /* NSMutableAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53874511257BDCD300174D07 /* NSMutableAttributedString+Extension.swift */; };
-		53874523257C0B7900174D07 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53874522257C0B7800174D07 /* UITextView+Extension.swift */; };
 		53874526257C1EB100174D07 /* HomeworkDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53874525257C1EB000174D07 /* HomeworkDetailView.xib */; };
 		5387452E257C205500174D07 /* HomeworkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5387452D257C205500174D07 /* HomeworkDetailView.swift */; };
 		53CA2DE2257580A500E3A02B /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DE1257580A500E3A02B /* LoginManager.swift */; };
 		53CA2DE52575896F00E3A02B /* StructModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DE42575896F00E3A02B /* StructModels.swift */; };
-		53CA2DE82576C08500E3A02B /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DE72576C08400E3A02B /* UserDefaults+Extension.swift */; };
 		53CA2DEE2576CC9E00E3A02B /* LoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DEC2576CC9D00E3A02B /* LoginCell.swift */; };
 		53CA2DEF2576CC9E00E3A02B /* LoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53CA2DED2576CC9D00E3A02B /* LoginCell.xib */; };
 		53CA2DF32576D67A00E3A02B /* WorkingCover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53CA2DF22576D67900E3A02B /* WorkingCover.xib */; };
@@ -42,7 +40,6 @@
 		53CB50792572D1780077DDAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53CB50772572D1780077DDAE /* Main.storyboard */; };
 		53CB507B2572D1880077DDAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53CB507A2572D1880077DDAE /* Assets.xcassets */; };
 		53CB507E2572D1880077DDAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53CB507C2572D1880077DDAE /* LaunchScreen.storyboard */; };
-		53CB50972572D7BB0077DDAE /* CAGradientLayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50962572D7BA0077DDAE /* CAGradientLayer+Extensions.swift */; };
 		53CB509A2572D7C40077DDAE /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50992572D7C40077DDAE /* UIView+Extensions.swift */; };
 		53CB509D2572D9300077DDAE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB509C2572D92F0077DDAE /* LoginViewController.swift */; };
 		53CB50A12572F0B50077DDAE /* ResizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50A02572F0B50077DDAE /* ResizedTableView.swift */; };
@@ -71,13 +68,11 @@
 		5387450C257BDB7100174D07 /* HomeworkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkCell.swift; sourceTree = "<group>"; };
 		5387450D257BDB7100174D07 /* HomeworkCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeworkCell.xib; sourceTree = "<group>"; };
 		53874511257BDCD300174D07 /* NSMutableAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extension.swift"; sourceTree = "<group>"; };
-		53874522257C0B7800174D07 /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
 		53874525257C1EB000174D07 /* HomeworkDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeworkDetailView.xib; sourceTree = "<group>"; };
 		5387452D257C205500174D07 /* HomeworkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkDetailView.swift; sourceTree = "<group>"; };
 		53874530257C333800174D07 /* Centralis.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Centralis.entitlements; sourceTree = "<group>"; };
 		53CA2DE1257580A500E3A02B /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		53CA2DE42575896F00E3A02B /* StructModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructModels.swift; sourceTree = "<group>"; };
-		53CA2DE72576C08400E3A02B /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		53CA2DEC2576CC9D00E3A02B /* LoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCell.swift; sourceTree = "<group>"; };
 		53CA2DED2576CC9D00E3A02B /* LoginCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginCell.xib; sourceTree = "<group>"; };
 		53CA2DF22576D67900E3A02B /* WorkingCover.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkingCover.xib; sourceTree = "<group>"; };
@@ -92,7 +87,6 @@
 		53CB507A2572D1880077DDAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		53CB507D2572D1880077DDAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		53CB507F2572D1880077DDAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		53CB50962572D7BA0077DDAE /* CAGradientLayer+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CAGradientLayer+Extensions.swift"; sourceTree = "<group>"; };
 		53CB50992572D7C40077DDAE /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		53CB509C2572D92F0077DDAE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		53CB50A02572F0B50077DDAE /* ResizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizedTableView.swift; sourceTree = "<group>"; };
@@ -319,12 +313,9 @@
 		53CB50952572D79E0077DDAE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				53CB50962572D7BA0077DDAE /* CAGradientLayer+Extensions.swift */,
 				53CB50AD2572F8540077DDAE /* NSNotification+Extensions.swift */,
 				53CB50992572D7C40077DDAE /* UIView+Extensions.swift */,
-				53CA2DE72576C08400E3A02B /* UserDefaults+Extension.swift */,
 				53874511257BDCD300174D07 /* NSMutableAttributedString+Extension.swift */,
-				53874522257C0B7800174D07 /* UITextView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -455,7 +446,6 @@
 			files = (
 				53CA2DFC2576DA5800E3A02B /* HomeMenuCell.swift in Sources */,
 				53243436257828A300875BAD /* TextViewCell.swift in Sources */,
-				53874523257C0B7900174D07 /* UITextView+Extension.swift in Sources */,
 				53CB50AB2572F6D70077DDAE /* LoginPopup.swift in Sources */,
 				53CB509D2572D9300077DDAE /* LoginViewController.swift in Sources */,
 				5324342E2578234900875BAD /* EduLink_Catering.swift in Sources */,
@@ -469,10 +459,8 @@
 				53CA2DE2257580A500E3A02B /* LoginManager.swift in Sources */,
 				5319692F257BC8A70056BF51 /* HomeWorkController.swift in Sources */,
 				5387450E257BDB7100174D07 /* HomeworkCell.swift in Sources */,
-				53CA2DE82576C08500E3A02B /* UserDefaults+Extension.swift in Sources */,
 				53CB50BC2573E42F0077DDAE /* EduLinkAPI.swift in Sources */,
 				53CB509A2572D7C40077DDAE /* UIView+Extensions.swift in Sources */,
-				53CB50972572D7BB0077DDAE /* CAGradientLayer+Extensions.swift in Sources */,
 				531870CE2579673A000191FD /* EduLink_Achievement.swift in Sources */,
 				53CB50AE2572F8550077DDAE /* NSNotification+Extensions.swift in Sources */,
 				5387452E257C205500174D07 /* HomeworkDetailView.swift in Sources */,
