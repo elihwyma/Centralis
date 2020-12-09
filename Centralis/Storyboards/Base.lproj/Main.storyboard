@@ -190,7 +190,7 @@
                         <outlet property="inboxButton" destination="eLn-rU-eIT" id="fcL-EO-I5c"/>
                         <segue destination="aVJ-aQ-wsn" kind="unwind" identifier="logout" unwindAction="logout:" id="STw-DN-QlN"/>
                         <segue destination="GwH-8S-tIz" kind="show" identifier="Centralis.TextViewController" id="jAN-Ki-nKd"/>
-                        <segue destination="fZR-sa-AoW" kind="show" identifier="Centralis.Homework" id="W1m-vz-dao"/>
+                        <segue destination="fZR-sa-AoW" kind="show" identifier="Centralis.ShowCarousel" id="W1m-vz-dao"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VlT-xE-Ef3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -198,10 +198,10 @@
             </objects>
             <point key="canvasLocation" x="3506" y="123"/>
         </scene>
-        <!--Homework Container Controller-->
+        <!--Carousel Container Controller-->
         <scene sceneID="k3R-y6-piN">
             <objects>
-                <viewController id="fZR-sa-AoW" customClass="HomeworkContainerController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fZR-sa-AoW" customClass="CarouselContainerController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iwL-LS-ySb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -209,7 +209,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hs9-ca-YYG">
                                 <rect key="frame" x="0.0" y="140" width="414" height="756"/>
                                 <connections>
-                                    <segue destination="hRZ-oz-9Ix" kind="embed" id="N9U-s5-sIW"/>
+                                    <segue destination="hRZ-oz-9Ix" kind="embed" identifier="Centralis.CarouselEmbed" id="N9U-s5-sIW"/>
                                 </connections>
                             </containerView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="zCa-fc-EhL">
@@ -229,20 +229,20 @@
                     </view>
                     <navigationItem key="navigationItem" id="Wyh-az-cjR"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="zCa-fc-EhL" id="GaZ-AK-g0n"/>
+                        <outlet property="activityIndicator" destination="zCa-fc-EhL" id="2WP-8p-pir"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5lb-ng-LSt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3963.7681159420295" y="1485.9375"/>
+            <point key="canvasLocation" x="4858" y="719"/>
         </scene>
-        <!--Home Work Controller-->
+        <!--Carousel Controller-->
         <scene sceneID="XYe-ww-6X9">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="hRZ-oz-9Ix" customClass="HomeWorkController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="hRZ-oz-9Ix" customClass="CarouselController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dcb-nG-7ze" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4746" y="1494"/>
+            <point key="canvasLocation" x="6119" y="719"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XBx-DF-U5t">

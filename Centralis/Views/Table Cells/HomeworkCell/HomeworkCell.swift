@@ -33,6 +33,21 @@ class HomeworkCell: UITableViewCell {
         self.att?.addPair(bold: "Set: ", normal: "\(homework.available_text!) : \(homework.available_date!)")
         self.completedLabel.text = ((homework.completed!) ? "Completed" : "Not Completed")
         self.completedView.backgroundColor = homework.completed! ? .systemGreen : .systemRed
+        self.isTomorrow(homework.due_date!)
+    }
+    
+    private func isTomorrow(_ due_date: String!) {
+        let dateFormatter = DateFormatter()
+        let calendar = Calendar.current
+        dateFormatter.dateFormat = "yyyy'-'MM'-'dd'"
+        guard let dueDate = dateFormatter.date(from: due_date) else {
+            return
+        }
+        let dueDay = calendar.component(.day, from: dueDate)
+        let currentDay = calendar.component(.day, from: Date())
+        if dueDay + 1 == currentDay {
+            self.completedView.backgroundColor = .systemOrange
+        }
     }
 }
 

@@ -7,28 +7,43 @@
 
 import UIKit
 
-class HomeWorkController: UIPageViewController {
+class CarouselController: UIPageViewController {
     
     private var views = [UIViewController]()
+    var context: CarouselContext?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.setup()
     }
     
-    private func setup() {
-        let homework = EduLink_Homework()
-        homework.homework()
+    public func setup() {
+        switch context {
+        case .homework: self.homeworkSetup()
+        case .timetable: self.timetableSetup()
+        case .none: break
+        }
+                
         self.dataSource = self
         self.decoratePageControl()
-        self.setupViews()
         if let firstViewController = self.views.first {
             setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         }
     }
     
-    private func setupViews() {
+    private func decoratePageControl() {
+        let pc = UIPageControl.appearance(whenContainedInInstancesOf: [CarouselController.self])
+        pc.currentPageIndicatorTintColor = .lightGray
+        pc.pageIndicatorTintColor = .darkGray
+    }
+}
+
+//MARK: - Homework
+extension CarouselController {
+    private func homeworkSetup() {
+        let homework = EduLink_Homework()
+        homework.homework()
+        
         self.views.removeAll()
         let current = UIViewController()
         let cview: HomeworkTableViewController = .fromNib()
@@ -44,15 +59,32 @@ class HomeWorkController: UIPageViewController {
         past.view = pview
         self.views.append(past)
     }
+}
+
+//MARK: - Timetable
+extension CarouselController {
+    private func timetableSetup() {
+        let timetable = EduLink_Timetable()
+        timetable.timetable()
+    }
     
-    private func decoratePageControl() {
-        let pc = UIPageControl.appearance(whenContainedInInstancesOf: [HomeWorkController.self])
-        pc.currentPageIndicatorTintColor = .lightGray
-        pc.pageIndicatorTintColor = .darkGray
+    private func setupTimetable(name: String?) {
+        var week: Week?
+        if let name = name {
+            for w in EduLinkAPI.shared.weeks where w.name == name {
+                week = w
+            }
+        } else {
+            for w in EduLinkAPI.shared.weeks where w.is_current {
+                week = w
+            }
+        }
+        if week == nil { return }
     }
 }
 
-extension HomeWorkController: UIPageViewControllerDataSource {
+//MARK: - Carousel Delegate
+extension CarouselController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard var index = self.views.firstIndex(of: viewController) else {
             return nil

@@ -22,4 +22,12 @@ extension UIView {
         }
         return nil
     }
+    
+    class func embed(parent: UIViewController, container: UIView, child: UIViewController) {
+        child.willMove(toParent: parent)
+        parent.addChild(child)
+        container.addSubview(child.view)
+        child.didMove(toParent: parent)
+        child.view.frame = CGRect(x: 0, y: 0, width: container.frame.size.width, height: container.frame.size.height)
+    }
 }

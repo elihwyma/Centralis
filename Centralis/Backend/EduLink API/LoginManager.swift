@@ -9,6 +9,8 @@ import UIKit
 
 class LoginManager {
     
+    static let shared = LoginManager()
+    
     var username: String!
     var password: String!
     var schoolCode: String!
@@ -37,6 +39,10 @@ class LoginManager {
         self.username = username
         self.password = password
         self.schoolCode = schoolCode
+        
+        if self.schoolCode == "DemoSchool" {
+            EduLinkAPI.shared.authorisedSchool.server = ""
+        }
         
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"School.FromCode\",\"params\":{\"code\":\"\(schoolCode!)\"},\"uuid\":\"FuckYouOvernetData\",\"id\":\"1\"}"
         NetworkManager.shared.requestWithDict(url: URL(string: "https://provisioning.edulinkone.com/?method=School.FromCode")!, method: "POST", headers: nil, jsonbody: body, completion: { (success, dict) -> Void in

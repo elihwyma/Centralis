@@ -11,14 +11,14 @@
 		531870D1257968BD000191FD /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531870D0257968BD000191FD /* TextViewController.swift */; };
 		531870D4257977D0000191FD /* EduLink_Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531870D3257977D0000191FD /* EduLink_Employee.swift */; };
 		53196927257AE1E20056BF51 /* EduLink_Personal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53196926257AE1E20056BF51 /* EduLink_Personal.swift */; };
-		5319692F257BC8A70056BF51 /* HomeWorkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319692E257BC8A70056BF51 /* HomeWorkController.swift */; };
+		5319692F257BC8A70056BF51 /* CarouselController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319692E257BC8A70056BF51 /* CarouselController.swift */; };
 		532434252578193900875BAD /* EduLink_Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532434242578193900875BAD /* EduLink_Status.swift */; };
 		5324342B25781FA000875BAD /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5324342A25781F9F00875BAD /* UUID.swift */; };
 		5324342E2578234900875BAD /* EduLink_Catering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5324342D2578234800875BAD /* EduLink_Catering.swift */; };
 		53243436257828A300875BAD /* TextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53243434257828A200875BAD /* TextViewCell.swift */; };
 		53243437257828A300875BAD /* TextViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53243435257828A200875BAD /* TextViewCell.xib */; };
 		538744FF257BCC2000174D07 /* EduLink_Homework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538744FE257BCC2000174D07 /* EduLink_Homework.swift */; };
-		53874502257BD61800174D07 /* HomeworkContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53874501257BD61800174D07 /* HomeworkContainerController.swift */; };
+		53874502257BD61800174D07 /* CarouselContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53874501257BD61800174D07 /* CarouselContainerController.swift */; };
 		53874506257BD7AD00174D07 /* HomeworkTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53874505257BD7AD00174D07 /* HomeworkTableViewController.xib */; };
 		53874509257BD7D600174D07 /* HomeworkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53874508257BD7D500174D07 /* HomeworkTableViewController.swift */; };
 		5387450E257BDB7100174D07 /* HomeworkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5387450C257BDB7100174D07 /* HomeworkCell.swift */; };
@@ -48,6 +48,9 @@
 		53CB50AE2572F8550077DDAE /* NSNotification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50AD2572F8540077DDAE /* NSNotification+Extensions.swift */; };
 		53CB50B7257312E70077DDAE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50B6257312E50077DDAE /* NetworkManager.swift */; };
 		53CB50BC2573E42F0077DDAE /* EduLinkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50BB2573E42F0077DDAE /* EduLinkAPI.swift */; };
+		E1C8FD6E258022780006F36F /* EduLink_Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C8FD6D258022770006F36F /* EduLink_Timetable.swift */; };
+		E1C8FD73258165BD0006F36F /* TimetableTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C8FD72258165BD0006F36F /* TimetableTableViewController.xib */; };
+		E1C8FD76258166210006F36F /* TimetableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C8FD75258166210006F36F /* TimetableTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,14 +58,14 @@
 		531870D0257968BD000191FD /* TextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		531870D3257977D0000191FD /* EduLink_Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Employee.swift; sourceTree = "<group>"; };
 		53196926257AE1E20056BF51 /* EduLink_Personal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Personal.swift; sourceTree = "<group>"; };
-		5319692E257BC8A70056BF51 /* HomeWorkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorkController.swift; sourceTree = "<group>"; };
+		5319692E257BC8A70056BF51 /* CarouselController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselController.swift; sourceTree = "<group>"; };
 		532434242578193900875BAD /* EduLink_Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Status.swift; sourceTree = "<group>"; };
 		5324342A25781F9F00875BAD /* UUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUID.swift; sourceTree = "<group>"; };
 		5324342D2578234800875BAD /* EduLink_Catering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Catering.swift; sourceTree = "<group>"; };
 		53243434257828A200875BAD /* TextViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewCell.swift; sourceTree = "<group>"; };
 		53243435257828A200875BAD /* TextViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextViewCell.xib; sourceTree = "<group>"; };
 		538744FE257BCC2000174D07 /* EduLink_Homework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Homework.swift; sourceTree = "<group>"; };
-		53874501257BD61800174D07 /* HomeworkContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkContainerController.swift; sourceTree = "<group>"; };
+		53874501257BD61800174D07 /* CarouselContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselContainerController.swift; sourceTree = "<group>"; };
 		53874505257BD7AD00174D07 /* HomeworkTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeworkTableViewController.xib; sourceTree = "<group>"; };
 		53874508257BD7D500174D07 /* HomeworkTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkTableViewController.swift; sourceTree = "<group>"; };
 		5387450C257BDB7100174D07 /* HomeworkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkCell.swift; sourceTree = "<group>"; };
@@ -95,6 +98,9 @@
 		53CB50AD2572F8540077DDAE /* NSNotification+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extensions.swift"; sourceTree = "<group>"; };
 		53CB50B6257312E50077DDAE /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		53CB50BB2573E42F0077DDAE /* EduLinkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLinkAPI.swift; sourceTree = "<group>"; };
+		E1C8FD6D258022770006F36F /* EduLink_Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Timetable.swift; sourceTree = "<group>"; };
+		E1C8FD72258165BD0006F36F /* TimetableTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimetableTableViewController.xib; sourceTree = "<group>"; };
+		E1C8FD75258166210006F36F /* TimetableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,11 +143,9 @@
 		5319692D257BC8610056BF51 /* HomeworkController */ = {
 			isa = PBXGroup;
 			children = (
-				5319692E257BC8A70056BF51 /* HomeWorkController.swift */,
 				53874505257BD7AD00174D07 /* HomeworkTableViewController.xib */,
 				53874508257BD7D500174D07 /* HomeworkTableViewController.swift */,
 				5387452D257C205500174D07 /* HomeworkDetailView.swift */,
-				53874501257BD61800174D07 /* HomeworkContainerController.swift */,
 				53874525257C1EB000174D07 /* HomeworkDetailView.xib */,
 			);
 			path = HomeworkController;
@@ -156,6 +160,7 @@
 				531870D3257977D0000191FD /* EduLink_Employee.swift */,
 				53196926257AE1E20056BF51 /* EduLink_Personal.swift */,
 				538744FE257BCC2000174D07 /* EduLink_Homework.swift */,
+				E1C8FD6D258022770006F36F /* EduLink_Timetable.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -284,7 +289,8 @@
 		53CB508E2572D6800077DDAE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5319692D257BC8610056BF51 /* HomeworkController */,
+				E180E9C32580115100ABFE69 /* CarouselViewControllers */,
+				E180E9C22580104800ABFE69 /* CarouselContainer */,
 				5319692C257BC8560056BF51 /* TextViewController */,
 				5319692B257BC84A0056BF51 /* HomeViewController */,
 				53196929257BC83E0056BF51 /* LoginViewController */,
@@ -366,6 +372,33 @@
 			path = "EduLink API";
 			sourceTree = "<group>";
 		};
+		E180E9C22580104800ABFE69 /* CarouselContainer */ = {
+			isa = PBXGroup;
+			children = (
+				53874501257BD61800174D07 /* CarouselContainerController.swift */,
+				5319692E257BC8A70056BF51 /* CarouselController.swift */,
+			);
+			path = CarouselContainer;
+			sourceTree = "<group>";
+		};
+		E180E9C32580115100ABFE69 /* CarouselViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E1C8FD71258165790006F36F /* TimetableController */,
+				5319692D257BC8610056BF51 /* HomeworkController */,
+			);
+			path = CarouselViewControllers;
+			sourceTree = "<group>";
+		};
+		E1C8FD71258165790006F36F /* TimetableController */ = {
+			isa = PBXGroup;
+			children = (
+				E1C8FD72258165BD0006F36F /* TimetableTableViewController.xib */,
+				E1C8FD75258166210006F36F /* TimetableTableViewController.swift */,
+			);
+			path = TimetableController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -429,6 +462,7 @@
 				53CA2DFD2576DA5900E3A02B /* HomeMenuCell.xib in Resources */,
 				53CB507E2572D1880077DDAE /* LaunchScreen.storyboard in Resources */,
 				53874506257BD7AD00174D07 /* HomeworkTableViewController.xib in Resources */,
+				E1C8FD73258165BD0006F36F /* TimetableTableViewController.xib in Resources */,
 				53CB507B2572D1880077DDAE /* Assets.xcassets in Resources */,
 				53CB50792572D1780077DDAE /* Main.storyboard in Resources */,
 				5387450F257BDB7100174D07 /* HomeworkCell.xib in Resources */,
@@ -446,18 +480,20 @@
 			files = (
 				53CA2DFC2576DA5800E3A02B /* HomeMenuCell.swift in Sources */,
 				53243436257828A300875BAD /* TextViewCell.swift in Sources */,
+				E1C8FD6E258022780006F36F /* EduLink_Timetable.swift in Sources */,
 				53CB50AB2572F6D70077DDAE /* LoginPopup.swift in Sources */,
 				53CB509D2572D9300077DDAE /* LoginViewController.swift in Sources */,
 				5324342E2578234900875BAD /* EduLink_Catering.swift in Sources */,
 				53CA2DEE2576CC9E00E3A02B /* LoginCell.swift in Sources */,
+				E1C8FD76258166210006F36F /* TimetableTableViewController.swift in Sources */,
 				53CB50B7257312E70077DDAE /* NetworkManager.swift in Sources */,
 				53CA2E012576DD2A00E3A02B /* HomeViewController.swift in Sources */,
 				53CB50722572D1780077DDAE /* AppDelegate.swift in Sources */,
-				53874502257BD61800174D07 /* HomeworkContainerController.swift in Sources */,
+				53874502257BD61800174D07 /* CarouselContainerController.swift in Sources */,
 				53196927257AE1E20056BF51 /* EduLink_Personal.swift in Sources */,
 				538744FF257BCC2000174D07 /* EduLink_Homework.swift in Sources */,
 				53CA2DE2257580A500E3A02B /* LoginManager.swift in Sources */,
-				5319692F257BC8A70056BF51 /* HomeWorkController.swift in Sources */,
+				5319692F257BC8A70056BF51 /* CarouselController.swift in Sources */,
 				5387450E257BDB7100174D07 /* HomeworkCell.swift in Sources */,
 				53CB50BC2573E42F0077DDAE /* EduLinkAPI.swift in Sources */,
 				53CB509A2572D7C40077DDAE /* UIView+Extensions.swift in Sources */,
@@ -625,7 +661,6 @@
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				INFOPLIST_FILE = Centralis/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -633,7 +668,7 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -650,7 +685,6 @@
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				INFOPLIST_FILE = Centralis/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -658,7 +692,7 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

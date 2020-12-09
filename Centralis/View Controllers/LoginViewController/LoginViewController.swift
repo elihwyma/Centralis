@@ -47,6 +47,7 @@ class LoginViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(hidePopup), name: .HidePopup, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(goHome), name: .SuccesfulLogin, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reauth), name: .ReAuth, object: nil)
     }
     
     private func organiseLogins() {
@@ -151,6 +152,15 @@ class LoginViewController: UIViewController {
                 }))
                 alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
+            }
+        }
+    }
+    
+    @objc private func reauth() {
+        DispatchQueue.main.async {
+            self.startWorking()
+            if !LoginManager.shared.username.isEmpty {
+                LoginManager.shared.login()
             }
         }
     }

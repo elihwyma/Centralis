@@ -21,6 +21,11 @@ class EduLink_Status {
                     }
                     EduLinkAPI.shared.status.new_messages = result["new_messages"] as? Int
                     EduLinkAPI.shared.status.new_forms = result["new_forms"] as? Int
+                    if let session = result["session"] as? [String : Any] {
+                        let date = Date()
+                        let interval: TimeInterval = Double(session["expires"] as? Int ?? 0)
+                        EduLinkAPI.shared.status.expires = date + interval
+                    }
                     NotificationCenter.default.post(name: .SuccesfulStatus, object: nil)
                 } else {
                     NotificationCenter.default.post(name: .FailedStatus, object: nil)
@@ -35,4 +40,13 @@ class EduLink_Status {
 struct Status {
     var new_messages: Int!
     var new_forms: Int!
+    var expires: Date?
+    
+    public func hasExpired() {
+        if let expires = self.expires {
+            if expires > Date() {
+                NotificationCenter.default.post(name: .ReAuth, object: nil)
+            }
+        }
+    }
 }

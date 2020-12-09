@@ -20,20 +20,20 @@ class EduLinkAPI {
     var achievementBehaviourLookups = AchievementBehaviourLookup()
     var personal = Personal()
     var homework = Homeworks()
+    var weeks = [Week]()
     
     public func login(schoolCode: String!, username: String!, password: String!) {
-        let loginManager = LoginManager()
-        loginManager.authenticate(schoolCode: schoolCode, username: username, password: password)
+        LoginManager.shared.authenticate(schoolCode: schoolCode, username: username, password: password)
     }
     
     public func quickLogin(_ savedLogin: SavedLogin) {
-        let loginManager = LoginManager()
-        loginManager.schoolCode = savedLogin.schoolCode
-        loginManager.username = savedLogin.username
-        loginManager.password = savedLogin.password
+        self.clear()
+        LoginManager.shared.schoolCode = savedLogin.schoolCode
+        LoginManager.shared.username = savedLogin.username
+        LoginManager.shared.password = savedLogin.password
         self.authorisedSchool.school_id = savedLogin.schoolID
         self.authorisedSchool.server = savedLogin.schoolServer
-        loginManager.login()
+        LoginManager.shared.login()
     }
     
     public func clear() {
@@ -45,5 +45,7 @@ class EduLinkAPI {
         self.catering = Catering()
         self.employees = [Employee]()
         self.achievementBehaviourLookups = AchievementBehaviourLookup()
+        self.homework = Homeworks()
+        self.weeks = [Week]()
     }
 }

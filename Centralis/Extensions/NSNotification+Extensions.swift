@@ -20,6 +20,7 @@ extension NSNotification.Name {
     //Status
     static let FailedStatus = Notification.Name("FailedStatus")
     static let SuccesfulStatus = Notification.Name("SuccesfulStatus")
+    static let ReAuth = Notification.Name("Reauth")
     
     //Catering
     static let FailedCatering = Notification.Name("FailedCatering")
@@ -38,4 +39,8 @@ extension NSNotification.Name {
     static let SuccesfulHomework = Notification.Name("SuccesfulHomework")
     static let SuccesfulHomeworkToggle = Notification.Name("SuccesfulToggle")
     static let SuccesfulHomeworkDetail = Notification.Name("SuccesfulHomeworkDetail")
+    
+    //Timetable
+    static let FailedTimetable = Notification.Name("FailedTimetable")
+    static let SuccesfulTimetable = Notification.Name("SuccesfulTimetable")
 }

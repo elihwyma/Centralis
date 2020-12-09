@@ -11,8 +11,8 @@ class HomeworkTableViewController: UIView {
     
     @IBOutlet weak var tableView: UITableView!
     var context: HomeworkContext?
-    var sender: HomeWorkController?
-    var rootSender: HomeworkContainerController?
+    var sender: CarouselController?
+    var rootSender: CarouselContainerController?
     
     override func awakeFromNib() {
         super.awakeFromNib()

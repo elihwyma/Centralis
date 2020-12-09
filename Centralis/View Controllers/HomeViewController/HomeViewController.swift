@@ -49,15 +49,22 @@ class HomeViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let indexPaths: NSArray = self.collectionView.indexPathsForSelectedItems! as NSArray
+        let indexPath: IndexPath = indexPaths[0] as! IndexPath
+        let menu = EduLinkAPI.shared.personalMenus[indexPath.row]
         if segue.identifier == "Centralis.TextViewController" {
-            let indexPaths: NSArray = self.collectionView.indexPathsForSelectedItems! as NSArray
-            let indexPath: IndexPath = indexPaths[0] as! IndexPath
-            let menu = EduLinkAPI.shared.personalMenus[indexPath.row]
             let controller = segue.destination as! TextViewController
             switch menu.name! {
             case "Achievement": controller.context = .achievement
             case "Catering": controller.context = .catering
             case "Account Info": controller.context = .personal
+            default: fatalError("Not implemented yet")
+            }
+        } else if segue.identifier == "Centralis.ShowCarousel" {
+            let controller = segue.destination as! CarouselContainerController
+            switch menu.name! {
+            case "Homework": controller.context = .homework
+            case "Timetable": controller.context = .timetable
             default: fatalError("Not implemented yet")
             }
         }
@@ -84,7 +91,8 @@ extension HomeViewController: UICollectionViewDelegate {
         case "Achievement": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
         case "Catering": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
         case "Account Info": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
-        case "Homework": self.performSegue(withIdentifier: "Centralis.Homework", sender: nil)
+        case "Homework": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
+        case "Timetable": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
         default: print("Not yet implemented")
         }
     }
