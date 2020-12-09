@@ -25,10 +25,6 @@ class CarouselController: UIPageViewController {
         }
                 
         self.dataSource = self
-        self.decoratePageControl()
-        if let firstViewController = self.views.first {
-            setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
-        }
     }
     
     private func decoratePageControl() {
@@ -58,6 +54,10 @@ extension CarouselController {
         pview.sender = self
         past.view = pview
         self.views.append(past)
+        self.decoratePageControl()
+        if let firstViewController = self.views.first {
+            setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
+        }
     }
 }
 
@@ -66,20 +66,49 @@ extension CarouselController {
     private func timetableSetup() {
         let timetable = EduLink_Timetable()
         timetable.timetable()
+        NotificationCenter.default.addObserver(self, selector: #selector(setupTimetable), name: .SuccesfulTimetable, object: nil)
     }
     
-    private func setupTimetable(name: String?) {
-        var week: Week?
-        if let name = name {
-            for w in EduLinkAPI.shared.weeks where w.name == name {
-                week = w
+    @objc private func setupTimetable() {
+        DispatchQueue.main.async {
+            var week: Week?
+            /*
+            if let name = name {
+                for w in EduLinkAPI.shared.weeks where w.name == name {
+                    week = w
+                }
+            } else {
+                for w in EduLinkAPI.shared.weeks where w.is_current {
+                    week = w
+                }
             }
-        } else {
+            */
             for w in EduLinkAPI.shared.weeks where w.is_current {
                 week = w
             }
+            if week == nil { return }
+            self.views.removeAll()
+            for day in week!.days {
+                let vc = UIViewController()
+                let tview: TimetableTableViewController = .fromNib()
+                tview.day = day
+                vc.view = tview
+                self.views.append(vc)
+            }
+            self.decoratePageControl()
+            var vc: UIViewController?
+            for (index, day) in week!.days.enumerated() where day.isCurrent {
+                vc = self.views[index]
+            }
+            if vc == nil {
+                if let c = self.views.first {
+                    vc = c
+                } else {
+                    return
+                }
+            }
+            self.setViewControllers([vc!], direction: .forward, animated: true, completion: nil)
         }
-        if week == nil { return }
     }
 }
 

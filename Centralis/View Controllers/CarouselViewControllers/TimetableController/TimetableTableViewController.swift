@@ -46,6 +46,8 @@ extension TimetableTableViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.TextViewCell", for: indexPath) as! TextViewCell
+        let period = day!.periods[indexPath.row]
+        cell.timetable(period)
         cell.transactionsView.attributedText = cell.att
         cell.transactionsView.textColor = .label
         return cell
