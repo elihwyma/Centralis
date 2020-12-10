@@ -61,7 +61,7 @@ class EduLink_Timetable {
                     }
                     l.teacher = lesson["teachers"] as? String ?? "Not Given"
                     if let teaching_group = lesson["teaching_group"] as? [String : Any] {
-                        l.group = teaching_group["group"] as? String ?? "Not Given"
+                        l.group = teaching_group["name"] as? String ?? "Not Given"
                         l.subject = teaching_group["subject"] as? String ?? "Not Given"
                     }
                     memLesson.append(l)

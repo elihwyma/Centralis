@@ -17,6 +17,7 @@ class TextViewController: UIViewController {
 
     var context: TextViewContext!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +66,7 @@ class TextViewController: UIViewController {
     @objc private func dataResponse() {
         DispatchQueue.main.async {
             self.title()
+            self.activityIndicator.isHidden = true
             self.tableView.reloadData()
         }
     }
@@ -108,6 +110,7 @@ extension TextViewController: UITableViewDataSource {
     
         cell.transactionsView.attributedText = cell.att
         cell.transactionsView.textColor = .label
+        self.activityIndicator.isHidden = true
         return cell
     }
 }

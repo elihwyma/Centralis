@@ -108,6 +108,9 @@
                                 <rect key="frame" x="0.0" y="140" width="414" height="722"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="pBe-iW-0Lw">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lJU-x5-LC6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -116,16 +119,19 @@
                             <constraint firstItem="lJU-x5-LC6" firstAttribute="bottom" secondItem="KUQ-CC-yeg" secondAttribute="bottom" id="BJd-pw-cXf"/>
                             <constraint firstItem="KUQ-CC-yeg" firstAttribute="leading" secondItem="lJU-x5-LC6" secondAttribute="leading" id="NQr-qr-9fq"/>
                             <constraint firstItem="KUQ-CC-yeg" firstAttribute="top" secondItem="lJU-x5-LC6" secondAttribute="top" id="TRl-kI-e4y"/>
+                            <constraint firstItem="pBe-iW-0Lw" firstAttribute="centerY" secondItem="1Og-ec-XiG" secondAttribute="centerY" id="mde-lo-1OX"/>
+                            <constraint firstItem="pBe-iW-0Lw" firstAttribute="centerX" secondItem="1Og-ec-XiG" secondAttribute="centerX" id="xYg-AI-JoU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="WAZ-OL-wFk"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="pBe-iW-0Lw" id="8nU-gK-h6d"/>
                         <outlet property="tableView" destination="KUQ-CC-yeg" id="bVU-Nv-tiD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hSp-ZJ-IIz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4407" y="-601"/>
+            <point key="canvasLocation" x="4405.7971014492759" y="-601.33928571428567"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="mkH-2E-WEz">
@@ -227,9 +233,21 @@
                             <constraint firstItem="zCa-fc-EhL" firstAttribute="centerY" secondItem="iwL-LS-ySb" secondAttribute="centerY" id="rhR-ub-rft"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Wyh-az-cjR"/>
+                    <navigationItem key="navigationItem" id="Wyh-az-cjR">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="76F-xB-Glq">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="TOg-ya-wN0">
+                                <rect key="frame" x="302" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="rightNavigationButton:" destination="fZR-sa-AoW" eventType="touchUpInside" id="4Uy-XN-ZBe"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="zCa-fc-EhL" id="2WP-8p-pir"/>
+                        <outlet property="rightNavigationButton" destination="TOg-ya-wN0" id="kdj-EJ-eJw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5lb-ng-LSt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

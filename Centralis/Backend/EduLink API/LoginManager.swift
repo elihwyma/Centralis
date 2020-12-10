@@ -41,7 +41,10 @@ class LoginManager {
         self.schoolCode = schoolCode
         
         if self.schoolCode == "DemoSchool" {
-            EduLinkAPI.shared.authorisedSchool.server = ""
+            EduLinkAPI.shared.authorisedSchool.server = "https://demoapi.elihc.dev/api/uwu"
+            EduLinkAPI.shared.authorisedSchool.school_id = 1
+            self.schoolInfo()
+            return
         }
         
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"School.FromCode\",\"params\":{\"code\":\"\(schoolCode!)\"},\"uuid\":\"FuckYouOvernetData\",\"id\":\"1\"}"
@@ -270,7 +273,10 @@ class LoginManager {
     
     public func saveLogins(schoolCode: String, username: String, password: String) {
         if schoolCode.isEmpty || username.isEmpty || password.isEmpty { return }
-        if let png = EduLinkAPI.shared.authorisedSchool.schoolLogo.pngData() {
+        guard let schoolLogo = EduLinkAPI.shared.authorisedSchool.schoolLogo else {
+            return
+        }
+        if let png = schoolLogo.pngData() {
             let decoder = JSONDecoder()
             let encoder = JSONEncoder()
             

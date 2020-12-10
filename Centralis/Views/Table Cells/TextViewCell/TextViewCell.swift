@@ -73,10 +73,11 @@ class TextViewCell: UITableViewCell {
     public func timetable(_ period: Period) {
         self.att = NSMutableAttributedString()
         self.att?.addPair(bold: "Period: ", normal: "\(period.name!)\n")
-        self.att?.addPair(bold: "Subject: ", normal: "\(period.lesson.subject!)\n")
-        self.att?.addPair(bold: "Class: ", normal: "\(period.lesson.group!)\n")
-        self.att?.addPair(bold: "Room: ", normal: "\(period.lesson.room_name!)\n")
-        self.att?.addPair(bold: "Teacher: ", normal: "\(period.lesson.teacher!)\n")
+        if period.lesson != nil {
+            self.att?.addPair(bold: "Subject: ", normal: "\(period.lesson.subject!) : \(period.lesson.group!)\n")
+            self.att?.addPair(bold: "Room: ", normal: "\(period.lesson.room_name!)\n")
+            self.att?.addPair(bold: "Teacher: ", normal: "\(period.lesson.teacher!)\n")
+        }
         self.att?.addPair(bold: "Start: ", normal: "\(period.start_time!)\n")
         self.att?.addPair(bold: "End: ", normal: period.end_time)
     }

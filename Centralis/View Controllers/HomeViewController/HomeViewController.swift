@@ -8,6 +8,16 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    
+    let completedMenus: [String] = [
+        "Achievement",
+        "Catering",
+        "Account Info",
+        "Homework",
+        "Timetable"
+    ]
+    
+    private var shownMenus = [PersonalMenu]()
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var inboxButton: UIButton!
@@ -36,6 +46,16 @@ class HomeViewController: UIViewController {
         self.collectionView.register(UINib(nibName: "HomeMenuCell", bundle: nil), forCellWithReuseIdentifier: "Centralis.HomeMenuCell")
         
         NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.updateStatus), name: .SuccesfulStatus, object: nil)
+        
+        #if DEBUG
+        self.shownMenus = EduLinkAPI.shared.personalMenus
+        #else
+        for m in EduLinkAPI.shared.personalMenus {
+            if completedMenus.contains(m.name) {
+                self.shownMenus.append(m)
+            }
+        }
+        #endif
     }
     
     @IBAction func logout(_ sender: Any) {
@@ -50,8 +70,9 @@ class HomeViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let indexPaths: NSArray = self.collectionView.indexPathsForSelectedItems! as NSArray
+        if indexPaths.count == 0 { return }
         let indexPath: IndexPath = indexPaths[0] as! IndexPath
-        let menu = EduLinkAPI.shared.personalMenus[indexPath.row]
+        let menu = shownMenus[indexPath.row]
         if segue.identifier == "Centralis.TextViewController" {
             let controller = segue.destination as! TextViewController
             switch menu.name! {
@@ -87,7 +108,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch EduLinkAPI.shared.personalMenus[indexPath.row].name {
+        switch shownMenus[indexPath.row].name {
         case "Achievement": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
         case "Catering": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
         case "Account Info": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
@@ -101,12 +122,12 @@ extension HomeViewController: UICollectionViewDelegate {
 extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return EduLinkAPI.shared.personalMenus.count
+        return shownMenus.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Centralis.HomeMenuCell", for: indexPath) as! HomeMenuCell
-        let menu = EduLinkAPI.shared.personalMenus[indexPath.row]
+        let menu = shownMenus[indexPath.row]
         cell.name.text = menu.name
         switch menu.name {
         case "Exams": cell.image.image = UIImage(systemName: "mail.fill")

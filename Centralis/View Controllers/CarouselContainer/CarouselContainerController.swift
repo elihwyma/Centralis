@@ -15,6 +15,7 @@ enum CarouselContext {
 class CarouselContainerController: UIViewController {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var rightNavigationButton: UIButton!
     var context: CarouselContext?
     
     override func viewDidLoad() {
@@ -40,6 +41,14 @@ class CarouselContainerController: UIViewController {
         if segue.identifier == "Centralis.CarouselEmbed" {
             let vc = segue.destination as! CarouselController
             vc.context = context
+            vc.senderContext = self
+        }
+    }
+    
+    @IBAction func rightNavigationButton(_ sender: Any) {
+        switch context {
+        case .timetable: NotificationCenter.default.post(name: .TimetableButtonPressed, object: nil)
+        default: break
         }
     }
 }
@@ -52,6 +61,7 @@ extension CarouselContainerController {
             self.activityIndicator.isHidden = true
         }
         NotificationCenter.default.addObserver(self, selector: #selector(hide), name: .SuccesfulHomework, object: nil)
+        self.rightNavigationButton.isHidden = true
     }
 }
 
@@ -62,5 +72,7 @@ extension CarouselContainerController {
             self.activityIndicator.isHidden = true
         }
         NotificationCenter.default.addObserver(self, selector: #selector(hide), name: .SuccesfulTimetable, object: nil)
+        self.rightNavigationButton.setTitle("", for: .normal)
+        self.rightNavigationButton.setTitle("", for: .selected)
     }
 }
