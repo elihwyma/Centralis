@@ -140,7 +140,7 @@ extension HomeViewController: UICollectionViewDataSource {
         case "Clubs": cell.image.image = UIImage(systemName: "figure.walk")
         case "Links": cell.image.image = UIImage(systemName: "network")
         case "Homework": cell.image.image = UIImage(systemName: "briefcase.fill")
-        case "Catering": cell.image.image = UIImage(systemName: "pills.fill")
+        case "Catering": cell.image.image = UIImage(systemName: "sterlingsign.square.fill")
         case "Attendance": cell.image.image = UIImage(systemName: "chart.bar.fill")
         case "Behaviour": cell.image.image = UIImage(systemName: "hand.raised.slash.fill")
         case "Achievement": cell.image.image = UIImage(systemName: "wand.and.stars")
