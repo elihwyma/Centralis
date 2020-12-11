@@ -192,6 +192,8 @@ extension LoginViewController : UITableViewDataSource {
         }
         cell.forename.text = "\(savedLogin.forename!) \(savedLogin.surname!)"
         cell.schoolName.text = savedLogin.schoolName
+        cell.layer.masksToBounds = true
+        cell.layer.cornerRadius = 15
         return cell
     }
 }

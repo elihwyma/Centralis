@@ -48,5 +48,6 @@ class EduLinkAPI {
         self.achievementBehaviourLookups = AchievementBehaviourLookup()
         self.homework = Homeworks()
         self.weeks = [Week]()
+        self.links = [Link]()
     }
 }

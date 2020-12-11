@@ -24,7 +24,7 @@ class CarouselController: UIPageViewController {
         self.setup()
     }
     
-    public func setup() {
+    public func setup() {        
         switch context {
         case .homework: self.homeworkSetup()
         case .timetable: self.timetableSetup()
@@ -129,7 +129,6 @@ extension CarouselController {
     private func buttonName() {
         if self.senderContext == nil || self.week == nil { return }
         self.senderContext!.rightNavigationButton.setTitle(self.week!.name!, for: .normal)
-        self.senderContext!.rightNavigationButton.setTitle(self.week!.name!, for: .selected)
     }
     
     @objc private func weekChange() {

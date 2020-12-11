@@ -107,6 +107,7 @@ extension TextViewController: UITableViewDataSource {
             cell.schoolLogo.image = link.image
             cell.schoolName.text = link.name
             cell.forename.text = link.link
+            cell.backgroundColor = .systemGray5
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.TextViewCell", for: indexPath) as! TextViewCell

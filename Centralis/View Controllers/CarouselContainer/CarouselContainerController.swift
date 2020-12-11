@@ -57,7 +57,7 @@ class CarouselContainerController: UIViewController {
 extension CarouselContainerController {
     private func homeworkSetup() {
         self.title = "Homework"
-        if !(EduLinkAPI.shared.homework.current.isEmpty || EduLinkAPI.shared.homework.past.isEmpty) {
+        if !(EduLinkAPI.shared.homework.current.isEmpty && EduLinkAPI.shared.homework.past.isEmpty) {
             self.activityIndicator.isHidden = true
         }
         NotificationCenter.default.addObserver(self, selector: #selector(hide), name: .SuccesfulHomework, object: nil)
@@ -73,6 +73,5 @@ extension CarouselContainerController {
         }
         NotificationCenter.default.addObserver(self, selector: #selector(hide), name: .SuccesfulTimetable, object: nil)
         self.rightNavigationButton.setTitle("", for: .normal)
-        self.rightNavigationButton.setTitle("", for: .selected)
     }
 }
