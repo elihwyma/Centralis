@@ -21,6 +21,7 @@ class EduLinkAPI {
     var personal = Personal()
     var homework = Homeworks()
     var weeks = [Week]()
+    var links = [Link]()
     
     public func login(schoolCode: String!, username: String!, password: String!) {
         LoginManager.shared.authenticate(schoolCode: schoolCode, username: username, password: password)

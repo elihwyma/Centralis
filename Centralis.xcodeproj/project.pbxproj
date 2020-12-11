@@ -51,6 +51,7 @@
 		E1C8FD6E258022780006F36F /* EduLink_Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C8FD6D258022770006F36F /* EduLink_Timetable.swift */; };
 		E1C8FD73258165BD0006F36F /* TimetableTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C8FD72258165BD0006F36F /* TimetableTableViewController.xib */; };
 		E1C8FD76258166210006F36F /* TimetableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C8FD75258166210006F36F /* TimetableTableViewController.swift */; };
+		E1DE1A422583B319000388E9 /* EduLink_Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DE1A412583B319000388E9 /* EduLink_Links.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +102,7 @@
 		E1C8FD6D258022770006F36F /* EduLink_Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Timetable.swift; sourceTree = "<group>"; };
 		E1C8FD72258165BD0006F36F /* TimetableTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimetableTableViewController.xib; sourceTree = "<group>"; };
 		E1C8FD75258166210006F36F /* TimetableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableTableViewController.swift; sourceTree = "<group>"; };
+		E1DE1A412583B319000388E9 /* EduLink_Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Links.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				53196926257AE1E20056BF51 /* EduLink_Personal.swift */,
 				538744FE257BCC2000174D07 /* EduLink_Homework.swift */,
 				E1C8FD6D258022770006F36F /* EduLink_Timetable.swift */,
+				E1DE1A412583B319000388E9 /* EduLink_Links.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				53CB50742572D1780077DDAE /* SceneDelegate.swift in Sources */,
 				5324342B25781FA000875BAD /* UUID.swift in Sources */,
 				53CA2DF62576D69A00E3A02B /* WorkingCover.swift in Sources */,
+				E1DE1A422583B319000388E9 /* EduLink_Links.swift in Sources */,
 				531870D4257977D0000191FD /* EduLink_Employee.swift in Sources */,
 				53874512257BDCD400174D07 /* NSMutableAttributedString+Extension.swift in Sources */,
 				53CB50A12572F0B50077DDAE /* ResizedTableView.swift in Sources */,

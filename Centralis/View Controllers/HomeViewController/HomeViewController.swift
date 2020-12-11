@@ -14,7 +14,8 @@ class HomeViewController: UIViewController {
         "Catering",
         "Account Info",
         "Homework",
-        "Timetable"
+        "Timetable",
+        "Links"
     ]
     
     private var shownMenus = [PersonalMenu]()
@@ -79,6 +80,7 @@ class HomeViewController: UIViewController {
             case "Achievement": controller.context = .achievement
             case "Catering": controller.context = .catering
             case "Account Info": controller.context = .personal
+            case "Links": controller.context = .links
             default: fatalError("Not implemented yet")
             }
         } else if segue.identifier == "Centralis.ShowCarousel" {
@@ -114,6 +116,7 @@ extension HomeViewController: UICollectionViewDelegate {
         case "Account Info": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
         case "Homework": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
         case "Timetable": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
+        case "Links": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
         default: print("Not yet implemented")
         }
     }

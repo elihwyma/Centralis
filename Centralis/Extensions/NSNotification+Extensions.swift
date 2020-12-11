@@ -44,4 +44,8 @@ extension NSNotification.Name {
     static let FailedTimetable = Notification.Name("FailedTimetable")
     static let SuccesfulTimetable = Notification.Name("SuccesfulTimetable")
     static let TimetableButtonPressed = Notification.Name("TimetableButtonPressed")
+    
+    //Links
+    static let FailedLink = Notification.Name("FailedLink")
+    static let SuccesfulLink = Notification.Name("SuccesfulLink")
 }

@@ -11,6 +11,7 @@ enum TextViewContext {
     case catering
     case achievement
     case personal
+    case links
 }
 
 class TextViewController: UIViewController {
@@ -37,6 +38,7 @@ class TextViewController: UIViewController {
         case .catering: self.cateringTitle()
         case .achievement: self.achievementTitle()
         case .personal: self.personalTitle()
+        case .links: self.linkTitle()
         case .none: fatalError("fuck")
         }
     }
@@ -48,6 +50,7 @@ class TextViewController: UIViewController {
         self.tableView.showsVerticalScrollIndicator = false
         self.tableView.showsHorizontalScrollIndicator = false
         self.tableView.register(UINib(nibName: "TextViewCell", bundle: nil), forCellReuseIdentifier: "Centralis.TextViewCell")
+        self.tableView.register(UINib(nibName: "LoginCell", bundle: nil), forCellReuseIdentifier: "Centralis.LoginCell")
         self.tableView.alwaysBounceVertical = false
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -59,6 +62,7 @@ class TextViewController: UIViewController {
         case .catering: self.cateringSetup()
         case .achievement: self.achievementSetup()
         case .personal: self.personalSetup()
+        case .links: self.linkSetup()
         case .none: fatalError("fuck")
         }
     }
@@ -74,6 +78,12 @@ class TextViewController: UIViewController {
 
 extension TextViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if self.context == TextViewContext.links {
+            let link = EduLinkAPI.shared.links[indexPath.row]
+            if let url = URL(string: link.link) {
+                UIApplication.shared.open(url)
+            }
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
@@ -84,12 +94,21 @@ extension TextViewController: UITableViewDataSource {
         case .achievement: return EduLinkAPI.shared.achievementBehaviourLookups.achievements.count
         case .catering: return EduLinkAPI.shared.catering.transactions.count
         case .personal: return ((EduLinkAPI.shared.personal.forename == nil) ? 0 : 1)
+        case .links: return EduLinkAPI.shared.links.count
         case .none: fatalError("fuck")
         }
         
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if self.context == TextViewContext.links {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.LoginCell", for: indexPath) as! LoginCell
+            let link = EduLinkAPI.shared.links[indexPath.row]
+            cell.schoolLogo.image = link.image
+            cell.schoolName.text = link.name
+            cell.forename.text = link.link
+            return cell
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.TextViewCell", for: indexPath) as! TextViewCell
         switch self.context {
         case .achievement: do {
@@ -103,7 +122,7 @@ extension TextViewController: UITableViewDataSource {
         case .personal: do {
             cell.personal(EduLinkAPI.shared.personal)
         }
-        case .none: do {
+        default: do {
             fatalError("fuck")
         }
         }
@@ -162,5 +181,18 @@ extension TextViewController {
     
     private func personalTitle() {
         self.title = "Account Info"
+    }
+}
+
+//MARK: - Links
+extension TextViewController {
+    private func linkSetup() {
+        NotificationCenter.default.addObserver(self, selector: #selector(dataResponse), name: .SuccesfulLink, object: nil)
+        let link = EduLink_Links()
+        link.links()
+    }
+    
+    private func linkTitle() {
+        self.title = "Links"
     }
 }
