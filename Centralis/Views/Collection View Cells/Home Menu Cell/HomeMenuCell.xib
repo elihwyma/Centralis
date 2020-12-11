@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bJk-74-ItW">
-                        <rect key="frame" x="30.5" y="5" width="89" height="89"/>
+                        <rect key="frame" x="35.5" y="15" width="79" height="79"/>
                         <color key="tintColor" systemColor="labelColor"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="bJk-74-ItW" secondAttribute="height" multiplier="1:1" id="pyT-Wm-cUh"/>
@@ -41,7 +41,7 @@
                 <constraint firstAttribute="bottom" secondItem="VVQ-jR-wB9" secondAttribute="bottom" constant="5" id="8sz-Ix-cNv"/>
                 <constraint firstItem="VVQ-jR-wB9" firstAttribute="top" secondItem="bJk-74-ItW" secondAttribute="bottom" constant="15" id="9hZ-Ea-EnE"/>
                 <constraint firstItem="VVQ-jR-wB9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="JQt-5O-tsC"/>
-                <constraint firstItem="bJk-74-ItW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="RH6-ne-XO8"/>
+                <constraint firstItem="bJk-74-ItW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="RH6-ne-XO8"/>
                 <constraint firstAttribute="trailing" secondItem="VVQ-jR-wB9" secondAttribute="trailing" constant="5" id="act-1j-Cq9"/>
             </constraints>
             <size key="customSize" width="50" height="220"/>
