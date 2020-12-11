@@ -3,7 +3,6 @@ import requests
 schoolCode = input("Input school code: ")
 username = input("Input your username: ")
 password = input("Input your password: ")
-schoolServer = ""
 
 def provisioning():
    
