@@ -33,6 +33,7 @@ class CarouselController: UIPageViewController {
                 
         self.dataSource = self
         self.delegate = self
+        self.decoratePageControl()
     }
     
     private func decoratePageControl() {
@@ -62,7 +63,7 @@ extension CarouselController {
         pview.sender = self
         past.view = pview
         self.views.append(past)
-        self.decoratePageControl()
+
         if let firstViewController = self.views.first {
             setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         }
@@ -121,7 +122,6 @@ extension CarouselController {
             self.setViewControllers([vc!], direction: .forward, animated: true, completion: { Void in
                 self.title()
                 self.buttonName()
-                self.decoratePageControl()
             })
         }
     }
