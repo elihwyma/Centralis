@@ -16,11 +16,11 @@ class EduLink_Employee {
             a.title = employee["title"] as? String
             a.surname = employee["surname"] as? String
             var isFound = false
-            for e in EduLinkAPI.shared.employees where e.id == a.id {
+            for e in EduLinkAPI.shared.authorisedSchool.schoolInfo.employees where e.id == a.id {
                 isFound = true
             }
             if !isFound {
-                EduLinkAPI.shared.employees.append(a)
+                EduLinkAPI.shared.authorisedSchool.schoolInfo.employees.append(a)
             }
         }
     }

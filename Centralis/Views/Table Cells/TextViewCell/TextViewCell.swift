@@ -28,7 +28,7 @@ class TextViewCell: UITableViewCell {
     public func achievement(_ achievement: Achievement) {
         self.att = NSMutableAttributedString()
         self.att?.addPair(bold: "Date: ", normal: "\(achievement.date!)\n")
-        for employee in EduLinkAPI.shared.employees where employee.id == achievement.employee_id {
+        for employee in EduLinkAPI.shared.authorisedSchool.schoolInfo.employees where employee.id == achievement.employee_id {
             self.att?.addPair(bold: "Teacher: ", normal: "\(employee.title!) \(employee.forename!) \(employee.surname!)\n")
         }
         self.att?.addPair(bold: "Lesson: ", normal: "\(achievement.lesson_information ?? "Not Given")\n")

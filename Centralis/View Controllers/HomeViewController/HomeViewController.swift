@@ -49,7 +49,7 @@ class HomeViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.updateStatus), name: .SuccesfulStatus, object: nil)
         
         #if DEBUG
-        self.shownMenus = EduLinkAPI.shared.personalMenus
+        self.shownMenus = EduLinkAPI.shared.authorisedUser.personalMenus
         #else
         for m in EduLinkAPI.shared.personalMenus {
             if completedMenus.contains(m.name) {

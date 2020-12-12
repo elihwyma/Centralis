@@ -158,7 +158,7 @@ class LoginManager {
                 var personalMenu = PersonalMenu()
                 personalMenu.id = Int((menu["id"])!)
                 personalMenu.name = menu["name"]
-                EduLinkAPI.shared.personalMenus.append(personalMenu)
+                EduLinkAPI.shared.authorisedUser.personalMenus.append(personalMenu)
             }
         }
     }
@@ -172,7 +172,7 @@ class LoginManager {
                     roomMemory.id = Int((room["id"])!)
                     roomMemory.code = room["code"]
                     roomMemory.name = room["name"]
-                    EduLinkAPI.shared.schoolInfo.rooms.append(roomMemory)
+                    EduLinkAPI.shared.authorisedSchool.schoolInfo.rooms.append(roomMemory)
                 }
             }
             
@@ -182,7 +182,7 @@ class LoginManager {
                     var yg = YearGroup()
                     yg.id = Int((yearGroup["id"])!)
                     yg.name = yearGroup["name"]
-                    EduLinkAPI.shared.schoolInfo.yearGroups.append(yg)
+                    EduLinkAPI.shared.authorisedSchool.schoolInfo.yearGroups.append(yg)
                 }
             }
             
@@ -192,7 +192,7 @@ class LoginManager {
                     var cg = CommunityGroup()
                     cg.id = Int((communityGroup["id"])!)
                     cg.name = communityGroup["name"]
-                    EduLinkAPI.shared.schoolInfo.communityGroups.append(cg)
+                    EduLinkAPI.shared.authorisedSchool.schoolInfo.communityGroups.append(cg)
                 }
             }
             
@@ -202,7 +202,7 @@ class LoginManager {
                     var ag = AdmissionGroup()
                     ag.id = Int((admissionGroup["id"])!)
                     ag.name = admissionGroup["name"]
-                    EduLinkAPI.shared.schoolInfo.admissionGroups.append(ag)
+                    EduLinkAPI.shared.authorisedSchool.schoolInfo.admissionGroups.append(ag)
                 }
             }
             
@@ -212,7 +212,7 @@ class LoginManager {
                     var ig = IntakeGroup()
                     ig.id = Int((intakeGroup["id"])!)
                     ig.name = intakeGroup["name"]
-                    EduLinkAPI.shared.schoolInfo.intakeGroups.append(ig)
+                    EduLinkAPI.shared.authorisedSchool.schoolInfo.intakeGroups.append(ig)
                 }
             }
             
@@ -228,7 +228,7 @@ class LoginManager {
                     for yg in ygid! {
                         fg.year_group_ids.append(Int(yg)!)
                     }
-                    EduLinkAPI.shared.schoolInfo.formGroups.append(fg)
+                    EduLinkAPI.shared.authorisedSchool.schoolInfo.formGroups.append(fg)
                 }
             }
             
@@ -243,7 +243,7 @@ class LoginManager {
                     for tgida in tgid! {
                         tg.year_group_ids.append(Int(tgida)!)
                     }
-                    EduLinkAPI.shared.schoolInfo.teachingGroups.append(tg)
+                    EduLinkAPI.shared.authorisedSchool.schoolInfo.teachingGroups.append(tg)
                 }
             }
             
@@ -254,7 +254,7 @@ class LoginManager {
                     s.id = Int((subject["id"] as! String))
                     s.name = subject["name"] as? String
                     s.active = subject["active"] as? Bool
-                    EduLinkAPI.shared.schoolInfo.subjects.append(s)
+                    EduLinkAPI.shared.authorisedSchool.schoolInfo.subjects.append(s)
                 }
             }
             
@@ -265,7 +265,7 @@ class LoginManager {
                     rc.id = reportCard["id"] as? Int
                     rc.code = reportCard["name"] as? String
                     rc.description = reportCard["description"] as? String
-                    EduLinkAPI.shared.schoolInfo.reportCardTargetTypes.append(rc)
+                    EduLinkAPI.shared.authorisedSchool.schoolInfo.reportCardTargetTypes.append(rc)
                 }
             }
         }
@@ -360,12 +360,14 @@ struct AuthorisedUser {
     var community_group_id: Int!
     var avatar: UIImage!
     var types: [String]!
+    var personalMenus = [PersonalMenu]()
 }
 
 struct AuthorisedSchool {
     var server: String!
     var school_id: Int!
     var schoolLogo: UIImage!
+    var schoolInfo = SchoolInfo()
 }
 
 struct PersonalMenu {
@@ -436,4 +438,5 @@ struct SchoolInfo {
     var teachingGroups = [TeachingGroup]()
     var subjects = [Subject]()
     var reportCardTargetTypes = [ReportCardTargetType]()
+    var employees = [Employee]()
 }

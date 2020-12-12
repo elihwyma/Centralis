@@ -52,6 +52,8 @@
 		E1C8FD73258165BD0006F36F /* TimetableTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C8FD72258165BD0006F36F /* TimetableTableViewController.xib */; };
 		E1C8FD76258166210006F36F /* TimetableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C8FD75258166210006F36F /* TimetableTableViewController.swift */; };
 		E1DE1A422583B319000388E9 /* EduLink_Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DE1A412583B319000388E9 /* EduLink_Links.swift */; };
+		E1F9A49425850B5A00CEA071 /* EduLink_Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9A49325850B5A00CEA071 /* EduLink_Documents.swift */; };
+		E1F9A49825850F6000CEA071 /* DocumentWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9A49725850F6000CEA071 /* DocumentWebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +105,8 @@
 		E1C8FD72258165BD0006F36F /* TimetableTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimetableTableViewController.xib; sourceTree = "<group>"; };
 		E1C8FD75258166210006F36F /* TimetableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableTableViewController.swift; sourceTree = "<group>"; };
 		E1DE1A412583B319000388E9 /* EduLink_Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Links.swift; sourceTree = "<group>"; };
+		E1F9A49325850B5A00CEA071 /* EduLink_Documents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Documents.swift; sourceTree = "<group>"; };
+		E1F9A49725850F6000CEA071 /* DocumentWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentWebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +168,7 @@
 				538744FE257BCC2000174D07 /* EduLink_Homework.swift */,
 				E1C8FD6D258022770006F36F /* EduLink_Timetable.swift */,
 				E1DE1A412583B319000388E9 /* EduLink_Links.swift */,
+				E1F9A49325850B5A00CEA071 /* EduLink_Documents.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -292,6 +297,7 @@
 		53CB508E2572D6800077DDAE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E1F9A49625850F3D00CEA071 /* DocumentWebViewController */,
 				E180E9C32580115100ABFE69 /* CarouselViewControllers */,
 				E180E9C22580104800ABFE69 /* CarouselContainer */,
 				5319692C257BC8560056BF51 /* TextViewController */,
@@ -402,6 +408,14 @@
 			path = TimetableController;
 			sourceTree = "<group>";
 		};
+		E1F9A49625850F3D00CEA071 /* DocumentWebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E1F9A49725850F6000CEA071 /* DocumentWebViewController.swift */,
+			);
+			path = DocumentWebViewController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -483,6 +497,7 @@
 			files = (
 				53CA2DFC2576DA5800E3A02B /* HomeMenuCell.swift in Sources */,
 				53243436257828A300875BAD /* TextViewCell.swift in Sources */,
+				E1F9A49825850F6000CEA071 /* DocumentWebViewController.swift in Sources */,
 				E1C8FD6E258022780006F36F /* EduLink_Timetable.swift in Sources */,
 				53CB50AB2572F6D70077DDAE /* LoginPopup.swift in Sources */,
 				53CB509D2572D9300077DDAE /* LoginViewController.swift in Sources */,
@@ -508,6 +523,7 @@
 				5324342B25781FA000875BAD /* UUID.swift in Sources */,
 				53CA2DF62576D69A00E3A02B /* WorkingCover.swift in Sources */,
 				E1DE1A422583B319000388E9 /* EduLink_Links.swift in Sources */,
+				E1F9A49425850B5A00CEA071 /* EduLink_Documents.swift in Sources */,
 				531870D4257977D0000191FD /* EduLink_Employee.swift in Sources */,
 				53874512257BDCD400174D07 /* NSMutableAttributedString+Extension.swift in Sources */,
 				53CB50A12572F0B50077DDAE /* ResizedTableView.swift in Sources */,

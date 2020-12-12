@@ -20,6 +20,9 @@ class TextViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    var workingCover: WorkingCover = .fromNib()
+    var documentIndex = -1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -110,6 +113,7 @@ extension TextViewController: UITableViewDataSource {
             cell.backgroundColor = .systemGray5
             return cell
         }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.TextViewCell", for: indexPath) as! TextViewCell
         switch self.context {
         case .achievement: do {
@@ -195,5 +199,38 @@ extension TextViewController {
     
     private func linkTitle() {
         self.title = "Links"
+    }
+}
+
+//MARK: - Documents
+extension TextViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Centralis.DocumentWebView" {
+            
+        }
+    }
+    
+    private func startWorking() {
+        self.workingCover.frame = self.view.frame
+        self.workingCover.alpha = 0
+        self.view.addSubview(workingCover)
+        UIView.animate(withDuration: 0.5,
+                         delay: 0, usingSpringWithDamping: 1.0,
+                         initialSpringVelocity: 1.0,
+                         options: .curveEaseInOut, animations: {
+                            self.workingCover.alpha = 1
+                         }, completion: { (value: Bool) in
+          })
+    }
+    
+    private func stopWorking() {
+        UIView.animate(withDuration: 0.5,
+                         delay: 0, usingSpringWithDamping: 1.0,
+                         initialSpringVelocity: 1.0,
+                         options: .curveEaseInOut, animations: {
+                            self.workingCover.alpha = 0
+                         }, completion: { (value: Bool) in
+                            self.workingCover.removeFromSuperview()
+          })
     }
 }

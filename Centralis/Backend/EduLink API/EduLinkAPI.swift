@@ -12,11 +12,8 @@ class EduLinkAPI {
     
     var authorisedUser = AuthorisedUser()
     var authorisedSchool = AuthorisedSchool()
-    var personalMenus = [PersonalMenu]()
-    var schoolInfo = SchoolInfo()
     var status = Status()
     var catering = Catering()
-    var employees = [Employee]()
     var achievementBehaviourLookups = AchievementBehaviourLookup()
     var personal = Personal()
     var homework = Homeworks()
@@ -40,11 +37,8 @@ class EduLinkAPI {
     public func clear() {
         self.authorisedUser = AuthorisedUser()
         self.authorisedSchool = AuthorisedSchool()
-        self.personalMenus = [PersonalMenu]()
-        self.schoolInfo = SchoolInfo()
         self.status = Status()
         self.catering = Catering()
-        self.employees = [Employee]()
         self.achievementBehaviourLookups = AchievementBehaviourLookup()
         self.homework = Homeworks()
         self.weeks = [Week]()
