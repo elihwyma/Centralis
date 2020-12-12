@@ -11,7 +11,7 @@ class EduLink_Employee {
     public func handle(_ employees: [[String : Any]]) {
         for employee in employees {
             var a = Employee()
-            a.id = Int((employee["id"])! as! String)
+            a.id = "\(employee["id"] ?? "Not Given")"
             a.forename = employee["forename"] as? String
             a.title = employee["title"] as? String
             a.surname = employee["surname"] as? String

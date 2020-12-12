@@ -53,7 +53,7 @@ class LoginViewController: UIViewController {
     private func organiseLogins() {
         self.logins.removeAll()
         let decoder = JSONDecoder()
-        let l = UserDefaults.standard.object(forKey: "SavedLogins") as? [Data] ?? [Data]()
+        let l = UserDefaults.standard.object(forKey: "SavedLogin") as? [Data] ?? [Data]()
         for login in l {
             if let a = try? decoder.decode(SavedLogin.self, from: login) {
                 self.logins.append(a)

@@ -46,11 +46,10 @@ class CarouselController: UIPageViewController {
 //MARK: - Homework
 extension CarouselController {
     private func homeworkSetup() {
-        if EduLinkAPI.shared.homework.current.isEmpty && EduLinkAPI.shared.homework.past.isEmpty {
-            let homework = EduLink_Homework()
-            homework.homework()
-            NotificationCenter.default.addObserver(self, selector: #selector(setupHomeworkViews), name: .SuccesfulHomework, object: nil)
-        } else {
+        NotificationCenter.default.addObserver(self, selector: #selector(setupHomeworkViews), name: .SuccesfulHomework, object: nil)
+        let homework = EduLink_Homework()
+        homework.homework()
+        if !(EduLinkAPI.shared.homework.current.isEmpty && EduLinkAPI.shared.homework.past.isEmpty) {
             self.setupHomeworkViews()
         }
     }
@@ -84,11 +83,10 @@ extension CarouselController {
 extension CarouselController {
     private func timetableSetup() {
         NotificationCenter.default.addObserver(self, selector: #selector(weekChange), name: .TimetableButtonPressed, object: nil)
-        if EduLinkAPI.shared.weeks.isEmpty {
-            let timetable = EduLink_Timetable()
-            timetable.timetable()
-            NotificationCenter.default.addObserver(self, selector: #selector(ugh), name: .SuccesfulTimetable, object: nil)
-        } else {
+        NotificationCenter.default.addObserver(self, selector: #selector(ugh), name: .SuccesfulTimetable, object: nil)
+        let timetable = EduLink_Timetable()
+        timetable.timetable()
+        if !EduLinkAPI.shared.weeks.isEmpty {
             self.ugh()
             self.senderContext?.activityIndicator.isHidden = true
         }

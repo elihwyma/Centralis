@@ -42,7 +42,7 @@ class LoginManager {
         
         if self.schoolCode == "DemoSchool" {
             EduLinkAPI.shared.authorisedSchool.server = "https://demoapi.elihc.dev/api/uwu"
-            EduLinkAPI.shared.authorisedSchool.school_id = 1
+            EduLinkAPI.shared.authorisedSchool.school_id = "1"
             self.schoolInfo()
             return
         }
@@ -61,7 +61,7 @@ class LoginManager {
                     }
                     if let school = result["school"] as? [String : Any] {
                         EduLinkAPI.shared.authorisedSchool.server = school["server"] as? String
-                        EduLinkAPI.shared.authorisedSchool.school_id = school["school_id"] as? Int
+                        EduLinkAPI.shared.authorisedSchool.school_id = "\(school["school_id"] ?? "Not Given")"
                         self.schoolInfo()
                     } else {
                         self.fail()
@@ -93,7 +93,7 @@ class LoginManager {
                     }
                     EduLinkAPI.shared.authorisedUser.authToken =  result["authtoken"] as? String
                     if let user = result["user"] as? [String : Any] {
-                        EduLinkAPI.shared.authorisedUser.id = Int((user["id"] as? String)!)
+                        EduLinkAPI.shared.authorisedUser.id = "\(user["id"] ?? "Not Given")"
                         EduLinkAPI.shared.authorisedUser.gender = user["gender"] as? String
                         EduLinkAPI.shared.authorisedUser.forename = user["forename"] as? String
                         EduLinkAPI.shared.authorisedUser.surname = user["surname"] as? String
@@ -156,7 +156,7 @@ class LoginManager {
         if let personal_menu = dict["personal_menu"] as? [[String : String]] {
             for menu in personal_menu {
                 var personalMenu = PersonalMenu()
-                personalMenu.id = Int((menu["id"])!)
+                personalMenu.id = "\(menu["id"] ?? "Not Given")"
                 personalMenu.name = menu["name"]
                 EduLinkAPI.shared.authorisedUser.personalMenus.append(personalMenu)
             }
@@ -169,7 +169,7 @@ class LoginManager {
             if let rooms = establishment["rooms"] as? [[String : String]] {
                 for room in rooms {
                     var roomMemory = Room()
-                    roomMemory.id = Int((room["id"])!)
+                    roomMemory.id = "\(room["id"] ?? "Not Given")"
                     roomMemory.code = room["code"]
                     roomMemory.name = room["name"]
                     EduLinkAPI.shared.authorisedSchool.schoolInfo.rooms.append(roomMemory)
@@ -180,7 +180,7 @@ class LoginManager {
             if let year_groups = establishment["year_groups"] as? [[String : String]] {
                 for yearGroup in year_groups {
                     var yg = YearGroup()
-                    yg.id = Int((yearGroup["id"])!)
+                    yg.id = "\(yearGroup["id"] ?? "Not Given")"
                     yg.name = yearGroup["name"]
                     EduLinkAPI.shared.authorisedSchool.schoolInfo.yearGroups.append(yg)
                 }
@@ -190,7 +190,7 @@ class LoginManager {
             if let community_groups = establishment["community_groups"] as? [[String : String]] {
                 for communityGroup in community_groups {
                     var cg = CommunityGroup()
-                    cg.id = Int((communityGroup["id"])!)
+                    cg.id = "\(communityGroup["id"] ?? "Not Given")"
                     cg.name = communityGroup["name"]
                     EduLinkAPI.shared.authorisedSchool.schoolInfo.communityGroups.append(cg)
                 }
@@ -200,7 +200,7 @@ class LoginManager {
             if let admission_groups = establishment["applicant_admission_groups"] as? [[String : String]] {
                 for admissionGroup in admission_groups {
                     var ag = AdmissionGroup()
-                    ag.id = Int((admissionGroup["id"])!)
+                    ag.id = "\(admissionGroup["id"] ?? "Not Given")"
                     ag.name = admissionGroup["name"]
                     EduLinkAPI.shared.authorisedSchool.schoolInfo.admissionGroups.append(ag)
                 }
@@ -210,7 +210,7 @@ class LoginManager {
             if let intake_groups = establishment["applicant_intake_groups"] as? [[String : String]] {
                 for intakeGroup in intake_groups {
                     var ig = IntakeGroup()
-                    ig.id = Int((intakeGroup["id"])!)
+                    ig.id = "\(intakeGroup["id"] ?? "Not Given")"
                     ig.name = intakeGroup["name"]
                     EduLinkAPI.shared.authorisedSchool.schoolInfo.intakeGroups.append(ig)
                 }
@@ -220,7 +220,7 @@ class LoginManager {
             if let form_groups = establishment["form_groups"] as? [[String : Any]] {
                 for formGroup in form_groups {
                     var fg = FormGroup()
-                    fg.id = Int((formGroup["id"] as! String))
+                    fg.id = "\(formGroup["id"] ?? "Not Given")"
                     fg.employee_id = Int((formGroup["employee_id"] as? String ?? ""))
                     fg.room_id = Int((formGroup["room_id"] as? String)!)
                     fg.name = formGroup["name"] as? String
@@ -236,7 +236,7 @@ class LoginManager {
             if let teaching_groups = establishment["teaching_groups"] as? [[String : Any]] {
                 for teachingGroup in teaching_groups {
                     var tg = TeachingGroup()
-                    tg.id = Int((teachingGroup["id"] as! String))
+                    tg.id = "\(teachingGroup["id"] ?? "Not Given")"
                     tg.employee_id = Int((teachingGroup["employee_id"] as? String ?? ""))
                     tg.name = teachingGroup["name"] as? String
                     let tgid = teachingGroup["year_group_ids"] as? [String]
@@ -251,7 +251,7 @@ class LoginManager {
             if let subjects = establishment["subjects"] as? [[String : Any]] {
                 for subject in subjects {
                     var s = Subject()
-                    s.id = Int((subject["id"] as! String))
+                    s.id = "\(subject["id"] ?? "Not Given")"
                     s.name = subject["name"] as? String
                     s.active = subject["active"] as? Bool
                     EduLinkAPI.shared.authorisedSchool.schoolInfo.subjects.append(s)
@@ -262,7 +262,7 @@ class LoginManager {
             if let report_card = establishment["report_card_target_types"] as? [[String : Any]] {
                 for reportCard in report_card {
                     var rc = ReportCardTargetType()
-                    rc.id = reportCard["id"] as? Int
+                    rc.id = "\(reportCard["id"] ?? "Not Given")"
                     rc.code = reportCard["name"] as? String
                     rc.description = reportCard["description"] as? String
                     EduLinkAPI.shared.authorisedSchool.schoolInfo.reportCardTargetTypes.append(rc)
@@ -280,7 +280,7 @@ class LoginManager {
             let decoder = JSONDecoder()
             let encoder = JSONEncoder()
             
-            var l = UserDefaults.standard.object(forKey: "SavedLogins") as? [Data] ?? [Data]()
+            var l = UserDefaults.standard.object(forKey: "SavedLogin") as? [Data] ?? [Data]()
             var logins = [SavedLogin]()
             for login in l {
                 if let a = try? decoder.decode(SavedLogin.self, from: login) {
@@ -301,14 +301,14 @@ class LoginManager {
                 l.append(encoded)
             }
 
-            UserDefaults.standard.setValue(l, forKey: "SavedLogins")
+            UserDefaults.standard.setValue(l, forKey: "SavedLogin")
         }
     }
 
     public func removeLogin(uwuIn: SavedLogin) {
         let decoder = JSONDecoder()
         
-        var l = UserDefaults.standard.object(forKey: "SavedLogins") as? [Data] ?? [Data]()
+        var l = UserDefaults.standard.object(forKey: "SavedLogin") as? [Data] ?? [Data]()
         var logins = [SavedLogin]()
         for login in l {
             if let a = try? decoder.decode(SavedLogin.self, from: login) {
@@ -320,7 +320,7 @@ class LoginManager {
             l.remove(at: index)
         }
         
-        UserDefaults.standard.setValue(l, forKey: "SavedLogins")
+        UserDefaults.standard.setValue(l, forKey: "SavedLogin")
     }
 }
 
@@ -330,12 +330,12 @@ struct SavedLogin: Codable {
     var schoolCode: String!
     var schoolServer: String!
     var schoolName: String!
-    var schoolID: Int!
+    var schoolID: String!
     var image: Data!
     var forename: String!
     var surname: String!
     
-    init(username: String!, password: String, schoolServer: String!, image: Data!, schoolName: String!, forename: String!, surname: String!, schoolID: Int!, schoolCode: String!) {
+    init(username: String!, password: String, schoolServer: String!, image: Data!, schoolName: String!, forename: String!, surname: String!, schoolID: String!, schoolCode: String!) {
         self.username = username
         self.password = password
         self.schoolServer = schoolServer
@@ -354,7 +354,7 @@ struct AuthorisedUser {
     var forename: String!
     var surname: String!
     var gender: String!
-    var id: Int!
+    var id: String!
     var form_group_id: Int!
     var year_group_id: Int!
     var community_group_id: Int!
@@ -365,44 +365,44 @@ struct AuthorisedUser {
 
 struct AuthorisedSchool {
     var server: String!
-    var school_id: Int!
+    var school_id: String!
     var schoolLogo: UIImage!
     var schoolInfo = SchoolInfo()
 }
 
 struct PersonalMenu {
-    var id: Int!
+    var id: String!
     var name: String!
 }
 
 struct Room {
-    var id: Int!
+    var id: String!
     var name: String!
     var code: String!
 }
 
 struct YearGroup {
-    var id: Int!
+    var id: String!
     var name: String!
 }
 
 struct CommunityGroup {
-    var id: Int!
+    var id: String!
     var name: String!
 }
 
 struct AdmissionGroup {
-    var id: Int!
+    var id: String!
     var name: String!
 }
 
 struct IntakeGroup {
-    var id: Int!
+    var id: String!
     var name: String!
 }
 
 struct FormGroup {
-    var id: Int!
+    var id: String!
     var name: String!
     var year_group_ids = [Int]()
     var employee_id: Int!
@@ -410,20 +410,20 @@ struct FormGroup {
 }
 
 struct TeachingGroup {
-    var id: Int!
+    var id: String!
     var name: String!
     var year_group_ids = [Int]()
     var employee_id: Int!
 }
 
 struct Subject {
-    var id: Int!
+    var id: String!
     var name: String!
     var active: Bool!
 }
 
 struct ReportCardTargetType {
-    var id: Int!
+    var id: String!
     var code: String!
     var description: String!
 }

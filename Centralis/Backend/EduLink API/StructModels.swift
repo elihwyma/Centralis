@@ -8,7 +8,7 @@
 import Foundation
 
 struct Employee {
-    var id: Int!
+    var id: String!
     var title: String!
     var forename: String!
     var surname: String!

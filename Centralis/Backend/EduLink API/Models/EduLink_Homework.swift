@@ -100,7 +100,7 @@ class EduLink_Homework {
         }
         for h in dict {
             var homework = Homework()
-            homework.id = h["id"] as? Int ?? -1
+            homework.id = "\(h["id"] ?? "Not Given")"
             homework.activity = h["activity"] as? String ?? "Not Given"
             homework.subject = h["subject"] as? String ?? "Not Given"
             homework.due_date = h["due_date"] as? String ?? "Not Given"
@@ -127,7 +127,7 @@ struct Homeworks {
 }
 
 struct Homework {
-    var id: Int!
+    var id: String!
     var activity: String!
     var subject: String!
     var due_date: String!

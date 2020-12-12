@@ -25,7 +25,7 @@ class EduLink_Catering {
                     if let transactions = result["transactions"] as? [[String : Any]] {
                         for transaction in transactions {
                             var cateringTransaction = CateringTransaction()
-                            cateringTransaction.id = transaction["id"] as? Int
+                            cateringTransaction.id = "\(transaction["id"] ?? "Not Given")"
                             cateringTransaction.date = transaction["date"] as? String
                             let items = transaction["items"] as? [[String : Any]] ?? [[String : Any]]()
                             for item in items {
@@ -49,7 +49,7 @@ class EduLink_Catering {
 }
 
 struct CateringTransaction {
-    var id: Int!
+    var id: String!
     var date: String!
     var items = [CateringItem]()
 }

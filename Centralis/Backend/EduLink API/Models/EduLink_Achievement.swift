@@ -50,14 +50,14 @@ class EduLink_Achievement {
                         EduLinkAPI.shared.achievementBehaviourLookups.achievements.removeAll()
                         for achievement in achievement {
                             var a = Achievement()
-                            a.id = achievement["id"] as? Int
-                            a.type_ids = achievement["type_ids"] as? [Int]
-                            a.activity_id = achievement["activity_id"] as? Int
-                            a.date = achievement["date"] as? String
+                            a.id = "\(achievement["id"] ?? "Not Given")"
+                            a.type_ids = achievement["type_ids"] as? [Int] ?? [Int]()
+                            a.activity_id = "\(achievement["activity_id"] ?? "Not Given")"
+                            a.date = achievement["date"] as? String ?? "Not Given"
                             let recorded = achievement["recorded"] as? [String : String]
-                            a.employee_id = Int((recorded!["employee_id"])!)
-                            a.comments = achievement["comments"] as? String
-                            a.points = achievement["points"] as? Int
+                            a.employee_id = "\(recorded?["employee_id"] ?? "Not Given")"
+                            a.comments = achievement["comments"] as? String ?? "Not Given"
+                            a.points = achievement["points"] as? Int ?? 0
                             a.lesson_information = achievement["lesson_information"] as? String
                             a.live = achievement["live"] as? Bool
                             EduLinkAPI.shared.achievementBehaviourLookups.achievements.append(a)
@@ -82,7 +82,7 @@ class EduLink_Achievement {
             EduLinkAPI.shared.achievementBehaviourLookups.achievement_types.removeAll()
             for achievement_type in achievement_types {
                 var achievementType = AchievementType()
-                achievementType.id = achievement_type["id"] as? Int
+                achievementType.id = "\(achievement_type["id"] ?? "Not Given")"
                 achievementType.active = achievement_type["active"] as? Bool
                 achievementType.code = achievement_type["code"] as? String
                 achievementType.description = achievement_type["description"] as? String
@@ -97,7 +97,7 @@ class EduLink_Achievement {
             EduLinkAPI.shared.achievementBehaviourLookups.achievement_activity_types.removeAll()
             for achievement_activity_type in achievement_activity_types {
                 var aat = AchievementActivityType()
-                aat.id = achievement_activity_type["id"] as? Int
+                aat.id = "\(achievement_activity_type["id"] ?? "Not Given")"
                 aat.active = achievement_activity_type["active"] as? Bool
                 aat.code = achievement_activity_type["code"] as? String
                 aat.description = achievement_activity_type["description"] as? String
@@ -109,7 +109,7 @@ class EduLink_Achievement {
             EduLinkAPI.shared.achievementBehaviourLookups.achievement_award_types.removeAll()
             for achievement_award_type in achievement_award_types {
                 var aat = AchievementAwardType()
-                aat.id = achievement_award_type["id"] as? Int
+                aat.id = "\(achievement_award_type["id"] ?? "Not Given")"
                 aat.name = achievement_award_type["name"] as? String
                 EduLinkAPI.shared.achievementBehaviourLookups.achievement_award_types.append(aat)
             }
@@ -119,7 +119,7 @@ class EduLink_Achievement {
             EduLinkAPI.shared.achievementBehaviourLookups.behaviour_types.removeAll()
             for behaviour_type in behaviour_types {
                 var bt = BehaviourType()
-                bt.id = behaviour_type["id"] as? Int
+                bt.id = "\(behaviour_type["id"] ?? "Not Given")"
                 bt.active = behaviour_type["active"] as? Bool
                 bt.code = behaviour_type["code"] as? String
                 bt.description = behaviour_type["description"] as? String
@@ -136,11 +136,11 @@ class EduLink_Achievement {
 
 
 struct Achievement {
-    var id: Int!
+    var id: String!
     var type_ids: [Int]!
-    var activity_id: Int!
+    var activity_id: String!
     var date: String!
-    var employee_id: Int!
+    var employee_id: String!
     var comments: String!
     var points: Int!
     var lesson_information: String!
@@ -148,7 +148,7 @@ struct Achievement {
 }
 
 struct AchievementType {
-    var id: Int!
+    var id: String!
     var active: Bool!
     var code: String!
     var description: String!
@@ -158,19 +158,19 @@ struct AchievementType {
 }
 
 struct AchievementActivityType {
-    var id: Int!
+    var id: String!
     var code: String!
     var description: String!
     var active: Bool!
 }
 
 struct AchievementAwardType {
-    var id: Int!
+    var id: String!
     var name: String!
 }
 
 struct BehaviourType {
-    var id: Int!
+    var id: String!
     var active: Bool!
     var code: String!
     var description: String!

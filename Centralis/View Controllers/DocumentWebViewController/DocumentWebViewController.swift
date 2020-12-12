@@ -11,11 +11,18 @@ import WebKit
 class DocumentWebViewController: UIViewController {
 
     @IBOutlet weak var webView: WKWebView!
+    var document: Document?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.setup()
     }
-
+    
+    private func setup() {
+        if self.document == nil { return }
+        if let decodeData = Data(base64Encoded: self.document!.data!, options: .ignoreUnknownCharacters) {
+            self.webView.load(decodeData, mimeType: self.document!.mime_type!, characterEncodingName: "utf-8", baseURL: URL(fileURLWithPath: ""))
+        }
+    }
 }

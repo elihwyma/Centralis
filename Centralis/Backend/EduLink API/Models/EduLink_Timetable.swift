@@ -54,7 +54,7 @@ class EduLink_Timetable {
                 
                 for lesson in lessons {
                     var l = Lesson()
-                    l.period_id = lesson["period_id"] as? Int ?? -1
+                    l.period_id = "\(lesson["period_id"] ?? "Not Given")"
                     if let room = lesson["room"] as? [String : Any] {
                         l.room_name = room["name"] as? String ?? "Not Given"
                         l.moved = room["moved"] as? Bool ?? false
@@ -72,7 +72,7 @@ class EduLink_Timetable {
                     p.empty = period["empty"] as? Bool ?? false
                     p.end_time = period["end_time"] as? String ?? "Not Given"
                     p.start_time = period["start_time"] as? String ?? "Not Given"
-                    p.id = period["id"] as? Int ?? -2
+                    p.id = "\(period["id"] ?? "Not Given")"
                     p.name = period["name"] as? String ?? "Not Given"
                     for lesson in memLesson where lesson.period_id == p.id {
                         p.lesson = lesson
@@ -100,7 +100,7 @@ public struct Day {
 }
 
 public struct Lesson {
-    var period_id: Int!
+    var period_id: String!
     var room_name: String!
     var moved: Bool!
     var teacher: String!
@@ -112,7 +112,7 @@ public struct Period {
     var empty: Bool!
     var start_time: String!
     var end_time: String!
-    var id: Int!
+    var id: String!
     var name: String!
     var lesson: Lesson!
 }

@@ -12,6 +12,7 @@ enum TextViewContext {
     case achievement
     case personal
     case links
+    case documents
 }
 
 class TextViewController: UIViewController {
@@ -42,6 +43,7 @@ class TextViewController: UIViewController {
         case .achievement: self.achievementTitle()
         case .personal: self.personalTitle()
         case .links: self.linkTitle()
+        case .documents: self.documentTitle()
         case .none: fatalError("fuck")
         }
     }
@@ -66,6 +68,7 @@ class TextViewController: UIViewController {
         case .achievement: self.achievementSetup()
         case .personal: self.personalSetup()
         case .links: self.linkSetup()
+        case .documents: self.documentSetup()
         case .none: fatalError("fuck")
         }
     }
@@ -81,11 +84,19 @@ class TextViewController: UIViewController {
 
 extension TextViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("but this runs")
         if self.context == TextViewContext.links {
             let link = EduLinkAPI.shared.links[indexPath.row]
             if let url = URL(string: link.link) {
                 UIApplication.shared.open(url)
             }
+        }
+        if self.context == TextViewContext.documents {
+            print("this runs")
+            self.startWorking()
+            self.documentIndex = indexPath.row
+            let document = EduLink_Documents()
+            document.document(EduLinkAPI.shared.documents[indexPath.row], self)
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -98,6 +109,7 @@ extension TextViewController: UITableViewDataSource {
         case .catering: return EduLinkAPI.shared.catering.transactions.count
         case .personal: return ((EduLinkAPI.shared.personal.forename == nil) ? 0 : 1)
         case .links: return EduLinkAPI.shared.links.count
+        case .documents: return EduLinkAPI.shared.documents.count
         case .none: fatalError("fuck")
         }
         
@@ -126,6 +138,10 @@ extension TextViewController: UITableViewDataSource {
         }
         case .personal: do {
             cell.personal(EduLinkAPI.shared.personal)
+        }
+        case .documents: do {
+            let document = EduLinkAPI.shared.documents[indexPath.row]
+            cell.document(document)
         }
         default: do {
             fatalError("fuck")
@@ -206,8 +222,23 @@ extension TextViewController {
 extension TextViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Centralis.DocumentWebView" {
-            
+            if self.documentIndex == -1 { return }
+            let d = EduLinkAPI.shared.documents[self.documentIndex]
+            if d.data.isEmpty { return }
+            let vc = segue.destination as! DocumentWebViewController
+            vc.document = d
         }
+    }
+    
+    private func documentSetup() {
+        NotificationCenter.default.addObserver(self, selector: #selector(dataResponse), name: .SucccesfulDocument, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(stopWorking), name: .SucccesfulDocumentLookup, object: nil)
+        let document = EduLink_Documents()
+        document.documents()
+    }
+    
+    private func documentTitle() {
+        self.title = "Documents"
     }
     
     private func startWorking() {
@@ -223,14 +254,16 @@ extension TextViewController {
           })
     }
     
-    private func stopWorking() {
-        UIView.animate(withDuration: 0.5,
-                         delay: 0, usingSpringWithDamping: 1.0,
-                         initialSpringVelocity: 1.0,
-                         options: .curveEaseInOut, animations: {
-                            self.workingCover.alpha = 0
-                         }, completion: { (value: Bool) in
-                            self.workingCover.removeFromSuperview()
-          })
+    @objc private func stopWorking() {
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.5,
+                             delay: 0, usingSpringWithDamping: 1.0,
+                             initialSpringVelocity: 1.0,
+                             options: .curveEaseInOut, animations: {
+                                self.workingCover.alpha = 0
+                             }, completion: { (value: Bool) in
+                                self.workingCover.removeFromSuperview()
+              })
+        }
     }
 }

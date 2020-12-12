@@ -34,8 +34,8 @@ class TextViewCell: UITableViewCell {
         self.att?.addPair(bold: "Lesson: ", normal: "\(achievement.lesson_information ?? "Not Given")\n")
         self.att?.addPair(bold: "Points: ", normal: "\(achievement.points!)\n")
         for type in achievement.type_ids {
-            for at in EduLinkAPI.shared.achievementBehaviourLookups.achievement_types where at.id == type {
-                self.att?.addPair(bold: "Type: ", normal: "\(at.description!)\n")
+            for at in EduLinkAPI.shared.achievementBehaviourLookups.achievement_types where "\(at.id ?? "Not Given")" == "\(type)" {
+                self.att?.addPair(bold: "Type: ", normal: "\(at.description ?? "Not Given")\n")
             }
         }
         self.att?.addPair(bold: "Comment: ", normal: "\(achievement.comments!)")
@@ -56,9 +56,9 @@ class TextViewCell: UITableViewCell {
         self.att?.addPair(bold: "Forename: ", normal: "\(personal.forename ?? "Not Given")\n")
         self.att?.addPair(bold: "Surname: ", normal: "\(personal.surname ?? "Not Given")\n")
         self.att?.addPair(bold: "Gender: ", normal: "\(personal.gender ?? "Not Given")\n")
-        self.att?.addPair(bold: "Admission Number: ", normal: "\(personal.admission_number ?? 0)\n")
+        self.att?.addPair(bold: "Admission Number: ", normal: "\(personal.admission_number ?? "Not Given")\n")
         self.att?.addPair(bold: "Pupil Number: ", normal: "\(personal.unique_pupil_number ?? "Not Given")\n")
-        self.att?.addPair(bold: "Learner Number: ", normal: "\(personal.unique_learner_number ?? 0)\n")
+        self.att?.addPair(bold: "Learner Number: ", normal: "\(personal.unique_learner_number ?? "Not Given")\n")
         self.att?.addPair(bold: "Date of Birth: ", normal: "\(personal.date_of_birth ?? "Not Given")\n")
         self.att?.addPair(bold: "Admission Date: ", normal: "\(personal.admission_date ?? "Not Given")\n")
         self.att?.addPair(bold: "Email: ", normal: "\(personal.email ?? "Not Given")\n")
@@ -82,6 +82,12 @@ class TextViewCell: UITableViewCell {
         self.att?.addPair(bold: "End: ", normal: period.end_time)
     }
     
+    public func document(_ document: Document) {
+        self.att = NSMutableAttributedString()
+        self.att?.addPair(bold: "Summary: ", normal: "\(document.summary!)\n")
+        self.att?.addPair(bold: "Type: ", normal: "\(document.type!)\n")
+        self.att?.addPair(bold: "Date: ", normal: "\(document.last_updated!)")
+    }
 }
 
 extension TextViewCell {

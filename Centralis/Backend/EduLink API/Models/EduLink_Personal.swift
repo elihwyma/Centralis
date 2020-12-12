@@ -34,18 +34,18 @@ class EduLink_Personal {
     }
     
     private func scrapeTime(_ personal: [String : Any]) {
-        EduLinkAPI.shared.personal.id = Int((personal["id"] as! String))
-        EduLinkAPI.shared.personal.forename = personal["forename"] as? String
-        EduLinkAPI.shared.personal.surname = personal["surname"] as? String
-        EduLinkAPI.shared.personal.gender = personal["gender"] as? String
-        EduLinkAPI.shared.personal.admission_number = Int((personal["admission_number"] as! String))
-        EduLinkAPI.shared.personal.unique_pupil_number = personal["unique_pupil_number"] as? String
-        EduLinkAPI.shared.personal.unique_learner_number = Int((personal["unique_learner_number"] as! String))
-        EduLinkAPI.shared.personal.date_of_birth = personal["date_of_birth"] as? String
-        EduLinkAPI.shared.personal.admission_date = personal["admission_date"] as? String
-        EduLinkAPI.shared.personal.email = personal["email"] as? String
-        EduLinkAPI.shared.personal.phone = personal["phone"] as? String
-        EduLinkAPI.shared.personal.address = personal["address"] as? String
+        EduLinkAPI.shared.personal.id = "\(personal["id"] ?? "Not Given")"
+        EduLinkAPI.shared.personal.forename = personal["forename"] as? String ?? "Not Given"
+        EduLinkAPI.shared.personal.surname = personal["surname"] as? String ?? "Not Given"
+        EduLinkAPI.shared.personal.gender = personal["gender"] as? String ?? "Not Given"
+        EduLinkAPI.shared.personal.admission_number = "\(personal["admission_number"] ?? "Not Given")"
+        EduLinkAPI.shared.personal.unique_pupil_number = personal["unique_pupil_number"] as? String ?? "Not Given"
+        EduLinkAPI.shared.personal.unique_learner_number = "\(personal["unique_learner_number"] ?? "Not Given")"
+        EduLinkAPI.shared.personal.date_of_birth = personal["date_of_birth"] as? String ?? "Not Given"
+        EduLinkAPI.shared.personal.admission_date = personal["admission_date"] as? String ?? "Not Given"
+        EduLinkAPI.shared.personal.email = personal["email"] as? String ?? "Not Given"
+        EduLinkAPI.shared.personal.phone = personal["phone"] as? String ?? "Not Given"
+        EduLinkAPI.shared.personal.address = personal["address"] as? String ?? "Not Given"
         EduLinkAPI.shared.personal.ethnicity = personal["ethnicity"] as? String ?? "Not Given"
         EduLinkAPI.shared.personal.national_id = personal["national_identity"] as? String ?? "Not Given"
         EduLinkAPI.shared.personal.languages.removeAll()
@@ -58,9 +58,9 @@ class EduLink_Personal {
         }
         
         if let form_group = personal["form_group"] as? [String : Any] {
-            EduLinkAPI.shared.personal.form = form_group["name"] as? String
+            EduLinkAPI.shared.personal.form = form_group["name"] as? String ?? "Not Given"
             if let room = form_group["room"] as? [String : String] {
-                EduLinkAPI.shared.personal.room_code = room["code"]
+                EduLinkAPI.shared.personal.room_code = room["code"] ?? "Not Given"
             }
             if let employee = form_group["employee"] as? [String : String] {
                 EduLinkAPI.shared.personal.form_teacher = "\(employee["title"]!) \(employee["forename"]!) \(employee["surname"]!)"
@@ -73,13 +73,13 @@ class EduLink_Personal {
 }
 
 struct Personal {
-    var id: Int!
+    var id: String!
     var forename: String!
     var surname: String!
     var gender: String!
-    var admission_number: Int!
+    var admission_number: String!
     var unique_pupil_number: String!
-    var unique_learner_number: Int!
+    var unique_learner_number: String!
     var date_of_birth: String!
     var admission_date: String!
     var email: String!

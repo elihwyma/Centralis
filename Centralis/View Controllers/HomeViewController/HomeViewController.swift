@@ -15,7 +15,8 @@ class HomeViewController: UIViewController {
         "Account Info",
         "Homework",
         "Timetable",
-        "Links"
+        "Links",
+        "Documents"
     ]
     
     private var shownMenus = [PersonalMenu]()
@@ -51,7 +52,7 @@ class HomeViewController: UIViewController {
         #if DEBUG
         self.shownMenus = EduLinkAPI.shared.authorisedUser.personalMenus
         #else
-        for m in EduLinkAPI.shared.personalMenus {
+        for m in EduLinkAPI.shared.authorisedUser.personalMenus {
             if completedMenus.contains(m.name) {
                 self.shownMenus.append(m)
             }
@@ -81,6 +82,7 @@ class HomeViewController: UIViewController {
             case "Catering": controller.context = .catering
             case "Account Info": controller.context = .personal
             case "Links": controller.context = .links
+            case "Documents": controller.context = .documents
             default: fatalError("Not implemented yet")
             }
         } else if segue.identifier == "Centralis.ShowCarousel" {
@@ -117,6 +119,7 @@ extension HomeViewController: UICollectionViewDelegate {
         case "Homework": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
         case "Timetable": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
         case "Links": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
+        case "Documents": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
         default: print("Not yet implemented")
         }
     }
