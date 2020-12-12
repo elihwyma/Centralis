@@ -30,10 +30,10 @@ class EduLink_Links {
                                 if let decodedData = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters) {
                                     l.image = UIImage(data: decodedData)
                                 } else {
-                                    l.image = UIImage(systemName: "network")
+                                    l.image = UIImage(systemName: "link.circle.fill")
                                 }
                             } else {
-                                l.image = UIImage(systemName: "network")
+                                l.image = UIImage(systemName: "link.circle.fill")
                             }
                             EduLinkAPI.shared.links.append(l)
                         }

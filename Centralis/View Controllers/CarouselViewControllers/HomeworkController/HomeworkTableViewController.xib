@@ -16,23 +16,33 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zdm-9m-YQb">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <color key="separatorColor" systemColor="labelColor"/>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xq-pQ-7M3">
+                    <rect key="frame" x="25" y="448" width="364" height="0.0"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="zdm-9m-YQb" secondAttribute="trailing" id="Bm9-do-UmF"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="zdm-9m-YQb" secondAttribute="bottom" id="bP8-Nc-W5R"/>
-                <constraint firstItem="zdm-9m-YQb" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="maa-vD-zW2"/>
-                <constraint firstItem="zdm-9m-YQb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="qK0-VW-caW"/>
+                <constraint firstItem="zdm-9m-YQb" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="1jD-5C-zI0"/>
+                <constraint firstItem="5xq-pQ-7M3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="25" id="5m9-Ta-haO"/>
+                <constraint firstItem="zdm-9m-YQb" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="CuF-t9-2nb"/>
+                <constraint firstAttribute="bottom" secondItem="zdm-9m-YQb" secondAttribute="bottom" id="LTn-pw-2Bm"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5xq-pQ-7M3" secondAttribute="trailing" constant="25" id="SiN-cv-zwW"/>
+                <constraint firstItem="5xq-pQ-7M3" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="xAd-S0-0km"/>
+                <constraint firstItem="zdm-9m-YQb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="xnD-Id-9lt"/>
             </constraints>
             <connections>
+                <outlet property="descriptionLabel" destination="5xq-pQ-7M3" id="bt6-Jc-Gs5"/>
                 <outlet property="tableView" destination="zdm-9m-YQb" id="D6N-Ih-pDf"/>
             </connections>
-            <point key="canvasLocation" x="133" y="130"/>
+            <point key="canvasLocation" x="131.8840579710145" y="129.91071428571428"/>
         </view>
     </objects>
     <resources>

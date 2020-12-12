@@ -10,15 +10,16 @@ import UIKit
 class HomeworkTableViewController: UIView {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    var rootSender: CarouselContainerController?
     var context: HomeworkContext?
     var sender: CarouselController?
-    var rootSender: CarouselContainerController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setup()
     }
-    
+        
     private func setup() {
         self.tableView.backgroundColor = .none
         self.tableView.tableFooterView = UIView()
@@ -75,6 +76,22 @@ class HomeworkTableViewController: UIView {
             self.tableView.reloadData()
         }
     }
+    
+    private func setLabel() {
+        switch self.context {
+        case .current: do {
+            if EduLinkAPI.shared.homework.current.isEmpty {
+                self.descriptionLabel.text = "No Current Homework 🥳"
+            }
+        }
+        case .past: do {
+            if EduLinkAPI.shared.homework.past.isEmpty {
+                self.descriptionLabel.text = "No Past Homework 🥳"
+            }
+        }
+        default: break
+        }
+    }
 }
 
 extension HomeworkTableViewController: UITableViewDelegate {
@@ -85,6 +102,7 @@ extension HomeworkTableViewController: UITableViewDelegate {
 
 extension HomeworkTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.setLabel()
         switch self.context {
         case .current: return EduLinkAPI.shared.homework.current.count
         case .past: return EduLinkAPI.shared.homework.past.count

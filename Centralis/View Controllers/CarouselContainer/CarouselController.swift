@@ -46,26 +46,36 @@ class CarouselController: UIPageViewController {
 //MARK: - Homework
 extension CarouselController {
     private func homeworkSetup() {
-        let homework = EduLink_Homework()
-        homework.homework()
-        
-        self.views.removeAll()
-        let current = UIViewController()
-        let cview: HomeworkTableViewController = .fromNib()
-        cview.context = .current
-        cview.sender = self
-        current.view = cview
-        self.views.append(current)
-        
-        let past = UIViewController()
-        let pview: HomeworkTableViewController = .fromNib()
-        pview.context = .past
-        pview.sender = self
-        past.view = pview
-        self.views.append(past)
-
-        if let firstViewController = self.views.first {
-            setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
+        if EduLinkAPI.shared.homework.current.isEmpty && EduLinkAPI.shared.homework.past.isEmpty {
+            let homework = EduLink_Homework()
+            homework.homework()
+            NotificationCenter.default.addObserver(self, selector: #selector(setupHomeworkViews), name: .SuccesfulHomework, object: nil)
+        } else {
+            self.setupHomeworkViews()
+        }
+    }
+    
+    @objc private func setupHomeworkViews() {
+        DispatchQueue.main.async {
+            self.views.removeAll()
+            let current = UIViewController()
+            let cview: HomeworkTableViewController = .fromNib()
+            cview.context = .current
+            cview.sender = self
+            cview.rootSender = self.senderContext
+            current.view = cview
+            self.views.append(current)
+            
+            let past = UIViewController()
+            let pview: HomeworkTableViewController = .fromNib()
+            pview.context = .past
+            pview.sender = self
+            pview.rootSender = self.senderContext
+            past.view = pview
+            self.views.append(past)
+            if let firstViewController = self.views.first {
+                self.setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
+            }
         }
     }
 }
@@ -73,10 +83,15 @@ extension CarouselController {
 //MARK: - Timetable
 extension CarouselController {
     private func timetableSetup() {
-        let timetable = EduLink_Timetable()
-        timetable.timetable()
-        NotificationCenter.default.addObserver(self, selector: #selector(ugh), name: .SuccesfulTimetable, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(weekChange), name: .TimetableButtonPressed, object: nil)
+        if EduLinkAPI.shared.weeks.isEmpty {
+            let timetable = EduLink_Timetable()
+            timetable.timetable()
+            NotificationCenter.default.addObserver(self, selector: #selector(ugh), name: .SuccesfulTimetable, object: nil)
+        } else {
+            self.ugh()
+            self.senderContext?.activityIndicator.isHidden = true
+        }
     }
     
     @objc private func ugh() { self.setupTimetable(nil) }
@@ -84,13 +99,9 @@ extension CarouselController {
     private func setupTimetable(_ name: String?) {
         DispatchQueue.main.async {
             if let name = name {
-                for w in EduLinkAPI.shared.weeks where w.name == name {
-                    self.week = w
-                }
+                self.week = EduLinkAPI.shared.weeks.first(where: { $0.name == name })
             } else {
-                for w in EduLinkAPI.shared.weeks where w.is_current {
-                    self.week = w
-                }
+                self.week = EduLinkAPI.shared.weeks.first(where: { $0.is_current == true })
             }
             
             if self.week == nil {
@@ -121,12 +132,12 @@ extension CarouselController {
             }
             self.setViewControllers([vc!], direction: .forward, animated: true, completion: { Void in
                 self.title()
-                self.buttonName()
+                self.timetableButtonName()
             })
         }
     }
     
-    private func buttonName() {
+    private func timetableButtonName() {
         if self.senderContext == nil || self.week == nil { return }
         self.senderContext!.rightNavigationButton.setTitle(self.week!.name!, for: .normal)
     }

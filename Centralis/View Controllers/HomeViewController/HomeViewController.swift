@@ -133,12 +133,12 @@ extension HomeViewController: UICollectionViewDataSource {
         let menu = shownMenus[indexPath.row]
         cell.name.text = menu.name
         switch menu.name {
-        case "Exams": cell.image.image = UIImage(systemName: "mail.fill")
-        case "Documents": cell.image.image = UIImage(systemName: "doc.plaintext.fill")
+        case "Exams": cell.image.image = UIImage(systemName: "envelope.fill")
+        case "Documents": cell.image.image = UIImage(systemName: "doc.fill")
         case "Timetable": cell.image.image = UIImage(systemName: "clock.fill")
         case "Account Info": cell.image.image = UIImage(systemName: "person.fill")
-        case "Clubs": cell.image.image = UIImage(systemName: "figure.walk")
-        case "Links": cell.image.image = UIImage(systemName: "network")
+        case "Clubs": cell.image.image = UIImage(systemName: "person.3.fill")
+        case "Links": cell.image.image = UIImage(systemName: "link.circle.fill")
         case "Homework": cell.image.image = UIImage(systemName: "briefcase.fill")
         case "Catering": cell.image.image = UIImage(systemName: "sterlingsign.square.fill")
         case "Attendance": cell.image.image = UIImage(systemName: "chart.bar.fill")
