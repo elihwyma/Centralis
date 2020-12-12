@@ -48,4 +48,8 @@ extension NSNotification.Name {
     //Links
     static let FailedLink = Notification.Name("FailedLink")
     static let SuccesfulLink = Notification.Name("SuccesfulLink")
+    
+    //Documents
+    static let FailedDocument = Notification.Name("FailedDocument")
+    static let SucccesfulDocument = Notification.Name("SuccesfulDocument")
 }
