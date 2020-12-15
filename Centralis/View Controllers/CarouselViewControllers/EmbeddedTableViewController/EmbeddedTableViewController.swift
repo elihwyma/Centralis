@@ -7,10 +7,16 @@
 
 import UIKit
 
-class TimetableTableViewController: UIView {
+enum EmbeddedControllerContext {
+    case timetable
+    case behaviour
+}
+
+class EmbeddedTableViewController: UIView {
 
     @IBOutlet weak var tableView: UITableView!
     var day: Day?
+    var context: EmbeddedControllerContext?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,18 +36,26 @@ class TimetableTableViewController: UIView {
     }
 }
 
-extension TimetableTableViewController: UITableViewDelegate {
+extension EmbeddedTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
-extension TimetableTableViewController: UITableViewDataSource {
+extension EmbeddedTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let day = day else {
-            return 0
+        switch self.context {
+        case .timetable: do {
+            guard let day = day else {
+                return 0
+            }
+            return day.periods.count
         }
-        return day.periods.count
+        case .behaviour: do {
+            return EduLinkAPI.shared.achievementBehaviourLookups.behaviours.count
+        }
+        default: fatalError("fuck")
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

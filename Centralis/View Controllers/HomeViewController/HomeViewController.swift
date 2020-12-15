@@ -16,7 +16,8 @@ class HomeViewController: UIViewController {
         "Homework",
         "Timetable",
         "Links",
-        "Documents"
+        "Documents",
+        "Behaviour"
     ]
     
     private var shownMenus = [PersonalMenu]()
@@ -118,6 +119,7 @@ extension HomeViewController: UICollectionViewDelegate {
         case "Catering": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
         case "Account Info": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
         case "Homework": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
+        case "Behaviour": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
         case "Timetable": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
         case "Links": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
         case "Documents": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)

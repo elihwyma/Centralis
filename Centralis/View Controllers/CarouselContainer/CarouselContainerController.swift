@@ -76,3 +76,15 @@ extension CarouselContainerController {
         self.rightNavigationButton.setTitle("", for: .normal)
     }
 }
+
+//MARK: - Behaviour
+extension CarouselContainerController {
+    private func behaviourSetup() {
+        self.title = "Behaviour"
+        if !EduLinkAPI.shared.achievementBehaviourLookups.behaviours.isEmpty {
+            self.activityIndicator.isHidden = true
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(hide), name: .SuccesfulHomework, object: nil)
+        self.rightNavigationButton.isHidden = true
+    }
+}

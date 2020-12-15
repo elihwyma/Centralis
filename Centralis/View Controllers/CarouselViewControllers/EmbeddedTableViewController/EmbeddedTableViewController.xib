@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TimetableTableViewController" customModule="Centralis" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="EmbeddedTableViewController" customModule="Centralis" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -29,7 +29,7 @@
                 <constraint firstItem="Daa-KE-RNt" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="tdS-dm-aXd"/>
             </constraints>
             <connections>
-                <outlet property="tableView" destination="Daa-KE-RNt" id="Hmb-KY-lQs"/>
+                <outlet property="tableView" destination="Daa-KE-RNt" id="xUx-KC-LEz"/>
             </connections>
             <point key="canvasLocation" x="-172.46376811594203" y="129.91071428571428"/>
         </view>
