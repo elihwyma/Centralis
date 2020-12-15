@@ -84,7 +84,7 @@ extension CarouselContainerController {
         if !EduLinkAPI.shared.achievementBehaviourLookups.behaviours.isEmpty {
             self.activityIndicator.isHidden = true
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(hide), name: .SuccesfulHomework, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(hide), name: .SucccesfulBehaviour, object: nil)
         self.rightNavigationButton.isHidden = true
     }
 }
