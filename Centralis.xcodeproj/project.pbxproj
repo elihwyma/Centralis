@@ -48,6 +48,8 @@
 		53CB50AE2572F8550077DDAE /* NSNotification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50AD2572F8540077DDAE /* NSNotification+Extensions.swift */; };
 		53CB50B7257312E70077DDAE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50B6257312E50077DDAE /* NetworkManager.swift */; };
 		53CB50BC2573E42F0077DDAE /* EduLinkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50BB2573E42F0077DDAE /* EduLinkAPI.swift */; };
+		E19F9A3C258948E80018188B /* BehaviourTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19F9A3B258948E80018188B /* BehaviourTableViewController.xib */; };
+		E19F9A3F258949810018188B /* BehaviourTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19F9A3E258949810018188B /* BehaviourTableViewController.swift */; };
 		E1C8FD6E258022780006F36F /* EduLink_Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C8FD6D258022770006F36F /* EduLink_Timetable.swift */; };
 		E1C8FD73258165BD0006F36F /* TimetableTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C8FD72258165BD0006F36F /* TimetableTableViewController.xib */; };
 		E1C8FD76258166210006F36F /* TimetableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C8FD75258166210006F36F /* TimetableTableViewController.swift */; };
@@ -101,6 +103,8 @@
 		53CB50AD2572F8540077DDAE /* NSNotification+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extensions.swift"; sourceTree = "<group>"; };
 		53CB50B6257312E50077DDAE /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		53CB50BB2573E42F0077DDAE /* EduLinkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLinkAPI.swift; sourceTree = "<group>"; };
+		E19F9A3B258948E80018188B /* BehaviourTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BehaviourTableViewController.xib; sourceTree = "<group>"; };
+		E19F9A3E258949810018188B /* BehaviourTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviourTableViewController.swift; sourceTree = "<group>"; };
 		E1C8FD6D258022770006F36F /* EduLink_Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Timetable.swift; sourceTree = "<group>"; };
 		E1C8FD72258165BD0006F36F /* TimetableTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimetableTableViewController.xib; sourceTree = "<group>"; };
 		E1C8FD75258166210006F36F /* TimetableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableTableViewController.swift; sourceTree = "<group>"; };
@@ -393,10 +397,20 @@
 		E180E9C32580115100ABFE69 /* CarouselViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E19F9A3A258948A70018188B /* BehaviourController */,
 				E1C8FD71258165790006F36F /* TimetableController */,
 				5319692D257BC8610056BF51 /* HomeworkController */,
 			);
 			path = CarouselViewControllers;
+			sourceTree = "<group>";
+		};
+		E19F9A3A258948A70018188B /* BehaviourController */ = {
+			isa = PBXGroup;
+			children = (
+				E19F9A3B258948E80018188B /* BehaviourTableViewController.xib */,
+				E19F9A3E258949810018188B /* BehaviourTableViewController.swift */,
+			);
+			path = BehaviourController;
 			sourceTree = "<group>";
 		};
 		E1C8FD71258165790006F36F /* TimetableController */ = {
@@ -483,6 +497,7 @@
 				53CB507B2572D1880077DDAE /* Assets.xcassets in Resources */,
 				53CB50792572D1780077DDAE /* Main.storyboard in Resources */,
 				5387450F257BDB7100174D07 /* HomeworkCell.xib in Resources */,
+				E19F9A3C258948E80018188B /* BehaviourTableViewController.xib in Resources */,
 				53243437257828A300875BAD /* TextViewCell.xib in Resources */,
 				53CA2DF32576D67A00E3A02B /* WorkingCover.xib in Resources */,
 			);
@@ -528,6 +543,7 @@
 				53874512257BDCD400174D07 /* NSMutableAttributedString+Extension.swift in Sources */,
 				53CB50A12572F0B50077DDAE /* ResizedTableView.swift in Sources */,
 				53CA2DE52575896F00E3A02B /* StructModels.swift in Sources */,
+				E19F9A3F258949810018188B /* BehaviourTableViewController.swift in Sources */,
 				53874509257BD7D600174D07 /* HomeworkTableViewController.swift in Sources */,
 				531870D1257968BD000191FD /* TextViewController.swift in Sources */,
 			);
@@ -678,7 +694,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Resources/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 171;
+				CURRENT_PROJECT_VERSION = 174;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				INFOPLIST_FILE = Centralis/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -704,7 +720,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Resources/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 171;
+				CURRENT_PROJECT_VERSION = 174;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				INFOPLIST_FILE = Centralis/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

@@ -30,6 +30,10 @@ extension NSNotification.Name {
     static let FailedAchievement = Notification.Name("FailedAchievement")
     static let SuccesfulAchievement = Notification.Name("SuccesfulAchievement")
     
+    //Behaviour
+    static let FailedBehaviour = Notification.Name("FailedBehaviour")
+    static let SucccesfulBehaviour = Notification.Name("SuccesfulBehaviour")
+    
     //Personal
     static let FailedPersonal = Notification.Name("FailedPersonal")
     static let SuccesfulPersonal = Notification.Name("SuccesfulPersonal")

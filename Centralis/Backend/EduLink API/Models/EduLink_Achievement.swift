@@ -18,12 +18,15 @@ class EduLink_Achievement {
                 if let result = dict["result"] as? [String : Any] {
                     if !(result["success"] as! Bool) {
                         NotificationCenter.default.post(name: .FailedAchievement, object: nil)
+                        NotificationCenter.default.post(name: .FailedBehaviour, object: nil)
                         return
                     }
                     self.scrapeAllNeededData(result)
                     NotificationCenter.default.post(name: .SuccesfulAchievement, object: nil)
+                    NotificationCenter.default.post(name: .SucccesfulBehaviour, object: nil)
                 } else {
                     NotificationCenter.default.post(name: .FailedAchievement, object: nil)
+                    NotificationCenter.default.post(name: .FailedBehaviour, object: nil)
                 }
             } else {
                 NotificationCenter.default.post(name: .NetworkError, object: nil)
@@ -58,8 +61,8 @@ class EduLink_Achievement {
                             a.employee_id = "\(recorded?["employee_id"] ?? "Not Given")"
                             a.comments = achievement["comments"] as? String ?? "Not Given"
                             a.points = achievement["points"] as? Int ?? 0
-                            a.lesson_information = achievement["lesson_information"] as? String
-                            a.live = achievement["live"] as? Bool
+                            a.lesson_information = achievement["lesson_information"] as? String ?? "Not Given"
+                            a.live = achievement["live"] as? Bool ?? false
                             EduLinkAPI.shared.achievementBehaviourLookups.achievements.append(a)
                         }
                     }
@@ -70,6 +73,58 @@ class EduLink_Achievement {
                     }
                 } else {
                     NotificationCenter.default.post(name: .FailedAchievement, object: nil)
+                }
+            } else {
+                NotificationCenter.default.post(name: .NetworkError, object: nil)
+            }
+        })
+    }
+    
+    public func behaviour() {
+        let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.Behaviour")!
+        let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
+        let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.Behaviour\",\"params\":{\"learner_id\":\"\(EduLinkAPI.shared.authorisedUser.id!)\",\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\",\"format\":\"2\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
+        NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
+            if success {
+                if let result = dict["result"] as? [String : Any] {
+                    if !(result["success"] as! Bool) {
+                        NotificationCenter.default.post(name: .FailedBehaviour, object: nil)
+                        return
+                    }
+                    if let employees = result["employees"] as? [[String : Any]] {
+                        let employeeManager = EduLink_Employee()
+                        employeeManager.handle(employees)
+                    }
+                    if let behaviours = result["behaviour"] as? [[String : Any]] {
+                        EduLinkAPI.shared.achievementBehaviourLookups.behaviours.removeAll()
+                        for behaviour in behaviours {
+                            var b = Behaviour()
+                            b.id = "\(behaviour["id"] ?? "Not Given")"
+                            b.type_ids = behaviour["type_ids"] as? [Int] ?? [Int]()
+                            b.activity_id = "\(behaviour["activity_id"] ?? "Not Given")"
+                            b.time_id = "\(behaviour["time_id"] ?? "Not Given")"
+                            b.status_id = "\(behaviour["status_id"] ?? "Not Given")"
+                            b.bullying_type_id = "\(behaviour["bullying_type_id"] ?? "Not Given")"
+                            b.location_id = "\(behaviour["location_id"] ?? "Not Given")"
+                            let action = behaviour["action_taken"] as? [String : Any]
+                            b.action_id = "\(action?["id"] ?? "Not Given")"
+                            b.action_date = "\(action?["date"] ?? "Not Given")"
+                            b.date = behaviour["date"] as? String ?? "Not Given"
+                            let recorded = behaviour["recorded"] as? [String : String]
+                            b.recorded_id = "\(recorded?["employee_id"] ?? "Not Given")"
+                            b.comments = behaviour["comments"] as? String ?? "Not Given"
+                            b.points = behaviour["points"] as? Int ?? 0
+                            b.lesson_information = behaviour["lesson_information"] as? String ?? "Not Given"
+                            EduLinkAPI.shared.achievementBehaviourLookups.behaviours.append(b)
+                        }
+                    }
+                    if EduLinkAPI.shared.achievementBehaviourLookups.behaviour_types.isEmpty {
+                        self.achievementBehaviourLookups()
+                    } else {
+                        NotificationCenter.default.post(name: .SucccesfulBehaviour, object: nil)
+                    }
+                } else {
+                    NotificationCenter.default.post(name: .FailedBehaviour, object: nil)
                 }
             } else {
                 NotificationCenter.default.post(name: .NetworkError, object: nil)
@@ -131,6 +186,68 @@ class EduLink_Achievement {
                 EduLinkAPI.shared.achievementBehaviourLookups.behaviour_types.append(bt)
             }
         }
+        
+        if let behaviour_activity_types = result["behaviour_activity_types"] as? [[String : Any]] {
+            EduLinkAPI.shared.achievementBehaviourLookups.behaviour_activity_types.removeAll()
+            for behaviour_activity_type in behaviour_activity_types {
+                var bat = BehaviourActivityType()
+                bat.id = "\(behaviour_activity_type["id"] ?? "Not Given")"
+                bat.description = "\(behaviour_activity_type["description"] ?? "Not Given")"
+                bat.code = "\(behaviour_activity_type["code"] ?? "Not Given")"
+                bat.active = behaviour_activity_type["active"] as? Bool ?? false
+                EduLinkAPI.shared.achievementBehaviourLookups.behaviour_activity_types.append(bat)
+            }
+        }
+        
+        if let behaviour_actions_taken = result["behaviour_actions_taken"] as? [[String : Any]] {
+            EduLinkAPI.shared.achievementBehaviourLookups.behaviour_actions_taken.removeAll()
+            for behaviour_actions_taken in behaviour_actions_taken {
+                var bat = BehaviourActionsTaken()
+                bat.id = "\(behaviour_actions_taken["id"] ?? "Not Given")"
+                bat.name = "\(behaviour_actions_taken["name"] ?? "Not Given")"
+                EduLinkAPI.shared.achievementBehaviourLookups.behaviour_actions_taken.append(bat)
+            }
+        }
+        
+        if let behaviour_bullying_types = result["behaviour_bullying_types"] as? [[String : Any]] {
+            EduLinkAPI.shared.achievementBehaviourLookups.behaviour_bullying_types.removeAll()
+            for behaviour_bullying_type in behaviour_bullying_types {
+                var bbt = BehaviourBullyingType()
+                bbt.id = "\(behaviour_bullying_type["id"] ?? "Not Given")"
+                bbt.name = "\(behaviour_bullying_type["name"] ?? "Not Given")"
+                EduLinkAPI.shared.achievementBehaviourLookups.behaviour_bullying_types.append(bbt)
+            }
+        }
+        
+        if let behaviour_locations = result["behaviour_locations"] as? [[String : Any]] {
+            EduLinkAPI.shared.achievementBehaviourLookups.behaviour_locations.removeAll()
+            for behaviour_location in behaviour_locations {
+                var bl = BehaviourLocation()
+                bl.id = "\(behaviour_location["id"] ?? "Not Given")"
+                bl.name = "\(behaviour_location["name"] ?? "Not Given")"
+                EduLinkAPI.shared.achievementBehaviourLookups.behaviour_locations.append(bl)
+            }
+        }
+        
+        if let behaviour_statuses = result["behaviour_statuses"] as? [[String : Any]] {
+            EduLinkAPI.shared.achievementBehaviourLookups.behaviour_statuses.removeAll()
+            for behaviour_status in behaviour_statuses {
+                var bs = BehaviourStatus()
+                bs.id = "\(behaviour_status["id"] ?? "Not Given")"
+                bs.name = "\(behaviour_status["name"] ?? "Not Given")"
+                EduLinkAPI.shared.achievementBehaviourLookups.behaviour_statuses.append(bs)
+            }
+        }
+        
+        if let behaviour_times = result["behaviour_times"] as? [[String : Any]] {
+            EduLinkAPI.shared.achievementBehaviourLookups.behaviour_times.removeAll()
+            for behaviour_time in behaviour_times {
+                var bt = BehaviourTime()
+                bt.id = "\(behaviour_time["id"] ?? "Not Given")"
+                bt.name = "\(behaviour_time["name"] ?? "Not Given")"
+                EduLinkAPI.shared.achievementBehaviourLookups.behaviour_times.append(bt)
+            }
+        }
     }
 }
 
@@ -145,6 +262,23 @@ struct Achievement {
     var points: Int!
     var lesson_information: String!
     var live: Bool!
+}
+
+struct Behaviour {
+    var id: String!
+    var type_ids: [Int]!
+    var activity_id: String!
+    var date: String!
+    var time_id: String!
+    var status_id: String!
+    var bullying_type_id: String!
+    var location_id: String!
+    var action_id: String!
+    var action_date: String!
+    var recorded_id: String!
+    var lesson_information: String!
+    var comments: String!
+    var points: Int!
 }
 
 struct AchievementType {
@@ -181,8 +315,42 @@ struct BehaviourType {
     var is_bullying_type: Bool!
 }
 
+struct BehaviourActivityType {
+    var id: String!
+    var code: String!
+    var description: String!
+    var active: Bool!
+}
+
+struct BehaviourActionsTaken {
+    var id: String!
+    var name: String!
+}
+
+struct BehaviourBullyingType {
+    var id: String!
+    var name: String!
+}
+
+struct BehaviourLocation {
+    var id: String!
+    var name: String!
+}
+
+struct BehaviourStatus {
+    var id: String!
+    var name: String!
+}
+
+struct BehaviourTime {
+    var id: String!
+    var name: String!
+}
+
+
 struct AchievementBehaviourLookup {
     var achievements = [Achievement]()
+    var behaviours = [Behaviour]()
     
     var achievement_types = [AchievementType]()
     var achievement_activity_types = [AchievementActivityType]()
@@ -192,5 +360,11 @@ struct AchievementBehaviourLookup {
     var detentionmanagement_enabled: Bool!
     
     var behaviour_types = [BehaviourType]()
+    var behaviour_activity_types = [BehaviourActivityType]()
+    var behaviour_actions_taken = [BehaviourActionsTaken]()
+    var behaviour_bullying_types = [BehaviourBullyingType]()
+    var behaviour_locations = [BehaviourLocation]()
+    var behaviour_statuses = [BehaviourStatus]()
+    var behaviour_times = [BehaviourTime]()
 }
 

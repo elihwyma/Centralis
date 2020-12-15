@@ -44,12 +44,12 @@
                 <constraint firstItem="bJk-74-ItW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="RH6-ne-XO8"/>
                 <constraint firstAttribute="trailing" secondItem="VVQ-jR-wB9" secondAttribute="trailing" constant="5" id="act-1j-Cq9"/>
             </constraints>
-            <size key="customSize" width="50" height="220"/>
+            <size key="customSize" width="50" height="227"/>
             <connections>
                 <outlet property="image" destination="bJk-74-ItW" id="PLo-Wt-LVF"/>
                 <outlet property="name" destination="VVQ-jR-wB9" id="Ozf-Ws-Nh2"/>
             </connections>
-            <point key="canvasLocation" x="131.8840579710145" y="67.633928571428569"/>
+            <point key="canvasLocation" x="131.8840579710145" y="65.290178571428569"/>
         </collectionViewCell>
     </objects>
     <resources>
