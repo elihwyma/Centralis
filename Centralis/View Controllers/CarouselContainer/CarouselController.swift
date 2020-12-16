@@ -28,6 +28,7 @@ class CarouselController: UIPageViewController {
         switch context {
         case .homework: self.homeworkSetup()
         case .timetable: self.timetableSetup()
+        case .behaviour: self.behaviourSetup()
         case .none: break
         }
                 
@@ -73,7 +74,7 @@ extension CarouselController {
             past.view = pview
             self.views.append(past)
             if let firstViewController = self.views.first {
-                self.setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
+                self.setViewControllers([firstViewController], direction: .forward, animated: false, completion: nil)
             }
         }
     }
@@ -112,8 +113,9 @@ extension CarouselController {
             self.views.removeAll()
             for day in self.week!.days {
                 let vc = UIViewController()
-                let tview: TimetableTableViewController = .fromNib()
+                let tview: EmbeddedTableViewController = .fromNib()
                 tview.day = day
+                tview.context = .timetable
                 vc.view = tview
                 self.views.append(vc)
             }
@@ -128,7 +130,7 @@ extension CarouselController {
                     return
                 }
             }
-            self.setViewControllers([vc!], direction: .forward, animated: true, completion: { Void in
+            self.setViewControllers([vc!], direction: .forward, animated: false, completion: { Void in
                 self.title()
                 self.timetableButtonName()
             })
@@ -156,6 +158,36 @@ extension CarouselController {
             popoverController.permittedArrowDirections = []
         }
         self.senderContext?.present(alert, animated: true)
+    }
+}
+
+//MARK: - Behaviour
+extension CarouselController {
+    private func behaviourSetup() {
+        NotificationCenter.default.addObserver(self, selector: #selector(setupBehaviourViews), name: .SucccesfulBehaviour, object: nil)
+        let behaviour = EduLink_Achievement()
+        behaviour.behaviour()
+        if !EduLinkAPI.shared.achievementBehaviourLookups.behaviours.isEmpty {
+            self.ugh()
+            self.senderContext?.activityIndicator.isHidden = true
+        }
+    }
+    
+    @objc private func setupBehaviourViews() {
+        DispatchQueue.main.async {
+            self.views.removeAll()
+            let behaviour = UIViewController()
+            let bview: EmbeddedTableViewController = .fromNib()
+            bview.context = .behaviour
+            behaviour.view = bview
+            self.views.append(behaviour)
+            
+            if let firstViewController = self.views.first {
+                self.setViewControllers([firstViewController], direction: .forward, animated: false, completion: { Void in
+                    self.behaviourTitle()
+                })
+            }
+        }
     }
 }
 
@@ -213,7 +245,21 @@ extension CarouselController: UIPageViewControllerDelegate {
             let index = self.currentIndex
             self.senderContext!.title = self.week!.days[index].name!
         }
+        case .behaviour: do {
+            let index = self.currentIndex
+            if index == 0 {
+                self.behaviourTitle()
+            }
+        }
         default: break
         }
+    }
+    
+    private func behaviourTitle() {
+        var count = 0
+        for behaviour in EduLinkAPI.shared.achievementBehaviourLookups.behaviours {
+            count += behaviour.points
+        }
+        self.senderContext!.title = "Behaviour: \(count)"
     }
 }

@@ -60,8 +60,18 @@ extension EmbeddedTableViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.TextViewCell", for: indexPath) as! TextViewCell
-        let period = day!.periods[indexPath.row]
-        cell.timetable(period)
+        switch self.context {
+        case .timetable: do {
+            let period = day!.periods[indexPath.row]
+            cell.timetable(period)
+        }
+        case .behaviour: do {
+            let behaviour = EduLinkAPI.shared.achievementBehaviourLookups.behaviours[indexPath.row]
+            cell.behaviour(behaviour)
+        }
+        default: fatalError("fuck")
+        }
+        
         cell.transactionsView.attributedText = cell.att
         cell.transactionsView.textColor = .label
         return cell

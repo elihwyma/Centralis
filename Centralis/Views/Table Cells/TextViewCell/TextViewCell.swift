@@ -41,6 +41,22 @@ class TextViewCell: UITableViewCell {
         self.att?.addPair(bold: "Comment: ", normal: "\(achievement.comments!)")
     }
     
+    public func behaviour(_ behaviour: Behaviour) {
+        self.att = NSMutableAttributedString()
+        self.att?.addPair(bold: "Date: ", normal: "\(behaviour.date!)\n")
+        for employee in EduLinkAPI.shared.authorisedSchool.schoolInfo.employees where employee.id == behaviour.recorded_id {
+            self.att?.addPair(bold: "Teacher: ", normal: "\(employee.title!) \(employee.forename!) \(employee.surname!)\n")
+        }
+        self.att?.addPair(bold: "Lesson: ", normal: "\(behaviour.lesson_information ?? "Not Given")\n")
+        self.att?.addPair(bold: "Points: ", normal: "\(behaviour.points!)\n")
+        for type in behaviour.type_ids {
+            for bt in EduLinkAPI.shared.achievementBehaviourLookups.behaviour_types where "\(bt.id ?? "Not Given")" == "\(type)" {
+                self.att?.addPair(bold: "Type: ", normal: "\(bt.description ?? "Not Given")\n")
+            }
+        }
+        self.att?.addPair(bold: "Comment: ", normal: "\(behaviour.comments!)")
+    }
+        
     public func catering(_ transaction: CateringTransaction) {
         self.att = NSMutableAttributedString()
         self.att?.addPair(bold: "Date & Time: ", normal: transaction.date)

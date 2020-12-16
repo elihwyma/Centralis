@@ -10,6 +10,7 @@ import UIKit
 enum CarouselContext {
     case homework
     case timetable
+    case behaviour
 }
 
 class CarouselContainerController: UIViewController {
@@ -33,6 +34,7 @@ class CarouselContainerController: UIViewController {
         switch context {
         case .homework: self.homeworkSetup()
         case .timetable: self.timetableSetup()
+        case .behaviour: self.behaviourSetup()
         case .none: break
         }
     }

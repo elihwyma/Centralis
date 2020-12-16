@@ -75,7 +75,7 @@ class EduLink_Homework {
         }
         let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.HomeworkCompleted")!
         let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
-        let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.HomeworkCompleted\",\"params\":{\"completed\":\"\(completed ? "true" : "false")\",\"homework_id\":\"\(homework.id!)\",\"learner_id\":\"\(EduLinkAPI.shared.authorisedUser.id!)\",\"source\":\"EduLink\",\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
+        let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.HomeworkCompleted\",\"params\":{\"completed\":\"\(completed ? "true" : "false")\",\"homework_id\":\"\(homework.id!)\",\"learner_id\":\"\(EduLinkAPI.shared.authorisedUser.id!)\",\"source\":\"\(homework.source!)\",\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
         NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
             if success {
                 if let result = dict["result"] as? [String : Any] {
@@ -110,6 +110,7 @@ class EduLink_Homework {
             homework.due_text = h["due_text"] as? String ?? "Not Given"
             homework.available_text = h["available_text"] as? String ?? "Not Given"
             homework.status = h["status"] as? String ?? "Not Given"
+            homework.source = h["source"] as? String ?? "Not Given"
             switch context {
             case .current: EduLinkAPI.shared.homework.current.append(homework)
             case .past: EduLinkAPI.shared.homework.past.append(homework)
@@ -138,6 +139,7 @@ struct Homework {
     var available_text: String!
     var status: String!
     var description: String!
+    var source: String!
 }
 
 enum HomeworkContext {

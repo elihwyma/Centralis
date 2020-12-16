@@ -92,6 +92,7 @@ class HomeViewController: UIViewController {
             switch menu.name! {
             case "Homework": controller.context = .homework
             case "Timetable": controller.context = .timetable
+            case "Behaviour": controller.context = .behaviour
             default: fatalError("Not implemented yet")
             }
         }
