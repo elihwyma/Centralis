@@ -30,4 +30,10 @@ extension UIView {
         child.didMove(toParent: parent)
         child.view.frame = CGRect(x: 0, y: 0, width: container.frame.size.width, height: container.frame.size.height)
     }
+    
+    public func center(_ view: UIView, _ superview: UIView) {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.centerXAnchor.constraint(equalTo: superview.centerXAnchor).isActive = true
+        view.centerYAnchor.constraint(equalTo: superview.centerYAnchor).isActive = true
+    }
 }

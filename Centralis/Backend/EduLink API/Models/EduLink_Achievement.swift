@@ -118,6 +118,21 @@ class EduLink_Achievement {
                             EduLinkAPI.shared.achievementBehaviourLookups.behaviours.append(b)
                         }
                     }
+                    if let b4l = result["b4l"] as? [[String : Any]] {
+                        EduLinkAPI.shared.achievementBehaviourLookups.behaviourForLessons.removeAll()
+                        for b4l in b4l {
+                            var b = BehaviourForLesson()
+                            b.subject = "\(b4l["subject"] ?? "Not Given")"
+                            let values = b4l["values"] as? [String : Any] ?? [String : Any]()
+                            for value in values {
+                                var v = B4LValue()
+                                v.name = value.key
+                                v.count = value.value as? Int ?? 0
+                                b.values.append(v)
+                            }
+                            EduLinkAPI.shared.achievementBehaviourLookups.behaviourForLessons.append(b)
+                        }
+                    }
                     if EduLinkAPI.shared.achievementBehaviourLookups.behaviour_types.isEmpty {
                         self.achievementBehaviourLookups()
                     } else {
@@ -251,6 +266,15 @@ class EduLink_Achievement {
     }
 }
 
+struct B4LValue {
+    var name: String!
+    var count: Int!
+}
+
+struct BehaviourForLesson {
+    var subject: String!
+    var values = [B4LValue]()
+}
 
 struct Achievement {
     var id: String!
@@ -351,6 +375,7 @@ struct BehaviourTime {
 struct AchievementBehaviourLookup {
     var achievements = [Achievement]()
     var behaviours = [Behaviour]()
+    var behaviourForLessons = [BehaviourForLesson]()
     
     var achievement_types = [AchievementType]()
     var achievement_activity_types = [AchievementActivityType]()

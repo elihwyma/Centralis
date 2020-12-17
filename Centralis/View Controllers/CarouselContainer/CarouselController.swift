@@ -182,6 +182,12 @@ extension CarouselController {
             behaviour.view = bview
             self.views.append(behaviour)
             
+            let lessonBehaviour = UIViewController()
+            let lbview: ChartTableViewController = .fromNib()
+            lbview.context = .lessonBehaviour
+            lessonBehaviour.view = lbview
+            self.views.append(lessonBehaviour)
+            
             if let firstViewController = self.views.first {
                 self.setViewControllers([firstViewController], direction: .forward, animated: false, completion: { Void in
                     self.behaviourTitle()
@@ -247,8 +253,10 @@ extension CarouselController: UIPageViewControllerDelegate {
         }
         case .behaviour: do {
             let index = self.currentIndex
-            if index == 0 {
-                self.behaviourTitle()
+            switch index {
+            case 0: self.behaviourTitle()
+            case 1: self.senderContext!.title = "Lesson Behaviour"
+            default: break
             }
         }
         default: break
