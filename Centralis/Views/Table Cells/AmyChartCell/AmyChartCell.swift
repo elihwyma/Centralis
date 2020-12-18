@@ -13,6 +13,7 @@ class AmyChartCell: UITableViewCell {
     @IBOutlet weak var chart: AmyChart!
     @IBOutlet weak var chartOverlay: UIView!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var noData: UILabel!
     
     var att: NSMutableAttributedString?
     
@@ -28,13 +29,23 @@ class AmyChartCell: UITableViewCell {
     
     private func setup() {
         self.chartOverlay.layer.masksToBounds = true
+        self.topTitle.adjustsFontSizeToFitWidth = true
     }
     
     public func lessonBehaviour(_ b4l: BehaviourForLesson) {
         var points = [AmyChartDataPoint]()
+        var total = 0
         for v in b4l.values {
-            let point = AmyChartDataPoint(number: v.count, colour: .randomColor())
+            let point = AmyChartDataPoint(number: v.count, colour: v.colour)
             points.append(point)
+            total += v.count
+        }
+        if points.isEmpty {
+            self.chartOverlay.isHidden = true
+            self.noData.isHidden = false
+        } else {
+            self.chartOverlay.isHidden = false
+            self.noData.isHidden = true
         }
         self.chart.data = points
         self.topTitle.text = b4l.subject

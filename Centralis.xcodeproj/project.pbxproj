@@ -54,6 +54,7 @@
 		E1576060258BF56B00DD496F /* AmyChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E157605E258BF56B00DD496F /* AmyChartCell.swift */; };
 		E1576061258BF56B00DD496F /* AmyChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E157605F258BF56B00DD496F /* AmyChartCell.xib */; };
 		E1576064258C101600DD496F /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1576063258C101600DD496F /* UIColor+Extensions.swift */; };
+		E19B2F50258CEC9900930AE1 /* ColourConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19B2F4F258CEC9900930AE1 /* ColourConverter.swift */; };
 		E1C8FD6E258022780006F36F /* EduLink_Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C8FD6D258022770006F36F /* EduLink_Timetable.swift */; };
 		E1C8FD73258165BD0006F36F /* EmbeddedTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C8FD72258165BD0006F36F /* EmbeddedTableViewController.xib */; };
 		E1C8FD76258166210006F36F /* EmbeddedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C8FD75258166210006F36F /* EmbeddedTableViewController.swift */; };
@@ -113,6 +114,7 @@
 		E157605E258BF56B00DD496F /* AmyChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmyChartCell.swift; sourceTree = "<group>"; };
 		E157605F258BF56B00DD496F /* AmyChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmyChartCell.xib; sourceTree = "<group>"; };
 		E1576063258C101600DD496F /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		E19B2F4F258CEC9900930AE1 /* ColourConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColourConverter.swift; sourceTree = "<group>"; };
 		E1C8FD6D258022770006F36F /* EduLink_Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Timetable.swift; sourceTree = "<group>"; };
 		E1C8FD72258165BD0006F36F /* EmbeddedTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmbeddedTableViewController.xib; sourceTree = "<group>"; };
 		E1C8FD75258166210006F36F /* EmbeddedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedTableViewController.swift; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 		53CB50B4257311380077DDAE /* Backend */ = {
 			isa = PBXGroup;
 			children = (
+				E19B2F4E258CEC8000930AE1 /* ColourConverter */,
 				53CB50B9257313280077DDAE /* EduLink API */,
 				53CB50B5257312E50077DDAE /* Network Manager */,
 			);
@@ -439,6 +442,14 @@
 				5319692D257BC8610056BF51 /* HomeworkController */,
 			);
 			path = CarouselViewControllers;
+			sourceTree = "<group>";
+		};
+		E19B2F4E258CEC8000930AE1 /* ColourConverter */ = {
+			isa = PBXGroup;
+			children = (
+				E19B2F4F258CEC9900930AE1 /* ColourConverter.swift */,
+			);
+			path = ColourConverter;
 			sourceTree = "<group>";
 		};
 		E1C8FD71258165790006F36F /* EmbeddedTableViewController */ = {
@@ -543,6 +554,7 @@
 				53243436257828A300875BAD /* TextViewCell.swift in Sources */,
 				E1F9A49825850F6000CEA071 /* DocumentWebViewController.swift in Sources */,
 				E1C8FD6E258022780006F36F /* EduLink_Timetable.swift in Sources */,
+				E19B2F50258CEC9900930AE1 /* ColourConverter.swift in Sources */,
 				53CB50AB2572F6D70077DDAE /* LoginPopup.swift in Sources */,
 				53CB509D2572D9300077DDAE /* LoginViewController.swift in Sources */,
 				E157605B258BBDE700DD496F /* ChartTableViewController.swift in Sources */,

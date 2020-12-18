@@ -48,10 +48,11 @@ class CarouselController: UIPageViewController {
 extension CarouselController {
     private func homeworkSetup() {
         NotificationCenter.default.addObserver(self, selector: #selector(setupHomeworkViews), name: .SuccesfulHomework, object: nil)
-        let homework = EduLink_Homework()
-        homework.homework()
         if !(EduLinkAPI.shared.homework.current.isEmpty && EduLinkAPI.shared.homework.past.isEmpty) {
             self.setupHomeworkViews()
+        } else {
+            let homework = EduLink_Homework()
+            homework.homework()
         }
     }
     
@@ -85,11 +86,12 @@ extension CarouselController {
     private func timetableSetup() {
         NotificationCenter.default.addObserver(self, selector: #selector(weekChange), name: .TimetableButtonPressed, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ugh), name: .SuccesfulTimetable, object: nil)
-        let timetable = EduLink_Timetable()
-        timetable.timetable()
         if !EduLinkAPI.shared.weeks.isEmpty {
             self.ugh()
             self.senderContext?.activityIndicator.isHidden = true
+        } else {
+            let timetable = EduLink_Timetable()
+            timetable.timetable()
         }
     }
     
@@ -165,11 +167,12 @@ extension CarouselController {
 extension CarouselController {
     private func behaviourSetup() {
         NotificationCenter.default.addObserver(self, selector: #selector(setupBehaviourViews), name: .SucccesfulBehaviour, object: nil)
-        let behaviour = EduLink_Achievement()
-        behaviour.behaviour()
         if !EduLinkAPI.shared.achievementBehaviourLookups.behaviours.isEmpty {
-            self.ugh()
+            self.setupBehaviourViews()
             self.senderContext?.activityIndicator.isHidden = true
+        } else {
+            let behaviour = EduLink_Achievement()
+            behaviour.behaviour()
         }
     }
     

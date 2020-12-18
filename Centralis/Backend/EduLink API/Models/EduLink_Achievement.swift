@@ -5,7 +5,7 @@
 //  Created by Amy While on 03/12/2020.
 //
 
-import Foundation
+import UIKit
 
 class EduLink_Achievement {
     
@@ -120,6 +120,7 @@ class EduLink_Achievement {
                     }
                     if let b4l = result["b4l"] as? [[String : Any]] {
                         EduLinkAPI.shared.achievementBehaviourLookups.behaviourForLessons.removeAll()
+                        let colourConverter = ColourConverter()
                         for b4l in b4l {
                             var b = BehaviourForLesson()
                             b.subject = "\(b4l["subject"] ?? "Not Given")"
@@ -128,6 +129,7 @@ class EduLink_Achievement {
                                 var v = B4LValue()
                                 v.name = value.key
                                 v.count = value.value as? Int ?? 0
+                                v.colour = colourConverter.colourFromString(v.name)
                                 b.values.append(v)
                             }
                             EduLinkAPI.shared.achievementBehaviourLookups.behaviourForLessons.append(b)
@@ -269,6 +271,7 @@ class EduLink_Achievement {
 struct B4LValue {
     var name: String!
     var count: Int!
+    var colour: UIColor!
 }
 
 struct BehaviourForLesson {

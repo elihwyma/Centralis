@@ -36,14 +36,16 @@ class AmyChart: UIView {
         var startAngle = -CGFloat.pi * 0.5
 
         for segment in self.data {
-           ctx?.setFillColor(segment.colour.cgColor)
+            ctx?.setFillColor(segment.colour.cgColor)
+            ctx?.setStrokeColor(UIColor.clear.cgColor)
+            ctx?.setLineWidth(3)
             let endAngle = startAngle + 2 * .pi * (CGFloat(segment.number!) / CGFloat(valueCount))
-           ctx?.move(to: viewCenter)
-           ctx?.addArc(center: viewCenter, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false)
-           ctx?.fillPath()
-           startAngle = endAngle
+            ctx?.move(to: viewCenter)
+            ctx?.addArc(center: viewCenter, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false)
+            ctx?.fillPath()
+            ctx?.strokePath()
+            startAngle = endAngle
         }
-        
         self.backgroundColor = .none
    }
 }
