@@ -53,8 +53,9 @@
 		E157605B258BBDE700DD496F /* ChartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E157605A258BBDE700DD496F /* ChartTableViewController.swift */; };
 		E1576060258BF56B00DD496F /* AmyChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E157605E258BF56B00DD496F /* AmyChartCell.swift */; };
 		E1576061258BF56B00DD496F /* AmyChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E157605F258BF56B00DD496F /* AmyChartCell.xib */; };
-		E1576064258C101600DD496F /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1576063258C101600DD496F /* UIColor+Extensions.swift */; };
 		E19B2F50258CEC9900930AE1 /* ColourConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19B2F4F258CEC9900930AE1 /* ColourConverter.swift */; };
+		E19B2F56258D35C800930AE1 /* EduLink_Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19B2F55258D35C800930AE1 /* EduLink_Register.swift */; };
+		E19B2F5B258D71CE00930AE1 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19B2F5A258D71CE00930AE1 /* Double+Extensions.swift */; };
 		E1C8FD6E258022780006F36F /* EduLink_Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C8FD6D258022770006F36F /* EduLink_Timetable.swift */; };
 		E1C8FD73258165BD0006F36F /* EmbeddedTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C8FD72258165BD0006F36F /* EmbeddedTableViewController.xib */; };
 		E1C8FD76258166210006F36F /* EmbeddedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C8FD75258166210006F36F /* EmbeddedTableViewController.swift */; };
@@ -113,8 +114,9 @@
 		E157605A258BBDE700DD496F /* ChartTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTableViewController.swift; sourceTree = "<group>"; };
 		E157605E258BF56B00DD496F /* AmyChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmyChartCell.swift; sourceTree = "<group>"; };
 		E157605F258BF56B00DD496F /* AmyChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmyChartCell.xib; sourceTree = "<group>"; };
-		E1576063258C101600DD496F /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		E19B2F4F258CEC9900930AE1 /* ColourConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColourConverter.swift; sourceTree = "<group>"; };
+		E19B2F55258D35C800930AE1 /* EduLink_Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Register.swift; sourceTree = "<group>"; };
+		E19B2F5A258D71CE00930AE1 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		E1C8FD6D258022770006F36F /* EduLink_Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Timetable.swift; sourceTree = "<group>"; };
 		E1C8FD72258165BD0006F36F /* EmbeddedTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmbeddedTableViewController.xib; sourceTree = "<group>"; };
 		E1C8FD75258166210006F36F /* EmbeddedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedTableViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				E1C8FD6D258022770006F36F /* EduLink_Timetable.swift */,
 				E1DE1A412583B319000388E9 /* EduLink_Links.swift */,
 				E1F9A49325850B5A00CEA071 /* EduLink_Documents.swift */,
+				E19B2F55258D35C800930AE1 /* EduLink_Register.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -347,7 +350,7 @@
 				53CB50AD2572F8540077DDAE /* NSNotification+Extensions.swift */,
 				53CB50992572D7C40077DDAE /* UIView+Extensions.swift */,
 				53874511257BDCD300174D07 /* NSMutableAttributedString+Extension.swift */,
-				E1576063258C101600DD496F /* UIColor+Extensions.swift */,
+				E19B2F5A258D71CE00930AE1 /* Double+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -567,7 +570,7 @@
 				53CB50722572D1780077DDAE /* AppDelegate.swift in Sources */,
 				53874502257BD61800174D07 /* CarouselContainerController.swift in Sources */,
 				53196927257AE1E20056BF51 /* EduLink_Personal.swift in Sources */,
-				E1576064258C101600DD496F /* UIColor+Extensions.swift in Sources */,
+				E19B2F5B258D71CE00930AE1 /* Double+Extensions.swift in Sources */,
 				538744FF257BCC2000174D07 /* EduLink_Homework.swift in Sources */,
 				53CA2DE2257580A500E3A02B /* LoginManager.swift in Sources */,
 				5319692F257BC8A70056BF51 /* CarouselController.swift in Sources */,
@@ -584,6 +587,7 @@
 				53CA2DF62576D69A00E3A02B /* WorkingCover.swift in Sources */,
 				E1DE1A422583B319000388E9 /* EduLink_Links.swift in Sources */,
 				E1F9A49425850B5A00CEA071 /* EduLink_Documents.swift in Sources */,
+				E19B2F56258D35C800930AE1 /* EduLink_Register.swift in Sources */,
 				531870D4257977D0000191FD /* EduLink_Employee.swift in Sources */,
 				53874512257BDCD400174D07 /* NSMutableAttributedString+Extension.swift in Sources */,
 				53CB50A12572F0B50077DDAE /* ResizedTableView.swift in Sources */,

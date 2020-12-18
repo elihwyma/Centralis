@@ -33,6 +33,7 @@ extension NSNotification.Name {
     //Behaviour
     static let FailedBehaviour = Notification.Name("FailedBehaviour")
     static let SucccesfulBehaviour = Notification.Name("SuccesfulBehaviour")
+    static let BehaviourCodes = Notification.Name("BehaviourCodes")
     
     //Personal
     static let FailedPersonal = Notification.Name("FailedPersonal")

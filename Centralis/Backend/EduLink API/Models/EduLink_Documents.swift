@@ -8,6 +8,7 @@
 import Foundation
 
 class EduLink_Documents {
+    
     public func documents() {
         let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.Documents")!
         let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]

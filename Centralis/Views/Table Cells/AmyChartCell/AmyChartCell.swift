@@ -33,12 +33,15 @@ class AmyChartCell: UITableViewCell {
     }
     
     public func lessonBehaviour(_ b4l: BehaviourForLesson) {
+        self.textView.textColor = .label
         var points = [AmyChartDataPoint]()
-        var total = 0
+        var total: Double = 0
         for v in b4l.values {
-            let point = AmyChartDataPoint(number: v.count, colour: v.colour)
-            points.append(point)
-            total += v.count
+            if let i = EduLinkAPI.shared.authorisedSchool.schoolInfo.lesson_codes.first(where: { $0.code == v.name }) {
+                let point = AmyChartDataPoint(number: v.count, colour: i.colour!)
+                points.append(point)
+                total += Double(v.count)
+            }
         }
         if points.isEmpty {
             self.chartOverlay.isHidden = true
@@ -50,5 +53,11 @@ class AmyChartCell: UITableViewCell {
         self.chart.data = points
         self.topTitle.text = b4l.subject
         self.att = NSMutableAttributedString()
+        for (index, v) in b4l.values.enumerated() {
+            if let i = EduLinkAPI.shared.authorisedSchool.schoolInfo.lesson_codes.first(where: { $0.code == v.name }) {
+                self.att?.addBoldColour(bold: "\(i.name!): ", colour: i.colour!)
+                self.att?.addPair(bold: "", normal: "\((Double(Double(Double(v.count) / total)) * Double(100)).rounded(toPlaces: 1))%\(index == b4l.values.count - 1 ? "" : "\n")")
+            }
+        }
     }
 }

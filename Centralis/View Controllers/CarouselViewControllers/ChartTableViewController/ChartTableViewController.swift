@@ -31,6 +31,29 @@ class ChartTableViewController: UIView {
         self.tableView.alwaysBounceVertical = false
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.individualSetup()
+    }
+    
+    private func individualSetup() {
+        switch self.context {
+        case .lessonBehaviour: self.lessonBehaviour()
+        default: break
+        }
+    }
+    
+    @objc private func reloadTable() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+}
+
+//MARK: - Lesson Behaviour
+extension ChartTableViewController {
+    private func lessonBehaviour() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTable), name: .BehaviourCodes, object: nil)
+        let rc = EduLink_Register()
+        rc.registerCodes(.BehaviourCodes)
     }
 }
 
@@ -43,7 +66,7 @@ extension ChartTableViewController: UITableViewDelegate {
 extension ChartTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch self.context {
-        case .lessonBehaviour: return EduLinkAPI.shared.achievementBehaviourLookups.behaviourForLessons.count
+        case .lessonBehaviour: return ( EduLinkAPI.shared.authorisedSchool.schoolInfo.lesson_codes.isEmpty ? 0 : EduLinkAPI.shared.achievementBehaviourLookups.behaviourForLessons.count)
         default: return 0
         }
     }
@@ -59,7 +82,6 @@ extension ChartTableViewController: UITableViewDataSource {
         }
         
         cell.textView.attributedText = cell.att
-        cell.textView.textColor = .label
         return cell
     }
 }

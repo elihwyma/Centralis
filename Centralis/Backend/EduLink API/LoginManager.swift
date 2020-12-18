@@ -112,6 +112,8 @@ class LoginManager {
                     
                     self.personalMenu(result)
                     self.schoolScraping(result)
+                    let rc = EduLink_Register()
+                    rc.registerCodes(nil)
                     NotificationCenter.default.post(name: .SuccesfulLogin, object: nil)
                 } else {
                     self.fail()
@@ -439,4 +441,6 @@ struct SchoolInfo {
     var subjects = [Subject]()
     var reportCardTargetTypes = [ReportCardTargetType]()
     var employees = [Employee]()
+    var lesson_codes = [LessonCode]()
+    var statutory_codes = [StatutoryCode]()
 }
