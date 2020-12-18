@@ -51,5 +51,4 @@ class AmyChartCell: UITableViewCell {
         self.topTitle.text = b4l.subject
         self.att = NSMutableAttributedString()
     }
-    
 }

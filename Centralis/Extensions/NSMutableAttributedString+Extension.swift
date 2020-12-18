@@ -21,4 +21,14 @@ extension NSMutableAttributedString {
         self.append(boldText)
         self.append(normalText)
     }
+    
+    func addBoldColour(bold: String, colour: UIColor) {
+        let boldAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 17, weight: .bold),
+            .foregroundColor: colour
+        ]
+   
+        let boldText = NSAttributedString(string: bold, attributes: boldAttributes)
+        self.append(boldText)
+    }
 }
