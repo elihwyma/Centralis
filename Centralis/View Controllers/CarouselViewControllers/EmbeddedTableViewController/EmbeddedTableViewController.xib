@@ -19,16 +19,26 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                     <color key="separatorColor" systemColor="labelColor"/>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRa-cs-Dxh">
+                    <rect key="frame" x="15" y="448" width="384" height="0.0"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Daa-KE-RNt" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="0k2-xe-VMP"/>
+                <constraint firstItem="LRa-cs-Dxh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="9UF-zu-0sV"/>
                 <constraint firstItem="Daa-KE-RNt" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="LhC-Dh-POC"/>
+                <constraint firstItem="LRa-cs-Dxh" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Mha-nK-oVZ"/>
                 <constraint firstAttribute="bottom" secondItem="Daa-KE-RNt" secondAttribute="bottom" id="WEm-G9-OIP"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="LRa-cs-Dxh" secondAttribute="trailing" constant="15" id="pXL-DI-rJz"/>
                 <constraint firstItem="Daa-KE-RNt" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="tdS-dm-aXd"/>
             </constraints>
             <connections>
+                <outlet property="descriptionLabel" destination="LRa-cs-Dxh" id="4Oz-qo-mnp"/>
                 <outlet property="tableView" destination="Daa-KE-RNt" id="xUx-KC-LEz"/>
             </connections>
             <point key="canvasLocation" x="-172.46376811594203" y="129.91071428571428"/>

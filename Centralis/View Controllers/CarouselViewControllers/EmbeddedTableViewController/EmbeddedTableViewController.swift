@@ -10,11 +10,13 @@ import UIKit
 enum EmbeddedControllerContext {
     case timetable
     case behaviour
+    case detention
 }
 
 class EmbeddedTableViewController: UIView {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var descriptionLabel: UILabel!
     var day: Day?
     var context: EmbeddedControllerContext?
     
@@ -54,6 +56,10 @@ extension EmbeddedTableViewController: UITableViewDataSource {
         case .behaviour: do {
             return EduLinkAPI.shared.achievementBehaviourLookups.behaviours.count
         }
+        case .detention: do {
+            self.descriptionLabel.text = EduLinkAPI.shared.achievementBehaviourLookups.detentions.isEmpty ? "No Detentions 🥳" : ""
+            return EduLinkAPI.shared.achievementBehaviourLookups.detentions.count
+        }
         default: fatalError("fuck")
         }
     }
@@ -69,9 +75,12 @@ extension EmbeddedTableViewController: UITableViewDataSource {
             let behaviour = EduLinkAPI.shared.achievementBehaviourLookups.behaviours[indexPath.row]
             cell.behaviour(behaviour)
         }
+        case .detention: do {
+            let detention = EduLinkAPI.shared.achievementBehaviourLookups.detentions[indexPath.row]
+            cell.detention(detention)
+        }
         default: fatalError("fuck")
         }
-        
         cell.transactionsView.attributedText = cell.att
         cell.transactionsView.textColor = .label
         return cell

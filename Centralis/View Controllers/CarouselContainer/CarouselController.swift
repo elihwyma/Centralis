@@ -191,6 +191,12 @@ extension CarouselController {
             lessonBehaviour.view = lbview
             self.views.append(lessonBehaviour)
             
+            let detentions = UIViewController()
+            let dview: EmbeddedTableViewController = .fromNib()
+            dview.context = .detention
+            detentions.view = dview
+            self.views.append(detentions)
+            
             if let firstViewController = self.views.first {
                 self.setViewControllers([firstViewController], direction: .forward, animated: false, completion: { Void in
                     self.behaviourTitle()
@@ -259,6 +265,7 @@ extension CarouselController: UIPageViewControllerDelegate {
             switch index {
             case 0: self.behaviourTitle()
             case 1: self.senderContext!.title = "Lesson Behaviour"
+            case 2: self.senderContext!.title = "Detentions"
             default: break
             }
         }

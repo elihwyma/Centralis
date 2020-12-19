@@ -48,6 +48,21 @@ class TextViewCell: UITableViewCell {
         }
         self.att?.addPair(bold: "Comment: ", normal: "\(behaviour.comments!)")
     }
+ 
+    public func detention(_ detention: Detention) {
+        self.att = NSMutableAttributedString()
+        self.att?.addPair(bold: "Date: ", normal: "\(detention.date!)\n")
+        self.att?.addPair(bold: "Start Time: ", normal: "\(detention.start_time!)\n")
+        self.att?.addPair(bold: "End Time: ", normal: "\(detention.end_time!)\n")
+        self.att?.addPair(bold: "Location: ", normal: "\(detention.location!)\n")
+        if !detention.attended.isEmpty {
+            self.att?.addPair(bold: "Attended: ", normal: "\(detention.attended!)\n")
+        }
+        if !detention.non_attendance_reason.isEmpty {
+            self.att?.addPair(bold: "Not Attended Reason: ", normal: "\(detention.non_attendance_reason!)\n")
+        }
+        self.att?.addPair(bold: "Description: ", normal: "\(detention.description!)")
+    }
         
     public func catering(_ transaction: CateringTransaction) {
         self.att = NSMutableAttributedString()

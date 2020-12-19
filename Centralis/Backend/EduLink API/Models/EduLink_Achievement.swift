@@ -134,6 +134,21 @@ class EduLink_Achievement {
                             EduLinkAPI.shared.achievementBehaviourLookups.behaviourForLessons.append(b)
                         }
                     }
+                    if let detentions = result["detentions"] as? [[String : Any]] {
+                        EduLinkAPI.shared.achievementBehaviourLookups.detentions.removeAll()
+                        for detention in detentions {
+                            var d = Detention()
+                            d.attended = detention["attended"] as? String ?? ""
+                            d.non_attendance_reason = detention["non_attendance_reason"] as? String ?? ""
+                            d.id = "\(detention["id"] ?? "Not Given")"
+                            d.description = detention["description"] as? String ?? "Not Given"
+                            d.start_time = detention["start_time"] as? String ?? "Not Given"
+                            d.end_time = detention["end_time"] as? String ?? "Not Given"
+                            d.location = detention["location"] as? String ?? "Not Given"
+                            d.date = detention["date"] as? String ?? "Not Given"
+                            EduLinkAPI.shared.achievementBehaviourLookups.detentions.append(d)
+                        }
+                    }
                     if EduLinkAPI.shared.achievementBehaviourLookups.behaviour_types.isEmpty {
                         self.achievementBehaviourLookups()
                     } else {
@@ -267,6 +282,18 @@ class EduLink_Achievement {
     }
 }
 
+
+struct Detention {
+    var attended: String!
+    var non_attendance_reason: String!
+    var id: String!
+    var description: String!
+    var start_time: String!
+    var end_time: String!
+    var location: String!
+    var date: String!
+}
+
 struct B4LValue {
     var name: String!
     var count: Int!
@@ -372,11 +399,11 @@ struct BehaviourTime {
     var name: String!
 }
 
-
 struct AchievementBehaviourLookup {
     var achievements = [Achievement]()
     var behaviours = [Behaviour]()
     var behaviourForLessons = [BehaviourForLesson]()
+    var detentions = [Detention]()
     
     var achievement_types = [AchievementType]()
     var achievement_activity_types = [AchievementActivityType]()
