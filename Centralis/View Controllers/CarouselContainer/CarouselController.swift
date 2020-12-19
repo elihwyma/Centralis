@@ -29,6 +29,7 @@ class CarouselController: UIPageViewController {
         case .homework: self.homeworkSetup()
         case .timetable: self.timetableSetup()
         case .behaviour: self.behaviourSetup()
+        case .attendance: self.attendanceSetup()
         case .none: break
         }
                 
@@ -201,6 +202,49 @@ extension CarouselController {
                 self.setViewControllers([firstViewController], direction: .forward, animated: false, completion: { Void in
                     self.behaviourTitle()
                 })
+            }
+        }
+    }
+}
+
+//MARK: - Attendance
+extension CarouselController {
+    private func attendanceSetup() {
+        NotificationCenter.default.addObserver(self, selector: #selector(setupAttendanceViews), name: .SuccesfulAttendance, object: nil)
+        if !EduLinkAPI.shared.attendance.lessons.isEmpty || !EduLinkAPI.shared.attendance.statutory.isEmpty {
+            self.setupAttendanceViews()
+            self.senderContext?.activityIndicator.isHidden = true
+        } else {
+            let attendance = EduLink_Attendance()
+            attendance.attendance()
+        }
+    }
+    
+    @objc private func setupAttendanceViews() {
+        DispatchQueue.main.async {
+            self.views.removeAll()
+            if EduLinkAPI.shared.attendance.show_lesson {
+                let lessonattendance = UIViewController()
+                let lview: ChartTableViewController = .fromNib()
+                lview.context = .lessonattendance
+                lessonattendance.view = lview
+                self.views.append(lessonattendance)
+            }
+            /*
+            let lessonBehaviour = UIViewController()
+            let lbview: ChartTableViewController = .fromNib()
+            lbview.context = .lessonBehaviour
+            lessonBehaviour.view = lbview
+            self.views.append(lessonBehaviour)
+            
+            let detentions = UIViewController()
+            let dview: EmbeddedTableViewController = .fromNib()
+            dview.context = .detention
+            detentions.view = dview
+            self.views.append(detentions)
+            */
+            if let firstViewController = self.views.first {
+                self.setViewControllers([firstViewController], direction: .forward, animated: false, completion: nil)
             }
         }
     }

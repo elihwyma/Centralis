@@ -60,4 +60,33 @@ class AmyChartCell: UITableViewCell {
             }
         }
     }
+    
+    public func lessonAttendance(_ lessonAttendance: AttendanceLesson) {
+        self.textView.textColor = .label
+        let values = lessonAttendance.values
+        var points = [AmyChartDataPoint]()
+        points.append(AmyChartDataPoint(number: values.present, colour: EduLinkAPI.shared.attendance.attendance_colours.present))
+        points.append(AmyChartDataPoint(number: values.late, colour: EduLinkAPI.shared.attendance.attendance_colours.late))
+        points.append(AmyChartDataPoint(number: values.unauthorised, colour: EduLinkAPI.shared.attendance.attendance_colours.unauthorised))
+        points.append(AmyChartDataPoint(number: values.absent, colour: EduLinkAPI.shared.attendance.attendance_colours.absent))
+        self.chart.data = points
+        self.topTitle.text = lessonAttendance.subject
+        let total: Double = Double(values.present) + Double(values.absent) + Double(values.unauthorised) + Double(values.late)
+        if total == 0 {
+            self.chartOverlay.isHidden = true
+            self.noData.isHidden = false
+        } else {
+            self.chartOverlay.isHidden = false
+            self.noData.isHidden = true
+        }
+        self.att = NSMutableAttributedString()
+        self.att?.addBoldColour(bold: "Present: ", colour: EduLinkAPI.shared.attendance.attendance_colours.present)
+        self.att?.addPair(bold: "", normal: "\((Double(Double(Double(values.present) / total)) * Double(100)).rounded(toPlaces: 1))%\n")
+        self.att?.addBoldColour(bold: "Late: ", colour: EduLinkAPI.shared.attendance.attendance_colours.late)
+        self.att?.addPair(bold: "", normal: "\((Double(Double(Double(values.late) / total)) * Double(100)).rounded(toPlaces: 1))%\n")
+        self.att?.addBoldColour(bold: "Unauthorised: ", colour: EduLinkAPI.shared.attendance.attendance_colours.unauthorised)
+        self.att?.addPair(bold: "", normal: "\((Double(Double(Double(values.unauthorised) / total)) * Double(100)).rounded(toPlaces: 1))%\n")
+        self.att?.addBoldColour(bold: "Absent: ", colour: EduLinkAPI.shared.attendance.attendance_colours.absent)
+        self.att?.addPair(bold: "", normal: "\((Double(Double(Double(values.absent) / total)) * Double(100)).rounded(toPlaces: 1))%")
+    }
 }

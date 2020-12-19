@@ -9,6 +9,7 @@ import UIKit
 
 enum ChartContext {
     case lessonBehaviour
+    case lessonattendance
 }
 
 class ChartTableViewController: UIView {
@@ -67,6 +68,7 @@ extension ChartTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch self.context {
         case .lessonBehaviour: return ( EduLinkAPI.shared.authorisedSchool.schoolInfo.lesson_codes.isEmpty ? 0 : EduLinkAPI.shared.achievementBehaviourLookups.behaviourForLessons.count)
+        case .lessonattendance: return EduLinkAPI.shared.attendance.lessons.count
         default: return 0
         }
     }
@@ -77,6 +79,10 @@ extension ChartTableViewController: UITableViewDataSource {
         case .lessonBehaviour: do {
             let lb = EduLinkAPI.shared.achievementBehaviourLookups.behaviourForLessons[indexPath.row]
             cell.lessonBehaviour(lb)
+        }
+        case .lessonattendance: do {
+            let l = EduLinkAPI.shared.attendance.lessons[indexPath.row]
+            cell.lessonAttendance(l)
         }
         default: fatalError("fuck")
         }

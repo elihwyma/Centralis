@@ -17,7 +17,8 @@ class HomeViewController: UIViewController {
         "Timetable",
         "Links",
         "Documents",
-        "Behaviour"
+        "Behaviour",
+        "Attendance"
     ]
     
     private var shownMenus = [PersonalMenu]()
@@ -93,6 +94,7 @@ class HomeViewController: UIViewController {
             case "Homework": controller.context = .homework
             case "Timetable": controller.context = .timetable
             case "Behaviour": controller.context = .behaviour
+            case "Attendance": controller.context = .attendance
             default: fatalError("Not implemented yet")
             }
         }
@@ -124,6 +126,7 @@ extension HomeViewController: UICollectionViewDelegate {
         case "Timetable": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
         case "Links": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
         case "Documents": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
+        case "Attendance": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
         default: print("Not yet implemented")
         }
     }

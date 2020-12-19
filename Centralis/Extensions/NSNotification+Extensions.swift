@@ -59,4 +59,8 @@ extension NSNotification.Name {
     static let SucccesfulDocument = Notification.Name("SuccesfulDocument")
     static let FailedDocumentLookup = Notification.Name("FailedDocumentLookup")
     static let SucccesfulDocumentLookup = Notification.Name("SuccesfulDocumentLookup")
+    
+    //Attendance
+    static let SuccesfulAttendance = Notification.Name("SuccesfulAttendance")
+    static let FailedAttendance = Notification.Name("FailedAttendance")
 }

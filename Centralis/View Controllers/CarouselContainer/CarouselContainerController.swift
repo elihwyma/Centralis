@@ -11,6 +11,7 @@ enum CarouselContext {
     case homework
     case timetable
     case behaviour
+    case attendance
 }
 
 class CarouselContainerController: UIViewController {
@@ -35,6 +36,7 @@ class CarouselContainerController: UIViewController {
         case .homework: self.homeworkSetup()
         case .timetable: self.timetableSetup()
         case .behaviour: self.behaviourSetup()
+        case .attendance: self.attendanceSetup()
         case .none: break
         }
     }
@@ -87,6 +89,18 @@ extension CarouselContainerController {
             self.activityIndicator.isHidden = true
         }
         NotificationCenter.default.addObserver(self, selector: #selector(hide), name: .SucccesfulBehaviour, object: nil)
+        self.rightNavigationButton.isHidden = true
+    }
+}
+
+//MARK: - Attendance
+extension CarouselContainerController {
+    private func attendanceSetup() {
+        self.title = "Attendance"
+        if !EduLinkAPI.shared.attendance.lessons.isEmpty || !EduLinkAPI.shared.attendance.statutory.isEmpty {
+            self.activityIndicator.isHidden = true
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(hide), name: .SuccesfulAttendance, object: nil)
         self.rightNavigationButton.isHidden = true
     }
 }
