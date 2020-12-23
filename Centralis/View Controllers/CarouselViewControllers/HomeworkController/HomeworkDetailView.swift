@@ -61,6 +61,7 @@ class HomeworkDetailView: UIView {
             if let tryToHTML = try? NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
                 let range = (tryToHTML.string as NSString).range(of: tryToHTML.string)
                 tryToHTML.addAttribute((NSAttributedString.Key.font), value: UIFont.systemFont(ofSize: 17), range: range)
+                tryToHTML.addAttribute((NSAttributedString.Key.backgroundColor), value: UIColor.clear, range: range)
                 att.append(tryToHTML)
             }
             self.textView.attributedText = att

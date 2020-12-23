@@ -111,6 +111,14 @@ class TextViewCell: UITableViewCell {
         self.att?.addPair(bold: "Type: ", normal: "\(document.type!)\n")
         self.att?.addPair(bold: "Date: ", normal: "\(document.last_updated!)")
     }
+
+    public func exception(_ exception: AttendanceException) {
+        self.att = NSMutableAttributedString()
+        self.att?.addPair(bold: "Data: ", normal: "\(exception.date!)\n")
+        self.att?.addPair(bold: "Type: ", normal: "\(exception.type!)\n")
+        self.att?.addPair(bold: "Period: ", normal: "\(exception.period!)\n")
+        self.att?.addPair(bold: "Description: ", normal: "\(exception.description!)")
+    }
 }
 
 extension TextViewCell {

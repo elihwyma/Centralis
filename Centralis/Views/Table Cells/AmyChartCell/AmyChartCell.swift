@@ -56,21 +56,20 @@ class AmyChartCell: UITableViewCell {
         for (index, v) in b4l.values.enumerated() {
             if let i = EduLinkAPI.shared.authorisedSchool.schoolInfo.lesson_codes.first(where: { $0.code == v.name }) {
                 self.att?.addBoldColour(bold: "\(i.name!): ", colour: i.colour!)
-                self.att?.addPair(bold: "", normal: "\((Double(Double(Double(v.count) / total)) * Double(100)).rounded(toPlaces: 1))%\(index == b4l.values.count - 1 ? "" : "\n")")
+                self.att?.addPair(bold: "", normal: "\((Double(Double(Double(v.count) / total)) * 100.0).rounded(toPlaces: 1))%\(index == b4l.values.count - 1 ? "" : "\n")")
             }
         }
     }
     
-    public func lessonAttendance(_ lessonAttendance: AttendanceLesson) {
+    public func lessonAttendance(_ values: AttendanceValue, text: String) {
         self.textView.textColor = .label
-        let values = lessonAttendance.values
         var points = [AmyChartDataPoint]()
         points.append(AmyChartDataPoint(number: values.present, colour: EduLinkAPI.shared.attendance.attendance_colours.present))
         points.append(AmyChartDataPoint(number: values.late, colour: EduLinkAPI.shared.attendance.attendance_colours.late))
         points.append(AmyChartDataPoint(number: values.unauthorised, colour: EduLinkAPI.shared.attendance.attendance_colours.unauthorised))
         points.append(AmyChartDataPoint(number: values.absent, colour: EduLinkAPI.shared.attendance.attendance_colours.absent))
         self.chart.data = points
-        self.topTitle.text = lessonAttendance.subject
+        self.topTitle.text = text
         let total: Double = Double(values.present) + Double(values.absent) + Double(values.unauthorised) + Double(values.late)
         if total == 0 {
             self.chartOverlay.isHidden = true

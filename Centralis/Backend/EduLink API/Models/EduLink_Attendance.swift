@@ -58,6 +58,10 @@ class EduLink_Attendance {
                                 av.unauthorised = values["unauthorised"] as? Int ?? 0
                                 av.absent = values["absent"] as? Int ?? 0
                                 s.values = av
+                                EduLinkAPI.shared.attendance.statutoryyear.values.present += av.present
+                                EduLinkAPI.shared.attendance.statutoryyear.values.absent += av.absent
+                                EduLinkAPI.shared.attendance.statutoryyear.values.late += av.late
+                                EduLinkAPI.shared.attendance.statutoryyear.values.unauthorised += av.unauthorised
                             }
                             if let exceptions = statutory["exceptions"] as? [[String : Any]] {
                                 for exception in exceptions {
@@ -67,12 +71,14 @@ class EduLink_Attendance {
                                     e.type = exception["type"] as? String ?? "Not Given"
                                     e.period = exception["period"] as? String ?? "Not Given"
                                     s.exceptions.append(e)
+                                    EduLinkAPI.shared.attendance.statutoryyear.exceptions.append(e)
                                 }
                             }
                             EduLinkAPI.shared.attendance.statutory.append(s)
                         }
                     }
                     EduLinkAPI.shared.attendance.lessons = EduLinkAPI.shared.attendance.lessons.sorted(by: { $0.subject < $1.subject })
+                    EduLinkAPI.shared.attendance.statutory = EduLinkAPI.shared.attendance.statutory.sorted(by: { $0.month > $1.month })
                     NotificationCenter.default.post(name: .SuccesfulAttendance, object: nil)
                 }
             } else {
@@ -111,6 +117,11 @@ struct AttendanceColours {
     }
 }
 
+struct StatutoryYear {
+    var values = AttendanceValue()
+    var exceptions = [AttendanceException]()
+}
+
 struct AttendanceException {
     var date: String!
     var description: String!
@@ -134,6 +145,7 @@ struct Attendance {
     var attendance_colours = AttendanceColours()
     var lessons = [AttendanceLesson]()
     var statutory = [AttendanceStatutory]()
+    var statutoryyear = StatutoryYear()
     var show_statutory = false
     var show_lesson = false
 }

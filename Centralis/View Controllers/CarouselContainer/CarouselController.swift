@@ -230,21 +230,24 @@ extension CarouselController {
                 lessonattendance.view = lview
                 self.views.append(lessonattendance)
             }
-            /*
-            let lessonBehaviour = UIViewController()
-            let lbview: ChartTableViewController = .fromNib()
-            lbview.context = .lessonBehaviour
-            lessonBehaviour.view = lbview
-            self.views.append(lessonBehaviour)
-            
-            let detentions = UIViewController()
-            let dview: EmbeddedTableViewController = .fromNib()
-            dview.context = .detention
-            detentions.view = dview
-            self.views.append(detentions)
-            */
+            if EduLinkAPI.shared.attendance.show_statutory {
+                let statutorymonth = UIViewController()
+                let sm: ChartTableViewController = .fromNib()
+                sm.context = .statutorymonth
+                statutorymonth.view = sm
+                self.views.append(statutorymonth)
+                
+                let statutoryyear = UIViewController()
+                let sy: ChartTableViewController = .fromNib()
+                sy.context = .statutoryyear
+                statutoryyear.view = sy
+                self.views.append(statutoryyear)
+            }
+
             if let firstViewController = self.views.first {
-                self.setViewControllers([firstViewController], direction: .forward, animated: false, completion: nil)
+                self.setViewControllers([firstViewController], direction: .forward, animated: false, completion: { Void in
+                    self.title()
+                })
             }
         }
     }
@@ -311,6 +314,16 @@ extension CarouselController: UIPageViewControllerDelegate {
             case 1: self.senderContext!.title = "Lesson Behaviour"
             case 2: self.senderContext!.title = "Detentions"
             default: break
+            }
+        }
+        case .attendance: do {
+            let index = self.currentIndex
+            if EduLinkAPI.shared.attendance.show_lesson && index == 0 {
+                self.senderContext!.title = "Lesson Attendance"
+            } else if (EduLinkAPI.shared.attendance.show_statutory && EduLinkAPI.shared.attendance.show_lesson && index == 1) || (EduLinkAPI.shared.attendance.show_statutory && !EduLinkAPI.shared.attendance.show_lesson && index == 0) {
+                self.senderContext!.title = "Statutory Month"
+            } else if (EduLinkAPI.shared.attendance.show_statutory && EduLinkAPI.shared.attendance.show_lesson && index == 2) || (EduLinkAPI.shared.attendance.show_statutory && !EduLinkAPI.shared.attendance.show_lesson && index == 1) {
+                self.senderContext!.title = "Statutory Year"
             }
         }
         default: break

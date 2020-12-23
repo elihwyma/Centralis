@@ -24,7 +24,6 @@ class HomeViewController: UIViewController {
     private var shownMenus = [PersonalMenu]()
 
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var inboxButton: UIButton!
     
     let status = EduLink_Status()
     
@@ -49,7 +48,6 @@ class HomeViewController: UIViewController {
         self.collectionView.showsHorizontalScrollIndicator = false
         self.collectionView.backgroundColor = .none
         self.collectionView.register(UINib(nibName: "HomeMenuCell", bundle: nil), forCellWithReuseIdentifier: "Centralis.HomeMenuCell")
-        
         NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.updateStatus), name: .SuccesfulStatus, object: nil)
         
         #if DEBUG
@@ -69,7 +67,7 @@ class HomeViewController: UIViewController {
     
     @objc private func updateStatus() {
         DispatchQueue.main.async {
-            self.inboxButton.setTitle("\(EduLinkAPI.shared.status.new_messages!)", for: .normal)
+            //Placeholder
         }
     }
     
