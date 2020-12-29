@@ -174,7 +174,7 @@
         <!--Home View Controller-->
         <scene sceneID="mkH-2E-WEz">
             <objects>
-                <viewController id="pK9-8D-YZo" userLabel="Home View Controller" customClass="HomeViewController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="pK9-8D-YZo" userLabel="Home View Controller" customClass="HomeViewController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Sk2-zP-WjG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -290,7 +290,7 @@
         <!--Navigation Controller-->
         <scene sceneID="XBx-DF-U5t">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NQ1-3o-TFj" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="NQ1-3o-TFj" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="7GE-cR-6xa"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="5ro-1t-pMc">

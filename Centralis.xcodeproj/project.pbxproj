@@ -36,7 +36,6 @@
 		53CA2DFD2576DA5900E3A02B /* HomeMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53CA2DFB2576DA5700E3A02B /* HomeMenuCell.xib */; };
 		53CA2E012576DD2A00E3A02B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2E002576DD2A00E3A02B /* HomeViewController.swift */; };
 		53CB50722572D1780077DDAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50712572D1780077DDAE /* AppDelegate.swift */; };
-		53CB50742572D1780077DDAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50732572D1780077DDAE /* SceneDelegate.swift */; };
 		53CB50792572D1780077DDAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53CB50772572D1780077DDAE /* Main.storyboard */; };
 		53CB507B2572D1880077DDAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53CB507A2572D1880077DDAE /* Assets.xcassets */; };
 		53CB507E2572D1880077DDAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53CB507C2572D1880077DDAE /* LaunchScreen.storyboard */; };
@@ -98,7 +97,6 @@
 		53CA2E002576DD2A00E3A02B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		53CB506E2572D1780077DDAE /* Centralis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Centralis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53CB50712572D1780077DDAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		53CB50732572D1780077DDAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		53CB50782572D1780077DDAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		53CB507A2572D1880077DDAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		53CB507D2572D1880077DDAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -292,7 +290,6 @@
 			isa = PBXGroup;
 			children = (
 				53CB50712572D1780077DDAE /* AppDelegate.swift */,
-				53CB50732572D1780077DDAE /* SceneDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -596,7 +593,6 @@
 				5387452E257C205500174D07 /* HomeworkDetailView.swift in Sources */,
 				E18A0367258D913C0056EF08 /* EduLink_Attendance.swift in Sources */,
 				532434252578193900875BAD /* EduLink_Status.swift in Sources */,
-				53CB50742572D1780077DDAE /* SceneDelegate.swift in Sources */,
 				5324342B25781FA000875BAD /* UUID.swift in Sources */,
 				E1576054258BB68000DD496F /* AmyChart.swift in Sources */,
 				53CA2DF62576D69A00E3A02B /* WorkingCover.swift in Sources */,

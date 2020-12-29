@@ -150,7 +150,7 @@ class LoginManager {
             l.remove(at: index)
         }
         KeyChainManager.delete(key: uwuIn.username)
-        UserDefaults.standard.setValue(l, forKey: "SavedLogin")
+        UserDefaults.standard.setValue(l, forKey: "LoginCache")
     }
 
     private func personalMenu(_ dict: [String : Any]) {

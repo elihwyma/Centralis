@@ -21,12 +21,12 @@ class HomeViewController: UIViewController {
         "Attendance"
     ]
     
-    private var shownMenus = [PersonalMenu]()
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     let status = EduLink_Status()
-    
+    var workingCover: WorkingCover = .fromNib()
+    private var shownMenus = [PersonalMenu]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,9 +36,23 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        self.title = "\(EduLinkAPI.shared.authorisedUser.forename!) \(EduLinkAPI.shared.authorisedUser.surname!)"
-        self.status.status()
+        self.title = "\(EduLinkAPI.shared.authorisedUser.forename ?? "") \(EduLinkAPI.shared.authorisedUser.surname ?? "")"
+        if EduLinkAPI.shared.authorisedUser.authToken != nil {
+            self.status.status()
+        }
+    }
+    
+    private func menuOrganising() {
+        self.shownMenus.removeAll()
+        #if DEBUG
+        self.shownMenus = EduLinkAPI.shared.authorisedUser.personalMenus
+        #else
+        for m in EduLinkAPI.shared.authorisedUser.personalMenus {
+            if completedMenus.contains(m.name) {
+                self.shownMenus.append(m)
+            }
+        }
+        #endif
     }
     
     private func setup() {
@@ -49,16 +63,22 @@ class HomeViewController: UIViewController {
         self.collectionView.backgroundColor = .none
         self.collectionView.register(UINib(nibName: "HomeMenuCell", bundle: nil), forCellWithReuseIdentifier: "Centralis.HomeMenuCell")
         NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.updateStatus), name: .SuccesfulStatus, object: nil)
-        
-        #if DEBUG
-        self.shownMenus = EduLinkAPI.shared.authorisedUser.personalMenus
-        #else
-        for m in EduLinkAPI.shared.authorisedUser.personalMenus {
-            if completedMenus.contains(m.name) {
-                self.shownMenus.append(m)
+        self.menuOrganising()
+    }
+    
+    public func arriveFromDelegate(_ login: SavedLogin) {
+        if let nc = self.navigationController { self.workingCover.startWorking(nc) }
+        LoginManager.shared.quickLogin(login, zCompletion: { (success, error) -> Void in
+            DispatchQueue.main.async {
+                self.workingCover.stopWorking()
+                if success {
+                    self.menuOrganising()
+                    self.collectionView.reloadData()
+                    self.status.status()
+                    self.title = "\(EduLinkAPI.shared.authorisedUser.forename!) \(EduLinkAPI.shared.authorisedUser.surname!)"
+                }
             }
-        }
-        #endif
+        })
     }
     
     @IBAction func logout(_ sender: Any) {

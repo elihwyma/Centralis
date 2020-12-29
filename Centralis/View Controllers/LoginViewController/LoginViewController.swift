@@ -106,6 +106,8 @@ extension LoginViewController : UITableViewDelegate {
             DispatchQueue.main.async {
                 if success {
                     self.workingCover.stopWorking()
+                    UserDefaults.standard.setValue(login.username, forKey: "PreferredUsername")
+                    UserDefaults.standard.setValue(login.schoolCode, forKey: "PreferredSchool")
                     self.performSegue(withIdentifier: "Centralis.Login", sender: nil)
                 } else {
                     #warning("Complete this error handling")

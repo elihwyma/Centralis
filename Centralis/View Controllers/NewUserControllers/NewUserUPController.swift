@@ -47,11 +47,16 @@ class NewUserUPController: UIViewController {
             return UIApplication.shared.open(URL(string: "https://www.youtube.com/watch?v=SyimUCBIo6c")!)
         }
         if let nc = self.navigationController { self.workingCover.startWorking(nc) }
+        self.dismissKeyboard(self)
         LoginManager.shared.loginz(username: username, password: password, rootCompletion: { (success, error) -> Void in
             DispatchQueue.main.async {
                 self.workingCover.stopWorking()
                 if success {
-                    if self.savePassword.isOn { LoginManager.shared.saveLogin() }
+                    if self.savePassword.isOn {
+                        LoginManager.shared.saveLogin()
+                        UserDefaults.standard.setValue(LoginManager.shared.username, forKey: "PreferredUsername")
+                        UserDefaults.standard.setValue(LoginManager.shared.schoolCode, forKey: "PreferredSchool")
+                    }
                     self.performSegue(withIdentifier: "Centralis.Login", sender: nil)
                 } else {
                     //TODO: Parse this error
