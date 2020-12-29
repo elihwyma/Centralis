@@ -21,21 +21,7 @@ class EduLinkAPI {
     var links = [Link]()
     var documents = [Document]()
     var attendance = Attendance()
-    
-    public func login(schoolCode: String!, username: String!, password: String!) {
-        LoginManager.shared.authenticate(schoolCode: schoolCode, username: username, password: password)
-    }
-    
-    public func quickLogin(_ savedLogin: SavedLogin) {
-        self.clear()
-        LoginManager.shared.schoolCode = savedLogin.schoolCode
-        LoginManager.shared.username = savedLogin.username
-        LoginManager.shared.password = savedLogin.password
-        self.authorisedSchool.school_id = savedLogin.schoolID
-        self.authorisedSchool.server = savedLogin.schoolServer
-        LoginManager.shared.login()
-    }
-    
+
     public func clear() {
         self.authorisedUser = AuthorisedUser()
         self.authorisedSchool = AuthorisedSchool()

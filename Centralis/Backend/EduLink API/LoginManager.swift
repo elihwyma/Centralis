@@ -21,8 +21,7 @@ class LoginManager {
         if self.schoolCode == "DemoSchool" {
             EduLinkAPI.shared.authorisedSchool.server = "https://demoapi.elihc.dev/api/uwu"
             EduLinkAPI.shared.authorisedSchool.school_id = "1"
-            rootCompletion(true, nil)
-            return
+            return rootCompletion(true, nil)
         }
         
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"School.FromCode\",\"params\":{\"code\":\"\(schoolCode!)\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
@@ -101,6 +100,57 @@ class LoginManager {
             rc.registerCodes(nil)
             return rootCompletion(true, nil)
         })
+    }
+    
+    public func quickLogin(_ savedLogin: SavedLogin, zCompletion: @escaping completionHandler) {
+        EduLinkAPI.shared.clear()
+        self.schoolCode = savedLogin.schoolCode
+        guard let pdata = KeyChainManager.load(key: savedLogin.username) else { return zCompletion(false, "Error loading saved login") }
+        let pstr = String(decoding: pdata, as: UTF8.self)
+        EduLinkAPI.shared.authorisedSchool.school_id = savedLogin.schoolID
+        EduLinkAPI.shared.authorisedSchool.server = savedLogin.schoolServer
+        LoginManager.shared.loginz(username: savedLogin.username, password: pstr, rootCompletion: { (success, error) -> Void in
+            return zCompletion(success, error)
+        })
+    }
+    
+    public func saveLogin() {
+        if self.schoolCode.isEmpty || self.username.isEmpty || self.password.isEmpty { return }
+        guard let schoolLogo = EduLinkAPI.shared.authorisedSchool.schoolLogo else { return }
+        guard let png = schoolLogo.pngData() else { return }
+        let decoder = JSONDecoder()
+        let encoder = JSONEncoder()
+        
+        var l = UserDefaults.standard.object(forKey: "LoginCache") as? [Data] ?? [Data]()
+        var logins = [SavedLogin]()
+        for login in l {
+            if let a = try? decoder.decode(SavedLogin.self, from: login) {
+                logins.append(a)
+            }
+        }
+        let a = SavedLogin(username: self.username, schoolServer: EduLinkAPI.shared.authorisedSchool.server, image: png, schoolName: EduLinkAPI.shared.authorisedUser.school, forename: EduLinkAPI.shared.authorisedUser.forename, surname: EduLinkAPI.shared.authorisedUser.surname, schoolID: EduLinkAPI.shared.authorisedSchool.school_id, schoolCode: self.schoolCode)
+        
+        if let encoded = try? encoder.encode(a) {
+            l.append(encoded)
+        }
+        KeyChainManager.save(key: self.username, data: Data(password.utf8))
+        UserDefaults.standard.setValue(l, forKey: "LoginCache")
+    }
+
+    public func removeLogin(uwuIn: SavedLogin) {
+        let decoder = JSONDecoder()
+        var l = UserDefaults.standard.object(forKey: "LoginCache") as? [Data] ?? [Data]()
+        var logins = [SavedLogin]()
+        for login in l {
+            if let a = try? decoder.decode(SavedLogin.self, from: login) {
+                logins.append(a)
+            }
+        }
+        for (index, login) in logins.enumerated() where ((login.schoolCode == uwuIn.schoolCode) && (login.username == uwuIn.username)) {
+            l.remove(at: index)
+        }
+        KeyChainManager.delete(key: uwuIn.username)
+        UserDefaults.standard.setValue(l, forKey: "SavedLogin")
     }
 
     private func personalMenu(_ dict: [String : Any]) {
@@ -221,63 +271,10 @@ class LoginManager {
             }
         }
     }
-    
-    public func saveLogins(schoolCode: String, username: String, password: String) {
-        if schoolCode.isEmpty || username.isEmpty || password.isEmpty { return }
-        guard let schoolLogo = EduLinkAPI.shared.authorisedSchool.schoolLogo else {
-            return
-        }
-        if let png = schoolLogo.pngData() {
-            let decoder = JSONDecoder()
-            let encoder = JSONEncoder()
-            
-            var l = UserDefaults.standard.object(forKey: "SavedLogin") as? [Data] ?? [Data]()
-            var logins = [SavedLogin]()
-            for login in l {
-                if let a = try? decoder.decode(SavedLogin.self, from: login) {
-                    logins.append(a)
-                }
-            }
-            
-            var changePassword = -1
-            for (index, login) in logins.enumerated() where (((login.schoolCode == schoolCode) || (login.schoolServer == EduLinkAPI.shared.authorisedSchool.server ?? "")) && (login.username == username)) {
-                logins[index].password = password
-                changePassword = index
-                l.remove(at: index)
-            }
-            
-            let newLogin = ((changePassword != -1) ? logins[changePassword] : SavedLogin(username: username, password: password, schoolServer: EduLinkAPI.shared.authorisedSchool.server, image: png, schoolName: EduLinkAPI.shared.authorisedUser.school!, forename: EduLinkAPI.shared.authorisedUser.forename!, surname: EduLinkAPI.shared.authorisedUser.surname!, schoolID: EduLinkAPI.shared.authorisedSchool.school_id, schoolCode: schoolCode))
-
-            if let encoded = try? encoder.encode(newLogin) {
-                l.append(encoded)
-            }
-
-            UserDefaults.standard.setValue(l, forKey: "SavedLogin")
-        }
-    }
-
-    public func removeLogin(uwuIn: SavedLogin) {
-        let decoder = JSONDecoder()
-        
-        var l = UserDefaults.standard.object(forKey: "SavedLogin") as? [Data] ?? [Data]()
-        var logins = [SavedLogin]()
-        for login in l {
-            if let a = try? decoder.decode(SavedLogin.self, from: login) {
-                logins.append(a)
-            }
-        }
-        
-        for (index, login) in logins.enumerated() where ((login.schoolCode == uwuIn.schoolCode) && (login.username == uwuIn.username) && (login.password == uwuIn.password)) {
-            l.remove(at: index)
-        }
-        
-        UserDefaults.standard.setValue(l, forKey: "SavedLogin")
-    }
 }
 
 struct SavedLogin: Codable {
     var username: String!
-    var password: String!
     var schoolCode: String!
     var schoolServer: String!
     var schoolName: String!
@@ -286,9 +283,8 @@ struct SavedLogin: Codable {
     var forename: String!
     var surname: String!
     
-    init(username: String!, password: String, schoolServer: String!, image: Data!, schoolName: String!, forename: String!, surname: String!, schoolID: String!, schoolCode: String!) {
+    init(username: String!, schoolServer: String!, image: Data!, schoolName: String!, forename: String!, surname: String!, schoolID: String!, schoolCode: String!) {
         self.username = username
-        self.password = password
         self.schoolServer = schoolServer
         self.image = image
         self.schoolName = schoolName

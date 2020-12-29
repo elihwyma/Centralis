@@ -53,6 +53,7 @@
 		E1576061258BF56B00DD496F /* AmyChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E157605F258BF56B00DD496F /* AmyChartCell.xib */; };
 		E1768305259A7EAE0099BB92 /* NewUserSchoolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768304259A7EAE0099BB92 /* NewUserSchoolController.swift */; };
 		E1768308259A8C7A0099BB92 /* NewUserUPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768307259A8C7A0099BB92 /* NewUserUPController.swift */; };
+		E176830E259B747E0099BB92 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E176830D259B747E0099BB92 /* KeychainManager.swift */; };
 		E18A0367258D913C0056EF08 /* EduLink_Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18A0366258D913C0056EF08 /* EduLink_Attendance.swift */; };
 		E19B2F50258CEC9900930AE1 /* ColourConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19B2F4F258CEC9900930AE1 /* ColourConverter.swift */; };
 		E19B2F56258D35C800930AE1 /* EduLink_Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19B2F55258D35C800930AE1 /* EduLink_Register.swift */; };
@@ -115,6 +116,7 @@
 		E157605F258BF56B00DD496F /* AmyChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmyChartCell.xib; sourceTree = "<group>"; };
 		E1768304259A7EAE0099BB92 /* NewUserSchoolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserSchoolController.swift; sourceTree = "<group>"; };
 		E1768307259A8C7A0099BB92 /* NewUserUPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserUPController.swift; sourceTree = "<group>"; };
+		E176830D259B747E0099BB92 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		E18A0366258D913C0056EF08 /* EduLink_Attendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Attendance.swift; sourceTree = "<group>"; };
 		E19B2F4F258CEC9900930AE1 /* ColourConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColourConverter.swift; sourceTree = "<group>"; };
 		E19B2F55258D35C800930AE1 /* EduLink_Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Register.swift; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 		53CB50B4257311380077DDAE /* Backend */ = {
 			isa = PBXGroup;
 			children = (
+				E176830A259B741F0099BB92 /* KeychainManager */,
 				E19B2F4E258CEC8000930AE1 /* ColourConverter */,
 				53CB50B9257313280077DDAE /* EduLink API */,
 				53CB50B5257312E50077DDAE /* Network Manager */,
@@ -429,6 +432,14 @@
 				E1768307259A8C7A0099BB92 /* NewUserUPController.swift */,
 			);
 			path = NewUserControllers;
+			sourceTree = "<group>";
+		};
+		E176830A259B741F0099BB92 /* KeychainManager */ = {
+			isa = PBXGroup;
+			children = (
+				E176830D259B747E0099BB92 /* KeychainManager.swift */,
+			);
+			path = KeychainManager;
 			sourceTree = "<group>";
 		};
 		E180E9C22580104800ABFE69 /* CarouselContainer */ = {
@@ -594,6 +605,7 @@
 				E19B2F56258D35C800930AE1 /* EduLink_Register.swift in Sources */,
 				531870D4257977D0000191FD /* EduLink_Employee.swift in Sources */,
 				53874512257BDCD400174D07 /* NSMutableAttributedString+Extension.swift in Sources */,
+				E176830E259B747E0099BB92 /* KeychainManager.swift in Sources */,
 				53CB50A12572F0B50077DDAE /* ResizedTableView.swift in Sources */,
 				53CA2DE52575896F00E3A02B /* StructModels.swift in Sources */,
 				53874509257BD7D600174D07 /* HomeworkTableViewController.swift in Sources */,

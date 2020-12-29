@@ -24,18 +24,24 @@ class NewUserSchoolController: UIViewController {
     
     private func setup() {
         self.schoolCode.delegate = self
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+        self.view.addGestureRecognizer(tapGesture)
     }
 
     @IBAction func continueButton(_ sender: Any) {
         guard let code = self.schoolCode.text else {
-            //TODO: Handle if text is empty
+            //TODO: Empty field
             return
         }
-        self.workingCover.startWorking(self)
+        if code.isEmpty {
+            //TODO: Empty field
+            return
+        }
+        if let nc = self.navigationController { self.workingCover.startWorking(nc) }
         LoginManager.shared.schoolProvisioning(schoolCode: code, rootCompletion: { (success, error) -> Void in
             DispatchQueue.main.async {
+                self.workingCover.stopWorking()
                 if success {
-                    self.workingCover.stopWorking()
                     self.performSegue(withIdentifier: "Centralis.ShowUP", sender: nil)
                 } else {
                     //TODO: More error handling here
@@ -52,7 +58,7 @@ extension NewUserSchoolController: UITextFieldDelegate {
         return true
     }
     
-     private func dismissKeyboard (_ sender: Any) {
+     @objc private func dismissKeyboard (_ sender: Any) {
         self.schoolCode.resignFirstResponder()
     }
 }

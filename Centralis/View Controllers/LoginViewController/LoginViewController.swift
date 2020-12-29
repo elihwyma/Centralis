@@ -24,6 +24,8 @@ class LoginViewController: UIViewController {
     }
     
     private func setup() {
+        UserDefaults.standard.removeObject(forKey: "SavedLogin")
+        UserDefaults.standard.removeObject(forKey: "SavedLogins")
         self.organiseLogins()
         self.newLoggin.layer.masksToBounds = true
         self.newLoggin.layer.borderColor = UIColor.label.cgColor
@@ -43,33 +45,24 @@ class LoginViewController: UIViewController {
         self.tableView.layer.masksToBounds = true
         self.tableView.layer.cornerRadius = 15
         
-        NotificationCenter.default.addObserver(self, selector: #selector(goHome), name: .SuccesfulLogin, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reauth), name: .ReAuth, object: nil)
     }
     
     private func organiseLogins() {
         self.logins.removeAll()
         let decoder = JSONDecoder()
-        let l = UserDefaults.standard.object(forKey: "SavedLogin") as? [Data] ?? [Data]()
+        let l = UserDefaults.standard.object(forKey: "LoginCache") as? [Data] ?? [Data]()
         for login in l {
             if let a = try? decoder.decode(SavedLogin.self, from: login) {
                 self.logins.append(a)
             }
         }
-        
     }
 
     @IBAction func newLoggin(_ sender: Any) {
         self.performSegue(withIdentifier: "Centralis.ShowNewUser", sender: nil)
     }
-    
-    @objc private func goHome() {
-        DispatchQueue.main.async {
-            self.workingCover.stopWorking()
-            self.performSegue(withIdentifier: "Centralis.Login", sender: nil)
-        }
-    }
-    
+
     @IBAction func logout( _ seg: UIStoryboardSegue) {
         EduLinkAPI.shared.clear()
         self.organiseLogins()
@@ -98,7 +91,7 @@ class LoginViewController: UIViewController {
         DispatchQueue.main.async {
             self.workingCover.startWorking(self)
             if !LoginManager.shared.username.isEmpty {
-                LoginManager.shared.login()
+                //LoginManager.shared.login()
             }
         }
     }
@@ -109,7 +102,16 @@ extension LoginViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.workingCover.startWorking(self)
         let login = self.logins[indexPath.row]
-        EduLinkAPI.shared.quickLogin(login)
+        LoginManager.shared.quickLogin(login, zCompletion: { (success, error) -> Void in
+            DispatchQueue.main.async {
+                if success {
+                    self.workingCover.stopWorking()
+                    self.performSegue(withIdentifier: "Centralis.Login", sender: nil)
+                } else {
+                    #warning("Complete this error handling")
+                }
+            }
+        })
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
