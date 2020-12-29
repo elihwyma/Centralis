@@ -14,7 +14,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var newLoggin: UIButton!
     
     var containerView = UIView()
-    var popupView: LoginPopup = .fromNib()
     var logins = [SavedLogin]()
     var workingCover: WorkingCover = .fromNib()
     
@@ -30,7 +29,6 @@ class LoginViewController: UIViewController {
         self.newLoggin.layer.borderColor = UIColor.label.cgColor
         self.newLoggin.layer.borderWidth = 2
         self.newLoggin.layer.cornerRadius = 15
-    
         self.tableView.backgroundColor = .systemGray5
         self.tableView.tableFooterView = UIView()
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
@@ -45,7 +43,6 @@ class LoginViewController: UIViewController {
         self.tableView.layer.masksToBounds = true
         self.tableView.layer.cornerRadius = 15
         
-        NotificationCenter.default.addObserver(self, selector: #selector(hidePopup), name: .HidePopup, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(goHome), name: .SuccesfulLogin, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reauth), name: .ReAuth, object: nil)
     }
@@ -63,73 +60,14 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func newLoggin(_ sender: Any) {
-        self.showPopup()
+        self.performSegue(withIdentifier: "Centralis.ShowNewUser", sender: nil)
     }
     
     @objc private func goHome() {
         DispatchQueue.main.async {
-            self.stopWorking()
+            self.workingCover.stopWorking()
             self.performSegue(withIdentifier: "Centralis.Login", sender: nil)
         }
-    }
-    
-    private func startWorking() {
-        self.workingCover.frame = self.view.frame
-        self.workingCover.alpha = 0
-        self.view.addSubview(workingCover)
-        UIView.animate(withDuration: 0.5,
-                         delay: 0, usingSpringWithDamping: 1.0,
-                         initialSpringVelocity: 1.0,
-                         options: .curveEaseInOut, animations: {
-                            self.workingCover.alpha = 1
-                         }, completion: { (value: Bool) in
-          })
-    }
-    
-    private func stopWorking() {
-        UIView.animate(withDuration: 0.5,
-                         delay: 0, usingSpringWithDamping: 1.0,
-                         initialSpringVelocity: 1.0,
-                         options: .curveEaseInOut, animations: {
-                            self.workingCover.alpha = 0
-                         }, completion: { (value: Bool) in
-                            self.workingCover.removeFromSuperview()
-          })
-    }
-    
-    @objc private func hidePopup() {
-        let deadBounds = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height)
-        
-        UIView.animate(withDuration: 1.0,
-                         delay: 0, usingSpringWithDamping: 1.0,
-                         initialSpringVelocity: 1.0,
-                         options: .curveEaseInOut, animations: {
-                            self.containerView.alpha = 0
-                            self.popupView.frame = deadBounds
-                         }, completion: { (value: Bool) in
-                            self.popupView.removeFromSuperview()
-                            self.containerView.removeFromSuperview()
-          })
-    }
-
-    private func showPopup() {
-        self.containerView.backgroundColor = UIColor.black.withAlphaComponent(0.9)
-        self.containerView.frame = self.view.frame
-        self.containerView.alpha = 0
-        self.view.addSubview(containerView)
-
-        let deadBounds = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height)
-                    
-        self.popupView.frame = deadBounds
-        self.view.addSubview(popupView)
-
-        UIView.animate(withDuration: 0.5,
-                         delay: 0, usingSpringWithDamping: 1.0,
-                         initialSpringVelocity: 1.0,
-                         options: .curveEaseInOut, animations: {
-                            self.containerView.alpha = 0.8
-                            self.popupView.frame = self.view.bounds
-          }, completion: nil)
     }
     
     @IBAction func logout( _ seg: UIStoryboardSegue) {
@@ -158,7 +96,7 @@ class LoginViewController: UIViewController {
     
     @objc private func reauth() {
         DispatchQueue.main.async {
-            self.startWorking()
+            self.workingCover.startWorking(self)
             if !LoginManager.shared.username.isEmpty {
                 LoginManager.shared.login()
             }
@@ -169,7 +107,7 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.startWorking()
+        self.workingCover.startWorking(self)
         let login = self.logins[indexPath.row]
         EduLinkAPI.shared.quickLogin(login)
         tableView.deselectRow(at: indexPath, animated: true)

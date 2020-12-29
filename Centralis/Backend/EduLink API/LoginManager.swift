@@ -15,145 +15,94 @@ class LoginManager {
     var password: String!
     var schoolCode: String!
     
-    private func invalidLogin() {
-        NotificationCenter.default.post(name: .InvalidLogin, object: nil)
-        print("Invalid Login")
-    }
-    
-    private func invalidSchool() {
-        NotificationCenter.default.post(name: .InvalidSchool, object: nil)
-        print("Invalid School")
-    }
-    
-    private func fail() {
-        NotificationCenter.default.post(name: .FailedLogin, object: nil)
-        print("Failed Login")
-    }
-    
-    private func network() {
-        NotificationCenter.default.post(name: .NetworkError, object: nil)
-        print("Network Error")
-    }
-    
-    public func authenticate(schoolCode: String!, username: String!, password: String!) {
-        self.username = username
-        self.password = password
+    public func schoolProvisioning(schoolCode: String!, rootCompletion: @escaping completionHandler) {
         self.schoolCode = schoolCode
         
         if self.schoolCode == "DemoSchool" {
             EduLinkAPI.shared.authorisedSchool.server = "https://demoapi.elihc.dev/api/uwu"
             EduLinkAPI.shared.authorisedSchool.school_id = "1"
-            self.schoolInfo()
+            rootCompletion(true, nil)
             return
         }
         
-        let body = "{\"jsonrpc\":\"2.0\",\"method\":\"School.FromCode\",\"params\":{\"code\":\"\(schoolCode!)\"},\"uuid\":\"FuckYouOvernetData\",\"id\":\"1\"}"
+        let body = "{\"jsonrpc\":\"2.0\",\"method\":\"School.FromCode\",\"params\":{\"code\":\"\(schoolCode!)\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
         NetworkManager.shared.requestWithDict(url: URL(string: "https://provisioning.edulinkone.com/?method=School.FromCode")!, method: "POST", headers: nil, jsonbody: body, completion: { (success, dict) -> Void in
-            if success {
-                if let result = dict["result"] as? [String : Any] {
-                    if !(result["success"] as! Bool) {
-                        if (result["error"] as! String).contains("Unknown SCHOOL ID") {
-                            self.invalidSchool()
-                        } else {
-                            self.fail()
-                        }
-                        return
-                    }
-                    if let school = result["school"] as? [String : Any] {
-                        EduLinkAPI.shared.authorisedSchool.server = school["server"] as? String
-                        EduLinkAPI.shared.authorisedSchool.school_id = "\(school["school_id"] ?? "Not Given")"
-                        self.schoolInfo()
-                    } else {
-                        self.fail()
-                    }
+            if !success { return rootCompletion(false, "Network Connection Error") }
+            guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error Ocurred") }
+            if !(result["success"] as! Bool) {
+                if (result["error"] as! String).contains("Unknown SCHOOL ID") {
+                    return rootCompletion(false, "Invalid School Code")
+
                 } else {
-                    self.fail()
+                    return rootCompletion(false, "Unknown Error Ocurred")
                 }
-            } else {
-                self.network()
             }
+            guard let school = result["school"] as? [String : Any] else { return rootCompletion(false, "Unknown Error Ocurred") }
+            EduLinkAPI.shared.authorisedSchool.server = school["server"] as? String
+            EduLinkAPI.shared.authorisedSchool.school_id = "\(school["school_id"] ?? "Not Given")"
+            self.schoolInfoz(zCompletion: { (success, error) -> Void in
+                return rootCompletion(success, error)
+            })
         })
     }
     
-    public func login() {
-        let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.Login")!
-        let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
-        let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.Login\",\"params\":{\"from_app\":false,\"ui_info\":{\"format\":2,\"version\":\"0.5.113\",\"git_sha\":\"FuckYouOvernetData\"},\"fcm_token_old\":\"none\",\"username\":\"\(username!)\",\"password\":\"\(password!)\",\"establishment_id\":2},\"uuid\":\"FuckYouOvernetData\",\"id\":\"1\"}"
-        NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
-            if success {
-                if let result = dict["result"] as? [String : Any] {
-                    if !(result["success"] as! Bool) {
-                        if (result["error"] as! String) == "The username or password is incorrect. Please try typing your password again" {
-                            self.invalidLogin()
-                        } else {
-                            self.fail()
-                        }
-                        self.fail()
-                        return
-                    }
-                    EduLinkAPI.shared.authorisedUser.authToken =  result["authtoken"] as? String
-                    if let user = result["user"] as? [String : Any] {
-                        EduLinkAPI.shared.authorisedUser.id = "\(user["id"] ?? "Not Given")"
-                        EduLinkAPI.shared.authorisedUser.gender = user["gender"] as? String
-                        EduLinkAPI.shared.authorisedUser.forename = user["forename"] as? String
-                        EduLinkAPI.shared.authorisedUser.surname = user["surname"] as? String
-                        EduLinkAPI.shared.authorisedUser.community_group_id = Int((user["community_group_id"] as? String)!)
-                        EduLinkAPI.shared.authorisedUser.form_group_id = Int((user["form_group_id"] as? String)!)
-                        EduLinkAPI.shared.authorisedUser.year_group_id = Int((user["year_group_id"] as? String)!)
-                        EduLinkAPI.shared.authorisedUser.types = user["types"] as? [String]
-                        let avatar = user["avatar"] as! [String : Any]
-                        let imageData = avatar["photo"] as? String
-                        if let decodedData = Data(base64Encoded: imageData!, options: .ignoreUnknownCharacters) {
-                            EduLinkAPI.shared.authorisedUser.avatar = UIImage(data: decodedData)
-                        }
-                    } else {
-                        self.fail()
-                    }
-                    
-                    self.personalMenu(result)
-                    self.schoolScraping(result)
-                    let rc = EduLink_Register()
-                    rc.registerCodes(nil)
-                    NotificationCenter.default.post(name: .SuccesfulLogin, object: nil)
-                } else {
-                    self.fail()
-                }
-            } else {
-                self.network()
-            }
-        })
-    }
-    
-    private func schoolInfo() {
+    private func schoolInfoz(zCompletion: @escaping completionHandler) {
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.SchoolDetails\",\"params\":{\"establishment_id\":\"2\",\"from_app\":false},\"uuid\":\"FuckYouOvernetData\",\"id\":\"1\"}"
         let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.SchoolDetails")
         let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
         NetworkManager.shared.requestWithDict(url: url!, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
-            if success {
-                if let result = dict["result"] as? [String : Any] {
-                    if !(result["success"] as! Bool) {
-                        NotificationCenter.default.post(name: .FailedLogin, object: nil)
-                        return
-                    }
-                    if let establishment = result["establishment"] as? [String : Any] {
-                        let imageData = establishment["logo"] as? String
-                        EduLinkAPI.shared.authorisedUser.school = establishment["name"] as? String
-                        if let decodedData = Data(base64Encoded: imageData!, options: .ignoreUnknownCharacters) {
-                            EduLinkAPI.shared.authorisedSchool.schoolLogo = UIImage(data: decodedData)
-                        }
-                        self.login()
-                    } else {
-                        self.fail()
-                    }
-                } else {
-                    self.fail()
-                }
-            } else {
-                self.network()
+            if !success { return zCompletion(false, "Network Connection Error") }
+            guard let result = dict["result"] as? [String : Any] else { return zCompletion(false, "Unknown Error Ocurred") }
+            if !(result["success"] as! Bool) { return zCompletion(false, "Unknown Error Ocurred") }
+            guard let establishment = result["establishment"] as? [String : Any] else { return zCompletion(false, "Unknown Error Ocurred") }
+            let imageData = establishment["logo"] as? String
+            EduLinkAPI.shared.authorisedUser.school = establishment["name"] as? String
+            if let decodedData = Data(base64Encoded: imageData!, options: .ignoreUnknownCharacters) {
+                EduLinkAPI.shared.authorisedSchool.schoolLogo = UIImage(data: decodedData)
             }
+            return zCompletion(true, nil)
         })
     }
-    
+
+    public func loginz(username: String, password: String, rootCompletion: @escaping completionHandler) {
+        self.username = username
+        self.password = password
+        let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.Login")!
+        let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
+        let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.Login\",\"params\":{\"from_app\":false,\"ui_info\":{\"format\":2,\"version\":\"0.5.113\",\"git_sha\":\"FuckYouOvernetData\"},\"fcm_token_old\":\"none\",\"username\":\"\(username)\",\"password\":\"\(password)\",\"establishment_id\":2},\"uuid\":\"FuckYouOvernetData\",\"id\":\"1\"}"
+        NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
+            if !success { return rootCompletion(false, "Network Connection Error") }
+            guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error Ocurred") }
+            if !(result["success"] as! Bool) {
+                if (result["error"] as! String) == "The username or password is incorrect. Please try typing your password again" {
+                    return rootCompletion(false, "Incorrect Username/Password")
+                } else {
+                    return rootCompletion(false, "Unknown Error Ocurred")
+                }
+            }
+            EduLinkAPI.shared.authorisedUser.authToken =  result["authtoken"] as? String
+            guard let user = result["user"] as? [String : Any] else { return rootCompletion(false, "Unknown Error Ocurred") }
+            EduLinkAPI.shared.authorisedUser.id = "\(user["id"] ?? "Not Given")"
+            EduLinkAPI.shared.authorisedUser.gender = user["gender"] as? String
+            EduLinkAPI.shared.authorisedUser.forename = user["forename"] as? String
+            EduLinkAPI.shared.authorisedUser.surname = user["surname"] as? String
+            EduLinkAPI.shared.authorisedUser.community_group_id = Int((user["community_group_id"] as? String)!)
+            EduLinkAPI.shared.authorisedUser.form_group_id = Int((user["form_group_id"] as? String)!)
+            EduLinkAPI.shared.authorisedUser.year_group_id = Int((user["year_group_id"] as? String)!)
+            EduLinkAPI.shared.authorisedUser.types = user["types"] as? [String]
+            let avatar = user["avatar"] as! [String : Any]
+            let imageData = avatar["photo"] as? String
+            if let decodedData = Data(base64Encoded: imageData!, options: .ignoreUnknownCharacters) {
+                EduLinkAPI.shared.authorisedUser.avatar = UIImage(data: decodedData)
+            }
+            self.personalMenu(result)
+            self.schoolScraping(result)
+            let rc = EduLink_Register()
+            rc.registerCodes(nil)
+            return rootCompletion(true, nil)
+        })
+    }
+
     private func personalMenu(_ dict: [String : Any]) {
         if let personal_menu = dict["personal_menu"] as? [[String : String]] {
             for menu in personal_menu {

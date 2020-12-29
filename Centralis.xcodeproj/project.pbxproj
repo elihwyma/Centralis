@@ -43,8 +43,6 @@
 		53CB509A2572D7C40077DDAE /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50992572D7C40077DDAE /* UIView+Extensions.swift */; };
 		53CB509D2572D9300077DDAE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB509C2572D92F0077DDAE /* LoginViewController.swift */; };
 		53CB50A12572F0B50077DDAE /* ResizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50A02572F0B50077DDAE /* ResizedTableView.swift */; };
-		53CB50A72572F3040077DDAE /* LoginPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53CB50A62572F3040077DDAE /* LoginPopup.xib */; };
-		53CB50AB2572F6D70077DDAE /* LoginPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50AA2572F6D60077DDAE /* LoginPopup.swift */; };
 		53CB50AE2572F8550077DDAE /* NSNotification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50AD2572F8540077DDAE /* NSNotification+Extensions.swift */; };
 		53CB50B7257312E70077DDAE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50B6257312E50077DDAE /* NetworkManager.swift */; };
 		53CB50BC2573E42F0077DDAE /* EduLinkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50BB2573E42F0077DDAE /* EduLinkAPI.swift */; };
@@ -53,6 +51,8 @@
 		E157605B258BBDE700DD496F /* ChartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E157605A258BBDE700DD496F /* ChartTableViewController.swift */; };
 		E1576060258BF56B00DD496F /* AmyChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E157605E258BF56B00DD496F /* AmyChartCell.swift */; };
 		E1576061258BF56B00DD496F /* AmyChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E157605F258BF56B00DD496F /* AmyChartCell.xib */; };
+		E1768305259A7EAE0099BB92 /* NewUserSchoolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768304259A7EAE0099BB92 /* NewUserSchoolController.swift */; };
+		E1768308259A8C7A0099BB92 /* NewUserUPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768307259A8C7A0099BB92 /* NewUserUPController.swift */; };
 		E18A0367258D913C0056EF08 /* EduLink_Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18A0366258D913C0056EF08 /* EduLink_Attendance.swift */; };
 		E19B2F50258CEC9900930AE1 /* ColourConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19B2F4F258CEC9900930AE1 /* ColourConverter.swift */; };
 		E19B2F56258D35C800930AE1 /* EduLink_Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19B2F55258D35C800930AE1 /* EduLink_Register.swift */; };
@@ -105,8 +105,6 @@
 		53CB50992572D7C40077DDAE /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		53CB509C2572D92F0077DDAE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		53CB50A02572F0B50077DDAE /* ResizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizedTableView.swift; sourceTree = "<group>"; };
-		53CB50A62572F3040077DDAE /* LoginPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginPopup.xib; sourceTree = "<group>"; };
-		53CB50AA2572F6D60077DDAE /* LoginPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPopup.swift; sourceTree = "<group>"; };
 		53CB50AD2572F8540077DDAE /* NSNotification+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extensions.swift"; sourceTree = "<group>"; };
 		53CB50B6257312E50077DDAE /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		53CB50BB2573E42F0077DDAE /* EduLinkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLinkAPI.swift; sourceTree = "<group>"; };
@@ -115,6 +113,8 @@
 		E157605A258BBDE700DD496F /* ChartTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTableViewController.swift; sourceTree = "<group>"; };
 		E157605E258BF56B00DD496F /* AmyChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmyChartCell.swift; sourceTree = "<group>"; };
 		E157605F258BF56B00DD496F /* AmyChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmyChartCell.xib; sourceTree = "<group>"; };
+		E1768304259A7EAE0099BB92 /* NewUserSchoolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserSchoolController.swift; sourceTree = "<group>"; };
+		E1768307259A8C7A0099BB92 /* NewUserUPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserUPController.swift; sourceTree = "<group>"; };
 		E18A0366258D913C0056EF08 /* EduLink_Attendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Attendance.swift; sourceTree = "<group>"; };
 		E19B2F4F258CEC9900930AE1 /* ColourConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColourConverter.swift; sourceTree = "<group>"; };
 		E19B2F55258D35C800930AE1 /* EduLink_Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Register.swift; sourceTree = "<group>"; };
@@ -142,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				53CB509F2572F07A0077DDAE /* ResizedTableView */,
-				53CB50A52572F26F0077DDAE /* LoginPopup */,
 				53CB509C2572D92F0077DDAE /* LoginViewController.swift */,
 			);
 			path = LoginViewController;
@@ -318,6 +317,7 @@
 		53CB508E2572D6800077DDAE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E1768303259A7D530099BB92 /* NewUserControllers */,
 				E1F9A49625850F3D00CEA071 /* DocumentWebViewController */,
 				E180E9C32580115100ABFE69 /* CarouselViewControllers */,
 				E180E9C22580104800ABFE69 /* CarouselContainer */,
@@ -364,15 +364,6 @@
 				53CB50A02572F0B50077DDAE /* ResizedTableView.swift */,
 			);
 			path = ResizedTableView;
-			sourceTree = "<group>";
-		};
-		53CB50A52572F26F0077DDAE /* LoginPopup */ = {
-			isa = PBXGroup;
-			children = (
-				53CB50A62572F3040077DDAE /* LoginPopup.xib */,
-				53CB50AA2572F6D60077DDAE /* LoginPopup.swift */,
-			);
-			path = LoginPopup;
 			sourceTree = "<group>";
 		};
 		53CB50B4257311380077DDAE /* Backend */ = {
@@ -429,6 +420,15 @@
 				E157605F258BF56B00DD496F /* AmyChartCell.xib */,
 			);
 			path = AmyChartCell;
+			sourceTree = "<group>";
+		};
+		E1768303259A7D530099BB92 /* NewUserControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E1768304259A7EAE0099BB92 /* NewUserSchoolController.swift */,
+				E1768307259A8C7A0099BB92 /* NewUserUPController.swift */,
+			);
+			path = NewUserControllers;
 			sourceTree = "<group>";
 		};
 		E180E9C22580104800ABFE69 /* CarouselContainer */ = {
@@ -534,7 +534,6 @@
 			files = (
 				53874526257C1EB100174D07 /* HomeworkDetailView.xib in Resources */,
 				53CA2DEF2576CC9E00E3A02B /* LoginCell.xib in Resources */,
-				53CB50A72572F3040077DDAE /* LoginPopup.xib in Resources */,
 				53CA2DFD2576DA5900E3A02B /* HomeMenuCell.xib in Resources */,
 				E1576061258BF56B00DD496F /* AmyChartCell.xib in Resources */,
 				53CB507E2572D1880077DDAE /* LaunchScreen.storyboard in Resources */,
@@ -558,10 +557,10 @@
 			files = (
 				53CA2DFC2576DA5800E3A02B /* HomeMenuCell.swift in Sources */,
 				53243436257828A300875BAD /* TextViewCell.swift in Sources */,
+				E1768308259A8C7A0099BB92 /* NewUserUPController.swift in Sources */,
 				E1F9A49825850F6000CEA071 /* DocumentWebViewController.swift in Sources */,
 				E1C8FD6E258022780006F36F /* EduLink_Timetable.swift in Sources */,
 				E19B2F50258CEC9900930AE1 /* ColourConverter.swift in Sources */,
-				53CB50AB2572F6D70077DDAE /* LoginPopup.swift in Sources */,
 				53CB509D2572D9300077DDAE /* LoginViewController.swift in Sources */,
 				E157605B258BBDE700DD496F /* ChartTableViewController.swift in Sources */,
 				5324342E2578234900875BAD /* EduLink_Catering.swift in Sources */,
@@ -570,6 +569,7 @@
 				53CB50B7257312E70077DDAE /* NetworkManager.swift in Sources */,
 				53CA2E012576DD2A00E3A02B /* HomeViewController.swift in Sources */,
 				E1576060258BF56B00DD496F /* AmyChartCell.swift in Sources */,
+				E1768305259A7EAE0099BB92 /* NewUserSchoolController.swift in Sources */,
 				53CB50722572D1780077DDAE /* AppDelegate.swift in Sources */,
 				53874502257BD61800174D07 /* CarouselContainerController.swift in Sources */,
 				53196927257AE1E20056BF51 /* EduLink_Personal.swift in Sources */,
