@@ -8,32 +8,26 @@
 import Foundation
 
 class EduLink_Timetable {
-    public func timetable() {
+    class func timetable(_ rootCompletion: @escaping completionHandler) {
         let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.Timetable")!
         let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.Timetable\",\"params\":{\"date\":\"\(date())\",\"learner_id\":\"\(EduLinkAPI.shared.authorisedUser.id!)\",\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
         NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
-            if success {
-                if let result = dict["result"] as? [String : Any] {
-                    if !(result["success"] as! Bool) {
-                        NotificationCenter.default.post(name: .FailedTimetable, object: nil)
-                    }
-                    self.scrapeResult(result)
-                    NotificationCenter.default.post(name: .SuccesfulTimetable, object: nil)
-                }
-            } else {
-                NotificationCenter.default.post(name: .NetworkError, object: nil)
-            }
+            if !success { return rootCompletion(false, "Network Error") }
+            guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
+            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, "Unknown Error") }
+            self.scrapeResult(result)
+            rootCompletion(true, nil)
         })
     }
     
-    private func date() -> String {
+    class func date() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy'-'MM'-'dd'"
         return dateFormatter.string(from: Date())
     }
     
-    private func scrapeResult(_ result: [String : Any]) {
+    class func scrapeResult(_ result: [String : Any]) {
         guard let weeks = result["weeks"] as? [[String : Any]] else { return }
         EduLinkAPI.shared.weeks.removeAll()
         for week in weeks {

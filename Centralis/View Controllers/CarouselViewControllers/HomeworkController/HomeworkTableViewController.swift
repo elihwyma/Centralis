@@ -30,8 +30,6 @@ class HomeworkTableViewController: UIView {
         self.tableView.alwaysBounceVertical = false
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .SuccesfulHomework, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .SuccesfulHomeworkToggle, object: nil)
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(HomeworkTableViewController.showCompleteMenu))
         self.tableView.addGestureRecognizer(longPress)
     }
@@ -48,8 +46,12 @@ class HomeworkTableViewController: UIView {
             }
             let alert = UIAlertController(title: "Homework Options", message: "What do you want do with this homework?", preferredStyle: .actionSheet)
             alert.addAction(UIAlertAction(title: "Mark as \(homework.completed ? "Not Completed" : "Completed")", style: .default, handler: { action in
-                let hw = EduLink_Homework()
-                hw.completeHomework(!homework.completed!, indexPath.row, self.context!)
+                EduLink_Homework.completeHomework(!homework.completed!, indexPath.row, self.context!, {(success, error) -> Void in
+                    #warning("error handing")
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                })
             }))
             alert.addAction(UIAlertAction(title: "Show Description", style: .default, handler: { action in
                 let vc = UIViewController()
@@ -70,13 +72,7 @@ class HomeworkTableViewController: UIView {
             self.sender?.present(alert, animated: true)
         }
     }
-    
-    @objc private func reload() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-    
+
     private func setLabel() {
         switch self.context {
         case .current: do {

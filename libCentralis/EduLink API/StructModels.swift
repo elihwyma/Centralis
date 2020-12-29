@@ -13,3 +13,8 @@ struct Employee {
     var forename: String!
     var surname: String!
 }
+
+struct SimpleStore {
+    var id: String!
+    var name: String!
+}

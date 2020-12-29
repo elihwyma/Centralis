@@ -45,6 +45,8 @@
 		53CB50AE2572F8550077DDAE /* NSNotification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50AD2572F8540077DDAE /* NSNotification+Extensions.swift */; };
 		53CB50B7257312E70077DDAE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50B6257312E50077DDAE /* NetworkManager.swift */; };
 		53CB50BC2573E42F0077DDAE /* EduLinkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50BB2573E42F0077DDAE /* EduLinkAPI.swift */; };
+		E10A5B25259BE4F300FA8BD0 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A5B23259BE4F300FA8BD0 /* ErrorView.swift */; };
+		E10A5B26259BE4F300FA8BD0 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */; };
 		E1576054258BB68000DD496F /* AmyChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1576053258BB68000DD496F /* AmyChart.swift */; };
 		E1576058258BBD8E00DD496F /* ChartTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1576057258BBD8E00DD496F /* ChartTableViewController.xib */; };
 		E157605B258BBDE700DD496F /* ChartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E157605A258BBDE700DD496F /* ChartTableViewController.swift */; };
@@ -107,6 +109,8 @@
 		53CB50AD2572F8540077DDAE /* NSNotification+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extensions.swift"; sourceTree = "<group>"; };
 		53CB50B6257312E50077DDAE /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		53CB50BB2573E42F0077DDAE /* EduLinkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLinkAPI.swift; sourceTree = "<group>"; };
+		E10A5B23259BE4F300FA8BD0 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
 		E1576053258BB68000DD496F /* AmyChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmyChart.swift; sourceTree = "<group>"; };
 		E1576057258BBD8E00DD496F /* ChartTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChartTableViewController.xib; sourceTree = "<group>"; };
 		E157605A258BBDE700DD496F /* ChartTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTableViewController.swift; sourceTree = "<group>"; };
@@ -340,6 +344,7 @@
 		53CB50902572D69A0077DDAE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E10A5B22259BE4F200FA8BD0 /* ErrorView */,
 				E1576052258BB65D00DD496F /* AmyChart */,
 				53CA2DF12576D65E00E3A02B /* WorkingCover */,
 			);
@@ -394,6 +399,15 @@
 				53CA2DE42575896F00E3A02B /* StructModels.swift */,
 			);
 			path = "EduLink API";
+			sourceTree = "<group>";
+		};
+		E10A5B22259BE4F200FA8BD0 /* ErrorView */ = {
+			isa = PBXGroup;
+			children = (
+				E10A5B23259BE4F300FA8BD0 /* ErrorView.swift */,
+				E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */,
+			);
+			path = ErrorView;
 			sourceTree = "<group>";
 		};
 		E1576052258BB65D00DD496F /* AmyChart */ = {
@@ -540,6 +554,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E10A5B26259BE4F300FA8BD0 /* ErrorView.xib in Resources */,
 				53874526257C1EB100174D07 /* HomeworkDetailView.xib in Resources */,
 				53CA2DEF2576CC9E00E3A02B /* LoginCell.xib in Resources */,
 				53CA2DFD2576DA5900E3A02B /* HomeMenuCell.xib in Resources */,
@@ -583,6 +598,7 @@
 				53196927257AE1E20056BF51 /* EduLink_Personal.swift in Sources */,
 				E19B2F5B258D71CE00930AE1 /* Double+Extensions.swift in Sources */,
 				538744FF257BCC2000174D07 /* EduLink_Homework.swift in Sources */,
+				E10A5B25259BE4F300FA8BD0 /* ErrorView.swift in Sources */,
 				53CA2DE2257580A500E3A02B /* LoginManager.swift in Sources */,
 				5319692F257BC8A70056BF51 /* CarouselController.swift in Sources */,
 				5387450E257BDB7100174D07 /* HomeworkCell.swift in Sources */,

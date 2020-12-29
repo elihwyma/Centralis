@@ -102,7 +102,7 @@ extension LoginViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.workingCover.startWorking(self)
         let login = self.logins[indexPath.row]
-        LoginManager.shared.quickLogin(login, zCompletion: { (success, error) -> Void in
+        LoginManager.shared.quickLogin(login, { (success, error) -> Void in
             DispatchQueue.main.async {
                 if success {
                     self.workingCover.stopWorking()

@@ -48,36 +48,38 @@ class CarouselController: UIPageViewController {
 //MARK: - Homework
 extension CarouselController {
     private func homeworkSetup() {
-        NotificationCenter.default.addObserver(self, selector: #selector(setupHomeworkViews), name: .SuccesfulHomework, object: nil)
         if !(EduLinkAPI.shared.homework.current.isEmpty && EduLinkAPI.shared.homework.past.isEmpty) {
             self.setupHomeworkViews()
         } else {
-            let homework = EduLink_Homework()
-            homework.homework()
+            EduLink_Homework.homework({(success, error) -> Void in
+                DispatchQueue.main.async {
+                    #warning("Error handling")
+                    self.setupHomeworkViews()
+                    self.senderContext?.activityIndicator.isHidden = true
+                }
+            })
         }
     }
     
-    @objc private func setupHomeworkViews() {
-        DispatchQueue.main.async {
-            self.views.removeAll()
-            let current = UIViewController()
-            let cview: HomeworkTableViewController = .fromNib()
-            cview.context = .current
-            cview.sender = self
-            cview.rootSender = self.senderContext
-            current.view = cview
-            self.views.append(current)
-            
-            let past = UIViewController()
-            let pview: HomeworkTableViewController = .fromNib()
-            pview.context = .past
-            pview.sender = self
-            pview.rootSender = self.senderContext
-            past.view = pview
-            self.views.append(past)
-            if let firstViewController = self.views.first {
-                self.setViewControllers([firstViewController], direction: .forward, animated: false, completion: nil)
-            }
+    private func setupHomeworkViews() {
+        self.views.removeAll()
+        let current = UIViewController()
+        let cview: HomeworkTableViewController = .fromNib()
+        cview.context = .current
+        cview.sender = self
+        cview.rootSender = self.senderContext
+        current.view = cview
+        self.views.append(current)
+        
+        let past = UIViewController()
+        let pview: HomeworkTableViewController = .fromNib()
+        pview.context = .past
+        pview.sender = self
+        pview.rootSender = self.senderContext
+        past.view = pview
+        self.views.append(past)
+        if let firstViewController = self.views.first {
+            self.setViewControllers([firstViewController], direction: .forward, animated: false, completion: nil)
         }
     }
 }
@@ -86,13 +88,15 @@ extension CarouselController {
 extension CarouselController {
     private func timetableSetup() {
         NotificationCenter.default.addObserver(self, selector: #selector(weekChange), name: .TimetableButtonPressed, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ugh), name: .SuccesfulTimetable, object: nil)
         if !EduLinkAPI.shared.weeks.isEmpty {
             self.ugh()
             self.senderContext?.activityIndicator.isHidden = true
         } else {
-            let timetable = EduLink_Timetable()
-            timetable.timetable()
+            EduLink_Timetable.timetable({(success, error) -> Void in
+                #warning("Error handling")
+                self.ugh()
+                self.senderContext?.activityIndicator.isHidden = true
+            })
         }
     }
     
@@ -167,42 +171,44 @@ extension CarouselController {
 //MARK: - Behaviour
 extension CarouselController {
     private func behaviourSetup() {
-        NotificationCenter.default.addObserver(self, selector: #selector(setupBehaviourViews), name: .SucccesfulBehaviour, object: nil)
         if !EduLinkAPI.shared.achievementBehaviourLookups.behaviours.isEmpty {
             self.setupBehaviourViews()
             self.senderContext?.activityIndicator.isHidden = true
         } else {
-            let behaviour = EduLink_Achievement()
-            behaviour.behaviour()
+            EduLink_Achievement.behaviour({(success, error) -> Void in
+                #warning("Error handling here")
+                DispatchQueue.main.async {
+                    self.setupBehaviourViews()
+                    self.senderContext?.activityIndicator.isHidden = true
+                }
+            })
         }
     }
     
-    @objc private func setupBehaviourViews() {
-        DispatchQueue.main.async {
-            self.views.removeAll()
-            let behaviour = UIViewController()
-            let bview: EmbeddedTableViewController = .fromNib()
-            bview.context = .behaviour
-            behaviour.view = bview
-            self.views.append(behaviour)
-            
-            let lessonBehaviour = UIViewController()
-            let lbview: ChartTableViewController = .fromNib()
-            lbview.context = .lessonBehaviour
-            lessonBehaviour.view = lbview
-            self.views.append(lessonBehaviour)
-            
-            let detentions = UIViewController()
-            let dview: EmbeddedTableViewController = .fromNib()
-            dview.context = .detention
-            detentions.view = dview
-            self.views.append(detentions)
-            
-            if let firstViewController = self.views.first {
-                self.setViewControllers([firstViewController], direction: .forward, animated: false, completion: { Void in
-                    self.behaviourTitle()
-                })
-            }
+    private func setupBehaviourViews() {
+        self.views.removeAll()
+        let behaviour = UIViewController()
+        let bview: EmbeddedTableViewController = .fromNib()
+        bview.context = .behaviour
+        behaviour.view = bview
+        self.views.append(behaviour)
+        
+        let lessonBehaviour = UIViewController()
+        let lbview: ChartTableViewController = .fromNib()
+        lbview.context = .lessonBehaviour
+        lessonBehaviour.view = lbview
+        self.views.append(lessonBehaviour)
+        
+        let detentions = UIViewController()
+        let dview: EmbeddedTableViewController = .fromNib()
+        dview.context = .detention
+        detentions.view = dview
+        self.views.append(detentions)
+        
+        if let firstViewController = self.views.first {
+            self.setViewControllers([firstViewController], direction: .forward, animated: false, completion: { Void in
+                self.behaviourTitle()
+            })
         }
     }
 }
@@ -210,45 +216,47 @@ extension CarouselController {
 //MARK: - Attendance
 extension CarouselController {
     private func attendanceSetup() {
-        NotificationCenter.default.addObserver(self, selector: #selector(setupAttendanceViews), name: .SuccesfulAttendance, object: nil)
         if !EduLinkAPI.shared.attendance.lessons.isEmpty || !EduLinkAPI.shared.attendance.statutory.isEmpty {
             self.setupAttendanceViews()
             self.senderContext?.activityIndicator.isHidden = true
         } else {
-            let attendance = EduLink_Attendance()
-            attendance.attendance()
+            EduLink_Attendance.attendance({(success, error) -> Void in
+                #warning("Error handling here")
+                DispatchQueue.main.async {
+                    self.setupAttendanceViews()
+                    self.senderContext?.activityIndicator.isHidden = true
+                }
+            })
         }
     }
     
-    @objc private func setupAttendanceViews() {
-        DispatchQueue.main.async {
-            self.views.removeAll()
-            if EduLinkAPI.shared.attendance.show_lesson {
-                let lessonattendance = UIViewController()
-                let lview: ChartTableViewController = .fromNib()
-                lview.context = .lessonattendance
-                lessonattendance.view = lview
-                self.views.append(lessonattendance)
-            }
-            if EduLinkAPI.shared.attendance.show_statutory {
-                let statutorymonth = UIViewController()
-                let sm: ChartTableViewController = .fromNib()
-                sm.context = .statutorymonth
-                statutorymonth.view = sm
-                self.views.append(statutorymonth)
-                
-                let statutoryyear = UIViewController()
-                let sy: ChartTableViewController = .fromNib()
-                sy.context = .statutoryyear
-                statutoryyear.view = sy
-                self.views.append(statutoryyear)
-            }
+    private func setupAttendanceViews() {
+        self.views.removeAll()
+        if EduLinkAPI.shared.attendance.show_lesson {
+            let lessonattendance = UIViewController()
+            let lview: ChartTableViewController = .fromNib()
+            lview.context = .lessonattendance
+            lessonattendance.view = lview
+            self.views.append(lessonattendance)
+        }
+        if EduLinkAPI.shared.attendance.show_statutory {
+            let statutorymonth = UIViewController()
+            let sm: ChartTableViewController = .fromNib()
+            sm.context = .statutorymonth
+            statutorymonth.view = sm
+            self.views.append(statutorymonth)
+            
+            let statutoryyear = UIViewController()
+            let sy: ChartTableViewController = .fromNib()
+            sy.context = .statutoryyear
+            statutoryyear.view = sy
+            self.views.append(statutoryyear)
+        }
 
-            if let firstViewController = self.views.first {
-                self.setViewControllers([firstViewController], direction: .forward, animated: false, completion: { Void in
-                    self.title()
-                })
-            }
+        if let firstViewController = self.views.first {
+            self.setViewControllers([firstViewController], direction: .forward, animated: false, completion: { Void in
+                self.title()
+            })
         }
     }
 }

@@ -23,10 +23,9 @@ class HomeViewController: UIViewController {
     
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    let status = EduLink_Status()
+
     var workingCover: WorkingCover = .fromNib()
-    private var shownMenus = [PersonalMenu]()
+    private var shownMenus = [SimpleStore]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,7 +37,7 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         self.title = "\(EduLinkAPI.shared.authorisedUser.forename ?? "") \(EduLinkAPI.shared.authorisedUser.surname ?? "")"
         if EduLinkAPI.shared.authorisedUser.authToken != nil {
-            self.status.status()
+            self.refreshStatus()
         }
     }
     
@@ -62,21 +61,28 @@ class HomeViewController: UIViewController {
         self.collectionView.showsHorizontalScrollIndicator = false
         self.collectionView.backgroundColor = .none
         self.collectionView.register(UINib(nibName: "HomeMenuCell", bundle: nil), forCellWithReuseIdentifier: "Centralis.HomeMenuCell")
-        NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.updateStatus), name: .SuccesfulStatus, object: nil)
         self.menuOrganising()
     }
     
     public func arriveFromDelegate(_ login: SavedLogin) {
         if let nc = self.navigationController { self.workingCover.startWorking(nc) }
-        LoginManager.shared.quickLogin(login, zCompletion: { (success, error) -> Void in
+        LoginManager.shared.quickLogin(login, { (success, error) -> Void in
             DispatchQueue.main.async {
                 self.workingCover.stopWorking()
                 if success {
                     self.menuOrganising()
                     self.collectionView.reloadData()
-                    self.status.status()
+                    self.refreshStatus()
                     self.title = "\(EduLinkAPI.shared.authorisedUser.forename!) \(EduLinkAPI.shared.authorisedUser.surname!)"
                 }
+            }
+        })
+    }
+    
+    private func refreshStatus() {
+        EduLink_Status.status(rootCompletion: { (success, error) -> Void in
+            DispatchQueue.main.async {
+                #warning("Need to do something with status here")
             }
         })
     }
@@ -84,13 +90,7 @@ class HomeViewController: UIViewController {
     @IBAction func logout(_ sender: Any) {
         self.performSegue(withIdentifier: "logout", sender: self)
     }
-    
-    @objc private func updateStatus() {
-        DispatchQueue.main.async {
-            //Placeholder
-        }
-    }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let indexPaths: NSArray = self.collectionView.indexPathsForSelectedItems! as NSArray
         if indexPaths.count == 0 { return }

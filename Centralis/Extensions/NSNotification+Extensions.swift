@@ -8,53 +8,6 @@
 import Foundation
 
 extension NSNotification.Name {
-    static let HidePopup = Notification.Name("Shade.HidePopup")
-    static let NetworkError = Notification.Name("NetworkError")
-
-    //Status
-    static let FailedStatus = Notification.Name("FailedStatus")
-    static let SuccesfulStatus = Notification.Name("SuccesfulStatus")
     static let ReAuth = Notification.Name("Reauth")
-    
-    //Catering
-    static let FailedCatering = Notification.Name("FailedCatering")
-    static let SuccesfulCatering = Notification.Name("SuccesfulCatering")
-    
-    //Achievement
-    static let FailedAchievement = Notification.Name("FailedAchievement")
-    static let SuccesfulAchievement = Notification.Name("SuccesfulAchievement")
-    
-    //Behaviour
-    static let FailedBehaviour = Notification.Name("FailedBehaviour")
-    static let SucccesfulBehaviour = Notification.Name("SuccesfulBehaviour")
-    static let BehaviourCodes = Notification.Name("BehaviourCodes")
-    
-    //Personal
-    static let FailedPersonal = Notification.Name("FailedPersonal")
-    static let SuccesfulPersonal = Notification.Name("SuccesfulPersonal")
-
-    //Homework
-    static let FailedHomework = Notification.Name("FailedHomework")
-    static let SuccesfulHomework = Notification.Name("SuccesfulHomework")
-    static let SuccesfulHomeworkToggle = Notification.Name("SuccesfulToggle")
-    static let SuccesfulHomeworkDetail = Notification.Name("SuccesfulHomeworkDetail")
-    
-    //Timetable
-    static let FailedTimetable = Notification.Name("FailedTimetable")
-    static let SuccesfulTimetable = Notification.Name("SuccesfulTimetable")
     static let TimetableButtonPressed = Notification.Name("TimetableButtonPressed")
-    
-    //Links
-    static let FailedLink = Notification.Name("FailedLink")
-    static let SuccesfulLink = Notification.Name("SuccesfulLink")
-    
-    //Documents
-    static let FailedDocument = Notification.Name("FailedDocument")
-    static let SucccesfulDocument = Notification.Name("SuccesfulDocument")
-    static let FailedDocumentLookup = Notification.Name("FailedDocumentLookup")
-    static let SucccesfulDocumentLookup = Notification.Name("SuccesfulDocumentLookup")
-    
-    //Attendance
-    static let SuccesfulAttendance = Notification.Name("SuccesfulAttendance")
-    static let FailedAttendance = Notification.Name("FailedAttendance")
 }

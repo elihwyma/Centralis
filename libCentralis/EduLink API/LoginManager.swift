@@ -15,7 +15,7 @@ class LoginManager {
     var password: String!
     var schoolCode: String!
     
-    public func schoolProvisioning(schoolCode: String!, rootCompletion: @escaping completionHandler) {
+    public func schoolProvisioning(schoolCode: String!, _ rootCompletion: @escaping completionHandler) {
         self.schoolCode = schoolCode
         
         if self.schoolCode == "DemoSchool" {
@@ -28,7 +28,7 @@ class LoginManager {
         NetworkManager.shared.requestWithDict(url: URL(string: "https://provisioning.edulinkone.com/?method=School.FromCode")!, method: "POST", headers: nil, jsonbody: body, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Connection Error") }
             guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error Ocurred") }
-            if !(result["success"] as! Bool) {
+            if !(result["success"] as? Bool ?? false) {
                 if (result["error"] as! String).contains("Unknown SCHOOL ID") {
                     return rootCompletion(false, "Invalid School Code")
 
@@ -39,31 +39,31 @@ class LoginManager {
             guard let school = result["school"] as? [String : Any] else { return rootCompletion(false, "Unknown Error Ocurred") }
             EduLinkAPI.shared.authorisedSchool.server = school["server"] as? String
             EduLinkAPI.shared.authorisedSchool.school_id = "\(school["school_id"] ?? "Not Given")"
-            self.schoolInfoz(zCompletion: { (success, error) -> Void in
+            self.schoolInfoz({ (success, error) -> Void in
                 return rootCompletion(success, error)
             })
         })
     }
     
-    private func schoolInfoz(zCompletion: @escaping completionHandler) {
+    private func schoolInfoz(_ zCompletion: @escaping completionHandler) {
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.SchoolDetails\",\"params\":{\"establishment_id\":\"2\",\"from_app\":false},\"uuid\":\"FuckYouOvernetData\",\"id\":\"1\"}"
         let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.SchoolDetails")
         let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
         NetworkManager.shared.requestWithDict(url: url!, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
             if !success { return zCompletion(false, "Network Connection Error") }
             guard let result = dict["result"] as? [String : Any] else { return zCompletion(false, "Unknown Error Ocurred") }
-            if !(result["success"] as! Bool) { return zCompletion(false, "Unknown Error Ocurred") }
+            if !(result["success"] as? Bool ?? false) { return zCompletion(false, "Unknown Error Ocurred") }
             guard let establishment = result["establishment"] as? [String : Any] else { return zCompletion(false, "Unknown Error Ocurred") }
-            let imageData = establishment["logo"] as? String
-            EduLinkAPI.shared.authorisedUser.school = establishment["name"] as? String
-            if let decodedData = Data(base64Encoded: imageData!, options: .ignoreUnknownCharacters) {
+            let imageData = establishment["logo"] as? String ?? ""
+            EduLinkAPI.shared.authorisedUser.school = establishment["name"] as? String ?? "Not Given"
+            if let decodedData = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters) {
                 EduLinkAPI.shared.authorisedSchool.schoolLogo = UIImage(data: decodedData)
             }
             return zCompletion(true, nil)
         })
     }
 
-    public func loginz(username: String, password: String, rootCompletion: @escaping completionHandler) {
+    public func loginz(username: String, password: String, _ rootCompletion: @escaping completionHandler) {
         self.username = username
         self.password = password
         let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.Login")!
@@ -72,7 +72,7 @@ class LoginManager {
         NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Connection Error") }
             guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error Ocurred") }
-            if !(result["success"] as! Bool) {
+            if !(result["success"] as? Bool ?? false) {
                 if (result["error"] as! String) == "The username or password is incorrect. Please try typing your password again" {
                     return rootCompletion(false, "Incorrect Username/Password")
                 } else {
@@ -82,34 +82,34 @@ class LoginManager {
             EduLinkAPI.shared.authorisedUser.authToken =  result["authtoken"] as? String
             guard let user = result["user"] as? [String : Any] else { return rootCompletion(false, "Unknown Error Ocurred") }
             EduLinkAPI.shared.authorisedUser.id = "\(user["id"] ?? "Not Given")"
-            EduLinkAPI.shared.authorisedUser.gender = user["gender"] as? String
-            EduLinkAPI.shared.authorisedUser.forename = user["forename"] as? String
-            EduLinkAPI.shared.authorisedUser.surname = user["surname"] as? String
-            EduLinkAPI.shared.authorisedUser.community_group_id = Int((user["community_group_id"] as? String)!)
-            EduLinkAPI.shared.authorisedUser.form_group_id = Int((user["form_group_id"] as? String)!)
-            EduLinkAPI.shared.authorisedUser.year_group_id = Int((user["year_group_id"] as? String)!)
-            EduLinkAPI.shared.authorisedUser.types = user["types"] as? [String]
-            let avatar = user["avatar"] as! [String : Any]
-            let imageData = avatar["photo"] as? String
-            if let decodedData = Data(base64Encoded: imageData!, options: .ignoreUnknownCharacters) {
-                EduLinkAPI.shared.authorisedUser.avatar = UIImage(data: decodedData)
+            EduLinkAPI.shared.authorisedUser.gender = user["gender"] as? String ?? "Not Given"
+            EduLinkAPI.shared.authorisedUser.forename = user["forename"] as? String ?? "Not Given"
+            EduLinkAPI.shared.authorisedUser.surname = user["surname"] as? String ?? "Not Given"
+            EduLinkAPI.shared.authorisedUser.community_group_id = "\(user["community_group_id"] ?? "Not Given")"
+            EduLinkAPI.shared.authorisedUser.form_group_id = "\(user["form_group_id"] ?? "Not Given")"
+            EduLinkAPI.shared.authorisedUser.year_group_id = "\(user["year_group_id"] ?? "Not Given")"
+            EduLinkAPI.shared.authorisedUser.types = user["types"] as? [String] ?? [String]()
+            if let avatar = user["avatar"] as? [String : Any] {
+                let imageData = avatar["photo"] as? String ?? ""
+                if let decodedData = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters) {
+                    EduLinkAPI.shared.authorisedUser.avatar = UIImage(data: decodedData)
+                }
             }
             self.personalMenu(result)
             self.schoolScraping(result)
-            let rc = EduLink_Register()
-            rc.registerCodes(nil)
+            EduLink_Register.registerCodes({(success, error) -> Void in })
             return rootCompletion(true, nil)
         })
     }
     
-    public func quickLogin(_ savedLogin: SavedLogin, zCompletion: @escaping completionHandler) {
+    public func quickLogin(_ savedLogin: SavedLogin, _ zCompletion: @escaping completionHandler) {
         EduLinkAPI.shared.clear()
         self.schoolCode = savedLogin.schoolCode
         guard let pdata = KeyChainManager.load(key: savedLogin.username) else { return zCompletion(false, "Error loading saved login") }
         let pstr = String(decoding: pdata, as: UTF8.self)
         EduLinkAPI.shared.authorisedSchool.school_id = savedLogin.schoolID
         EduLinkAPI.shared.authorisedSchool.server = savedLogin.schoolServer
-        LoginManager.shared.loginz(username: savedLogin.username, password: pstr, rootCompletion: { (success, error) -> Void in
+        LoginManager.shared.loginz(username: savedLogin.username, password: pstr, { (success, error) -> Void in
             return zCompletion(success, error)
         })
     }
@@ -156,9 +156,9 @@ class LoginManager {
     private func personalMenu(_ dict: [String : Any]) {
         if let personal_menu = dict["personal_menu"] as? [[String : String]] {
             for menu in personal_menu {
-                var personalMenu = PersonalMenu()
+                var personalMenu = SimpleStore()
                 personalMenu.id = "\(menu["id"] ?? "Not Given")"
-                personalMenu.name = menu["name"]
+                personalMenu.name = menu["name"] ?? "Not Given"
                 EduLinkAPI.shared.authorisedUser.personalMenus.append(personalMenu)
             }
         }
@@ -171,8 +171,8 @@ class LoginManager {
                 for room in rooms {
                     var roomMemory = Room()
                     roomMemory.id = "\(room["id"] ?? "Not Given")"
-                    roomMemory.code = room["code"]
-                    roomMemory.name = room["name"]
+                    roomMemory.code = room["code"] ?? "Not Given"
+                    roomMemory.name = room["name"] ?? "Not Given"
                     EduLinkAPI.shared.authorisedSchool.schoolInfo.rooms.append(roomMemory)
                 }
             }
@@ -180,9 +180,9 @@ class LoginManager {
             //MARK: - Year Groups
             if let year_groups = establishment["year_groups"] as? [[String : String]] {
                 for yearGroup in year_groups {
-                    var yg = YearGroup()
+                    var yg = SimpleStore()
                     yg.id = "\(yearGroup["id"] ?? "Not Given")"
-                    yg.name = yearGroup["name"]
+                    yg.name = yearGroup["name"] ?? "Not Given"
                     EduLinkAPI.shared.authorisedSchool.schoolInfo.yearGroups.append(yg)
                 }
             }
@@ -190,9 +190,9 @@ class LoginManager {
             //MARK: - Community Groups
             if let community_groups = establishment["community_groups"] as? [[String : String]] {
                 for communityGroup in community_groups {
-                    var cg = CommunityGroup()
+                    var cg = SimpleStore()
                     cg.id = "\(communityGroup["id"] ?? "Not Given")"
-                    cg.name = communityGroup["name"]
+                    cg.name = communityGroup["name"] ?? "Not Given"
                     EduLinkAPI.shared.authorisedSchool.schoolInfo.communityGroups.append(cg)
                 }
             }
@@ -200,9 +200,9 @@ class LoginManager {
             //MARK: - Admission Groups
             if let admission_groups = establishment["applicant_admission_groups"] as? [[String : String]] {
                 for admissionGroup in admission_groups {
-                    var ag = AdmissionGroup()
+                    var ag = SimpleStore()
                     ag.id = "\(admissionGroup["id"] ?? "Not Given")"
-                    ag.name = admissionGroup["name"]
+                    ag.name = admissionGroup["name"] ?? "Not Given"
                     EduLinkAPI.shared.authorisedSchool.schoolInfo.admissionGroups.append(ag)
                 }
             }
@@ -210,9 +210,9 @@ class LoginManager {
             //MARK: - Intake Groups
             if let intake_groups = establishment["applicant_intake_groups"] as? [[String : String]] {
                 for intakeGroup in intake_groups {
-                    var ig = IntakeGroup()
+                    var ig = SimpleStore()
                     ig.id = "\(intakeGroup["id"] ?? "Not Given")"
-                    ig.name = intakeGroup["name"]
+                    ig.name = intakeGroup["name"] ?? "Not Given"
                     EduLinkAPI.shared.authorisedSchool.schoolInfo.intakeGroups.append(ig)
                 }
             }
@@ -302,12 +302,12 @@ struct AuthorisedUser {
     var surname: String!
     var gender: String!
     var id: String!
-    var form_group_id: Int!
-    var year_group_id: Int!
-    var community_group_id: Int!
+    var form_group_id: String!
+    var year_group_id: String!
+    var community_group_id: String!
     var avatar: UIImage!
     var types: [String]!
-    var personalMenus = [PersonalMenu]()
+    var personalMenus = [SimpleStore]()
 }
 
 struct AuthorisedSchool {
@@ -317,35 +317,10 @@ struct AuthorisedSchool {
     var schoolInfo = SchoolInfo()
 }
 
-struct PersonalMenu {
-    var id: String!
-    var name: String!
-}
-
 struct Room {
     var id: String!
     var name: String!
     var code: String!
-}
-
-struct YearGroup {
-    var id: String!
-    var name: String!
-}
-
-struct CommunityGroup {
-    var id: String!
-    var name: String!
-}
-
-struct AdmissionGroup {
-    var id: String!
-    var name: String!
-}
-
-struct IntakeGroup {
-    var id: String!
-    var name: String!
 }
 
 struct FormGroup {
@@ -377,15 +352,15 @@ struct ReportCardTargetType {
 
 struct SchoolInfo {
     var rooms = [Room]()
-    var yearGroups = [YearGroup]()
-    var communityGroups = [CommunityGroup]()
-    var admissionGroups = [AdmissionGroup]()
-    var intakeGroups = [IntakeGroup]()
+    var yearGroups = [SimpleStore]()
+    var communityGroups = [SimpleStore]()
+    var admissionGroups = [SimpleStore]()
+    var intakeGroups = [SimpleStore]()
     var formGroups = [FormGroup]()
     var teachingGroups = [TeachingGroup]()
     var subjects = [Subject]()
     var reportCardTargetTypes = [ReportCardTargetType]()
     var employees = [Employee]()
-    var lesson_codes = [LessonCode]()
-    var statutory_codes = [StatutoryCode]()
+    var lesson_codes = [RegisterCode]()
+    var statutory_codes = [RegisterCode]()
 }

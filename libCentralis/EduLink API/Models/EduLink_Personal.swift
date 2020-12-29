@@ -9,31 +9,22 @@ import Foundation
 
 class EduLink_Personal {
     
-    public func personal() {
+    class func personal(_ rootCompletion: @escaping completionHandler) {
         let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.Personal")!
         let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.Personal\",\"params\":{\"learner_id\":\"\(EduLinkAPI.shared.authorisedUser.id!)\",\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
         NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
-            if success {
-                if let result = dict["result"] as? [String : Any] {
-                    if !(result["success"] as! Bool) {
-                        NotificationCenter.default.post(name: .FailedPersonal, object: nil)
-                        return
-                    }
-                    if let personal = result["personal"] as? [String : Any] {
-                        self.scrapeTime(personal)
-                    }
-                    NotificationCenter.default.post(name: .SuccesfulPersonal, object: nil)
-                } else {
-                    NotificationCenter.default.post(name: .FailedPersonal, object: nil)
-                }
-            } else {
-                NotificationCenter.default.post(name: .NetworkError, object: nil)
+            if !success { return rootCompletion(false, "Network Error") }
+            guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
+            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, "Unknown Error") }
+            if let personal = result["personal"] as? [String : Any] {
+                self.scrapeTime(personal)
             }
+            rootCompletion(true, nil)
         })
     }
     
-    private func scrapeTime(_ personal: [String : Any]) {
+    class func scrapeTime(_ personal: [String : Any]) {
         EduLinkAPI.shared.personal.id = "\(personal["id"] ?? "Not Given")"
         EduLinkAPI.shared.personal.forename = personal["forename"] as? String ?? "Not Given"
         EduLinkAPI.shared.personal.surname = personal["surname"] as? String ?? "Not Given"
@@ -63,11 +54,11 @@ class EduLink_Personal {
                 EduLinkAPI.shared.personal.room_code = room["code"] ?? "Not Given"
             }
             if let employee = form_group["employee"] as? [String : String] {
-                EduLinkAPI.shared.personal.form_teacher = "\(employee["title"]!) \(employee["forename"]!) \(employee["surname"]!)"
+                EduLinkAPI.shared.personal.form_teacher = "\(employee["title"] ?? "Not Given") \(employee["forename"] ?? "Not Given") \(employee["surname"] ?? "Not Given")"
             }
         }
-        EduLinkAPI.shared.personal.year = (personal["year_group"] as? [String : String])!["name"]
-        EduLinkAPI.shared.personal.house_group = (personal["house_group"] as? [String : String])!["name"]
+        EduLinkAPI.shared.personal.year = (personal["year_group"] as? [String : String] ?? [String : String]())["name"] ?? "Not Given"
+        EduLinkAPI.shared.personal.house_group = (personal["house_group"] as? [String : String] ?? [String : String]())["name"] ?? "Not Given"
     }
     
 }

@@ -48,7 +48,7 @@ class NewUserUPController: UIViewController {
         }
         if let nc = self.navigationController { self.workingCover.startWorking(nc) }
         self.dismissKeyboard(self)
-        LoginManager.shared.loginz(username: username, password: password, rootCompletion: { (success, error) -> Void in
+        LoginManager.shared.loginz(username: username, password: password, { (success, error) -> Void in
             DispatchQueue.main.async {
                 self.workingCover.stopWorking()
                 if success {

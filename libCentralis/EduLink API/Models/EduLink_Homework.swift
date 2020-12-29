@@ -9,65 +9,47 @@ import Foundation
 
 class EduLink_Homework {
     
-    public func homework() {
+    class func homework(_ rootCompletion: @escaping completionHandler) {
         let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.Homework")!
         let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.Homework\",\"params\":{\"format\":\"2\",\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
         NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
-            if success {
-                if let result = dict["result"] as? [String : Any] {
-                    if !(result["success"] as! Bool) {
-                        NotificationCenter.default.post(name: .FailedHomework, object: nil)
-                        return
-                    }
-                    if let homework = result["homework"] as? [String : Any] {
-                        if let current = homework["current"] as? [[String : Any]] {
-                            self.scrapeLeWork(.current, dict: current)
-                        }
-                        if let past = homework["past"] as? [[String : Any]] {
-                            self.scrapeLeWork(.past, dict: past)
-                        }
-                    }
-                    NotificationCenter.default.post(name: .SuccesfulHomework, object: nil)
-                } else {
-                    NotificationCenter.default.post(name: .FailedHomework, object: nil)
+            if !success { return rootCompletion(false, "Network Error") }
+            guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
+            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, "Unknown Error") }
+            if let homework = result["homework"] as? [String : Any] {
+                if let current = homework["current"] as? [[String : Any]] {
+                    self.scrapeLeWork(.current, dict: current)
                 }
-            } else {
-                NotificationCenter.default.post(name: .NetworkError, object: nil)
+                if let past = homework["past"] as? [[String : Any]] {
+                    self.scrapeLeWork(.past, dict: past)
+                }
             }
+            rootCompletion(true, nil)
         })
     }
     
-    public func homeworkDetails(_ index: Int!, _ homework: Homework!, _ context: HomeworkContext) {
+    class func homeworkDetails(_ index: Int!, _ homework: Homework!, _ context: HomeworkContext, _ rootCompletion: @escaping completionHandler) {
         let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.HomeworkDetails")!
         let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.HomeworkDetails\",\"params\":{\"homework_id\":\"\(homework.id!)\",\"source\":\"\(homework.source!)\",\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
         NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
-            if success {
-                if let result = dict["result"] as? [String : Any] {
-                    if !(result["success"] as! Bool) {
-                        NotificationCenter.default.post(name: .FailedHomework, object: nil)
-                        return
-                    }
-                    if let ab = result["homework"] as? [String : Any] {
-                        var hw = homework
-                        hw?.description = ab["description"] as? String ?? "Not Given"
-                        switch context {
-                        case .current: EduLinkAPI.shared.homework.current[index] = hw!
-                        case .past: EduLinkAPI.shared.homework.past[index] = hw!
-                        }
-                    }
-                    NotificationCenter.default.post(name: .SuccesfulHomeworkDetail, object: nil)
-                } else {
-                    NotificationCenter.default.post(name: .FailedHomework, object: nil)
+            if !success { return rootCompletion(false, "Network Error") }
+            guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
+            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, "Unknown Error") }
+            if let ab = result["homework"] as? [String : Any] {
+                var hw = homework
+                hw?.description = ab["description"] as? String ?? "Not Given"
+                switch context {
+                case .current: EduLinkAPI.shared.homework.current[index] = hw!
+                case .past: EduLinkAPI.shared.homework.past[index] = hw!
                 }
-            } else {
-                NotificationCenter.default.post(name: .NetworkError, object: nil)
             }
+            rootCompletion(true, nil)
         })
     }
     
-    public func completeHomework(_ completed: Bool, _ index: Int, _ context: HomeworkContext) {
+    class func completeHomework(_ completed: Bool, _ index: Int, _ context: HomeworkContext, _ rootCompletion: @escaping completionHandler) {
         let homework: Homework!
         switch context{
         case .current: homework = EduLinkAPI.shared.homework.current[index]
@@ -77,23 +59,18 @@ class EduLink_Homework {
         let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.HomeworkCompleted\",\"params\":{\"completed\":\"\(completed ? "true" : "false")\",\"homework_id\":\"\(homework.id!)\",\"learner_id\":\"\(EduLinkAPI.shared.authorisedUser.id!)\",\"source\":\"\(homework.source!)\",\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
         NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
-            if success {
-                if let result = dict["result"] as? [String : Any] {
-                    if result["success"] as! Bool {
-                        switch context {
-                        case .current: EduLinkAPI.shared.homework.current[index].completed = completed
-                        case .past: EduLinkAPI.shared.homework.past[index].completed = completed
-                        }
-                        NotificationCenter.default.post(name: .SuccesfulHomeworkToggle, object: nil)
-                    }
-                }
-            } else {
-                NotificationCenter.default.post(name: .NetworkError, object: nil)
+            if !success { return rootCompletion(false, "Network Error") }
+            guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
+            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, "Unknown Error") }
+            switch context {
+            case .current: EduLinkAPI.shared.homework.current[index].completed = completed
+            case .past: EduLinkAPI.shared.homework.past[index].completed = completed
             }
+            rootCompletion(true, nil)
         })
     }
     
-    private func scrapeLeWork(_ context: HomeworkContext, dict: [[String : Any]]) {
+    class func scrapeLeWork(_ context: HomeworkContext, dict: [[String : Any]]) {
         switch context {
         case .current: EduLinkAPI.shared.homework.current.removeAll()
         case .past: EduLinkAPI.shared.homework.past.removeAll()

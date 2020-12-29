@@ -25,12 +25,6 @@ class CarouselContainerController: UIViewController {
         self.setup()
     }
     
-    @objc private func hide() {
-        DispatchQueue.main.async {
-            self.activityIndicator.isHidden = true
-        }
-    }
-    
     private func setup() {
         switch context {
         case .homework: self.homeworkSetup()
@@ -64,7 +58,6 @@ extension CarouselContainerController {
         if !(EduLinkAPI.shared.homework.current.isEmpty && EduLinkAPI.shared.homework.past.isEmpty) {
             self.activityIndicator.isHidden = true
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(hide), name: .SuccesfulHomework, object: nil)
         self.rightNavigationButton.isHidden = true
     }
 }
@@ -76,7 +69,6 @@ extension CarouselContainerController {
         if EduLinkAPI.shared.weeks.isEmpty {
             self.activityIndicator.isHidden = true
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(hide), name: .SuccesfulTimetable, object: nil)
         self.rightNavigationButton.setTitle("", for: .normal)
     }
 }
@@ -88,7 +80,7 @@ extension CarouselContainerController {
         if !EduLinkAPI.shared.achievementBehaviourLookups.behaviours.isEmpty {
             self.activityIndicator.isHidden = true
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(hide), name: .SucccesfulBehaviour, object: nil)
+
         self.rightNavigationButton.isHidden = true
     }
 }
@@ -100,7 +92,6 @@ extension CarouselContainerController {
         if !EduLinkAPI.shared.attendance.lessons.isEmpty || !EduLinkAPI.shared.attendance.statutory.isEmpty {
             self.activityIndicator.isHidden = true
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(hide), name: .SuccesfulAttendance, object: nil)
         self.rightNavigationButton.isHidden = true
     }
 }

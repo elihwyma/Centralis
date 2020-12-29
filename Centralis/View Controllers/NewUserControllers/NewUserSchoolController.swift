@@ -39,7 +39,7 @@ class NewUserSchoolController: UIViewController {
         }
         if let nc = self.navigationController { self.workingCover.startWorking(nc) }
         self.dismissKeyboard(self)
-        LoginManager.shared.schoolProvisioning(schoolCode: code, rootCompletion: { (success, error) -> Void in
+        LoginManager.shared.schoolProvisioning(schoolCode: code, { (success, error) -> Void in
             DispatchQueue.main.async {
                 self.workingCover.stopWorking()
                 if success {

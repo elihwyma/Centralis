@@ -84,7 +84,6 @@ class TextViewController: UIViewController {
 
 extension TextViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("but this runs")
         if self.context == TextViewContext.links {
             let link = EduLinkAPI.shared.links[indexPath.row]
             if let url = URL(string: link.link) {
@@ -92,11 +91,13 @@ extension TextViewController: UITableViewDelegate {
             }
         }
         if self.context == TextViewContext.documents {
-            print("this runs")
-            self.startWorking()
+            if let nc = self.navigationController { self.workingCover.startWorking(nc) }
             self.documentIndex = indexPath.row
-            let document = EduLink_Documents()
-            document.document(EduLinkAPI.shared.documents[indexPath.row], self)
+            EduLink_Documents.document(EduLinkAPI.shared.documents[indexPath.row], self, {(success, error) -> Void in
+                DispatchQueue.main.async {
+                    self.workingCover.stopWorking()
+                }
+            })
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -158,9 +159,9 @@ extension TextViewController: UITableViewDataSource {
 //MARK: - Achievement
 extension TextViewController {
     private func achievementSetup() {
-        NotificationCenter.default.addObserver(self, selector: #selector(dataResponse), name: .SuccesfulAchievement, object: nil)
-        let achievement = EduLink_Achievement()
-        achievement.achievement()
+        EduLink_Achievement.achievement({(success, error) -> Void in
+            self.dataResponse()
+        })
     }
     
     private func achievementTitle() {
@@ -175,9 +176,9 @@ extension TextViewController {
 //MARK: - Catering
 extension TextViewController {
     private func cateringSetup() {
-        NotificationCenter.default.addObserver(self, selector: #selector(dataResponse), name: .SuccesfulCatering, object: nil)
-        let catering = EduLink_Catering()
-        catering.catering()
+        EduLink_Catering.catering({(success, error) -> Void in
+            self.dataResponse()
+        })
     }
     
     private func formatPrice(_ number: Double) -> String {
@@ -195,9 +196,9 @@ extension TextViewController {
 //MARK: - Personal
 extension TextViewController {
     private func personalSetup() {
-        NotificationCenter.default.addObserver(self, selector: #selector(dataResponse), name: .SuccesfulPersonal, object: nil)
-        let personal = EduLink_Personal()
-        personal.personal()
+        EduLink_Personal.personal({(success, error) -> Void in
+            self.dataResponse()
+        })
     }
     
     private func personalTitle() {
@@ -208,9 +209,9 @@ extension TextViewController {
 //MARK: - Links
 extension TextViewController {
     private func linkSetup() {
-        NotificationCenter.default.addObserver(self, selector: #selector(dataResponse), name: .SuccesfulLink, object: nil)
-        let link = EduLink_Links()
-        link.links()
+        EduLink_Links.links({(success, error) -> Void in
+            self.dataResponse()
+        })
     }
     
     private func linkTitle() {
@@ -231,39 +232,12 @@ extension TextViewController {
     }
     
     private func documentSetup() {
-        NotificationCenter.default.addObserver(self, selector: #selector(dataResponse), name: .SucccesfulDocument, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(stopWorking), name: .SucccesfulDocumentLookup, object: nil)
-        let document = EduLink_Documents()
-        document.documents()
+        EduLink_Documents.documents({(success, error) -> Void in
+            self.dataResponse()
+        })
     }
     
     private func documentTitle() {
         self.title = "Documents"
-    }
-    
-    private func startWorking() {
-        self.workingCover.frame = self.view.frame
-        self.workingCover.alpha = 0
-        self.view.addSubview(workingCover)
-        UIView.animate(withDuration: 0.5,
-                         delay: 0, usingSpringWithDamping: 1.0,
-                         initialSpringVelocity: 1.0,
-                         options: .curveEaseInOut, animations: {
-                            self.workingCover.alpha = 1
-                         }, completion: { (value: Bool) in
-          })
-    }
-    
-    @objc private func stopWorking() {
-        DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.5,
-                             delay: 0, usingSpringWithDamping: 1.0,
-                             initialSpringVelocity: 1.0,
-                             options: .curveEaseInOut, animations: {
-                                self.workingCover.alpha = 0
-                             }, completion: { (value: Bool) in
-                                self.workingCover.removeFromSuperview()
-              })
-        }
     }
 }

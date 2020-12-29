@@ -44,20 +44,16 @@ class ChartTableViewController: UIView {
         default: break
         }
     }
-    
-    @objc private func reloadTable() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
 }
 
 //MARK: - Lesson Behaviour
 extension ChartTableViewController {
     private func lessonBehaviour() {
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadTable), name: .BehaviourCodes, object: nil)
-        let rc = EduLink_Register()
-        rc.registerCodes(.BehaviourCodes)
+        EduLink_Register.registerCodes({ (success, error) -> Void in
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        })
     }
 }
 
