@@ -259,6 +259,7 @@
 		53CB50652572D1770077DDAE = {
 			isa = PBXGroup;
 			children = (
+				53CB50B4257311380077DDAE /* libCentralis */,
 				53CB50702572D1780077DDAE /* Centralis */,
 				53CB506F2572D1780077DDAE /* Products */,
 			);
@@ -275,7 +276,6 @@
 		53CB50702572D1780077DDAE /* Centralis */ = {
 			isa = PBXGroup;
 			children = (
-				53CB50B4257311380077DDAE /* Backend */,
 				53CB50952572D79E0077DDAE /* Extensions */,
 				53CB508F2572D6850077DDAE /* Views */,
 				53CB508E2572D6800077DDAE /* View Controllers */,
@@ -365,7 +365,7 @@
 			path = ResizedTableView;
 			sourceTree = "<group>";
 		};
-		53CB50B4257311380077DDAE /* Backend */ = {
+		53CB50B4257311380077DDAE /* libCentralis */ = {
 			isa = PBXGroup;
 			children = (
 				E176830A259B741F0099BB92 /* KeychainManager */,
@@ -373,7 +373,7 @@
 				53CB50B9257313280077DDAE /* EduLink API */,
 				53CB50B5257312E50077DDAE /* Network Manager */,
 			);
-			path = Backend;
+			path = libCentralis;
 			sourceTree = "<group>";
 		};
 		53CB50B5257312E50077DDAE /* Network Manager */ = {
@@ -754,7 +754,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Resources/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 192;
+				CURRENT_PROJECT_VERSION = 431;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				INFOPLIST_FILE = Centralis/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -780,7 +780,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Resources/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 192;
+				CURRENT_PROJECT_VERSION = 431;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				INFOPLIST_FILE = Centralis/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
