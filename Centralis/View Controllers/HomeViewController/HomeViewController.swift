@@ -25,6 +25,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
     var workingCover: WorkingCover = .fromNib()
+    var login: SavedLogin!
     private var shownMenus = [SimpleStore]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,9 +65,9 @@ class HomeViewController: UIViewController {
         self.menuOrganising()
     }
     
-    public func arriveFromDelegate(_ login: SavedLogin) {
+    @objc public func arriveFromDelegate() {
         if let nc = self.navigationController { self.workingCover.startWorking(nc) }
-        LoginManager.shared.quickLogin(login, { (success, error) -> Void in
+        LoginManager.shared.quickLogin(self.login, { (success, error) -> Void in
             DispatchQueue.main.async {
                 self.workingCover.stopWorking()
                 if success {
@@ -74,21 +75,47 @@ class HomeViewController: UIViewController {
                     self.collectionView.reloadData()
                     self.refreshStatus()
                     self.title = "\(EduLinkAPI.shared.authorisedUser.forename!) \(EduLinkAPI.shared.authorisedUser.surname!)"
+                } else {
+                    self.delegateLoginError(error!)
                 }
             }
         })
     }
     
-    private func refreshStatus() {
+    private func delegateLoginError(_ error: String) {
+        let errorView: ErrorView = .fromNib()
+        errorView.text.text = error
+        errorView.goBackButton.addTarget(self, action: #selector(self.logout), for: .touchUpInside)
+        errorView.retryButton.addTarget(self, action: #selector(self.arriveFromDelegate), for: .touchUpInside)
+        if let nc = self.navigationController { errorView.startWorking(nc) }
+    }
+    
+    @objc private func refreshStatus() {
         EduLink_Status.status(rootCompletion: { (success, error) -> Void in
             DispatchQueue.main.async {
-                #warning("Need to do something with status here")
+                if success {
+                    #warning("Yeah status needs sorting out here")
+                } else {
+                    self.statusError(error!)
+                }
             }
         })
     }
     
-    @IBAction func logout(_ sender: Any) {
-        self.performSegue(withIdentifier: "logout", sender: self)
+    private func statusError(_ error: String) {
+        let errorView: ErrorView = .fromNib()
+        errorView.text.text = error
+        errorView.changeGoBackLabel("Ignore")
+        errorView.retryButton.addTarget(self, action: #selector(self.refreshStatus), for: .touchUpInside)
+        if let nc = self.navigationController { errorView.startWorking(nc) }
+    }
+    
+    @objc func logout(_ sender: Any) {
+        EduLinkAPI.shared.clear()
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        viewController.modalPresentationStyle = .fullScreen
+        self.present(viewController, animated: true)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -122,7 +149,12 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
+        #if targetEnvironment(macCatalyst)
+        let noOfCellsInRow = 8
+        #else
         let noOfCellsInRow = 3
+        #endif
+        
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
         let totalSpace = flowLayout.sectionInset.left
             + flowLayout.sectionInset.right

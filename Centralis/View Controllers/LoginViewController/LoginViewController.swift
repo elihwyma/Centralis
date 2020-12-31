@@ -16,11 +16,18 @@ class LoginViewController: UIViewController {
     var containerView = UIView()
     var logins = [SavedLogin]()
     var workingCover: WorkingCover = .fromNib()
+    var magicIndex = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.organiseLogins()
+        self.tableView.reloadData()
     }
     
     private func setup() {
@@ -62,12 +69,6 @@ class LoginViewController: UIViewController {
     @IBAction func newLoggin(_ sender: Any) {
         self.performSegue(withIdentifier: "Centralis.ShowNewUser", sender: nil)
     }
-
-    @IBAction func logout( _ seg: UIStoryboardSegue) {
-        EduLinkAPI.shared.clear()
-        self.organiseLogins()
-        self.tableView.reloadData()
-    }
     
     @objc func removeLogin(longPressGestureRecognizer: UILongPressGestureRecognizer) {
         if longPressGestureRecognizer.state == UIGestureRecognizer.State.began {
@@ -95,25 +96,37 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
+    private func showError(_ error: String) {
+        let errorView: ErrorView = .fromNib()
+        errorView.text.text = error
+        errorView.retryButton.addTarget(self, action: #selector(self.loginAtIndex), for: .touchUpInside)
+        errorView.startWorking(self)
+    }
+    
+    @objc private func loginAtIndex() {
+        self.workingCover.startWorking(self)
+        let login = self.logins[self.magicIndex]
+        LoginManager.shared.quickLogin(login, { (success, error) -> Void in
+            DispatchQueue.main.async {
+                self.workingCover.stopWorking()
+                if success {
+                    UserDefaults.standard.setValue(login.username, forKey: "PreferredUsername")
+                    UserDefaults.standard.setValue(login.schoolCode, forKey: "PreferredSchool")
+                    self.performSegue(withIdentifier: "Centralis.Login", sender: nil)
+                } else {
+                    self.showError(error!)
+                }
+            }
+        })
+    }
 }
 
 
 extension LoginViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.workingCover.startWorking(self)
-        let login = self.logins[indexPath.row]
-        LoginManager.shared.quickLogin(login, { (success, error) -> Void in
-            DispatchQueue.main.async {
-                if success {
-                    self.workingCover.stopWorking()
-                    UserDefaults.standard.setValue(login.username, forKey: "PreferredUsername")
-                    UserDefaults.standard.setValue(login.schoolCode, forKey: "PreferredSchool")
-                    self.performSegue(withIdentifier: "Centralis.Login", sender: nil)
-                } else {
-                    #warning("Complete this error handling")
-                }
-            }
-        })
+        self.magicIndex = indexPath.row
+        self.loginAtIndex()
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

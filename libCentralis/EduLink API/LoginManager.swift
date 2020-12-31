@@ -125,11 +125,11 @@ class LoginManager {
         var logins = [SavedLogin]()
         for login in l {
             if let a = try? decoder.decode(SavedLogin.self, from: login) {
+                if a.username == self.username && a.schoolCode == self.schoolCode { return }
                 logins.append(a)
             }
         }
         let a = SavedLogin(username: self.username, schoolServer: EduLinkAPI.shared.authorisedSchool.server, image: png, schoolName: EduLinkAPI.shared.authorisedUser.school, forename: EduLinkAPI.shared.authorisedUser.forename, surname: EduLinkAPI.shared.authorisedUser.surname, schoolID: EduLinkAPI.shared.authorisedSchool.school_id, schoolCode: self.schoolCode)
-        
         if let encoded = try? encoder.encode(a) {
             l.append(encoded)
         }

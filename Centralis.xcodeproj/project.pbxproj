@@ -47,6 +47,7 @@
 		53CB50BC2573E42F0077DDAE /* EduLinkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50BB2573E42F0077DDAE /* EduLinkAPI.swift */; };
 		E10A5B25259BE4F300FA8BD0 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A5B23259BE4F300FA8BD0 /* ErrorView.swift */; };
 		E10A5B26259BE4F300FA8BD0 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */; };
+		E1305DA3259BEFDD00AB3119 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1305DA2259BEFDD00AB3119 /* UIButton+Extension.swift */; };
 		E1576054258BB68000DD496F /* AmyChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1576053258BB68000DD496F /* AmyChart.swift */; };
 		E1576058258BBD8E00DD496F /* ChartTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1576057258BBD8E00DD496F /* ChartTableViewController.xib */; };
 		E157605B258BBDE700DD496F /* ChartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E157605A258BBDE700DD496F /* ChartTableViewController.swift */; };
@@ -111,6 +112,7 @@
 		53CB50BB2573E42F0077DDAE /* EduLinkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLinkAPI.swift; sourceTree = "<group>"; };
 		E10A5B23259BE4F300FA8BD0 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
+		E1305DA2259BEFDD00AB3119 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		E1576053258BB68000DD496F /* AmyChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmyChart.swift; sourceTree = "<group>"; };
 		E1576057258BBD8E00DD496F /* ChartTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChartTableViewController.xib; sourceTree = "<group>"; };
 		E157605A258BBDE700DD496F /* ChartTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTableViewController.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				53CB50992572D7C40077DDAE /* UIView+Extensions.swift */,
 				53874511257BDCD300174D07 /* NSMutableAttributedString+Extension.swift */,
 				E19B2F5A258D71CE00930AE1 /* Double+Extensions.swift */,
+				E1305DA2259BEFDD00AB3119 /* UIButton+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -586,6 +589,7 @@
 				E19B2F50258CEC9900930AE1 /* ColourConverter.swift in Sources */,
 				53CB509D2572D9300077DDAE /* LoginViewController.swift in Sources */,
 				E157605B258BBDE700DD496F /* ChartTableViewController.swift in Sources */,
+				E1305DA3259BEFDD00AB3119 /* UIButton+Extension.swift in Sources */,
 				5324342E2578234900875BAD /* EduLink_Catering.swift in Sources */,
 				53CA2DEE2576CC9E00E3A02B /* LoginCell.swift in Sources */,
 				E1C8FD76258166210006F36F /* EmbeddedTableViewController.swift in Sources */,

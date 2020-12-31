@@ -24,7 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
                     let viewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
                     let navigationController = UINavigationController.init(rootViewController: viewController)
-                    viewController.arriveFromDelegate(a)
+                    viewController.login = a
+                    viewController.arriveFromDelegate()
                     navigationController.navigationItem.largeTitleDisplayMode = .always
                     navigationController.navigationBar.prefersLargeTitles = true
                     self.window?.rootViewController = navigationController
