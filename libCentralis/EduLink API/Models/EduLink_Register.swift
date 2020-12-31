@@ -13,10 +13,10 @@ class EduLink_Register {
         let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.RegisterCodes")!
         let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.RegisterCodes\",\"params\":{\"learner_id\":\"\(EduLinkAPI.shared.authorisedUser.id!)\",\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
-        NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
+        NetworkManager.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }
             guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
-            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, "Unknown Error") }
+            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, (result["error"] as? String ?? "Unknown Error")) }
             let c = ColourConverter()
             if let lesson_codes = result["lesson_codes"] as? [[String : Any]] {
                 EduLinkAPI.shared.authorisedSchool.schoolInfo.lesson_codes.removeAll()

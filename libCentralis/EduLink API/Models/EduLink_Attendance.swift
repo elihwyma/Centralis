@@ -12,10 +12,10 @@ class EduLink_Attendance {
         let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.Attendance")!
         let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.Attendance\",\"params\":{\"learner_id\":\"\(EduLinkAPI.shared.authorisedUser.id!)\",\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\",\"format\":\"3\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
-        NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
+        NetworkManager.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }
             guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
-            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, "Unknown Error") }
+            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, (result["error"] as? String ?? "Unknown Error")) }
             EduLinkAPI.shared.attendance.show_lesson = result["show_lesson"] as? Bool ?? false
             EduLinkAPI.shared.attendance.show_statutory = result["show_statutory"] as? Bool ?? false
             if let lesson = result["lesson"] as? [[String : Any]] {

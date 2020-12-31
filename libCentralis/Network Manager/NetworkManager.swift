@@ -10,9 +10,7 @@ import Foundation
 typealias completionHandler = (_ success: Bool, _ error: String?) -> ()
 
 class NetworkManager {
-    let emptyDict = [String : Any]()
-    static let shared = NetworkManager()
-    
+
     typealias requestDictCompletion = (_ success: Bool, _ dict: [String : Any]) -> ()
     
     public func generateStringFromDict(_ dict: [String : String]) -> String {
@@ -25,7 +23,7 @@ class NetworkManager {
         return "Error"
     }
     
-    public func requestWithDict(url: URL, method: String, headers: [String : String]?, jsonbody: String?, completion: @escaping requestDictCompletion) {
+    class func requestWithDict(url: URL, method: String, headers: [String : String]?, jsonbody: String?, completion: @escaping requestDictCompletion) {
         var request = URLRequest(url: url)
         request.httpMethod = method
         request.httpBody = jsonbody?.data(using: .utf8)
@@ -41,11 +39,10 @@ class NetworkManager {
                 do {
                     let dict = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String : Any] ?? [String : Any]()
                     completion(true, dict)
-
                 } catch {
-                    completion(false, self.emptyDict)
+                    completion(false, [String : Any]())
                 }
-            } else { completion(false, self.emptyDict) }
+            } else { completion(false, [String : Any]()) }
         }
         task.resume()
     }

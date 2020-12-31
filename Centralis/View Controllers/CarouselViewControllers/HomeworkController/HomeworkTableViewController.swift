@@ -14,7 +14,7 @@ class HomeworkTableViewController: UIView {
     var rootSender: CarouselContainerController?
     var context: HomeworkContext?
     var sender: CarouselController?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setup()
@@ -34,6 +34,27 @@ class HomeworkTableViewController: UIView {
         self.tableView.addGestureRecognizer(longPress)
     }
     
+    var completeCache: (Bool, Int, HomeworkContext)!
+    private func completeError(_ error: String) {
+        let errorView: ErrorView = .fromNib()
+        errorView.text.text = error
+        errorView.changeGoBackLabel("Ignore")
+        errorView.retryButton.addTarget(self, action: #selector(self.completeHomework), for: .touchUpInside)
+        if let nc = self.rootSender?.navigationController { errorView.startWorking(nc) }
+    }
+    
+    @objc private func completeHomework() {
+        EduLink_Homework.completeHomework(self.completeCache.0, self.completeCache.1, self.completeCache.2, {(success, error) -> Void in
+            DispatchQueue.main.async {
+                if success {
+                    self.tableView.reloadData()
+                } else {
+                    self.completeError(error!)
+                }
+            }
+        })
+    }
+    
     @objc private func showCompleteMenu(longPressGestureRecognizer: UILongPressGestureRecognizer) {
         if longPressGestureRecognizer.state != UIGestureRecognizer.State.began { return }
         let touchPoint = longPressGestureRecognizer.location(in: tableView)
@@ -46,12 +67,8 @@ class HomeworkTableViewController: UIView {
             }
             let alert = UIAlertController(title: "Homework Options", message: "What do you want do with this homework?", preferredStyle: .actionSheet)
             alert.addAction(UIAlertAction(title: "Mark as \(homework.completed ? "Not Completed" : "Completed")", style: .default, handler: { action in
-                EduLink_Homework.completeHomework(!homework.completed!, indexPath.row, self.context!, {(success, error) -> Void in
-                    #warning("error handing")
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                })
+                self.completeCache = (!homework.completed, indexPath.row, self.context!)
+                self.completeHomework()
             }))
             alert.addAction(UIAlertAction(title: "Show Description", style: .default, handler: { action in
                 let vc = UIViewController()
@@ -59,6 +76,7 @@ class HomeworkTableViewController: UIView {
                 view.context = self.context
                 view.homework = homework
                 view.index = indexPath.row
+                view.rootSender = self.rootSender
                 view.setup()
                 vc.view = view
                 ((self.sender?.view)?.parentViewController)?.navigationController?.pushViewController(vc, animated: true)

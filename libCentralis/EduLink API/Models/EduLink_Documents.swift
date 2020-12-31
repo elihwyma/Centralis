@@ -13,10 +13,10 @@ class EduLink_Documents {
         let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.Documents")!
         let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.Documents\",\"params\":{\"learner_id\":\"\(EduLinkAPI.shared.authorisedUser.id!)\",\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
-        NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
+        NetworkManager.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }
             guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
-            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, "Unknown Error") }
+            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, (result["error"] as? String ?? "Unknown Error")) }
             guard let documents = result["documents"] as? [[String : Any]] else { return rootCompletion(false, "Unknown Error") }
             EduLinkAPI.shared.documents.removeAll()
             for document in documents {
@@ -35,10 +35,10 @@ class EduLink_Documents {
         let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.Document")!
         let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.Document\",\"params\":{\"document_id\":\"\(document.id!)\",\"learner_id\":\"\(EduLinkAPI.shared.authorisedUser.id!)\",\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
-        NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
+        NetworkManager.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }
             guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
-            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, "Unknown Error") }
+            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, (result["error"] as? String ?? "Unknown Error")) }
             guard let r = result["result"] as? [String : Any], let data = r["document"] as? String, let index = EduLinkAPI.shared.documents.firstIndex(where: { $0.id == document.id }), let mime_type = r["mime_type"] as? String else { return rootCompletion(false, "Unknown Error") }
             EduLinkAPI.shared.documents[index].data = data; EduLinkAPI.shared.documents[index].mime_type = mime_type
             DispatchQueue.main.async {

@@ -13,10 +13,10 @@ class EduLink_Achievement {
         let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.AchievementBehaviourLookups")!
         let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.AchievementBehaviourLookups\",\"params\":{\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
-        NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
+        NetworkManager.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }
             guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
-            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, "Unknown Error") }
+            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, (result["error"] as? String ?? "Unknown Error")) }
             EduLink_Achievement.scrapeAllNeededData(result)
             rootCompletion(true, nil)
         })
@@ -26,7 +26,7 @@ class EduLink_Achievement {
         let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.Achievement")!
         let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.Achievement\",\"params\":{\"learner_id\":\"\(EduLinkAPI.shared.authorisedUser.id!)\",\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
-        NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
+        NetworkManager.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
             if !success { return zCompletion(false, "Network Error") }
             guard let result = dict["result"] as? [String : Any] else { return zCompletion(false, "Unknown Error") }
             if !(result["success"] as? Bool ?? false) { return zCompletion(false, "Unknown Error") }
@@ -64,7 +64,7 @@ class EduLink_Achievement {
         let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.Behaviour")!
         let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.Behaviour\",\"params\":{\"learner_id\":\"\(EduLinkAPI.shared.authorisedUser.id!)\",\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\",\"format\":\"2\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
-        NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
+        NetworkManager.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
             if !success { return zCompletion(false, "Network Error") }
             guard let result = dict["result"] as? [String : Any] else { return zCompletion(false, "Unknown Error") }
             if !(result["success"] as? Bool ?? false) { return zCompletion(false, "Unknown Error") }

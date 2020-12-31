@@ -13,10 +13,10 @@ class EduLink_Homework {
         let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.Homework")!
         let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.Homework\",\"params\":{\"format\":\"2\",\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
-        NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
+        NetworkManager.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }
             guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
-            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, "Unknown Error") }
+            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, (result["error"] as? String ?? "Unknown Error")) }
             if let homework = result["homework"] as? [String : Any] {
                 if let current = homework["current"] as? [[String : Any]] {
                     self.scrapeLeWork(.current, dict: current)
@@ -33,10 +33,10 @@ class EduLink_Homework {
         let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.HomeworkDetails")!
         let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.HomeworkDetails\",\"params\":{\"homework_id\":\"\(homework.id!)\",\"source\":\"\(homework.source!)\",\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
-        NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
+        NetworkManager.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }
             guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
-            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, "Unknown Error") }
+            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, (result["error"] as? String ?? "Unknown Error")) }
             if let ab = result["homework"] as? [String : Any] {
                 var hw = homework
                 hw?.description = ab["description"] as? String ?? "Not Given"
@@ -58,10 +58,10 @@ class EduLink_Homework {
         let url = URL(string: "\(EduLinkAPI.shared.authorisedSchool.server!)?method=EduLink.HomeworkCompleted")!
         let headers: [String : String] = ["Content-Type" : "application/json;charset=utf-8"]
         let body = "{\"jsonrpc\":\"2.0\",\"method\":\"EduLink.HomeworkCompleted\",\"params\":{\"completed\":\"\(completed ? "true" : "false")\",\"homework_id\":\"\(homework.id!)\",\"learner_id\":\"\(EduLinkAPI.shared.authorisedUser.id!)\",\"source\":\"\(homework.source!)\",\"authtoken\":\"\(EduLinkAPI.shared.authorisedUser.authToken!)\"},\"uuid\":\"\(UUID.shared.uuid)\",\"id\":\"1\"}"
-        NetworkManager.shared.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
+        NetworkManager.requestWithDict(url: url, method: "POST", headers: headers, jsonbody: body, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }
             guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
-            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, "Unknown Error") }
+            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, (result["error"] as? String ?? "Unknown Error")) }
             switch context {
             case .current: EduLinkAPI.shared.homework.current[index].completed = completed
             case .past: EduLinkAPI.shared.homework.past[index].completed = completed
@@ -88,6 +88,7 @@ class EduLink_Homework {
             homework.available_text = h["available_text"] as? String ?? "Not Given"
             homework.status = h["status"] as? String ?? "Not Given"
             homework.source = h["source"] as? String ?? "Not Given"
+            homework.description = h["description"] as? String ?? ""
             switch context {
             case .current: EduLinkAPI.shared.homework.current.append(homework)
             case .past: EduLinkAPI.shared.homework.past.append(homework)

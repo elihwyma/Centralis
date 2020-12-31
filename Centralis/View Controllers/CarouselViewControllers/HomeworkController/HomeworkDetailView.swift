@@ -14,6 +14,7 @@ class HomeworkDetailView: UIView {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var context: HomeworkContext!
     var homework: Homework!
+    var rootSender: CarouselContainerController?
     var index: Int!
 
     override func awakeFromNib() {
@@ -26,14 +27,33 @@ class HomeworkDetailView: UIView {
         self.completeButton.layer.borderWidth = 2
         self.completeButton.layer.cornerRadius = 15
         self.completeButton.setTitle("  Mark as \(homework.completed ? "Not Completed" : "Completed")  ", for: .normal)
-        if homework.description == nil {
-            EduLink_Homework.homeworkDetails(self.index, self.homework, self.context, {(success, error) -> Void in
-                #warning("Error handling here would be nice")
-                self.fixIndexes()
-            })
-        } else {
-            self.detailResponse()
-        }
+        self.sortOutDescription()
+        
+    }
+    
+    @objc private func sortOutDescription() {
+        if !homework.description.isEmpty { return self.detailResponse() }
+        EduLink_Homework.homeworkDetails(self.index, self.homework, self.context, {(success, error) -> Void in
+            DispatchQueue.main.async {
+                if success {
+                    self.fixIndexes()
+                } else {
+                    self.descriptionError(error!)
+                }
+            }
+        })
+    }
+    
+    @objc private func goBack() {
+        self.rootSender?.navigationController?.popViewController(animated: true)
+    }
+    
+    private func descriptionError(_ error: String) {
+        let errorView: ErrorView = .fromNib()
+        errorView.text.text = error
+        errorView.goBackButton.addTarget(self, action: #selector(self.goBack), for: .touchUpInside)
+        errorView.retryButton.addTarget(self, action: #selector(self.sortOutDescription), for: .touchUpInside)
+        if let nc = self.rootSender?.navigationController { errorView.startWorking(nc) }
     }
     
     private func fixIndexes() {
@@ -56,30 +76,43 @@ class HomeworkDetailView: UIView {
         att.addPair(bold: "Set by: ", normal: "\(self.homework.set_by!)\n")
         att.addPair(bold: "Description: \n", normal: "")
         
-        let data = Data(self.homework.description.utf8)
-        if let tryToHTML = try? NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
-            let range = (tryToHTML.string as NSString).range(of: tryToHTML.string)
-            tryToHTML.addAttribute((NSAttributedString.Key.font), value: UIFont.systemFont(ofSize: 17), range: range)
-            tryToHTML.addAttribute((NSAttributedString.Key.backgroundColor), value: UIColor.clear, range: range)
-            att.append(tryToHTML)
+        if !self.homework.description.isEmpty {
+            let data = Data(self.homework.description.utf8)
+            if let tryToHTML = try? NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+                let range = (tryToHTML.string as NSString).range(of: tryToHTML.string)
+                tryToHTML.addAttribute((NSAttributedString.Key.font), value: UIFont.systemFont(ofSize: 17), range: range)
+                tryToHTML.addAttribute((NSAttributedString.Key.backgroundColor), value: UIColor.clear, range: range)
+                att.append(tryToHTML)
+            }
+        } else {
+            att.addPair(bold: "", normal: "No description given")
         }
+        
         self.textView.attributedText = att
         self.textView.textColor = .label
     }
     
-    @objc private func completeResponse() {
-        DispatchQueue.main.async {
-            self.homework.completed = !self.homework.completed
-            self.completeButton.setTitle("  Mark as \(self.homework.completed ? "Not Completed" : "Completed")  ", for: .normal)
-        }
-        
+    private func completeResponse() {
+        self.fixIndexes()
+        self.completeButton.setTitle("  Mark as \(self.homework.completed ? "Not Completed" : "Completed")  ", for: .normal)
+    }
+
+    private func completeError(_ error: String) {
+        let errorView: ErrorView = .fromNib()
+        errorView.text.text = error
+        errorView.changeGoBackLabel("Ignore")
+        errorView.retryButton.addTarget(self, action: #selector(self.completeButton(_:)), for: .touchUpInside)
+        if let nc = self.rootSender?.navigationController { errorView.startWorking(nc) }
     }
     
-    @IBAction func completeButton(_ sender: Any) {
+    @objc @IBAction func completeButton(_ sender: Any) {
         EduLink_Homework.completeHomework(!homework.completed, self.index, self.context, {(success, error) -> Void in
-            #warning("Error :clap: Handling :clap:")
             DispatchQueue.main.async {
-                self.detailResponse()
+                if success {
+                    self.completeResponse()
+                } else {
+                    self.completeError(error!)
+                }
             }
         })
     }

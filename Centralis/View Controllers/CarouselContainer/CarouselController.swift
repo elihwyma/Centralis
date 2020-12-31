@@ -43,19 +43,42 @@ class CarouselController: UIPageViewController {
         pc.currentPageIndicatorTintColor = .lightGray
         pc.pageIndicatorTintColor = .darkGray
     }
+    
+    @objc private func goBack() {
+        self.senderContext?.navigationController?.popViewController(animated: true)
+    }
+    
+    private func error(_ error: String) {
+        let errorView: ErrorView = .fromNib()
+        errorView.text.text = error
+        errorView.goBackButton.addTarget(self, action: #selector(self.goBack), for: .touchUpInside)
+        switch context {
+        case .homework: errorView.retryButton.addTarget(self, action: #selector(self.homeworkSetup), for: .touchUpInside)
+        case .timetable: errorView.retryButton.addTarget(self, action: #selector(self.timetableSetup), for: .touchUpInside)
+        case .behaviour: errorView.retryButton.addTarget(self, action: #selector(self.behaviourSetup), for: .touchUpInside)
+        case .attendance: errorView.retryButton.addTarget(self, action: #selector(self.attendanceSetup), for: .touchUpInside)
+        case .none: break
+        }
+        if let nc = self.senderContext?.navigationController { errorView.startWorking(nc) }
+    }
 }
 
 //MARK: - Homework
 extension CarouselController {
-    private func homeworkSetup() {
+    @objc private func homeworkSetup() {
+        self.senderContext?.activityIndicator.isHidden = false
         if !(EduLinkAPI.shared.homework.current.isEmpty && EduLinkAPI.shared.homework.past.isEmpty) {
             self.setupHomeworkViews()
+            self.senderContext?.activityIndicator.isHidden = true
         } else {
             EduLink_Homework.homework({(success, error) -> Void in
                 DispatchQueue.main.async {
-                    #warning("Error handling")
-                    self.setupHomeworkViews()
                     self.senderContext?.activityIndicator.isHidden = true
+                    if success {
+                        self.setupHomeworkViews()
+                    } else {
+                        self.error(error!)
+                    }
                 }
             })
         }
@@ -86,16 +109,22 @@ extension CarouselController {
 
 //MARK: - Timetable
 extension CarouselController {
-    private func timetableSetup() {
+    @objc private func timetableSetup() {
+        self.senderContext?.activityIndicator.isHidden = true
         NotificationCenter.default.addObserver(self, selector: #selector(weekChange), name: .TimetableButtonPressed, object: nil)
         if !EduLinkAPI.shared.weeks.isEmpty {
             self.ugh()
             self.senderContext?.activityIndicator.isHidden = true
         } else {
             EduLink_Timetable.timetable({(success, error) -> Void in
-                #warning("Error handling")
-                self.ugh()
-                self.senderContext?.activityIndicator.isHidden = true
+                DispatchQueue.main.async {
+                    self.senderContext?.activityIndicator.isHidden = true
+                    if success {
+                        self.ugh()
+                    } else {
+                        self.error(error!)
+                    }
+                }
             })
         }
     }
@@ -170,16 +199,20 @@ extension CarouselController {
 
 //MARK: - Behaviour
 extension CarouselController {
-    private func behaviourSetup() {
+    @objc private func behaviourSetup() {
+        self.senderContext?.activityIndicator.isHidden = true
         if !EduLinkAPI.shared.achievementBehaviourLookups.behaviours.isEmpty {
             self.setupBehaviourViews()
             self.senderContext?.activityIndicator.isHidden = true
         } else {
             EduLink_Achievement.behaviour({(success, error) -> Void in
-                #warning("Error handling here")
                 DispatchQueue.main.async {
-                    self.setupBehaviourViews()
                     self.senderContext?.activityIndicator.isHidden = true
+                    if success {
+                        self.setupBehaviourViews()
+                    } else {
+                        self.error(error!)
+                    }
                 }
             })
         }
@@ -215,16 +248,20 @@ extension CarouselController {
 
 //MARK: - Attendance
 extension CarouselController {
-    private func attendanceSetup() {
+    @objc private func attendanceSetup() {
+        self.senderContext?.activityIndicator.isHidden = true
         if !EduLinkAPI.shared.attendance.lessons.isEmpty || !EduLinkAPI.shared.attendance.statutory.isEmpty {
             self.setupAttendanceViews()
             self.senderContext?.activityIndicator.isHidden = true
         } else {
             EduLink_Attendance.attendance({(success, error) -> Void in
-                #warning("Error handling here")
                 DispatchQueue.main.async {
-                    self.setupAttendanceViews()
                     self.senderContext?.activityIndicator.isHidden = true
+                    if success {
+                        self.setupAttendanceViews()
+                    } else {
+                        self.error(error!)
+                    }
                 }
             })
         }
