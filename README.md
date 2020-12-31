@@ -1,2 +1,2 @@
 # Centralis
- For absolutely fucking Overnet Data
+The EduLink app sucks, so I remade it 
