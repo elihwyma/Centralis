@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import libCentralis
 
 enum EmbeddedControllerContext {
     case timetable

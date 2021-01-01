@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import libCentralis
 
 class LoginViewController: UIViewController {
 
@@ -77,8 +78,7 @@ class LoginViewController: UIViewController {
                 let login = self.logins[indexPath.row]
                 let alert = UIAlertController(title: "Remove Login", message: "Do you want to delete the login for \(login.forename!) at \(login.schoolName!)?", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { action in
-                    let loginManager = LoginManager()
-                    loginManager.removeLogin(uwuIn: login)
+                    LoginManager.shared.removeLogin(uwuIn: login)
                     self.organiseLogins()
                     self.tableView.reloadData()
                 }))

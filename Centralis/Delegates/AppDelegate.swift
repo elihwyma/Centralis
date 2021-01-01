@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import libCentralis
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

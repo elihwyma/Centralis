@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import libCentralis
 
 enum TextViewContext {
     case catering
@@ -80,6 +81,47 @@ class TextViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
+    
+    @objc private func goBack() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    private func error(_ error: String) {
+        let errorView: ErrorView = .fromNib()
+        errorView.text.text = error
+        errorView.goBackButton.addTarget(self, action: #selector(self.goBack), for: .touchUpInside)
+        switch context {
+        case .catering: errorView.retryButton.addTarget(self, action: #selector(self.cateringSetup), for: .touchUpInside)
+        case .achievement: errorView.retryButton.addTarget(self, action: #selector(self.achievementSetup), for: .touchUpInside)
+        case .links: errorView.retryButton.addTarget(self, action: #selector(self.linkSetup), for: .touchUpInside)
+        case .documents: errorView.retryButton.addTarget(self, action: #selector(self.documentSetup), for: .touchUpInside)
+        case .personal: errorView.retryButton.addTarget(self, action: #selector(self.personalSetup), for: .touchUpInside)
+        case .none: break
+        }
+        if let nc = self.navigationController { errorView.startWorking(nc) }
+    }
+    
+    private func documentError(_ error: String) {
+        let errorView: ErrorView = .fromNib()
+        errorView.text.text = error
+        errorView.changeGoBackLabel("Ignore")
+        errorView.retryButton.addTarget(self, action: #selector(self.loadDocument), for: .touchUpInside)
+        if let nc = self.navigationController { errorView.startWorking(nc) }
+    }
+    
+    @objc private func loadDocument() {
+        if let nc = self.navigationController { self.workingCover.startWorking(nc) }
+        EduLink_Documents.document(EduLinkAPI.shared.documents[self.documentIndex], {(success, error) -> Void in
+            DispatchQueue.main.async {
+                self.workingCover.stopWorking()
+                if success {
+                    self.performSegue(withIdentifier: "Centralis.DocumentWebView", sender: nil)
+                } else {
+                    self.documentError(error!)
+                }
+            }
+        })
+    }
 }
 
 extension TextViewController: UITableViewDelegate {
@@ -91,13 +133,8 @@ extension TextViewController: UITableViewDelegate {
             }
         }
         if self.context == TextViewContext.documents {
-            if let nc = self.navigationController { self.workingCover.startWorking(nc) }
             self.documentIndex = indexPath.row
-            EduLink_Documents.document(EduLinkAPI.shared.documents[indexPath.row], self, {(success, error) -> Void in
-                DispatchQueue.main.async {
-                    self.workingCover.stopWorking()
-                }
-            })
+            self.loadDocument()
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -158,7 +195,7 @@ extension TextViewController: UITableViewDataSource {
 
 //MARK: - Achievement
 extension TextViewController {
-    private func achievementSetup() {
+    @objc private func achievementSetup() {
         EduLink_Achievement.achievement({(success, error) -> Void in
             self.dataResponse()
         })
@@ -175,7 +212,7 @@ extension TextViewController {
 
 //MARK: - Catering
 extension TextViewController {
-    private func cateringSetup() {
+    @objc private func cateringSetup() {
         EduLink_Catering.catering({(success, error) -> Void in
             self.dataResponse()
         })
@@ -195,7 +232,7 @@ extension TextViewController {
 
 //MARK: - Personal
 extension TextViewController {
-    private func personalSetup() {
+    @objc private func personalSetup() {
         EduLink_Personal.personal({(success, error) -> Void in
             self.dataResponse()
         })
@@ -208,7 +245,7 @@ extension TextViewController {
 
 //MARK: - Links
 extension TextViewController {
-    private func linkSetup() {
+    @objc private func linkSetup() {
         EduLink_Links.links({(success, error) -> Void in
             self.dataResponse()
         })
@@ -231,7 +268,7 @@ extension TextViewController {
         }
     }
     
-    private func documentSetup() {
+    @objc private func documentSetup() {
         EduLink_Documents.documents({(success, error) -> Void in
             self.dataResponse()
         })

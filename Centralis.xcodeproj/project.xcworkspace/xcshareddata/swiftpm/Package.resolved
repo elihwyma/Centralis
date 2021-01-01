@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "libCentralis",
+        "repositoryURL": "https://github.com/CharlieWhile13/libCentralis",
+        "state": {
+          "branch": "uwu",
+          "revision": "45c48d32a2b924c4207dec0ce15cbef1455e585c",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
