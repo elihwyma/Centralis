@@ -23,8 +23,6 @@
 		53CA2DEF2576CC9E00E3A02B /* LoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53CA2DED2576CC9D00E3A02B /* LoginCell.xib */; };
 		53CA2DF32576D67A00E3A02B /* WorkingCover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53CA2DF22576D67900E3A02B /* WorkingCover.xib */; };
 		53CA2DF62576D69A00E3A02B /* WorkingCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DF52576D69A00E3A02B /* WorkingCover.swift */; };
-		53CA2DFC2576DA5800E3A02B /* HomeMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DFA2576DA5700E3A02B /* HomeMenuCell.swift */; };
-		53CA2DFD2576DA5900E3A02B /* HomeMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53CA2DFB2576DA5700E3A02B /* HomeMenuCell.xib */; };
 		53CA2E012576DD2A00E3A02B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2E002576DD2A00E3A02B /* HomeViewController.swift */; };
 		53CB50722572D1780077DDAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50712572D1780077DDAE /* AppDelegate.swift */; };
 		53CB50792572D1780077DDAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53CB50772572D1780077DDAE /* Main.storyboard */; };
@@ -37,6 +35,8 @@
 		E10A5B26259BE4F300FA8BD0 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */; };
 		E12922B1259EB61200A7DEE1 /* libCentralis in Frameworks */ = {isa = PBXBuildFile; productRef = E12922B0259EB61200A7DEE1 /* libCentralis */; };
 		E1305DA3259BEFDD00AB3119 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1305DA2259BEFDD00AB3119 /* UIButton+Extension.swift */; };
+		E14A7E55259FCF2400EF9712 /* HomeMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14A7E53259FCF2300EF9712 /* HomeMenuCell.swift */; };
+		E14A7E56259FCF2400EF9712 /* HomeMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E14A7E54259FCF2300EF9712 /* HomeMenuCell.xib */; };
 		E1576054258BB68000DD496F /* AmyChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1576053258BB68000DD496F /* AmyChart.swift */; };
 		E1576058258BBD8E00DD496F /* ChartTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1576057258BBD8E00DD496F /* ChartTableViewController.xib */; };
 		E157605B258BBDE700DD496F /* ChartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E157605A258BBDE700DD496F /* ChartTableViewController.swift */; };
@@ -68,8 +68,6 @@
 		53CA2DED2576CC9D00E3A02B /* LoginCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginCell.xib; sourceTree = "<group>"; };
 		53CA2DF22576D67900E3A02B /* WorkingCover.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkingCover.xib; sourceTree = "<group>"; };
 		53CA2DF52576D69A00E3A02B /* WorkingCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingCover.swift; sourceTree = "<group>"; };
-		53CA2DFA2576DA5700E3A02B /* HomeMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuCell.swift; sourceTree = "<group>"; };
-		53CA2DFB2576DA5700E3A02B /* HomeMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeMenuCell.xib; sourceTree = "<group>"; };
 		53CA2E002576DD2A00E3A02B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		53CB506E2572D1780077DDAE /* Centralis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Centralis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53CB50712572D1780077DDAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +81,8 @@
 		E10A5B23259BE4F300FA8BD0 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
 		E1305DA2259BEFDD00AB3119 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		E14A7E53259FCF2300EF9712 /* HomeMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuCell.swift; sourceTree = "<group>"; };
+		E14A7E54259FCF2300EF9712 /* HomeMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeMenuCell.xib; sourceTree = "<group>"; };
 		E1576053258BB68000DD496F /* AmyChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmyChart.swift; sourceTree = "<group>"; };
 		E1576057258BBD8E00DD496F /* ChartTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChartTableViewController.xib; sourceTree = "<group>"; };
 		E157605A258BBDE700DD496F /* ChartTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTableViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +165,7 @@
 		53CA2DEA2576CC4300E3A02B /* Table Cells */ = {
 			isa = PBXGroup;
 			children = (
+				E14A7E52259FCEEA00EF9712 /* HomeMenuCell */,
 				E157605D258BF54C00DD496F /* AmyChartCell */,
 				5387450B257BDB5300174D07 /* HomeworkCell */,
 				532434332578288500875BAD /* TextViewCell */,
@@ -194,18 +195,8 @@
 		53CA2DF82576DA2F00E3A02B /* Collection View Cells */ = {
 			isa = PBXGroup;
 			children = (
-				53CA2DF92576DA3500E3A02B /* Home Menu Cell */,
 			);
 			path = "Collection View Cells";
-			sourceTree = "<group>";
-		};
-		53CA2DF92576DA3500E3A02B /* Home Menu Cell */ = {
-			isa = PBXGroup;
-			children = (
-				53CA2DFA2576DA5700E3A02B /* HomeMenuCell.swift */,
-				53CA2DFB2576DA5700E3A02B /* HomeMenuCell.xib */,
-			);
-			path = "Home Menu Cell";
 			sourceTree = "<group>";
 		};
 		53CB50652572D1770077DDAE = {
@@ -324,6 +315,15 @@
 				E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */,
 			);
 			path = ErrorView;
+			sourceTree = "<group>";
+		};
+		E14A7E52259FCEEA00EF9712 /* HomeMenuCell */ = {
+			isa = PBXGroup;
+			children = (
+				E14A7E53259FCF2300EF9712 /* HomeMenuCell.swift */,
+				E14A7E54259FCF2300EF9712 /* HomeMenuCell.xib */,
+			);
+			path = HomeMenuCell;
 			sourceTree = "<group>";
 		};
 		E1576052258BB65D00DD496F /* AmyChart */ = {
@@ -463,8 +463,8 @@
 				E10A5B26259BE4F300FA8BD0 /* ErrorView.xib in Resources */,
 				53874526257C1EB100174D07 /* HomeworkDetailView.xib in Resources */,
 				53CA2DEF2576CC9E00E3A02B /* LoginCell.xib in Resources */,
-				53CA2DFD2576DA5900E3A02B /* HomeMenuCell.xib in Resources */,
 				E1576061258BF56B00DD496F /* AmyChartCell.xib in Resources */,
+				E14A7E56259FCF2400EF9712 /* HomeMenuCell.xib in Resources */,
 				53CB507E2572D1880077DDAE /* LaunchScreen.storyboard in Resources */,
 				53874506257BD7AD00174D07 /* HomeworkTableViewController.xib in Resources */,
 				E1C8FD73258165BD0006F36F /* EmbeddedTableViewController.xib in Resources */,
@@ -484,7 +484,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53CA2DFC2576DA5800E3A02B /* HomeMenuCell.swift in Sources */,
+				E14A7E55259FCF2400EF9712 /* HomeMenuCell.swift in Sources */,
 				53243436257828A300875BAD /* TextViewCell.swift in Sources */,
 				E1768308259A8C7A0099BB92 /* NewUserUPController.swift in Sources */,
 				E1F9A49825850F6000CEA071 /* DocumentWebViewController.swift in Sources */,
