@@ -21,6 +21,7 @@ class TextViewController: UIViewController {
     var context: TextViewContext!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var noDataLabel: UILabel!
     
     var workingCover: WorkingCover = .fromNib()
     var documentIndex = -1
@@ -79,6 +80,14 @@ class TextViewController: UIViewController {
             self.title()
             self.activityIndicator.isHidden = true
             self.tableView.reloadData()
+            self.noDataLabel.isHidden = false
+            switch self.context {
+            case .catering: self.noDataLabel.text = "\(!EduLinkAPI.shared.catering.transactions.isEmpty ? "" : "No transactions available")"
+            case .achievement: self.noDataLabel.text = "\(!EduLinkAPI.shared.achievementBehaviourLookups.achievements.isEmpty ? "" : "No achievements available")"
+            case .links: self.noDataLabel.text = "\(!EduLinkAPI.shared.links.isEmpty ? "" : "No links available")"
+            case .documents: self.noDataLabel.text = "\(!EduLinkAPI.shared.documents.isEmpty ? "" : "No transactions available")"
+            default: break
+            }
         }
     }
     
@@ -196,8 +205,15 @@ extension TextViewController: UITableViewDataSource {
 //MARK: - Achievement
 extension TextViewController {
     @objc private func achievementSetup() {
+        if !EduLinkAPI.shared.achievementBehaviourLookups.achievements.isEmpty { return self.dataResponse() }
         EduLink_Achievement.achievement({(success, error) -> Void in
-            self.dataResponse()
+            DispatchQueue.main.async {
+                if success {
+                    self.dataResponse()
+                } else {
+                    self.error(error!)
+                }
+            }
         })
     }
     
@@ -213,8 +229,15 @@ extension TextViewController {
 //MARK: - Catering
 extension TextViewController {
     @objc private func cateringSetup() {
+        if !EduLinkAPI.shared.catering.transactions.isEmpty { return self.dataResponse() }
         EduLink_Catering.catering({(success, error) -> Void in
-            self.dataResponse()
+            DispatchQueue.main.async {
+                if success {
+                    self.dataResponse()
+                } else {
+                    self.error(error!)
+                }
+            }
         })
     }
     
@@ -234,7 +257,13 @@ extension TextViewController {
 extension TextViewController {
     @objc private func personalSetup() {
         EduLink_Personal.personal({(success, error) -> Void in
-            self.dataResponse()
+            DispatchQueue.main.async {
+                if success {
+                    self.dataResponse()
+                } else {
+                    self.error(error!)
+                }
+            }
         })
     }
     
@@ -246,8 +275,15 @@ extension TextViewController {
 //MARK: - Links
 extension TextViewController {
     @objc private func linkSetup() {
+        if !EduLinkAPI.shared.links.isEmpty { return self.dataResponse() }
         EduLink_Links.links({(success, error) -> Void in
-            self.dataResponse()
+            DispatchQueue.main.async {
+                if success {
+                    self.dataResponse()
+                } else {
+                    self.error(error!)
+                }
+            }
         })
     }
     
@@ -269,8 +305,15 @@ extension TextViewController {
     }
     
     @objc private func documentSetup() {
+        if !EduLinkAPI.shared.documents.isEmpty { return self.dataResponse() }
         EduLink_Documents.documents({(success, error) -> Void in
-            self.dataResponse()
+            DispatchQueue.main.async {
+                if success {
+                    self.dataResponse()
+                } else {
+                    self.error(error!)
+                }
+            }
         })
     }
     
