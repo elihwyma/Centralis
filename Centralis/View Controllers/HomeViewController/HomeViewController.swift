@@ -55,8 +55,7 @@ class HomeViewController: UIViewController {
     
     var shownCells: [[Any]] = [
         [
-            //TimetableCell(teacher: "Mrs Example", time: Date(), lesson: "Example", room: "test", context: .current),
-            //TimetableCell(teacher: "Mrs Example", time: Date(), lesson: "Example", room: "test", context: .upcoming)
+            TimetableCell(teacher: "Mrs Example", time: Date(), lesson: "Example", room: "test"),
         ],
         [
             
@@ -106,7 +105,7 @@ class HomeViewController: UIViewController {
     
     private func title() {
         #if DEBUG
-        self.title = "Amy"
+        self.title = "😎🖕"
         #else
         self.title = "\(EduLinkAPI.shared.authorisedUser.forename ?? "") \(EduLinkAPI.shared.authorisedUser.surname ?? "")"
         #endif

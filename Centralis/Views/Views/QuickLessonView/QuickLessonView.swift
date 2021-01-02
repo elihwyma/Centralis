@@ -17,6 +17,6 @@ class QuickLessonView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.masksToBounds = true
-        self.layer.cornerRadius = 5
+        self.layer.cornerRadius = 10
     }
 }
