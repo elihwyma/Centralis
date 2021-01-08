@@ -6,12 +6,9 @@ jobs:
   build:
     runs-on: [macos-latest]
     env:
-      XC_VERSION: ${{ '12.2' }}
       XC_PROJECT: ${{ 'Centralis.xcodeproj' }}
       XC_SCHEME: ${{ 'Centralis' }}
     steps:
-    - name: Select latest Xcode
-      run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app"
     - uses: actions/checkout@v2
-    - name: Run Unit and UI Tests
-      run: /usr/bin/xcodebuild clean analyze -project "$XC_PROJECT" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'
+    - name: Analyze
+      run: /usr/bin/xcodebuild clean analyze -project "$XC_PROJECT" -scheme "$XC_SCHEME" 
