@@ -14,4 +14,4 @@ jobs:
       run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app"
     - uses: actions/checkout@v2
     - name: Run Unit and UI Tests
-      run: /usr/bin/xcodebuild clean analyze -workspace "$XC_WORKSPACE" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'
+      run: /usr/bin/xcodebuild clean analyze -project "$XC_PROJECT" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'
