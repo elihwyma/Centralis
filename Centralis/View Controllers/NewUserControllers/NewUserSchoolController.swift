@@ -2,7 +2,7 @@
 //  NewUserSchoolController.swift
 //  Centralis
 //
-//  Created by Amy While on 28/12/2020.
+//  Created by AW on 28/12/2020.
 //
 
 import UIKit

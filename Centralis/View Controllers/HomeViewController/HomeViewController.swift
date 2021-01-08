@@ -2,23 +2,15 @@
 //  HomeViewController.swift
 //  Centralis
 //
-//  Created by Amy While on 01/12/2020.
+//  Created by AW on 01/12/2020.
 //
 
 import UIKit
 import libCentralis
 
-
-struct TimetableCell {
-    var teacher: String!
-    var time: Date!
-    var lesson: String
-    var room: String!
-}
-
 struct HomeScreenLesson {
-    var current: TimetableCell!
-    var upcoming: TimetableCell!
+    var current: MiniLesson!
+    var upcoming: MiniLesson!
 }
 
 class HomeViewController: UIViewController {
@@ -41,7 +33,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         self.setup()
     }
     
@@ -53,14 +44,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    var shownCells: [[Any]] = [
-        [
-            TimetableCell(teacher: "Mrs Example", time: Date(), lesson: "Example", room: "test"),
-        ],
-        [
-            
-        ]
-    ]
+    var shownCells: [[Any]] = [[],[]]
     
     private func menuOrganising() {
         self.shownCells[1].removeAll()
@@ -122,8 +106,12 @@ class HomeViewController: UIViewController {
     @objc private func refreshStatus() {
         EduLink_Status.status(rootCompletion: { (success, error) -> Void in
             DispatchQueue.main.async {
+                self.shownCells[0].removeAll()
                 if success {
-                    #warning("Yeah status needs sorting out here")
+                    if EduLinkAPI.shared.status.current != nil && EduLinkAPI.shared.status.upcoming != nil {
+                        self.shownCells[0].append(HomeScreenLesson(current: EduLinkAPI.shared.status.current, upcoming: EduLinkAPI.shared.status.upcoming))
+                        self.tableView.reloadData()
+                    }
                 } else {
                     self.statusError(error!)
                 }
@@ -225,6 +213,9 @@ extension HomeViewController: UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.HomeMenuLessonCell", for: indexPath) as! HomeMenuLessonCell
+            if let l = self.shownCells[0][0] as? HomeScreenLesson {
+                cell.lessons(l)
+            }
             return cell
         }
     }

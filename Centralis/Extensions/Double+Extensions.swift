@@ -2,7 +2,7 @@
 //  Double+Extensions.swift
 //  Centralis
 //
-//  Created by Amy While on 18/12/2020.
+//  Created by AW on 18/12/2020.
 //
 
 import Foundation
