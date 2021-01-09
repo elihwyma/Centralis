@@ -9,6 +9,8 @@ jobs:
       XC_PROJECT: ${{ 'Centralis.xcodeproj' }}
       XC_SCHEME: ${{ 'Centralis' }}
     steps:
+    - name: Import Code-Signing Certificates
+    - uses: Apple-Actions/import-codesign-certs@v1
     - uses: actions/checkout@v2
     - name: Analyze
       run: /usr/bin/xcodebuild clean analyze -project "$XC_PROJECT" -scheme "$XC_SCHEME" 
