@@ -3,10 +3,10 @@
     "pins": [
       {
         "package": "libCentralis",
-        "repositoryURL": "https://github.com/CharlieWhile13/libCentralis",
+        "repositoryURL": "https://github.com/CharlieWhile13/libCentralis.git",
         "state": {
-          "branch": "uwu",
-          "revision": "45c48d32a2b924c4207dec0ce15cbef1455e585c",
+          "branch": "development",
+          "revision": "b03413b16c787b51a926ecc688a0b903bab6807b",
           "version": null
         }
       }

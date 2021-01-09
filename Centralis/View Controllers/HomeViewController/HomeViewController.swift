@@ -2,11 +2,16 @@
 //  HomeViewController.swift
 //  Centralis
 //
-//  Created by Amy While on 01/12/2020.
+//  Created by AW on 01/12/2020.
 //
 
 import UIKit
 import libCentralis
+
+struct HomeScreenLesson {
+    var current: MiniLesson!
+    var upcoming: MiniLesson!
+}
 
 class HomeViewController: UIViewController {
     
@@ -22,31 +27,29 @@ class HomeViewController: UIViewController {
         "Attendance"
     ]
     
-    
-    @IBOutlet weak var collectionView: UICollectionView!
-
+    @IBOutlet weak var tableView: UITableView!
     var workingCover: WorkingCover = .fromNib()
     var login: SavedLogin!
-    private var shownMenus = [SimpleStore]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         self.setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.title = "\(EduLinkAPI.shared.authorisedUser.forename ?? "") \(EduLinkAPI.shared.authorisedUser.surname ?? "")"
+        self.title()
         if EduLinkAPI.shared.authorisedUser.authToken != nil {
             self.refreshStatus()
         }
     }
     
+    var shownCells: [[Any]] = [[],[]]
+    
     private func menuOrganising() {
-        self.shownMenus.removeAll()
+        self.shownCells[1].removeAll()
         #if DEBUG
-        self.shownMenus = EduLinkAPI.shared.authorisedUser.personalMenus
+        self.shownCells[1] = EduLinkAPI.shared.authorisedUser.personalMenus
         #else
         for m in EduLinkAPI.shared.authorisedUser.personalMenus {
             if completedMenus.contains(m.name) {
@@ -57,12 +60,13 @@ class HomeViewController: UIViewController {
     }
     
     private func setup() {
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
-        self.collectionView.showsVerticalScrollIndicator = false
-        self.collectionView.showsHorizontalScrollIndicator = false
-        self.collectionView.backgroundColor = .none
-        self.collectionView.register(UINib(nibName: "HomeMenuCell", bundle: nil), forCellWithReuseIdentifier: "Centralis.HomeMenuCell")
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.showsVerticalScrollIndicator = false
+        self.tableView.showsHorizontalScrollIndicator = false
+        self.tableView.backgroundColor = .none
+        self.tableView.register(UINib(nibName: "HomeMenuCell", bundle: nil), forCellReuseIdentifier: "Centralis.HomeMenuCell")
+        self.tableView.register(UINib(nibName: "HomeMenuLessonCell", bundle: nil), forCellReuseIdentifier: "Centralis.HomeMenuLessonCell")
         self.menuOrganising()
     }
     
@@ -73,14 +77,22 @@ class HomeViewController: UIViewController {
                 self.workingCover.stopWorking()
                 if success {
                     self.menuOrganising()
-                    self.collectionView.reloadData()
+                    self.tableView.reloadData()
                     self.refreshStatus()
-                    self.title = "\(EduLinkAPI.shared.authorisedUser.forename!) \(EduLinkAPI.shared.authorisedUser.surname!)"
+                    self.title()
                 } else {
                     self.delegateLoginError(error!)
                 }
             }
         })
+    }
+    
+    private func title() {
+        #if DEBUG
+        self.title = "😎🖕"
+        #else
+        self.title = "\(EduLinkAPI.shared.authorisedUser.forename ?? "") \(EduLinkAPI.shared.authorisedUser.surname ?? "")"
+        #endif
     }
     
     private func delegateLoginError(_ error: String) {
@@ -94,8 +106,12 @@ class HomeViewController: UIViewController {
     @objc private func refreshStatus() {
         EduLink_Status.status(rootCompletion: { (success, error) -> Void in
             DispatchQueue.main.async {
+                self.shownCells[0].removeAll()
                 if success {
-                    #warning("Yeah status needs sorting out here")
+                    if EduLinkAPI.shared.status.current != nil && EduLinkAPI.shared.status.upcoming != nil {
+                        self.shownCells[0].append(HomeScreenLesson(current: EduLinkAPI.shared.status.current, upcoming: EduLinkAPI.shared.status.upcoming))
+                        self.tableView.reloadData()
+                    }
                 } else {
                     self.statusError(error!)
                 }
@@ -120,10 +136,10 @@ class HomeViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let indexPaths: NSArray = self.collectionView.indexPathsForSelectedItems! as NSArray
+        let indexPaths: NSArray = self.tableView.indexPathsForSelectedRows! as NSArray
         if indexPaths.count == 0 { return }
         let indexPath: IndexPath = indexPaths[0] as! IndexPath
-        let menu = shownMenus[indexPath.row]
+        let menu = self.shownCells[1][indexPath.row] as! SimpleStore
         if segue.identifier == "Centralis.TextViewController" {
             let controller = segue.destination as! TextViewController
             switch menu.name! {
@@ -147,28 +163,9 @@ class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-        #if targetEnvironment(macCatalyst)
-        let noOfCellsInRow = 8
-        #else
-        let noOfCellsInRow = 3
-        #endif
-        
-        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-        let totalSpace = flowLayout.sectionInset.left
-            + flowLayout.sectionInset.right
-            + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
-        let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
-
-        return CGSize(width: size, height: size)
-    }
-}
-
-extension HomeViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch shownMenus[indexPath.row].name {
+extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch (self.shownCells[1][indexPath.row] as! SimpleStore).name {
         case "Achievement": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
         case "Catering": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
         case "Account Info": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
@@ -183,30 +180,85 @@ extension HomeViewController: UICollectionViewDelegate {
     }
 }
 
-extension HomeViewController: UICollectionViewDataSource {
+extension HomeViewController: UITableViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return shownMenus.count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.shownCells[1].count == 0 { self.tableView.isHidden = true} else { self.tableView.isHidden = false }
+        return self.shownCells[section + (self.shownCells[0].isEmpty ? 1 : 0)].count
     }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Centralis.HomeMenuCell", for: indexPath) as! HomeMenuCell
-        let menu = shownMenus[indexPath.row]
-        cell.name.text = menu.name
-        switch menu.name {
-        case "Exams": cell.image.image = UIImage(systemName: "envelope.fill")
-        case "Documents": cell.image.image = UIImage(systemName: "doc.fill")
-        case "Timetable": cell.image.image = UIImage(systemName: "clock.fill")
-        case "Account Info": cell.image.image = UIImage(systemName: "person.fill")
-        case "Clubs": cell.image.image = UIImage(systemName: "person.3.fill")
-        case "Links": cell.image.image = UIImage(systemName: "link.circle.fill")
-        case "Homework": cell.image.image = UIImage(systemName: "briefcase.fill")
-        case "Catering": cell.image.image = UIImage(systemName: "sterlingsign.square.fill")
-        case "Attendance": cell.image.image = UIImage(systemName: "chart.bar.fill")
-        case "Behaviour": cell.image.image = UIImage(systemName: "hand.raised.slash.fill")
-        case "Achievement": cell.image.image = UIImage(systemName: "wand.and.stars")
-        default: break
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.shownCells[0].isEmpty ? 1 : 2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if self.shownCells[0].isEmpty || indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.HomeMenuCell", for: indexPath) as! HomeMenuCell
+            let menu = self.shownCells[1][indexPath.row] as! SimpleStore
+            cell.name.text = menu.name
+            switch menu.name {
+            case "Exams": cell.iconView.image = UIImage(systemName: "envelope.fill")
+            case "Documents": cell.iconView.image = UIImage(systemName: "doc.fill")
+            case "Timetable": cell.iconView.image = UIImage(systemName: "clock.fill")
+            case "Account Info": cell.iconView.image = UIImage(systemName: "person.fill")
+            case "Clubs": cell.iconView.image = UIImage(systemName: "person.3.fill")
+            case "Links": cell.iconView.image = UIImage(systemName: "link.circle.fill")
+            case "Homework": cell.iconView.image = UIImage(systemName: "briefcase.fill")
+            case "Catering": cell.iconView.image = UIImage(systemName: "sterlingsign.square.fill")
+            case "Attendance": cell.iconView.image = UIImage(systemName: "chart.bar.fill")
+            case "Behaviour": cell.iconView.image = UIImage(systemName: "hand.raised.slash.fill")
+            case "Achievement": cell.iconView.image = UIImage(systemName: "wand.and.stars")
+            default: break
+            }
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.HomeMenuLessonCell", for: indexPath) as! HomeMenuLessonCell
+            if let l = self.shownCells[0][0] as? HomeScreenLesson {
+                cell.lessons(l)
+            }
+            return cell
         }
-        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let vw = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
+        let label = UILabel(frame: CGRect(x: 0, y: 10, width: tableView.frame.width, height: 20))
+        label.adjustsFontSizeToFitWidth = true
+        let boldAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 20, weight: .bold),
+        ]
+        if self.shownCells[0].isEmpty || section == 1 {
+            label.attributedText = NSAttributedString(string: "Menus", attributes: boldAttributes)
+        } else {
+            label.attributedText = NSAttributedString(string: "Lessons", attributes: boldAttributes)
+        }
+        
+        vw.addSubview(label)
+        return vw
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let cornerRadius = 10
+        var corners: UIRectCorner = []
+
+        if indexPath.row == 0 {
+            corners.update(with: .topLeft)
+            corners.update(with: .topRight)
+        }
+
+        if indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1 {
+            corners.update(with: .bottomLeft)
+            corners.update(with: .bottomRight)
+        }
+
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = UIBezierPath(roundedRect: cell.bounds,
+                                      byRoundingCorners: corners,
+                                      cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)).cgPath
+        cell.layer.mask = maskLayer
     }
 }

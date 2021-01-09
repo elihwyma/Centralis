@@ -189,25 +189,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bwC-zi-Imx">
-                                <rect key="frame" x="15" y="165" width="384" height="672"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="UX6-EV-7m9">
+                                <rect key="frame" x="15" y="140" width="384" height="756"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ecz-J3-kjr">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WHh-Jo-hjL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="bwC-zi-Imx" firstAttribute="leading" secondItem="WHh-Jo-hjL" secondAttribute="leading" constant="15" id="3IJ-cf-zlQ"/>
-                            <constraint firstItem="WHh-Jo-hjL" firstAttribute="bottom" secondItem="bwC-zi-Imx" secondAttribute="bottom" constant="25" id="Vda-S1-dov"/>
-                            <constraint firstItem="bwC-zi-Imx" firstAttribute="top" secondItem="WHh-Jo-hjL" secondAttribute="top" constant="25" id="ZhM-hY-mtY"/>
-                            <constraint firstItem="WHh-Jo-hjL" firstAttribute="trailing" secondItem="bwC-zi-Imx" secondAttribute="trailing" constant="15" id="fG2-P0-NrY"/>
+                            <constraint firstItem="UX6-EV-7m9" firstAttribute="top" secondItem="WHh-Jo-hjL" secondAttribute="top" id="8pl-h4-L6k"/>
+                            <constraint firstItem="WHh-Jo-hjL" firstAttribute="trailing" secondItem="UX6-EV-7m9" secondAttribute="trailing" constant="15" id="J4S-zc-Khm"/>
+                            <constraint firstItem="UX6-EV-7m9" firstAttribute="leading" secondItem="WHh-Jo-hjL" secondAttribute="leading" constant="15" id="vGs-Jj-Hr5"/>
+                            <constraint firstAttribute="bottom" secondItem="UX6-EV-7m9" secondAttribute="bottom" id="xbe-fY-lyn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Forename : Surname" id="dB8-w3-G9N">
@@ -228,7 +221,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="collectionView" destination="bwC-zi-Imx" id="DOM-ph-dt1"/>
+                        <outlet property="tableView" destination="UX6-EV-7m9" id="cOF-Of-0Mw"/>
                         <segue destination="aVJ-aQ-wsn" kind="unwind" identifier="logout" unwindAction="logout:" id="STw-DN-QlN"/>
                         <segue destination="GwH-8S-tIz" kind="show" identifier="Centralis.TextViewController" id="jAN-Ki-nKd"/>
                         <segue destination="fZR-sa-AoW" kind="show" identifier="Centralis.ShowCarousel" id="W1m-vz-dao"/>
@@ -287,7 +280,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5lb-ng-LSt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4406" y="226"/>
+            <point key="canvasLocation" x="4406" y="722"/>
         </scene>
         <!--Carousel Controller-->
         <scene sceneID="XYe-ww-6X9">
@@ -295,7 +288,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="hRZ-oz-9Ix" customClass="CarouselController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dcb-nG-7ze" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5139" y="226"/>
+            <point key="canvasLocation" x="5245" y="722"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XBx-DF-U5t">
@@ -351,7 +344,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New User" largeTitleDisplayMode="never" id="z1U-uq-2Hf">
-                        <barButtonItem key="rightBarButtonItem" title="Continue" id="kgU-so-myK">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="n7Y-6F-W33">
+                            <connections>
+                                <action selector="cancel:" destination="YRY-VQ-jd3" id="yA9-hm-Iou"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Continue" style="done" id="kgU-so-myK">
                             <connections>
                                 <action selector="continueButton:" destination="YRY-VQ-jd3" id="fGh-qP-ESw"/>
                             </connections>
@@ -441,7 +439,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="1Wb-cz-cUA">
-                        <barButtonItem key="rightBarButtonItem" title="Login" id="k6D-tM-31m">
+                        <barButtonItem key="rightBarButtonItem" title="Login" style="done" id="k6D-tM-31m">
                             <connections>
                                 <action selector="login:" destination="eWL-aP-o1v" id="Y8W-LQ-3QA"/>
                             </connections>
@@ -480,7 +478,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wce-O5-EGc"/>
+        <segue reference="lwc-x6-y1B"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chevron.left.circle.fill" catalog="system" width="128" height="121"/>

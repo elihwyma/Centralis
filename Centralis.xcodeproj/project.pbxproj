@@ -23,8 +23,6 @@
 		53CA2DEF2576CC9E00E3A02B /* LoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53CA2DED2576CC9D00E3A02B /* LoginCell.xib */; };
 		53CA2DF32576D67A00E3A02B /* WorkingCover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53CA2DF22576D67900E3A02B /* WorkingCover.xib */; };
 		53CA2DF62576D69A00E3A02B /* WorkingCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DF52576D69A00E3A02B /* WorkingCover.swift */; };
-		53CA2DFC2576DA5800E3A02B /* HomeMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DFA2576DA5700E3A02B /* HomeMenuCell.swift */; };
-		53CA2DFD2576DA5900E3A02B /* HomeMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53CA2DFB2576DA5700E3A02B /* HomeMenuCell.xib */; };
 		53CA2E012576DD2A00E3A02B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2E002576DD2A00E3A02B /* HomeViewController.swift */; };
 		53CB50722572D1780077DDAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50712572D1780077DDAE /* AppDelegate.swift */; };
 		53CB50792572D1780077DDAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53CB50772572D1780077DDAE /* Main.storyboard */; };
@@ -35,8 +33,10 @@
 		53CB50A12572F0B50077DDAE /* ResizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50A02572F0B50077DDAE /* ResizedTableView.swift */; };
 		E10A5B25259BE4F300FA8BD0 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A5B23259BE4F300FA8BD0 /* ErrorView.swift */; };
 		E10A5B26259BE4F300FA8BD0 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */; };
-		E12922B1259EB61200A7DEE1 /* libCentralis in Frameworks */ = {isa = PBXBuildFile; productRef = E12922B0259EB61200A7DEE1 /* libCentralis */; };
 		E1305DA3259BEFDD00AB3119 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1305DA2259BEFDD00AB3119 /* UIButton+Extension.swift */; };
+		E14A7E55259FCF2400EF9712 /* HomeMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14A7E53259FCF2300EF9712 /* HomeMenuCell.swift */; };
+		E14A7E56259FCF2400EF9712 /* HomeMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E14A7E54259FCF2300EF9712 /* HomeMenuCell.xib */; };
+		E152162025A7D0E700557F20 /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E152161F25A7D0E700557F20 /* NSDate+Extension.swift */; };
 		E1576054258BB68000DD496F /* AmyChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1576053258BB68000DD496F /* AmyChart.swift */; };
 		E1576058258BBD8E00DD496F /* ChartTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1576057258BBD8E00DD496F /* ChartTableViewController.xib */; };
 		E157605B258BBDE700DD496F /* ChartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E157605A258BBDE700DD496F /* ChartTableViewController.swift */; };
@@ -48,6 +48,9 @@
 		E1C8FD73258165BD0006F36F /* EmbeddedTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C8FD72258165BD0006F36F /* EmbeddedTableViewController.xib */; };
 		E1C8FD76258166210006F36F /* EmbeddedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C8FD75258166210006F36F /* EmbeddedTableViewController.swift */; };
 		E1F9A49825850F6000CEA071 /* DocumentWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9A49725850F6000CEA071 /* DocumentWebViewController.swift */; };
+		E1FB73CD25A0E33E00BA4E77 /* HomeMenuLessonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB73CB25A0E33E00BA4E77 /* HomeMenuLessonCell.swift */; };
+		E1FB73CE25A0E33E00BA4E77 /* HomeMenuLessonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1FB73CC25A0E33E00BA4E77 /* HomeMenuLessonCell.xib */; };
+		E1FB73F725A0F76400BA4E77 /* libCentralis in Frameworks */ = {isa = PBXBuildFile; productRef = E1FB73F625A0F76400BA4E77 /* libCentralis */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,8 +71,6 @@
 		53CA2DED2576CC9D00E3A02B /* LoginCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginCell.xib; sourceTree = "<group>"; };
 		53CA2DF22576D67900E3A02B /* WorkingCover.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkingCover.xib; sourceTree = "<group>"; };
 		53CA2DF52576D69A00E3A02B /* WorkingCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingCover.swift; sourceTree = "<group>"; };
-		53CA2DFA2576DA5700E3A02B /* HomeMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuCell.swift; sourceTree = "<group>"; };
-		53CA2DFB2576DA5700E3A02B /* HomeMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeMenuCell.xib; sourceTree = "<group>"; };
 		53CA2E002576DD2A00E3A02B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		53CB506E2572D1780077DDAE /* Centralis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Centralis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53CB50712572D1780077DDAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +84,9 @@
 		E10A5B23259BE4F300FA8BD0 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
 		E1305DA2259BEFDD00AB3119 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		E14A7E53259FCF2300EF9712 /* HomeMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuCell.swift; sourceTree = "<group>"; };
+		E14A7E54259FCF2300EF9712 /* HomeMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeMenuCell.xib; sourceTree = "<group>"; };
+		E152161F25A7D0E700557F20 /* NSDate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
 		E1576053258BB68000DD496F /* AmyChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmyChart.swift; sourceTree = "<group>"; };
 		E1576057258BBD8E00DD496F /* ChartTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChartTableViewController.xib; sourceTree = "<group>"; };
 		E157605A258BBDE700DD496F /* ChartTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTableViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 		E1C8FD72258165BD0006F36F /* EmbeddedTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmbeddedTableViewController.xib; sourceTree = "<group>"; };
 		E1C8FD75258166210006F36F /* EmbeddedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedTableViewController.swift; sourceTree = "<group>"; };
 		E1F9A49725850F6000CEA071 /* DocumentWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentWebViewController.swift; sourceTree = "<group>"; };
+		E1FB73CB25A0E33E00BA4E77 /* HomeMenuLessonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuLessonCell.swift; sourceTree = "<group>"; };
+		E1FB73CC25A0E33E00BA4E77 /* HomeMenuLessonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeMenuLessonCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E12922B1259EB61200A7DEE1 /* libCentralis in Frameworks */,
+				E1FB73F725A0F76400BA4E77 /* libCentralis in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +171,8 @@
 		53CA2DEA2576CC4300E3A02B /* Table Cells */ = {
 			isa = PBXGroup;
 			children = (
+				E1FB73CA25A0E30E00BA4E77 /* HomeMenuLessonCell */,
+				E14A7E52259FCEEA00EF9712 /* HomeMenuCell */,
 				E157605D258BF54C00DD496F /* AmyChartCell */,
 				5387450B257BDB5300174D07 /* HomeworkCell */,
 				532434332578288500875BAD /* TextViewCell */,
@@ -189,23 +197,6 @@
 				53CA2DF52576D69A00E3A02B /* WorkingCover.swift */,
 			);
 			path = WorkingCover;
-			sourceTree = "<group>";
-		};
-		53CA2DF82576DA2F00E3A02B /* Collection View Cells */ = {
-			isa = PBXGroup;
-			children = (
-				53CA2DF92576DA3500E3A02B /* Home Menu Cell */,
-			);
-			path = "Collection View Cells";
-			sourceTree = "<group>";
-		};
-		53CA2DF92576DA3500E3A02B /* Home Menu Cell */ = {
-			isa = PBXGroup;
-			children = (
-				53CA2DFA2576DA5700E3A02B /* HomeMenuCell.swift */,
-				53CA2DFB2576DA5700E3A02B /* HomeMenuCell.xib */,
-			);
-			path = "Home Menu Cell";
 			sourceTree = "<group>";
 		};
 		53CB50652572D1770077DDAE = {
@@ -281,7 +272,6 @@
 		53CB508F2572D6850077DDAE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				53CA2DF82576DA2F00E3A02B /* Collection View Cells */,
 				53CA2DEA2576CC4300E3A02B /* Table Cells */,
 				53CB50902572D69A0077DDAE /* Views */,
 			);
@@ -305,6 +295,7 @@
 				53874511257BDCD300174D07 /* NSMutableAttributedString+Extension.swift */,
 				E19B2F5A258D71CE00930AE1 /* Double+Extensions.swift */,
 				E1305DA2259BEFDD00AB3119 /* UIButton+Extension.swift */,
+				E152161F25A7D0E700557F20 /* NSDate+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -324,6 +315,15 @@
 				E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */,
 			);
 			path = ErrorView;
+			sourceTree = "<group>";
+		};
+		E14A7E52259FCEEA00EF9712 /* HomeMenuCell */ = {
+			isa = PBXGroup;
+			children = (
+				E14A7E53259FCF2300EF9712 /* HomeMenuCell.swift */,
+				E14A7E54259FCF2300EF9712 /* HomeMenuCell.xib */,
+			);
+			path = HomeMenuCell;
 			sourceTree = "<group>";
 		};
 		E1576052258BB65D00DD496F /* AmyChart */ = {
@@ -397,6 +397,15 @@
 			path = DocumentWebViewController;
 			sourceTree = "<group>";
 		};
+		E1FB73CA25A0E30E00BA4E77 /* HomeMenuLessonCell */ = {
+			isa = PBXGroup;
+			children = (
+				E1FB73CB25A0E33E00BA4E77 /* HomeMenuLessonCell.swift */,
+				E1FB73CC25A0E33E00BA4E77 /* HomeMenuLessonCell.xib */,
+			);
+			path = HomeMenuLessonCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -414,7 +423,7 @@
 			);
 			name = Centralis;
 			packageProductDependencies = (
-				E12922B0259EB61200A7DEE1 /* libCentralis */,
+				E1FB73F625A0F76400BA4E77 /* libCentralis */,
 			);
 			productName = Centralis;
 			productReference = 53CB506E2572D1780077DDAE /* Centralis.app */;
@@ -427,7 +436,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1220;
-				LastUpgradeCheck = 1220;
+				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					53CB506D2572D1780077DDAE = {
 						CreatedOnToolsVersion = 12.2;
@@ -444,7 +453,7 @@
 			);
 			mainGroup = 53CB50652572D1770077DDAE;
 			packageReferences = (
-				E12922AF259EB61200A7DEE1 /* XCRemoteSwiftPackageReference "libCentralis" */,
+				E1FB73F525A0F76400BA4E77 /* XCRemoteSwiftPackageReference "libCentralis" */,
 			);
 			productRefGroup = 53CB506F2572D1780077DDAE /* Products */;
 			projectDirPath = "";
@@ -463,12 +472,13 @@
 				E10A5B26259BE4F300FA8BD0 /* ErrorView.xib in Resources */,
 				53874526257C1EB100174D07 /* HomeworkDetailView.xib in Resources */,
 				53CA2DEF2576CC9E00E3A02B /* LoginCell.xib in Resources */,
-				53CA2DFD2576DA5900E3A02B /* HomeMenuCell.xib in Resources */,
 				E1576061258BF56B00DD496F /* AmyChartCell.xib in Resources */,
+				E14A7E56259FCF2400EF9712 /* HomeMenuCell.xib in Resources */,
 				53CB507E2572D1880077DDAE /* LaunchScreen.storyboard in Resources */,
 				53874506257BD7AD00174D07 /* HomeworkTableViewController.xib in Resources */,
 				E1C8FD73258165BD0006F36F /* EmbeddedTableViewController.xib in Resources */,
 				53CB507B2572D1880077DDAE /* Assets.xcassets in Resources */,
+				E1FB73CE25A0E33E00BA4E77 /* HomeMenuLessonCell.xib in Resources */,
 				E1576058258BBD8E00DD496F /* ChartTableViewController.xib in Resources */,
 				53CB50792572D1780077DDAE /* Main.storyboard in Resources */,
 				5387450F257BDB7100174D07 /* HomeworkCell.xib in Resources */,
@@ -484,7 +494,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53CA2DFC2576DA5800E3A02B /* HomeMenuCell.swift in Sources */,
+				E14A7E55259FCF2400EF9712 /* HomeMenuCell.swift in Sources */,
 				53243436257828A300875BAD /* TextViewCell.swift in Sources */,
 				E1768308259A8C7A0099BB92 /* NewUserUPController.swift in Sources */,
 				E1F9A49825850F6000CEA071 /* DocumentWebViewController.swift in Sources */,
@@ -504,12 +514,14 @@
 				5387450E257BDB7100174D07 /* HomeworkCell.swift in Sources */,
 				53CB509A2572D7C40077DDAE /* UIView+Extensions.swift in Sources */,
 				5387452E257C205500174D07 /* HomeworkDetailView.swift in Sources */,
+				E152162025A7D0E700557F20 /* NSDate+Extension.swift in Sources */,
 				E1576054258BB68000DD496F /* AmyChart.swift in Sources */,
 				53CA2DF62576D69A00E3A02B /* WorkingCover.swift in Sources */,
 				53874512257BDCD400174D07 /* NSMutableAttributedString+Extension.swift in Sources */,
 				53CB50A12572F0B50077DDAE /* ResizedTableView.swift in Sources */,
 				53874509257BD7D600174D07 /* HomeworkTableViewController.swift in Sources */,
 				531870D1257968BD000191FD /* TextViewController.swift in Sources */,
+				E1FB73CD25A0E33E00BA4E77 /* HomeMenuLessonCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,7 +551,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = arm64;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -602,7 +613,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = arm64;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -662,7 +672,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Resources/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 431;
+				CURRENT_PROJECT_VERSION = 632;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				INFOPLIST_FILE = Centralis/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -688,7 +698,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Resources/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 431;
+				CURRENT_PROJECT_VERSION = 632;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = Centralis/Resources/Info.plist;
@@ -732,20 +742,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E12922AF259EB61200A7DEE1 /* XCRemoteSwiftPackageReference "libCentralis" */ = {
+		E1FB73F525A0F76400BA4E77 /* XCRemoteSwiftPackageReference "libCentralis" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/CharlieWhile13/libCentralis";
+			repositoryURL = "https://github.com/CharlieWhile13/libCentralis.git";
 			requirement = {
-				branch = uwu;
+				branch = development;
 				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E12922B0259EB61200A7DEE1 /* libCentralis */ = {
+		E1FB73F625A0F76400BA4E77 /* libCentralis */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E12922AF259EB61200A7DEE1 /* XCRemoteSwiftPackageReference "libCentralis" */;
+			package = E1FB73F525A0F76400BA4E77 /* XCRemoteSwiftPackageReference "libCentralis" */;
 			productName = libCentralis;
 		};
 /* End XCSwiftPackageProductDependency section */

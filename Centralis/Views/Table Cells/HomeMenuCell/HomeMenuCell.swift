@@ -1,25 +1,22 @@
 //
-//  LoginCell.swift
+//  HomeMenuCell.swift
 //  Centralis
 //
-//  Created by AW on 01/12/2020.
+//  Created by AW on 01/01/2021.
 //
 
 import UIKit
-import libCentralis
 
-class LoginCell: UITableViewCell {
+class HomeMenuCell: UITableViewCell {
     
-    @IBOutlet weak var schoolLogo: UIImageView!
-    @IBOutlet weak var schoolName: UILabel!
-    @IBOutlet weak var forename: UILabel!
-    @IBOutlet weak var blurView: UIView!
     @IBInspectable weak var minHeight: NSNumber! = 75
+    @IBOutlet weak var iconView: UIImageView!
+    @IBOutlet weak var name: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        self.setup()
+        // Initialization code
+        self.name.adjustsFontSizeToFitWidth = true
     }
 
     override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
@@ -28,10 +25,4 @@ class LoginCell: UITableViewCell {
         return CGSize(width: size.width, height: max(size.height, (minHeight as! CGFloat)))
     }
     
-    private func setup() {
-        self.schoolLogo.layer.masksToBounds = true
-        self.schoolLogo.layer.cornerRadius = 12.5
-        self.schoolName.adjustsFontSizeToFitWidth = true
-        self.forename.adjustsFontSizeToFitWidth = true
-    }
 }
