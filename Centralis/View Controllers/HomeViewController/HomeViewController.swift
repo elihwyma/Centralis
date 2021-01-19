@@ -53,7 +53,7 @@ class HomeViewController: UIViewController {
         #else
         for m in EduLinkAPI.shared.authorisedUser.personalMenus {
             if completedMenus.contains(m.name) {
-                self.shownMenus.append(m)
+                self.shownCells[1].append(m)
             }
         }
         #endif
