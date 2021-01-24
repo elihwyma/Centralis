@@ -2,7 +2,7 @@
 //  UIView+Extensions.swift
 //  Shade
 //
-//  Created by AW on 27/10/2020.
+//  Created by Amy While on 27/10/2020.
 //
 
 import UIKit

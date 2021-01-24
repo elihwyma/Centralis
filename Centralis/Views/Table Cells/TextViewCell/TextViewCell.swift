@@ -2,7 +2,7 @@
 //  CateringCell.swift
 //  Centralis
 //
-//  Created by AW on 02/12/2020.
+//  Created by Amy While on 02/12/2020.
 //
 
 import UIKit

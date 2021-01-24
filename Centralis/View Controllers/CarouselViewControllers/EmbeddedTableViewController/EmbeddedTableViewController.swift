@@ -2,7 +2,7 @@
 //  TimetableTableViewController.swift
 //  Centralis
 //
-//  Created by AW on 09/12/2020.
+//  Created by Amy While on 09/12/2020.
 //
 
 import UIKit

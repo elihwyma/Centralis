@@ -2,7 +2,7 @@
 //  WorkingCover.swift
 //  Centralis
 //
-//  Created by AW on 01/12/2020.
+//  Created by Amy While on 01/12/2020.
 //
 
 import UIKit

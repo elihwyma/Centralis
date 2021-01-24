@@ -2,7 +2,7 @@
 //  ClosureButton.swift
 //  Centralis
 //
-//  Created by AW on 29/12/2020.
+//  Created by Amy While on 29/12/2020.
 //https://stackoverflow.com/a/34016897
 
 import UIKit

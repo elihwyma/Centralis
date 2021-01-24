@@ -2,7 +2,7 @@
 //  NSAttributedString+Extension.swift
 //  Centralis
 //
-//  Created by AW on 05/12/2020.
+//  Created by Amy While on 05/12/2020.
 //
 
 import UIKit
