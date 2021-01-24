@@ -35,7 +35,6 @@
 		53CB50A12572F0B50077DDAE /* ResizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50A02572F0B50077DDAE /* ResizedTableView.swift */; };
 		E10A5B25259BE4F300FA8BD0 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A5B23259BE4F300FA8BD0 /* ErrorView.swift */; };
 		E10A5B26259BE4F300FA8BD0 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */; };
-		E12922B1259EB61200A7DEE1 /* libCentralis in Frameworks */ = {isa = PBXBuildFile; productRef = E12922B0259EB61200A7DEE1 /* libCentralis */; };
 		E1305DA3259BEFDD00AB3119 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1305DA2259BEFDD00AB3119 /* UIButton+Extension.swift */; };
 		E1576054258BB68000DD496F /* AmyChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1576053258BB68000DD496F /* AmyChart.swift */; };
 		E1576058258BBD8E00DD496F /* ChartTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1576057258BBD8E00DD496F /* ChartTableViewController.xib */; };
@@ -44,6 +43,8 @@
 		E1576061258BF56B00DD496F /* AmyChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E157605F258BF56B00DD496F /* AmyChartCell.xib */; };
 		E1768305259A7EAE0099BB92 /* NewUserSchoolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768304259A7EAE0099BB92 /* NewUserSchoolController.swift */; };
 		E1768308259A8C7A0099BB92 /* NewUserUPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768307259A8C7A0099BB92 /* NewUserUPController.swift */; };
+		E1845F1825BDE22E002B1950 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1845F1725BDE22E002B1950 /* WebKit.framework */; };
+		E1845F2525BDE429002B1950 /* libCentralis in Frameworks */ = {isa = PBXBuildFile; productRef = E1845F2425BDE429002B1950 /* libCentralis */; };
 		E19B2F5B258D71CE00930AE1 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19B2F5A258D71CE00930AE1 /* Double+Extensions.swift */; };
 		E1C8FD73258165BD0006F36F /* EmbeddedTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C8FD72258165BD0006F36F /* EmbeddedTableViewController.xib */; };
 		E1C8FD76258166210006F36F /* EmbeddedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C8FD75258166210006F36F /* EmbeddedTableViewController.swift */; };
@@ -90,6 +91,10 @@
 		E157605F258BF56B00DD496F /* AmyChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmyChartCell.xib; sourceTree = "<group>"; };
 		E1768304259A7EAE0099BB92 /* NewUserSchoolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserSchoolController.swift; sourceTree = "<group>"; };
 		E1768307259A8C7A0099BB92 /* NewUserUPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserUPController.swift; sourceTree = "<group>"; };
+		E1845F1725BDE22E002B1950 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		E1845F1E25BDE3B6002B1950 /* libCentralis */ = {isa = PBXFileReference; lastKnownFileType = folder; name = libCentralis; path = ../libCentralis; sourceTree = "<group>"; };
+		E1845F1F25BDE3BC002B1950 /* libCentralis */ = {isa = PBXFileReference; lastKnownFileType = folder; name = libCentralis; path = ../libCentralis; sourceTree = "<group>"; };
+		E1845F2025BDE3C0002B1950 /* libCentralis */ = {isa = PBXFileReference; lastKnownFileType = folder; name = libCentralis; path = ../libCentralis; sourceTree = "<group>"; };
 		E19B2F5A258D71CE00930AE1 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		E1C8FD72258165BD0006F36F /* EmbeddedTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmbeddedTableViewController.xib; sourceTree = "<group>"; };
 		E1C8FD75258166210006F36F /* EmbeddedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedTableViewController.swift; sourceTree = "<group>"; };
@@ -101,7 +106,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E12922B1259EB61200A7DEE1 /* libCentralis in Frameworks */,
+				E1845F2525BDE429002B1950 /* libCentralis in Frameworks */,
+				E1845F1825BDE22E002B1950 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +219,7 @@
 			children = (
 				53CB50702572D1780077DDAE /* Centralis */,
 				53CB506F2572D1780077DDAE /* Products */,
+				E1845F1625BDE22E002B1950 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -380,6 +387,17 @@
 			path = CarouselViewControllers;
 			sourceTree = "<group>";
 		};
+		E1845F1625BDE22E002B1950 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E1845F1E25BDE3B6002B1950 /* libCentralis */,
+				E1845F1F25BDE3BC002B1950 /* libCentralis */,
+				E1845F2025BDE3C0002B1950 /* libCentralis */,
+				E1845F1725BDE22E002B1950 /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E1C8FD71258165790006F36F /* EmbeddedTableViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,7 +432,7 @@
 			);
 			name = Centralis;
 			packageProductDependencies = (
-				E12922B0259EB61200A7DEE1 /* libCentralis */,
+				E1845F2425BDE429002B1950 /* libCentralis */,
 			);
 			productName = Centralis;
 			productReference = 53CB506E2572D1780077DDAE /* Centralis.app */;
@@ -444,7 +462,7 @@
 			);
 			mainGroup = 53CB50652572D1770077DDAE;
 			packageReferences = (
-				E12922AF259EB61200A7DEE1 /* XCRemoteSwiftPackageReference "libCentralis" */,
+				E1845F2325BDE429002B1950 /* XCRemoteSwiftPackageReference "libCentralis" */,
 			);
 			productRefGroup = 53CB506F2572D1780077DDAE /* Products */;
 			projectDirPath = "";
@@ -662,11 +680,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Resources/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 431;
+				CURRENT_PROJECT_VERSION = 432;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				INFOPLIST_FILE = Centralis/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -674,10 +691,10 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -688,12 +705,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Resources/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 431;
+				CURRENT_PROJECT_VERSION = 432;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = Centralis/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -701,10 +717,10 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -732,20 +748,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E12922AF259EB61200A7DEE1 /* XCRemoteSwiftPackageReference "libCentralis" */ = {
+		E1845F2325BDE429002B1950 /* XCRemoteSwiftPackageReference "libCentralis" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/CharlieWhile13/libCentralis";
+			repositoryURL = "file:///Users/amy/Documents/GitHub/libCentralis";
 			requirement = {
-				branch = uwu;
+				branch = development;
 				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E12922B0259EB61200A7DEE1 /* libCentralis */ = {
+		E1845F2425BDE429002B1950 /* libCentralis */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E12922AF259EB61200A7DEE1 /* XCRemoteSwiftPackageReference "libCentralis" */;
+			package = E1845F2325BDE429002B1950 /* XCRemoteSwiftPackageReference "libCentralis" */;
 			productName = libCentralis;
 		};
 /* End XCSwiftPackageProductDependency section */
