@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import libCentralis
+//import libCentralis
 
 struct HomeScreenLesson {
     var current: MiniLesson!

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import libCentralis
+//import libCentralis
 
 class CarouselController: UIPageViewController {
     
