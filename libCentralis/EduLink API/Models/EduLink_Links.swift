@@ -12,9 +12,7 @@ public class EduLink_Links {
     /// Retrieve the links set by the school, for more documentation see `Link`
     /// - Parameter rootCompletion: The completion handler, for more documentation see `completionHandler`
     class public func links(_ rootCompletion: @escaping completionHandler) {
-        let params: [String : String] = [
-            "authtoken" : EduLinkAPI.shared.authorisedUser.authToken
-        ]
+        let params: [String : String] = [:]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.ExternalLinks", params: params, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }
             guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }

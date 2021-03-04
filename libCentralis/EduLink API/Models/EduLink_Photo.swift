@@ -1,32 +1,36 @@
 //
-//  NetworkManager.swift
-//  libCentralis
+//  EduLink_Photo.swift
+//  Centralis
 //
-//  Created by AW on 18/10/2020.
+//  Created by A W on 04/03/2021.
 //
 
 import Foundation
 
-/// The completion handler used by every request in the library
-/// - Parameters:
-///   - success: If the API request was succesful
-///   - error: The error code returned from EduLink
-public typealias completionHandler = (_ success: Bool, _ error: String?) -> ()
-internal typealias rdc = (_ success: Bool, _ dict: [String : Any]) -> ()
-
-internal class NetworkManager {
-
-    internal func generateStringFromDict(_ dict: [String : String]) -> String {
-        let encoder = JSONEncoder()
-        if let jsonData = try? encoder.encode(dict) {
-            if let jsonString = String(data: jsonData, encoding: .utf8) {
-                return jsonString
+class EduLink_Photo {
+    class func learner_photos(learners: [String], _ rootCompletion: @escaping completionHandler) {
+        let params: [String : [String]] = [
+            "learner_ids" : learners
+        ]
+        photoBackend(url: nil, requestMethod: "EduLink.Document", params: params, completion: { (success, dict) -> Void in
+            if !success { return rootCompletion(false, "Network Error") }
+            guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
+            if !(result["success"] as? Bool ?? false) { return rootCompletion(false, (result["error"] as? String ?? "Unknown Error")) }
+            guard let r = result["result"] as? [String : Any], let learner_photos = r["learner_photos"] as? [[String : Any]] else { return rootCompletion(false, "Unknown Error") }
+            for photo in learner_photos {
+                let imageData = photo["photo"] as? String ?? ""
+                guard let id = photo["id"] as? String else { continue }
+                if let decodedData = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters) {
+                    guard let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == id}) else { continue }
+                    EduLinkAPI.shared.authorisedUser.children[index].avatar = decodedData
+                }
             }
-        }
-        return "Error"
+            NotificationCenter.default.post(name: .LearnerImage, object: nil)
+            rootCompletion(true, nil)
+        })
     }
     
-    class internal func requestWithDict(url: String?, requestMethod: String, params: [String : String], completion: @escaping rdc) {
+    private class func photoBackend(url: String?, requestMethod: String, params: [String : [String]], completion: @escaping rdc) {
         var c = URLComponents(string: url ?? EduLinkAPI.shared.authorisedSchool.server!)!
         c.queryItems = [URLQueryItem(name: "method", value: requestMethod)]
         var request = URLRequest(url: c.url!)
@@ -51,7 +55,6 @@ internal class NetworkManager {
     }
 }
 
-/// The request body that is sent with every request to EduLink
 fileprivate struct EdulinkBody: Encodable {
     /// The current json version
     var jsonrpc = "2.0"
@@ -62,13 +65,13 @@ fileprivate struct EdulinkBody: Encodable {
     /// The ID of the request, 1 every time works fine
     var id = "1"
     /// The specific request parameters, usually containing authtoken
-    var params: [String : String]!
+    var params: [String : [String]]!
     
     /// The initialiser for the struct. This is used to generate the json body.
     /// - Parameters:
     ///   - method: The query method
     ///   - params: The query parameters
-    init(method: String, params: [String : String]) {
+    init(method: String, params: [String : [String]]) {
         self.method = method
         self.params = params
     }

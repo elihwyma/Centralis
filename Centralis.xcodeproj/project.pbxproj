@@ -64,6 +64,7 @@
 		E1B77AD025F0173800CFF9DC /* StructModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77ABB25F0173800CFF9DC /* StructModels.swift */; };
 		E1B77AD125F0173800CFF9DC /* NSNotification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77ABD25F0173800CFF9DC /* NSNotification+Extensions.swift */; };
 		E1B77AD225F0173800CFF9DC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77ABF25F0173800CFF9DC /* NetworkManager.swift */; };
+		E1B77AD725F0F7F600CFF9DC /* EduLink_Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AD625F0F7F600CFF9DC /* EduLink_Photo.swift */; };
 		E1C8FD73258165BD0006F36F /* EmbeddedTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C8FD72258165BD0006F36F /* EmbeddedTableViewController.xib */; };
 		E1C8FD76258166210006F36F /* EmbeddedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C8FD75258166210006F36F /* EmbeddedTableViewController.swift */; };
 		E1F9A49825850F6000CEA071 /* DocumentWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9A49725850F6000CEA071 /* DocumentWebViewController.swift */; };
@@ -132,6 +133,7 @@
 		E1B77ABB25F0173800CFF9DC /* StructModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructModels.swift; sourceTree = "<group>"; };
 		E1B77ABD25F0173800CFF9DC /* NSNotification+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extensions.swift"; sourceTree = "<group>"; };
 		E1B77ABF25F0173800CFF9DC /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E1B77AD625F0F7F600CFF9DC /* EduLink_Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Photo.swift; sourceTree = "<group>"; };
 		E1C8FD72258165BD0006F36F /* EmbeddedTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmbeddedTableViewController.xib; sourceTree = "<group>"; };
 		E1C8FD75258166210006F36F /* EmbeddedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedTableViewController.swift; sourceTree = "<group>"; };
 		E1F9A49725850F6000CEA071 /* DocumentWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentWebViewController.swift; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 				E1B77AB625F0173800CFF9DC /* EduLink_Homework.swift */,
 				E1B77AB725F0173800CFF9DC /* EduLink_Status.swift */,
 				E1B77AB825F0173800CFF9DC /* EduLink_Register.swift */,
+				E1B77AD625F0F7F600CFF9DC /* EduLink_Photo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				E1576060258BF56B00DD496F /* AmyChartCell.swift in Sources */,
 				E1768305259A7EAE0099BB92 /* NewUserSchoolController.swift in Sources */,
 				E1B77ACA25F0173800CFF9DC /* EduLink_Links.swift in Sources */,
+				E1B77AD725F0F7F600CFF9DC /* EduLink_Photo.swift in Sources */,
 				53CB50722572D1780077DDAE /* AppDelegate.swift in Sources */,
 				E1B77AC025F0173800CFF9DC /* KeychainManager.swift in Sources */,
 				53874502257BD61800174D07 /* CarouselContainerController.swift in Sources */,
@@ -800,7 +804,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Resources/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 632;
+				CURRENT_PROJECT_VERSION = 893;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				INFOPLIST_FILE = Centralis/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -826,7 +830,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Resources/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 632;
+				CURRENT_PROJECT_VERSION = 893;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = Centralis/Resources/Info.plist;

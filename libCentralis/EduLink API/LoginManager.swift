@@ -105,6 +105,7 @@ public class LoginManager {
             EduLinkAPI.shared.authorisedUser.authToken =  result["authtoken"] as? String
             guard let user = result["user"] as? [String : Any] else { return rootCompletion(false, "Unknown Error Ocurred") }
             EduLinkAPI.shared.authorisedUser.id = "\(user["id"] ?? "Not Given")"
+            EduLinkAPI.shared.authorisedUser.parent_id = EduLinkAPI.shared.authorisedUser.id
             EduLinkAPI.shared.authorisedUser.gender = user["gender"] as? String ?? "Not Given"
             EduLinkAPI.shared.authorisedUser.forename = user["forename"] as? String ?? "Not Given"
             EduLinkAPI.shared.authorisedUser.surname = user["surname"] as? String ?? "Not Given"
@@ -123,15 +124,37 @@ public class LoginManager {
                     EduLinkAPI.shared.authorisedUser.avatar = decodedData
                 }
             }
-            self.personalMenu(result)
+            if let personal_menu = result["personal_menu"] as? [[String : String]] { EduLinkAPI.shared.authorisedUser.personalMenus = SimpleStore.generate(personal_menu) }
+            if let learner_menu = result["learner_menu"] as? [[String : String]] { EduLinkAPI.shared.authorisedUser.personalMenus += SimpleStore.generate(learner_menu) }
+            EduLinkAPI.shared.authorisedUser.children.removeAll()
+            if let children = result["children"] as? [[String : Any]] {
+                var learners = [String]()
+                for child in children {
+                    var c = Child()
+                    c.id = "\(child["id"] ?? "Not Given")"
+                    learners.append(c.id)
+                    c.gender = child["gender"] as? String ?? "Not Given"
+                    c.forename = child["forename"] as? String ?? "Not Given"
+                    c.surname = child["surname"] as? String ?? "Not Given"
+                    c.community_group_id = "\(child["community_group_id"] ?? "Not Given")"
+                    c.form_group_id = "\(child["form_group_id"] ?? "Not Given")"
+                    c.year_group_id = "\(child["year_group_id"] ?? "Not Given")"
+                    EduLinkAPI.shared.authorisedUser.children.append(c)
+                }
+                EduLink_Photo.learner_photos(learners: learners, {(success, error) -> Void in })
+                if EduLinkAPI.shared.authorisedUser.children.isEmpty {
+                    EduLinkAPI.shared.authorisedUser.type = .learner
+                } else {
+                    self.changeChild(0)
+                }
+            }
             self.schoolScraping(result)
             EduLink_Register.registerCodes({ (success, error) -> Void in
                 rootCompletion(success, error)
             })
         })
     }
-    
-    
+ 
     /// For logging in a user that is already saved, usually faster as schoolCode is already cached
     /// - Parameters:
     ///   - savedLogin: The user being logged in, for more documentation see `SavedLogin`
@@ -187,17 +210,6 @@ public class LoginManager {
         }
         KeyChainManager.delete(key: login.username)
         UserDefaults.standard.setValue(l, forKey: "LoginCache")
-    }
-
-    private func personalMenu(_ dict: [String : Any]) {
-        if let personal_menu = dict["personal_menu"] as? [[String : String]] {
-            for menu in personal_menu {
-                var personalMenu = SimpleStore()
-                personalMenu.id = "\(menu["id"] ?? "Not Given")"
-                personalMenu.name = menu["name"] ?? "Not Given"
-                EduLinkAPI.shared.authorisedUser.personalMenus.append(personalMenu)
-            }
-        }
     }
     
     private func schoolScraping(_ dict: [String : Any]) {
@@ -309,14 +321,17 @@ public class LoginManager {
     }
     
     public func changeChild(_ index: Int) {
-        var currentChild = EduLinkAPI.shared.authorisedUser.children[EduLinkAPI.shared.authorisedUser.selectedChild]
-        currentChild.documents = EduLinkAPI.shared.documents
-        currentChild.weeks = EduLinkAPI.shared.weeks
-        currentChild.personal = EduLinkAPI.shared.personal
-        currentChild.attendance = EduLinkAPI.shared.attendance
-        currentChild.achievementBehaviourLookups = EduLinkAPI.shared.achievementBehaviourLookups
-        currentChild.homework = EduLinkAPI.shared.homework
-        EduLinkAPI.shared.authorisedUser.children[EduLinkAPI.shared.authorisedUser.selectedChild] = currentChild
+        if let i = EduLinkAPI.shared.authorisedUser.selectedChild {
+            var currentChild = EduLinkAPI.shared.authorisedUser.children[i]
+            currentChild.documents = EduLinkAPI.shared.documents
+            currentChild.weeks = EduLinkAPI.shared.weeks
+            currentChild.personal = EduLinkAPI.shared.personal
+            currentChild.attendance = EduLinkAPI.shared.attendance
+            currentChild.achievementBehaviourLookups = EduLinkAPI.shared.achievementBehaviourLookups
+            currentChild.homework = EduLinkAPI.shared.homework
+            currentChild.catering = EduLinkAPI.shared.catering
+            EduLinkAPI.shared.authorisedUser.children[EduLinkAPI.shared.authorisedUser.selectedChild] = currentChild
+        }
         
         var moving = EduLinkAPI.shared.authorisedUser.children[index]
         EduLinkAPI.shared.documents = moving.documents; moving.documents.removeAll()
@@ -325,7 +340,9 @@ public class LoginManager {
         EduLinkAPI.shared.attendance = moving.attendance; moving.attendance = Attendance()
         EduLinkAPI.shared.achievementBehaviourLookups = moving.achievementBehaviourLookups; moving.achievementBehaviourLookups = AchievementBehaviourLookup()
         EduLinkAPI.shared.homework = moving.homework; moving.homework = Homeworks()
+        EduLinkAPI.shared.catering = moving.catering; moving.catering = Catering()
         EduLinkAPI.shared.authorisedUser.selectedChild = index
+        EduLinkAPI.shared.authorisedUser.id = moving.id
         EduLinkAPI.shared.authorisedUser.children[index] = moving
     }
 }
@@ -395,7 +412,7 @@ public struct AuthorisedUser {
     public var form_group_id: String!
     /// The users year group ID
     public var year_group_id: String!
-    /// The users community group ID
+    /// The users comnity group ID
     public var community_group_id: String!
     /// The users profile picture
     public var avatar: Data!
@@ -404,6 +421,8 @@ public struct AuthorisedUser {
     /// The menus that the user has access to, usually shown on the main page of the app
     public var personalMenus = [SimpleStore]()
     
+    /// Parent ID
+    public var parent_id: String!
     public var children = [Child]()
     public var selectedChild: Int!
 }
@@ -424,6 +443,7 @@ public struct Child {
     internal var attendance = Attendance()
     internal var achievementBehaviourLookups = AchievementBehaviourLookup()
     internal var homework = Homeworks()
+    internal var catering = Catering()
 }
 
 /// Container for the school of the currently logged in user

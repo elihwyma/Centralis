@@ -14,7 +14,6 @@ public class EduLink_Timetable {
     class public func timetable(learnerID: String = EduLinkAPI.shared.authorisedUser.id, _ rootCompletion: @escaping completionHandler) {
         let params: [String : String] = [
             "learner_id" : learnerID,
-            "authtoken" : EduLinkAPI.shared.authorisedUser.authToken,
             "date" : "\(date())"
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.Timetable", params: params, completion: { (success, dict) -> Void in

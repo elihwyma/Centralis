@@ -11,9 +11,9 @@ import Foundation
 public class EduLink_Catering {
     /// Retrieve the balance and transactions of a user. For more documentation see `Catering`
     /// - Parameter rootCompletion: The completion handler, for more documentation see `completionHandler`
-    class public func catering(_ rootCompletion: @escaping completionHandler) {
+    class public func catering(learnerID: String = EduLinkAPI.shared.authorisedUser.id, _ rootCompletion: @escaping completionHandler) {
         let params: [String : String] = [
-            "authtoken" : EduLinkAPI.shared.authorisedUser.authToken
+            "learner_id" : learnerID
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.Catering", params: params, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }
@@ -35,6 +35,11 @@ public class EduLink_Catering {
                         cateringTransaction.items.append(cateringItem)
                     }
                     catering.transactions.append(cateringTransaction)
+                }
+            }
+            if EduLinkAPI.shared.authorisedUser.id == learnerID { EduLinkAPI.shared.catering = catering } else {
+                if let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == learnerID}) {
+                    EduLinkAPI.shared.authorisedUser.children[index].catering = catering
                 }
             }
             EduLinkAPI.shared.catering = catering

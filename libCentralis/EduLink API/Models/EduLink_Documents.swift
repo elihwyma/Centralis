@@ -13,8 +13,7 @@ public class EduLink_Documents {
     /// - Parameter rootCompletion: The completion handler, for more documentation see `completionHandler`
     class public func documents(learnerID: String = EduLinkAPI.shared.authorisedUser.id, _ rootCompletion: @escaping completionHandler) {
         let params: [String : String] = [
-            "learner_id" : learnerID,
-            "authtoken" : EduLinkAPI.shared.authorisedUser.authToken
+            "learner_id" : learnerID
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.Documents", params: params, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }
@@ -47,7 +46,6 @@ public class EduLink_Documents {
     class public func document(_ document: Document, _ rootCompletion: @escaping completionHandler) {
         let learnerID = EduLinkAPI.shared.authorisedUser.id
         let params: [String : String] = [
-            "authtoken" : EduLinkAPI.shared.authorisedUser.authToken,
             "document_id" : document.id
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.Document", params: params, completion: { (success, dict) -> Void in

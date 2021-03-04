@@ -88,11 +88,7 @@ class HomeViewController: UIViewController {
     }
     
     private func title() {
-        #if DEBUG
-        self.title = "😎🖕"
-        #else
         self.title = "\(EduLinkAPI.shared.authorisedUser.forename ?? "") \(EduLinkAPI.shared.authorisedUser.surname ?? "")"
-        #endif
     }
     
     private func delegateLoginError(_ error: String) {
@@ -108,6 +104,7 @@ class HomeViewController: UIViewController {
             DispatchQueue.main.async {
                 self.shownCells[0].removeAll()
                 if success {
+                    
                     if EduLinkAPI.shared.status.current != nil && EduLinkAPI.shared.status.upcoming != nil {
                         self.shownCells[0].append(HomeScreenLesson(current: EduLinkAPI.shared.status.current, upcoming: EduLinkAPI.shared.status.upcoming))
                         self.tableView.reloadData()

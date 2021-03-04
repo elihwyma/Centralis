@@ -13,7 +13,6 @@ public class EduLink_Homework {
     /// - Parameter rootCompletion: The completion handler, for more documentation see `completionHandler`
     class public func homework(learnerID: String = EduLinkAPI.shared.authorisedUser.id, _ rootCompletion: @escaping completionHandler) {
         let params: [String : String] = [
-            "authtoken" : EduLinkAPI.shared.authorisedUser.authToken,
             "learner_id" : learnerID
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.Homework", params: params, completion: { (success, dict) -> Void in
@@ -48,7 +47,6 @@ public class EduLink_Homework {
     ///   - rootCompletion: The completion handler, for more documentation see `completionHandler`
     class public func homeworkDetails(learnerID: String = EduLinkAPI.shared.authorisedUser.id, _ index: Int!, _ homework: Homework!, _ context: HomeworkContext, _ rootCompletion: @escaping completionHandler) {
         let params: [String : String] = [
-            "authtoken" : EduLinkAPI.shared.authorisedUser.authToken,
             "source" : homework.source,
             "homework_id" : homework.id
         ]
@@ -91,7 +89,6 @@ public class EduLink_Homework {
         }
         let params: [String : String] = [
             "learner_id" : learnerID,
-            "authtoken" : EduLinkAPI.shared.authorisedUser.authToken,
             "completed" : completed ? "true" : "false",
             "homework_id" : homework.id,
             "source" : homework.source

@@ -13,4 +13,6 @@ public extension NSNotification.Name {
     static let ReAuth = Notification.Name("Reauth")
     /// Is fired when the Timetable button in the app has been pressed
     static let TimetableButtonPressed = Notification.Name("TimetableButtonPressed")
+    /// Learner Image Update
+    static let LearnerImage = Notification.Name("LearnerImage")
 }

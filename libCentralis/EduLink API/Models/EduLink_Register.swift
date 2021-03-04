@@ -14,8 +14,7 @@ public class EduLink_Register {
     /// - Parameter rootCompletion: The completion handler, for more documentation see `completionHandler`
     class public func registerCodes(learnerID: String = EduLinkAPI.shared.authorisedUser.id, _ rootCompletion: @escaping completionHandler) {
         let params: [String : String] = [
-            "learner_id" : learnerID,
-            "authtoken" : EduLinkAPI.shared.authorisedUser.authToken
+            "learner_id" : learnerID
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.RegisterCodes", params: params, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }

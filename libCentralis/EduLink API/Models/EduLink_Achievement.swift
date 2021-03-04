@@ -11,9 +11,7 @@ import Foundation
 public class EduLink_Achievement {
     class private func achievementBehaviourLookups(_ rootCompletion: @escaping completionHandler) {
         let learnerID = EduLinkAPI.shared.authorisedUser.id
-        let params: [String : String] = [
-            "authtoken" : EduLinkAPI.shared.authorisedUser.authToken
-        ]
+        let params: [String : String] = [:]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.AchievementBehaviourLookups", params: params, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }
             guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
@@ -95,8 +93,7 @@ public class EduLink_Achievement {
     /// - Parameter rootCompletion: The completion handler, for more documentation see `completionHandler`
     class public func achievement(learnerID: String = EduLinkAPI.shared.authorisedUser.id, _ zCompletion: @escaping completionHandler) {
         let params: [String : String] = [
-            "learner_id" : learnerID,
-            "authtoken" : EduLinkAPI.shared.authorisedUser.authToken
+            "learner_id" : learnerID
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.Achievement", params: params, completion: { (success, dict) -> Void in
             if !success { return zCompletion(false, "Network Error") }
@@ -138,8 +135,7 @@ public class EduLink_Achievement {
     /// - Parameter rootCompletion: The completion handler, for more documentation see `completionHandler`
     class public func behaviour(learnerID: String = EduLinkAPI.shared.authorisedUser.id, _ zCompletion: @escaping completionHandler) {
         let params: [String : String] = [
-            "learner_id" : learnerID,
-            "authtoken" : EduLinkAPI.shared.authorisedUser.authToken
+            "learner_id" : learnerID
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.Behaviour", params: params, completion: { (success, dict) -> Void in
             if !success { return zCompletion(false, "Network Error") }
