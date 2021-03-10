@@ -13,7 +13,7 @@ internal class EduLink_Employee {
             var a = Employee()
             a.id = "\(employee["id"] ?? "Not Given")"
             let isFound = EduLinkAPI.shared.authorisedSchool.schoolInfo.employees.contains(where: {$0.id == a.id} )
-            if isFound { return }
+            if isFound { continue }
             a.forename = employee["forename"] as? String ?? "Not Given"
             a.title = employee["title"] as? String ?? "Not Given"
             a.surname = employee["surname"] as? String ?? "Not Given"
