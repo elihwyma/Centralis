@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "libCentralis",
+        "repositoryURL": "/Users/amy/Documents/GitHub/libCentralis",
+        "state": {
+          "branch": "development",
+          "revision": "bdda29f0e3cb7a6546ff3137dd479d50939832d5",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
