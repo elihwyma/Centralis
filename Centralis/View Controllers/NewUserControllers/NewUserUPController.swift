@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import libCentralis
+//import libCentralis
 
 class NewUserUPController: UIViewController {
 
@@ -23,7 +23,7 @@ class NewUserUPController: UIViewController {
     }
     
     private func setup() {
-        self.schoolImage.image = EduLinkAPI.shared.authorisedSchool.schoolLogo
+        if let image = UIImage(data: EduLinkAPI.shared.authorisedSchool.schoolLogo) { self.schoolImage.image = image }
         self.schoolImage.layer.masksToBounds = true
         self.schoolImage.layer.cornerRadius = 25
         self.schoolName.adjustsFontSizeToFitWidth = true

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import libCentralis
+//import libCentralis
 
 class HomeViewController: UIViewController {
     
@@ -50,7 +50,7 @@ class HomeViewController: UIViewController {
         #else
         for m in EduLinkAPI.shared.authorisedUser.personalMenus {
             if completedMenus.contains(m.name) {
-                self.shownMenus.append(m)
+                self.shownCells[1].append(m)
             }
         }
         #endif
@@ -83,6 +83,10 @@ class HomeViewController: UIViewController {
         })
     }
     
+    private func title() {
+        self.title = "\(EduLinkAPI.shared.authorisedUser.forename ?? "") \(EduLinkAPI.shared.authorisedUser.surname ?? "")"
+    }
+    
     private func delegateLoginError(_ error: String) {
         let errorView: ErrorView = .fromNib()
         errorView.text.text = error
@@ -95,7 +99,10 @@ class HomeViewController: UIViewController {
         EduLink_Status.status(rootCompletion: { (success, error) -> Void in
             DispatchQueue.main.async {
                 if success {
-                    #warning("Yeah status needs sorting out here")
+                    if EduLinkAPI.shared.status.current != nil && EduLinkAPI.shared.status.upcoming != nil {
+                        self.shownCells[0].append(HomeScreenLesson(current: EduLinkAPI.shared.status.current, upcoming: EduLinkAPI.shared.status.upcoming))
+                        self.tableView.reloadData()
+                    }
                 } else {
                     self.statusError(error!)
                 }
