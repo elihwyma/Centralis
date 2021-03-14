@@ -11,4 +11,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Analyze
-      run: /usr/bin/xcodebuild clean analyze CODE_SIGNING_ALLOWED=NO -project "$XC_PROJECT" -scheme "$XC_SCHEME" 
+      run: /usr/bin/xcodebuild clean analyze CODE_SIGNING_ALLOWED=NO -project "$XC_PROJECT" -sdk iphoneos -configuration Release -scheme "$XC_SCHEME" 
