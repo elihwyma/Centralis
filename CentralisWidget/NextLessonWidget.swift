@@ -58,7 +58,14 @@ struct NextLessonWidgetView : View {
     var entry: NextLessonProvider.Entry
 
     var body: some View {
-        Text("example")
+        VStack(alignment: .leading) {
+            Text(entry.lesson?.subject ?? "Free")
+                .minimumScaleFactor(0.01)
+            Text(entry.lesson?.room ?? "Free")
+                .minimumScaleFactor(0.01)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color(UIColor.systemGray5))
     }
 }
 
