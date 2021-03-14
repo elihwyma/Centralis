@@ -44,7 +44,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    var shownCells: [[Any]] = [[],[]]
+    var shownCells: [[Any]] = [[],[],[]]
     
     private func menuOrganising() {
         self.shownCells[1].removeAll()
@@ -68,6 +68,20 @@ class HomeViewController: UIViewController {
         self.tableView.register(UINib(nibName: "HomeMenuCell", bundle: nil), forCellReuseIdentifier: "Centralis.HomeMenuCell")
         self.tableView.register(UINib(nibName: "HomeMenuLessonCell", bundle: nil), forCellReuseIdentifier: "Centralis.HomeMenuLessonCell")
         self.menuOrganising()
+        self.shownCells[2].append(SimpleStore(id: "CentralisSettings", name: "Settings"))
+        self.tableView.layer.masksToBounds = true
+        self.tableView.layer.cornerRadius = 10
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in
+            UNUserNotificationCenter.current().getNotificationSettings() { settings in
+                if settings.authorizationStatus == .denied {
+                    var rn = EduLinkAPI.shared.defaults.object(forKey: "RegisteredNotifications") as? [String : Any] ?? [String : Any]()
+                    rn["HomeworkChanges"] = false
+                    rn["RoomChanges"] = false
+                    EduLinkAPI.shared.defaults.setValue(rn, forKey: "RegisteredNotifications")
+                }
+            }
+        }
     }
     
     @objc public func arriveFromDelegate() {
@@ -135,7 +149,12 @@ class HomeViewController: UIViewController {
         let indexPaths: NSArray = self.tableView.indexPathsForSelectedRows! as NSArray
         if indexPaths.count == 0 { return }
         let indexPath: IndexPath = indexPaths[0] as! IndexPath
-        let menu = self.shownCells[1][indexPath.row] as! SimpleStore
+        let menu: SimpleStore
+        if indexPath.section == 2 {
+            menu = self.shownCells[2][indexPath.row] as! SimpleStore
+        } else {
+            menu = self.shownCells[1][indexPath.row] as! SimpleStore
+        }
         if segue.identifier == "Centralis.TextViewController" {
             let controller = segue.destination as! TextViewController
             switch menu.name! {
@@ -155,23 +174,33 @@ class HomeViewController: UIViewController {
             case "Attendance": controller.context = .attendance
             default: fatalError("Not implemented yet")
             }
+        } else if segue.identifier == "Centralis.Settings" {
+            let _ = segue.destination as! UINavigationController
         }
     }
 }
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch (self.shownCells[1][indexPath.row] as! SimpleStore).name {
-        case "Achievement": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
-        case "Catering": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
-        case "Account Info": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
-        case "Homework": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
-        case "Behaviour": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
-        case "Timetable": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
-        case "Links": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
-        case "Documents": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
-        case "Attendance": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
-        default: print("Not yet implemented")
+        if indexPath.section == 2 || (self.shownCells[0].isEmpty && indexPath.section == 1) {
+            switch (self.shownCells[2][indexPath.row] as! SimpleStore).name {
+            case "Settings": self.performSegue(withIdentifier: "Centralis.Settings", sender: nil)
+            default: print("Not yet implemented")
+            }
+        } else {
+            switch (self.shownCells[1][indexPath.row] as! SimpleStore).name {
+            case "Achievement": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
+            case "Catering": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
+            case "Account Info": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
+            case "Homework": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
+            case "Behaviour": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
+            case "Timetable": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
+            case "Links": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
+            case "Documents": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
+            case "Attendance": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
+            case "Settings": self.performSegue(withIdentifier: "Centralis.Settings", sender: nil)
+            default: print("Not yet implemented")
+            }
         }
     }
 }
@@ -184,10 +213,20 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.shownCells[0].isEmpty ? 1 : 2
+        return self.shownCells[0].isEmpty ? 2 : 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 2 || (self.shownCells[0].isEmpty && indexPath.section == 1) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.HomeMenuCell", for: indexPath) as! HomeMenuCell
+            let menu = self.shownCells[2][indexPath.row] as! SimpleStore
+            cell.name.text = menu.name
+            switch menu.name {
+            case "Settings": cell.iconView.image = UIImage(systemName: "gear")
+            default: break
+            }
+            return cell
+        }
         if self.shownCells[0].isEmpty || indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.HomeMenuCell", for: indexPath) as! HomeMenuCell
             let menu = self.shownCells[1][indexPath.row] as! SimpleStore
@@ -217,6 +256,7 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 2 || (self.shownCells[0].isEmpty && section == 1) { return UIView() }
         let vw = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
         let label = UILabel(frame: CGRect(x: 0, y: 10, width: tableView.frame.width, height: 20))
         label.adjustsFontSizeToFitWidth = true
@@ -234,7 +274,9 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        if section == 2 || (self.shownCells[0].isEmpty && section == 1) { return 0 } else {
+            return 40
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

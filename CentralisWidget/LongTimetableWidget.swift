@@ -59,20 +59,21 @@ struct LongTimetableWidgetView : View {
 
     var body: some View {
         GeometryReader { reader in
-            VStack(spacing: 10) {
+            VStack() {
                 ForEach(entry.day?.periods ?? [Period](), id: \.self) { period in
-                        HStack {
-                            Text("\(period.start_time) - \(period.lesson != nil ? period.lesson.room_name : "Free") - \(period.lesson != nil ? period.lesson.subject : "Free")")
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                        }
-                        .background(Color(UIColor.systemGray5))
-                        .cornerRadius(10)
-                        .frame(width: .infinity, height: 10, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    HStack {
+                        Text("\(period.start_time) - \(period.lesson != nil ? period.lesson.room_name : "Free") - \(period.lesson != nil ? period.lesson.subject : "Free")")
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .minimumScaleFactor(0.01)
+                    }
+                    .background(Color(UIColor.systemGray5))
+                    .cornerRadius(10)
+                    .frame(width: .infinity)
                 }
-                .frame(width: reader.size.width * 0.85, height: reader.size.width / 10)
+                .frame(width: reader.size.width * 0.85, height: reader.size.height / CGFloat(entry.day?.periods.count ?? 0))
             }
             .frame(width: reader.size.width, height: reader.size.height, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            .background(Color(UIColor.systemGray5))
         }
     }
 }

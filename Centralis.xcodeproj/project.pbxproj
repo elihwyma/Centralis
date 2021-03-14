@@ -35,6 +35,14 @@
 		E10A5B26259BE4F300FA8BD0 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */; };
 		E117206425FE6B2700339837 /* NextLessonWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117206325FE6B2700339837 /* NextLessonWidget.swift */; };
 		E117207025FE752300339837 /* CentralisWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117206F25FE752300339837 /* CentralisWidget.swift */; };
+		E117208425FE7C0F00339837 /* BridgingStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117207425FE7C0F00339837 /* BridgingStubs.swift */; };
+		E117208525FE7C0F00339837 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E117207625FE7C0F00339837 /* ButtonCell.xib */; };
+		E117208625FE7C0F00339837 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117207725FE7C0F00339837 /* ButtonCell.swift */; };
+		E117208925FE7C0F00339837 /* SettingsSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117207C25FE7C0F00339837 /* SettingsSwitchCell.swift */; };
+		E117208A25FE7C0F00339837 /* SettingsSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E117207D25FE7C0F00339837 /* SettingsSwitchCell.xib */; };
+		E117209F25FE7E4700339837 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117209E25FE7E4700339837 /* SettingsViewController.swift */; };
+		E11720C225FE9F5300339837 /* NotificationSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11720C025FE9F5200339837 /* NotificationSwitchCell.xib */; };
+		E11720C325FE9F5300339837 /* NotificationSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720C125FE9F5200339837 /* NotificationSwitchCell.swift */; };
 		E1226FBF25FD1BBD00D81A43 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1226FBE25FD1BBD00D81A43 /* WidgetKit.framework */; };
 		E1226FC125FD1BBD00D81A43 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1226FC025FD1BBD00D81A43 /* SwiftUI.framework */; };
 		E1226FC425FD1BBD00D81A43 /* LongTimetableWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1226FC325FD1BBD00D81A43 /* LongTimetableWidget.swift */; };
@@ -157,6 +165,20 @@
 		E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
 		E117206325FE6B2700339837 /* NextLessonWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLessonWidget.swift; sourceTree = "<group>"; };
 		E117206F25FE752300339837 /* CentralisWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralisWidget.swift; sourceTree = "<group>"; };
+		E117207425FE7C0F00339837 /* BridgingStubs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgingStubs.swift; sourceTree = "<group>"; };
+		E117207625FE7C0F00339837 /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
+		E117207725FE7C0F00339837 /* ButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		E117207925FE7C0F00339837 /* SocialCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialCell.xib; sourceTree = "<group>"; };
+		E117207A25FE7C0F00339837 /* SocialCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialCell.swift; sourceTree = "<group>"; };
+		E117207C25FE7C0F00339837 /* SettingsSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSwitchCell.swift; sourceTree = "<group>"; };
+		E117207D25FE7C0F00339837 /* SettingsSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsSwitchCell.xib; sourceTree = "<group>"; };
+		E117207F25FE7C0F00339837 /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		E117208025FE7C0F00339837 /* ToastView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToastView.xib; sourceTree = "<group>"; };
+		E117208225FE7C0F00339837 /* AppIconCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppIconCell.xib; sourceTree = "<group>"; };
+		E117208325FE7C0F00339837 /* AppIconCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppIconCell.swift; sourceTree = "<group>"; };
+		E117209E25FE7E4700339837 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E11720C025FE9F5200339837 /* NotificationSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationSwitchCell.xib; sourceTree = "<group>"; };
+		E11720C125FE9F5200339837 /* NotificationSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSwitchCell.swift; sourceTree = "<group>"; };
 		E1226FBC25FD1BBD00D81A43 /* CentralisWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CentralisWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1226FBE25FD1BBD00D81A43 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		E1226FC025FD1BBD00D81A43 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -314,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				E1226FCB25FD1BBF00D81A43 /* CentralisWidgetExtension.entitlements */,
+				E117207325FE7C0F00339837 /* libAmy */,
 				E1B77AA625F0172900CFF9DC /* libCentralis */,
 				53CB50702572D1780077DDAE /* Centralis */,
 				E1226FC225FD1BBD00D81A43 /* CentralisWidget */,
@@ -374,6 +397,7 @@
 		53CB508E2572D6800077DDAE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E117209D25FE7E2D00339837 /* SettingsViewController */,
 				E1768303259A7D530099BB92 /* NewUserControllers */,
 				E1F9A49625850F3D00CEA071 /* DocumentWebViewController */,
 				E180E9C32580115100ABFE69 /* CarouselViewControllers */,
@@ -432,6 +456,82 @@
 				E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */,
 			);
 			path = ErrorView;
+			sourceTree = "<group>";
+		};
+		E117207325FE7C0F00339837 /* libAmy */ = {
+			isa = PBXGroup;
+			children = (
+				E11720BF25FE9F5200339837 /* Notification Switch Cell */,
+				E117207425FE7C0F00339837 /* BridgingStubs.swift */,
+				E117207525FE7C0F00339837 /* Button Cell */,
+				E117207825FE7C0F00339837 /* Social Cell */,
+				E117207B25FE7C0F00339837 /* Settings Switch Cell */,
+				E117207E25FE7C0F00339837 /* Toast View */,
+				E117208125FE7C0F00339837 /* App Icon Cell */,
+			);
+			path = libAmy;
+			sourceTree = "<group>";
+		};
+		E117207525FE7C0F00339837 /* Button Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E117207625FE7C0F00339837 /* ButtonCell.xib */,
+				E117207725FE7C0F00339837 /* ButtonCell.swift */,
+			);
+			path = "Button Cell";
+			sourceTree = "<group>";
+		};
+		E117207825FE7C0F00339837 /* Social Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E117207925FE7C0F00339837 /* SocialCell.xib */,
+				E117207A25FE7C0F00339837 /* SocialCell.swift */,
+			);
+			path = "Social Cell";
+			sourceTree = "<group>";
+		};
+		E117207B25FE7C0F00339837 /* Settings Switch Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E117207C25FE7C0F00339837 /* SettingsSwitchCell.swift */,
+				E117207D25FE7C0F00339837 /* SettingsSwitchCell.xib */,
+			);
+			path = "Settings Switch Cell";
+			sourceTree = "<group>";
+		};
+		E117207E25FE7C0F00339837 /* Toast View */ = {
+			isa = PBXGroup;
+			children = (
+				E117207F25FE7C0F00339837 /* ToastView.swift */,
+				E117208025FE7C0F00339837 /* ToastView.xib */,
+			);
+			path = "Toast View";
+			sourceTree = "<group>";
+		};
+		E117208125FE7C0F00339837 /* App Icon Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E117208225FE7C0F00339837 /* AppIconCell.xib */,
+				E117208325FE7C0F00339837 /* AppIconCell.swift */,
+			);
+			path = "App Icon Cell";
+			sourceTree = "<group>";
+		};
+		E117209D25FE7E2D00339837 /* SettingsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E117209E25FE7E4700339837 /* SettingsViewController.swift */,
+			);
+			path = SettingsViewController;
+			sourceTree = "<group>";
+		};
+		E11720BF25FE9F5200339837 /* Notification Switch Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E11720C025FE9F5200339837 /* NotificationSwitchCell.xib */,
+				E11720C125FE9F5200339837 /* NotificationSwitchCell.swift */,
+			);
+			path = "Notification Switch Cell";
 			sourceTree = "<group>";
 		};
 		E1226FBD25FD1BBD00D81A43 /* Frameworks */ = {
@@ -718,6 +818,7 @@
 				E1576061258BF56B00DD496F /* AmyChartCell.xib in Resources */,
 				E14A7E56259FCF2400EF9712 /* HomeMenuCell.xib in Resources */,
 				53CB507E2572D1880077DDAE /* LaunchScreen.storyboard in Resources */,
+				E117208A25FE7C0F00339837 /* SettingsSwitchCell.xib in Resources */,
 				53874506257BD7AD00174D07 /* HomeworkTableViewController.xib in Resources */,
 				E1C8FD73258165BD0006F36F /* EmbeddedTableViewController.xib in Resources */,
 				53CB507B2572D1880077DDAE /* Assets.xcassets in Resources */,
@@ -728,6 +829,8 @@
 				E1B77ADB25F1133D00CFF9DC /* ChildSelection.xib in Resources */,
 				53243437257828A300875BAD /* TextViewCell.xib in Resources */,
 				53CA2DF32576D67A00E3A02B /* WorkingCover.xib in Resources */,
+				E11720C225FE9F5300339837 /* NotificationSwitchCell.xib in Resources */,
+				E117208525FE7C0F00339837 /* ButtonCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -774,6 +877,7 @@
 				E19B2F5B258D71CE00930AE1 /* Double+Extensions.swift in Sources */,
 				E10A5B25259BE4F300FA8BD0 /* ErrorView.swift in Sources */,
 				E1B77ACD25F0173800CFF9DC /* EduLink_Register.swift in Sources */,
+				E11720C325FE9F5300339837 /* NotificationSwitchCell.swift in Sources */,
 				E1B77AC225F0173800CFF9DC /* UUID.swift in Sources */,
 				5319692F257BC8A70056BF51 /* CarouselController.swift in Sources */,
 				E1B77AC725F0173800CFF9DC /* EduLink_Attendance.swift in Sources */,
@@ -785,16 +889,20 @@
 				E1576054258BB68000DD496F /* AmyChart.swift in Sources */,
 				E1B77ACE25F0173800CFF9DC /* LoginManager.swift in Sources */,
 				E1B77AC525F0173800CFF9DC /* EduLink_Timetable.swift in Sources */,
+				E117208425FE7C0F00339837 /* BridgingStubs.swift in Sources */,
 				53CA2DF62576D69A00E3A02B /* WorkingCover.swift in Sources */,
 				53874512257BDCD400174D07 /* NSMutableAttributedString+Extension.swift in Sources */,
 				E1B77ACB25F0173800CFF9DC /* EduLink_Homework.swift in Sources */,
+				E117209F25FE7E4700339837 /* SettingsViewController.swift in Sources */,
 				E1B77AC925F0173800CFF9DC /* EduLink_Catering.swift in Sources */,
 				53CB50A12572F0B50077DDAE /* ResizedTableView.swift in Sources */,
 				E1B77AC325F0173800CFF9DC /* EduLink_Employee.swift in Sources */,
 				53874509257BD7D600174D07 /* HomeworkTableViewController.swift in Sources */,
+				E117208625FE7C0F00339837 /* ButtonCell.swift in Sources */,
 				E1B77AC625F0173800CFF9DC /* EduLink_Personal.swift in Sources */,
 				531870D1257968BD000191FD /* TextViewController.swift in Sources */,
 				E1FB73CD25A0E33E00BA4E77 /* HomeMenuLessonCell.swift in Sources */,
+				E117208925FE7C0F00339837 /* SettingsSwitchCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
