@@ -1,0 +1,14 @@
+name: Build and Analyze app
+on: 
+  push:
+    branches: [uwu, homepage-redesign,  development]
+jobs:
+  build:
+    runs-on: [macos-latest]
+    env:
+      XC_PROJECT: ${{ 'Centralis.xcodeproj' }}
+      XC_SCHEME: ${{ 'Centralis' }}
+    steps:
+    - uses: actions/checkout@v2
+    - name: Analyze
+      run: /usr/bin/xcodebuild clean analyze CODE_SIGNING_ALLOWED=NO -project "$XC_PROJECT" -scheme "$XC_SCHEME" 
