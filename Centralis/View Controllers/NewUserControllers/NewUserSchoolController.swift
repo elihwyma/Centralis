@@ -28,14 +28,22 @@ class NewUserSchoolController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         self.view.addGestureRecognizer(tapGesture)
     }
+    
+    private func showError(_ error: String) {
+        let errorView: ErrorView = .fromNib()
+        errorView.text.text = error
+        errorView.changeGoBackLabel("Go Back")
+        errorView.retryButton.isHidden = true
+        if let nc = self.navigationController { errorView.startWorking(nc) }
+    }
 
     @IBAction func continueButton(_ sender: Any) {
         guard let code = self.schoolCode.text else {
-            //TODO: Empty field
+            self.showError("School Code can't be empty")
             return
         }
         if code.isEmpty {
-            //TODO: Empty field
+            self.showError("School Code can't be empty")
             return
         }
         if let nc = self.navigationController { self.workingCover.startWorking(nc) }
@@ -46,7 +54,7 @@ class NewUserSchoolController: UIViewController {
                 if success {
                     self.performSegue(withIdentifier: "Centralis.ShowUP", sender: nil)
                 } else {
-                    //TODO: More error handling here
+                    self.showError(error ?? "Fuck")
                 }
             }
         })

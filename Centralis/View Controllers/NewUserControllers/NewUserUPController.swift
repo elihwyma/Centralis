@@ -33,17 +33,25 @@ class NewUserUPController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         self.view.addGestureRecognizer(tapGesture)
     }
+    
+    private func showError(_ error: String) {
+        let errorView: ErrorView = .fromNib()
+        errorView.text.text = error
+        errorView.changeGoBackLabel("Go Back")
+        errorView.retryButton.isHidden = true
+        if let nc = self.navigationController { errorView.startWorking(nc) }
+    }
 
     @IBAction func login(_ sender: Any) {
         guard let username = self.username.text, let password = self.password.text else {
-            //TODO: Not filled in
+            self.showError("Username and Password can't be empty")
             return
         }
         if username.isEmpty || password.isEmpty {
-            //TODO: Not filled in
+            self.showError("Username and Password can't be empty")
             return
         }
-        //You're welcome Sullivan
+        // You're welcome Sullivan
         if username == "Cheese" && password == "Cheese" {
             return UIApplication.shared.open(URL(string: "https://www.youtube.com/watch?v=SyimUCBIo6c")!)
         }
@@ -55,12 +63,12 @@ class NewUserUPController: UIViewController {
                 if success {
                     if self.savePassword.isOn {
                         LoginManager.shared.saveLogin()
-                        UserDefaults.standard.setValue(LoginManager.shared.username, forKey: "PreferredUsername")
-                        UserDefaults.standard.setValue(LoginManager.shared.schoolCode, forKey: "PreferredSchool")
+                        EduLinkAPI.shared.defaults.setValue(LoginManager.shared.username, forKey: "PreferredUsername")
+                        EduLinkAPI.shared.defaults.setValue(LoginManager.shared.schoolCode, forKey: "PreferredSchool")
                     }
                     self.performSegue(withIdentifier: "Centralis.Login", sender: nil)
                 } else {
-                    //TODO: Parse this error
+                    self.showError(error ?? "Fuck")
                 }
             }
         })

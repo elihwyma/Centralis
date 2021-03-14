@@ -10,7 +10,7 @@ import Foundation
 
 /// The global KeyChainManager, which is a wrapper over Apple's Security framework. This is used for securely storing passwords
 public class KeyChainManager {
-    
+
     /// Save a new key in the keychain, will automatically delete if the key already exists
     /// - Parameters:
     ///   - key: The key it will be saved against
@@ -20,7 +20,8 @@ public class KeyChainManager {
         let query = [
             kSecClass as String       : kSecClassGenericPassword as String,
             kSecAttrAccount as String : key,
-            kSecValueData as String   : data ] as [String : Any]
+            kSecAttrAccessGroup: "group.amywhile.centralis",
+            kSecValueData as String   : data ] as! [String : Any]
 
         SecItemDelete(query as CFDictionary)
 
@@ -32,7 +33,8 @@ public class KeyChainManager {
     class public func delete(key: String) {
         let query = [
             kSecClass as String       : kSecClassGenericPassword as String,
-            kSecAttrAccount as String : key]
+            kSecAttrAccessGroup: "group.amywhile.centralis",
+            kSecAttrAccount as String : key] as [AnyHashable : String]
 
         SecItemDelete(query as CFDictionary)
     }
@@ -45,7 +47,8 @@ public class KeyChainManager {
             kSecClass as String       : kSecClassGenericPassword,
             kSecAttrAccount as String : key,
             kSecReturnData as String  : kCFBooleanTrue!,
-            kSecMatchLimit as String  : kSecMatchLimitOne ] as [String : Any]
+            kSecAttrAccessGroup: "group.amywhile.centralis",
+            kSecMatchLimit as String  : kSecMatchLimitOne ] as! [String : Any]
 
         var dataTypeRef: AnyObject? = nil
 

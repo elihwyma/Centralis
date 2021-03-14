@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import BackgroundTasks
+import UserNotifications
 //import libCentralis
 
 @UIApplicationMain
@@ -15,9 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        guard let ps = UserDefaults.standard.value(forKey: "PreferredSchool") as? String, let pu = UserDefaults.standard.value(forKey: "PreferredUsername") as? String else { return true }
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.amywhile.centralis.backgroundrefresh", using: nil) { task in
+            self.notificationRefresh(completionHandler: {(success) -> Void in
+                task.setTaskCompleted(success: true)
+                self.scheduleAppRefresh()
+            })
+        }
+        // Automatic Login on Open
+        guard let ps = EduLinkAPI.shared.defaults.value(forKey: "PreferredSchool") as? String, let pu = EduLinkAPI.shared.defaults.value(forKey: "PreferredUsername") as? String else { return true }
         let decoder = JSONDecoder()
-        let l = UserDefaults.standard.object(forKey: "LoginCache") as? [Data] ?? [Data]()
+        let l = EduLinkAPI.shared.defaults.object(forKey: "LoginCache") as? [Data] ?? [Data]()
         for login in l {
             if let a = try? decoder.decode(SavedLogin.self, from: login) {
                 if a.username == pu && a.schoolCode == ps {
@@ -36,6 +45,91 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         return true
+    }
+    
+    private func notificationRefresh(completionHandler: @escaping (_ success: Bool) -> Void) {
+        guard var notificationPreferences = EduLinkAPI.shared.defaults.dictionary(forKey: "RegisteredNotifications") else {
+            return completionHandler(true)
+        }
+        guard let ps = EduLinkAPI.shared.defaults.value(forKey: "PreferredSchool") as? String,
+              let pu = EduLinkAPI.shared.defaults.value(forKey: "PreferredUsername") as? String else { return completionHandler(false) }
+        let decoder = JSONDecoder()
+        let l = EduLinkAPI.shared.defaults.object(forKey: "LoginCache") as? [Data] ?? [Data]()
+        var user: SavedLogin?
+        for login in l {
+            if let a = try? decoder.decode(SavedLogin.self, from: login) { if a.username == pu && a.schoolCode == ps { user = a } }
+        }
+        if user == nil { return completionHandler(false) }
+        LoginManager.shared.quickLogin(user!, { (success, error) -> Void in
+            if !success { return completionHandler(false) }
+            EduLink_Timetable.timetable({(success, error) -> Void in
+                if !success { return completionHandler(false) }
+                if notificationPreferences["RoomChanges"] as? Bool ?? false {
+                    let week = EduLinkAPI.shared.weeks.first(where: {$0.is_current}) ?? EduLinkAPI.shared.weeks.first
+                    if let day = week?.days.first(where: {$0.isCurrent}) {
+                        var postedChanges = notificationPreferences["RoomChangePosted"] as? [String : Any] ?? [String : Any]()
+                        var postedID = postedChanges["PostedID"] as? [String] ?? [String]()
+                        // Garbage Cleanup
+                        if (postedChanges["day"] as? String ?? "") == day.name ?? "" { postedID.removeAll(); postedChanges["day"] = day.name ?? "" }
+                        for period in day.periods where !postedID.contains(period.id ?? "") {
+                            if let lesson = period.lesson {
+                                if lesson.moved {
+                                    self.sendNotification(title: "Room Change", subtitle: "\(lesson.subject ?? "") at \(period.start_time ?? "") has been moved to \(lesson.room_name ?? "")")
+                                    postedID.append(period.id ?? "")
+                                }
+                            }
+                        }
+                        postedChanges["PostedID"] = postedID
+                        notificationPreferences["RoomChangePosted"] = postedChanges
+                    }
+                }
+                // Check for homework, easiest way to do this is chained completionHandlers, Swift 5.5 wya
+                EduLink_Homework.homework({(sucess, error) -> Void in
+                    if !success { return completionHandler(false) }
+                    if notificationPreferences["HomeworkChanges"] as? Bool ?? false {
+                        var postedChanges = notificationPreferences["HomeworkPosted"] as? [String : Any] ?? [String : Any]()
+                        let postedNew = postedChanges["PostedNew"] as? [String] ?? [String]()
+                        var newID = [String]()
+                        for homework in EduLinkAPI.shared.homework.current {
+                            #warning("Check this again at some point")
+                            if postedNew.contains(homework.id ?? "") { continue }
+                            newID.append(homework.id ?? "")
+                            self.sendNotification(title: "New Homework", subtitle: "\(homework.set_by ?? "") has set \"\(homework.activity ?? "")\" due for \(homework.due_date ?? "")")
+                        }
+                        postedChanges["PostedNew"] = newID
+                        notificationPreferences["HomeworkPosted"] = postedChanges
+                    }
+                    completionHandler(true)
+                })
+            })
+        })
+    }
+    
+    private func scheduleAppRefresh() {
+        let request = BGProcessingTaskRequest(identifier: "com.amywhile.centralis.backgroundrefresh")
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 1800)
+        request.requiresExternalPower = false
+        request.requiresNetworkConnectivity = true
+        do {
+            try BGTaskScheduler.shared.submit(request)
+        } catch {
+            print("Could not schedule app refresh task \(error.localizedDescription)")
+        }
+    }
+    
+    private func sendNotification(title: String, subtitle: String) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.subtitle = subtitle
+        content.sound = UNNotificationSound.default
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID.uuid, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request)
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        // Schedule background tasks
+        self.scheduleAppRefresh()
     }
 }
 

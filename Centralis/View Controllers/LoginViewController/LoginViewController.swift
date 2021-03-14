@@ -32,8 +32,8 @@ class LoginViewController: UIViewController {
     }
     
     private func setup() {
-        UserDefaults.standard.removeObject(forKey: "SavedLogin")
-        UserDefaults.standard.removeObject(forKey: "SavedLogins")
+        EduLinkAPI.shared.defaults.removeObject(forKey: "SavedLogin")
+        EduLinkAPI.shared.defaults.removeObject(forKey: "SavedLogins")
         self.organiseLogins()
         self.newLoggin.layer.masksToBounds = true
         self.newLoggin.layer.borderColor = UIColor.label.cgColor
@@ -59,7 +59,7 @@ class LoginViewController: UIViewController {
     private func organiseLogins() {
         self.logins.removeAll()
         let decoder = JSONDecoder()
-        let l = UserDefaults.standard.object(forKey: "LoginCache") as? [Data] ?? [Data]()
+        let l = EduLinkAPI.shared.defaults.object(forKey: "LoginCache") as? [Data] ?? [Data]()
         for login in l {
             if let a = try? decoder.decode(SavedLogin.self, from: login) {
                 self.logins.append(a)
@@ -111,8 +111,8 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.async {
                 self.workingCover.stopWorking()
                 if success {
-                    UserDefaults.standard.setValue(login.username, forKey: "PreferredUsername")
-                    UserDefaults.standard.setValue(login.schoolCode, forKey: "PreferredSchool")
+                    EduLinkAPI.shared.defaults.setValue(login.username, forKey: "PreferredUsername")
+                    EduLinkAPI.shared.defaults.setValue(login.schoolCode, forKey: "PreferredSchool")
                     self.performSegue(withIdentifier: "Centralis.Login", sender: nil)
                 } else {
                     self.showError(error!)

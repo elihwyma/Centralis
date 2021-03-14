@@ -33,6 +33,31 @@
 		53CB50A12572F0B50077DDAE /* ResizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50A02572F0B50077DDAE /* ResizedTableView.swift */; };
 		E10A5B25259BE4F300FA8BD0 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A5B23259BE4F300FA8BD0 /* ErrorView.swift */; };
 		E10A5B26259BE4F300FA8BD0 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */; };
+		E1226FBF25FD1BBD00D81A43 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1226FBE25FD1BBD00D81A43 /* WidgetKit.framework */; };
+		E1226FC125FD1BBD00D81A43 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1226FC025FD1BBD00D81A43 /* SwiftUI.framework */; };
+		E1226FC425FD1BBD00D81A43 /* CentralisWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1226FC325FD1BBD00D81A43 /* CentralisWidget.swift */; };
+		E1226FC625FD1BBE00D81A43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1226FC525FD1BBE00D81A43 /* Assets.xcassets */; };
+		E1226FCA25FD1BBE00D81A43 /* CentralisWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E1226FBC25FD1BBD00D81A43 /* CentralisWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E1226FD225FD1BDD00D81A43 /* EduLink_Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB025F0173800CFF9DC /* EduLink_Timetable.swift */; };
+		E1226FD525FD1BE000D81A43 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB925F0173800CFF9DC /* LoginManager.swift */; };
+		E1226FD825FD1BE300D81A43 /* EduLinkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77ABA25F0173800CFF9DC /* EduLinkAPI.swift */; };
+		E1226FDB25FD1BEC00D81A43 /* ColourConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AAA25F0173800CFF9DC /* ColourConverter.swift */; };
+		E1226FDE25FD1BEF00D81A43 /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AAC25F0173800CFF9DC /* UUID.swift */; };
+		E1226FE125FD1BF200D81A43 /* EduLink_Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AAE25F0173800CFF9DC /* EduLink_Employee.swift */; };
+		E1226FE425FD1BF300D81A43 /* EduLink_Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AAF25F0173800CFF9DC /* EduLink_Documents.swift */; };
+		E1226FE725FD1BF700D81A43 /* EduLink_Personal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB125F0173800CFF9DC /* EduLink_Personal.swift */; };
+		E1226FEA25FD1BF900D81A43 /* EduLink_Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB225F0173800CFF9DC /* EduLink_Attendance.swift */; };
+		E1226FED25FD1BFB00D81A43 /* EduLink_Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB325F0173800CFF9DC /* EduLink_Achievement.swift */; };
+		E1226FF025FD1BFD00D81A43 /* EduLink_Catering.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB425F0173800CFF9DC /* EduLink_Catering.swift */; };
+		E1226FF325FD1BFF00D81A43 /* EduLink_Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB525F0173800CFF9DC /* EduLink_Links.swift */; };
+		E1226FF625FD1C0100D81A43 /* EduLink_Homework.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB625F0173800CFF9DC /* EduLink_Homework.swift */; };
+		E1226FF925FD1C0400D81A43 /* EduLink_Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB725F0173800CFF9DC /* EduLink_Status.swift */; };
+		E1226FFC25FD1C0600D81A43 /* EduLink_Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB825F0173800CFF9DC /* EduLink_Register.swift */; };
+		E1226FFF25FD1C0800D81A43 /* EduLink_Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AD625F0F7F600CFF9DC /* EduLink_Photo.swift */; };
+		E122700225FD1C0E00D81A43 /* StructModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77ABB25F0173800CFF9DC /* StructModels.swift */; };
+		E122700525FD1C1000D81A43 /* NSNotification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77ABD25F0173800CFF9DC /* NSNotification+Extensions.swift */; };
+		E122700825FD1C1400D81A43 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AA825F0173800CFF9DC /* KeychainManager.swift */; };
+		E122700B25FD1C1600D81A43 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77ABF25F0173800CFF9DC /* NetworkManager.swift */; };
 		E1305DA3259BEFDD00AB3119 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1305DA2259BEFDD00AB3119 /* UIButton+Extension.swift */; };
 		E14A7E55259FCF2400EF9712 /* HomeMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14A7E53259FCF2300EF9712 /* HomeMenuCell.swift */; };
 		E14A7E56259FCF2400EF9712 /* HomeMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E14A7E54259FCF2300EF9712 /* HomeMenuCell.xib */; };
@@ -74,6 +99,30 @@
 		E1FB73CE25A0E33E00BA4E77 /* HomeMenuLessonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1FB73CC25A0E33E00BA4E77 /* HomeMenuLessonCell.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E1226FC825FD1BBE00D81A43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53CB50662572D1770077DDAE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1226FBB25FD1BBD00D81A43;
+			remoteInfo = CentralisWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E1226FCC25FD1BBF00D81A43 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E1226FCA25FD1BBE00D81A43 /* CentralisWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		531870D0257968BD000191FD /* TextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		5319692E257BC8A70056BF51 /* CarouselController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselController.swift; sourceTree = "<group>"; };
@@ -104,6 +153,13 @@
 		53CB50A02572F0B50077DDAE /* ResizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizedTableView.swift; sourceTree = "<group>"; };
 		E10A5B23259BE4F300FA8BD0 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
+		E1226FBC25FD1BBD00D81A43 /* CentralisWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CentralisWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1226FBE25FD1BBD00D81A43 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		E1226FC025FD1BBD00D81A43 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		E1226FC325FD1BBD00D81A43 /* CentralisWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralisWidget.swift; sourceTree = "<group>"; };
+		E1226FC525FD1BBE00D81A43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E1226FC725FD1BBE00D81A43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1226FCB25FD1BBF00D81A43 /* CentralisWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CentralisWidgetExtension.entitlements; sourceTree = "<group>"; };
 		E1305DA2259BEFDD00AB3119 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		E14A7E53259FCF2300EF9712 /* HomeMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuCell.swift; sourceTree = "<group>"; };
 		E14A7E54259FCF2300EF9712 /* HomeMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeMenuCell.xib; sourceTree = "<group>"; };
@@ -150,6 +206,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1226FB925FD1BBD00D81A43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1226FC125FD1BBD00D81A43 /* SwiftUI.framework in Frameworks */,
+				E1226FBF25FD1BBD00D81A43 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,8 +309,11 @@
 		53CB50652572D1770077DDAE = {
 			isa = PBXGroup;
 			children = (
+				E1226FCB25FD1BBF00D81A43 /* CentralisWidgetExtension.entitlements */,
 				E1B77AA625F0172900CFF9DC /* libCentralis */,
 				53CB50702572D1780077DDAE /* Centralis */,
+				E1226FC225FD1BBD00D81A43 /* CentralisWidget */,
+				E1226FBD25FD1BBD00D81A43 /* Frameworks */,
 				53CB506F2572D1780077DDAE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -254,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				53CB506E2572D1780077DDAE /* Centralis.app */,
+				E1226FBC25FD1BBD00D81A43 /* CentralisWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -359,6 +428,25 @@
 				E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */,
 			);
 			path = ErrorView;
+			sourceTree = "<group>";
+		};
+		E1226FBD25FD1BBD00D81A43 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E1226FBE25FD1BBD00D81A43 /* WidgetKit.framework */,
+				E1226FC025FD1BBD00D81A43 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E1226FC225FD1BBD00D81A43 /* CentralisWidget */ = {
+			isa = PBXGroup;
+			children = (
+				E1226FC325FD1BBD00D81A43 /* CentralisWidget.swift */,
+				E1226FC525FD1BBE00D81A43 /* Assets.xcassets */,
+				E1226FC725FD1BBE00D81A43 /* Info.plist */,
+			);
+			path = CentralisWidget;
 			sourceTree = "<group>";
 		};
 		E14A7E52259FCEEA00EF9712 /* HomeMenuCell */ = {
@@ -544,10 +632,12 @@
 				53CB506A2572D1780077DDAE /* Sources */,
 				53CB506B2572D1780077DDAE /* Frameworks */,
 				53CB506C2572D1780077DDAE /* Resources */,
+				E1226FCC25FD1BBF00D81A43 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E1226FC925FD1BBE00D81A43 /* PBXTargetDependency */,
 			);
 			name = Centralis;
 			packageProductDependencies = (
@@ -556,17 +646,37 @@
 			productReference = 53CB506E2572D1780077DDAE /* Centralis.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E1226FBB25FD1BBD00D81A43 /* CentralisWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1226FCF25FD1BBF00D81A43 /* Build configuration list for PBXNativeTarget "CentralisWidgetExtension" */;
+			buildPhases = (
+				E1226FB825FD1BBD00D81A43 /* Sources */,
+				E1226FB925FD1BBD00D81A43 /* Frameworks */,
+				E1226FBA25FD1BBD00D81A43 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CentralisWidgetExtension;
+			productName = CentralisWidgetExtension;
+			productReference = E1226FBC25FD1BBD00D81A43 /* CentralisWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		53CB50662572D1770077DDAE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1220;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					53CB506D2572D1780077DDAE = {
 						CreatedOnToolsVersion = 12.2;
+					};
+					E1226FBB25FD1BBD00D81A43 = {
+						CreatedOnToolsVersion = 12.4;
 					};
 				};
 			};
@@ -586,6 +696,7 @@
 			projectRoot = "";
 			targets = (
 				53CB506D2572D1780077DDAE /* Centralis */,
+				E1226FBB25FD1BBD00D81A43 /* CentralisWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -611,6 +722,14 @@
 				E1B77ADB25F1133D00CFF9DC /* ChildSelection.xib in Resources */,
 				53243437257828A300875BAD /* TextViewCell.xib in Resources */,
 				53CA2DF32576D67A00E3A02B /* WorkingCover.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1226FBA25FD1BBD00D81A43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1226FC625FD1BBE00D81A43 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,7 +792,43 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E1226FB825FD1BBD00D81A43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1226FF925FD1C0400D81A43 /* EduLink_Status.swift in Sources */,
+				E1226FFC25FD1C0600D81A43 /* EduLink_Register.swift in Sources */,
+				E122700225FD1C0E00D81A43 /* StructModels.swift in Sources */,
+				E122700B25FD1C1600D81A43 /* NetworkManager.swift in Sources */,
+				E1226FDE25FD1BEF00D81A43 /* UUID.swift in Sources */,
+				E1226FF325FD1BFF00D81A43 /* EduLink_Links.swift in Sources */,
+				E1226FD225FD1BDD00D81A43 /* EduLink_Timetable.swift in Sources */,
+				E1226FD825FD1BE300D81A43 /* EduLinkAPI.swift in Sources */,
+				E1226FF625FD1C0100D81A43 /* EduLink_Homework.swift in Sources */,
+				E1226FC425FD1BBD00D81A43 /* CentralisWidget.swift in Sources */,
+				E1226FE725FD1BF700D81A43 /* EduLink_Personal.swift in Sources */,
+				E1226FD525FD1BE000D81A43 /* LoginManager.swift in Sources */,
+				E1226FE125FD1BF200D81A43 /* EduLink_Employee.swift in Sources */,
+				E1226FEA25FD1BF900D81A43 /* EduLink_Attendance.swift in Sources */,
+				E1226FED25FD1BFB00D81A43 /* EduLink_Achievement.swift in Sources */,
+				E1226FF025FD1BFD00D81A43 /* EduLink_Catering.swift in Sources */,
+				E1226FFF25FD1C0800D81A43 /* EduLink_Photo.swift in Sources */,
+				E1226FDB25FD1BEC00D81A43 /* ColourConverter.swift in Sources */,
+				E1226FE425FD1BF300D81A43 /* EduLink_Documents.swift in Sources */,
+				E122700525FD1C1000D81A43 /* NSNotification+Extensions.swift in Sources */,
+				E122700825FD1C1400D81A43 /* KeychainManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E1226FC925FD1BBE00D81A43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E1226FBB25FD1BBD00D81A43 /* CentralisWidgetExtension */;
+			targetProxy = E1226FC825FD1BBE00D81A43 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		53CB50772572D1780077DDAE /* Main.storyboard */ = {
@@ -816,6 +971,7 @@
 		53CB50832572D1880077DDAE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Resources/Centralis.entitlements;
@@ -842,6 +998,7 @@
 		53CB50842572D1880077DDAE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Resources/Centralis.entitlements;
@@ -866,6 +1023,59 @@
 			};
 			name = Release;
 		};
+		E1226FCD25FD1BBF00D81A43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = CentralisWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 893;
+				DEVELOPMENT_TEAM = 7J8FJX4SRX;
+				INFOPLIST_FILE = CentralisWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis.CentralisWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E1226FCE25FD1BBF00D81A43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = CentralisWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 893;
+				DEVELOPMENT_TEAM = 7J8FJX4SRX;
+				INFOPLIST_FILE = CentralisWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis.CentralisWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -883,6 +1093,15 @@
 			buildConfigurations = (
 				53CB50832572D1880077DDAE /* Debug */,
 				53CB50842572D1880077DDAE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E1226FCF25FD1BBF00D81A43 /* Build configuration list for PBXNativeTarget "CentralisWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1226FCD25FD1BBF00D81A43 /* Debug */,
+				E1226FCE25FD1BBF00D81A43 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

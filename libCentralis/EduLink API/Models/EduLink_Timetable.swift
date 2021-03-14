@@ -106,7 +106,7 @@ public struct Day {
 }
 
 /// A container for a Timetable Lesson
-public struct Lesson {
+public struct Lesson: Hashable {
     /// The ID of the belonging period, for more documentation see `Period`
     public var period_id: String!
     /// The room for the lesson
@@ -122,7 +122,7 @@ public struct Lesson {
 }
 
 /// A container for a Timetable Period
-public struct Period {
+public struct Period: Hashable {
     /// If the period is a free period
     public var empty: Bool!
     /// What time the period starts

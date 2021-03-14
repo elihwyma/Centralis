@@ -12,6 +12,10 @@ public class EduLinkAPI {
     /// The shared instance, which should always be used
     public static let shared = EduLinkAPI()
     
+    public var defaults: UserDefaults {
+        UserDefaults.init(suiteName: "group.amywhile.centralis") ?? UserDefaults.standard
+    }
+    
     /// The user that is currently logged in, for more documentation see `AuthorisedUser`
     public var authorisedUser = AuthorisedUser()
     /// The school the current user is apart of, for more documentation see `AuthorisedSchool`

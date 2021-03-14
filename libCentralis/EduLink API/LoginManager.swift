@@ -61,8 +61,7 @@ public class LoginManager {
     
     private func schoolInfoz(_ zCompletion: @escaping completionHandler) {
         let params: [String : String] = [
-            "establishment_id" : "2",
-            "from_app" : "false"
+            "establishment_id" : "\(EduLinkAPI.shared.authorisedSchool.school_id ?? "2")"
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.SchoolDetails", params: params, completion: { (success, dict) -> Void in
             if !success { return zCompletion(false, "Network Connection Error") }
@@ -177,8 +176,7 @@ public class LoginManager {
         guard let schoolLogo = EduLinkAPI.shared.authorisedSchool.schoolLogo else { return }
         let decoder = JSONDecoder()
         let encoder = JSONEncoder()
-        
-        var l = UserDefaults.standard.object(forKey: "LoginCache") as? [Data] ?? [Data]()
+        var l = EduLinkAPI.shared.defaults.object(forKey: "LoginCache") as? [Data] ?? [Data]()
         var logins = [SavedLogin]()
         for login in l {
             if let a = try? decoder.decode(SavedLogin.self, from: login) {
@@ -191,14 +189,14 @@ public class LoginManager {
             l.append(encoded)
         }
         KeyChainManager.save(key: self.username, data: Data(password.utf8))
-        UserDefaults.standard.setValue(l, forKey: "LoginCache")
+        EduLinkAPI.shared.defaults.setValue(l, forKey: "LoginCache")
     }
     
     /// Remove a saved login
     /// - Parameter login: The login being removed, for more documentation see `SavedLogin`
     public func removeLogin(login: SavedLogin) {
         let decoder = JSONDecoder()
-        var l = UserDefaults.standard.object(forKey: "LoginCache") as? [Data] ?? [Data]()
+        var l = EduLinkAPI.shared.defaults.object(forKey: "LoginCache") as? [Data] ?? [Data]()
         var logins = [SavedLogin]()
         for login in l {
             if let a = try? decoder.decode(SavedLogin.self, from: login) {
@@ -209,7 +207,7 @@ public class LoginManager {
             l.remove(at: index)
         }
         KeyChainManager.delete(key: login.username)
-        UserDefaults.standard.setValue(l, forKey: "LoginCache")
+        EduLinkAPI.shared.defaults.setValue(l, forKey: "LoginCache")
     }
     
     private func schoolScraping(_ dict: [String : Any]) {
