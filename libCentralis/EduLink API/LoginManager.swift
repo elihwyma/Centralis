@@ -21,6 +21,20 @@ public class LoginManager {
     /// The currently logged in school code
     public var schoolCode: String!
     
+    public class func user() -> SavedLogin? {
+        guard let ps = EduLinkAPI.shared.defaults.value(forKey: "PreferredSchool") as? String, let pu = EduLinkAPI.shared.defaults.value(forKey: "PreferredUsername") as? String else { return nil }
+        let decoder = JSONDecoder()
+        let l = EduLinkAPI.shared.defaults.object(forKey: "LoginCache") as? [Data] ?? [Data]()
+        for login in l {
+            if let a = try? decoder.decode(SavedLogin.self, from: login) {
+                if a.username == pu && a.schoolCode == ps {
+                    return a
+                }
+            }
+        }
+        return nil
+    }
+    
     /// The method that should be used for finding school from code.
     /// - Parameters:
     ///   - schoolCode: The schoolCode currently being requested

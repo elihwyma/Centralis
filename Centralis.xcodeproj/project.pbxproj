@@ -33,9 +33,11 @@
 		53CB50A12572F0B50077DDAE /* ResizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50A02572F0B50077DDAE /* ResizedTableView.swift */; };
 		E10A5B25259BE4F300FA8BD0 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A5B23259BE4F300FA8BD0 /* ErrorView.swift */; };
 		E10A5B26259BE4F300FA8BD0 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */; };
+		E117206425FE6B2700339837 /* NextLessonWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117206325FE6B2700339837 /* NextLessonWidget.swift */; };
+		E117207025FE752300339837 /* CentralisWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117206F25FE752300339837 /* CentralisWidget.swift */; };
 		E1226FBF25FD1BBD00D81A43 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1226FBE25FD1BBD00D81A43 /* WidgetKit.framework */; };
 		E1226FC125FD1BBD00D81A43 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1226FC025FD1BBD00D81A43 /* SwiftUI.framework */; };
-		E1226FC425FD1BBD00D81A43 /* CentralisWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1226FC325FD1BBD00D81A43 /* CentralisWidget.swift */; };
+		E1226FC425FD1BBD00D81A43 /* LongTimetableWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1226FC325FD1BBD00D81A43 /* LongTimetableWidget.swift */; };
 		E1226FC625FD1BBE00D81A43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1226FC525FD1BBE00D81A43 /* Assets.xcassets */; };
 		E1226FCA25FD1BBE00D81A43 /* CentralisWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E1226FBC25FD1BBD00D81A43 /* CentralisWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E1226FD225FD1BDD00D81A43 /* EduLink_Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB025F0173800CFF9DC /* EduLink_Timetable.swift */; };
@@ -153,10 +155,12 @@
 		53CB50A02572F0B50077DDAE /* ResizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizedTableView.swift; sourceTree = "<group>"; };
 		E10A5B23259BE4F300FA8BD0 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
+		E117206325FE6B2700339837 /* NextLessonWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLessonWidget.swift; sourceTree = "<group>"; };
+		E117206F25FE752300339837 /* CentralisWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralisWidget.swift; sourceTree = "<group>"; };
 		E1226FBC25FD1BBD00D81A43 /* CentralisWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CentralisWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1226FBE25FD1BBD00D81A43 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		E1226FC025FD1BBD00D81A43 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		E1226FC325FD1BBD00D81A43 /* CentralisWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralisWidget.swift; sourceTree = "<group>"; };
+		E1226FC325FD1BBD00D81A43 /* LongTimetableWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongTimetableWidget.swift; sourceTree = "<group>"; };
 		E1226FC525FD1BBE00D81A43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1226FC725FD1BBE00D81A43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1226FCB25FD1BBF00D81A43 /* CentralisWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CentralisWidgetExtension.entitlements; sourceTree = "<group>"; };
@@ -442,9 +446,11 @@
 		E1226FC225FD1BBD00D81A43 /* CentralisWidget */ = {
 			isa = PBXGroup;
 			children = (
-				E1226FC325FD1BBD00D81A43 /* CentralisWidget.swift */,
 				E1226FC525FD1BBE00D81A43 /* Assets.xcassets */,
 				E1226FC725FD1BBE00D81A43 /* Info.plist */,
+				E1226FC325FD1BBD00D81A43 /* LongTimetableWidget.swift */,
+				E117206325FE6B2700339837 /* NextLessonWidget.swift */,
+				E117206F25FE752300339837 /* CentralisWidget.swift */,
 			);
 			path = CentralisWidget;
 			sourceTree = "<group>";
@@ -796,6 +802,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E117206425FE6B2700339837 /* NextLessonWidget.swift in Sources */,
 				E1226FF925FD1C0400D81A43 /* EduLink_Status.swift in Sources */,
 				E1226FFC25FD1C0600D81A43 /* EduLink_Register.swift in Sources */,
 				E122700225FD1C0E00D81A43 /* StructModels.swift in Sources */,
@@ -805,7 +812,8 @@
 				E1226FD225FD1BDD00D81A43 /* EduLink_Timetable.swift in Sources */,
 				E1226FD825FD1BE300D81A43 /* EduLinkAPI.swift in Sources */,
 				E1226FF625FD1C0100D81A43 /* EduLink_Homework.swift in Sources */,
-				E1226FC425FD1BBD00D81A43 /* CentralisWidget.swift in Sources */,
+				E117207025FE752300339837 /* CentralisWidget.swift in Sources */,
+				E1226FC425FD1BBD00D81A43 /* LongTimetableWidget.swift in Sources */,
 				E1226FE725FD1BF700D81A43 /* EduLink_Personal.swift in Sources */,
 				E1226FD525FD1BE000D81A43 /* LoginManager.swift in Sources */,
 				E1226FE125FD1BF200D81A43 /* EduLink_Employee.swift in Sources */,

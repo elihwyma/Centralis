@@ -104,7 +104,6 @@ class HomeViewController: UIViewController {
             DispatchQueue.main.async {
                 self.shownCells[0].removeAll()
                 if success {
-                    
                     if EduLinkAPI.shared.status.current != nil && EduLinkAPI.shared.status.upcoming != nil {
                         self.shownCells[0].append(HomeScreenLesson(current: EduLinkAPI.shared.status.current, upcoming: EduLinkAPI.shared.status.upcoming))
                         self.tableView.reloadData()

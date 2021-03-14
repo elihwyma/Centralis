@@ -39,19 +39,9 @@ public class EduLink_Status {
         var ml = MiniLesson()
         if let room = lesson["room"] as? [String : Any] { ml.room = room["name"] as? String ?? "Not Given" }
         if let tg = lesson["teaching_group"] as? [String : Any] { ml.subject = tg["subject"] as? String ?? "Not Given" }
-        if let start_time = lesson["start_time"] as? String { ml.startDate = self.dateFromTime(start_time) }
-        if let end_time = lesson["end_time"] as? String { ml.endDate = self.dateFromTime(end_time) }
+        if let start_time = lesson["start_time"] as? String { ml.startDate = UUID.dateFromTime(start_time) }
+        if let end_time = lesson["end_time"] as? String { ml.endDate = UUID.dateFromTime(end_time) }
         return ml
-    }
-    
-    class private func dateFromTime(_ time: String) -> Date? {
-        let calendar = NSCalendar.current
-        var components = calendar.dateComponents([.day,.month,.year], from: Date())
-        let hour = time.components(separatedBy: ":")[0]
-        let minute = time.components(separatedBy: ":")[1]
-        components.hour = Int(hour) ?? 0
-        components.minute = Int(minute) ?? 0
-        return calendar.date(from: components)
     }
 }
 

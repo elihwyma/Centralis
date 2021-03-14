@@ -24,26 +24,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         }
         // Automatic Login on Open
-        guard let ps = EduLinkAPI.shared.defaults.value(forKey: "PreferredSchool") as? String, let pu = EduLinkAPI.shared.defaults.value(forKey: "PreferredUsername") as? String else { return true }
-        let decoder = JSONDecoder()
-        let l = EduLinkAPI.shared.defaults.object(forKey: "LoginCache") as? [Data] ?? [Data]()
-        for login in l {
-            if let a = try? decoder.decode(SavedLogin.self, from: login) {
-                if a.username == pu && a.schoolCode == ps {
-                    self.window = UIWindow(frame: UIScreen.main.bounds)
-                    let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-                    let viewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-                    let navigationController = UINavigationController.init(rootViewController: viewController)
-                    viewController.login = a
-                    viewController.arriveFromDelegate()
-                    navigationController.navigationItem.largeTitleDisplayMode = .always
-                    navigationController.navigationBar.prefersLargeTitles = true
-                    self.window?.rootViewController = navigationController
-                    self.window?.makeKeyAndVisible()
-                    return true
-                }
-            }
-        }
+        guard let user = LoginManager.user() else { return true }
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        let navigationController = UINavigationController.init(rootViewController: viewController)
+        viewController.login = user
+        viewController.arriveFromDelegate()
+        navigationController.navigationItem.largeTitleDisplayMode = .always
+        navigationController.navigationBar.prefersLargeTitles = true
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
         return true
     }
     
@@ -51,16 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard var notificationPreferences = EduLinkAPI.shared.defaults.dictionary(forKey: "RegisteredNotifications") else {
             return completionHandler(true)
         }
-        guard let ps = EduLinkAPI.shared.defaults.value(forKey: "PreferredSchool") as? String,
-              let pu = EduLinkAPI.shared.defaults.value(forKey: "PreferredUsername") as? String else { return completionHandler(false) }
-        let decoder = JSONDecoder()
-        let l = EduLinkAPI.shared.defaults.object(forKey: "LoginCache") as? [Data] ?? [Data]()
-        var user: SavedLogin?
-        for login in l {
-            if let a = try? decoder.decode(SavedLogin.self, from: login) { if a.username == pu && a.schoolCode == ps { user = a } }
-        }
-        if user == nil { return completionHandler(false) }
-        LoginManager.shared.quickLogin(user!, { (success, error) -> Void in
+        guard let user = LoginManager.user() else { return completionHandler(false) }
+        LoginManager.shared.quickLogin(user, { (success, error) -> Void in
             if !success { return completionHandler(false) }
             EduLink_Timetable.timetable({(success, error) -> Void in
                 if !success { return completionHandler(false) }
@@ -84,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
                 // Check for homework, easiest way to do this is chained completionHandlers, Swift 5.5 wya
-                EduLink_Homework.homework({(sucess, error) -> Void in
+                EduLink_Homework.homework({(success, error) -> Void in
                     if !success { return completionHandler(false) }
                     if notificationPreferences["HomeworkChanges"] as? Bool ?? false {
                         var postedChanges = notificationPreferences["HomeworkPosted"] as? [String : Any] ?? [String : Any]()
@@ -99,6 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         postedChanges["PostedNew"] = newID
                         notificationPreferences["HomeworkPosted"] = postedChanges
                     }
+                    EduLinkAPI.shared.defaults.setValue(notificationPreferences, forKey: "RegisteredNotifications")
                     completionHandler(true)
                 })
             })
