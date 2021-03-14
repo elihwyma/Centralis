@@ -14,12 +14,14 @@ class SettingsViewController: UIViewController {
         [
             AmyCellData(identifier: .Notification, data: NotificationSwitchData(defaultName: "HomeworkChanges", title: "New Homework", defaultState: true)),
             AmyCellData(identifier: .Notification, data: NotificationSwitchData(defaultName: "RoomChanges", title: "Room Changes", defaultState: true))
+        ],
+        [
+            AmyCellData(identifier: .Button, data: ButtonCellData(title: "Logout", notificationName: "Settings.Logout"))
         ]
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.tableView.register(UINib(nibName: "ButtonCell", bundle: nil), forCellReuseIdentifier: "libAmy.ButtonCell")
         self.tableView.register(UINib(nibName: "SettingsSwitchCell", bundle: nil), forCellReuseIdentifier: "libAmy.SettingsSwitchCell")
         self.tableView.register(UINib(nibName: "NotificationSwitchCell", bundle: nil), forCellReuseIdentifier: "libAmy.NotificationSwitchCell")
@@ -36,6 +38,14 @@ class SettingsViewController: UIViewController {
         // Do any additional setup after loading the view.
         let pop = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(self.pop))
         self.navigationItem.leftBarButtonItem = pop
+        
+        NotificationCenter.default.addObserver(forName: .SettingsSignOut, object: nil, queue: nil) { notification in
+            EduLinkAPI.shared.clear()
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            viewController.modalPresentationStyle = .fullScreen
+            self.present(viewController, animated: true)
+        }
     }
     
     @objc private func pop() {
@@ -69,6 +79,11 @@ extension SettingsViewController: UITableViewDataSource {
             case .Button: do {
                 let b = tableView.dequeueReusableCell(withIdentifier: "libAmy.ButtonCell", for: indexPath) as! ButtonCell
                 b.data = id.data as? ButtonCellData
+                if b.data.title == "Logout" {
+                    b.label.textColor = .systemRed
+                } else {
+                    b.label.textColor = .label
+                }
                 cell = b
             }
             /*
@@ -101,6 +116,7 @@ extension SettingsViewController: UITableViewDataSource {
         ]
         switch section {
         case 0: label.attributedText = NSAttributedString(string: "Notifications", attributes: boldAttributes)
+        case 1: label.attributedText = NSAttributedString(string: "Account", attributes: boldAttributes)
         default: break
         }
         vw.addSubview(label)
@@ -109,6 +125,14 @@ extension SettingsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
+    }
+    
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if section == 0 {
+            return "Notifications require background refresh is active in Settings"
+        } else {
+            return ""
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

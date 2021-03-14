@@ -137,7 +137,7 @@ class HomeViewController: UIViewController {
         if let nc = self.navigationController { errorView.startWorking(nc) }
     }
     
-    @objc func logout(_ sender: Any) {
+    @objc private func logout() {
         EduLinkAPI.shared.clear()
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController

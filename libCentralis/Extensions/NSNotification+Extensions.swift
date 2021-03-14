@@ -15,4 +15,6 @@ public extension NSNotification.Name {
     static let TimetableButtonPressed = Notification.Name("TimetableButtonPressed")
     /// Learner Image Update
     static let LearnerImage = Notification.Name("LearnerImage")
+    /// Settings Sign-Out
+    static let SettingsSignOut = Notification.Name("Settings.Logout")
 }
