@@ -47,10 +47,12 @@ class NotificationSwitchCell: AmyCell {
                     self.data.vc.present(ac, animated: true)
                 }
             }
-            var notificationPreferences = EduLinkAPI.shared.defaults.dictionary(forKey: "RegisteredNotifications") ?? [String : Any]()
-            notificationPreferences[self.data.defaultName] = self.prefsSwitch.isOn
-            EduLinkAPI.shared.defaults.setValue(notificationPreferences, forKey: "RegisteredNotifications")
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: self.data.defaultName), object: nil)
+            DispatchQueue.main.async {
+                var notificationPreferences = EduLinkAPI.shared.defaults.dictionary(forKey: "RegisteredNotifications") ?? [String : Any]()
+                notificationPreferences[self.data.defaultName] = self.prefsSwitch.isOn
+                EduLinkAPI.shared.defaults.setValue(notificationPreferences, forKey: "RegisteredNotifications")
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: self.data.defaultName), object: nil)
+            }
         }
     }
 }
