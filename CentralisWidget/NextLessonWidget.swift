@@ -61,10 +61,14 @@ struct NextLessonWidgetView : View {
         VStack(alignment: .leading) {
             Text(entry.lesson?.subject ?? "Free")
                 .minimumScaleFactor(0.01)
+                .frame(alignment: .leading)
+                .padding(.leading, 5)
             Text(entry.lesson?.room ?? "Free")
                 .minimumScaleFactor(0.01)
+                .frame(alignment: .leading)
+                .padding(.leading, 5)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         .background(Color(UIColor.systemGray5))
     }
 }
