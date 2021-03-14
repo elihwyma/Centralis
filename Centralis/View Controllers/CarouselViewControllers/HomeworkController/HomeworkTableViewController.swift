@@ -118,6 +118,21 @@ extension HomeworkTableViewController: UITableViewDelegate {
 extension HomeworkTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.setLabel()
+        if self.context == .current {
+            if var notificationPreferences = EduLinkAPI.shared.defaults.dictionary(forKey: "RegisteredNotifications") {
+                var postedChanges = notificationPreferences["HomeworkPosted"] as? [String : Any] ?? [String : Any]()
+                var postedNew = postedChanges["PostedNew"] as? [String] ?? [String]()
+                for homework in EduLinkAPI.shared.homework.current {
+                    if !postedNew.contains(homework.id ?? "") {
+                        postedNew.append(homework.id ?? "")
+                    }
+                }
+                postedChanges["PostedNew"] = postedNew
+                notificationPreferences["HomeworPosted"] = postedChanges
+                EduLinkAPI.shared.defaults.setValue(notificationPreferences, forKey: "RegisteredNotifications")
+            }
+        }
+        
         switch self.context {
         case .current: return EduLinkAPI.shared.homework.current.count
         case .past: return EduLinkAPI.shared.homework.past.count

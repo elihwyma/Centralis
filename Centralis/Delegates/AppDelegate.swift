@@ -17,12 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        /*
         BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.amywhile.centralis.backgroundrefresh", using: nil) { task in
+            print("Task has bene called")
             self.notificationRefresh(completionHandler: {(success) -> Void in
                 task.setTaskCompleted(success: true)
                 self.scheduleAppRefresh()
             })
         }
+        */
+        UIApplication.shared.setMinimumBackgroundFetchInterval(1800)
         // Automatic Login on Open
         guard let user = LoginManager.user() else { return true }
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -57,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         for period in day.periods where !postedID.contains(period.id ?? "") {
                             if let lesson = period.lesson {
                                 if lesson.moved {
-                                    self.sendNotification(title: "Room Change", subtitle: "\(lesson.subject ?? "") at \(period.start_time ?? "") has been moved to \(lesson.room_name ?? "")")
+                                    self.sendNotification(title: "Room Change", body: "\(lesson.subject ?? "") at \(period.start_time ?? "") has been moved to \(lesson.room_name ?? "")")
                                     postedID.append(period.id ?? "")
                                 }
                             }
@@ -77,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             #warning("Check this again at some point")
                             if postedNew.contains(homework.id ?? "") { continue }
                             newID.append(homework.id ?? "")
-                            self.sendNotification(title: "New Homework", subtitle: "\(homework.set_by ?? "") has set \"\(homework.activity ?? "")\" due for \(homework.due_date ?? "")")
+                            self.sendNotification(title: "New Homework", body: "\(homework.set_by ?? "") has set \"\(homework.activity ?? "")\" due for \(homework.due_date ?? "")")
                         }
                         postedChanges["PostedNew"] = newID
                         notificationPreferences["HomeworkPosted"] = postedChanges
@@ -91,20 +95,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func scheduleAppRefresh() {
         let request = BGProcessingTaskRequest(identifier: "com.amywhile.centralis.backgroundrefresh")
-        request.earliestBeginDate = Date(timeIntervalSinceNow: 1800)
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 15)
         request.requiresExternalPower = false
         request.requiresNetworkConnectivity = true
         do {
             try BGTaskScheduler.shared.submit(request)
+            print(request)
         } catch {
             print("Could not schedule app refresh task \(error.localizedDescription)")
         }
     }
     
-    private func sendNotification(title: String, subtitle: String) {
+    private func sendNotification(title: String, body: String) {
         let content = UNMutableNotificationContent()
         content.title = title
-        content.subtitle = subtitle
+        content.body = body
         content.sound = UNNotificationSound.default
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         let request = UNNotificationRequest(identifier: UUID.uuid, content: content, trigger: trigger)
@@ -113,7 +118,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Schedule background tasks
-        self.scheduleAppRefresh()
+        //self.scheduleAppRefresh()
+    }
+    
+    func application(_ application: UIApplication,
+                     performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        self.notificationRefresh(completionHandler: {(success) -> Void in
+            //task.setTaskCompleted(success: true)
+            //self.scheduleAppRefresh()
+            completionHandler(.newData)
+        })
     }
 }
 
