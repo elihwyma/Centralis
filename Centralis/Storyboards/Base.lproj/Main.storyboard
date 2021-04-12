@@ -99,7 +99,7 @@
         <!--Text View Controller-->
         <scene sceneID="9aS-t7-lbD">
             <objects>
-                <viewController id="GwH-8S-tIz" customClass="TextViewController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="GwH-8S-tIz" customClass="TextViewController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Og-ec-XiG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -180,48 +180,10 @@
             </objects>
             <point key="canvasLocation" x="5139" y="-601"/>
         </scene>
-        <!--Home View Controller-->
-        <scene sceneID="mkH-2E-WEz">
-            <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="pK9-8D-YZo" userLabel="Home View Controller" customClass="HomeViewController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Sk2-zP-WjG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="UX6-EV-7m9">
-                                <rect key="frame" x="15" y="145" width="384" height="722"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="WHh-Jo-hjL"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="UX6-EV-7m9" firstAttribute="top" secondItem="WHh-Jo-hjL" secondAttribute="top" constant="5" id="G44-VK-lTa"/>
-                            <constraint firstItem="WHh-Jo-hjL" firstAttribute="trailing" secondItem="UX6-EV-7m9" secondAttribute="trailing" constant="15" id="gwU-Jh-rMv"/>
-                            <constraint firstItem="UX6-EV-7m9" firstAttribute="leading" secondItem="WHh-Jo-hjL" secondAttribute="leading" constant="15" id="rch-0Q-ODy"/>
-                            <constraint firstItem="UX6-EV-7m9" firstAttribute="bottom" secondItem="WHh-Jo-hjL" secondAttribute="bottom" constant="5" id="tUy-51-F8L"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Forename : Surname" largeTitleDisplayMode="always" id="dB8-w3-G9N"/>
-                    <connections>
-                        <outlet property="tableView" destination="UX6-EV-7m9" id="cOF-Of-0Mw"/>
-                        <segue destination="aVJ-aQ-wsn" kind="unwind" identifier="logout" unwindAction="logout:" id="STw-DN-QlN"/>
-                        <segue destination="GwH-8S-tIz" kind="show" identifier="Centralis.TextViewController" id="jAN-Ki-nKd"/>
-                        <segue destination="fZR-sa-AoW" kind="show" identifier="Centralis.ShowCarousel" id="W1m-vz-dao"/>
-                        <segue destination="CHE-0K-9gx" kind="popoverPresentation" identifier="Centralis.Settings" popoverAnchorView="Sk2-zP-WjG" id="4yb-PV-cdn">
-                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                        </segue>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VlT-xE-Ef3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="aVJ-aQ-wsn" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="3505.7971014492755" y="122.54464285714285"/>
-        </scene>
         <!--Carousel Container Controller-->
         <scene sceneID="k3R-y6-piN">
             <objects>
-                <viewController id="fZR-sa-AoW" customClass="CarouselContainerController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="fZR-sa-AoW" customClass="CarouselContainerController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iwL-LS-ySb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -268,37 +230,6 @@
             </objects>
             <point key="canvasLocation" x="4406" y="115"/>
         </scene>
-        <!--Settings-->
-        <scene sceneID="ibp-0e-qDh">
-            <objects>
-                <viewController id="6B7-tR-RUl" customClass="SettingsViewController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="umv-cA-JOt">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Tek-Fx-Jrs">
-                                <rect key="frame" x="15" y="113" width="384" height="690"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Qrg-XN-K83"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Tek-Fx-Jrs" firstAttribute="top" secondItem="Qrg-XN-K83" secondAttribute="top" constant="5" id="RoE-Aj-nsy"/>
-                            <constraint firstItem="Qrg-XN-K83" firstAttribute="bottom" secondItem="Tek-Fx-Jrs" secondAttribute="bottom" constant="5" id="TTU-Bq-vnx"/>
-                            <constraint firstItem="Tek-Fx-Jrs" firstAttribute="leading" secondItem="Qrg-XN-K83" secondAttribute="leading" constant="15" id="wUH-5h-1SS"/>
-                            <constraint firstItem="Qrg-XN-K83" firstAttribute="trailing" secondItem="Tek-Fx-Jrs" secondAttribute="trailing" constant="15" id="zbE-d2-kRx"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Settings" largeTitleDisplayMode="always" id="LHP-si-b7d"/>
-                    <connections>
-                        <outlet property="tableView" destination="Tek-Fx-Jrs" id="4K4-6R-hCm"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dhk-qF-fkG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5315.9420289855079" y="840.40178571428567"/>
-        </scene>
         <!--Carousel Controller-->
         <scene sceneID="XYe-ww-6X9">
             <objects>
@@ -319,7 +250,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="pK9-8D-YZo" kind="relationship" relationship="rootViewController" id="Jl8-Cw-cLM"/>
+                        <segue destination="5rL-v9-yvi" kind="relationship" relationship="rootViewController" id="zbf-EZ-p1c"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wC7-zy-kqb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -493,6 +424,32 @@
             </objects>
             <point key="canvasLocation" x="165" y="1171"/>
         </scene>
+        <!--Home View Controller-->
+        <scene sceneID="XTM-Zi-C7I">
+            <objects>
+                <tableViewController storyboardIdentifier="HomeViewController" id="5rL-v9-yvi" customClass="HomeViewController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="tte-vM-7W4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="5rL-v9-yvi" id="shJ-6K-A5q"/>
+                            <outlet property="delegate" destination="5rL-v9-yvi" id="oXU-U6-2tx"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="iix-Hs-7cv"/>
+                    <connections>
+                        <segue destination="CHE-0K-9gx" kind="popoverPresentation" identifier="Centralis.Settings" popoverAnchorView="tte-vM-7W4" id="Ri7-Ya-rU0">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                        <segue destination="fZR-sa-AoW" kind="show" identifier="Centralis.ShowCarousel" id="sWK-au-9Pv"/>
+                        <segue destination="GwH-8S-tIz" kind="show" identifier="Centralis.TextViewController" id="Mem-1Q-fI1"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zyX-61-UFg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3465" y="115"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="sOF-lG-OQ3">
             <objects>
@@ -504,12 +461,31 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="6B7-tR-RUl" kind="relationship" relationship="rootViewController" id="BUE-v8-9im"/>
+                        <segue destination="wMi-Lk-JQA" kind="relationship" relationship="rootViewController" id="uAX-u6-qu5"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPQ-BO-e85" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4405.7971014492759" y="840.40178571428567"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="cEC-AK-Nab">
+            <objects>
+                <tableViewController id="wMi-Lk-JQA" customClass="SettingsViewController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="ND3-IX-CQR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="wMi-Lk-JQA" id="O62-je-jZC"/>
+                            <outlet property="delegate" destination="wMi-Lk-JQA" id="Eb7-q8-UGD"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Settings" id="NZ3-8D-5Fh"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fE8-09-jXn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5242" y="859"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

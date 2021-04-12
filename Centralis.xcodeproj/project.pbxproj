@@ -79,6 +79,15 @@
 		E1576061258BF56B00DD496F /* AmyChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E157605F258BF56B00DD496F /* AmyChartCell.xib */; };
 		E1768305259A7EAE0099BB92 /* NewUserSchoolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768304259A7EAE0099BB92 /* NewUserSchoolController.swift */; };
 		E1768308259A8C7A0099BB92 /* NewUserUPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768307259A8C7A0099BB92 /* NewUserUPController.swift */; };
+		E17EE6312624D76500B55095 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EE6302624D76500B55095 /* BaseTableViewController.swift */; };
+		E17EE6372624DB8E00B55095 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EE6362624DB8E00B55095 /* ThemeManager.swift */; };
+		E17EE6382624DB8E00B55095 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EE6362624DB8E00B55095 /* ThemeManager.swift */; };
+		E17EE63D2624DBA800B55095 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EE63B2624DBA800B55095 /* UserDefaults+Extensions.swift */; };
+		E17EE63E2624DBA800B55095 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EE63B2624DBA800B55095 /* UserDefaults+Extensions.swift */; };
+		E17EE63F2624DBA800B55095 /* UserDefaults+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EE63C2624DBA800B55095 /* UserDefaults+Optional.swift */; };
+		E17EE6402624DBA800B55095 /* UserDefaults+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EE63C2624DBA800B55095 /* UserDefaults+Optional.swift */; };
+		E18C7C592624E18F008C02F0 /* TintColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18C7C572624E18F008C02F0 /* TintColorPicker.swift */; };
+		E18C7C5A2624E18F008C02F0 /* SettingsSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18C7C582624E18F008C02F0 /* SettingsSwitchTableViewCell.swift */; };
 		E19B2F5B258D71CE00930AE1 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19B2F5A258D71CE00930AE1 /* Double+Extensions.swift */; };
 		E1B77AC025F0173800CFF9DC /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AA825F0173800CFF9DC /* KeychainManager.swift */; };
 		E1B77AC125F0173800CFF9DC /* ColourConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AAA25F0173800CFF9DC /* ColourConverter.swift */; };
@@ -197,6 +206,12 @@
 		E157605F258BF56B00DD496F /* AmyChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmyChartCell.xib; sourceTree = "<group>"; };
 		E1768304259A7EAE0099BB92 /* NewUserSchoolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserSchoolController.swift; sourceTree = "<group>"; };
 		E1768307259A8C7A0099BB92 /* NewUserUPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserUPController.swift; sourceTree = "<group>"; };
+		E17EE6302624D76500B55095 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		E17EE6362624DB8E00B55095 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		E17EE63B2624DBA800B55095 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
+		E17EE63C2624DBA800B55095 /* UserDefaults+Optional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Optional.swift"; sourceTree = "<group>"; };
+		E18C7C572624E18F008C02F0 /* TintColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TintColorPicker.swift; sourceTree = "<group>"; };
+		E18C7C582624E18F008C02F0 /* SettingsSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSwitchTableViewCell.swift; sourceTree = "<group>"; };
 		E19B2F5A258D71CE00930AE1 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		E1B77AA825F0173800CFF9DC /* KeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		E1B77AAA25F0173800CFF9DC /* ColourConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColourConverter.swift; sourceTree = "<group>"; };
@@ -357,9 +372,8 @@
 		53CB50702572D1780077DDAE /* Centralis */ = {
 			isa = PBXGroup;
 			children = (
+				E17EE6342624DB7700B55095 /* UI */,
 				53CB50952572D79E0077DDAE /* Extensions */,
-				53CB508F2572D6850077DDAE /* Views */,
-				53CB508E2572D6800077DDAE /* View Controllers */,
 				53CB508B2572D60E0077DDAE /* Storyboards */,
 				53CB508A2572D59C0077DDAE /* Resources */,
 				53CB50872572D5790077DDAE /* Delegates */,
@@ -397,6 +411,7 @@
 		53CB508E2572D6800077DDAE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E17EE62F2624D74500B55095 /* BaseViewControllers */,
 				E117209D25FE7E2D00339837 /* SettingsViewController */,
 				E1768303259A7D530099BB92 /* NewUserControllers */,
 				E1F9A49625850F3D00CEA071 /* DocumentWebViewController */,
@@ -432,6 +447,8 @@
 		53CB50952572D79E0077DDAE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				E17EE63B2624DBA800B55095 /* UserDefaults+Extensions.swift */,
+				E17EE63C2624DBA800B55095 /* UserDefaults+Optional.swift */,
 				53CB50992572D7C40077DDAE /* UIView+Extensions.swift */,
 				53874511257BDCD300174D07 /* NSMutableAttributedString+Extension.swift */,
 				E19B2F5A258D71CE00930AE1 /* Double+Extensions.swift */,
@@ -521,6 +538,8 @@
 			isa = PBXGroup;
 			children = (
 				E117209E25FE7E4700339837 /* SettingsViewController.swift */,
+				E18C7C582624E18F008C02F0 /* SettingsSwitchTableViewCell.swift */,
+				E18C7C572624E18F008C02F0 /* TintColorPicker.swift */,
 			);
 			path = SettingsViewController;
 			sourceTree = "<group>";
@@ -597,6 +616,32 @@
 				E1768307259A8C7A0099BB92 /* NewUserUPController.swift */,
 			);
 			path = NewUserControllers;
+			sourceTree = "<group>";
+		};
+		E17EE62F2624D74500B55095 /* BaseViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E17EE6302624D76500B55095 /* BaseTableViewController.swift */,
+			);
+			path = BaseViewControllers;
+			sourceTree = "<group>";
+		};
+		E17EE6342624DB7700B55095 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				E17EE6352624DB8300B55095 /* Contrib */,
+				53CB508E2572D6800077DDAE /* View Controllers */,
+				53CB508F2572D6850077DDAE /* Views */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		E17EE6352624DB8300B55095 /* Contrib */ = {
+			isa = PBXGroup;
+			children = (
+				E17EE6362624DB8E00B55095 /* ThemeManager.swift */,
+			);
+			path = Contrib;
 			sourceTree = "<group>";
 		};
 		E180E9C22580104800ABFE69 /* CarouselContainer */ = {
@@ -863,7 +908,9 @@
 				E1305DA3259BEFDD00AB3119 /* UIButton+Extension.swift in Sources */,
 				53CA2DEE2576CC9E00E3A02B /* LoginCell.swift in Sources */,
 				E1C8FD76258166210006F36F /* EmbeddedTableViewController.swift in Sources */,
+				E18C7C5A2624E18F008C02F0 /* SettingsSwitchTableViewCell.swift in Sources */,
 				E1B77AC425F0173800CFF9DC /* EduLink_Documents.swift in Sources */,
+				E18C7C592624E18F008C02F0 /* TintColorPicker.swift in Sources */,
 				E1B77ACC25F0173800CFF9DC /* EduLink_Status.swift in Sources */,
 				53CA2E012576DD2A00E3A02B /* HomeViewController.swift in Sources */,
 				E1576060258BF56B00DD496F /* AmyChartCell.swift in Sources */,
@@ -871,16 +918,19 @@
 				E1B77ACA25F0173800CFF9DC /* EduLink_Links.swift in Sources */,
 				E1B77AD725F0F7F600CFF9DC /* EduLink_Photo.swift in Sources */,
 				53CB50722572D1780077DDAE /* AppDelegate.swift in Sources */,
+				E17EE63D2624DBA800B55095 /* UserDefaults+Extensions.swift in Sources */,
 				E1B77AC025F0173800CFF9DC /* KeychainManager.swift in Sources */,
 				53874502257BD61800174D07 /* CarouselContainerController.swift in Sources */,
 				E1B77AD125F0173800CFF9DC /* NSNotification+Extensions.swift in Sources */,
 				E19B2F5B258D71CE00930AE1 /* Double+Extensions.swift in Sources */,
 				E10A5B25259BE4F300FA8BD0 /* ErrorView.swift in Sources */,
+				E17EE6372624DB8E00B55095 /* ThemeManager.swift in Sources */,
 				E1B77ACD25F0173800CFF9DC /* EduLink_Register.swift in Sources */,
 				E11720C325FE9F5300339837 /* NotificationSwitchCell.swift in Sources */,
 				E1B77AC225F0173800CFF9DC /* UUID.swift in Sources */,
 				5319692F257BC8A70056BF51 /* CarouselController.swift in Sources */,
 				E1B77AC725F0173800CFF9DC /* EduLink_Attendance.swift in Sources */,
+				E17EE63F2624DBA800B55095 /* UserDefaults+Optional.swift in Sources */,
 				5387450E257BDB7100174D07 /* HomeworkCell.swift in Sources */,
 				53CB509A2572D7C40077DDAE /* UIView+Extensions.swift in Sources */,
 				5387452E257C205500174D07 /* HomeworkDetailView.swift in Sources */,
@@ -891,6 +941,7 @@
 				E1B77AC525F0173800CFF9DC /* EduLink_Timetable.swift in Sources */,
 				E117208425FE7C0F00339837 /* BridgingStubs.swift in Sources */,
 				53CA2DF62576D69A00E3A02B /* WorkingCover.swift in Sources */,
+				E17EE6312624D76500B55095 /* BaseTableViewController.swift in Sources */,
 				53874512257BDCD400174D07 /* NSMutableAttributedString+Extension.swift in Sources */,
 				E1B77ACB25F0173800CFF9DC /* EduLink_Homework.swift in Sources */,
 				E117209F25FE7E4700339837 /* SettingsViewController.swift in Sources */,
@@ -920,8 +971,11 @@
 				E1226FD225FD1BDD00D81A43 /* EduLink_Timetable.swift in Sources */,
 				E1226FD825FD1BE300D81A43 /* EduLinkAPI.swift in Sources */,
 				E1226FF625FD1C0100D81A43 /* EduLink_Homework.swift in Sources */,
+				E17EE6402624DBA800B55095 /* UserDefaults+Optional.swift in Sources */,
 				E117207025FE752300339837 /* CentralisWidget.swift in Sources */,
+				E17EE6382624DB8E00B55095 /* ThemeManager.swift in Sources */,
 				E1226FC425FD1BBD00D81A43 /* LongTimetableWidget.swift in Sources */,
+				E17EE63E2624DBA800B55095 /* UserDefaults+Extensions.swift in Sources */,
 				E1226FE725FD1BF700D81A43 /* EduLink_Personal.swift in Sources */,
 				E1226FD525FD1BE000D81A43 /* LoginManager.swift in Sources */,
 				E1226FE125FD1BF200D81A43 /* EduLink_Employee.swift in Sources */,

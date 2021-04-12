@@ -13,7 +13,7 @@ struct HomeScreenLesson {
     var upcoming: MiniLesson!
 }
 
-class HomeViewController: UIViewController {
+class HomeViewController: BaseTableViewController {
     
     let completedMenus: [String] = [
         "Achievement",
@@ -27,7 +27,6 @@ class HomeViewController: UIViewController {
         "Attendance"
     ]
     
-    @IBOutlet weak var tableView: UITableView!
     var workingCover: WorkingCover = .fromNib()
     var login: SavedLogin!
     override func viewDidLoad() {
@@ -65,12 +64,13 @@ class HomeViewController: UIViewController {
         self.tableView.showsVerticalScrollIndicator = false
         self.tableView.showsHorizontalScrollIndicator = false
         self.tableView.backgroundColor = .none
-        self.tableView.register(UINib(nibName: "HomeMenuCell", bundle: nil), forCellReuseIdentifier: "Centralis.HomeMenuCell")
         self.tableView.register(UINib(nibName: "HomeMenuLessonCell", bundle: nil), forCellReuseIdentifier: "Centralis.HomeMenuLessonCell")
         self.menuOrganising()
         self.shownCells[2].append(SimpleStore(id: "CentralisSettings", name: "Settings"))
         self.tableView.layer.masksToBounds = true
         self.tableView.layer.cornerRadius = 10
+        
+        self.view.backgroundColor = .systemGroupedBackground
         
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in
             UNUserNotificationCenter.current().getNotificationSettings() { settings in
@@ -102,7 +102,11 @@ class HomeViewController: UIViewController {
     }
     
     private func title() {
+        #if DEBUG
+        self.title = "Debug Mode"
+        #else
         self.title = "\(EduLinkAPI.shared.authorisedUser.forename ?? "") \(EduLinkAPI.shared.authorisedUser.surname ?? "")"
+        #endif
     }
     
     private func delegateLoginError(_ error: String) {
@@ -178,10 +182,8 @@ class HomeViewController: UIViewController {
             let _ = segue.destination as! UINavigationController
         }
     }
-}
 
-extension HomeViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 2 || (self.shownCells[0].isEmpty && indexPath.section == 1) {
             switch (self.shownCells[2][indexPath.row] as! SimpleStore).name {
             case "Settings": self.performSegue(withIdentifier: "Centralis.Settings", sender: nil)
@@ -203,100 +205,65 @@ extension HomeViewController: UITableViewDelegate {
             }
         }
     }
-}
 
-extension HomeViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.shownCells[1].count == 0 { self.tableView.isHidden = true} else { self.tableView.isHidden = false }
         return self.shownCells[section + (self.shownCells[0].isEmpty ? 1 : 0)].count
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return self.shownCells[0].isEmpty ? 2 : 3
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 2 || (self.shownCells[0].isEmpty && indexPath.section == 1) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.HomeMenuCell", for: indexPath) as! HomeMenuCell
-            let menu = self.shownCells[2][indexPath.row] as! SimpleStore
-            cell.name.text = menu.name
-            switch menu.name {
-            case "Settings": cell.iconView.image = UIImage(systemName: "gear")
-            default: break
-            }
-            return cell
-        }
-        if self.shownCells[0].isEmpty || indexPath.section == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.HomeMenuCell", for: indexPath) as! HomeMenuCell
-            let menu = self.shownCells[1][indexPath.row] as! SimpleStore
-            cell.name.text = menu.name
-            switch menu.name {
-            case "Exams": cell.iconView.image = UIImage(systemName: "envelope.fill")
-            case "Documents": cell.iconView.image = UIImage(systemName: "doc.fill")
-            case "Timetable": cell.iconView.image = UIImage(systemName: "clock.fill")
-            case "Account Info": cell.iconView.image = UIImage(systemName: "person.fill")
-            case "Clubs": cell.iconView.image = UIImage(systemName: "person.3.fill")
-            case "Links": cell.iconView.image = UIImage(systemName: "link.circle.fill")
-            case "Homework": cell.iconView.image = UIImage(systemName: "briefcase.fill")
-            case "Catering": cell.iconView.image = UIImage(systemName: "sterlingsign.square.fill")
-            case "Attendance": cell.iconView.image = UIImage(systemName: "chart.bar.fill")
-            case "Behaviour": cell.iconView.image = UIImage(systemName: "hand.raised.slash.fill")
-            case "Achievement": cell.iconView.image = UIImage(systemName: "wand.and.stars")
-            default: break
-            }
-            return cell
-        } else {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch self.section(indexPath.section) {
+        case .lessons:
             let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.HomeMenuLessonCell", for: indexPath) as! HomeMenuLessonCell
             if let l = self.shownCells[0][0] as? HomeScreenLesson {
                 cell.lessons(l)
             }
             return cell
+        case .menus:
+            let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.DefaultCell")
+            let store = self.shownCells[1][indexPath.row] as! SimpleStore
+            cell.textLabel?.text = store.name
+            cell.textLabel?.textColor = .centralisTintColor
+            cell.accessoryType = .disclosureIndicator
+            cell.backgroundColor = .centralisBackgroundColor
+            return cell
+        case .settings:
+            let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.DefaultCell")
+            let store = self.shownCells[2][indexPath.row] as! SimpleStore
+            cell.textLabel?.text = store.name
+            cell.textLabel?.textColor = .centralisTintColor
+            cell.accessoryType = .disclosureIndicator
+            cell.backgroundColor = .centralisBackgroundColor
+            return cell
         }
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 2 || (self.shownCells[0].isEmpty && section == 1) { return UIView() }
-        let vw = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
-        let label = UILabel(frame: CGRect(x: 0, y: 10, width: tableView.frame.width, height: 20))
-        label.adjustsFontSizeToFitWidth = true
-        let boldAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 20, weight: .bold),
-        ]
-        if self.shownCells[0].isEmpty || section == 1 {
-            label.attributedText = NSAttributedString(string: "Menus", attributes: boldAttributes)
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch self.section(section) {
+        case .lessons: return "Lessons"
+        case .settings: return nil
+        case .menus: return "Menus"
+        }
+    }
+
+    private func section(_ section: Int) -> HomeViewController.section {
+        if section == 2 || (self.shownCells[0].isEmpty && section == 1) {
+            return .settings
+        } else if self.shownCells[0].isEmpty || section == 1 {
+            return .menus
         } else {
-            label.attributedText = NSAttributedString(string: "Lessons", attributes: boldAttributes)
-        }
-        
-        vw.addSubview(label)
-        return vw
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 2 || (self.shownCells[0].isEmpty && section == 1) { return 0 } else {
-            return 40
+            return .lessons
         }
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let cornerRadius = 10
-        var corners: UIRectCorner = []
-
-        if indexPath.row == 0 {
-            corners.update(with: .topLeft)
-            corners.update(with: .topRight)
-        }
-
-        if indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1 {
-            corners.update(with: .bottomLeft)
-            corners.update(with: .bottomRight)
-        }
-
-        let maskLayer = CAShapeLayer()
-        maskLayer.path = UIBezierPath(roundedRect: cell.bounds,
-                                      byRoundingCorners: corners,
-                                      cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)).cgPath
-        cell.layer.mask = maskLayer
+    private enum section {
+        case lessons
+        case menus
+        case settings
     }
 }
+
