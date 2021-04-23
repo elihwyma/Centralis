@@ -10,7 +10,7 @@ import UIKit
 public class ThemeManager {
     
     static var tintColor: UIColor {
-        if let color = UserDefaults.standard.color(forKey: "Centralis.TintColor") {
+        if let color = EduLinkAPI.shared.defaults.color(forKey: "Centralis.TintColor") {
             return color
         }
         return UIColor(red: 0.753, green: 0.537, blue: 0.855, alpha: 1)
@@ -27,7 +27,7 @@ public class ThemeManager {
     }
     
     public class func setTintColor(_ colour: UIColor?) {
-        UserDefaults.standard.set(colour, forKey: "Centralis.TintColor")
+        EduLinkAPI.shared.defaults.set(colour, forKey: "Centralis.TintColor")
         NotificationCenter.default.post(name: ThemeManager.ThemeUpdate, object: nil)
     }
     

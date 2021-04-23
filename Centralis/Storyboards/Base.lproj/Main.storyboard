@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -238,10 +237,10 @@
             </objects>
             <point key="canvasLocation" x="5136" y="115"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Centralis Navigation Controller-->
         <scene sceneID="XBx-DF-U5t">
             <objects>
-                <navigationController storyboardIdentifier="HomeNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="NQ1-3o-TFj" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="NQ1-3o-TFj" customClass="CentralisNavigationController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="7GE-cR-6xa"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="5ro-1t-pMc">
@@ -406,10 +405,10 @@
             </objects>
             <point key="canvasLocation" x="1836" y="1169"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Centralis Navigation Controller-->
         <scene sceneID="sF7-HC-4ht">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="loS-VG-R6T" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="loS-VG-R6T" customClass="CentralisNavigationController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="jsO-D7-KYA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
@@ -450,10 +449,10 @@
             </objects>
             <point key="canvasLocation" x="3465" y="115"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Centralis Navigation Controller-->
         <scene sceneID="sOF-lG-OQ3">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CHE-0K-9gx" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CHE-0K-9gx" customClass="CentralisNavigationController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Vuf-lC-Git">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>

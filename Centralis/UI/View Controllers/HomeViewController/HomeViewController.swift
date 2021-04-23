@@ -82,6 +82,18 @@ class HomeViewController: BaseTableViewController {
                 }
             }
         }
+        
+        self.updateColours()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateColours),
+                                               name: ThemeManager.ThemeUpdate,
+                                               object: nil)
+    }
+    
+    @objc private func updateColours() {
+        self.view.tintColor = .centralisTintColor
+        self.view.backgroundColor = .systemGroupedBackground
+        self.tableView.reloadData()
     }
     
     @objc public func arriveFromDelegate() {
@@ -204,6 +216,7 @@ class HomeViewController: BaseTableViewController {
             default: print("Not yet implemented")
             }
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

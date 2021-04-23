@@ -16,7 +16,7 @@ class SettingsSwitchTableViewCell: UITableViewCell {
     
     var defaultKey: String? {
         didSet {
-            if let key = defaultKey { control.isOn = UserDefaults.standard.optionalBool(key, fallback: fallback) }
+            if let key = defaultKey { control.isOn = EduLinkAPI.shared.defaults.optionalBool(key, fallback: fallback) }
         }
     }
     
@@ -56,7 +56,7 @@ class SettingsSwitchTableViewCell: UITableViewCell {
     
     @objc private func didChange(sender: UISwitch!) {
         if let key = defaultKey {
-            UserDefaults.standard.setValue(sender.isOn, forKey: key); NotificationCenter.default.post(name: Notification.Name(key), object: nil)
+            EduLinkAPI.shared.defaults.setValue(sender.isOn, forKey: key); NotificationCenter.default.post(name: Notification.Name(key), object: nil)
         }
     }
     

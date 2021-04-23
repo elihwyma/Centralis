@@ -52,6 +52,15 @@ class HomeMenuLessonCell: UITableViewCell {
         self.upcomingRoom.text = lessons.upcoming.room ?? "Not Given"
         self.timeSorting()
         self.heartbeat = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.timeSorting), userInfo: nil, repeats: true)
+        
+        self.currentView.backgroundColor = .centralisBackgroundColor
+        self.upcomingView.backgroundColor = .centralisBackgroundColor
+        self.currentLesson.textColor = .centralisTintColor
+        self.currentTimeLabel.textColor = .centralisTintColor
+        self.currentRoom.textColor = .centralisTintColor
+        self.upcomingLesson.textColor = .centralisTintColor
+        self.upcomingRoom.textColor = .centralisTintColor
+        self.upcomingTimeLabel.textColor = .centralisTintColor
     }
     
     @objc private func timeSorting() {

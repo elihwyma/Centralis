@@ -47,7 +47,6 @@
 		E1226FC125FD1BBD00D81A43 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1226FC025FD1BBD00D81A43 /* SwiftUI.framework */; };
 		E1226FC425FD1BBD00D81A43 /* LongTimetableWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1226FC325FD1BBD00D81A43 /* LongTimetableWidget.swift */; };
 		E1226FC625FD1BBE00D81A43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1226FC525FD1BBE00D81A43 /* Assets.xcassets */; };
-		E1226FCA25FD1BBE00D81A43 /* CentralisWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E1226FBC25FD1BBD00D81A43 /* CentralisWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E1226FD225FD1BDD00D81A43 /* EduLink_Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB025F0173800CFF9DC /* EduLink_Timetable.swift */; };
 		E1226FD525FD1BE000D81A43 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB925F0173800CFF9DC /* LoginManager.swift */; };
 		E1226FD825FD1BE300D81A43 /* EduLinkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77ABA25F0173800CFF9DC /* EduLinkAPI.swift */; };
@@ -77,6 +76,7 @@
 		E157605B258BBDE700DD496F /* ChartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E157605A258BBDE700DD496F /* ChartTableViewController.swift */; };
 		E1576060258BF56B00DD496F /* AmyChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E157605E258BF56B00DD496F /* AmyChartCell.swift */; };
 		E1576061258BF56B00DD496F /* AmyChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E157605F258BF56B00DD496F /* AmyChartCell.xib */; };
+		E171DB4B2631A68E00ED1439 /* CentralisNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E171DB4A2631A68E00ED1439 /* CentralisNavigationController.swift */; };
 		E1768305259A7EAE0099BB92 /* NewUserSchoolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768304259A7EAE0099BB92 /* NewUserSchoolController.swift */; };
 		E1768308259A8C7A0099BB92 /* NewUserUPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768307259A8C7A0099BB92 /* NewUserUPController.swift */; };
 		E17EE6312624D76500B55095 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EE6302624D76500B55095 /* BaseTableViewController.swift */; };
@@ -117,30 +117,6 @@
 		E1FB73CD25A0E33E00BA4E77 /* HomeMenuLessonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB73CB25A0E33E00BA4E77 /* HomeMenuLessonCell.swift */; };
 		E1FB73CE25A0E33E00BA4E77 /* HomeMenuLessonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1FB73CC25A0E33E00BA4E77 /* HomeMenuLessonCell.xib */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		E1226FC825FD1BBE00D81A43 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 53CB50662572D1770077DDAE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E1226FBB25FD1BBD00D81A43;
-			remoteInfo = CentralisWidgetExtension;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		E1226FCC25FD1BBF00D81A43 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				E1226FCA25FD1BBE00D81A43 /* CentralisWidgetExtension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		531870D0257968BD000191FD /* TextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +180,7 @@
 		E157605A258BBDE700DD496F /* ChartTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTableViewController.swift; sourceTree = "<group>"; };
 		E157605E258BF56B00DD496F /* AmyChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmyChartCell.swift; sourceTree = "<group>"; };
 		E157605F258BF56B00DD496F /* AmyChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmyChartCell.xib; sourceTree = "<group>"; };
+		E171DB4A2631A68E00ED1439 /* CentralisNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralisNavigationController.swift; sourceTree = "<group>"; };
 		E1768304259A7EAE0099BB92 /* NewUserSchoolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserSchoolController.swift; sourceTree = "<group>"; };
 		E1768307259A8C7A0099BB92 /* NewUserUPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserUPController.swift; sourceTree = "<group>"; };
 		E17EE6302624D76500B55095 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
@@ -411,6 +388,7 @@
 		53CB508E2572D6800077DDAE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E171DB492631A66D00ED1439 /* CentralisNavigationController */,
 				E17EE62F2624D74500B55095 /* BaseViewControllers */,
 				E117209D25FE7E2D00339837 /* SettingsViewController */,
 				E1768303259A7D530099BB92 /* NewUserControllers */,
@@ -609,6 +587,14 @@
 			path = AmyChartCell;
 			sourceTree = "<group>";
 		};
+		E171DB492631A66D00ED1439 /* CentralisNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				E171DB4A2631A68E00ED1439 /* CentralisNavigationController.swift */,
+			);
+			path = CentralisNavigationController;
+			sourceTree = "<group>";
+		};
 		E1768303259A7D530099BB92 /* NewUserControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -783,12 +769,10 @@
 				53CB506A2572D1780077DDAE /* Sources */,
 				53CB506B2572D1780077DDAE /* Frameworks */,
 				53CB506C2572D1780077DDAE /* Resources */,
-				E1226FCC25FD1BBF00D81A43 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E1226FC925FD1BBE00D81A43 /* PBXTargetDependency */,
 			);
 			name = Centralis;
 			packageProductDependencies = (
@@ -933,6 +917,7 @@
 				E17EE63F2624DBA800B55095 /* UserDefaults+Optional.swift in Sources */,
 				5387450E257BDB7100174D07 /* HomeworkCell.swift in Sources */,
 				53CB509A2572D7C40077DDAE /* UIView+Extensions.swift in Sources */,
+				E171DB4B2631A68E00ED1439 /* CentralisNavigationController.swift in Sources */,
 				5387452E257C205500174D07 /* HomeworkDetailView.swift in Sources */,
 				E152162025A7D0E700557F20 /* NSDate+Extension.swift in Sources */,
 				E1B77AC825F0173800CFF9DC /* EduLink_Achievement.swift in Sources */,
@@ -991,14 +976,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E1226FC925FD1BBE00D81A43 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E1226FBB25FD1BBD00D81A43 /* CentralisWidgetExtension */;
-			targetProxy = E1226FC825FD1BBE00D81A43 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		53CB50772572D1780077DDAE /* Main.storyboard */ = {
@@ -1141,15 +1118,14 @@
 		53CB50832572D1880077DDAE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Resources/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 893;
+				CURRENT_PROJECT_VERSION = 1632;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				INFOPLIST_FILE = Centralis/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1168,16 +1144,15 @@
 		53CB50842572D1880077DDAE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Resources/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 893;
+				CURRENT_PROJECT_VERSION = 1632;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = Centralis/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1203,7 +1178,7 @@
 				CURRENT_PROJECT_VERSION = 893;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				INFOPLIST_FILE = CentralisWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1230,7 +1205,7 @@
 				CURRENT_PROJECT_VERSION = 893;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				INFOPLIST_FILE = CentralisWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
