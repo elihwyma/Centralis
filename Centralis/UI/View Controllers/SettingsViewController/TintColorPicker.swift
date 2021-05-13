@@ -34,6 +34,7 @@ class TintColorPicker: UITableViewCell  {
     }
 
     @objc private func updateCentralisColors() {
+        backgroundColor = .centralisBackgroundColor
         self.textLabel?.textColor = .centralisTintColor
         switcherView.backgroundColor = .centralisTintColor
     }

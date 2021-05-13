@@ -15,20 +15,8 @@ class SettingsViewController: BaseTableViewController {
         // Do any additional setup after loading the view.
         let pop = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(self.pop))
         self.navigationItem.leftBarButtonItem = pop
-        
-        self.updateColours()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateColours),
-                                               name: ThemeManager.ThemeUpdate,
-                                               object: nil)
     }
-    
-    @objc private func updateColours() {
-        self.view.tintColor = .centralisTintColor
-        self.view.backgroundColor = .systemGroupedBackground
-        self.tableView.reloadData()
-    }
-    
+
     @objc private func pop() {
         self.dismiss(animated: true)
     }
@@ -40,6 +28,7 @@ class SettingsViewController: BaseTableViewController {
             case 0:
                 let config = UIColorPickerViewController()
                 config.selectedColor = .centralisTintColor
+                config.supportsAlpha = false
                 config.delegate = self
                 self.navigationController?.present(config, animated: true, completion: nil)
             case 1:
@@ -61,7 +50,6 @@ class SettingsViewController: BaseTableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         3
     }
@@ -79,7 +67,6 @@ class SettingsViewController: BaseTableViewController {
         switch indexPath.section {
         case 0:
             let cell = SettingsSwitchTableViewCell()
-            cell.backgroundColor = .centralisBackgroundColor
             switch indexPath.row {
             case 0:
                 cell.amyPogLabel.text = "New Homework"
@@ -106,11 +93,11 @@ class SettingsViewController: BaseTableViewController {
             }
         case 2:
             let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "DefaultCell")
-            cell.backgroundColor = .centralisBackgroundColor
             switch indexPath.row {
             case 0:
                 cell.textLabel?.text = "Logout"
                 cell.textLabel?.textColor = .systemRed
+                cell.backgroundColor = .centralisBackgroundColor
             default: fatalError("Error")
             }
             return cell

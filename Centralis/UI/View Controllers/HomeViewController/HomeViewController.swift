@@ -70,8 +70,6 @@ class HomeViewController: BaseTableViewController {
         self.tableView.layer.masksToBounds = true
         self.tableView.layer.cornerRadius = 10
         
-        self.view.backgroundColor = .systemGroupedBackground
-        
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in
             UNUserNotificationCenter.current().getNotificationSettings() { settings in
                 if settings.authorizationStatus == .denied {
@@ -83,6 +81,7 @@ class HomeViewController: BaseTableViewController {
             }
         }
         
+        self.view.backgroundColor = .systemGroupedBackground
         self.updateColours()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateColours),
@@ -92,7 +91,6 @@ class HomeViewController: BaseTableViewController {
     
     @objc private func updateColours() {
         self.view.tintColor = .centralisTintColor
-        self.view.backgroundColor = .systemGroupedBackground
         self.tableView.reloadData()
     }
     
@@ -205,7 +203,9 @@ class HomeViewController: BaseTableViewController {
             switch (self.shownCells[1][indexPath.row] as! SimpleStore).name {
             case "Achievement": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
             case "Catering": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
-            case "Account Info": self.performSegue(withIdentifier: "Centralis.TextViewController", sender: nil)
+            case "Account Info":
+                let accountViewController = AccountViewController(style: .insetGrouped)
+                self.navigationController?.pushViewController(accountViewController, animated: true)
             case "Homework": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
             case "Behaviour": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)
             case "Timetable": self.performSegue(withIdentifier: "Centralis.ShowCarousel", sender: nil)

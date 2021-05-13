@@ -34,6 +34,7 @@ public class BaseTableViewController: UITableViewController {
     }
     
     @objc private func updateCentralisColours() {
+        self.view.backgroundColor = .centralisViewColor
         self.view.tintColor = .centralisTintColor
         self.tableView.reloadData()
     }

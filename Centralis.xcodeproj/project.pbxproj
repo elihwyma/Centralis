@@ -77,6 +77,7 @@
 		E1576060258BF56B00DD496F /* AmyChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E157605E258BF56B00DD496F /* AmyChartCell.swift */; };
 		E1576061258BF56B00DD496F /* AmyChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E157605F258BF56B00DD496F /* AmyChartCell.xib */; };
 		E171DB4B2631A68E00ED1439 /* CentralisNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E171DB4A2631A68E00ED1439 /* CentralisNavigationController.swift */; };
+		E171DB572632B65300ED1439 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E171DB562632B65300ED1439 /* AccountViewController.swift */; };
 		E1768305259A7EAE0099BB92 /* NewUserSchoolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768304259A7EAE0099BB92 /* NewUserSchoolController.swift */; };
 		E1768308259A8C7A0099BB92 /* NewUserUPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1768307259A8C7A0099BB92 /* NewUserUPController.swift */; };
 		E17EE6312624D76500B55095 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EE6302624D76500B55095 /* BaseTableViewController.swift */; };
@@ -181,6 +182,7 @@
 		E157605E258BF56B00DD496F /* AmyChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmyChartCell.swift; sourceTree = "<group>"; };
 		E157605F258BF56B00DD496F /* AmyChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AmyChartCell.xib; sourceTree = "<group>"; };
 		E171DB4A2631A68E00ED1439 /* CentralisNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralisNavigationController.swift; sourceTree = "<group>"; };
+		E171DB562632B65300ED1439 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		E1768304259A7EAE0099BB92 /* NewUserSchoolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserSchoolController.swift; sourceTree = "<group>"; };
 		E1768307259A8C7A0099BB92 /* NewUserUPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserUPController.swift; sourceTree = "<group>"; };
 		E17EE6302624D76500B55095 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 		53CB508E2572D6800077DDAE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E171DB542632B62700ED1439 /* Sub View Controllers */,
 				E171DB492631A66D00ED1439 /* CentralisNavigationController */,
 				E17EE62F2624D74500B55095 /* BaseViewControllers */,
 				E117209D25FE7E2D00339837 /* SettingsViewController */,
@@ -593,6 +596,22 @@
 				E171DB4A2631A68E00ED1439 /* CentralisNavigationController.swift */,
 			);
 			path = CentralisNavigationController;
+			sourceTree = "<group>";
+		};
+		E171DB542632B62700ED1439 /* Sub View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E171DB552632B63000ED1439 /* AccountViewController */,
+			);
+			path = "Sub View Controllers";
+			sourceTree = "<group>";
+		};
+		E171DB552632B63000ED1439 /* AccountViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E171DB562632B65300ED1439 /* AccountViewController.swift */,
+			);
+			path = AccountViewController;
 			sourceTree = "<group>";
 		};
 		E1768303259A7D530099BB92 /* NewUserControllers */ = {
@@ -916,6 +935,7 @@
 				E1B77AC725F0173800CFF9DC /* EduLink_Attendance.swift in Sources */,
 				E17EE63F2624DBA800B55095 /* UserDefaults+Optional.swift in Sources */,
 				5387450E257BDB7100174D07 /* HomeworkCell.swift in Sources */,
+				E171DB572632B65300ED1439 /* AccountViewController.swift in Sources */,
 				53CB509A2572D7C40077DDAE /* UIView+Extensions.swift in Sources */,
 				E171DB4B2631A68E00ED1439 /* CentralisNavigationController.swift in Sources */,
 				5387452E257C205500174D07 /* HomeworkDetailView.swift in Sources */,
