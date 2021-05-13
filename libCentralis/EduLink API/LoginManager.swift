@@ -217,6 +217,9 @@ public class LoginManager {
                 logins.append(a)
             }
         }
+        if l.count != logins.count {
+            return
+        }
         for (index, login) in logins.enumerated() where ((login.schoolCode == login.schoolCode) && (login.username == login.username)) {
             l.remove(at: index)
         }

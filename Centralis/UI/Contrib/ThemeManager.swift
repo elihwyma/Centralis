@@ -26,6 +26,16 @@ public class ThemeManager {
         })
     }
     
+    public static var viewBackground: UIColor {
+        return UIColor(dynamicProvider: { traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                return .black
+            } else {
+                return .systemGray6
+            }
+        })
+    }
+    
     public class func setTintColor(_ colour: UIColor?) {
         EduLinkAPI.shared.defaults.set(colour, forKey: "Centralis.TintColor")
         NotificationCenter.default.post(name: ThemeManager.ThemeUpdate, object: nil)
@@ -42,6 +52,10 @@ public extension UIColor {
     
     static var centralisBackgroundColor: UIColor {
         ThemeManager.backgroundColour
+    }
+    
+    static var centralisViewColor: UIColor {
+        ThemeManager.viewBackground
     }
     
 }
