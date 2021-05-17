@@ -20,7 +20,7 @@ class EduLink_ICalendar {
     }
 }
 
-struct Calendar {
+public struct iCal {
     var type: String
     var description: String
     var enabled: Bool

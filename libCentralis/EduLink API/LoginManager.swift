@@ -103,7 +103,7 @@ public class LoginManager {
             "fcm_token_old" : "none",
             "username" : self.username,
             "password" : self.password,
-            "establishment_id" : "2"
+            "establishment_id" : EduLinkAPI.shared.authorisedSchool.school_id
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.Login", params: params, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Connection Error") }
