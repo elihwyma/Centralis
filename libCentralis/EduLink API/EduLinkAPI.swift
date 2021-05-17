@@ -39,6 +39,8 @@ public class EduLinkAPI {
     /// The contained attendance data, for more documentation see `Attendance`
     public var attendance = Attendance()
     
+    public var calendars = [Calendar]()
+    
     /// Will remove all contained data. This should be called when logging out
     public func clear() {
         self.authorisedUser = AuthorisedUser()

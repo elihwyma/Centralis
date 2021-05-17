@@ -43,6 +43,8 @@
 		E117209F25FE7E4700339837 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117209E25FE7E4700339837 /* SettingsViewController.swift */; };
 		E11720C225FE9F5300339837 /* NotificationSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11720C025FE9F5200339837 /* NotificationSwitchCell.xib */; };
 		E11720C325FE9F5300339837 /* NotificationSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720C125FE9F5200339837 /* NotificationSwitchCell.swift */; };
+		E11CDD4F264D4AC000774BA4 /* EduLink_ICalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11CDD4E264D4ABF00774BA4 /* EduLink_ICalendar.swift */; };
+		E11CDD50264D4AC000774BA4 /* EduLink_ICalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11CDD4E264D4ABF00774BA4 /* EduLink_ICalendar.swift */; };
 		E1226FBF25FD1BBD00D81A43 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1226FBE25FD1BBD00D81A43 /* WidgetKit.framework */; };
 		E1226FC125FD1BBD00D81A43 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1226FC025FD1BBD00D81A43 /* SwiftUI.framework */; };
 		E1226FC425FD1BBD00D81A43 /* LongTimetableWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1226FC325FD1BBD00D81A43 /* LongTimetableWidget.swift */; };
@@ -165,6 +167,7 @@
 		E117209E25FE7E4700339837 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E11720C025FE9F5200339837 /* NotificationSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationSwitchCell.xib; sourceTree = "<group>"; };
 		E11720C125FE9F5200339837 /* NotificationSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSwitchCell.swift; sourceTree = "<group>"; };
+		E11CDD4E264D4ABF00774BA4 /* EduLink_ICalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_ICalendar.swift; sourceTree = "<group>"; };
 		E1226FBC25FD1BBD00D81A43 /* CentralisWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CentralisWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1226FBE25FD1BBD00D81A43 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		E1226FC025FD1BBD00D81A43 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -723,6 +726,7 @@
 				E1B77AB725F0173800CFF9DC /* EduLink_Status.swift */,
 				E1B77AB825F0173800CFF9DC /* EduLink_Register.swift */,
 				E1B77AD625F0F7F600CFF9DC /* EduLink_Photo.swift */,
+				E11CDD4E264D4ABF00774BA4 /* EduLink_ICalendar.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -935,6 +939,7 @@
 				E1B77AC725F0173800CFF9DC /* EduLink_Attendance.swift in Sources */,
 				E17EE63F2624DBA800B55095 /* UserDefaults+Optional.swift in Sources */,
 				5387450E257BDB7100174D07 /* HomeworkCell.swift in Sources */,
+				E11CDD4F264D4AC000774BA4 /* EduLink_ICalendar.swift in Sources */,
 				E171DB572632B65300ED1439 /* AccountViewController.swift in Sources */,
 				53CB509A2572D7C40077DDAE /* UIView+Extensions.swift in Sources */,
 				E171DB4B2631A68E00ED1439 /* CentralisNavigationController.swift in Sources */,
@@ -977,6 +982,7 @@
 				E1226FD825FD1BE300D81A43 /* EduLinkAPI.swift in Sources */,
 				E1226FF625FD1C0100D81A43 /* EduLink_Homework.swift in Sources */,
 				E17EE6402624DBA800B55095 /* UserDefaults+Optional.swift in Sources */,
+				E11CDD50264D4AC000774BA4 /* EduLink_ICalendar.swift in Sources */,
 				E117207025FE752300339837 /* CentralisWidget.swift in Sources */,
 				E17EE6382624DB8E00B55095 /* ThemeManager.swift in Sources */,
 				E1226FC425FD1BBD00D81A43 /* LongTimetableWidget.swift in Sources */,
@@ -1142,7 +1148,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Resources/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1632;
+				CURRENT_PROJECT_VERSION = 1634;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				INFOPLIST_FILE = Centralis/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1168,7 +1174,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Resources/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1632;
+				CURRENT_PROJECT_VERSION = 1634;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = Centralis/Resources/Info.plist;
