@@ -22,7 +22,7 @@ class TextViewCell: UITableViewCell {
         self.att = NSMutableAttributedString()
         self.att?.addPair(bold: "Date: ", normal: "\(achievement.date!)\n")
         for employee in EduLinkAPI.shared.authorisedSchool.schoolInfo.employees where employee.id == achievement.employee_id {
-            self.att?.addPair(bold: "Teacher: ", normal: "\(employee.title!) \(employee.forename!) \(employee.surname!)\n")
+            self.att?.addPair(bold: "Teacher: ", normal: "\(employee.title) \(employee.forename) \(employee.surname)\n")
         }
         self.att?.addPair(bold: "Lesson: ", normal: "\(achievement.lesson_information ?? "Not Given")\n")
         self.att?.addPair(bold: "Points: ", normal: "\(achievement.points!)\n")
@@ -38,7 +38,7 @@ class TextViewCell: UITableViewCell {
         self.att = NSMutableAttributedString()
         self.att?.addPair(bold: "Date: ", normal: "\(behaviour.date!)\n")
         for employee in EduLinkAPI.shared.authorisedSchool.schoolInfo.employees where employee.id == behaviour.recorded_id {
-            self.att?.addPair(bold: "Teacher: ", normal: "\(employee.title!) \(employee.forename!) \(employee.surname!)\n")
+            self.att?.addPair(bold: "Teacher: ", normal: "\(employee.title) \(employee.forename) \(employee.surname)\n")
         }
         self.att?.addPair(bold: "Lesson: ", normal: "\(behaviour.lesson_information ?? "Not Given")\n")
         self.att?.addPair(bold: "Points: ", normal: "\(behaviour.points!)\n")

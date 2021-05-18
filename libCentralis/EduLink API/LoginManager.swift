@@ -84,6 +84,7 @@ public class LoginManager {
             guard let establishment = result["establishment"] as? [String : Any] else { return zCompletion(false, "Unknown Error Ocurred") }
             let imageData = establishment["logo"] as? String ?? ""
             EduLinkAPI.shared.authorisedUser.school = establishment["name"] as? String ?? "Not Given"
+            EduLinkAPI.shared.authorisedSchool.school_id = "\(establishment["id"] ?? "")"
             if let decodedData = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters) {
                 EduLinkAPI.shared.authorisedSchool.schoolLogo = decodedData
             }
@@ -103,7 +104,7 @@ public class LoginManager {
             "fcm_token_old" : "none",
             "username" : self.username,
             "password" : self.password,
-            "establishment_id" : EduLinkAPI.shared.authorisedSchool.school_id
+            "establishment_id" : "\(EduLinkAPI.shared.authorisedSchool.school_id ?? "1")"
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.Login", params: params, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Connection Error") }
@@ -242,42 +243,22 @@ public class LoginManager {
             
             //MARK: - Year Groups
             if let year_groups = establishment["year_groups"] as? [[String : String]] {
-                for yearGroup in year_groups {
-                    var yg = SimpleStore()
-                    yg.id = "\(yearGroup["id"] ?? "Not Given")"
-                    yg.name = yearGroup["name"] ?? "Not Given"
-                    EduLinkAPI.shared.authorisedSchool.schoolInfo.yearGroups.append(yg)
-                }
+                EduLinkAPI.shared.authorisedSchool.schoolInfo.yearGroups = SimpleStore.generate(year_groups)
             }
             
             //MARK: - Community Groups
             if let community_groups = establishment["community_groups"] as? [[String : String]] {
-                for communityGroup in community_groups {
-                    var cg = SimpleStore()
-                    cg.id = "\(communityGroup["id"] ?? "Not Given")"
-                    cg.name = communityGroup["name"] ?? "Not Given"
-                    EduLinkAPI.shared.authorisedSchool.schoolInfo.communityGroups.append(cg)
-                }
+                EduLinkAPI.shared.authorisedSchool.schoolInfo.communityGroups = SimpleStore.generate(community_groups)
             }
             
             //MARK: - Admission Groups
             if let admission_groups = establishment["applicant_admission_groups"] as? [[String : String]] {
-                for admissionGroup in admission_groups {
-                    var ag = SimpleStore()
-                    ag.id = "\(admissionGroup["id"] ?? "Not Given")"
-                    ag.name = admissionGroup["name"] ?? "Not Given"
-                    EduLinkAPI.shared.authorisedSchool.schoolInfo.admissionGroups.append(ag)
-                }
+                EduLinkAPI.shared.authorisedSchool.schoolInfo.admissionGroups = SimpleStore.generate(admission_groups)
             }
             
             //MARK: - Intake Groups
             if let intake_groups = establishment["applicant_intake_groups"] as? [[String : String]] {
-                for intakeGroup in intake_groups {
-                    var ig = SimpleStore()
-                    ig.id = "\(intakeGroup["id"] ?? "Not Given")"
-                    ig.name = intakeGroup["name"] ?? "Not Given"
-                    EduLinkAPI.shared.authorisedSchool.schoolInfo.intakeGroups.append(ig)
-                }
+                EduLinkAPI.shared.authorisedSchool.schoolInfo.intakeGroups = SimpleStore.generate(intake_groups)
             }
             
             //MARK: - Form Groups

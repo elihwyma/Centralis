@@ -26,7 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         }
         */
-        UIApplication.shared.setMinimumBackgroundFetchInterval(1800)
+        
+        UIApplication.shared.setMinimumBackgroundFetchInterval(3600 * 3)
         // Automatic Login on Open
         guard let user = LoginManager.user() else { return true }
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -123,6 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication,
                      performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
         self.notificationRefresh(completionHandler: {(success) -> Void in
             //task.setTaskCompleted(success: true)
             //self.scheduleAppRefresh()

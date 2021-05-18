@@ -61,6 +61,7 @@ class AccountViewController: BaseTableViewController {
         cell.backgroundColor = .centralisBackgroundColor
         cell.textLabel?.textColor = .centralisTintColor
         cell.detailTextLabel?.textColor = .centralisTintColor
+        cell.selectionStyle = .none
         let personal = EduLinkAPI.shared.personal
         switch indexPath.row {
         case 0:

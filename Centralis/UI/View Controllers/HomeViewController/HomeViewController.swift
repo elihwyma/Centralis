@@ -171,7 +171,7 @@ class HomeViewController: BaseTableViewController {
         }
         if segue.identifier == "Centralis.TextViewController" {
             let controller = segue.destination as! TextViewController
-            switch menu.name! {
+            switch menu.name {
             case "Achievement": controller.context = .achievement
             case "Catering": controller.context = .catering
             case "Account Info": controller.context = .personal
@@ -181,7 +181,7 @@ class HomeViewController: BaseTableViewController {
             }
         } else if segue.identifier == "Centralis.ShowCarousel" {
             let controller = segue.destination as! CarouselContainerController
-            switch menu.name! {
+            switch menu.name {
             case "Homework": controller.context = .homework
             case "Timetable": controller.context = .timetable
             case "Behaviour": controller.context = .behaviour
