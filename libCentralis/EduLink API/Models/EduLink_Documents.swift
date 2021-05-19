@@ -12,8 +12,8 @@ public class EduLink_Documents {
     /// Retrieve a list of documents available to the user. For more documentation see `Document`
     /// - Parameter rootCompletion: The completion handler, for more documentation see `completionHandler`
     class public func documents(learnerID: String = EduLinkAPI.shared.authorisedUser.id, _ rootCompletion: @escaping completionHandler) {
-        let params: [String : String] = [
-            "learner_id" : learnerID
+        let params: [String: AnyEncodable] = [
+            "learner_id" : AnyEncodable(learnerID)
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.Documents", params: params, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }
@@ -41,8 +41,8 @@ public class EduLink_Documents {
     ///   - rootCompletion: The completion handler, for more documentation see `completionHandler`
     class public func document(_ document: Document, _ rootCompletion: @escaping completionHandler) {
         let learnerID = EduLinkAPI.shared.authorisedUser.id
-        let params: [String : String] = [
-            "document_id" : document.id
+        let params: [String: AnyEncodable] = [
+            "document_id" : AnyEncodable(document.id)
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.Document", params: params, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }

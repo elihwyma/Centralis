@@ -26,7 +26,7 @@ internal class NetworkManager {
         return "Error"
     }
     
-    class internal func requestWithDict(url: String?, requestMethod: String, params: [String : String], completion: @escaping rdc) {
+    class internal func requestWithDict(url: String?, requestMethod: String, params: [String: AnyEncodable] = [:], completion: @escaping rdc) {
         var c = URLComponents(string: url ?? EduLinkAPI.shared.authorisedSchool.server!)!
         c.queryItems = [URLQueryItem(name: "method", value: requestMethod)]
         var request = URLRequest(url: c.url!)
@@ -56,20 +56,32 @@ fileprivate struct EdulinkBody: Encodable {
     /// The current json version
     var jsonrpc = "2.0"
     /// The query method curently being posted
-    var method: String!
+    var method: String
     /// The random UUID that is sent with every request, for more documentation see `UUID`
     var uuid = UUID.uuid
     /// The ID of the request, 1 every time works fine
     var id = "1"
     /// The specific request parameters, usually containing authtoken
-    var params: [String : String]!
+    var params: [String: AnyEncodable]
     
     /// The initialiser for the struct. This is used to generate the json body.
     /// - Parameters:
     ///   - method: The query method
     ///   - params: The query parameters
-    init(method: String, params: [String : String]) {
+    init(method: String, params: [String: AnyEncodable]) {
         self.method = method
         self.params = params
+    }
+}
+
+struct AnyEncodable: Encodable {
+
+    private let _encode: (Encoder) throws -> Void
+    public init<T: Encodable>(_ wrapped: T) {
+        _encode = wrapped.encode
+    }
+
+    func encode(to encoder: Encoder) throws {
+        try _encode(encoder)
     }
 }

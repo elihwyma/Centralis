@@ -27,7 +27,7 @@ public class EduLinkAPI {
     /// The contained Achievement/Behaviour info, for more documentation see `AchievementBehaviourLookup`
     public var achievementBehaviourLookups = AchievementBehaviourLookup()
     /// The contained personal info, for more documentation see `Personal`
-    public var personal = Personal()
+    public var personal: Personal?
     /// The contained homework, for more documentation see `Homeworks`
     public var homework = Homeworks()
     /// The contained timetable data, for more documentation see `Week`
@@ -53,5 +53,6 @@ public class EduLinkAPI {
         self.links = [Link]()
         self.documents = [Document]()
         self.attendance = Attendance()
+        self.personal = nil
     }
 }

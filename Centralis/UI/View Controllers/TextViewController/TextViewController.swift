@@ -11,7 +11,6 @@ import UIKit
 enum TextViewContext {
     case catering
     case achievement
-    case personal
     case links
     case documents
 }
@@ -43,7 +42,6 @@ class TextViewController: UIViewController {
         switch self.context {
         case .catering: self.cateringTitle()
         case .achievement: self.achievementTitle()
-        case .personal: self.personalTitle()
         case .links: self.linkTitle()
         case .documents: self.documentTitle()
         case .none: fatalError("fuck")
@@ -68,7 +66,6 @@ class TextViewController: UIViewController {
         switch self.context {
         case .catering: self.cateringSetup()
         case .achievement: self.achievementSetup()
-        case .personal: self.personalSetup()
         case .links: self.linkSetup()
         case .documents: self.documentSetup()
         case .none: fatalError("fuck")
@@ -104,7 +101,6 @@ class TextViewController: UIViewController {
         case .achievement: errorView.retryButton.addTarget(self, action: #selector(self.achievementSetup), for: .touchUpInside)
         case .links: errorView.retryButton.addTarget(self, action: #selector(self.linkSetup), for: .touchUpInside)
         case .documents: errorView.retryButton.addTarget(self, action: #selector(self.documentSetup), for: .touchUpInside)
-        case .personal: errorView.retryButton.addTarget(self, action: #selector(self.personalSetup), for: .touchUpInside)
         case .none: break
         }
         if let nc = self.navigationController { errorView.startWorking(nc) }
@@ -154,7 +150,6 @@ extension TextViewController: UITableViewDataSource {
         switch self.context {
         case .achievement: return EduLinkAPI.shared.achievementBehaviourLookups.achievements.count
         case .catering: return EduLinkAPI.shared.catering.transactions.count
-        case .personal: return ((EduLinkAPI.shared.personal.forename == nil) ? 0 : 1)
         case .links: return EduLinkAPI.shared.links.count
         case .documents: return EduLinkAPI.shared.documents.count
         case .none: fatalError("fuck")
@@ -182,9 +177,6 @@ extension TextViewController: UITableViewDataSource {
         case .catering: do {
             let transaction = EduLinkAPI.shared.catering.transactions[indexPath.row]
             cell.catering(transaction)
-        }
-        case .personal: do {
-            cell.personal(EduLinkAPI.shared.personal)
         }
         case .documents: do {
             let document = EduLinkAPI.shared.documents[indexPath.row]
@@ -250,25 +242,6 @@ extension TextViewController {
         if let balance = EduLinkAPI.shared.catering.balance {
             self.title = "Balance: \(self.formatPrice(balance))"
         }
-    }
-}
-
-//MARK: - Personal
-extension TextViewController {
-    @objc private func personalSetup() {
-        EduLink_Personal.personal({(success, error) -> Void in
-            DispatchQueue.main.async {
-                if success {
-                    self.dataResponse()
-                } else {
-                    self.error(error!)
-                }
-            }
-        })
-    }
-    
-    private func personalTitle() {
-        self.title = "Account Info"
     }
 }
 

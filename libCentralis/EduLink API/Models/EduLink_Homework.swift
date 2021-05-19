@@ -12,8 +12,8 @@ public class EduLink_Homework {
     /// Retrieve a list of current and past homework of the user. For more documentation see `Homeworks`
     /// - Parameter rootCompletion: The completion handler, for more documentation see `completionHandler`
     class public func homework(learnerID: String = EduLinkAPI.shared.authorisedUser.id, _ rootCompletion: @escaping completionHandler) {
-        let params: [String : String] = [
-            "learner_id" : learnerID
+        let params: [String: AnyEncodable] = [
+            "learner_id": AnyEncodable(learnerID)
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.Homework", params: params, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }
@@ -46,9 +46,9 @@ public class EduLink_Homework {
     ///   - context: If the homework is current or past
     ///   - rootCompletion: The completion handler, for more documentation see `completionHandler`
     class public func homeworkDetails(learnerID: String = EduLinkAPI.shared.authorisedUser.id, _ index: Int!, _ homework: Homework!, _ context: HomeworkContext, _ rootCompletion: @escaping completionHandler) {
-        let params: [String : String] = [
-            "source" : homework.source,
-            "homework_id" : homework.id
+        let params: [String: AnyEncodable] = [
+            "source": AnyEncodable(homework.source),
+            "homework_id": AnyEncodable(homework.id)
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.HomeworkDetails", params: params, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }
@@ -87,11 +87,11 @@ public class EduLink_Homework {
         case .current: homework = EduLinkAPI.shared.homework.current[index]
         case .past: homework = EduLinkAPI.shared.homework.past[index]
         }
-        let params: [String : String] = [
-            "learner_id" : learnerID,
-            "completed" : completed ? "true" : "false",
-            "homework_id" : homework.id,
-            "source" : homework.source
+        let params: [String: AnyEncodable] = [
+            "learner_id" : AnyEncodable(learnerID),
+            "completed" : AnyEncodable(completed ? "true" : "false"),
+            "homework_id" : AnyEncodable(homework.id),
+            "source" : AnyEncodable(homework.source)
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.HomeworkCompleted", params: params, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }

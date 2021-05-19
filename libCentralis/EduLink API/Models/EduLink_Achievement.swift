@@ -11,8 +11,7 @@ import Foundation
 public class EduLink_Achievement {
     class private func achievementBehaviourLookups(_ rootCompletion: @escaping completionHandler) {
         let learnerID = EduLinkAPI.shared.authorisedUser.id
-        let params: [String : String] = [:]
-        NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.AchievementBehaviourLookups", params: params, completion: { (success, dict) -> Void in
+        NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.AchievementBehaviourLookups", completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }
             guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
             if !(result["success"] as? Bool ?? false) { return rootCompletion(false, (result["error"] as? String ?? "Unknown Error")) }
@@ -92,8 +91,8 @@ public class EduLink_Achievement {
     /// Retrieve the achievements of the user, for more documentation see `Achievement`
     /// - Parameter rootCompletion: The completion handler, for more documentation see `completionHandler`
     class public func achievement(learnerID: String = EduLinkAPI.shared.authorisedUser.id, _ zCompletion: @escaping completionHandler) {
-        let params: [String : String] = [
-            "learner_id" : learnerID
+        let params: [String: AnyEncodable] = [
+            "learner_id": AnyEncodable(learnerID)
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.Achievement", params: params, completion: { (success, dict) -> Void in
             if !success { return zCompletion(false, "Network Error") }
@@ -134,8 +133,8 @@ public class EduLink_Achievement {
     /// Retrieve the behaviours of the user, for more documentation see `Behaviour`
     /// - Parameter rootCompletion: The completion handler, for more documentation see `completionHandler`
     class public func behaviour(learnerID: String = EduLinkAPI.shared.authorisedUser.id, _ zCompletion: @escaping completionHandler) {
-        let params: [String : String] = [
-            "learner_id" : learnerID
+        let params: [String: AnyEncodable] = [
+            "learner_id": AnyEncodable(learnerID)
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.Behaviour", params: params, completion: { (success, dict) -> Void in
             if !success { return zCompletion(false, "Network Error") }

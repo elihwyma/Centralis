@@ -87,7 +87,7 @@ extension ChartTableViewController: UITableViewDataSource {
         case .lessonattendance: do {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.AmyChartCell", for: indexPath) as! AmyChartCell
             let l = EduLinkAPI.shared.attendance.lessons[indexPath.row]
-            cell.lessonAttendance(l.values, text: l.subject!)
+            cell.lessonAttendance(l.values, text: l.subject)
             cell.textView.attributedText = cell.att
             return cell
         }

@@ -50,8 +50,8 @@ public class LoginManager {
             return
         }
         
-        let params: [String : String] = [
-            "code" : self.schoolCode
+        let params: [String: AnyEncodable] = [
+            "code" : AnyEncodable(self.schoolCode)
         ]
         NetworkManager.requestWithDict(url: "https://provisioning.edulinkone.com/", requestMethod: "School.FromCode", params: params, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Connection Error") }
@@ -74,8 +74,8 @@ public class LoginManager {
     }
     
     private func schoolInfoz(_ zCompletion: @escaping completionHandler) {
-        let params: [String : String] = [
-            "establishment_id" : "\(EduLinkAPI.shared.authorisedSchool.school_id ?? "2")"
+        let params: [String: AnyEncodable] = [
+            "establishment_id": AnyEncodable("\(EduLinkAPI.shared.authorisedSchool.school_id ?? "2")")
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.SchoolDetails", params: params, completion: { (success, dict) -> Void in
             if !success { return zCompletion(false, "Network Connection Error") }
@@ -100,11 +100,11 @@ public class LoginManager {
     public func loginz(username: String, password: String, _ rootCompletion: @escaping completionHandler) {
         self.username = username
         self.password = password
-        let params: [String : String] = [
-            "fcm_token_old" : "none",
-            "username" : self.username,
-            "password" : self.password,
-            "establishment_id" : "\(EduLinkAPI.shared.authorisedSchool.school_id ?? "1")"
+        let params: [String: AnyEncodable] = [
+            "fcm_token_old" : AnyEncodable("none"),
+            "username" : AnyEncodable(self.username),
+            "password" : AnyEncodable(self.password),
+            "establishment_id" : AnyEncodable("\(EduLinkAPI.shared.authorisedSchool.school_id ?? "1")")
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.Login", params: params, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Connection Error") }
@@ -332,7 +332,7 @@ public class LoginManager {
         var moving = EduLinkAPI.shared.authorisedUser.children[index]
         EduLinkAPI.shared.documents = moving.documents; moving.documents.removeAll()
         EduLinkAPI.shared.weeks = moving.weeks; moving.weeks.removeAll()
-        EduLinkAPI.shared.personal = moving.personal; moving.personal = Personal()
+        EduLinkAPI.shared.personal = moving.personal; moving.personal = nil
         EduLinkAPI.shared.attendance = moving.attendance; moving.attendance = Attendance()
         EduLinkAPI.shared.achievementBehaviourLookups = moving.achievementBehaviourLookups; moving.achievementBehaviourLookups = AchievementBehaviourLookup()
         EduLinkAPI.shared.homework = moving.homework; moving.homework = Homeworks()
@@ -435,7 +435,7 @@ public struct Child {
     
     internal var documents = [Document]()
     internal var weeks = [Week]()
-    internal var personal = Personal()
+    internal var personal: Personal?
     internal var attendance = Attendance()
     internal var achievementBehaviourLookups = AchievementBehaviourLookup()
     internal var homework = Homeworks()

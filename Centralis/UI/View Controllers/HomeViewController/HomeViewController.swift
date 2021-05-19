@@ -174,7 +174,6 @@ class HomeViewController: BaseTableViewController {
             switch menu.name {
             case "Achievement": controller.context = .achievement
             case "Catering": controller.context = .catering
-            case "Account Info": controller.context = .personal
             case "Links": controller.context = .links
             case "Documents": controller.context = .documents
             default: fatalError("Not implemented yet")

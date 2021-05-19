@@ -6,14 +6,16 @@
 //
 
 import CoreGraphics
+import Foundation
 
 /// A model for working with attendance
 public class EduLink_Attendance {
     /// Retrieve the attendance data of the curent user. For more documentation see `Attendance`
     /// - Parameter rootCompletion: The completion handler, for more documentation see `completionHandler`
     class public func attendance(learnerID: String = EduLinkAPI.shared.authorisedUser.id, _ rootCompletion: @escaping completionHandler) {
-        let params: [String : String] = [
-            "learner_id" : learnerID
+        let params: [String: AnyEncodable] = [
+            "learner_id": AnyEncodable(learnerID),
+            "format": AnyEncodable(3)
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.Attendance", params: params, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }
@@ -22,55 +24,22 @@ public class EduLink_Attendance {
             var attendanceCache = Attendance()
             attendanceCache.show_lesson = result["show_lesson"] as? Bool ?? false
             attendanceCache.show_statutory = result["show_statutory"] as? Bool ?? false
-            if let lesson = result["lesson"] as? [[String : Any]] {
-                for lesson in lesson {
-                    var l = AttendanceLesson()
-                    l.subject = lesson["subject"] as? String ?? "Not Given"
-                    var av = AttendanceValue()
-                    av.present = lesson["present"] as? Int ?? 0
-                    av.late = lesson["late"] as? Int ?? 0
-                    av.unauthorised = lesson["unauthorised"] as? Int ?? 0
-                    av.absent = lesson["absent"] as? Int ?? 0
-                    l.values = av
-                    if let exceptions = lesson["exceptions"] as? [[String : Any]] {
-                        for exception in exceptions {
-                            var e = AttendanceException()
-                            e.date = exception["date"] as? String ?? "Not Given"
-                            e.description = exception["description"] as? String ?? "Not Given"
-                            e.type = exception["type"] as? String ?? "Not Given"
-                            e.period = exception["period"] as? String ?? "Not Given"
-                            l.exceptions.append(e)
-                        }
+            if let lessons = result["lesson"] as? [[String: Any]] {
+                for lessonDict in lessons {
+                    if let lesson = AttendanceLesson(lessonDict) {
+                        attendanceCache.lessons.append(lesson)
                     }
-                    attendanceCache.lessons.append(l)
                 }
             }
-            if let statutory = result["statutory"] as? [[String : Any]] {
-                for statutory in statutory {
-                    var s = AttendanceStatutory()
-                    s.month = statutory["month"] as? String ?? "Not Given"
-                    var av = AttendanceValue()
-                    av.present = statutory["present"] as? Int ?? 0
-                    av.late = statutory["late"] as? Int ?? 0
-                    av.unauthorised = statutory["unauthorised"] as? Int ?? 0
-                    av.absent = statutory["absent"] as? Int ?? 0
-                    s.values = av
-                    EduLinkAPI.shared.attendance.statutoryyear.values.present += av.present
-                    EduLinkAPI.shared.attendance.statutoryyear.values.absent += av.absent
-                    EduLinkAPI.shared.attendance.statutoryyear.values.late += av.late
-                    EduLinkAPI.shared.attendance.statutoryyear.values.unauthorised += av.unauthorised
-                    if let exceptions = statutory["exceptions"] as? [[String : Any]] {
-                        for exception in exceptions {
-                            var e = AttendanceException()
-                            e.date = exception["date"] as? String ?? "Not Given"
-                            e.description = exception["description"] as? String ?? "Not Given"
-                            e.type = exception["type"] as? String ?? "Not Given"
-                            e.period = exception["period"] as? String ?? "Not Given"
-                            s.exceptions.append(e)
-                            attendanceCache.statutoryyear.exceptions.append(e)
-                        }
-                    }
-                    attendanceCache.statutory.append(s)
+            if let statutorys = result["statutory"] as? [[String : Any]] {
+                for statutoryDict in statutorys {
+                    guard let statutory = AttendanceStatutory(statutoryDict) else { continue }
+                    attendanceCache.statutory.append(statutory)
+                    attendanceCache.statutoryyear.values.present += statutory.values.present
+                    attendanceCache.statutoryyear.values.absent += statutory.values.absent
+                    attendanceCache.statutoryyear.values.late += statutory.values.late
+                    attendanceCache.statutoryyear.values.unauthorised += statutory.values.unauthorised
+                    attendanceCache.statutoryyear.exceptions += statutory.exceptions
                 }
             }
             attendanceCache.lessons = attendanceCache.lessons.sorted(by: { $0.subject < $1.subject })
@@ -88,43 +57,39 @@ public class EduLink_Attendance {
 /// A container for attendance values
 public struct AttendanceValue {
     /// The number of present marks
-    public var present: Int!
+    public var present: Int
     /// The number of unauthorised absence marks
-    public var unauthorised: Int!
+    public var unauthorised: Int
     /// The number of absenct marks
-    public var absent: Int!
+    public var absent: Int
     /// The number of late marks
-    public var late: Int!
+    public var late: Int
     
     /// The init method, sets all values to 0
-    init() {
-        self.present = 0
-        self.unauthorised = 0
-        self.absent = 0
-        self.late = 0
+    init(_ dict: [String: Int]? = nil) {
+        self.present = dict?["present"] ?? 0
+        self.unauthorised = dict?["unauthorised"] ?? 0
+        self.absent = dict?["absent"] ?? 0
+        self.late = dict?["late"] ?? 0
     }
 }
 
-/// A container for `AttendanceValue` colours. The colours are generated based on their string name.
-public struct AttendanceColours {
-    /// The colour for present marks
-    public var present: CGColor!
-    /// The colour for unauthorised marks
-    public var unauthorised: CGColor!
-    /// The colour for absent marks
-    public var absent: CGColor!
-    /// The colour for late marks
-    public var late: CGColor!
-    
-    /// Sets the colour of all the values, based on their string names
-    public init() {
-        let c = ColourConverter()
-        self.present = c.colourFromString("Present")
-        self.unauthorised = c.colourFromString("Unauthorised")
-        self.late = c.colourFromString("Late")
-        self.absent = c.colourFromString("Absent")
+enum AttendanceColours {
+    case present
+    case unauthorised
+    case absent
+    case late
+ 
+    var rawValue: CGColor {
+        switch self {
+        case .present: return #colorLiteral(red: 0.3568627451, green: 0.5490196078, blue: 0.3529411765, alpha: 1) //5B8C5A
+        case .unauthorised: return #colorLiteral(red: 0.2470588235, green: 0.5333333333, blue: 0.7725490196, alpha: 1) //3F88C5
+        case .absent: return #colorLiteral(red: 0.9411764706, green: 0.5294117647, blue: 0, alpha: 1) //F08700
+        case .late: return #colorLiteral(red: 0.8901960784, green: 0.3960784314, blue: 0.3568627451, alpha: 1) //E3655B
+        }
     }
 }
+
 
 /// A container for the Stautory Year
 public struct StatutoryYear {
@@ -137,39 +102,76 @@ public struct StatutoryYear {
 /// A container for an attendance exception
 public struct AttendanceException {
     /// The date of the exception
-    public var date: String!
+    public var date: Date
     /// The description of the exception
-    public var description: String!
+    public var description: String?
     /// The type of exception
-    public var type: String!
+    public var type: String
     /// The period of the exception
-    public var period: String!
+    public var period: String
+    
+    init?(_ dict: [String: String]) {
+        guard let tmpDate = dict["date"],
+              let date = DateTime.date(tmpDate),
+              let type = dict["type"],
+              let period = dict["period"] else { return nil }
+        self.date = date
+        self.type = type
+        self.period = period
+        self.description = dict["description"]
+    }
 }
 
 /// A container for an AttendanceLesson.
 public struct AttendanceLesson {
     /// The subject for the attendance
-    public var subject: String!
+    public var subject: String
     /// The attendance values for the lesson, for more documentation see `AttendanceValue`
-    public var values = AttendanceValue()
+    public var values: AttendanceValue
     /// An array of exceptions for that lesson, for more documentation see `AttendanceException`
     public var exceptions = [AttendanceException]()
+    
+    init?(_ dict: [String: Any]) {
+        guard let subject = dict["subject"] as? String,
+              let values = dict["values"] as? [String: Int] else { return nil }
+        self.subject = subject
+        self.values = AttendanceValue(values)
+        if let exceptions = dict["exceptions"] as? [[String: String]] {
+            for exceptionDict in exceptions {
+                if let exception = AttendanceException(exceptionDict) {
+                    self.exceptions.append(exception)
+                }
+            }
+        }
+    }
 }
 
 /// A container for an Attendance Statutory Month
 public struct AttendanceStatutory {
     /// The name of the month
-    public var month: String!
+    public var month: String
     /// The attendance values for that month, for more documentation see `AttendanceValue`
-    public var values = AttendanceValue()
+    public var values: AttendanceValue
     /// An array of attendance exceptions for that month, for more documenation see `AttendanceException`
     public var exceptions = [AttendanceException]()
+    
+    init?(_ dict: [String: Any]) {
+        guard let month = dict["month"] as? String,
+              let values = dict["values"] as? [String: Int] else { return nil }
+        self.month = month
+        self.values = AttendanceValue(values)
+        if let exceptions = dict["exceptions"] as? [[String: String]] {
+            for exceptionDict in exceptions {
+                if let exception = AttendanceException(exceptionDict) {
+                    self.exceptions.append(exception)
+                }
+            }
+        }
+    }
 }
 
 /// A container for Attendance
 public struct Attendance {
-    /// A shared container for AttendanceColours, for more documenation see `AttendanceColours`
-    public var attendance_colours = AttendanceColours()
     /// An array of subject attendance records
     public var lessons = [AttendanceLesson]()
     /// An array of statutory month attendance record

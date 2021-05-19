@@ -12,8 +12,8 @@ public class EduLink_Catering {
     /// Retrieve the balance and transactions of a user. For more documentation see `Catering`
     /// - Parameter rootCompletion: The completion handler, for more documentation see `completionHandler`
     class public func catering(learnerID: String = EduLinkAPI.shared.authorisedUser.id, _ rootCompletion: @escaping completionHandler) {
-        let params: [String : String] = [
-            "learner_id" : learnerID
+        let params: [String : AnyEncodable] = [
+            "learner_id" : AnyEncodable(learnerID)
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.Catering", params: params, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }

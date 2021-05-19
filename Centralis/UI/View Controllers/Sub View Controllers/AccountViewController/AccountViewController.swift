@@ -9,12 +9,16 @@ import UIKit
 
 class AccountViewController: BaseTableViewController {
     
+    var personal = [String: String]()
+    var sortedKeys = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Account Info"
         self.view.tintColor = .centralisTintColor
         self.navigationController?.view.tintColor = .centralisTintColor
+        self.personalParser()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -25,6 +29,7 @@ class AccountViewController: BaseTableViewController {
         EduLink_Personal.personal { success, error in
             DispatchQueue.main.async {
                 if success {
+                    self.personalParser()
                     self.tableView.reloadData()
                 } else {
                     self.error(error!)
@@ -44,15 +49,37 @@ class AccountViewController: BaseTableViewController {
         errorView.retryButton.addTarget(self, action: #selector(self.loadData), for: .touchUpInside)
         if let nc = self.navigationController { errorView.startWorking(nc) }
     }
-
-    // MARK: - Table view data source
+    
+    private func personalParser() {
+        personal.removeAll()
+        guard let personal = EduLinkAPI.shared.personal else { return }
+        let mirror = Mirror(reflecting: personal)
+        for child in mirror.children {
+            if child.label == "id" || child.label == "address" { continue }
+            if let value = child.value as? String,
+               let label = child.label {
+                let name = personal.name(label)
+                self.personal[name] = value
+                continue
+            }
+            if let value = child.value as? Employee,
+               !value.name.isEmpty,
+               let label = child.label {
+                let name = personal.name(label)
+                self.personal[name] = value.name
+                continue
+            }
+        }
+        let sorted = self.personal.sorted(by: { $0.key < $1.key })
+        self.sortedKeys = Array(sorted.map({ $0.key }))
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        EduLinkAPI.shared.personal.forename == nil ? 0 : 14
+        sortedKeys.count
     }
 
     
@@ -62,52 +89,9 @@ class AccountViewController: BaseTableViewController {
         cell.textLabel?.textColor = .centralisTintColor
         cell.detailTextLabel?.textColor = .centralisTintColor
         cell.selectionStyle = .none
-        let personal = EduLinkAPI.shared.personal
-        switch indexPath.row {
-        case 0:
-            cell.textLabel?.text = "Forename"
-            cell.detailTextLabel?.text =  personal.forename ?? "Not Given"
-        case 1:
-            cell.textLabel?.text = "Surname"
-            cell.detailTextLabel?.text =  personal.surname ?? "Not Given"
-        case 2:
-            cell.textLabel?.text = "Gender"
-            cell.detailTextLabel?.text =  personal.gender ?? "Not Given"
-        case 3:
-            cell.textLabel?.text = "Admission Number"
-            cell.detailTextLabel?.text =  personal.admission_number ?? "Not Given"
-        case 4:
-            cell.textLabel?.text = "Pupil Number"
-            cell.detailTextLabel?.text =  personal.unique_pupil_number ?? "Not Given"
-        case 5:
-            cell.textLabel?.text = "Learner Number"
-            cell.detailTextLabel?.text =  personal.unique_learner_number ?? "Not Given"
-        case 6:
-            cell.textLabel?.text = "Date of Birth"
-            cell.detailTextLabel?.text =  personal.date_of_birth ?? "Not Given"
-        case 7:
-            cell.textLabel?.text = "Admission Date"
-            cell.detailTextLabel?.text =  personal.admission_date ?? "Not Given"
-        case 8:
-            cell.textLabel?.text = "Email"
-            cell.detailTextLabel?.text =  personal.email ?? "Not Given"
-        case 9:
-            cell.textLabel?.text = "Phone"
-            cell.detailTextLabel?.text =  personal.phone ?? "Not Given"
-        case 10:
-            cell.textLabel?.text = "Form Group"
-            cell.detailTextLabel?.text =  personal.form ?? "Not Given"
-        case 11:
-            cell.textLabel?.text = "Form Room"
-            cell.detailTextLabel?.text =  personal.room_code ?? "Not Given"
-        case 12:
-            cell.textLabel?.text = "Teacher"
-            cell.detailTextLabel?.text =  personal.form_teacher ?? "Not Given"
-        case 13:
-            cell.textLabel?.text = "House"
-            cell.detailTextLabel?.text =  personal.house_group ?? "Not Given"
-        default: break
-        }
+        let key = sortedKeys[indexPath.row]
+        cell.textLabel?.text = key
+        cell.detailTextLabel?.text = personal[key]
         return cell
     }
     

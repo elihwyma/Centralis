@@ -75,25 +75,6 @@ class TextViewCell: UITableViewCell {
         }
     }
     
-    public func personal(_ personal: Personal) {
-        self.att = NSMutableAttributedString()
-        self.att?.addPair(bold: "Forename: ", normal: "\(personal.forename ?? "Not Given")\n")
-        self.att?.addPair(bold: "Surname: ", normal: "\(personal.surname ?? "Not Given")\n")
-        self.att?.addPair(bold: "Gender: ", normal: "\(personal.gender ?? "Not Given")\n")
-        self.att?.addPair(bold: "Admission Number: ", normal: "\(personal.admission_number ?? "Not Given")\n")
-        self.att?.addPair(bold: "Pupil Number: ", normal: "\(personal.unique_pupil_number ?? "Not Given")\n")
-        self.att?.addPair(bold: "Learner Number: ", normal: "\(personal.unique_learner_number ?? "Not Given")\n")
-        self.att?.addPair(bold: "Date of Birth: ", normal: "\(personal.date_of_birth ?? "Not Given")\n")
-        self.att?.addPair(bold: "Admission Date: ", normal: "\(personal.admission_date ?? "Not Given")\n")
-        self.att?.addPair(bold: "Email: ", normal: "\(personal.email ?? "Not Given")\n")
-        self.att?.addPair(bold: "Phone: ", normal: "\(personal.phone ?? "Not Given")\n")
-        self.att?.addPair(bold: "Address: ", normal: "\(personal.address ?? "Not Given")\n")
-        self.att?.addPair(bold: "Form Group: ", normal: "\(personal.form ?? "Not Given")\n")
-        self.att?.addPair(bold: "Form Room: ", normal: "\(personal.room_code ?? "Not Given")\n")
-        self.att?.addPair(bold: "Teacher: ", normal: "\(personal.form_teacher ?? "Not Given")\n")
-        self.att?.addPair(bold: "House: ", normal: "\(personal.house_group ?? "Not Given")")
-    }
-    
     public func timetable(_ period: Period) {
         self.att = NSMutableAttributedString()
         self.att?.addPair(bold: "Period: ", normal: "\(period.name)\n")
@@ -121,10 +102,10 @@ class TextViewCell: UITableViewCell {
 
     public func exception(_ exception: AttendanceException) {
         self.att = NSMutableAttributedString()
-        self.att?.addPair(bold: "Data: ", normal: "\(exception.date!)\n")
-        self.att?.addPair(bold: "Type: ", normal: "\(exception.type!)\n")
-        self.att?.addPair(bold: "Period: ", normal: "\(exception.period!)\n")
-        self.att?.addPair(bold: "Description: ", normal: "\(exception.description!)")
+        self.att?.addPair(bold: "Data: ", normal: "\(exception.date)\n")
+        self.att?.addPair(bold: "Type: ", normal: "\(exception.type)\n")
+        self.att?.addPair(bold: "Period: ", normal: "\(exception.period)\n")
+        self.att?.addPair(bold: "Description: ", normal: "\(exception.description ?? "None")")
     }
 }
 

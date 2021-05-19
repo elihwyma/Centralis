@@ -65,10 +65,10 @@ class AmyChartCell: UITableViewCell {
     public func lessonAttendance(_ values: AttendanceValue, text: String) {
         self.textView.textColor = .label
         var points = [AmyChartDataPoint]()
-        points.append(AmyChartDataPoint(number: values.present, colour: UIColor(cgColor: EduLinkAPI.shared.attendance.attendance_colours.present)))
-        points.append(AmyChartDataPoint(number: values.late, colour: UIColor(cgColor: EduLinkAPI.shared.attendance.attendance_colours.late)))
-        points.append(AmyChartDataPoint(number: values.unauthorised, colour: UIColor(cgColor: EduLinkAPI.shared.attendance.attendance_colours.unauthorised)))
-        points.append(AmyChartDataPoint(number: values.absent, colour: UIColor(cgColor: EduLinkAPI.shared.attendance.attendance_colours.absent)))
+        points.append(AmyChartDataPoint(number: values.present, colour: UIColor(cgColor: AttendanceColours.present.rawValue)))
+        points.append(AmyChartDataPoint(number: values.late, colour: UIColor(cgColor: AttendanceColours.late.rawValue)))
+        points.append(AmyChartDataPoint(number: values.unauthorised, colour: UIColor(cgColor: AttendanceColours.unauthorised.rawValue)))
+        points.append(AmyChartDataPoint(number: values.absent, colour: UIColor(cgColor: AttendanceColours.absent.rawValue)))
         self.chart.data = points
         self.topTitle.text = text
         let total: Double = Double(values.present) + Double(values.absent) + Double(values.unauthorised) + Double(values.late)
@@ -80,13 +80,13 @@ class AmyChartCell: UITableViewCell {
             self.noData.isHidden = true
         }
         self.att = NSMutableAttributedString()
-        self.att?.addBoldColour(bold: "Present: ", colour: UIColor(cgColor: EduLinkAPI.shared.attendance.attendance_colours.present))
+        self.att?.addBoldColour(bold: "Present: ", colour: UIColor(cgColor: AttendanceColours.present.rawValue))
         self.att?.addPair(bold: "", normal: "\((Double(Double(Double(values.present) / total)) * Double(100)).rounded(toPlaces: 1))%\n")
-        self.att?.addBoldColour(bold: "Late: ", colour: UIColor(cgColor: EduLinkAPI.shared.attendance.attendance_colours.late))
+        self.att?.addBoldColour(bold: "Late: ", colour: UIColor(cgColor: AttendanceColours.late.rawValue))
         self.att?.addPair(bold: "", normal: "\((Double(Double(Double(values.late) / total)) * Double(100)).rounded(toPlaces: 1))%\n")
-        self.att?.addBoldColour(bold: "Unauthorised: ", colour: UIColor(cgColor: EduLinkAPI.shared.attendance.attendance_colours.unauthorised))
+        self.att?.addBoldColour(bold: "Unauthorised: ", colour: UIColor(cgColor: AttendanceColours.unauthorised.rawValue))
         self.att?.addPair(bold: "", normal: "\((Double(Double(Double(values.unauthorised) / total)) * Double(100)).rounded(toPlaces: 1))%\n")
-        self.att?.addBoldColour(bold: "Absent: ", colour: UIColor(cgColor: EduLinkAPI.shared.attendance.attendance_colours.absent))
+        self.att?.addBoldColour(bold: "Absent: ", colour: UIColor(cgColor: AttendanceColours.absent.rawValue))
         self.att?.addPair(bold: "", normal: "\((Double(Double(Double(values.absent) / total)) * Double(100)).rounded(toPlaces: 1))%")
     }
 }

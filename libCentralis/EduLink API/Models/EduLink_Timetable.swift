@@ -12,9 +12,9 @@ public class EduLink_Timetable {
     /// Retrieve timetable data for the currently logged in user
     /// - Parameter rootCompletion: The completion handler, for more documentation see `completionHandler`
     class public func timetable(learnerID: String = EduLinkAPI.shared.authorisedUser.id, _ rootCompletion: @escaping completionHandler) {
-        let params: [String : String] = [
-            "learner_id" : learnerID,
-            "date" : "\(date())"
+        let params: [String: AnyEncodable] = [
+            "learner_id" : AnyEncodable(learnerID),
+            "date" : AnyEncodable("\(date())")
         ]
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.Timetable", params: params, completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }

@@ -12,8 +12,7 @@ public class EduLink_Status {
     /// Retrieve status for the currently logged in user, for more documentation see `Status`
     /// - Parameter rootCompletion: The completion handler, for more documentation see `completionHandler`
     class public func status(rootCompletion: @escaping completionHandler) {
-        let params: [String : String] = [:]
-        NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.Status", params: params, completion: { (success, dict) -> Void in
+        NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.Status", completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }
             guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error Ocurred") }
             if !(result["success"] as? Bool ?? false) { return rootCompletion(false, "Unknown Error Ocurred") }
