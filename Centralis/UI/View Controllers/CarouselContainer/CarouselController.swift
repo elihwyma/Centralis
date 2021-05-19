@@ -175,8 +175,9 @@ extension CarouselController {
     }
     
     private func timetableButtonName() {
-        if self.senderContext == nil || self.week == nil { return }
-        self.senderContext!.rightNavigationButton.setTitle(self.week!.name!, for: .normal)
+        guard let senderContext = self.senderContext,
+              let week = self.week else { return }
+        senderContext.rightNavigationButton.setTitle(week.name, for: .normal)
     }
     
     @objc private func weekChange() {
@@ -349,9 +350,10 @@ extension CarouselController: UIPageViewControllerDelegate {
     private func title() {
         switch context {
         case .timetable: do {
-            if self.week == nil || self.senderContext == nil { return }
+            guard let week = self.week,
+                  let context = self.senderContext else { return }
             let index = self.currentIndex
-            self.senderContext!.title = self.week!.days[index].name!
+            context.title = week.days[index].name
         }
         case .behaviour: do {
             let index = self.currentIndex

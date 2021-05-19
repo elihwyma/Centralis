@@ -5,7 +5,7 @@
 //  Created by AW on 19/12/2020.
 //
 
-import UIKit
+import CoreGraphics
 
 /// A model for working with attendance
 public class EduLink_Attendance {

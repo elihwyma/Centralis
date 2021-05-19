@@ -22,12 +22,9 @@ public class EduLink_Documents {
             guard let documents = result["documents"] as? [[String : Any]] else { return rootCompletion(false, "Unknown Error") }
             var documentCache = [Document]()
             for document in documents {
-                var d = Document()
-                d.id = "\(document["id"] ?? "Not Given")"
-                d.summary = document["summary"] as? String ?? "Not Given"
-                d.type = document["type"] as? String ?? "Not Given"
-                d.last_updated = document["last_updated"] as? String ?? "Not Given"
-                documentCache.append(d)
+                if let document = Document(document) {
+                    documentCache.append(document)
+                }
             }
             if EduLinkAPI.shared.authorisedUser.id == learnerID { EduLinkAPI.shared.documents = documentCache } else {
                 if let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == learnerID}) {
@@ -37,8 +34,7 @@ public class EduLink_Documents {
             rootCompletion(true, nil)
         })
     }
-    
-    
+   
     /// Retrieve the document date and mime type
     /// - Parameters:
     ///   - document: The document the data is being parsed, for more documentation see `Document`
@@ -68,15 +64,27 @@ public class EduLink_Documents {
 /// The container for Document
 public struct Document {
     /// The ID of the document
-    public var id: String!
+    public var id: String
     /// The title of the document
-    public var summary: String!
+    public var summary: String
     /// The format of the document
-    public var type: String!
+    public var type: String
     /// When the document was last updated
-    public var last_updated: String!
+    public var last_updated: Date
     /// The data of the document
-    public var data: String!
+    public var data: String?
     /// The mime type of the document
-    public var mime_type: String!
+    public var mime_type: String?
+    
+    init?(_ dict: [String: Any]) {
+        guard let tmpID = dict["id"],
+              let type = dict["type"] as? String,
+              let tmpLastUpdated = dict["last_updated"] as? String,
+              let lastUpdated = DateTime.date(tmpLastUpdated) else { return nil }
+        self.id = String(describing: tmpID)
+        self.summary = dict["summary"] as? String ?? "Not Given"
+        self.type = type
+        self.last_updated = lastUpdated
+    }
 }
+

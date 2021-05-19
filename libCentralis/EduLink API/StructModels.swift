@@ -8,15 +8,39 @@
 import Foundation
 
 /// A container for the Employee dictionary returned from EduLink
-public struct Employee {
+public struct Employee: Hashable {
     /// The Employee ID
     public var id: String
     /// The Employee's Title
-    public var title: String
+    public var title: String = "None"
     /// The forename of the Employee
-    public var forename: String
+    public var forename: String = "None"
     /// The surname of the Employee
-    public var surname: String
+    public var surname: String = "None"
+    
+    public var name: String
+    
+    init?(_ dict: [String: Any]) {
+        guard let tmpID = dict["id"] else { return nil }
+        self.id = String(describing: tmpID)
+        var nameCache = ""
+        if let title = dict["title"] as? String {
+            nameCache += title + " "
+            self.title = title
+        }
+        if let forename = dict["forename"] as? String {
+            nameCache += forename + " "
+            self.forename = forename
+        }
+        if let surname = dict["surname"] as? String {
+            nameCache += surname
+            self.surname = surname
+        }
+        if nameCache.last == " " {
+            nameCache.removeLast()
+        }
+        self.name = nameCache
+    }
 }
 
 /// A simple container for lots of dictionaries returned from EduLink

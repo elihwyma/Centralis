@@ -96,21 +96,27 @@ class TextViewCell: UITableViewCell {
     
     public func timetable(_ period: Period) {
         self.att = NSMutableAttributedString()
-        self.att?.addPair(bold: "Period: ", normal: "\(period.name!)\n")
-        if period.lesson != nil {
-            self.att?.addPair(bold: "Subject: ", normal: "\(period.lesson.subject!) : \(period.lesson.group!)\n")
-            self.att?.addPair(bold: "Room: ", normal: "\(period.lesson.room_name!)\n")
-            self.att?.addPair(bold: "Teacher: ", normal: "\(period.lesson.teacher!)\n")
+        self.att?.addPair(bold: "Period: ", normal: "\(period.name)\n")
+        if let lesson = period.lesson {
+            self.att?.addPair(bold: "Subject: ", normal: "\(lesson.subject) : \(lesson.group)\n")
+            if let room_name = lesson.room_name,
+               !room_name.isEmpty {
+                self.att?.addPair(bold: "Room: ", normal: "\(room_name)\n")
+            }
+            if let employee = lesson.teacher,
+               !employee.name.isEmpty {
+                self.att?.addPair(bold: "Teacher: ", normal: "\(employee.name)\n")
+            }
         }
-        self.att?.addPair(bold: "Start: ", normal: "\(period.start_time!)\n")
-        self.att?.addPair(bold: "End: ", normal: period.end_time)
+        self.att?.addPair(bold: "Start: ", normal: "\(period.start_time.time)\n")
+        self.att?.addPair(bold: "End: ", normal: period.end_time.time)
     }
     
     public func document(_ document: Document) {
         self.att = NSMutableAttributedString()
-        self.att?.addPair(bold: "Summary: ", normal: "\(document.summary!)\n")
-        self.att?.addPair(bold: "Type: ", normal: "\(document.type!)\n")
-        self.att?.addPair(bold: "Date: ", normal: "\(document.last_updated!)")
+        self.att?.addPair(bold: "Summary: ", normal: "\(document.summary)\n")
+        self.att?.addPair(bold: "Type: ", normal: "\(document.type)\n")
+        self.att?.addPair(bold: "Date: ", normal: "\(document.last_updated.shortDate)")
     }
 
     public func exception(_ exception: AttendanceException) {

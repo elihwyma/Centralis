@@ -298,7 +298,7 @@ extension TextViewController {
         if segue.identifier == "Centralis.DocumentWebView" {
             if self.documentIndex == -1 { return }
             let d = EduLinkAPI.shared.documents[self.documentIndex]
-            if d.data.isEmpty { return }
+            if d.data?.isEmpty ?? false { return }
             let vc = segue.destination as! DocumentWebViewController
             vc.document = d
         }

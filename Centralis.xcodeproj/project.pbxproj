@@ -43,32 +43,10 @@
 		E117209F25FE7E4700339837 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117209E25FE7E4700339837 /* SettingsViewController.swift */; };
 		E11720C225FE9F5300339837 /* NotificationSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11720C025FE9F5200339837 /* NotificationSwitchCell.xib */; };
 		E11720C325FE9F5300339837 /* NotificationSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11720C125FE9F5200339837 /* NotificationSwitchCell.swift */; };
-		E11CDD4F264D4AC000774BA4 /* EduLink_ICalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11CDD4E264D4ABF00774BA4 /* EduLink_ICalendar.swift */; };
-		E11CDD50264D4AC000774BA4 /* EduLink_ICalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11CDD4E264D4ABF00774BA4 /* EduLink_ICalendar.swift */; };
 		E1226FBF25FD1BBD00D81A43 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1226FBE25FD1BBD00D81A43 /* WidgetKit.framework */; };
 		E1226FC125FD1BBD00D81A43 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1226FC025FD1BBD00D81A43 /* SwiftUI.framework */; };
 		E1226FC425FD1BBD00D81A43 /* LongTimetableWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1226FC325FD1BBD00D81A43 /* LongTimetableWidget.swift */; };
 		E1226FC625FD1BBE00D81A43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1226FC525FD1BBE00D81A43 /* Assets.xcassets */; };
-		E1226FD225FD1BDD00D81A43 /* EduLink_Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB025F0173800CFF9DC /* EduLink_Timetable.swift */; };
-		E1226FD525FD1BE000D81A43 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB925F0173800CFF9DC /* LoginManager.swift */; };
-		E1226FD825FD1BE300D81A43 /* EduLinkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77ABA25F0173800CFF9DC /* EduLinkAPI.swift */; };
-		E1226FDB25FD1BEC00D81A43 /* ColourConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AAA25F0173800CFF9DC /* ColourConverter.swift */; };
-		E1226FDE25FD1BEF00D81A43 /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AAC25F0173800CFF9DC /* UUID.swift */; };
-		E1226FE125FD1BF200D81A43 /* EduLink_Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AAE25F0173800CFF9DC /* EduLink_Employee.swift */; };
-		E1226FE425FD1BF300D81A43 /* EduLink_Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AAF25F0173800CFF9DC /* EduLink_Documents.swift */; };
-		E1226FE725FD1BF700D81A43 /* EduLink_Personal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB125F0173800CFF9DC /* EduLink_Personal.swift */; };
-		E1226FEA25FD1BF900D81A43 /* EduLink_Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB225F0173800CFF9DC /* EduLink_Attendance.swift */; };
-		E1226FED25FD1BFB00D81A43 /* EduLink_Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB325F0173800CFF9DC /* EduLink_Achievement.swift */; };
-		E1226FF025FD1BFD00D81A43 /* EduLink_Catering.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB425F0173800CFF9DC /* EduLink_Catering.swift */; };
-		E1226FF325FD1BFF00D81A43 /* EduLink_Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB525F0173800CFF9DC /* EduLink_Links.swift */; };
-		E1226FF625FD1C0100D81A43 /* EduLink_Homework.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB625F0173800CFF9DC /* EduLink_Homework.swift */; };
-		E1226FF925FD1C0400D81A43 /* EduLink_Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB725F0173800CFF9DC /* EduLink_Status.swift */; };
-		E1226FFC25FD1C0600D81A43 /* EduLink_Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB825F0173800CFF9DC /* EduLink_Register.swift */; };
-		E1226FFF25FD1C0800D81A43 /* EduLink_Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AD625F0F7F600CFF9DC /* EduLink_Photo.swift */; };
-		E122700225FD1C0E00D81A43 /* StructModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77ABB25F0173800CFF9DC /* StructModels.swift */; };
-		E122700525FD1C1000D81A43 /* NSNotification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77ABD25F0173800CFF9DC /* NSNotification+Extensions.swift */; };
-		E122700825FD1C1400D81A43 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AA825F0173800CFF9DC /* KeychainManager.swift */; };
-		E122700B25FD1C1600D81A43 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77ABF25F0173800CFF9DC /* NetworkManager.swift */; };
 		E1305DA3259BEFDD00AB3119 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1305DA2259BEFDD00AB3119 /* UIButton+Extension.swift */; };
 		E14A7E55259FCF2400EF9712 /* HomeMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14A7E53259FCF2300EF9712 /* HomeMenuCell.swift */; };
 		E14A7E56259FCF2400EF9712 /* HomeMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E14A7E54259FCF2300EF9712 /* HomeMenuCell.xib */; };
@@ -91,27 +69,51 @@
 		E17EE6402624DBA800B55095 /* UserDefaults+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17EE63C2624DBA800B55095 /* UserDefaults+Optional.swift */; };
 		E18C7C592624E18F008C02F0 /* TintColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18C7C572624E18F008C02F0 /* TintColorPicker.swift */; };
 		E18C7C5A2624E18F008C02F0 /* SettingsSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18C7C582624E18F008C02F0 /* SettingsSwitchTableViewCell.swift */; };
+		E190192726557CFE0001C46A /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190190D26557CFE0001C46A /* KeychainManager.swift */; };
+		E190192826557CFE0001C46A /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190190D26557CFE0001C46A /* KeychainManager.swift */; };
+		E190192926557CFE0001C46A /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190190F26557CFE0001C46A /* UUID.swift */; };
+		E190192A26557CFE0001C46A /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190190F26557CFE0001C46A /* UUID.swift */; };
+		E190192B26557CFE0001C46A /* EduLink_Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191126557CFE0001C46A /* EduLink_Employee.swift */; };
+		E190192C26557CFE0001C46A /* EduLink_Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191126557CFE0001C46A /* EduLink_Employee.swift */; };
+		E190192D26557CFE0001C46A /* EduLink_Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191226557CFE0001C46A /* EduLink_Documents.swift */; };
+		E190192E26557CFE0001C46A /* EduLink_Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191226557CFE0001C46A /* EduLink_Documents.swift */; };
+		E190192F26557CFE0001C46A /* EduLink_Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191326557CFE0001C46A /* EduLink_Timetable.swift */; };
+		E190193026557CFE0001C46A /* EduLink_Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191326557CFE0001C46A /* EduLink_Timetable.swift */; };
+		E190193126557CFE0001C46A /* EduLink_Personal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191426557CFE0001C46A /* EduLink_Personal.swift */; };
+		E190193226557CFE0001C46A /* EduLink_Personal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191426557CFE0001C46A /* EduLink_Personal.swift */; };
+		E190193326557CFE0001C46A /* EduLink_Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191526557CFE0001C46A /* EduLink_Attendance.swift */; };
+		E190193426557CFE0001C46A /* EduLink_Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191526557CFE0001C46A /* EduLink_Attendance.swift */; };
+		E190193526557CFE0001C46A /* EduLink_Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191626557CFE0001C46A /* EduLink_Achievement.swift */; };
+		E190193626557CFE0001C46A /* EduLink_Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191626557CFE0001C46A /* EduLink_Achievement.swift */; };
+		E190193726557CFE0001C46A /* EduLink_Catering.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191726557CFE0001C46A /* EduLink_Catering.swift */; };
+		E190193826557CFE0001C46A /* EduLink_Catering.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191726557CFE0001C46A /* EduLink_Catering.swift */; };
+		E190193926557CFE0001C46A /* EduLink_Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191826557CFE0001C46A /* EduLink_Links.swift */; };
+		E190193A26557CFE0001C46A /* EduLink_Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191826557CFE0001C46A /* EduLink_Links.swift */; };
+		E190193B26557CFE0001C46A /* EduLink_Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191926557CFE0001C46A /* EduLink_Photo.swift */; };
+		E190193C26557CFE0001C46A /* EduLink_Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191926557CFE0001C46A /* EduLink_Photo.swift */; };
+		E190193D26557CFE0001C46A /* EduLink_Homework.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191A26557CFE0001C46A /* EduLink_Homework.swift */; };
+		E190193E26557CFE0001C46A /* EduLink_Homework.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191A26557CFE0001C46A /* EduLink_Homework.swift */; };
+		E190193F26557CFE0001C46A /* EduLink_ICalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191B26557CFE0001C46A /* EduLink_ICalendar.swift */; };
+		E190194026557CFE0001C46A /* EduLink_ICalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191B26557CFE0001C46A /* EduLink_ICalendar.swift */; };
+		E190194126557CFE0001C46A /* EduLink_Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191C26557CFE0001C46A /* EduLink_Status.swift */; };
+		E190194226557CFE0001C46A /* EduLink_Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191C26557CFE0001C46A /* EduLink_Status.swift */; };
+		E190194326557CFE0001C46A /* EduLink_Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191D26557CFE0001C46A /* EduLink_Register.swift */; };
+		E190194426557CFE0001C46A /* EduLink_Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191D26557CFE0001C46A /* EduLink_Register.swift */; };
+		E190194526557CFE0001C46A /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191E26557CFE0001C46A /* LoginManager.swift */; };
+		E190194626557CFE0001C46A /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191E26557CFE0001C46A /* LoginManager.swift */; };
+		E190194726557CFE0001C46A /* EduLinkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191F26557CFE0001C46A /* EduLinkAPI.swift */; };
+		E190194826557CFE0001C46A /* EduLinkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190191F26557CFE0001C46A /* EduLinkAPI.swift */; };
+		E190194926557CFE0001C46A /* StructModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190192026557CFE0001C46A /* StructModels.swift */; };
+		E190194A26557CFE0001C46A /* StructModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190192026557CFE0001C46A /* StructModels.swift */; };
+		E190194B26557CFE0001C46A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190192226557CFE0001C46A /* NetworkManager.swift */; };
+		E190194C26557CFE0001C46A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190192226557CFE0001C46A /* NetworkManager.swift */; };
+		E190194D26557CFE0001C46A /* NSNotification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190192426557CFE0001C46A /* NSNotification+Extensions.swift */; };
+		E190194E26557CFE0001C46A /* NSNotification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190192426557CFE0001C46A /* NSNotification+Extensions.swift */; };
+		E190194F26557CFE0001C46A /* ColourConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190192626557CFE0001C46A /* ColourConverter.swift */; };
+		E190195026557CFE0001C46A /* ColourConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190192626557CFE0001C46A /* ColourConverter.swift */; };
 		E19B2F5B258D71CE00930AE1 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19B2F5A258D71CE00930AE1 /* Double+Extensions.swift */; };
-		E1B77AC025F0173800CFF9DC /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AA825F0173800CFF9DC /* KeychainManager.swift */; };
-		E1B77AC125F0173800CFF9DC /* ColourConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AAA25F0173800CFF9DC /* ColourConverter.swift */; };
-		E1B77AC225F0173800CFF9DC /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AAC25F0173800CFF9DC /* UUID.swift */; };
-		E1B77AC325F0173800CFF9DC /* EduLink_Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AAE25F0173800CFF9DC /* EduLink_Employee.swift */; };
-		E1B77AC425F0173800CFF9DC /* EduLink_Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AAF25F0173800CFF9DC /* EduLink_Documents.swift */; };
-		E1B77AC525F0173800CFF9DC /* EduLink_Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB025F0173800CFF9DC /* EduLink_Timetable.swift */; };
-		E1B77AC625F0173800CFF9DC /* EduLink_Personal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB125F0173800CFF9DC /* EduLink_Personal.swift */; };
-		E1B77AC725F0173800CFF9DC /* EduLink_Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB225F0173800CFF9DC /* EduLink_Attendance.swift */; };
-		E1B77AC825F0173800CFF9DC /* EduLink_Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB325F0173800CFF9DC /* EduLink_Achievement.swift */; };
-		E1B77AC925F0173800CFF9DC /* EduLink_Catering.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB425F0173800CFF9DC /* EduLink_Catering.swift */; };
-		E1B77ACA25F0173800CFF9DC /* EduLink_Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB525F0173800CFF9DC /* EduLink_Links.swift */; };
-		E1B77ACB25F0173800CFF9DC /* EduLink_Homework.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB625F0173800CFF9DC /* EduLink_Homework.swift */; };
-		E1B77ACC25F0173800CFF9DC /* EduLink_Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB725F0173800CFF9DC /* EduLink_Status.swift */; };
-		E1B77ACD25F0173800CFF9DC /* EduLink_Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB825F0173800CFF9DC /* EduLink_Register.swift */; };
-		E1B77ACE25F0173800CFF9DC /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AB925F0173800CFF9DC /* LoginManager.swift */; };
-		E1B77ACF25F0173800CFF9DC /* EduLinkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77ABA25F0173800CFF9DC /* EduLinkAPI.swift */; };
-		E1B77AD025F0173800CFF9DC /* StructModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77ABB25F0173800CFF9DC /* StructModels.swift */; };
-		E1B77AD125F0173800CFF9DC /* NSNotification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77ABD25F0173800CFF9DC /* NSNotification+Extensions.swift */; };
-		E1B77AD225F0173800CFF9DC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77ABF25F0173800CFF9DC /* NetworkManager.swift */; };
-		E1B77AD725F0F7F600CFF9DC /* EduLink_Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AD625F0F7F600CFF9DC /* EduLink_Photo.swift */; };
+		E1A8B61126558274009C43EA /* DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A8B61026558274009C43EA /* DateTime.swift */; };
+		E1A8B61226558274009C43EA /* DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A8B61026558274009C43EA /* DateTime.swift */; };
 		E1B77ADB25F1133D00CFF9DC /* ChildSelection.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1B77ADA25F1133D00CFF9DC /* ChildSelection.xib */; };
 		E1B77AE225F115E800CFF9DC /* ChildSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AE125F115E800CFF9DC /* ChildSelection.swift */; };
 		E1C8FD73258165BD0006F36F /* EmbeddedTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C8FD72258165BD0006F36F /* EmbeddedTableViewController.xib */; };
@@ -167,7 +169,6 @@
 		E117209E25FE7E4700339837 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E11720C025FE9F5200339837 /* NotificationSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationSwitchCell.xib; sourceTree = "<group>"; };
 		E11720C125FE9F5200339837 /* NotificationSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSwitchCell.swift; sourceTree = "<group>"; };
-		E11CDD4E264D4ABF00774BA4 /* EduLink_ICalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_ICalendar.swift; sourceTree = "<group>"; };
 		E1226FBC25FD1BBD00D81A43 /* CentralisWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CentralisWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1226FBE25FD1BBD00D81A43 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		E1226FC025FD1BBD00D81A43 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -194,27 +195,29 @@
 		E17EE63C2624DBA800B55095 /* UserDefaults+Optional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Optional.swift"; sourceTree = "<group>"; };
 		E18C7C572624E18F008C02F0 /* TintColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TintColorPicker.swift; sourceTree = "<group>"; };
 		E18C7C582624E18F008C02F0 /* SettingsSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSwitchTableViewCell.swift; sourceTree = "<group>"; };
+		E190190D26557CFE0001C46A /* KeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		E190190F26557CFE0001C46A /* UUID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UUID.swift; sourceTree = "<group>"; };
+		E190191126557CFE0001C46A /* EduLink_Employee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Employee.swift; sourceTree = "<group>"; };
+		E190191226557CFE0001C46A /* EduLink_Documents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Documents.swift; sourceTree = "<group>"; };
+		E190191326557CFE0001C46A /* EduLink_Timetable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Timetable.swift; sourceTree = "<group>"; };
+		E190191426557CFE0001C46A /* EduLink_Personal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Personal.swift; sourceTree = "<group>"; };
+		E190191526557CFE0001C46A /* EduLink_Attendance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Attendance.swift; sourceTree = "<group>"; };
+		E190191626557CFE0001C46A /* EduLink_Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Achievement.swift; sourceTree = "<group>"; };
+		E190191726557CFE0001C46A /* EduLink_Catering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Catering.swift; sourceTree = "<group>"; };
+		E190191826557CFE0001C46A /* EduLink_Links.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Links.swift; sourceTree = "<group>"; };
+		E190191926557CFE0001C46A /* EduLink_Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Photo.swift; sourceTree = "<group>"; };
+		E190191A26557CFE0001C46A /* EduLink_Homework.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Homework.swift; sourceTree = "<group>"; };
+		E190191B26557CFE0001C46A /* EduLink_ICalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_ICalendar.swift; sourceTree = "<group>"; };
+		E190191C26557CFE0001C46A /* EduLink_Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Status.swift; sourceTree = "<group>"; };
+		E190191D26557CFE0001C46A /* EduLink_Register.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Register.swift; sourceTree = "<group>"; };
+		E190191E26557CFE0001C46A /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		E190191F26557CFE0001C46A /* EduLinkAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLinkAPI.swift; sourceTree = "<group>"; };
+		E190192026557CFE0001C46A /* StructModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructModels.swift; sourceTree = "<group>"; };
+		E190192226557CFE0001C46A /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E190192426557CFE0001C46A /* NSNotification+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extensions.swift"; sourceTree = "<group>"; };
+		E190192626557CFE0001C46A /* ColourConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColourConverter.swift; sourceTree = "<group>"; };
 		E19B2F5A258D71CE00930AE1 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
-		E1B77AA825F0173800CFF9DC /* KeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
-		E1B77AAA25F0173800CFF9DC /* ColourConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColourConverter.swift; sourceTree = "<group>"; };
-		E1B77AAC25F0173800CFF9DC /* UUID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UUID.swift; sourceTree = "<group>"; };
-		E1B77AAE25F0173800CFF9DC /* EduLink_Employee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Employee.swift; sourceTree = "<group>"; };
-		E1B77AAF25F0173800CFF9DC /* EduLink_Documents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Documents.swift; sourceTree = "<group>"; };
-		E1B77AB025F0173800CFF9DC /* EduLink_Timetable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Timetable.swift; sourceTree = "<group>"; };
-		E1B77AB125F0173800CFF9DC /* EduLink_Personal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Personal.swift; sourceTree = "<group>"; };
-		E1B77AB225F0173800CFF9DC /* EduLink_Attendance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Attendance.swift; sourceTree = "<group>"; };
-		E1B77AB325F0173800CFF9DC /* EduLink_Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Achievement.swift; sourceTree = "<group>"; };
-		E1B77AB425F0173800CFF9DC /* EduLink_Catering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Catering.swift; sourceTree = "<group>"; };
-		E1B77AB525F0173800CFF9DC /* EduLink_Links.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Links.swift; sourceTree = "<group>"; };
-		E1B77AB625F0173800CFF9DC /* EduLink_Homework.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Homework.swift; sourceTree = "<group>"; };
-		E1B77AB725F0173800CFF9DC /* EduLink_Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Status.swift; sourceTree = "<group>"; };
-		E1B77AB825F0173800CFF9DC /* EduLink_Register.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLink_Register.swift; sourceTree = "<group>"; };
-		E1B77AB925F0173800CFF9DC /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
-		E1B77ABA25F0173800CFF9DC /* EduLinkAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EduLinkAPI.swift; sourceTree = "<group>"; };
-		E1B77ABB25F0173800CFF9DC /* StructModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructModels.swift; sourceTree = "<group>"; };
-		E1B77ABD25F0173800CFF9DC /* NSNotification+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extensions.swift"; sourceTree = "<group>"; };
-		E1B77ABF25F0173800CFF9DC /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		E1B77AD625F0F7F600CFF9DC /* EduLink_Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Photo.swift; sourceTree = "<group>"; };
+		E1A8B61026558274009C43EA /* DateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTime.swift; sourceTree = "<group>"; };
 		E1B77ADA25F1133D00CFF9DC /* ChildSelection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChildSelection.xib; sourceTree = "<group>"; };
 		E1B77AE125F115E800CFF9DC /* ChildSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildSelection.swift; sourceTree = "<group>"; };
 		E1C8FD72258165BD0006F36F /* EmbeddedTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmbeddedTableViewController.xib; sourceTree = "<group>"; };
@@ -333,8 +336,8 @@
 			isa = PBXGroup;
 			children = (
 				E1226FCB25FD1BBF00D81A43 /* CentralisWidgetExtension.entitlements */,
+				E190190B26557CFE0001C46A /* libCentralis */,
 				E117207325FE7C0F00339837 /* libAmy */,
-				E1B77AA625F0172900CFF9DC /* libCentralis */,
 				53CB50702572D1780077DDAE /* Centralis */,
 				E1226FC225FD1BBD00D81A43 /* CentralisWidget */,
 				E1226FBD25FD1BBD00D81A43 /* Frameworks */,
@@ -671,80 +674,81 @@
 			path = CarouselViewControllers;
 			sourceTree = "<group>";
 		};
-		E1B77AA625F0172900CFF9DC /* libCentralis */ = {
+		E190190B26557CFE0001C46A /* libCentralis */ = {
 			isa = PBXGroup;
 			children = (
-				E1B77AA925F0173800CFF9DC /* ColourConverter */,
-				E1B77AAB25F0173800CFF9DC /* EduLink API */,
-				E1B77ABC25F0173800CFF9DC /* Extensions */,
-				E1B77AA725F0173800CFF9DC /* KeychainManager */,
-				E1B77ABE25F0173800CFF9DC /* Network Manager */,
+				E190190C26557CFE0001C46A /* KeychainManager */,
+				E190190E26557CFE0001C46A /* EduLink API */,
+				E190192126557CFE0001C46A /* Network Manager */,
+				E190192326557CFE0001C46A /* Extensions */,
+				E190192526557CFE0001C46A /* ColourConverter */,
 			);
 			path = libCentralis;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
-		E1B77AA725F0173800CFF9DC /* KeychainManager */ = {
+		E190190C26557CFE0001C46A /* KeychainManager */ = {
 			isa = PBXGroup;
 			children = (
-				E1B77AA825F0173800CFF9DC /* KeychainManager.swift */,
+				E190190D26557CFE0001C46A /* KeychainManager.swift */,
 			);
 			path = KeychainManager;
 			sourceTree = "<group>";
 		};
-		E1B77AA925F0173800CFF9DC /* ColourConverter */ = {
+		E190190E26557CFE0001C46A /* EduLink API */ = {
 			isa = PBXGroup;
 			children = (
-				E1B77AAA25F0173800CFF9DC /* ColourConverter.swift */,
-			);
-			path = ColourConverter;
-			sourceTree = "<group>";
-		};
-		E1B77AAB25F0173800CFF9DC /* EduLink API */ = {
-			isa = PBXGroup;
-			children = (
-				E1B77AAC25F0173800CFF9DC /* UUID.swift */,
-				E1B77AAD25F0173800CFF9DC /* Models */,
-				E1B77AB925F0173800CFF9DC /* LoginManager.swift */,
-				E1B77ABA25F0173800CFF9DC /* EduLinkAPI.swift */,
-				E1B77ABB25F0173800CFF9DC /* StructModels.swift */,
+				E190190F26557CFE0001C46A /* UUID.swift */,
+				E190191026557CFE0001C46A /* Models */,
+				E190191E26557CFE0001C46A /* LoginManager.swift */,
+				E190191F26557CFE0001C46A /* EduLinkAPI.swift */,
+				E190192026557CFE0001C46A /* StructModels.swift */,
+				E1A8B61026558274009C43EA /* DateTime.swift */,
 			);
 			path = "EduLink API";
 			sourceTree = "<group>";
 		};
-		E1B77AAD25F0173800CFF9DC /* Models */ = {
+		E190191026557CFE0001C46A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E1B77AAE25F0173800CFF9DC /* EduLink_Employee.swift */,
-				E1B77AAF25F0173800CFF9DC /* EduLink_Documents.swift */,
-				E1B77AB025F0173800CFF9DC /* EduLink_Timetable.swift */,
-				E1B77AB125F0173800CFF9DC /* EduLink_Personal.swift */,
-				E1B77AB225F0173800CFF9DC /* EduLink_Attendance.swift */,
-				E1B77AB325F0173800CFF9DC /* EduLink_Achievement.swift */,
-				E1B77AB425F0173800CFF9DC /* EduLink_Catering.swift */,
-				E1B77AB525F0173800CFF9DC /* EduLink_Links.swift */,
-				E1B77AB625F0173800CFF9DC /* EduLink_Homework.swift */,
-				E1B77AB725F0173800CFF9DC /* EduLink_Status.swift */,
-				E1B77AB825F0173800CFF9DC /* EduLink_Register.swift */,
-				E1B77AD625F0F7F600CFF9DC /* EduLink_Photo.swift */,
-				E11CDD4E264D4ABF00774BA4 /* EduLink_ICalendar.swift */,
+				E190191126557CFE0001C46A /* EduLink_Employee.swift */,
+				E190191226557CFE0001C46A /* EduLink_Documents.swift */,
+				E190191326557CFE0001C46A /* EduLink_Timetable.swift */,
+				E190191426557CFE0001C46A /* EduLink_Personal.swift */,
+				E190191526557CFE0001C46A /* EduLink_Attendance.swift */,
+				E190191626557CFE0001C46A /* EduLink_Achievement.swift */,
+				E190191726557CFE0001C46A /* EduLink_Catering.swift */,
+				E190191826557CFE0001C46A /* EduLink_Links.swift */,
+				E190191926557CFE0001C46A /* EduLink_Photo.swift */,
+				E190191A26557CFE0001C46A /* EduLink_Homework.swift */,
+				E190191B26557CFE0001C46A /* EduLink_ICalendar.swift */,
+				E190191C26557CFE0001C46A /* EduLink_Status.swift */,
+				E190191D26557CFE0001C46A /* EduLink_Register.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		E1B77ABC25F0173800CFF9DC /* Extensions */ = {
+		E190192126557CFE0001C46A /* Network Manager */ = {
 			isa = PBXGroup;
 			children = (
-				E1B77ABD25F0173800CFF9DC /* NSNotification+Extensions.swift */,
+				E190192226557CFE0001C46A /* NetworkManager.swift */,
+			);
+			path = "Network Manager";
+			sourceTree = "<group>";
+		};
+		E190192326557CFE0001C46A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E190192426557CFE0001C46A /* NSNotification+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		E1B77ABE25F0173800CFF9DC /* Network Manager */ = {
+		E190192526557CFE0001C46A /* ColourConverter */ = {
 			isa = PBXGroup;
 			children = (
-				E1B77ABF25F0173800CFF9DC /* NetworkManager.swift */,
+				E190192626557CFE0001C46A /* ColourConverter.swift */,
 			);
-			path = "Network Manager";
+			path = ColourConverter;
 			sourceTree = "<group>";
 		};
 		E1B77AD925F1132100CFF9DC /* ChildSelection */ = {
@@ -901,69 +905,70 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E190192926557CFE0001C46A /* UUID.swift in Sources */,
 				E14A7E55259FCF2400EF9712 /* HomeMenuCell.swift in Sources */,
+				E190194926557CFE0001C46A /* StructModels.swift in Sources */,
 				53243436257828A300875BAD /* TextViewCell.swift in Sources */,
-				E1B77AD025F0173800CFF9DC /* StructModels.swift in Sources */,
 				E1768308259A8C7A0099BB92 /* NewUserUPController.swift in Sources */,
-				E1B77AD225F0173800CFF9DC /* NetworkManager.swift in Sources */,
+				E190193526557CFE0001C46A /* EduLink_Achievement.swift in Sources */,
 				E1B77AE225F115E800CFF9DC /* ChildSelection.swift in Sources */,
+				E190194726557CFE0001C46A /* EduLinkAPI.swift in Sources */,
+				E190194126557CFE0001C46A /* EduLink_Status.swift in Sources */,
+				E190194B26557CFE0001C46A /* NetworkManager.swift in Sources */,
 				E1F9A49825850F6000CEA071 /* DocumentWebViewController.swift in Sources */,
-				E1B77AC125F0173800CFF9DC /* ColourConverter.swift in Sources */,
-				E1B77ACF25F0173800CFF9DC /* EduLinkAPI.swift in Sources */,
 				53CB509D2572D9300077DDAE /* LoginViewController.swift in Sources */,
 				E157605B258BBDE700DD496F /* ChartTableViewController.swift in Sources */,
 				E1305DA3259BEFDD00AB3119 /* UIButton+Extension.swift in Sources */,
 				53CA2DEE2576CC9E00E3A02B /* LoginCell.swift in Sources */,
 				E1C8FD76258166210006F36F /* EmbeddedTableViewController.swift in Sources */,
+				E190193726557CFE0001C46A /* EduLink_Catering.swift in Sources */,
 				E18C7C5A2624E18F008C02F0 /* SettingsSwitchTableViewCell.swift in Sources */,
-				E1B77AC425F0173800CFF9DC /* EduLink_Documents.swift in Sources */,
+				E190193926557CFE0001C46A /* EduLink_Links.swift in Sources */,
 				E18C7C592624E18F008C02F0 /* TintColorPicker.swift in Sources */,
-				E1B77ACC25F0173800CFF9DC /* EduLink_Status.swift in Sources */,
+				E190193326557CFE0001C46A /* EduLink_Attendance.swift in Sources */,
 				53CA2E012576DD2A00E3A02B /* HomeViewController.swift in Sources */,
 				E1576060258BF56B00DD496F /* AmyChartCell.swift in Sources */,
 				E1768305259A7EAE0099BB92 /* NewUserSchoolController.swift in Sources */,
-				E1B77ACA25F0173800CFF9DC /* EduLink_Links.swift in Sources */,
-				E1B77AD725F0F7F600CFF9DC /* EduLink_Photo.swift in Sources */,
+				E190193126557CFE0001C46A /* EduLink_Personal.swift in Sources */,
 				53CB50722572D1780077DDAE /* AppDelegate.swift in Sources */,
 				E17EE63D2624DBA800B55095 /* UserDefaults+Extensions.swift in Sources */,
-				E1B77AC025F0173800CFF9DC /* KeychainManager.swift in Sources */,
+				E190194D26557CFE0001C46A /* NSNotification+Extensions.swift in Sources */,
+				E190192B26557CFE0001C46A /* EduLink_Employee.swift in Sources */,
 				53874502257BD61800174D07 /* CarouselContainerController.swift in Sources */,
-				E1B77AD125F0173800CFF9DC /* NSNotification+Extensions.swift in Sources */,
 				E19B2F5B258D71CE00930AE1 /* Double+Extensions.swift in Sources */,
 				E10A5B25259BE4F300FA8BD0 /* ErrorView.swift in Sources */,
 				E17EE6372624DB8E00B55095 /* ThemeManager.swift in Sources */,
-				E1B77ACD25F0173800CFF9DC /* EduLink_Register.swift in Sources */,
 				E11720C325FE9F5300339837 /* NotificationSwitchCell.swift in Sources */,
-				E1B77AC225F0173800CFF9DC /* UUID.swift in Sources */,
 				5319692F257BC8A70056BF51 /* CarouselController.swift in Sources */,
-				E1B77AC725F0173800CFF9DC /* EduLink_Attendance.swift in Sources */,
 				E17EE63F2624DBA800B55095 /* UserDefaults+Optional.swift in Sources */,
 				5387450E257BDB7100174D07 /* HomeworkCell.swift in Sources */,
-				E11CDD4F264D4AC000774BA4 /* EduLink_ICalendar.swift in Sources */,
 				E171DB572632B65300ED1439 /* AccountViewController.swift in Sources */,
+				E190192F26557CFE0001C46A /* EduLink_Timetable.swift in Sources */,
+				E190193B26557CFE0001C46A /* EduLink_Photo.swift in Sources */,
+				E190194F26557CFE0001C46A /* ColourConverter.swift in Sources */,
 				53CB509A2572D7C40077DDAE /* UIView+Extensions.swift in Sources */,
 				E171DB4B2631A68E00ED1439 /* CentralisNavigationController.swift in Sources */,
 				5387452E257C205500174D07 /* HomeworkDetailView.swift in Sources */,
+				E190192726557CFE0001C46A /* KeychainManager.swift in Sources */,
 				E152162025A7D0E700557F20 /* NSDate+Extension.swift in Sources */,
-				E1B77AC825F0173800CFF9DC /* EduLink_Achievement.swift in Sources */,
 				E1576054258BB68000DD496F /* AmyChart.swift in Sources */,
-				E1B77ACE25F0173800CFF9DC /* LoginManager.swift in Sources */,
-				E1B77AC525F0173800CFF9DC /* EduLink_Timetable.swift in Sources */,
 				E117208425FE7C0F00339837 /* BridgingStubs.swift in Sources */,
 				53CA2DF62576D69A00E3A02B /* WorkingCover.swift in Sources */,
 				E17EE6312624D76500B55095 /* BaseTableViewController.swift in Sources */,
+				E190194326557CFE0001C46A /* EduLink_Register.swift in Sources */,
 				53874512257BDCD400174D07 /* NSMutableAttributedString+Extension.swift in Sources */,
-				E1B77ACB25F0173800CFF9DC /* EduLink_Homework.swift in Sources */,
 				E117209F25FE7E4700339837 /* SettingsViewController.swift in Sources */,
-				E1B77AC925F0173800CFF9DC /* EduLink_Catering.swift in Sources */,
+				E190193D26557CFE0001C46A /* EduLink_Homework.swift in Sources */,
+				E1A8B61126558274009C43EA /* DateTime.swift in Sources */,
 				53CB50A12572F0B50077DDAE /* ResizedTableView.swift in Sources */,
-				E1B77AC325F0173800CFF9DC /* EduLink_Employee.swift in Sources */,
+				E190193F26557CFE0001C46A /* EduLink_ICalendar.swift in Sources */,
+				E190194526557CFE0001C46A /* LoginManager.swift in Sources */,
 				53874509257BD7D600174D07 /* HomeworkTableViewController.swift in Sources */,
 				E117208625FE7C0F00339837 /* ButtonCell.swift in Sources */,
-				E1B77AC625F0173800CFF9DC /* EduLink_Personal.swift in Sources */,
 				531870D1257968BD000191FD /* TextViewController.swift in Sources */,
 				E1FB73CD25A0E33E00BA4E77 /* HomeMenuLessonCell.swift in Sources */,
 				E117208925FE7C0F00339837 /* SettingsSwitchCell.swift in Sources */,
+				E190192D26557CFE0001C46A /* EduLink_Documents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -971,33 +976,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E190194426557CFE0001C46A /* EduLink_Register.swift in Sources */,
+				E190194E26557CFE0001C46A /* NSNotification+Extensions.swift in Sources */,
+				E190192C26557CFE0001C46A /* EduLink_Employee.swift in Sources */,
+				E190192E26557CFE0001C46A /* EduLink_Documents.swift in Sources */,
+				E190193026557CFE0001C46A /* EduLink_Timetable.swift in Sources */,
+				E190193826557CFE0001C46A /* EduLink_Catering.swift in Sources */,
 				E117206425FE6B2700339837 /* NextLessonWidget.swift in Sources */,
-				E1226FF925FD1C0400D81A43 /* EduLink_Status.swift in Sources */,
-				E1226FFC25FD1C0600D81A43 /* EduLink_Register.swift in Sources */,
-				E122700225FD1C0E00D81A43 /* StructModels.swift in Sources */,
-				E122700B25FD1C1600D81A43 /* NetworkManager.swift in Sources */,
-				E1226FDE25FD1BEF00D81A43 /* UUID.swift in Sources */,
-				E1226FF325FD1BFF00D81A43 /* EduLink_Links.swift in Sources */,
-				E1226FD225FD1BDD00D81A43 /* EduLink_Timetable.swift in Sources */,
-				E1226FD825FD1BE300D81A43 /* EduLinkAPI.swift in Sources */,
-				E1226FF625FD1C0100D81A43 /* EduLink_Homework.swift in Sources */,
+				E190193226557CFE0001C46A /* EduLink_Personal.swift in Sources */,
+				E190194826557CFE0001C46A /* EduLinkAPI.swift in Sources */,
+				E190194626557CFE0001C46A /* LoginManager.swift in Sources */,
 				E17EE6402624DBA800B55095 /* UserDefaults+Optional.swift in Sources */,
-				E11CDD50264D4AC000774BA4 /* EduLink_ICalendar.swift in Sources */,
+				E190192826557CFE0001C46A /* KeychainManager.swift in Sources */,
 				E117207025FE752300339837 /* CentralisWidget.swift in Sources */,
+				E190195026557CFE0001C46A /* ColourConverter.swift in Sources */,
+				E190193426557CFE0001C46A /* EduLink_Attendance.swift in Sources */,
+				E190194226557CFE0001C46A /* EduLink_Status.swift in Sources */,
+				E190194A26557CFE0001C46A /* StructModels.swift in Sources */,
+				E190193E26557CFE0001C46A /* EduLink_Homework.swift in Sources */,
+				E190193A26557CFE0001C46A /* EduLink_Links.swift in Sources */,
+				E190192A26557CFE0001C46A /* UUID.swift in Sources */,
 				E17EE6382624DB8E00B55095 /* ThemeManager.swift in Sources */,
 				E1226FC425FD1BBD00D81A43 /* LongTimetableWidget.swift in Sources */,
+				E190193C26557CFE0001C46A /* EduLink_Photo.swift in Sources */,
+				E190193626557CFE0001C46A /* EduLink_Achievement.swift in Sources */,
+				E190194C26557CFE0001C46A /* NetworkManager.swift in Sources */,
+				E190194026557CFE0001C46A /* EduLink_ICalendar.swift in Sources */,
+				E1A8B61226558274009C43EA /* DateTime.swift in Sources */,
 				E17EE63E2624DBA800B55095 /* UserDefaults+Extensions.swift in Sources */,
-				E1226FE725FD1BF700D81A43 /* EduLink_Personal.swift in Sources */,
-				E1226FD525FD1BE000D81A43 /* LoginManager.swift in Sources */,
-				E1226FE125FD1BF200D81A43 /* EduLink_Employee.swift in Sources */,
-				E1226FEA25FD1BF900D81A43 /* EduLink_Attendance.swift in Sources */,
-				E1226FED25FD1BFB00D81A43 /* EduLink_Achievement.swift in Sources */,
-				E1226FF025FD1BFD00D81A43 /* EduLink_Catering.swift in Sources */,
-				E1226FFF25FD1C0800D81A43 /* EduLink_Photo.swift in Sources */,
-				E1226FDB25FD1BEC00D81A43 /* ColourConverter.swift in Sources */,
-				E1226FE425FD1BF300D81A43 /* EduLink_Documents.swift in Sources */,
-				E122700525FD1C1000D81A43 /* NSNotification+Extensions.swift in Sources */,
-				E122700825FD1C1400D81A43 /* KeychainManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

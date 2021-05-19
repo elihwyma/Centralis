@@ -58,12 +58,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         var postedChanges = notificationPreferences["RoomChangePosted"] as? [String : Any] ?? [String : Any]()
                         var postedID = postedChanges["PostedID"] as? [String] ?? [String]()
                         // Garbage Cleanup
-                        if (postedChanges["day"] as? String ?? "") == day.name ?? "" { postedID.removeAll(); postedChanges["day"] = day.name ?? "" }
-                        for period in day.periods where !postedID.contains(period.id ?? "") {
+                        if (postedChanges["day"] as? String ?? "") == day.name { postedID.removeAll(); postedChanges["day"] = day.name }
+                        for period in day.periods where !postedID.contains(period.id ) {
                             if let lesson = period.lesson {
                                 if lesson.moved {
-                                    self.sendNotification(title: "Room Change", body: "\(lesson.subject ?? "") at \(period.start_time ?? "") has been moved to \(lesson.room_name ?? "")")
-                                    postedID.append(period.id ?? "")
+                                    self.sendNotification(title: "Room Change", body: "\(lesson.subject) at \(period.start_time.time) has been moved to \(lesson.room_name ?? "Unknown")")
+                                    postedID.append(period.id )
                                 }
                             }
                         }
