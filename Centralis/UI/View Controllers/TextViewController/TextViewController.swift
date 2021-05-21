@@ -239,9 +239,7 @@ extension TextViewController {
     }
     
     private func cateringTitle() {
-        if let balance = EduLinkAPI.shared.catering.balance {
-            self.title = "Balance: \(self.formatPrice(balance))"
-        }
+        self.title = "Balance: \(self.formatPrice(EduLinkAPI.shared.catering.balance))"
     }
 }
 

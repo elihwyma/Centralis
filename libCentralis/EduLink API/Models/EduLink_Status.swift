@@ -38,8 +38,8 @@ public class EduLink_Status {
         var ml = MiniLesson()
         if let room = lesson["room"] as? [String : Any] { ml.room = room["name"] as? String ?? "Not Given" }
         if let tg = lesson["teaching_group"] as? [String : Any] { ml.subject = tg["subject"] as? String ?? "Not Given" }
-        if let start_time = lesson["start_time"] as? String { ml.startDate = DateTime.dateFromTime(time: start_time) }
-        if let end_time = lesson["end_time"] as? String { ml.endDate = DateTime.dateFromTime(time: end_time) }
+        if let start_time = lesson["start_time"] as? String { ml.startDate = DateTime.dateFromTime(time: start_time, date: Date()) }
+        if let end_time = lesson["end_time"] as? String { ml.endDate = DateTime.dateFromTime(time: end_time, date: Date()) }
         return ml
     }
 }

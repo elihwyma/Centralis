@@ -21,20 +21,11 @@ public class EduLink_Catering {
             if !(result["success"] as? Bool ?? false) { return rootCompletion(false, (result["error"] as? String ?? "Unknown Error")) }
             var catering = Catering()
             catering.balance = result["balance"] as? Double ?? 0.0
-            catering.transactions.removeAll()
             if let transactions = result["transactions"] as? [[String : Any]] {
                 for transaction in transactions {
-                    var cateringTransaction = CateringTransaction()
-                    cateringTransaction.id = "\(transaction["id"] ?? "Not Given")"
-                    cateringTransaction.date = transaction["date"] as? String ?? "Not Given"
-                    let items = transaction["items"] as? [[String : Any]] ?? [[String : Any]]()
-                    for item in items {
-                        var cateringItem = CateringItem()
-                        cateringItem.item = item["item"] as? String ?? "Not Given"
-                        cateringItem.price = item["price"] as? Double ?? 0.0
-                        cateringTransaction.items.append(cateringItem)
+                    if let transaction = CateringTransaction(transaction) {
+                        catering.transactions.append(transaction)
                     }
-                    catering.transactions.append(cateringTransaction)
                 }
             }
             if EduLinkAPI.shared.authorisedUser.id == learnerID { EduLinkAPI.shared.catering = catering } else {
@@ -51,25 +42,47 @@ public class EduLink_Catering {
 /// A container for a CateringTransaction
 public struct CateringTransaction {
     /// The ID of the transaction
-    public var id: String!
+    public var id: String
     /// The date of the transaction
-    public var date: String!
+    public var date: Date
     /// The items that were purchased, for more documentation see `CateringItem`
     public var items = [CateringItem]()
+    
+    init?(_ dict: [String: Any]) {
+        guard let tmpID = dict["id"],
+              let tmpDate = dict["date"] as? String,
+              let date = DateTime.dateTime(tmpDate) else { return nil }
+        self.date = date
+        self.id = String(describing: tmpID)
+        if let items = dict["items"] as? [[String: Any]] {
+            for itemDict in items {
+                if let item = CateringItem(itemDict) {
+                    self.items.append(item)
+                }
+            }
+        }
+    }
 }
 
 /// A container for a CateringItem
 public struct CateringItem {
     /// The item that was purchased
-    public var item: String!
+    public var item: String
     /// The price of the item
-    public var price: Double!
+    public var price: Double
+    
+    init?(_ dict: [String: Any]) {
+        guard let item = dict["item"] as? String,
+              let price = dict["price"] as? Double else { return nil }
+        self.item = item
+        self.price = price
+    }
 }
 
 /// The container for Catering
 public struct Catering {
     /// The balance of the user
-    public var balance: Double!
+    public var balance: Double = 0
     /// An array of transactions by the user, for more documentation see `CateringTransaction`
     public var transactions = [CateringTransaction]()
 }

@@ -20,58 +20,68 @@ class TextViewCell: UITableViewCell {
     
     public func achievement(_ achievement: Achievement) {
         self.att = NSMutableAttributedString()
-        self.att?.addPair(bold: "Date: ", normal: "\(achievement.date!)\n")
+        self.att?.addPair(bold: "Date: ", normal: "\(achievement.date.shortDate)\n")
         for employee in EduLinkAPI.shared.authorisedSchool.schoolInfo.employees where employee.id == achievement.employee_id {
             self.att?.addPair(bold: "Teacher: ", normal: "\(employee.title) \(employee.forename) \(employee.surname)\n")
         }
-        self.att?.addPair(bold: "Lesson: ", normal: "\(achievement.lesson_information ?? "Not Given")\n")
-        self.att?.addPair(bold: "Points: ", normal: "\(achievement.points!)\n")
-        for type in achievement.type_ids {
-            for at in EduLinkAPI.shared.achievementBehaviourLookups.achievement_types where "\(at.id ?? "Not Given")" == "\(type)" {
-                self.att?.addPair(bold: "Type: ", normal: "\(at.description ?? "Not Given")\n")
+        if let lesson = achievement.lesson_information {
+            self.att?.addPair(bold: "Lesson: ", normal: "\(lesson)\n")
+        }
+        self.att?.addPair(bold: "Points: ", normal: "\(achievement.points)\n")
+        for type in achievement.type_ids ?? [] {
+            for at in EduLinkAPI.shared.achievementBehaviourLookups.achievement_types where at.id == "\(type)" {
+                self.att?.addPair(bold: "Type: ", normal: "\(at.description)\n")
             }
         }
-        self.att?.addPair(bold: "Comment: ", normal: "\(achievement.comments!)")
+        if let comment = achievement.comments {
+            self.att?.addPair(bold: "Comment: ", normal: "\(comment)")
+        }
     }
     
     public func behaviour(_ behaviour: Behaviour) {
         self.att = NSMutableAttributedString()
-        self.att?.addPair(bold: "Date: ", normal: "\(behaviour.date!)\n")
+        self.att?.addPair(bold: "Date: ", normal: "\(behaviour.date.shortDate)\n")
         for employee in EduLinkAPI.shared.authorisedSchool.schoolInfo.employees where employee.id == behaviour.recorded_id {
             self.att?.addPair(bold: "Teacher: ", normal: "\(employee.title) \(employee.forename) \(employee.surname)\n")
         }
-        self.att?.addPair(bold: "Lesson: ", normal: "\(behaviour.lesson_information ?? "Not Given")\n")
-        self.att?.addPair(bold: "Points: ", normal: "\(behaviour.points!)\n")
-        for type in behaviour.type_ids {
-            for bt in EduLinkAPI.shared.achievementBehaviourLookups.behaviour_types where "\(bt.id ?? "Not Given")" == "\(type)" {
-                self.att?.addPair(bold: "Type: ", normal: "\(bt.description ?? "Not Given")\n")
+        if let lesson = behaviour.lesson_information {
+            self.att?.addPair(bold: "Lesson: ", normal: "\(lesson)\n")
+        }
+        self.att?.addPair(bold: "Points: ", normal: "\(behaviour.points)\n")
+        for type in behaviour.type_ids ?? [] {
+            for bt in EduLinkAPI.shared.achievementBehaviourLookups.behaviour_types where bt.id == "\(type)" {
+                self.att?.addPair(bold: "Type: ", normal: "\(bt.description)\n")
             }
         }
-        self.att?.addPair(bold: "Comment: ", normal: "\(behaviour.comments!)")
+        if let comment = behaviour.comments {
+            self.att?.addPair(bold: "Comment: ", normal: "\(comment)")
+        }
     }
  
     public func detention(_ detention: Detention) {
         self.att = NSMutableAttributedString()
-        self.att?.addPair(bold: "Date: ", normal: "\(detention.date!)\n")
-        self.att?.addPair(bold: "Start Time: ", normal: "\(detention.start_time!)\n")
-        self.att?.addPair(bold: "End Time: ", normal: "\(detention.end_time!)\n")
-        self.att?.addPair(bold: "Location: ", normal: "\(detention.location!)\n")
-        if !detention.attended.isEmpty {
-            self.att?.addPair(bold: "Attended: ", normal: "\(detention.attended!)\n")
+        self.att?.addPair(bold: "Date: ", normal: "\(detention.date.shortDate)\n")
+        self.att?.addPair(bold: "Start Time: ", normal: "\(detention.start_time.time)\n")
+        self.att?.addPair(bold: "End Time: ", normal: "\(detention.end_time.time)\n")
+        if let location = detention.location {
+            self.att?.addPair(bold: "Location: ", normal: "\(location)\n")
         }
-        if !detention.non_attendance_reason.isEmpty {
-            self.att?.addPair(bold: "Not Attended Reason: ", normal: "\(detention.non_attendance_reason!)\n")
+        if let attended = detention.attended {
+            self.att?.addPair(bold: "Attended: ", normal: "\(attended)\n")
+        }
+        if let non_attendance_reason = detention.non_attendance_reason {
+            self.att?.addPair(bold: "Not Attended Reason: ", normal: "\(non_attendance_reason)\n")
         }
         self.att?.addPair(bold: "Description: ", normal: "\(detention.description!)")
     }
         
     public func catering(_ transaction: CateringTransaction) {
         self.att = NSMutableAttributedString()
-        self.att?.addPair(bold: "Date & Time: ", normal: transaction.date)
+        self.att?.addPair(bold: "Date & Time: ", normal: transaction.date.dateTime)
         self.att?.addPair(bold: "\nItems & Amount: \n", normal: "")
         for (index, item) in transaction.items.enumerated() {
             let ext: String = ((index == transaction.items.count - 1) ? "" : "\n")
-            self.att?.addPair(bold: "", normal: "\(item.item!): \(self.formatPrice(item.price))\(ext)")
+            self.att?.addPair(bold: "", normal: "\(item.item): \(self.formatPrice(item.price))\(ext)")
         }
     }
     

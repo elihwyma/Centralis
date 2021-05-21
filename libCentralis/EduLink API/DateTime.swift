@@ -17,6 +17,14 @@ class DateTime {
         return formatter.date(from: string)
     }
     
+    class func dateTime(_ string: String) -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.timeZone = TimeZone.current
+        formatter.locale = Locale.current
+        return formatter.date(from: string)
+    }
+ 
     class internal func dateFromTime(time: String, date: Date? = nil) -> Date? {
         let calendar = NSCalendar.current
         var components = calendar.dateComponents([], from: date != nil ? date! : Date())
@@ -40,6 +48,12 @@ extension Date {
     var shortDate: String {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
+        return formatter.string(from: self)
+    }
+    
+    var dateTime: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm E, d MMM y"
         return formatter.string(from: self)
     }
     
