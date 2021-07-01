@@ -48,6 +48,7 @@
 		E1226FC425FD1BBD00D81A43 /* LongTimetableWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1226FC325FD1BBD00D81A43 /* LongTimetableWidget.swift */; };
 		E1226FC625FD1BBE00D81A43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1226FC525FD1BBE00D81A43 /* Assets.xcassets */; };
 		E1305DA3259BEFDD00AB3119 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1305DA2259BEFDD00AB3119 /* UIButton+Extension.swift */; };
+		E146CF052657DD43009CC0A4 /* iCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146CF042657DD43009CC0A4 /* iCalendarViewController.swift */; };
 		E14A7E55259FCF2400EF9712 /* HomeMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14A7E53259FCF2300EF9712 /* HomeMenuCell.swift */; };
 		E14A7E56259FCF2400EF9712 /* HomeMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E14A7E54259FCF2300EF9712 /* HomeMenuCell.xib */; };
 		E152162025A7D0E700557F20 /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E152161F25A7D0E700557F20 /* NSDate+Extension.swift */; };
@@ -177,6 +178,7 @@
 		E1226FC725FD1BBE00D81A43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1226FCB25FD1BBF00D81A43 /* CentralisWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CentralisWidgetExtension.entitlements; sourceTree = "<group>"; };
 		E1305DA2259BEFDD00AB3119 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		E146CF042657DD43009CC0A4 /* iCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCalendarViewController.swift; sourceTree = "<group>"; };
 		E14A7E53259FCF2300EF9712 /* HomeMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuCell.swift; sourceTree = "<group>"; };
 		E14A7E54259FCF2300EF9712 /* HomeMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeMenuCell.xib; sourceTree = "<group>"; };
 		E152161F25A7D0E700557F20 /* NSDate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
@@ -561,6 +563,14 @@
 			path = CentralisWidget;
 			sourceTree = "<group>";
 		};
+		E146CF032657DD29009CC0A4 /* iCalendarViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E146CF042657DD43009CC0A4 /* iCalendarViewController.swift */,
+			);
+			path = iCalendarViewController;
+			sourceTree = "<group>";
+		};
 		E14A7E52259FCEEA00EF9712 /* HomeMenuCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -607,6 +617,7 @@
 		E171DB542632B62700ED1439 /* Sub View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E146CF032657DD29009CC0A4 /* iCalendarViewController */,
 				E171DB552632B63000ED1439 /* AccountViewController */,
 			);
 			path = "Sub View Controllers";
@@ -955,6 +966,7 @@
 				E117208425FE7C0F00339837 /* BridgingStubs.swift in Sources */,
 				53CA2DF62576D69A00E3A02B /* WorkingCover.swift in Sources */,
 				E17EE6312624D76500B55095 /* BaseTableViewController.swift in Sources */,
+				E146CF052657DD43009CC0A4 /* iCalendarViewController.swift in Sources */,
 				E190194326557CFE0001C46A /* EduLink_Register.swift in Sources */,
 				53874512257BDCD400174D07 /* NSMutableAttributedString+Extension.swift in Sources */,
 				E117209F25FE7E4700339837 /* SettingsViewController.swift in Sources */,

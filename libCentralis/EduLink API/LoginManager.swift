@@ -326,12 +326,15 @@ public class LoginManager {
             currentChild.achievementBehaviourLookups = EduLinkAPI.shared.achievementBehaviourLookups
             currentChild.homework = EduLinkAPI.shared.homework
             currentChild.catering = EduLinkAPI.shared.catering
+            currentChild.calendars = EduLinkAPI.shared.calendars
+            
             EduLinkAPI.shared.authorisedUser.children[EduLinkAPI.shared.authorisedUser.selectedChild] = currentChild
         }
         
         var moving = EduLinkAPI.shared.authorisedUser.children[index]
         EduLinkAPI.shared.documents = moving.documents; moving.documents.removeAll()
         EduLinkAPI.shared.weeks = moving.weeks; moving.weeks.removeAll()
+        EduLinkAPI.shared.calendars = moving.calendars; moving.calendars.removeAll()
         EduLinkAPI.shared.personal = moving.personal; moving.personal = nil
         EduLinkAPI.shared.attendance = moving.attendance; moving.attendance = Attendance()
         EduLinkAPI.shared.achievementBehaviourLookups = moving.achievementBehaviourLookups; moving.achievementBehaviourLookups = AchievementBehaviourLookup()
@@ -440,6 +443,7 @@ public struct Child {
     internal var achievementBehaviourLookups = AchievementBehaviourLookup()
     internal var homework = Homeworks()
     internal var catering = Catering()
+    internal var calendars = [iCal]()
 }
 
 /// Container for the school of the currently logged in user

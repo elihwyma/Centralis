@@ -161,7 +161,12 @@ extension TextViewController: UITableViewDataSource {
         if self.context == TextViewContext.links {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.LoginCell", for: indexPath) as! LoginCell
             let link = EduLinkAPI.shared.links[indexPath.row]
-            if let image = UIImage(data: link.image) { cell.schoolLogo.image = image } else { cell.schoolLogo.image = UIImage(systemName: "link.circle.fill") }
+            if let data = link.image,
+               let image = UIImage(data: data) {
+                cell.schoolLogo.image = image
+            } else {
+                cell.schoolLogo.image = UIImage(systemName: "link.circle.fill")
+            }
             cell.schoolName.text = link.name
             cell.forename.text = link.link
             cell.backgroundColor = .systemGray5

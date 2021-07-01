@@ -66,9 +66,14 @@ class HomeViewController: BaseTableViewController {
         self.tableView.backgroundColor = .none
         self.tableView.register(UINib(nibName: "HomeMenuLessonCell", bundle: nil), forCellReuseIdentifier: "Centralis.HomeMenuLessonCell")
         self.menuOrganising()
+        self.shownCells[2].append(SimpleStore(id: "CentralisICalendar", name: "iCalendar"))
         self.shownCells[2].append(SimpleStore(id: "CentralisSettings", name: "Settings"))
         self.tableView.layer.masksToBounds = true
         self.tableView.layer.cornerRadius = 10
+        
+        self.view.tintColor = .centralisTintColor
+        self.navigationController?.view.tintColor = .centralisTintColor
+        self.view.backgroundColor = .centralisViewColor
         
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in
             UNUserNotificationCenter.current().getNotificationSettings() { settings in
@@ -80,18 +85,6 @@ class HomeViewController: BaseTableViewController {
                 }
             }
         }
-        
-        self.view.backgroundColor = .systemGroupedBackground
-        self.updateColours()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateColours),
-                                               name: ThemeManager.ThemeUpdate,
-                                               object: nil)
-    }
-    
-    @objc private func updateColours() {
-        self.view.tintColor = .centralisTintColor
-        self.tableView.reloadData()
     }
     
     @objc public func arriveFromDelegate() {
@@ -196,6 +189,9 @@ class HomeViewController: BaseTableViewController {
         if indexPath.section == 2 || (self.shownCells[0].isEmpty && indexPath.section == 1) {
             switch (self.shownCells[2][indexPath.row] as! SimpleStore).name {
             case "Settings": self.performSegue(withIdentifier: "Centralis.Settings", sender: nil)
+            case "iCalendar":
+                let vc = iCalendarViewController(style: .insetGrouped)
+                self.navigationController?.pushViewController(vc, animated: true)
             default: print("Not yet implemented")
             }
         } else {

@@ -17,19 +17,7 @@ public class EduLink_Links {
             guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
             if !(result["success"] as? Bool ?? false) { return rootCompletion(false, (result["error"] as? String ?? "Unknown Error")) }
             guard let links = result["links"] as? [[String : Any]] else { return rootCompletion(false, "Unknown Error" )}
-            var linkCache = [Link]()
-            for link in links {
-                var l = Link()
-                l.name = link["name"] as? String ?? "Not Found"
-                l.link = link["url"] as? String ?? "Not Found"
-                if var imageData = link["icon"] as? String {
-                    imageData = imageData.replacingOccurrences(of: "data:image/png;base64,", with: "")
-                    if let decodedData = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters) {
-                        l.image = decodedData
-                    }
-                }
-                linkCache.append(l)
-            }
+            let linkCache = links.compactMap({ Link($0 )})
             EduLinkAPI.shared.links = linkCache
             rootCompletion(true, nil)
         })
@@ -39,9 +27,22 @@ public class EduLink_Links {
 /// A container for Links
 public struct Link {
     /// The name of the link
-    public var name: String!
+    public var name: String
     /// The URL of the link
-    public var link: String!
+    public var link: String
     /// The image registered to the link
-    public var image: Data!
+    public var image: Data?
+    
+    init?(_ dict: [String: Any]) {
+        guard let name = dict["name"] as? String,
+              let url = dict["url"] as? String else { return nil }
+        self.name = name
+        self.link = url
+        if var data = dict["icon"] as? String {
+            data = data.replacingOccurrences(of: "data:image/png;base64,", with: "")
+            if let decodedData = Data(base64Encoded: data, options: .ignoreUnknownCharacters) {
+                self.image = decodedData
+            }
+        }
+    }
 }

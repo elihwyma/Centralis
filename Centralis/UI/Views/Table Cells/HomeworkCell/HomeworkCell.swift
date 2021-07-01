@@ -32,8 +32,8 @@ class HomeworkCell: UITableViewCell {
         self.att?.addPair(bold: "Name: ", normal: "\(homework.activity!)\n")
         self.att?.addPair(bold: "Subject: ", normal: "\(homework.subject!)\n")
         self.att?.addPair(bold: "Set: ", normal: "\(homework.available_text!) : \(homework.available_date!)")
-        self.completedLabel.text = ((homework.completed!) ? "Completed" : "Not Completed")
-        self.completedView.backgroundColor = homework.completed! ? .systemGreen : (isTomorrow(homework.due_date!) ? .systemOrange : .systemRed)
+        self.completedLabel.text = ((homework.completed) ? "Completed" : "Not Completed")
+        self.completedView.backgroundColor = homework.completed ? .systemGreen : homework.due_date?.isTomorrow ?? false ? .systemOrange : .systemRed
     }
     
     private func isTomorrow(_ due_date: String!) -> Bool {

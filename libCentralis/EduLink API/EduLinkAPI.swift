@@ -53,6 +53,7 @@ public class EduLinkAPI {
         self.links = [Link]()
         self.documents = [Document]()
         self.attendance = Attendance()
+        self.calendars = [iCal]()
         self.personal = nil
     }
 }

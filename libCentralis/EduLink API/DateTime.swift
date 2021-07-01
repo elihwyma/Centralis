@@ -57,4 +57,11 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    var isTomorrow: Bool {
+        var twa = DateComponents()
+        twa.day = -1
+        let tomorrow = Calendar.current.date(byAdding: twa, to: Date()) ?? Date()
+        return tomorrow < self
+    }
+    
 }

@@ -20,17 +20,19 @@ public class EduLink_Homework {
             guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
             if !(result["success"] as? Bool ?? false) { return rootCompletion(false, (result["error"] as? String ?? "Unknown Error")) }
             if let homework = result["homework"] as? [String : Any] {
-                if let current = homework["current"] as? [[String : Any]] {
-                    if EduLinkAPI.shared.authorisedUser.id == learnerID { EduLinkAPI.shared.homework.current = self.scrapeLeWork(dict: current) } else {
+                if let currentDict = homework["current"] as? [[String : Any]] {
+                    let current = currentDict.compactMap({ Homework($0) }).sorted(by: { $0.due_date ?? Date() > $1.due_date ?? Date() })
+                    if EduLinkAPI.shared.authorisedUser.id == learnerID { EduLinkAPI.shared.homework.current = current } else {
                         if let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == learnerID}) {
-                            EduLinkAPI.shared.authorisedUser.children[index].homework.current = self.scrapeLeWork(dict: current)
+                            EduLinkAPI.shared.authorisedUser.children[index].homework.current = current
                         }
                     }
                 }
-                if let past = homework["past"] as? [[String : Any]] {
-                    if EduLinkAPI.shared.authorisedUser.id == learnerID { EduLinkAPI.shared.homework.past = self.scrapeLeWork(dict: past) } else {
+                if let pastDict = homework["past"] as? [[String : Any]] {
+                    let past = pastDict.compactMap({ Homework($0) }).sorted(by: { $0.due_date ?? Date() > $1.due_date ?? Date() })
+                    if EduLinkAPI.shared.authorisedUser.id == learnerID { EduLinkAPI.shared.homework.past = past } else {
                         if let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == learnerID}) {
-                            EduLinkAPI.shared.authorisedUser.children[index].homework.past = self.scrapeLeWork(dict: past)
+                            EduLinkAPI.shared.authorisedUser.children[index].homework.past = past
                         }
                     }
                 }
@@ -113,28 +115,6 @@ public class EduLink_Homework {
             rootCompletion(true, nil)
         })
     }
-    
-    class private func scrapeLeWork(dict: [[String : Any]]) -> [Homework] {
-        var homeworkCache = [Homework]()
-        for h in dict {
-            var homework = Homework()
-            homework.id = "\(h["id"] ?? "Not Given")"
-            homework.activity = h["activity"] as? String ?? "Not Given"
-            homework.subject = h["subject"] as? String ?? "Not Given"
-            homework.due_date = h["due_date"] as? String ?? "Not Given"
-            homework.available_date = h["available_date"] as? String ?? "Not Given"
-            homework.completed = h["completed"] as? Bool ?? false
-            homework.set_by = h["set_by"] as? String ?? "Not Given"
-            homework.due_text = h["due_text"] as? String ?? "Not Given"
-            homework.available_text = h["available_text"] as? String ?? "Not Given"
-            homework.status = h["status"] as? String ?? "Not Given"
-            homework.source = h["source"] as? String ?? "Not Given"
-            homework.description = h["description"] as? String ?? ""
-            homeworkCache.append(homework)
-        }
-        return homeworkCache
-    }
-    
 }
 
 /// A container for current and past homeworks
@@ -148,29 +128,51 @@ public struct Homeworks {
 /// A container for Homework
 public struct Homework {
     /// The ID of the homework
-    public var id: String!
+    public var id: String
     /// The title of the homework
-    public var activity: String!
+    public var activity: String?
     /// The subject of the homework
-    public var subject: String!
+    public var subject: String?
     /// The due date of the homework
-    public var due_date: String!
+    public var due_date: Date?
     /// The date of when the homework was made available
-    public var available_date: String!
+    public var available_date: Date?
     /// Is the homework marked as completed
-    public var completed: Bool!
+    public var completed: Bool
     /// The teacher who set the homework
-    public var set_by: String!
+    public var set_by: String?
     /// The set due text
-    public var due_text: String!
+    public var due_text: String?
     /// The set available text
-    public var available_text: String!
+    public var available_text: String?
     /// The status of the homework
-    public var status: String!
+    public var status: String?
     /// The description of the homework
-    public var description: String!
-    /// The source of the homework
-    public var source: String!
+    public var description: String?
+    /// The source of the homewor
+    public var source: String
+    
+    init?(_ dict: [String: Any]) {
+        guard let tmpID = dict["id"] else { return nil }
+        self.id = String(describing: tmpID)
+        self.activity = dict["activity"] as? String
+        self.subject = dict["subject"] as? String
+        if let tmpDueDate = dict["due_date"] as? String,
+           let due_date = DateTime.date(tmpDueDate) {
+            self.due_date = due_date
+        }
+        if let tmpAvailableDate = dict["available_date"] as? String,
+           let available_date = DateTime.dateTime(tmpAvailableDate) {
+            self.available_date = available_date
+        }
+        self.completed = dict["completed"] as? Bool ?? false
+        self.set_by = dict["set_by"] as? String
+        self.due_text = dict["due_text"] as? String
+        self.available_text = dict["available_text"] as? String
+        self.status = dict["status"] as? String
+        self.source = dict["source"] as? String ?? "EduLink"
+        self.description = dict["description"] as? String
+    }
 }
 
 /// An enum for if the homework is current or past

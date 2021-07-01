@@ -33,7 +33,7 @@ class HomeworkDetailView: UIView {
     }
     
     @objc private func sortOutDescription() {
-        if !homework.description.isEmpty { return self.detailResponse() }
+        if !(homework.description?.isEmpty ?? true) { return self.detailResponse() }
         EduLink_Homework.homeworkDetails(self.index, self.homework, self.context, {(success, error) -> Void in
             DispatchQueue.main.async {
                 if success {
@@ -77,8 +77,8 @@ class HomeworkDetailView: UIView {
         att.addPair(bold: "Set by: ", normal: "\(self.homework.set_by!)\n")
         att.addPair(bold: "Description: \n", normal: "")
         
-        if !self.homework.description.isEmpty {
-            let data = Data(self.homework.description.utf8)
+        if !(self.homework.description?.isEmpty ?? true) {
+            let data = Data(self.homework.description?.utf8 ?? "".utf8)
             if let tryToHTML = try? NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
                 let range = (tryToHTML.string as NSString).range(of: tryToHTML.string)
                 tryToHTML.addAttribute((NSAttributedString.Key.font), value: UIFont.systemFont(ofSize: 17), range: range)

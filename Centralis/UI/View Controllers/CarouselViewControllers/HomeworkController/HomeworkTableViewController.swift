@@ -123,8 +123,8 @@ extension HomeworkTableViewController: UITableViewDataSource {
                 var postedChanges = notificationPreferences["HomeworkPosted"] as? [String : Any] ?? [String : Any]()
                 var postedNew = postedChanges["PostedNew"] as? [String] ?? [String]()
                 for homework in EduLinkAPI.shared.homework.current {
-                    if !postedNew.contains(homework.id ?? "") {
-                        postedNew.append(homework.id ?? "")
+                    if !postedNew.contains(homework.id) {
+                        postedNew.append(homework.id)
                     }
                 }
                 postedChanges["PostedNew"] = postedNew
