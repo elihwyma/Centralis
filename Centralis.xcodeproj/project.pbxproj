@@ -37,6 +37,7 @@
 		E10B372226D94C4B00ACE72B /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10B372126D94C4B00ACE72B /* View.xib */; };
 		E10B372426D9551D00ACE72B /* MenuHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B372326D9551D00ACE72B /* MenuHeaderCell.swift */; };
 		E10B372726D9655D00ACE72B /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B372626D9655D00ACE72B /* TodayView.swift */; };
+		E10B372926D97DD100ACE72B /* TodayLessonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B372826D97DD100ACE72B /* TodayLessonCell.swift */; };
 		E117206425FE6B2700339837 /* NextLessonWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117206325FE6B2700339837 /* NextLessonWidget.swift */; };
 		E117207025FE752300339837 /* CentralisWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117206F25FE752300339837 /* CentralisWidget.swift */; };
 		E117208425FE7C0F00339837 /* BridgingStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117207425FE7C0F00339837 /* BridgingStubs.swift */; };
@@ -158,6 +159,7 @@
 		E10B372126D94C4B00ACE72B /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		E10B372326D9551D00ACE72B /* MenuHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderCell.swift; sourceTree = "<group>"; };
 		E10B372626D9655D00ACE72B /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		E10B372826D97DD100ACE72B /* TodayLessonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayLessonCell.swift; sourceTree = "<group>"; };
 		E117206325FE6B2700339837 /* NextLessonWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLessonWidget.swift; sourceTree = "<group>"; };
 		E117206F25FE752300339837 /* CentralisWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralisWidget.swift; sourceTree = "<group>"; };
 		E117207425FE7C0F00339837 /* BridgingStubs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgingStubs.swift; sourceTree = "<group>"; };
@@ -469,6 +471,7 @@
 			isa = PBXGroup;
 			children = (
 				E10B372626D9655D00ACE72B /* TodayView.swift */,
+				E10B372826D97DD100ACE72B /* TodayLessonCell.swift */,
 			);
 			path = TodayView;
 			sourceTree = "<group>";
@@ -950,6 +953,7 @@
 				E190193B26557CFE0001C46A /* EduLink_Photo.swift in Sources */,
 				E190194F26557CFE0001C46A /* ColourConverter.swift in Sources */,
 				53CB509A2572D7C40077DDAE /* UIView+Extensions.swift in Sources */,
+				E10B372926D97DD100ACE72B /* TodayLessonCell.swift in Sources */,
 				E171DB4B2631A68E00ED1439 /* CentralisNavigationController.swift in Sources */,
 				5387452E257C205500174D07 /* HomeworkDetailView.swift in Sources */,
 				E190192726557CFE0001C46A /* KeychainManager.swift in Sources */,

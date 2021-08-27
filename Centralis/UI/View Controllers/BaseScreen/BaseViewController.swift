@@ -10,6 +10,7 @@ import UIKit
 class BaseViewController: UIViewController {
     
     public weak var referencedViewController: UIViewController?
+    public var displayedView: UIView?
     public var menuTableView = MenuTableView()
     public var workingCover: WorkingCover = .fromNib()
     public var login: SavedLogin
@@ -71,7 +72,23 @@ class BaseViewController: UIViewController {
             view.bottomAnchor.constraint(equalTo: menuTableView.bottomAnchor),
             view.leadingAnchor.constraint(equalTo: menuTableView.leadingAnchor)
         ])
+        
+        title = "Today"
+        setDisplayedView(TodayView.shared)
         // Do any additional setup after loading the view.
+    }
+    
+    public func setDisplayedView(_ next: UIView) {
+        self.displayedView?.removeFromSuperview()
+        self.displayedView = next
+        
+        view.addSubview(next)
+        NSLayoutConstraint.activate([
+            view.topAnchor.constraint(equalTo: next.topAnchor),
+            view.leadingAnchor.constraint(equalTo: next.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: next.trailingAnchor),
+            view.bottomAnchor.constraint(equalTo: next.bottomAnchor)
+        ])
     }
     
 }

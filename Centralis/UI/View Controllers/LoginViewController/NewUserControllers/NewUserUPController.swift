@@ -159,7 +159,7 @@ class NewUserUPController: UIViewController {
                         EduLinkAPI.shared.defaults.setValue(LoginManager.shared.schoolCode, forKey: "PreferredSchool")
                     }
                     let login = LoginManager.shared.currentLogin
-                    (UIApplication.shared.delegate as! AppDelegate).setRootViewController(CentralisNavigationController(rootViewController: HomeViewController(login: login)))
+                    (UIApplication.shared.delegate as! AppDelegate).setRootViewController(CentralisNavigationController(rootViewController: BaseViewController(login: login)))
                 } else {
                     self.showError(error ?? "Fuck")
                 }

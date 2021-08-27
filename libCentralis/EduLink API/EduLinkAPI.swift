@@ -23,7 +23,7 @@ public class EduLinkAPI {
     /// The contained status, for more documentation see `Status`
     public var status = Status()
     /// The contained catering, for more documentation see `Catering`
-    public var catering = Catering()
+    public var catering: Catering?
     /// The contained Achievement/Behaviour info, for more documentation see `AchievementBehaviourLookup`
     public var achievementBehaviourLookups = AchievementBehaviourLookup()
     /// The contained personal info, for more documentation see `Personal`
@@ -46,7 +46,7 @@ public class EduLinkAPI {
         self.authorisedUser = AuthorisedUser()
         self.authorisedSchool = AuthorisedSchool()
         self.status = Status()
-        self.catering = Catering()
+        self.catering = nil
         self.achievementBehaviourLookups = AchievementBehaviourLookup()
         self.homework = Homeworks()
         self.weeks = [Week]()

@@ -24,39 +24,30 @@ public class EduLink_Status {
             }
             if let lessons = result["lessons"] as? [String : Any] {
                 if let current = lessons["current"] as? [String : Any] {
-                    EduLinkAPI.shared.status.current = self.generateLesson(current)
+                    EduLinkAPI.shared.status.current = MiniLesson(current)
                 }
                 if let next = lessons["next"] as? [String : Any] {
-                    EduLinkAPI.shared.status.upcoming = self.generateLesson(next)
+                    EduLinkAPI.shared.status.upcoming = MiniLesson(next)
                 }
             }
             rootCompletion(true, nil)
         })
-    }
-    
-    class private func generateLesson(_ lesson: [String : Any]) -> MiniLesson {
-        var ml = MiniLesson()
-        if let room = lesson["room"] as? [String : Any] { ml.room = room["name"] as? String ?? "Not Given" }
-        if let tg = lesson["teaching_group"] as? [String : Any] { ml.subject = tg["subject"] as? String ?? "Not Given" }
-        if let start_time = lesson["start_time"] as? String { ml.startDate = DateTime.dateFromTime(time: start_time, date: Date()) }
-        if let end_time = lesson["end_time"] as? String { ml.endDate = DateTime.dateFromTime(time: end_time, date: Date()) }
-        return ml
     }
 }
 
 /// A container for Status
 public struct Status {
     /// Number of new messages
-    public var new_messages: Int!
+    public var new_messages: Int = 0
     /// Number of new forms
-    public var new_forms: Int!
+    public var new_forms: Int = 0
     /// The Date of when the auth token expires
     public var expires: Date?
     /// The current lesson, usually shown on the Home Page. For more documentation see `MiniLesson`
-    public var current: MiniLesson!
+    public var current: MiniLesson?
     /// The upcoming lesson, usually shown on the Home Page. For more documentation see `MiniLesson`
-    public var upcoming: MiniLesson!
-    
+    public var upcoming: MiniLesson?
+        
     /// The public init method for the class
     public init() {}
     
@@ -71,13 +62,38 @@ public struct Status {
 }
 
 /// A container for a MiniLesson belonging to `Status`
-public struct MiniLesson {
+public struct MiniLesson: Codable {
     /// The time the lesson starts
     public var startDate: Date?
     /// The time the lesson ends
     public var endDate: Date?
     /// The room the lesson is in
-    public var room: String!
+    public var room: Room?
     /// The subject for the lesson
-    public var subject: String!
+    public var teaching_group: TeachingGroup?
+    
+    public var teacher: Employee?
+    
+    init?(_ dict: [String: Any]) {
+        do {
+            guard let json = dict.json else { return nil }
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .custom({ decoder in
+                let container = try decoder.singleValueContainer()
+                guard let x = try? container.decode(String.self) else { return Date() }
+                if let date = DateTime.date(x) {
+                    return date
+                } else if let date = DateTime.dateTime(x) {
+                    return date
+                } else if let date = DateTime.dateFromTime(time: x) {
+                    return date
+                }
+                return Date()
+            })
+            self = try decoder.decode(MiniLesson.self, from: json)
+        } catch {
+            NSLog("[Centralis] MiniLesson Error = \(String(describing: error))")
+            return nil
+        }
+    }
 }

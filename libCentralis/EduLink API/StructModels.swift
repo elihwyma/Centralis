@@ -8,9 +8,9 @@
 import Foundation
 
 /// A container for the Employee dictionary returned from EduLink
-public struct Employee: Hashable {
+public struct Employee: Hashable, Codable {
     /// The Employee ID
-    public var id: String
+    public var id: YouFuckers
     /// The Employee's Title
     public var title: String = "None"
     /// The forename of the Employee
@@ -18,28 +18,18 @@ public struct Employee: Hashable {
     /// The surname of the Employee
     public var surname: String = "None"
     
-    public var name: String
+    public var name: String {
+        "\(title) \(forename) \(surname)"
+    }
     
     init?(_ dict: [String: Any]) {
-        guard let tmpID = dict["id"] else { return nil }
-        self.id = String(describing: tmpID)
-        var nameCache = ""
-        if let title = dict["title"] as? String {
-            nameCache += title + " "
-            self.title = title
+        do {
+            guard let json = dict.json else { return nil }
+            self = try JSONDecoder().decode(Employee.self, from: json)
+        } catch {
+            NSLog("[Centralis] Employee Error = \(error.localizedDescription)")
+            return nil
         }
-        if let forename = dict["forename"] as? String {
-            nameCache += forename + " "
-            self.forename = forename
-        }
-        if let surname = dict["surname"] as? String {
-            nameCache += surname
-            self.surname = surname
-        }
-        if nameCache.last == " " {
-            nameCache.removeLast()
-        }
-        self.name = nameCache
     }
 }
 
@@ -69,7 +59,7 @@ public struct Room: Codable {
     /// The name of the room
     public var name: String
     /// The shortened room code
-    public var code: String
+    public var code: YouFuckers?
     
     init?(_ dict: [String: Any]) {
         do {

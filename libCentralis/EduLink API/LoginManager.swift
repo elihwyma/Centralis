@@ -367,7 +367,7 @@ public struct SchoolInfo {
     /// An array of report card target types at the school, for more documentation see `ReportCardTargetType`
     public var reportCardTargetTypes = [ReportCardTargetType]()
     /// An array of employees at the school, for more documentation see `Employee`
-    public var employees = [Employee]()
+    public var employees = [String: Employee]()
     /// An array of lesson codes at the school, for more documentation see `RegisterCode`
     public var lesson_codes = [RegisterCode]()
     /// An array of statutory codes at the school, for more documentation see `RegisterCode`

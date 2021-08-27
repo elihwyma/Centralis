@@ -27,7 +27,7 @@ class DateTime {
  
     class internal func dateFromTime(time: String, date: Date? = nil) -> Date? {
         let calendar = NSCalendar.current
-        var components = calendar.dateComponents([], from: date != nil ? date! : Date())
+        var components = calendar.dateComponents([], from: date ?? Date())
         let hour = time.components(separatedBy: ":")[0]
         let minute = time.components(separatedBy: ":")[1]
         components.hour = Int(hour) ?? 0

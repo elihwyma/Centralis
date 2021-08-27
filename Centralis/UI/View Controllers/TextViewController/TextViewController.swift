@@ -79,7 +79,7 @@ class TextViewController: UIViewController {
             self.tableView.reloadData()
             self.noDataLabel.isHidden = false
             switch self.context {
-            case .catering: self.noDataLabel.text = "\(!EduLinkAPI.shared.catering.transactions.isEmpty ? "" : "No transactions available")"
+            case .catering: self.noDataLabel.text = "\(!(EduLinkAPI.shared.catering?.transactions.isEmpty ?? false) ? "" : "No transactions available")"
             case .achievement: self.noDataLabel.text = "\(!EduLinkAPI.shared.achievementBehaviourLookups.achievements.isEmpty ? "" : "No achievements available")"
             case .links: self.noDataLabel.text = "\(!EduLinkAPI.shared.links.isEmpty ? "" : "No links available")"
             case .documents: self.noDataLabel.text = "\(!EduLinkAPI.shared.documents.isEmpty ? "" : "No transactions available")"
@@ -149,7 +149,7 @@ extension TextViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch self.context {
         case .achievement: return EduLinkAPI.shared.achievementBehaviourLookups.achievements.count
-        case .catering: return EduLinkAPI.shared.catering.transactions.count
+        case .catering: return EduLinkAPI.shared.catering?.transactions.count ?? 0
         case .links: return EduLinkAPI.shared.links.count
         case .documents: return EduLinkAPI.shared.documents.count
         case .none: fatalError("fuck")
@@ -180,7 +180,7 @@ extension TextViewController: UITableViewDataSource {
             cell.achievement(achievement)
         }
         case .catering: do {
-            let transaction = EduLinkAPI.shared.catering.transactions[indexPath.row]
+            let transaction = EduLinkAPI.shared.catering!.transactions[indexPath.row]
             cell.catering(transaction)
         }
         case .documents: do {
@@ -226,7 +226,7 @@ extension TextViewController {
 //MARK: - Catering
 extension TextViewController {
     @objc private func cateringSetup() {
-        if !EduLinkAPI.shared.catering.transactions.isEmpty { return self.dataResponse() }
+        if !(EduLinkAPI.shared.catering?.transactions.isEmpty ?? false) { return self.dataResponse() }
         EduLink_Catering.catering({(success, error) -> Void in
             DispatchQueue.main.async {
                 if success {
@@ -244,7 +244,7 @@ extension TextViewController {
     }
     
     private func cateringTitle() {
-        self.title = "Balance: \(self.formatPrice(EduLinkAPI.shared.catering.balance))"
+        self.title = "Balance: \(self.formatPrice(EduLinkAPI.shared.catering?.balance ?? 0.0))"
     }
 }
 

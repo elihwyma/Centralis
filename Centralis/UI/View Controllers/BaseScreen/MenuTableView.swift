@@ -50,7 +50,7 @@ class MenuTableView: UITableView {
             }
         }
         #endif
-        menus.insert("Home", at: 0)
+        menus.insert("Today", at: 0)
         super.reloadData()
     }
 }

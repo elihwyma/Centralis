@@ -17,8 +17,21 @@ class TodayView: UITableView {
             case upcoming
         }
         
+        var context: Context
         var subject: String
         var location: String
+        var teacher: String
+    }
+    
+    struct HomeworkCell: Cell {
+        var due_text: String
+        var activity: String
+        var subject: String
+    }
+    
+    struct CateringCell: Cell {
+        var transactions: Int
+        var balance: Double
     }
     
     struct Section {
@@ -36,6 +49,78 @@ class TodayView: UITableView {
         backgroundColor = .centralisViewColor
         tintColor = .centralisTintColor
         translatesAutoresizingMaskIntoConstraints = false
+        dataSource = self
+        delegate = self
+        register(TodayLessonCell.self, forCellReuseIdentifier: "Centralis.TodayLessonCell")
+    }
+    
+    public func reloadTodayData() {
+        if !Thread.isMainThread {
+            DispatchQueue.main.async { [self] in
+                reloadTodayData()
+            }
+            return
+        }
+        var sections = [Section]()
+        let shared = EduLinkAPI.shared
+        
+        if shared.status.current != nil || shared.status.upcoming != nil {
+            var cells = [LessonCell]()
+            if let current = shared.status.current,
+               let subject = current.teaching_group?.subject,
+               let location = current.room?.name,
+               let teacher = current.teacher?.name {
+                cells.append(LessonCell(context: .current, subject: subject, location: location, teacher: teacher))
+            }
+            if let upcoming = shared.status.upcoming,
+               let subject = upcoming.teaching_group?.subject,
+               let location = upcoming.room?.name,
+               let teacher = upcoming.teacher?.name {
+                cells.append(LessonCell(context: .upcoming, subject: subject, location: location, teacher: teacher))
+            }
+            if !cells.isEmpty {
+                sections.append(Section(footer: nil, header: "Lessons", cells: cells))
+            }
+        }
+        
+        if !shared.homework.current.isEmpty {
+            let cells: [HomeworkCell] = shared.homework.current.compactMap { homework in
+                guard let due_text = homework.due_text,
+                      let subject = homework.subject else { return nil }
+                return HomeworkCell(due_text: due_text, activity: homework.activity ?? "Non Given", subject: subject)
+            }
+            if !cells.isEmpty {
+                sections.append(Section(footer: nil, header: "Homework", cells: cells))
+            }
+        }
+        
+        if let catering = shared.catering {
+            let cell = CateringCell(transactions: catering.transactions.count, balance: catering.balance)
+            sections.append(Section(footer: nil, header: "Catering", cells: [cell]))
+        }
+        
+        self.sections = sections
+        reloadData()
+    }
+    
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        
+        EduLink_Status.status { [weak self] success, error in
+            if success {
+                self?.reloadTodayData()
+            }
+        }
+        EduLink_Homework.homework { [weak self] success, error in
+            if success {
+                self?.reloadTodayData()
+            }
+        }
+        EduLink_Catering.catering { [weak self] success, error in
+            if success {
+                self?.reloadTodayData()
+            }
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -44,11 +129,7 @@ class TodayView: UITableView {
     
 }
 
-extension TodayView: UITableViewDelegate {
-    
-}
-
-extension TodayView: UITableViewDataSource {
+extension TodayView: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         sections.count
@@ -59,7 +140,42 @@ extension TodayView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        let cell = sections[indexPath.section].cells[indexPath.row]
+        let todayCell = tableView.dequeueReusableCell(withIdentifier: "Centralis.TodayLessonCell", for: indexPath) as! TodayLessonCell
+        if let lessonCell = cell as? LessonCell {
+            todayCell.lesson = lessonCell
+            return todayCell
+        } else if let homeworkCell = cell as? HomeworkCell {
+            todayCell.homework = homeworkCell
+            return todayCell
+        } else if let cateringCell = cell as? CateringCell {
+            todayCell.catering = cateringCell
+            return todayCell
+        }
+        fatalError("Not yet implemented")
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        sections[section].header
+    }
+    
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        sections[section].footer
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let text = self.tableView(tableView, titleForHeaderInSection: section) else { return nil }
+        let headerView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 320, height: 36)))
+        let label = UILabel(frame: CGRect(x: 5, y: 0, width: 320, height: 36))
+        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        label.text = text
+        label.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
+        headerView.addSubview(label)
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        self.tableView(tableView, titleForHeaderInSection: section) == nil ? 0 : 36
+    }
 }
+

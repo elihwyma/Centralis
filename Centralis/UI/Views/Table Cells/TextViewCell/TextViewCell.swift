@@ -21,7 +21,7 @@ class TextViewCell: UITableViewCell {
     public func achievement(_ achievement: Achievement) {
         self.att = NSMutableAttributedString()
         self.att?.addPair(bold: "Date: ", normal: "\(achievement.date.shortDate)\n")
-        for employee in EduLinkAPI.shared.authorisedSchool.schoolInfo.employees where employee.id == achievement.employee_id {
+        if let employee = EduLinkAPI.shared.authorisedSchool.schoolInfo.employees[achievement.employee_id ?? "-1"] {
             self.att?.addPair(bold: "Teacher: ", normal: "\(employee.title) \(employee.forename) \(employee.surname)\n")
         }
         if let lesson = achievement.lesson_information {
@@ -41,7 +41,7 @@ class TextViewCell: UITableViewCell {
     public func behaviour(_ behaviour: Behaviour) {
         self.att = NSMutableAttributedString()
         self.att?.addPair(bold: "Date: ", normal: "\(behaviour.date.shortDate)\n")
-        for employee in EduLinkAPI.shared.authorisedSchool.schoolInfo.employees where employee.id == behaviour.recorded_id {
+        if let employee = EduLinkAPI.shared.authorisedSchool.schoolInfo.employees[behaviour.recorded_id ?? "-1"] {
             self.att?.addPair(bold: "Teacher: ", normal: "\(employee.title) \(employee.forename) \(employee.surname)\n")
         }
         if let lesson = behaviour.lesson_information {

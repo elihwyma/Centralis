@@ -21,7 +21,7 @@ public class EduLink_Homework {
             if !(result["success"] as? Bool ?? false) { return rootCompletion(false, (result["error"] as? String ?? "Unknown Error")) }
             if let homework = result["homework"] as? [String : Any] {
                 if let currentDict = homework["current"] as? [[String : Any]] {
-                    let current = currentDict.compactMap({ Homework($0) }).sorted(by: { $0.due_date ?? Date() > $1.due_date ?? Date() })
+                    let current = currentDict.compactMap({ Homework($0) }).sorted(by: { $0.due_date ?? Date() < $1.due_date ?? Date() })
                     EduLinkAPI.shared.homework.current = current
                 }
                 if let pastDict = homework["past"] as? [[String : Any]] {
