@@ -38,6 +38,7 @@
 		E10B372426D9551D00ACE72B /* MenuHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B372326D9551D00ACE72B /* MenuHeaderCell.swift */; };
 		E10B372726D9655D00ACE72B /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B372626D9655D00ACE72B /* TodayView.swift */; };
 		E10B372926D97DD100ACE72B /* TodayLessonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B372826D97DD100ACE72B /* TodayLessonCell.swift */; };
+		E10B372B26D9922500ACE72B /* EduLink_Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B372A26D9922500ACE72B /* EduLink_Message.swift */; };
 		E117206425FE6B2700339837 /* NextLessonWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117206325FE6B2700339837 /* NextLessonWidget.swift */; };
 		E117207025FE752300339837 /* CentralisWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117206F25FE752300339837 /* CentralisWidget.swift */; };
 		E117208425FE7C0F00339837 /* BridgingStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117207425FE7C0F00339837 /* BridgingStubs.swift */; };
@@ -160,6 +161,7 @@
 		E10B372326D9551D00ACE72B /* MenuHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderCell.swift; sourceTree = "<group>"; };
 		E10B372626D9655D00ACE72B /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		E10B372826D97DD100ACE72B /* TodayLessonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayLessonCell.swift; sourceTree = "<group>"; };
+		E10B372A26D9922500ACE72B /* EduLink_Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Message.swift; sourceTree = "<group>"; };
 		E117206325FE6B2700339837 /* NextLessonWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLessonWidget.swift; sourceTree = "<group>"; };
 		E117206F25FE752300339837 /* CentralisWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralisWidget.swift; sourceTree = "<group>"; };
 		E117207425FE7C0F00339837 /* BridgingStubs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgingStubs.swift; sourceTree = "<group>"; };
@@ -747,6 +749,7 @@
 				E190191B26557CFE0001C46A /* EduLink_ICalendar.swift */,
 				E190191C26557CFE0001C46A /* EduLink_Status.swift */,
 				E190191D26557CFE0001C46A /* EduLink_Register.swift */,
+				E10B372A26D9922500ACE72B /* EduLink_Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -938,6 +941,7 @@
 				E17EE63D2624DBA800B55095 /* UserDefaults+Extensions.swift in Sources */,
 				E190194D26557CFE0001C46A /* NSNotification+Extensions.swift in Sources */,
 				E190192B26557CFE0001C46A /* EduLink_Employee.swift in Sources */,
+				E10B372B26D9922500ACE72B /* EduLink_Message.swift in Sources */,
 				53874502257BD61800174D07 /* CarouselContainerController.swift in Sources */,
 				E19B2F5B258D71CE00930AE1 /* Double+Extensions.swift in Sources */,
 				E10A5B25259BE4F300FA8BD0 /* ErrorView.swift in Sources */,

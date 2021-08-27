@@ -41,6 +41,8 @@ public class EduLinkAPI {
     
     public var calendars = [iCal]()
     
+    public var messages = [Message]()
+    
     /// Will remove all contained data. This should be called when logging out
     public func clear() {
         self.authorisedUser = AuthorisedUser()
@@ -54,6 +56,7 @@ public class EduLinkAPI {
         self.documents = [Document]()
         self.attendance = Attendance()
         self.calendars = [iCal]()
+        self.messages = [Message]()
         self.personal = nil
     }
 }

@@ -70,7 +70,7 @@ class TodayLessonCell: UITableViewCell {
         NSLayoutConstraint.activate([
             lessonImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             lessonImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
-            lessonImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            lessonImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             
             descriptionLabel.topAnchor.constraint(equalTo: lessonImageView.topAnchor),
             descriptionLabel.leadingAnchor.constraint(equalTo: lessonImageView.trailingAnchor, constant: 5),
@@ -91,6 +91,9 @@ class TodayLessonCell: UITableViewCell {
     var lesson: TodayView.LessonCell? {
         didSet {
             guard let lesson = lesson else { return }
+            homework = nil
+            catering = nil
+            message = nil
             switch lesson.context {
             case .current: descriptionLabel.text = "Current Lesson"; lessonImageView.image = UIImage(systemName: "clock")
             case .upcoming: descriptionLabel.text = "Upcoming Lesson"; lessonImageView.image = UIImage(systemName: "clock.arrow.circlepath")
@@ -103,6 +106,9 @@ class TodayLessonCell: UITableViewCell {
     var homework: TodayView.HomeworkCell? {
         didSet {
             guard let homework = homework else { return }
+            catering = nil
+            lesson = nil
+            message = nil
             descriptionLabel.text = homework.due_text
             primaryLabel.text = homework.activity
             secondaryLabel.text = homework.subject
@@ -113,10 +119,29 @@ class TodayLessonCell: UITableViewCell {
     var catering: TodayView.CateringCell? {
         didSet {
             guard let catering = catering else { return }
+            homework = nil
+            lesson = nil
+            message = nil
             descriptionLabel.text = "Current Balance"
             primaryLabel.text = "£\(String(format: "%03.2f", catering.balance))"
             secondaryLabel.text = "\(catering.transactions) transactions"
             lessonImageView.image = UIImage(systemName: "sterlingsign.circle")
+        }
+    }
+    
+    var message: TodayView.MessageCell? {
+        didSet {
+            guard let message = message else { return }
+            homework = nil
+            lesson = nil
+            catering = nil
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH:mm E, d MMM y"
+            descriptionLabel.text = formatter.string(from: message.date)
+            primaryLabel.text = message.subject
+            secondaryLabel.text = message.sender_name
+            lessonImageView.image = UIImage(systemName: "envelope.circle")
         }
     }
     

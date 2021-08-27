@@ -34,6 +34,13 @@ class TodayView: UITableView {
         var balance: Double
     }
     
+    struct MessageCell: Cell {
+        var subject: String
+        var employee_id: String?
+        var sender_name: String
+        var date: Date
+    }
+    
     struct Section {
         var footer: String?
         var header: String?
@@ -99,6 +106,12 @@ class TodayView: UITableView {
             sections.append(Section(footer: nil, header: "Catering", cells: [cell]))
         }
         
+        if !shared.messages.isEmpty {
+            let messages = Array(shared.messages.prefix(5))
+            let cells: [MessageCell] = messages.compactMap { MessageCell(subject: $0.subject, employee_id: nil, sender_name: $0.sender.name, date: $0.date) }
+            sections.append(Section(footer: nil, header: "Messages", cells: cells))
+        }
+        
         self.sections = sections
         reloadData()
     }
@@ -119,6 +132,13 @@ class TodayView: UITableView {
         EduLink_Catering.catering { [weak self] success, error in
             if success {
                 self?.reloadTodayData()
+            }
+        }
+        EduLink_Messages.messages { [weak self] success, error in
+            if success {
+                self?.reloadTodayData()
+            } else {
+                NSLog("[Centralis] Error = \(error)")
             }
         }
     }
@@ -150,6 +170,9 @@ extension TodayView: UITableViewDataSource, UITableViewDelegate {
             return todayCell
         } else if let cateringCell = cell as? CateringCell {
             todayCell.catering = cateringCell
+            return todayCell
+        } else if let messageCell = cell as? MessageCell {
+            todayCell.message = messageCell
             return todayCell
         }
         fatalError("Not yet implemented")
