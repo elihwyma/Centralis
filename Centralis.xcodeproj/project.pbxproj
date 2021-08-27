@@ -23,7 +23,6 @@
 		53CA2DEF2576CC9E00E3A02B /* LoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53CA2DED2576CC9D00E3A02B /* LoginCell.xib */; };
 		53CA2DF32576D67A00E3A02B /* WorkingCover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53CA2DF22576D67900E3A02B /* WorkingCover.xib */; };
 		53CA2DF62576D69A00E3A02B /* WorkingCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2DF52576D69A00E3A02B /* WorkingCover.swift */; };
-		53CA2E012576DD2A00E3A02B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CA2E002576DD2A00E3A02B /* HomeViewController.swift */; };
 		53CB50722572D1780077DDAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50712572D1780077DDAE /* AppDelegate.swift */; };
 		53CB50792572D1780077DDAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53CB50772572D1780077DDAE /* Main.storyboard */; };
 		53CB507B2572D1880077DDAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53CB507A2572D1880077DDAE /* Assets.xcassets */; };
@@ -33,6 +32,11 @@
 		53CB50A12572F0B50077DDAE /* ResizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB50A02572F0B50077DDAE /* ResizedTableView.swift */; };
 		E10A5B25259BE4F300FA8BD0 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A5B23259BE4F300FA8BD0 /* ErrorView.swift */; };
 		E10A5B26259BE4F300FA8BD0 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */; };
+		E10B371E26D9498E00ACE72B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B371D26D9498E00ACE72B /* BaseViewController.swift */; };
+		E10B372026D94A3F00ACE72B /* MenuTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B371F26D94A3F00ACE72B /* MenuTableView.swift */; };
+		E10B372226D94C4B00ACE72B /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10B372126D94C4B00ACE72B /* View.xib */; };
+		E10B372426D9551D00ACE72B /* MenuHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B372326D9551D00ACE72B /* MenuHeaderCell.swift */; };
+		E10B372726D9655D00ACE72B /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B372626D9655D00ACE72B /* TodayView.swift */; };
 		E117206425FE6B2700339837 /* NextLessonWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117206325FE6B2700339837 /* NextLessonWidget.swift */; };
 		E117207025FE752300339837 /* CentralisWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117206F25FE752300339837 /* CentralisWidget.swift */; };
 		E117208425FE7C0F00339837 /* BridgingStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E117207425FE7C0F00339837 /* BridgingStubs.swift */; };
@@ -115,13 +119,9 @@
 		E19B2F5B258D71CE00930AE1 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19B2F5A258D71CE00930AE1 /* Double+Extensions.swift */; };
 		E1A8B61126558274009C43EA /* DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A8B61026558274009C43EA /* DateTime.swift */; };
 		E1A8B61226558274009C43EA /* DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A8B61026558274009C43EA /* DateTime.swift */; };
-		E1B77ADB25F1133D00CFF9DC /* ChildSelection.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1B77ADA25F1133D00CFF9DC /* ChildSelection.xib */; };
-		E1B77AE225F115E800CFF9DC /* ChildSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B77AE125F115E800CFF9DC /* ChildSelection.swift */; };
 		E1C8FD73258165BD0006F36F /* EmbeddedTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1C8FD72258165BD0006F36F /* EmbeddedTableViewController.xib */; };
 		E1C8FD76258166210006F36F /* EmbeddedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C8FD75258166210006F36F /* EmbeddedTableViewController.swift */; };
 		E1F9A49825850F6000CEA071 /* DocumentWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9A49725850F6000CEA071 /* DocumentWebViewController.swift */; };
-		E1FB73CD25A0E33E00BA4E77 /* HomeMenuLessonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB73CB25A0E33E00BA4E77 /* HomeMenuLessonCell.swift */; };
-		E1FB73CE25A0E33E00BA4E77 /* HomeMenuLessonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1FB73CC25A0E33E00BA4E77 /* HomeMenuLessonCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -142,7 +142,6 @@
 		53CA2DED2576CC9D00E3A02B /* LoginCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginCell.xib; sourceTree = "<group>"; };
 		53CA2DF22576D67900E3A02B /* WorkingCover.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkingCover.xib; sourceTree = "<group>"; };
 		53CA2DF52576D69A00E3A02B /* WorkingCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingCover.swift; sourceTree = "<group>"; };
-		53CA2E002576DD2A00E3A02B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		53CB506E2572D1780077DDAE /* Centralis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Centralis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53CB50712572D1780077DDAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		53CB50782572D1780077DDAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -154,6 +153,11 @@
 		53CB50A02572F0B50077DDAE /* ResizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizedTableView.swift; sourceTree = "<group>"; };
 		E10A5B23259BE4F300FA8BD0 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
+		E10B371D26D9498E00ACE72B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		E10B371F26D94A3F00ACE72B /* MenuTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableView.swift; sourceTree = "<group>"; };
+		E10B372126D94C4B00ACE72B /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
+		E10B372326D9551D00ACE72B /* MenuHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderCell.swift; sourceTree = "<group>"; };
+		E10B372626D9655D00ACE72B /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		E117206325FE6B2700339837 /* NextLessonWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLessonWidget.swift; sourceTree = "<group>"; };
 		E117206F25FE752300339837 /* CentralisWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralisWidget.swift; sourceTree = "<group>"; };
 		E117207425FE7C0F00339837 /* BridgingStubs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgingStubs.swift; sourceTree = "<group>"; };
@@ -220,13 +224,9 @@
 		E190192626557CFE0001C46A /* ColourConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColourConverter.swift; sourceTree = "<group>"; };
 		E19B2F5A258D71CE00930AE1 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		E1A8B61026558274009C43EA /* DateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTime.swift; sourceTree = "<group>"; };
-		E1B77ADA25F1133D00CFF9DC /* ChildSelection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChildSelection.xib; sourceTree = "<group>"; };
-		E1B77AE125F115E800CFF9DC /* ChildSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildSelection.swift; sourceTree = "<group>"; };
 		E1C8FD72258165BD0006F36F /* EmbeddedTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmbeddedTableViewController.xib; sourceTree = "<group>"; };
 		E1C8FD75258166210006F36F /* EmbeddedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedTableViewController.swift; sourceTree = "<group>"; };
 		E1F9A49725850F6000CEA071 /* DocumentWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentWebViewController.swift; sourceTree = "<group>"; };
-		E1FB73CB25A0E33E00BA4E77 /* HomeMenuLessonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuLessonCell.swift; sourceTree = "<group>"; };
-		E1FB73CC25A0E33E00BA4E77 /* HomeMenuLessonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeMenuLessonCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,18 +252,11 @@
 		53196929257BC83E0056BF51 /* LoginViewController */ = {
 			isa = PBXGroup;
 			children = (
+				E1768303259A7D530099BB92 /* NewUserControllers */,
 				53CB509F2572F07A0077DDAE /* ResizedTableView */,
 				53CB509C2572D92F0077DDAE /* LoginViewController.swift */,
 			);
 			path = LoginViewController;
-			sourceTree = "<group>";
-		};
-		5319692B257BC84A0056BF51 /* HomeViewController */ = {
-			isa = PBXGroup;
-			children = (
-				53CA2E002576DD2A00E3A02B /* HomeViewController.swift */,
-			);
-			path = HomeViewController;
 			sourceTree = "<group>";
 		};
 		5319692C257BC8560056BF51 /* TextViewController */ = {
@@ -306,7 +299,6 @@
 		53CA2DEA2576CC4300E3A02B /* Table Cells */ = {
 			isa = PBXGroup;
 			children = (
-				E1FB73CA25A0E30E00BA4E77 /* HomeMenuLessonCell */,
 				E14A7E52259FCEEA00EF9712 /* HomeMenuCell */,
 				E157605D258BF54C00DD496F /* AmyChartCell */,
 				5387450B257BDB5300174D07 /* HomeworkCell */,
@@ -398,16 +390,15 @@
 		53CB508E2572D6800077DDAE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E10B372526D9654200ACE72B /* TodayView */,
+				E10B371C26D9495C00ACE72B /* BaseScreen */,
 				E171DB542632B62700ED1439 /* Sub View Controllers */,
 				E171DB492631A66D00ED1439 /* CentralisNavigationController */,
 				E17EE62F2624D74500B55095 /* BaseViewControllers */,
 				E117209D25FE7E2D00339837 /* SettingsViewController */,
-				E1768303259A7D530099BB92 /* NewUserControllers */,
 				E1F9A49625850F3D00CEA071 /* DocumentWebViewController */,
-				E180E9C32580115100ABFE69 /* CarouselViewControllers */,
 				E180E9C22580104800ABFE69 /* CarouselContainer */,
 				5319692C257BC8560056BF51 /* TextViewController */,
-				5319692B257BC84A0056BF51 /* HomeViewController */,
 				53196929257BC83E0056BF51 /* LoginViewController */,
 			);
 			path = "View Controllers";
@@ -425,7 +416,6 @@
 		53CB50902572D69A0077DDAE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E1B77AD925F1132100CFF9DC /* ChildSelection */,
 				E10A5B22259BE4F200FA8BD0 /* ErrorView */,
 				E1576052258BB65D00DD496F /* AmyChart */,
 				53CA2DF12576D65E00E3A02B /* WorkingCover */,
@@ -462,6 +452,25 @@
 				E10A5B24259BE4F300FA8BD0 /* ErrorView.xib */,
 			);
 			path = ErrorView;
+			sourceTree = "<group>";
+		};
+		E10B371C26D9495C00ACE72B /* BaseScreen */ = {
+			isa = PBXGroup;
+			children = (
+				E10B371D26D9498E00ACE72B /* BaseViewController.swift */,
+				E10B371F26D94A3F00ACE72B /* MenuTableView.swift */,
+				E10B372126D94C4B00ACE72B /* View.xib */,
+				E10B372326D9551D00ACE72B /* MenuHeaderCell.swift */,
+			);
+			path = BaseScreen;
+			sourceTree = "<group>";
+		};
+		E10B372526D9654200ACE72B /* TodayView */ = {
+			isa = PBXGroup;
+			children = (
+				E10B372626D9655D00ACE72B /* TodayView.swift */,
+			);
+			path = TodayView;
 			sourceTree = "<group>";
 		};
 		E117207325FE7C0F00339837 /* libAmy */ = {
@@ -669,6 +678,7 @@
 		E180E9C22580104800ABFE69 /* CarouselContainer */ = {
 			isa = PBXGroup;
 			children = (
+				E180E9C32580115100ABFE69 /* CarouselViewControllers */,
 				53874501257BD61800174D07 /* CarouselContainerController.swift */,
 				5319692E257BC8A70056BF51 /* CarouselController.swift */,
 			);
@@ -762,15 +772,6 @@
 			path = ColourConverter;
 			sourceTree = "<group>";
 		};
-		E1B77AD925F1132100CFF9DC /* ChildSelection */ = {
-			isa = PBXGroup;
-			children = (
-				E1B77ADA25F1133D00CFF9DC /* ChildSelection.xib */,
-				E1B77AE125F115E800CFF9DC /* ChildSelection.swift */,
-			);
-			path = ChildSelection;
-			sourceTree = "<group>";
-		};
 		E1C8FD71258165790006F36F /* EmbeddedTableViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -786,15 +787,6 @@
 				E1F9A49725850F6000CEA071 /* DocumentWebViewController.swift */,
 			);
 			path = DocumentWebViewController;
-			sourceTree = "<group>";
-		};
-		E1FB73CA25A0E30E00BA4E77 /* HomeMenuLessonCell */ = {
-			isa = PBXGroup;
-			children = (
-				E1FB73CB25A0E33E00BA4E77 /* HomeMenuLessonCell.swift */,
-				E1FB73CC25A0E33E00BA4E77 /* HomeMenuLessonCell.xib */,
-			);
-			path = HomeMenuLessonCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -889,12 +881,11 @@
 				53874506257BD7AD00174D07 /* HomeworkTableViewController.xib in Resources */,
 				E1C8FD73258165BD0006F36F /* EmbeddedTableViewController.xib in Resources */,
 				53CB507B2572D1880077DDAE /* Assets.xcassets in Resources */,
-				E1FB73CE25A0E33E00BA4E77 /* HomeMenuLessonCell.xib in Resources */,
 				E1576058258BBD8E00DD496F /* ChartTableViewController.xib in Resources */,
 				53CB50792572D1780077DDAE /* Main.storyboard in Resources */,
 				5387450F257BDB7100174D07 /* HomeworkCell.xib in Resources */,
-				E1B77ADB25F1133D00CFF9DC /* ChildSelection.xib in Resources */,
 				53243437257828A300875BAD /* TextViewCell.xib in Resources */,
+				E10B372226D94C4B00ACE72B /* View.xib in Resources */,
 				53CA2DF32576D67A00E3A02B /* WorkingCover.xib in Resources */,
 				E11720C225FE9F5300339837 /* NotificationSwitchCell.xib in Resources */,
 				E117208525FE7C0F00339837 /* ButtonCell.xib in Resources */,
@@ -920,9 +911,9 @@
 				E14A7E55259FCF2400EF9712 /* HomeMenuCell.swift in Sources */,
 				E190194926557CFE0001C46A /* StructModels.swift in Sources */,
 				53243436257828A300875BAD /* TextViewCell.swift in Sources */,
+				E10B372726D9655D00ACE72B /* TodayView.swift in Sources */,
 				E1768308259A8C7A0099BB92 /* NewUserUPController.swift in Sources */,
 				E190193526557CFE0001C46A /* EduLink_Achievement.swift in Sources */,
-				E1B77AE225F115E800CFF9DC /* ChildSelection.swift in Sources */,
 				E190194726557CFE0001C46A /* EduLinkAPI.swift in Sources */,
 				E190194126557CFE0001C46A /* EduLink_Status.swift in Sources */,
 				E190194B26557CFE0001C46A /* NetworkManager.swift in Sources */,
@@ -937,7 +928,6 @@
 				E190193926557CFE0001C46A /* EduLink_Links.swift in Sources */,
 				E18C7C592624E18F008C02F0 /* TintColorPicker.swift in Sources */,
 				E190193326557CFE0001C46A /* EduLink_Attendance.swift in Sources */,
-				53CA2E012576DD2A00E3A02B /* HomeViewController.swift in Sources */,
 				E1576060258BF56B00DD496F /* AmyChartCell.swift in Sources */,
 				E1768305259A7EAE0099BB92 /* NewUserSchoolController.swift in Sources */,
 				E190193126557CFE0001C46A /* EduLink_Personal.swift in Sources */,
@@ -951,7 +941,9 @@
 				E17EE6372624DB8E00B55095 /* ThemeManager.swift in Sources */,
 				E11720C325FE9F5300339837 /* NotificationSwitchCell.swift in Sources */,
 				5319692F257BC8A70056BF51 /* CarouselController.swift in Sources */,
+				E10B371E26D9498E00ACE72B /* BaseViewController.swift in Sources */,
 				E17EE63F2624DBA800B55095 /* UserDefaults+Optional.swift in Sources */,
+				E10B372026D94A3F00ACE72B /* MenuTableView.swift in Sources */,
 				5387450E257BDB7100174D07 /* HomeworkCell.swift in Sources */,
 				E171DB572632B65300ED1439 /* AccountViewController.swift in Sources */,
 				E190192F26557CFE0001C46A /* EduLink_Timetable.swift in Sources */,
@@ -967,6 +959,7 @@
 				53CA2DF62576D69A00E3A02B /* WorkingCover.swift in Sources */,
 				E17EE6312624D76500B55095 /* BaseTableViewController.swift in Sources */,
 				E146CF052657DD43009CC0A4 /* iCalendarViewController.swift in Sources */,
+				E10B372426D9551D00ACE72B /* MenuHeaderCell.swift in Sources */,
 				E190194326557CFE0001C46A /* EduLink_Register.swift in Sources */,
 				53874512257BDCD400174D07 /* NSMutableAttributedString+Extension.swift in Sources */,
 				E117209F25FE7E4700339837 /* SettingsViewController.swift in Sources */,
@@ -978,7 +971,6 @@
 				53874509257BD7D600174D07 /* HomeworkTableViewController.swift in Sources */,
 				E117208625FE7C0F00339837 /* ButtonCell.swift in Sources */,
 				531870D1257968BD000191FD /* TextViewController.swift in Sources */,
-				E1FB73CD25A0E33E00BA4E77 /* HomeMenuLessonCell.swift in Sources */,
 				E117208925FE7C0F00339837 /* SettingsSwitchCell.swift in Sources */,
 				E190192D26557CFE0001C46A /* EduLink_Documents.swift in Sources */,
 			);

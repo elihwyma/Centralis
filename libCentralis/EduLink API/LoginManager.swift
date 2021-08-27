@@ -42,7 +42,7 @@ public class LoginManager {
     public func schoolProvisioning(schoolCode: String!, _ rootCompletion: @escaping completionHandler) {
         self.schoolCode = schoolCode
         if self.schoolCode == "DemoSchool" {
-            EduLinkAPI.shared.authorisedSchool.server = "https://demo.centralis.app/api/uwu"
+            EduLinkAPI.shared.authorisedSchool.server = "https://api.anamy.gay/static/Edulink"
             EduLinkAPI.shared.authorisedSchool.school_id = "1"
             self.schoolInfoz({ (success, error) -> Void in
                 return rootCompletion(success, error)
@@ -119,7 +119,6 @@ public class LoginManager {
             EduLinkAPI.shared.authorisedUser.authToken =  result["authtoken"] as? String
             guard let user = result["user"] as? [String : Any] else { return rootCompletion(false, "Unknown Error Ocurred") }
             EduLinkAPI.shared.authorisedUser.id = "\(user["id"] ?? "Not Given")"
-            EduLinkAPI.shared.authorisedUser.parent_id = EduLinkAPI.shared.authorisedUser.id
             EduLinkAPI.shared.authorisedUser.gender = user["gender"] as? String ?? "Not Given"
             EduLinkAPI.shared.authorisedUser.forename = user["forename"] as? String ?? "Not Given"
             EduLinkAPI.shared.authorisedUser.surname = user["surname"] as? String ?? "Not Given"
@@ -138,30 +137,8 @@ public class LoginManager {
                     EduLinkAPI.shared.authorisedUser.avatar = decodedData
                 }
             }
-            if let personal_menu = result["personal_menu"] as? [[String : String]] { EduLinkAPI.shared.authorisedUser.personalMenus = SimpleStore.generate(personal_menu) }
-            if let learner_menu = result["learner_menu"] as? [[String : String]] { EduLinkAPI.shared.authorisedUser.personalMenus += SimpleStore.generate(learner_menu) }
-            EduLinkAPI.shared.authorisedUser.children.removeAll()
-            if let children = result["children"] as? [[String : Any]] {
-                var learners = [String]()
-                for child in children {
-                    var c = Child()
-                    c.id = "\(child["id"] ?? "Not Given")"
-                    learners.append(c.id)
-                    c.gender = child["gender"] as? String ?? "Not Given"
-                    c.forename = child["forename"] as? String ?? "Not Given"
-                    c.surname = child["surname"] as? String ?? "Not Given"
-                    c.community_group_id = "\(child["community_group_id"] ?? "Not Given")"
-                    c.form_group_id = "\(child["form_group_id"] ?? "Not Given")"
-                    c.year_group_id = "\(child["year_group_id"] ?? "Not Given")"
-                    EduLinkAPI.shared.authorisedUser.children.append(c)
-                }
-                EduLink_Photo.learner_photos(learners: learners, {(success, error) -> Void in })
-                if EduLinkAPI.shared.authorisedUser.children.isEmpty {
-                    EduLinkAPI.shared.authorisedUser.type = .learner
-                } else {
-                    self.changeChild(0)
-                }
-            }
+            if let personal_menu = result["personal_menu"] as? [[String: Any]] { EduLinkAPI.shared.authorisedUser.personalMenus = SimpleStore.generate(personal_menu) }
+            if let learner_menu = result["learner_menu"] as? [[String: Any]] { EduLinkAPI.shared.authorisedUser.personalMenus += SimpleStore.generate(learner_menu) }
             self.schoolScraping(result)
             EduLink_Register.registerCodes({ (success, error) -> Void in
                 rootCompletion(success, error)
@@ -183,6 +160,10 @@ public class LoginManager {
         LoginManager.shared.loginz(username: savedLogin.username, password: pstr, { (success, error) -> Void in
             return zCompletion(success, error)
         })
+    }
+    
+    public var currentLogin: SavedLogin {
+        SavedLogin(username: self.username, schoolServer: EduLinkAPI.shared.authorisedSchool.server, image: EduLinkAPI.shared.authorisedSchool.schoolLogo, schoolName: EduLinkAPI.shared.authorisedUser.school, forename: EduLinkAPI.shared.authorisedUser.forename, surname: EduLinkAPI.shared.authorisedUser.surname, schoolID: EduLinkAPI.shared.authorisedSchool.school_id, schoolCode: self.schoolCode)
     }
     
     /// Save the login of the user currently signed in. Logins are saved to the UserDefault `LoginCache`
@@ -232,13 +213,7 @@ public class LoginManager {
         if let establishment = dict["establishment"] as? [String : Any] {
             //MARK: - Rooms
             if let rooms = establishment["rooms"] as? [[String : String]] {
-                for room in rooms {
-                    var roomMemory = Room()
-                    roomMemory.id = "\(room["id"] ?? "Not Given")"
-                    roomMemory.code = room["code"] ?? "Not Given"
-                    roomMemory.name = room["name"] ?? "Not Given"
-                    EduLinkAPI.shared.authorisedSchool.schoolInfo.rooms.append(roomMemory)
-                }
+                EduLinkAPI.shared.authorisedSchool.schoolInfo.rooms = rooms.compactMap { Room($0) }
             }
             
             //MARK: - Year Groups
@@ -263,107 +238,45 @@ public class LoginManager {
             
             //MARK: - Form Groups
             if let form_groups = establishment["form_groups"] as? [[String : Any]] {
-                for formGroup in form_groups {
-                    var fg = FormGroup()
-                    fg.id = "\(formGroup["id"] ?? "Not Given")"
-                    fg.employee_id = Int((formGroup["employee_id"] as? String ?? ""))
-                    fg.room_id = Int((formGroup["room_id"] as? String)!)
-                    fg.name = formGroup["name"] as? String
-                    let ygid = formGroup["year_group_ids"] as? [String]
-                    for yg in ygid! {
-                        fg.year_group_ids.append(Int(yg)!)
-                    }
-                    EduLinkAPI.shared.authorisedSchool.schoolInfo.formGroups.append(fg)
-                }
+                EduLinkAPI.shared.authorisedSchool.schoolInfo.formGroups = form_groups.compactMap { FormGroup($0) }
             }
             
             //MARK: - Teaching Groups
             if let teaching_groups = establishment["teaching_groups"] as? [[String : Any]] {
-                for teachingGroup in teaching_groups {
-                    var tg = TeachingGroup()
-                    tg.id = "\(teachingGroup["id"] ?? "Not Given")"
-                    tg.employee_id = Int((teachingGroup["employee_id"] as? String ?? ""))
-                    tg.name = teachingGroup["name"] as? String
-                    let tgid = teachingGroup["year_group_ids"] as? [String]
-                    for tgida in tgid! {
-                        tg.year_group_ids.append(Int(tgida)!)
-                    }
-                    EduLinkAPI.shared.authorisedSchool.schoolInfo.teachingGroups.append(tg)
-                }
+                EduLinkAPI.shared.authorisedSchool.schoolInfo.teachingGroups = teaching_groups.compactMap { TeachingGroup($0) }
             }
             
             //MARK: - Subjects
             if let subjects = establishment["subjects"] as? [[String : Any]] {
-                for subject in subjects {
-                    var s = Subject()
-                    s.id = "\(subject["id"] ?? "Not Given")"
-                    s.name = subject["name"] as? String
-                    s.active = subject["active"] as? Bool
-                    EduLinkAPI.shared.authorisedSchool.schoolInfo.subjects.append(s)
-                }
+                EduLinkAPI.shared.authorisedSchool.schoolInfo.subjects = subjects.compactMap { Subject($0) }
             }
             
             //MARK: - Report Card Target Types
             if let report_card = establishment["report_card_target_types"] as? [[String : Any]] {
-                for reportCard in report_card {
-                    var rc = ReportCardTargetType()
-                    rc.id = "\(reportCard["id"] ?? "Not Given")"
-                    rc.code = reportCard["name"] as? String
-                    rc.description = reportCard["description"] as? String
-                    EduLinkAPI.shared.authorisedSchool.schoolInfo.reportCardTargetTypes.append(rc)
-                }
+                EduLinkAPI.shared.authorisedSchool.schoolInfo.reportCardTargetTypes = report_card.compactMap { ReportCardTargetType($0) }
             }
         }
-    }
-    
-    public func changeChild(_ index: Int) {
-        if let i = EduLinkAPI.shared.authorisedUser.selectedChild {
-            var currentChild = EduLinkAPI.shared.authorisedUser.children[i]
-            currentChild.documents = EduLinkAPI.shared.documents
-            currentChild.weeks = EduLinkAPI.shared.weeks
-            currentChild.personal = EduLinkAPI.shared.personal
-            currentChild.attendance = EduLinkAPI.shared.attendance
-            currentChild.achievementBehaviourLookups = EduLinkAPI.shared.achievementBehaviourLookups
-            currentChild.homework = EduLinkAPI.shared.homework
-            currentChild.catering = EduLinkAPI.shared.catering
-            currentChild.calendars = EduLinkAPI.shared.calendars
-            
-            EduLinkAPI.shared.authorisedUser.children[EduLinkAPI.shared.authorisedUser.selectedChild] = currentChild
-        }
-        
-        var moving = EduLinkAPI.shared.authorisedUser.children[index]
-        EduLinkAPI.shared.documents = moving.documents; moving.documents.removeAll()
-        EduLinkAPI.shared.weeks = moving.weeks; moving.weeks.removeAll()
-        EduLinkAPI.shared.calendars = moving.calendars; moving.calendars.removeAll()
-        EduLinkAPI.shared.personal = moving.personal; moving.personal = nil
-        EduLinkAPI.shared.attendance = moving.attendance; moving.attendance = Attendance()
-        EduLinkAPI.shared.achievementBehaviourLookups = moving.achievementBehaviourLookups; moving.achievementBehaviourLookups = AchievementBehaviourLookup()
-        EduLinkAPI.shared.homework = moving.homework; moving.homework = Homeworks()
-        EduLinkAPI.shared.catering = moving.catering; moving.catering = Catering()
-        EduLinkAPI.shared.authorisedUser.selectedChild = index
-        EduLinkAPI.shared.authorisedUser.id = moving.id
-        EduLinkAPI.shared.authorisedUser.children[index] = moving
     }
 }
 
 /// A container for a saved login. Is saved to the UserDefault `LoginCache`
 public struct SavedLogin: Codable {
     /// The saved username
-    public var username: String!
+    public var username: String
     /// The saved school code
-    public var schoolCode: String!
+    public var schoolCode: String
     /// The saved school server URL
-    public var schoolServer: String!
+    public var schoolServer: String
     /// The saved school name
-    public var schoolName: String!
+    public var schoolName: String
     /// The saved school ID
-    public var schoolID: String!
+    public var schoolID: String
     /// The saved user profile picture
-    public var image: Data!
+    public var image: Data?
     /// The saved user forename
-    public var forename: String!
+    public var forename: String
     /// The saved user surname
-    public var surname: String!
+    public var surname: String
     
     /// The method for creating a SavedLogin
     /// - Parameters:
@@ -375,7 +288,7 @@ public struct SavedLogin: Codable {
     ///   - surname: The user surname to be saved
     ///   - schoolID: The school ID to be saved
     ///   - schoolCode: The school code to be saved
-    init(username: String!, schoolServer: String!, image: Data!, schoolName: String!, forename: String!, surname: String!, schoolID: String!, schoolCode: String!) {
+    init(username: String, schoolServer: String, image: Data?, schoolName: String, forename: String, surname: String, schoolID: String, schoolCode: String) {
         self.username = username
         self.schoolServer = schoolServer
         self.image = image
@@ -419,31 +332,6 @@ public struct AuthorisedUser {
     public var type: UserType!
     /// The menus that the user has access to, usually shown on the main page of the app
     public var personalMenus = [SimpleStore]()
-    
-    /// Parent ID
-    public var parent_id: String!
-    public var children = [Child]()
-    public var selectedChild: Int!
-}
-
-public struct Child {
-    public var id: String!
-    public var gender: String!
-    public var forename: String!
-    public var surname: String!
-    public var community_group_id: String!
-    public var year_group_id: String!
-    public var form_group_id: String!
-    public var avatar: Data!
-    
-    internal var documents = [Document]()
-    internal var weeks = [Week]()
-    internal var personal: Personal?
-    internal var attendance = Attendance()
-    internal var achievementBehaviourLookups = AchievementBehaviourLookup()
-    internal var homework = Homeworks()
-    internal var catering = Catering()
-    internal var calendars = [iCal]()
 }
 
 /// Container for the school of the currently logged in user
@@ -453,65 +341,9 @@ public struct AuthorisedSchool {
     /// The school's ID
     public var school_id: String!
     /// The logo for the school
-    public var schoolLogo: Data!
+    public var schoolLogo: Data?
     /// Container for SchoolInfo, for more documentation see `SchoolInfo`
     public var schoolInfo = SchoolInfo()
-}
-
-/// A container for classrooms
-public struct Room {
-    /// The ID of the room
-    public var id: String!
-    /// The name of the room
-    public var name: String!
-    /// The shortened room code
-    public var code: String!
-}
-
-/// A container for form groups
-public struct FormGroup {
-    /// The ID of the group
-    public var id: String!
-    /// The name of the group
-    public var name: String!
-    /// The ID of the year group it belongs to
-    public var year_group_ids = [Int]()
-    /// The ID of the form tutor, for more documentation see `Employee`
-    public var employee_id: Int!
-    /// The ID of the form room, for more documentation see `Room`
-    public var room_id: Int!
-}
-
-/// A container for teaching group, or class
-public struct TeachingGroup {
-    /// The ID of the group
-    public var id: String!
-    /// The name of the group
-    public var name: String!
-    /// The ID of the year group it belongs to
-    public var year_group_ids = [Int]()
-    /// The ID of the teacher, for more documentation see `Employee`
-    public var employee_id: Int!
-}
-
-/// A container for subjects offered at the school
-public struct Subject {
-    /// The ID of the subject
-    public var id: String!
-    /// The name of the subject
-    public var name: String!
-    /// If the subject is actively being offered at the school
-    public var active: Bool!
-}
-
-/// Container for Report Card Target Type
-public struct ReportCardTargetType {
-    /// The ID of the report card
-    public var id: String!
-    /// The code belonging to the card
-    public var code: String!
-    /// The description of the report card
-    public var description: String!
 }
 
 /// A container for info about the logged in school. All info here is stored after a succesful login.

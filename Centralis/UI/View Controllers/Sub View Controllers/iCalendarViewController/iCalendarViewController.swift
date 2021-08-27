@@ -49,7 +49,7 @@ class iCalendarViewController: BaseTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.iCalendarCell")
+        let cell = tableView.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.iCalendarCell")
         let calendar = EduLinkAPI.shared.calendars[indexPath.row]
         cell.textLabel?.text = calendar.description
         cell.backgroundColor = .centralisBackgroundColor

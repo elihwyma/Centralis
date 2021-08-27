@@ -84,7 +84,7 @@ class AccountViewController: BaseTableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.reusableCell(withStyle: .value1, reuseIdentifier: "Centralis.AccountCell")
+        let cell = tableView.reusableCell(withStyle: .value1, reuseIdentifier: "Centralis.AccountCell")
         cell.backgroundColor = .centralisBackgroundColor
         cell.textLabel?.textColor = .centralisTintColor
         cell.detailTextLabel?.textColor = .centralisTintColor

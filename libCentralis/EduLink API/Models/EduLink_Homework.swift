@@ -22,19 +22,11 @@ public class EduLink_Homework {
             if let homework = result["homework"] as? [String : Any] {
                 if let currentDict = homework["current"] as? [[String : Any]] {
                     let current = currentDict.compactMap({ Homework($0) }).sorted(by: { $0.due_date ?? Date() > $1.due_date ?? Date() })
-                    if EduLinkAPI.shared.authorisedUser.id == learnerID { EduLinkAPI.shared.homework.current = current } else {
-                        if let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == learnerID}) {
-                            EduLinkAPI.shared.authorisedUser.children[index].homework.current = current
-                        }
-                    }
+                    EduLinkAPI.shared.homework.current = current
                 }
                 if let pastDict = homework["past"] as? [[String : Any]] {
                     let past = pastDict.compactMap({ Homework($0) }).sorted(by: { $0.due_date ?? Date() > $1.due_date ?? Date() })
-                    if EduLinkAPI.shared.authorisedUser.id == learnerID { EduLinkAPI.shared.homework.past = past } else {
-                        if let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == learnerID}) {
-                            EduLinkAPI.shared.authorisedUser.children[index].homework.past = past
-                        }
-                    }
+                    EduLinkAPI.shared.homework.past = past
                 }
             }
             rootCompletion(true, nil)
@@ -59,18 +51,9 @@ public class EduLink_Homework {
             if let ab = result["homework"] as? [String : Any] {
                 var hw = homework
                 hw?.description = ab["description"] as? String ?? "Not Given"
-                if EduLinkAPI.shared.authorisedUser.id == learnerID {
-                    switch context {
-                    case .current: EduLinkAPI.shared.homework.current[index] = hw!
-                    case .past: EduLinkAPI.shared.homework.past[index] = hw!
-                    }
-                } else {
-                    if let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == learnerID}) {
-                        switch context {
-                        case .current: EduLinkAPI.shared.authorisedUser.children[index].homework.current[index] = hw!
-                        case .past: EduLinkAPI.shared.authorisedUser.children[index].homework.past[index] = hw!
-                        }
-                    }
+                switch context {
+                case .current: EduLinkAPI.shared.homework.current[index] = hw!
+                case .past: EduLinkAPI.shared.homework.past[index] = hw!
                 }
             }
             rootCompletion(true, nil)
@@ -99,18 +82,9 @@ public class EduLink_Homework {
             if !success { return rootCompletion(false, "Network Error") }
             guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
             if !(result["success"] as? Bool ?? false) { return rootCompletion(false, (result["error"] as? String ?? "Unknown Error")) }
-            if EduLinkAPI.shared.authorisedUser.id == learnerID {
-                switch context {
-                case .current: EduLinkAPI.shared.homework.current[index].completed = completed
-                case .past: EduLinkAPI.shared.homework.past[index].completed = completed
-                }
-            } else {
-                if let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == learnerID}) {
-                    switch context {
-                    case .current: EduLinkAPI.shared.authorisedUser.children[index].homework.current[index].completed = completed
-                    case .past: EduLinkAPI.shared.authorisedUser.children[index].homework.past[index].completed = completed
-                    }
-                }
+            switch context {
+            case .current: EduLinkAPI.shared.homework.current[index].completed = completed
+            case .past: EduLinkAPI.shared.homework.past[index].completed = completed
             }
             rootCompletion(true, nil)
         })

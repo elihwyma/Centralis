@@ -22,11 +22,7 @@ public class EduLink_Timetable {
             if !(result["success"] as? Bool ?? false) { return rootCompletion(false, (result["error"] as? String ?? "Unknown Error")) }
             guard let weeks = result["weeks"] as? [[String : Any]] else { return rootCompletion(false, "Error parsing timetable response") }
             let weekCache = weeks.map({ Week($0) })
-            if EduLinkAPI.shared.authorisedUser.id == learnerID { EduLinkAPI.shared.weeks = weekCache } else {
-                if let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == learnerID}) {
-                    EduLinkAPI.shared.authorisedUser.children[index].weeks = weekCache
-                }
-            }
+            EduLinkAPI.shared.weeks = weekCache
             rootCompletion(true, nil)
         })
     }

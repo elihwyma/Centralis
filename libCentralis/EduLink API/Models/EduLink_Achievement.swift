@@ -10,17 +10,12 @@ import Foundation
 /// A model for working with Achievements and Behaviours
 public class EduLink_Achievement {
     class private func achievementBehaviourLookups(_ rootCompletion: @escaping completionHandler) {
-        let learnerID = EduLinkAPI.shared.authorisedUser.id
         NetworkManager.requestWithDict(url: nil, requestMethod: "EduLink.AchievementBehaviourLookups", completion: { (success, dict) -> Void in
             if !success { return rootCompletion(false, "Network Error") }
             guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
             if !(result["success"] as? Bool ?? false) { return rootCompletion(false, (result["error"] as? String ?? "Unknown Error")) }
             var achievementBehaviourLookups = AchievementBehaviourLookup()
-            if EduLinkAPI.shared.authorisedUser.id == learnerID { achievementBehaviourLookups = EduLinkAPI.shared.achievementBehaviourLookups } else {
-                if let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == learnerID}) {
-                    achievementBehaviourLookups = EduLinkAPI.shared.authorisedUser.children[index].achievementBehaviourLookups
-                }
-            }
+            achievementBehaviourLookups = EduLinkAPI.shared.achievementBehaviourLookups
             if let achievement_types = result["achievement_types"] as? [[String : Any]] {
                 for achievement_typeDict in achievement_types {
                     if let achievement_type = AchievementType(achievement_typeDict) {
@@ -56,11 +51,7 @@ public class EduLink_Achievement {
             if let behaviour_locations = result["behaviour_locations"] as? [[String : Any]] { achievementBehaviourLookups.behaviour_locations = SimpleStore.generate(behaviour_locations) }
             if let behaviour_statuses = result["behaviour_statuses"] as? [[String : Any]] { achievementBehaviourLookups.behaviour_statuses = SimpleStore.generate(behaviour_statuses) }
             if let behaviour_times = result["behaviour_times"] as? [[String : Any]] { achievementBehaviourLookups.behaviour_times = SimpleStore.generate(behaviour_times) }
-            if EduLinkAPI.shared.authorisedUser.id == learnerID { EduLinkAPI.shared.achievementBehaviourLookups = achievementBehaviourLookups } else {
-                if let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == learnerID}) {
-                    EduLinkAPI.shared.authorisedUser.children[index].achievementBehaviourLookups = achievementBehaviourLookups
-                }
-            }
+            EduLinkAPI.shared.achievementBehaviourLookups = achievementBehaviourLookups
             rootCompletion(true, nil)
         })
     }
@@ -86,15 +77,9 @@ public class EduLink_Achievement {
                     }
                 }
             }
-            if EduLinkAPI.shared.authorisedUser.id == learnerID {
-                EduLinkAPI.shared.achievementBehaviourLookups.achievements = achievementsCache
-                if EduLinkAPI.shared.achievementBehaviourLookups.achievement_types.isEmpty { return self.achievementBehaviourLookups({ (success, error) -> Void in zCompletion(success, error)}) } else { zCompletion(true, nil)}
-            } else {
-                if let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == learnerID}) {
-                    EduLinkAPI.shared.authorisedUser.children[index].achievementBehaviourLookups.achievements = achievementsCache
-                    if EduLinkAPI.shared.authorisedUser.children[index].achievementBehaviourLookups.achievement_types.isEmpty { return self.achievementBehaviourLookups({ (success, error) -> Void in zCompletion(success, error)}) } else { zCompletion(true, nil)}
-                }
-            }
+            
+            EduLinkAPI.shared.achievementBehaviourLookups.achievements = achievementsCache
+            if EduLinkAPI.shared.achievementBehaviourLookups.achievement_types.isEmpty { return self.achievementBehaviourLookups(zCompletion) } else { zCompletion(true, nil)}
         })
     }
     
@@ -111,12 +96,7 @@ public class EduLink_Achievement {
             if let employees = result["employees"] as? [[String : Any]] {
                 EduLink_Employee.handle(employees)
             }
-            var achievementBehaviourLookups = AchievementBehaviourLookup()
-            if EduLinkAPI.shared.authorisedUser.id == learnerID { achievementBehaviourLookups = EduLinkAPI.shared.achievementBehaviourLookups } else {
-                if let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == learnerID}) {
-                    achievementBehaviourLookups = EduLinkAPI.shared.authorisedUser.children[index].achievementBehaviourLookups
-                }
-            }
+            var achievementBehaviourLookups = EduLinkAPI.shared.achievementBehaviourLookups
             var behaviourCache = [Behaviour]()
             if let behaviours = result["behaviour"] as? [[String : Any]] {
                 for behaviourDict in behaviours {
@@ -145,15 +125,8 @@ public class EduLink_Achievement {
                 }
             }
             achievementBehaviourLookups.detentions = detentionCache
-            if EduLinkAPI.shared.authorisedUser.id == learnerID {
-                EduLinkAPI.shared.achievementBehaviourLookups = achievementBehaviourLookups
-                if EduLinkAPI.shared.achievementBehaviourLookups.achievement_types.isEmpty { return self.achievementBehaviourLookups({ (success, error) -> Void in zCompletion(success, error)}) } else { zCompletion(true, nil)}
-            } else {
-                if let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == learnerID}) {
-                    EduLinkAPI.shared.authorisedUser.children[index].achievementBehaviourLookups = achievementBehaviourLookups
-                    if EduLinkAPI.shared.authorisedUser.children[index].achievementBehaviourLookups.achievement_types.isEmpty { return self.achievementBehaviourLookups({ (success, error) -> Void in zCompletion(success, error)}) } else { zCompletion(true, nil)}
-                }
-            }
+            EduLinkAPI.shared.achievementBehaviourLookups = achievementBehaviourLookups
+            if EduLinkAPI.shared.achievementBehaviourLookups.achievement_types.isEmpty { return self.achievementBehaviourLookups(zCompletion) } else { zCompletion(true, nil)}
         })
     }
 }

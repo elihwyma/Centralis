@@ -28,11 +28,6 @@ public class EduLink_Catering {
                     }
                 }
             }
-            if EduLinkAPI.shared.authorisedUser.id == learnerID { EduLinkAPI.shared.catering = catering } else {
-                if let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == learnerID}) {
-                    EduLinkAPI.shared.authorisedUser.children[index].catering = catering
-                }
-            }
             EduLinkAPI.shared.catering = catering
             return rootCompletion(true, nil)
         })

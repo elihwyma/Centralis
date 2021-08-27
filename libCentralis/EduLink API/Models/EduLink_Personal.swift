@@ -21,11 +21,7 @@ public class EduLink_Personal {
             guard result["success"] as? Bool ?? false,
                let personalDict = result["personal"] as? [String: Any] else { return rootCompletion(false, (result["error"] as? String ?? "Unknown Error")) }
             let personalCache = Personal(personalDict)
-            if EduLinkAPI.shared.authorisedUser.id == learnerID { EduLinkAPI.shared.personal = personalCache } else {
-                if let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == learnerID}) {
-                    EduLinkAPI.shared.authorisedUser.children[index].personal = personalCache
-                }
-            }
+            EduLinkAPI.shared.personal = personalCache
             rootCompletion(true, nil)
         })
     }

@@ -21,8 +21,7 @@ class EduLink_Photo {
                 let imageData = photo["photo"] as? String ?? ""
                 guard let id = photo["id"] as? String else { continue }
                 if let decodedData = Data(base64Encoded: imageData, options: .ignoreUnknownCharacters) {
-                    guard let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == id}) else { continue }
-                    EduLinkAPI.shared.authorisedUser.children[index].avatar = decodedData
+                    
                 }
             }
             NotificationCenter.default.post(name: .LearnerImage, object: nil)

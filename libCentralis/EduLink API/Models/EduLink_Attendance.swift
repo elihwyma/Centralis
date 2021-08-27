@@ -44,11 +44,7 @@ public class EduLink_Attendance {
             }
             attendanceCache.lessons = attendanceCache.lessons.sorted(by: { $0.subject < $1.subject })
             attendanceCache.statutory = attendanceCache.statutory.sorted(by: { $0.month > $1.month })
-            if EduLinkAPI.shared.authorisedUser.id == learnerID { EduLinkAPI.shared.attendance = attendanceCache } else {
-                if let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == learnerID}) {
-                    EduLinkAPI.shared.authorisedUser.children[index].attendance = attendanceCache
-                }
-            }
+            EduLinkAPI.shared.attendance = attendanceCache
             rootCompletion(true, nil)
         })
     }

@@ -84,7 +84,7 @@ class SettingsViewController: BaseTableViewController {
             case 0:
                 return TintColorPicker()
             case 1:
-                let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "DefaultCell")
+                let cell = tableView.reusableCell(withStyle: .default, reuseIdentifier: "DefaultCell")
                 cell.textLabel?.textColor = .centralisTintColor
                 cell.backgroundColor = .centralisBackgroundColor
                 cell.textLabel?.text = "Reset Tint Color"
@@ -92,7 +92,7 @@ class SettingsViewController: BaseTableViewController {
             default: fatalError("Trying to present \(indexPath.section) \(indexPath.row)")
             }
         case 2:
-            let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "DefaultCell")
+            let cell = tableView.reusableCell(withStyle: .default, reuseIdentifier: "DefaultCell")
             switch indexPath.row {
             case 0:
                 cell.textLabel?.text = "Logout"

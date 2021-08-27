@@ -22,7 +22,7 @@ class WorkingCover: UIView {
     }
     
     public func startWorking(_ sender: UIViewController) {
-        self.frame = sender.view.frame
+        self.frame = UIScreen.main.bounds
         self.alpha = 0
         sender.view.addSubview(self)
         UIView.animate(withDuration: 0.5,

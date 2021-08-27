@@ -27,16 +27,22 @@ internal class NetworkManager {
     }
     
     class internal func requestWithDict(url: String?, requestMethod: String, params: [String: AnyEncodable] = [:], completion: @escaping rdc) {
-        var c = URLComponents(string: url ?? EduLinkAPI.shared.authorisedSchool.server!)!
-        c.queryItems = [URLQueryItem(name: "method", value: requestMethod)]
-        var request = URLRequest(url: c.url!)
-        request.httpMethod = "POST"
-        let b = EdulinkBody(method: requestMethod, params: params)
-        guard let jd = try? JSONEncoder().encode(b) else { return completion(false, [String : Any]())}
-        request.httpBody = jd
-        request.setValue(requestMethod, forHTTPHeaderField: "x-api-method")
-        request.setValue("application/json;charset=utf-8", forHTTPHeaderField: "Content-Type")
-        if let auth = EduLinkAPI.shared.authorisedUser.authToken { request.setValue("Bearer \(auth)", forHTTPHeaderField: "Authorization") }
+        var request: URLRequest
+        if url == "https://api.anamy.gay/static/Edulink" || EduLinkAPI.shared.authorisedSchool.server == "https://api.anamy.gay/static/Edulink" {
+            request = URLRequest(url: URL(string: "https://api.anamy.gay/static/Edulink/\(requestMethod).json")!)
+        } else {
+            var c = URLComponents(string: url ?? EduLinkAPI.shared.authorisedSchool.server!)!
+            c.queryItems = [URLQueryItem(name: "method", value: requestMethod)]
+            request = URLRequest(url: c.url!)
+            request.httpMethod = "POST"
+            let b = EdulinkBody(method: requestMethod, params: params)
+            guard let jd = try? JSONEncoder().encode(b) else { return completion(false, [String : Any]())}
+            request.httpBody = jd
+            request.setValue(requestMethod, forHTTPHeaderField: "x-api-method")
+            request.setValue("application/json;charset=utf-8", forHTTPHeaderField: "Content-Type")
+            if let auth = EduLinkAPI.shared.authorisedUser.authToken { request.setValue("Bearer \(auth)", forHTTPHeaderField: "Authorization") }
+        }
+        
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) -> Void in
             if let data = data {
                 do {

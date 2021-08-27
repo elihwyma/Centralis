@@ -1,100 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Login View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Be-hq-RVK">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U5j-f8-XKs" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="485"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Centralis" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WL8-6p-FcA">
-                                                <rect key="frame" x="5" y="25" width="404" height="45"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="45" id="vyO-PT-v0A"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="45"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="384" placeholderIntrinsicHeight="300" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oqs-FO-vu2" customClass="ResizedTableView" customModule="Centralis" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="105" width="384" height="300"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            </tableView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghk-Nk-grP">
-                                                <rect key="frame" x="107" y="440" width="200" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="vCD-97-J3y"/>
-                                                </constraints>
-                                                <state key="normal" title="New Login">
-                                                    <color key="titleColor" systemColor="labelColor"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="newLoggin:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="6i4-gL-xVw"/>
-                                                    <action selector="newLoggin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cUM-m1-utB"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="ghk-Nk-grP" firstAttribute="top" secondItem="oqs-FO-vu2" secondAttribute="bottom" constant="35" id="HrK-pO-wSH"/>
-                                            <constraint firstItem="ghk-Nk-grP" firstAttribute="centerX" secondItem="U5j-f8-XKs" secondAttribute="centerX" id="Kp4-e3-vRF"/>
-                                            <constraint firstItem="oqs-FO-vu2" firstAttribute="leading" secondItem="U5j-f8-XKs" secondAttribute="leading" constant="15" id="TmG-Xb-5mo"/>
-                                            <constraint firstItem="WL8-6p-FcA" firstAttribute="top" secondItem="U5j-f8-XKs" secondAttribute="top" constant="25" id="VIn-Qe-oMd"/>
-                                            <constraint firstAttribute="bottom" secondItem="ghk-Nk-grP" secondAttribute="bottom" constant="15" id="mdV-e6-72n"/>
-                                            <constraint firstItem="oqs-FO-vu2" firstAttribute="top" secondItem="WL8-6p-FcA" secondAttribute="bottom" constant="35" id="nxP-LN-aGg"/>
-                                            <constraint firstAttribute="trailing" secondItem="WL8-6p-FcA" secondAttribute="trailing" constant="5" id="r4a-Db-w7p"/>
-                                            <constraint firstItem="WL8-6p-FcA" firstAttribute="leading" secondItem="U5j-f8-XKs" secondAttribute="leading" constant="5" id="tAO-h7-dC5"/>
-                                            <constraint firstAttribute="trailing" secondItem="oqs-FO-vu2" secondAttribute="trailing" constant="15" id="zn8-se-xub"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="U5j-f8-XKs" firstAttribute="trailing" secondItem="9Kt-Pp-kQh" secondAttribute="trailing" id="GLL-Sr-XHP"/>
-                                    <constraint firstItem="U5j-f8-XKs" firstAttribute="top" secondItem="9Kt-Pp-kQh" secondAttribute="top" id="Mwc-q9-Jd3"/>
-                                    <constraint firstItem="U5j-f8-XKs" firstAttribute="width" secondItem="9Uy-Qx-o2P" secondAttribute="width" id="WQs-Ga-Y9t"/>
-                                    <constraint firstItem="U5j-f8-XKs" firstAttribute="leading" secondItem="9Kt-Pp-kQh" secondAttribute="leading" id="k4H-NA-hwi"/>
-                                    <constraint firstItem="U5j-f8-XKs" firstAttribute="bottom" secondItem="9Kt-Pp-kQh" secondAttribute="bottom" id="whx-07-K0y"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="9Kt-Pp-kQh"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="9Uy-Qx-o2P"/>
-                            </scrollView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3Be-hq-RVK" secondAttribute="trailing" id="GuM-ez-MbM"/>
-                            <constraint firstItem="3Be-hq-RVK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TWD-Ji-SP2"/>
-                            <constraint firstItem="3Be-hq-RVK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="eEd-9t-TLb"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3Be-hq-RVK" secondAttribute="bottom" id="wOE-5D-1zp"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="newLoggin" destination="ghk-Nk-grP" id="est-1e-Ysh"/>
-                        <outlet property="tableView" destination="oqs-FO-vu2" id="I27-RL-pi6"/>
-                        <outlet property="titleLabel" destination="WL8-6p-FcA" id="yRP-Ml-nTw"/>
-                        <segue destination="NQ1-3o-TFj" kind="presentation" identifier="Centralis.Login" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="wce-O5-EGc"/>
-                        <segue destination="loS-VG-R6T" kind="presentation" identifier="Centralis.ShowNewUser" id="2FC-rE-tUl"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1480" y="115"/>
-        </scene>
         <!--Text View Controller-->
         <scene sceneID="9aS-t7-lbD">
             <objects>
@@ -104,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KUQ-CC-yeg">
-                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="separatorColor" systemColor="labelColor"/>
                             </tableView>
@@ -149,11 +62,11 @@
             <objects>
                 <viewController id="6yK-tV-OmV" customClass="DocumentWebViewController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a5u-h3-7Dp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="awP-hm-xX2">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -188,7 +101,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hs9-ca-YYG">
-                                <rect key="frame" x="0.0" y="140" width="414" height="756"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <connections>
                                     <segue destination="hRZ-oz-9Ix" kind="embed" identifier="Centralis.CarouselEmbed" id="N9U-s5-sIW"/>
                                 </connections>
@@ -238,224 +151,12 @@
             <point key="canvasLocation" x="5136" y="115"/>
         </scene>
         <!--Centralis Navigation Controller-->
-        <scene sceneID="XBx-DF-U5t">
-            <objects>
-                <navigationController storyboardIdentifier="HomeNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="NQ1-3o-TFj" customClass="CentralisNavigationController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="7GE-cR-6xa"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="5ro-1t-pMc">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="5rL-v9-yvi" kind="relationship" relationship="rootViewController" id="zbf-EZ-p1c"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wC7-zy-kqb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2660.8695652173915" y="114.50892857142857"/>
-        </scene>
-        <!--New User-->
-        <scene sceneID="wNV-wA-6yX">
-            <objects>
-                <viewController id="YRY-VQ-jd3" customClass="NewUserSchoolController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="VUl-d0-Xxr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="School Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w5o-Hk-RFh">
-                                <rect key="frame" x="15" y="71" width="384" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="fXv-gw-ghH"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="username"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All your data is only handled by Overnet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jF2-FG-wdS">
-                                <rect key="frame" x="15" y="121" width="384" height="16"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="ot6-Ua-Syi"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="ot6-Ua-Syi" firstAttribute="trailing" secondItem="jF2-FG-wdS" secondAttribute="trailing" constant="15" id="Rgp-Ys-VRj"/>
-                            <constraint firstItem="ot6-Ua-Syi" firstAttribute="trailing" secondItem="w5o-Hk-RFh" secondAttribute="trailing" constant="15" id="T13-DN-SQM"/>
-                            <constraint firstItem="jF2-FG-wdS" firstAttribute="top" secondItem="w5o-Hk-RFh" secondAttribute="bottom" constant="5" id="ajt-F2-LB7"/>
-                            <constraint firstItem="w5o-Hk-RFh" firstAttribute="top" secondItem="ot6-Ua-Syi" secondAttribute="top" constant="15" id="baS-Pt-7OR"/>
-                            <constraint firstItem="jF2-FG-wdS" firstAttribute="leading" secondItem="ot6-Ua-Syi" secondAttribute="leading" constant="15" id="i1s-xq-s4b"/>
-                            <constraint firstItem="w5o-Hk-RFh" firstAttribute="leading" secondItem="ot6-Ua-Syi" secondAttribute="leading" constant="15" id="k4p-ot-paa"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="New User" largeTitleDisplayMode="never" id="z1U-uq-2Hf">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="n7Y-6F-W33">
-                            <connections>
-                                <action selector="cancel:" destination="YRY-VQ-jd3" id="yA9-hm-Iou"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Continue" style="done" id="kgU-so-myK">
-                            <connections>
-                                <action selector="continueButton:" destination="YRY-VQ-jd3" id="fGh-qP-ESw"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="schoolCode" destination="w5o-Hk-RFh" id="NTn-uh-vAy"/>
-                        <segue destination="eWL-aP-o1v" kind="show" identifier="Centralis.ShowUP" id="ix1-Y1-ybS"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hgE-yQ-9rR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1049" y="1169"/>
-        </scene>
-        <!--New UserUP Controller-->
-        <scene sceneID="E5W-zi-cjI">
-            <objects>
-                <viewController id="eWL-aP-o1v" customClass="NewUserUPController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Zrh-SS-KWO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="en0-sa-Rfn">
-                                <rect key="frame" x="15" y="191" width="384" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="6AJ-PL-kYo"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F0a-hT-GTw">
-                                <rect key="frame" x="15" y="136" width="384" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="x5U-Rb-Uot"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="username"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCq-Pe-cCT">
-                                <rect key="frame" x="70" y="71" width="339" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="9Ml-aG-4nJ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AB4-og-a2u">
-                                <rect key="frame" x="15" y="71" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="h7P-7D-DVu"/>
-                                    <constraint firstAttribute="width" constant="50" id="sPn-D6-4Ly"/>
-                                </constraints>
-                            </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QQ2-vF-J0H">
-                                <rect key="frame" x="15" y="251" width="384" height="31"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRa-4l-dME">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="31"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A3z-KV-QCm">
-                                        <rect key="frame" x="335" y="0.0" width="51" height="31"/>
-                                    </switch>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="a9p-Fw-4V7"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="en0-sa-Rfn" firstAttribute="leading" secondItem="a9p-Fw-4V7" secondAttribute="leading" constant="15" id="59E-rw-uoY"/>
-                            <constraint firstItem="dCq-Pe-cCT" firstAttribute="leading" secondItem="AB4-og-a2u" secondAttribute="trailing" constant="5" id="9Rv-Gq-ZT8"/>
-                            <constraint firstItem="AB4-og-a2u" firstAttribute="leading" secondItem="a9p-Fw-4V7" secondAttribute="leading" constant="15" id="BCI-vh-UsM"/>
-                            <constraint firstItem="F0a-hT-GTw" firstAttribute="leading" secondItem="a9p-Fw-4V7" secondAttribute="leading" constant="15" id="Bhe-vA-hb7"/>
-                            <constraint firstItem="QQ2-vF-J0H" firstAttribute="top" secondItem="en0-sa-Rfn" secondAttribute="bottom" constant="15" id="MME-ey-y3m"/>
-                            <constraint firstItem="en0-sa-Rfn" firstAttribute="top" secondItem="F0a-hT-GTw" secondAttribute="bottom" constant="10" id="PC8-Sf-cOq"/>
-                            <constraint firstItem="QQ2-vF-J0H" firstAttribute="leading" secondItem="a9p-Fw-4V7" secondAttribute="leading" constant="15" id="UnO-Dv-730"/>
-                            <constraint firstItem="dCq-Pe-cCT" firstAttribute="top" secondItem="a9p-Fw-4V7" secondAttribute="top" constant="15" id="VtA-bY-YvO"/>
-                            <constraint firstItem="a9p-Fw-4V7" firstAttribute="trailing" secondItem="F0a-hT-GTw" secondAttribute="trailing" constant="15" id="YmK-La-W58"/>
-                            <constraint firstItem="AB4-og-a2u" firstAttribute="top" secondItem="a9p-Fw-4V7" secondAttribute="top" constant="15" id="gUF-bv-mQl"/>
-                            <constraint firstItem="F0a-hT-GTw" firstAttribute="top" secondItem="AB4-og-a2u" secondAttribute="bottom" constant="15" id="jNW-lB-6hM"/>
-                            <constraint firstItem="a9p-Fw-4V7" firstAttribute="trailing" secondItem="QQ2-vF-J0H" secondAttribute="trailing" constant="15" id="lSq-yD-SUD"/>
-                            <constraint firstItem="a9p-Fw-4V7" firstAttribute="trailing" secondItem="dCq-Pe-cCT" secondAttribute="trailing" constant="5" id="oJC-dO-xYg"/>
-                            <constraint firstItem="a9p-Fw-4V7" firstAttribute="trailing" secondItem="en0-sa-Rfn" secondAttribute="trailing" constant="15" id="p5m-xF-sRV"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="1Wb-cz-cUA">
-                        <barButtonItem key="rightBarButtonItem" title="Login" style="done" id="k6D-tM-31m">
-                            <connections>
-                                <action selector="login:" destination="eWL-aP-o1v" id="Y8W-LQ-3QA"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="password" destination="en0-sa-Rfn" id="tX5-P5-JFN"/>
-                        <outlet property="savePassword" destination="A3z-KV-QCm" id="ygF-zd-XdQ"/>
-                        <outlet property="schoolImage" destination="AB4-og-a2u" id="5Nz-Hl-WEz"/>
-                        <outlet property="schoolName" destination="dCq-Pe-cCT" id="zEn-bl-l7w"/>
-                        <outlet property="username" destination="F0a-hT-GTw" id="UHn-kQ-2w0"/>
-                        <segue destination="NQ1-3o-TFj" kind="presentation" identifier="Centralis.Login" modalPresentationStyle="fullScreen" id="lwc-x6-y1B"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KUi-T7-GYG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1836" y="1169"/>
-        </scene>
-        <!--Centralis Navigation Controller-->
-        <scene sceneID="sF7-HC-4ht">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="loS-VG-R6T" customClass="CentralisNavigationController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="jsO-D7-KYA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="YRY-VQ-jd3" kind="relationship" relationship="rootViewController" id="Z5e-rz-Xmy"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7Hf-Fe-08H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="165" y="1171"/>
-        </scene>
-        <!--Home View Controller-->
-        <scene sceneID="XTM-Zi-C7I">
-            <objects>
-                <tableViewController storyboardIdentifier="HomeViewController" id="5rL-v9-yvi" customClass="HomeViewController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="tte-vM-7W4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <connections>
-                            <outlet property="dataSource" destination="5rL-v9-yvi" id="shJ-6K-A5q"/>
-                            <outlet property="delegate" destination="5rL-v9-yvi" id="oXU-U6-2tx"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="iix-Hs-7cv"/>
-                    <connections>
-                        <segue destination="CHE-0K-9gx" kind="popoverPresentation" identifier="Centralis.Settings" popoverAnchorView="tte-vM-7W4" id="Ri7-Ya-rU0">
-                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                        </segue>
-                        <segue destination="fZR-sa-AoW" kind="show" identifier="Centralis.ShowCarousel" id="sWK-au-9Pv"/>
-                        <segue destination="GwH-8S-tIz" kind="show" identifier="Centralis.TextViewController" id="Mem-1Q-fI1"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zyX-61-UFg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3465" y="115"/>
-        </scene>
-        <!--Centralis Navigation Controller-->
         <scene sceneID="sOF-lG-OQ3">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CHE-0K-9gx" customClass="CentralisNavigationController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Vuf-lC-Git">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -472,7 +173,7 @@
             <objects>
                 <tableViewController id="wMi-Lk-JQA" customClass="SettingsViewController" customModule="Centralis" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="ND3-IX-CQR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <connections>
@@ -487,9 +188,6 @@
             <point key="canvasLocation" x="5242" y="859"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="lwc-x6-y1B"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

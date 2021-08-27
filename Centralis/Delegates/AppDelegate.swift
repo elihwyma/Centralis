@@ -28,17 +28,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         */
         
         UIApplication.shared.setMinimumBackgroundFetchInterval(3600 * 3)
-        // Automatic Login on Open
-        guard let user = LoginManager.user() else { return true }
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        let navigationController = UINavigationController.init(rootViewController: viewController)
-        viewController.login = user
-        viewController.arriveFromDelegate()
-        navigationController.navigationItem.largeTitleDisplayMode = .always
-        navigationController.navigationBar.prefersLargeTitles = true
-        self.window?.rootViewController = navigationController
+        
+        if let user = LoginManager.user() {
+            self.window?.rootViewController = CentralisNavigationController(rootViewController: BaseViewController(login: user, auth: true))
+        } else {
+            self.window?.rootViewController = CentralisNavigationController(rootViewController: LoginViewController())
+        }
         self.window?.makeKeyAndVisible()
         return true
     }
@@ -130,6 +126,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //self.scheduleAppRefresh()
             completionHandler(.newData)
         })
+    }
+    
+    func setRootViewController(_ vc: UIViewController, animated: Bool = true) {
+        guard animated, let window = self.window else {
+            self.window?.rootViewController = vc
+            self.window?.makeKeyAndVisible()
+            return
+        }
+
+        window.rootViewController = vc
+        window.makeKeyAndVisible()
+        UIView.transition(with: window,
+                          duration: 0.3,
+                          options: .transitionCrossDissolve,
+                          animations: nil,
+                          completion: nil)
     }
 }
 

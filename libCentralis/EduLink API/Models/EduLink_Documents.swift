@@ -26,11 +26,7 @@ public class EduLink_Documents {
                     documentCache.append(document)
                 }
             }
-            if EduLinkAPI.shared.authorisedUser.id == learnerID { EduLinkAPI.shared.documents = documentCache } else {
-                if let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == learnerID}) {
-                    EduLinkAPI.shared.authorisedUser.children[index].documents = documentCache
-                }
-            }
+            EduLinkAPI.shared.documents = documentCache
             rootCompletion(true, nil)
         })
     }
@@ -40,7 +36,6 @@ public class EduLink_Documents {
     ///   - document: The document the data is being parsed, for more documentation see `Document`
     ///   - rootCompletion: The completion handler, for more documentation see `completionHandler`
     class public func document(_ document: Document, _ rootCompletion: @escaping completionHandler) {
-        let learnerID = EduLinkAPI.shared.authorisedUser.id
         let params: [String: AnyEncodable] = [
             "document_id" : AnyEncodable(document.id)
         ]
@@ -49,20 +44,14 @@ public class EduLink_Documents {
             guard let result = dict["result"] as? [String : Any] else { return rootCompletion(false, "Unknown Error") }
             if !(result["success"] as? Bool ?? false) { return rootCompletion(false, (result["error"] as? String ?? "Unknown Error")) }
             guard let r = result["result"] as? [String : Any], let data = r["document"] as? String, let mime_type = r["mime_type"] as? String else { return rootCompletion(false, "Unknown Error") }
-            if EduLinkAPI.shared.authorisedUser.id == learnerID {
-                if let index = EduLinkAPI.shared.documents.firstIndex(where: {$0.id == document.id}) { EduLinkAPI.shared.documents[index].data = data; EduLinkAPI.shared.documents[index].mime_type = mime_type }
-            } else {
-                if let index = EduLinkAPI.shared.authorisedUser.children.firstIndex(where: {$0.id == learnerID}) {
-                    if let index2 = EduLinkAPI.shared.authorisedUser.children[index].documents.firstIndex(where: {$0.id == document.id}) { EduLinkAPI.shared.authorisedUser.children[index2].documents[index2].data = data; EduLinkAPI.shared.authorisedUser.children[index2].documents[index2].mime_type = mime_type }
-                }
-            }
+            document.data = data
+            document.mime_type = mime_type
             rootCompletion(true, nil)
         })
     }
 }
 
-/// The container for Document
-public struct Document {
+public class Document {
     /// The ID of the document
     public var id: String
     /// The title of the document
