@@ -51,6 +51,9 @@ class BaseViewController: UIViewController {
                 self.workingCover.stopWorking()
                 if success {
                     self.menuTableView.reloadData()
+                    if let todayView = self.displayedView as? TodayView {
+                        todayView.dataPull()
+                    }
                 } else {
                     self.delegateLoginError(error!)
                 }
@@ -72,7 +75,7 @@ class BaseViewController: UIViewController {
             view.bottomAnchor.constraint(equalTo: menuTableView.bottomAnchor),
             view.leadingAnchor.constraint(equalTo: menuTableView.leadingAnchor)
         ])
-        
+    
         title = "Today"
         setDisplayedView(TodayView.shared)
         // Do any additional setup after loading the view.

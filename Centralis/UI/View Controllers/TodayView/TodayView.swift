@@ -119,6 +119,11 @@ class TodayView: UITableView {
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
         
+        dataPull()
+    }
+    
+    public func dataPull() {
+        if EduLinkAPI.shared.authorisedUser.authToken == nil { return }
         EduLink_Status.status { [weak self] success, error in
             if success {
                 self?.reloadTodayData()
