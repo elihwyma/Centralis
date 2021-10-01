@@ -7,13 +7,28 @@
 
 import UIKit
 
+protocol MenuTableViewDelegate: AnyObject {
+    func selectedView(view: UIViewController)
+    func selectedView(view: UIView)
+    func setTitle(title: String)
+}
+
 class BaseViewController: UIViewController {
     
-    public weak var referencedViewController: UIViewController?
-    public var displayedView: UIView?
-    public var menuTableView = MenuTableView()
+    public var referencedViewController: UIViewController?
+    public var displayedView: UIView = TodayView.shared
+    public lazy var menuTableView: MenuTableView = {
+        let view = MenuTableView()
+        view.menuDelegate = self
+        return view
+    }()
     public var workingCover: WorkingCover = .fromNib()
     public var login: SavedLogin
+    private var animateLock = false
+    private var expanded = false
+    
+    public lazy var displayViewLeading = view.leadingAnchor.constraint(equalTo: displayedView.leadingAnchor, constant: -1)
+    public lazy var displayViewTrailing = view.trailingAnchor.constraint(equalTo: displayedView.trailingAnchor, constant: -1)
     
     init(login: SavedLogin, auth: Bool = false) {
         self.login = login
@@ -75,23 +90,85 @@ class BaseViewController: UIViewController {
             view.bottomAnchor.constraint(equalTo: menuTableView.bottomAnchor),
             view.leadingAnchor.constraint(equalTo: menuTableView.leadingAnchor)
         ])
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Test", style: .done, target: self, action: #selector(_toggleDisplayMode))
     
         title = "Today"
-        setDisplayedView(TodayView.shared)
+        setDisplayedView(TodayView.shared, false)
         // Do any additional setup after loading the view.
     }
     
-    public func setDisplayedView(_ next: UIView) {
-        self.displayedView?.removeFromSuperview()
-        self.displayedView = next
-        
+    @objc public func _toggleDisplayMode() {
+        toggleDisplayMode(true)
+    }
+    
+    public func toggleDisplayMode(_ animated: Bool = true) {
+        guard !animateLock else { return }
+        if !Thread.isMainThread {
+            DispatchQueue.main.async {
+                self.toggleDisplayMode()
+            }
+            return
+        }
+        func changeConstants() {
+            print("[Centralis] Before = \(displayViewLeading.constant)")
+            if !expanded {
+                displayViewLeading.constant = -MenuTableView.width
+                displayViewTrailing.constant = -MenuTableView.width
+            } else {
+                displayViewLeading.constant = 0
+                displayViewTrailing.constant = 0
+            }
+            print("[Centralis] Constants = \(displayViewLeading.constant) \(displayViewTrailing.constant)")
+        }
+        if !animated {
+            animateLock = true
+            UIView.animate(withDuration: 0.3) { [self] in
+                changeConstants()
+                view.layoutIfNeeded()
+                displayedView.layoutIfNeeded()
+            } completion: { _ in
+                self.animateLock = false
+                self.expanded = !self.expanded
+            }
+        } else {
+            changeConstants()
+            expanded = !expanded
+        }
+        displayedView.backgroundColor = .systemPink
+    }
+    
+    public func setDisplayedView(_ next: UIView, _ animated: Bool = true) {
+        displayedView.removeFromSuperview()
+        displayedView = next
         view.addSubview(next)
+        displayViewLeading = view.leadingAnchor.constraint(equalTo: displayedView.leadingAnchor, constant: displayViewLeading.constant)
+        displayViewTrailing = view.trailingAnchor.constraint(equalTo: displayedView.trailingAnchor, constant: displayViewTrailing.constant)
         NSLayoutConstraint.activate([
             view.topAnchor.constraint(equalTo: next.topAnchor),
-            view.leadingAnchor.constraint(equalTo: next.leadingAnchor),
-            view.trailingAnchor.constraint(equalTo: next.trailingAnchor),
-            view.bottomAnchor.constraint(equalTo: next.bottomAnchor)
+            view.bottomAnchor.constraint(equalTo: next.bottomAnchor),
+            displayViewLeading,
+            displayViewTrailing
         ])
+        print("[Centralis] \(displayViewLeading) \(displayViewTrailing)")
+        toggleDisplayMode(animated)
+    }
+    
+}
+
+extension BaseViewController: MenuTableViewDelegate {
+    
+    func selectedView(view: UIViewController) {
+        referencedViewController = view
+        setDisplayedView(view.view, true)
+    }
+    
+    func selectedView(view: UIView) {
+        referencedViewController = nil
+        setDisplayedView(view, true)
+    }
+    
+    func setTitle(title: String) {
+        self.title = title
     }
     
 }

@@ -17,28 +17,28 @@ class TodayView: UITableView {
             case upcoming
         }
         
-        var context: Context
-        var subject: String
-        var location: String
-        var teacher: String
+        let context: Context
+        let subject: String
+        let location: String
+        let teacher: String
     }
     
     struct HomeworkCell: Cell {
-        var due_text: String
-        var activity: String
-        var subject: String
+        let due_text: String
+        let activity: String
+        let subject: String
     }
     
     struct CateringCell: Cell {
-        var transactions: Int
-        var balance: Double
+        let transactions: Int
+        let balance: Double
     }
     
     struct MessageCell: Cell {
-        var subject: String
-        var employee_id: String?
-        var sender_name: String
-        var date: Date
+        let subject: String
+        let employee_id: String?
+        let sender_name: String
+        let date: Date
     }
     
     struct Section {
