@@ -17,16 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        /*
-        BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.amywhile.centralis.backgroundrefresh", using: nil) { task in
-            print("Task has bene called")
-            self.notificationRefresh(completionHandler: {(success) -> Void in
-                task.setTaskCompleted(success: true)
-                self.scheduleAppRefresh()
-            })
-        }
-        */
-        
         UIApplication.shared.setMinimumBackgroundFetchInterval(3600 * 3)
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
