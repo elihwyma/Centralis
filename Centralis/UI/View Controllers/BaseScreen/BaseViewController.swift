@@ -110,7 +110,6 @@ class BaseViewController: UIViewController {
             return
         }
         func changeConstants() {
-            print("[Centralis] Before = \(displayViewLeading.constant)")
             if !expanded {
                 displayViewLeading.constant = -MenuTableView.width
                 displayViewTrailing.constant = -MenuTableView.width
@@ -118,7 +117,6 @@ class BaseViewController: UIViewController {
                 displayViewLeading.constant = 0
                 displayViewTrailing.constant = 0
             }
-            print("[Centralis] Constants = \(displayViewLeading.constant) \(displayViewTrailing.constant)")
         }
         if !animated {
             animateLock = true
@@ -149,7 +147,6 @@ class BaseViewController: UIViewController {
             displayViewLeading,
             displayViewTrailing
         ])
-        print("[Centralis] \(displayViewLeading) \(displayViewTrailing)")
         toggleDisplayMode(animated)
     }
     
