@@ -9,7 +9,9 @@ import UIKit
 
 class MenuTableView: UITableView {
     
+    static let width: CGFloat = 210
     public var menus = [String]()
+    public weak var menuDelegate: MenuTableViewDelegate?
     
     let completedMenus: [String] = [
         "Achievement",
@@ -27,7 +29,7 @@ class MenuTableView: UITableView {
         super.init(frame: frame, style: .plain)
         
         translatesAutoresizingMaskIntoConstraints = false
-        widthAnchor.constraint(equalToConstant: 210).isActive = true
+        widthAnchor.constraint(equalToConstant: Self.width).isActive = true
         backgroundColor = .centralisViewColor
         tintColor = .centralisTintColor
         separatorStyle = .none
@@ -51,6 +53,7 @@ class MenuTableView: UITableView {
         }
         #endif
         menus.insert("Today", at: 0)
+        menus.append("Settings")
         super.reloadData()
     }
 }
@@ -58,8 +61,21 @@ class MenuTableView: UITableView {
 extension MenuTableView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard indexPath.row != 0 else { return }
         tableView.deselectRow(at: indexPath, animated: true)
-        return
+        let menu = menus[indexPath.row - 1]
+        let viewController: UIViewController
+        switch menu {
+        case "Today":
+            menuDelegate?.selectedView(view: TodayView.shared)
+            menuDelegate?.setTitle(title: "Today")
+            return
+        case "Settings":
+            viewController = SettingsViewController(style: .insetGrouped)
+            menuDelegate?.setTitle(title: "Settings")
+        default: return
+        }
+        menuDelegate?.selectedView(view: viewController)
     }
     
 }
@@ -76,7 +92,7 @@ extension MenuTableView: UITableViewDataSource {
             let shared = EduLinkAPI.shared
             if let userData = shared.authorisedUser.avatar,
                let userImage = UIImage(data: userData) {
-                cell.userPicture.image = userImage
+                //cell.userPicture.image = userImage
             }
             if let name = shared.authorisedUser.forename,
                let surname = shared.authorisedUser.surname {
