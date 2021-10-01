@@ -75,7 +75,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         let postedNew = postedChanges["PostedNew"] as? [String] ?? [String]()
                         var newID = [String]()
                         for homework in EduLinkAPI.shared.homework.current {
-                            #warning("Check this again at some point")
                             if postedNew.contains(homework.id) { continue }
                             newID.append(homework.id)
                             self.sendNotification(title: "New Homework", body: "\(homework.set_by ?? "") has set \"\(homework.activity ?? "")\" due for \(homework.due_date?.shortDate ?? "")")
