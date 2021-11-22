@@ -1,0 +1,503 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E17E14A1274C19B10090F822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14A0274C19B10090F822 /* AppDelegate.swift */; };
+		E17E14A3274C19B20090F822 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14A2274C19B20090F822 /* SceneDelegate.swift */; };
+		E17E14A5274C19B20090F822 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14A4274C19B20090F822 /* ViewController.swift */; };
+		E17E14A8274C19B20090F822 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E17E14A6274C19B20090F822 /* Main.storyboard */; };
+		E17E14AA274C19B30090F822 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E17E14A9274C19B30090F822 /* Assets.xcassets */; };
+		E17E14AD274C19B30090F822 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E17E14AB274C19B30090F822 /* LaunchScreen.storyboard */; };
+		E17E14B6274C1A3C0090F822 /* SerializedSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E17E14B5274C1A3C0090F822 /* SerializedSwift */; };
+		E17E14B9274C1A470090F822 /* Evander in Frameworks */ = {isa = PBXBuildFile; productRef = E17E14B8274C1A470090F822 /* Evander */; };
+		E17E14BD274C1ABA0090F822 /* EdulinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14BC274C1ABA0090F822 /* EdulinkManager.swift */; };
+		E17E14C2274C1B2F0090F822 /* UserLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14C1274C1B2F0090F822 /* UserLogin.swift */; };
+		E17E14C6274C1ECD0090F822 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14C5274C1ECD0090F822 /* LoginManager.swift */; };
+		E17E14C8274C20610090F822 /* EdulinkRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14C7274C20610090F822 /* EdulinkRequests.swift */; };
+		E17E14CA274C211D0090F822 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14C9274C211D0090F822 /* Transformers.swift */; };
+		E17E14CC274C25010090F822 /* EdulinkBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14CB274C25010090F822 /* EdulinkBase.swift */; };
+		E1BDD309274C63BE00056027 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BDD308274C63BE00056027 /* User.swift */; };
+		E1CEBD8D274C2F80009F35D4 /* AuthenticatedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD8C274C2F80009F35D4 /* AuthenticatedUser.swift */; };
+		E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD8E274C3AB9009F35D4 /* SchoolDetails.swift */; };
+		E1CEBD91274C5F8E009F35D4 /* Establishment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD90274C5F8E009F35D4 /* Establishment.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E17E149D274C19B10090F822 /* Centralis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Centralis.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E17E14A0274C19B10090F822 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E17E14A2274C19B20090F822 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		E17E14A4274C19B20090F822 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E17E14A7274C19B20090F822 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E17E14A9274C19B30090F822 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E17E14AC274C19B30090F822 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E17E14AE274C19B30090F822 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E17E14BC274C1ABA0090F822 /* EdulinkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdulinkManager.swift; sourceTree = "<group>"; };
+		E17E14C1274C1B2F0090F822 /* UserLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogin.swift; sourceTree = "<group>"; };
+		E17E14C3274C1DDF0090F822 /* Centralis.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Centralis.entitlements; sourceTree = "<group>"; };
+		E17E14C5274C1ECD0090F822 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		E17E14C7274C20610090F822 /* EdulinkRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdulinkRequests.swift; sourceTree = "<group>"; };
+		E17E14C9274C211D0090F822 /* Transformers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformers.swift; sourceTree = "<group>"; };
+		E17E14CB274C25010090F822 /* EdulinkBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdulinkBase.swift; sourceTree = "<group>"; };
+		E1BDD308274C63BE00056027 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E1CEBD8C274C2F80009F35D4 /* AuthenticatedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedUser.swift; sourceTree = "<group>"; };
+		E1CEBD8E274C3AB9009F35D4 /* SchoolDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolDetails.swift; sourceTree = "<group>"; };
+		E1CEBD90274C5F8E009F35D4 /* Establishment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Establishment.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E17E149A274C19B10090F822 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E17E14B9274C1A470090F822 /* Evander in Frameworks */,
+				E17E14B6274C1A3C0090F822 /* SerializedSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E17E1494274C19B10090F822 = {
+			isa = PBXGroup;
+			children = (
+				E17E149F274C19B10090F822 /* Centralis */,
+				E17E149E274C19B10090F822 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E17E149E274C19B10090F822 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E17E149D274C19B10090F822 /* Centralis.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E17E149F274C19B10090F822 /* Centralis */ = {
+			isa = PBXGroup;
+			children = (
+				E17E14C3274C1DDF0090F822 /* Centralis.entitlements */,
+				E17E14BA274C1A700090F822 /* Backend */,
+				E17E14A0274C19B10090F822 /* AppDelegate.swift */,
+				E17E14A2274C19B20090F822 /* SceneDelegate.swift */,
+				E17E14A4274C19B20090F822 /* ViewController.swift */,
+				E17E14A6274C19B20090F822 /* Main.storyboard */,
+				E17E14A9274C19B30090F822 /* Assets.xcassets */,
+				E17E14AB274C19B30090F822 /* LaunchScreen.storyboard */,
+				E17E14AE274C19B30090F822 /* Info.plist */,
+			);
+			path = Centralis;
+			sourceTree = "<group>";
+		};
+		E17E14BA274C1A700090F822 /* Backend */ = {
+			isa = PBXGroup;
+			children = (
+				E17E14C4274C1EBE0090F822 /* Login Manager */,
+				E17E14C0274C1B220090F822 /* Models */,
+				E17E14BF274C1B050090F822 /* Contrib */,
+				E17E14BB274C1A760090F822 /* EduLink Manager */,
+			);
+			path = Backend;
+			sourceTree = "<group>";
+		};
+		E17E14BB274C1A760090F822 /* EduLink Manager */ = {
+			isa = PBXGroup;
+			children = (
+				E17E14BE274C1AFB0090F822 /* API Models */,
+				E17E14BC274C1ABA0090F822 /* EdulinkManager.swift */,
+			);
+			path = "EduLink Manager";
+			sourceTree = "<group>";
+		};
+		E17E14BE274C1AFB0090F822 /* API Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "API Models";
+			sourceTree = "<group>";
+		};
+		E17E14BF274C1B050090F822 /* Contrib */ = {
+			isa = PBXGroup;
+			children = (
+				E17E14C7274C20610090F822 /* EdulinkRequests.swift */,
+			);
+			path = Contrib;
+			sourceTree = "<group>";
+		};
+		E17E14C0274C1B220090F822 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E17E14C1274C1B2F0090F822 /* UserLogin.swift */,
+				E17E14C9274C211D0090F822 /* Transformers.swift */,
+				E17E14CB274C25010090F822 /* EdulinkBase.swift */,
+				E1CEBD8C274C2F80009F35D4 /* AuthenticatedUser.swift */,
+				E1CEBD8E274C3AB9009F35D4 /* SchoolDetails.swift */,
+				E1CEBD90274C5F8E009F35D4 /* Establishment.swift */,
+				E1BDD308274C63BE00056027 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E17E14C4274C1EBE0090F822 /* Login Manager */ = {
+			isa = PBXGroup;
+			children = (
+				E17E14C5274C1ECD0090F822 /* LoginManager.swift */,
+			);
+			path = "Login Manager";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E17E149C274C19B10090F822 /* Centralis */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E17E14B1274C19B30090F822 /* Build configuration list for PBXNativeTarget "Centralis" */;
+			buildPhases = (
+				E17E1499274C19B10090F822 /* Sources */,
+				E17E149A274C19B10090F822 /* Frameworks */,
+				E17E149B274C19B10090F822 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Centralis;
+			packageProductDependencies = (
+				E17E14B5274C1A3C0090F822 /* SerializedSwift */,
+				E17E14B8274C1A470090F822 /* Evander */,
+			);
+			productName = Centralis;
+			productReference = E17E149D274C19B10090F822 /* Centralis.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E17E1495274C19B10090F822 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1310;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					E17E149C274C19B10090F822 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+				};
+			};
+			buildConfigurationList = E17E1498274C19B10090F822 /* Build configuration list for PBXProject "Centralis" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E17E1494274C19B10090F822;
+			packageReferences = (
+				E17E14B4274C1A3C0090F822 /* XCRemoteSwiftPackageReference "SerializedSwift" */,
+				E17E14B7274C1A470090F822 /* XCRemoteSwiftPackageReference "Evander" */,
+			);
+			productRefGroup = E17E149E274C19B10090F822 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E17E149C274C19B10090F822 /* Centralis */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E17E149B274C19B10090F822 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E17E14AD274C19B30090F822 /* LaunchScreen.storyboard in Resources */,
+				E17E14AA274C19B30090F822 /* Assets.xcassets in Resources */,
+				E17E14A8274C19B20090F822 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E17E1499274C19B10090F822 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1BDD309274C63BE00056027 /* User.swift in Sources */,
+				E17E14A5274C19B20090F822 /* ViewController.swift in Sources */,
+				E17E14C8274C20610090F822 /* EdulinkRequests.swift in Sources */,
+				E17E14CC274C25010090F822 /* EdulinkBase.swift in Sources */,
+				E17E14C2274C1B2F0090F822 /* UserLogin.swift in Sources */,
+				E17E14CA274C211D0090F822 /* Transformers.swift in Sources */,
+				E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */,
+				E17E14A1274C19B10090F822 /* AppDelegate.swift in Sources */,
+				E1CEBD8D274C2F80009F35D4 /* AuthenticatedUser.swift in Sources */,
+				E17E14BD274C1ABA0090F822 /* EdulinkManager.swift in Sources */,
+				E1CEBD91274C5F8E009F35D4 /* Establishment.swift in Sources */,
+				E17E14A3274C19B20090F822 /* SceneDelegate.swift in Sources */,
+				E17E14C6274C1ECD0090F822 /* LoginManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E17E14A6274C19B20090F822 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E17E14A7274C19B20090F822 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E17E14AB274C19B30090F822 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E17E14AC274C19B30090F822 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E17E14AF274C19B30090F822 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E17E14B0274C19B30090F822 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E17E14B2274C19B30090F822 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Centralis/Centralis.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7J8FJX4SRX;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Centralis/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis.Centralis;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E17E14B3274C19B30090F822 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Centralis/Centralis.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7J8FJX4SRX;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Centralis/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis.Centralis;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E17E1498274C19B10090F822 /* Build configuration list for PBXProject "Centralis" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E17E14AF274C19B30090F822 /* Debug */,
+				E17E14B0274C19B30090F822 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E17E14B1274C19B30090F822 /* Build configuration list for PBXNativeTarget "Centralis" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E17E14B2274C19B30090F822 /* Debug */,
+				E17E14B3274C19B30090F822 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E17E14B4274C1A3C0090F822 /* XCRemoteSwiftPackageReference "SerializedSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dejanskledar/SerializedSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
+		E17E14B7274C1A470090F822 /* XCRemoteSwiftPackageReference "Evander" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elihwyma/Evander";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E17E14B5274C1A3C0090F822 /* SerializedSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E17E14B4274C1A3C0090F822 /* XCRemoteSwiftPackageReference "SerializedSwift" */;
+			productName = SerializedSwift;
+		};
+		E17E14B8274C1A470090F822 /* Evander */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E17E14B7274C1A470090F822 /* XCRemoteSwiftPackageReference "Evander" */;
+			productName = Evander;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = E17E1495274C19B10090F822 /* Project object */;
+}

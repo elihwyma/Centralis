@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Evander",
+        "repositoryURL": "https://github.com/elihwyma/Evander",
+        "state": {
+          "branch": "main",
+          "revision": "8588fcee6f054775b7de77ed9cacf8a2ad1ade53",
+          "version": null
+        }
+      },
+      {
+        "package": "SerializedSwift",
+        "repositoryURL": "https://github.com/dejanskledar/SerializedSwift",
+        "state": {
+          "branch": null,
+          "revision": "9ed26f1561156c42374280ebdbf92bf5327bc8b5",
+          "version": "0.2.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
