@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         
-        LoginManager.loadSchool(from: "calday") { error, schoolDetails in
+        LoginManager.loadSchool(from: "") { error, schoolDetails in
             NSLog("[Centralis] Error = \(error)")
         }
         
