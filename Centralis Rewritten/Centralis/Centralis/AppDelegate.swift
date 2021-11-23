@@ -1,7 +1,7 @@
 //
 //  AppDelegate.swift
 //  Centralis
-//
+// 
 //  Created by Andromeda on 22/11/2021.
 //
 
@@ -14,8 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         
-        LoginManager.loadSchool(from: "") { error, schoolDetails in
-            NSLog("[Centralis] Error = \(error)")
+        LoginManager.loadSchool(from: "calday") { error, schoolDetails in
+            guard let schoolDetails = schoolDetails else {
+                NSLog("[Centralis] \(error)")
+                return
+            }
+            let savedLogin = UserLogin(server: schoolDetails.server, schoolID: schoolDetails.school_id, schoolCode: schoolDetails.code, username: USERNAME, password: PASSWORD)
+            LoginManager.login(savedLogin) { error, authenticatedUser in
+                
+            }
         }
         
         return true

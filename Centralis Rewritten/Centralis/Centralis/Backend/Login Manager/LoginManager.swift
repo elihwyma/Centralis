@@ -86,13 +86,23 @@ public final class LoginManager {
         }
     }
     
-    public class func login(server: URL, establishment_id: String, username: String, password: String, _ completion: @escaping (String?, AuthenticatedUser?) -> Void) {
-        EvanderNetworking.edulinkDict(url: server, method: "EduLink.Login", params: [.custom(key: "establishment_id", value: establishment_id),
-                                                                                     .custom(key: "fcm_token_old", value: "none"),
-                                                                                     .custom(key: "from_app", value: false),
-                                                                                     .custom(key: "password", value: password),
-                                                                                     .custom(key: "username", value: username)]) { _, _, error, result in
-            <#code#>
+    public class func login(_ login: UserLogin, _ completion: @escaping (String?, AuthenticatedUser?) -> Void) {
+        EvanderNetworking.edulinkDict(url: login.server, method: "EduLink.Login", params: [
+            .custom(key: "establishment_id", value: login.schoolID),
+            .custom(key: "fcm_token_old", value: "none"),
+            .custom(key: "from_app", value: false),
+            .custom(key: "password", value: login.password),
+            .custom(key: "username", value: login.username)]) { _, _, error, result in
+                guard let result = result,
+                      let jsonData = try? JSONSerialization.data(withJSONObject: result) else {
+                   return completion(error ?? "Unknown Error", nil)
+                }
+                do {
+                    let user = try JSONDecoder().decode(AuthenticatedUser.self, from: jsonData)
+                    return completion(nil, user)
+                } catch {
+                    return completion(error.localizedDescription, nil)
+                }
         }
     }
 }

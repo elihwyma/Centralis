@@ -23,13 +23,14 @@ public extension EvanderNetworking {
     }
         
     class func request<T: Any>(type: T.Type = [String: Any].self as! T.Type, method: String, params: [EdulinkParameters], _ completion: @escaping ((Bool, Int?, Error?, T?) -> Void)) {
-        guard let authenticatedUser = EdulinkManager.shared.authenticatedUser else { return completion(false, nil, "No User is Currently Logged in", nil) }
-        var url = URLComponents(string: authenticatedUser.login.server.absoluteString)!
+        guard let authenticatedUser = EdulinkManager.shared.authenticatedUser,
+              let login = authenticatedUser.login else { return completion(false, nil, "No User is Currently Logged in", nil) }
+        var url = URLComponents(string: login.server.absoluteString)!
         url.queryItems = [URLQueryItem(name: "method", value: method)]
         var request = URLRequest(url: url.url!, timeoutInterval: 30)
         request.setValue(method, forHTTPHeaderField: "x-api-method")
         request.setValue("application/json;charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(authenticatedUser.authToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(authenticatedUser.authtoken)", forHTTPHeaderField: "Authorization")
         
         guard let encoded = generateBody(method: method, params: params) else { return completion(false, nil, "Failed to Encode JSON Body", nil) }
         request.httpBody = encoded

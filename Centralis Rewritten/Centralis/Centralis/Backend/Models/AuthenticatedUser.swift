@@ -6,18 +6,20 @@
 //
 
 import Foundation
+import SerializedSwift
 
-final public class AuthenticatedUser {
+final public class AuthenticatedUser: Serializable {
     
-    public var login: UserLogin
-    public var authToken: String
-    public var learner_id: String
-    public var school_details: SchoolDetails?
+    public var login: UserLogin?
+    @Serialized var establishment: Establishment
+    @Serialized var user: User
+    @Serialized var personal_menu: [EdulinkStore]
+    @Serialized var authtoken: String
+    @Serialized(default: false) var can_create_messages: Bool
+ 
+    required public init() {}
     
-    public init(login: UserLogin, authToken: String, learner_id: String) {
-        self.login = login
-        self.authToken = authToken
-        self.learner_id = learner_id
-    }
-
+    public lazy var learner_id: String = {
+        user.id
+    }()
 }

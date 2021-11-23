@@ -8,7 +8,7 @@
 import Foundation
 import SerializedSwift
 
-public class EdulinkBase: Serializable {
+public class EdulinkBase: Serializable, Equatable {
     
     @SerializedTransformable<IDTransformer> var id: String!
     
@@ -26,4 +26,8 @@ public class EdulinkBase: Serializable {
 
 public class EdulinkStore: EdulinkBase {
     @Serialized var name: String
+}
+
+public func == (lhs: EdulinkBase, rhs: EdulinkBase) -> Bool {
+    lhs.id == rhs.id
 }
