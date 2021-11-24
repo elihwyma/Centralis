@@ -23,6 +23,7 @@
 		E17E14CC274C25010090F822 /* EdulinkBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14CB274C25010090F822 /* EdulinkBase.swift */; };
 		E1BDD309274C63BE00056027 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BDD308274C63BE00056027 /* User.swift */; };
 		E1C2125C274CF8F70030BE0C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C2125B274CF8F40030BE0C /* Constants.swift */; };
+		E1C21260274CFD160030BE0C /* EdulinkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C2125F274CFD160030BE0C /* EdulinkStatus.swift */; };
 		E1CEBD8D274C2F80009F35D4 /* AuthenticatedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD8C274C2F80009F35D4 /* AuthenticatedUser.swift */; };
 		E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD8E274C3AB9009F35D4 /* SchoolDetails.swift */; };
 		E1CEBD91274C5F8E009F35D4 /* Establishment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD90274C5F8E009F35D4 /* Establishment.swift */; };
@@ -46,6 +47,7 @@
 		E17E14CB274C25010090F822 /* EdulinkBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdulinkBase.swift; sourceTree = "<group>"; };
 		E1BDD308274C63BE00056027 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E1C2125B274CF8F40030BE0C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E1C2125F274CFD160030BE0C /* EdulinkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdulinkStatus.swift; sourceTree = "<group>"; };
 		E1CEBD8C274C2F80009F35D4 /* AuthenticatedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedUser.swift; sourceTree = "<group>"; };
 		E1CEBD8E274C3AB9009F35D4 /* SchoolDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolDetails.swift; sourceTree = "<group>"; };
 		E1CEBD90274C5F8E009F35D4 /* Establishment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Establishment.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		E17E14BB274C1A760090F822 /* EduLink Manager */ = {
 			isa = PBXGroup;
 			children = (
+				E1C2125E274CFCF20030BE0C /* API Requests */,
 				E17E14BC274C1ABA0090F822 /* EdulinkManager.swift */,
 			);
 			path = "EduLink Manager";
@@ -144,6 +147,14 @@
 				E17E14C5274C1ECD0090F822 /* LoginManager.swift */,
 			);
 			path = "Login Manager";
+			sourceTree = "<group>";
+		};
+		E1C2125E274CFCF20030BE0C /* API Requests */ = {
+			isa = PBXGroup;
+			children = (
+				E1C2125F274CFD160030BE0C /* EdulinkStatus.swift */,
+			);
+			path = "API Requests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,6 +241,7 @@
 				E17E14C8274C20610090F822 /* EdulinkRequests.swift in Sources */,
 				E17E14CC274C25010090F822 /* EdulinkBase.swift in Sources */,
 				E17E14C2274C1B2F0090F822 /* UserLogin.swift in Sources */,
+				E1C21260274CFD160030BE0C /* EdulinkStatus.swift in Sources */,
 				E17E14CA274C211D0090F822 /* Transformers.swift in Sources */,
 				E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */,
 				E17E14A1274C19B10090F822 /* AppDelegate.swift in Sources */,
