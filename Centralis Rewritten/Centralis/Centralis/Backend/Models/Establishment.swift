@@ -33,8 +33,8 @@ final public class Room: EdulinkStore {
 
 public class TeachingGroup: EdulinkStore {
     
-    @Serialized var employee_id: String
-    @Serialized var year_group_ids: [String]
+    @Serialized var employee_id: String?
+    @Serialized var year_group_ids: [String]?
     
 }
 

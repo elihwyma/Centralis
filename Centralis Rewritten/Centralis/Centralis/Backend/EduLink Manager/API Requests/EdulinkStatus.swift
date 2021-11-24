@@ -10,6 +10,9 @@ import SerializedSwift
 
 final public class Status: Serializable {
     
+    @Serialized var session: Session
+    @Serialized var new_messages: Int
+    
     public struct StatusLesson: Serializable {
         public init() {}
     }

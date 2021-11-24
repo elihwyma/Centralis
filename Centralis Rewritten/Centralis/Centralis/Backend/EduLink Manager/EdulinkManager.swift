@@ -11,6 +11,7 @@ final public class EdulinkManager {
     
     static var shared = EdulinkManager()
     public var authenticatedUser: AuthenticatedUser?
+    public var status: Status?
     
     public func signout() {
         Self.shared = EdulinkManager()
