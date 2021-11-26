@@ -18,6 +18,15 @@
           "revision": "9ed26f1561156c42374280ebdbf92bf5327bc8b5",
           "version": "0.2.0"
         }
+      },
+      {
+        "package": "SQLite.swift",
+        "repositoryURL": "https://github.com/stephencelis/SQLite.swift",
+        "state": {
+          "branch": null,
+          "revision": "60a65015f6402b7c34b9a924f755ca0a73afeeaa",
+          "version": "0.13.1"
+        }
       }
     ]
   },

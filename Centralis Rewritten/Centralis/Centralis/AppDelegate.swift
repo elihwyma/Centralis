@@ -14,27 +14,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let start = DispatchTime.now()
-        LoginManager.loadSchool(from: "calday") { error, schoolDetails in
-            guard let schoolDetails = schoolDetails else {
-                NSLog("[Centralis] \(error)")
-                return
-            }
-            let mid = DispatchTime.now()
-            let savedLogin = UserLogin(server: schoolDetails.server, schoolID: schoolDetails.school_id, schoolCode: schoolDetails.code, username: USERNAME, password: PASSWORD)
-            LoginManager.login(savedLogin) { error, authenticatedUser in
-                NSLog("[Centralis] \(error) \(authenticatedUser)")
-                let end = DispatchTime.now()
-                
-                let resolvingSchool = mid.uptimeNanoseconds - start.uptimeNanoseconds
-                let loggingIn = end.uptimeNanoseconds - mid.uptimeNanoseconds
-                
-                NSLog("[Centralis] Resolving School Took \(Double(resolvingSchool) / 1_000_000_000) seconds")
-                NSLog("[Centralis] Logging In To School Took \(Double(loggingIn) / 1_000_000_000) seconds")
-            }
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        if let login = LoginManager.loadLogin().1 {
+            window?.rootViewController = CentralisNavigationController(rootViewController: QuickLoginViewController(login: login))
+        } else {
+            window?.rootViewController = CentralisNavigationController(rootViewController: OnboardingViewController())
         }
+        window?.makeKeyAndVisible()
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
 
         return true
+    }
+    
+    func setRootViewController(_ vc: UIViewController, animated: Bool = true) {
+        guard animated, let window = self.window else {
+            self.window?.rootViewController = vc
+            self.window?.makeKeyAndVisible()
+            return
+        }
+
+        window.rootViewController = vc
+        window.makeKeyAndVisible()
+        UIView.transition(with: window,
+                          duration: 0.3,
+                          options: .transitionCrossDissolve,
+                          animations: nil,
+                          completion: nil)
     }
 
 }

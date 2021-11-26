@@ -10,7 +10,12 @@ import SerializedSwift
 
 final public class AuthenticatedUser: Serializable {
     
-    public var login: UserLogin?
+    public var login: UserLogin? {
+        didSet {
+            self.server = login?.server
+        }
+    }
+    public var server: URL?
     @Serialized var establishment: Establishment
     @Serialized var user: User
     @Serialized var personal_menu: [EdulinkStore]

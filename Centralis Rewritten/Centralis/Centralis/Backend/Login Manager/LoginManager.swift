@@ -10,15 +10,14 @@ import Evander
 
 public final class LoginManager {
     
-    static public let shared = LoginManager()
-    public var logins = [UserLogin]()
-    
-    @discardableResult public func loadLogins() -> OSStatus {
+    static let appIdentifierPrefix = Bundle.main.infoDictionary!["AppIdentifierPrefix"] as! String
+        
+    public class func loadLogin() -> (OSStatus, UserLogin?) {
         let query: [String: Any] = [
             kSecClass as String       : kSecClassGenericPassword,
             kSecAttrAccount as String : "Centralis.SavedLogins",
             kSecReturnData as String  : kCFBooleanTrue!,
-            kSecAttrAccessGroup as String: "group.amywhile.centralis",
+            kSecAttrAccessGroup as String: "\(appIdentifierPrefix)group.amywhile.centralis",
             kSecMatchLimit as String  : kSecMatchLimitOne ]
         
         var dataTypeRef: AnyObject? = nil
@@ -26,35 +25,30 @@ public final class LoginManager {
         let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
         
         guard status == noErr,
-              let data = dataTypeRef as? Data else { return status }
-        self.logins = (try? JSONDecoder().decode([UserLogin].self, from: data)) ?? []
-        return status
+              let data = dataTypeRef as? Data else { return (status, nil) }
+        return (status, try? JSONDecoder().decode(UserLogin.self, from: data))
     }
     
-    @discardableResult public func saveLogins() -> OSStatus {
-        let encoded = (try? JSONEncoder().encode(logins)) ?? Data()
-        let query: [String: Any] = [
-            kSecClass as String       : kSecClassGenericPassword as String,
-            kSecAttrAccount as String : "Centralis.SavedLogins",
-            kSecAttrAccessGroup as String: "group.amywhile.centralis",
-            kSecValueData as String: encoded ]
+    @discardableResult public class func save(login: UserLogin?) -> OSStatus {
+        NSLog("CEntralis \("\(appIdentifierPrefix)group.amywhile.centralis")")
+        if let login = login  {
+            let encoded = (try? JSONEncoder().encode(login)) ?? Data()
+            let query: [String: Any] = [
+                kSecClass as String       : kSecClassGenericPassword as String,
+                kSecAttrAccount as String : "Centralis.SavedLogins",
+                kSecAttrAccessGroup as String: "\(appIdentifierPrefix)group.amywhile.centralis",
+                kSecValueData as String: encoded ]
 
-        SecItemDelete(query as CFDictionary)
-        return SecItemAdd(query as CFDictionary, nil)
-    }
-    
-    @discardableResult public func remove(login: UserLogin) -> OSStatus {
-        logins.removeAll { $0 == login }
-        return saveLogins()
-    }
-    
-    @discardableResult public func save(login: UserLogin) -> OSStatus {
-        logins.insert(login, at: 0)
-        return saveLogins()
-    }
-    
-    public init() {
-        loadLogins()
+            SecItemDelete(query as CFDictionary)
+            return SecItemAdd(query as CFDictionary, nil)
+        } else {
+            let query: [String: Any] = [
+                kSecClass as String       : kSecClassGenericPassword as String,
+                kSecAttrAccount as String : "Centralis.SavedLogins",
+                kSecAttrAccessGroup as String: "\(appIdentifierPrefix)group.amywhile.centralis" ]
+            return SecItemDelete(query as CFDictionary)
+        }
+        
     }
     
     public class func loadSchool(from code: String, _ completion: @escaping (String?, SchoolDetails?) -> Void) {
@@ -99,6 +93,8 @@ public final class LoginManager {
                 }
                 do {
                     let user = try JSONDecoder().decode(AuthenticatedUser.self, from: jsonData)
+                    EdulinkManager.shared.authenticatedUser = user
+                    user.login = login
                     return completion(nil, user)
                 } catch {
                     return completion(error.localizedDescription, nil)

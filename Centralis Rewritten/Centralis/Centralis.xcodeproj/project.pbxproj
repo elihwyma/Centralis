@@ -7,9 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E10B95E9275139D600C8C12E /* SchoolCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B95E8275139D600C8C12E /* SchoolCodeViewController.swift */; };
+		E10B95EC27513A3100C8C12E /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B95EB27513A3100C8C12E /* RoundedTextField.swift */; };
+		E10B95EE27513AD900C8C12E /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B95ED27513AD900C8C12E /* LoadingButton.swift */; };
+		E10B95F027513E7E00C8C12E /* KeyboardAwareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B95EF27513E7E00C8C12E /* KeyboardAwareViewController.swift */; };
+		E10B95FD275160C000C8C12E /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B95FC275160C000C8C12E /* URL+Extensions.swift */; };
+		E10B95FF275164D800C8C12E /* CentralisNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B95FE275164D800C8C12E /* CentralisNavigationController.swift */; };
+		E10B9601275167AD00C8C12E /* UserPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B9600275167AD00C8C12E /* UserPasswordViewController.swift */; };
+		E10B96042751773D00C8C12E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B96032751773D00C8C12E /* HomeViewController.swift */; };
+		E10B9607275178F500C8C12E /* CentralisTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B9606275178F500C8C12E /* CentralisTabBarController.swift */; };
+		E10B960A2751865E00C8C12E /* BaseSubtitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B96082751865E00C8C12E /* BaseSubtitleCell.swift */; };
+		E10B960B2751865E00C8C12E /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B96092751865E00C8C12E /* BaseTableViewController.swift */; };
+		E10B960E27518B0800C8C12E /* QuickLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B960D27518B0800C8C12E /* QuickLoginViewController.swift */; };
+		E10B961127518EFF00C8C12E /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = E10B961027518EFF00C8C12E /* SQLite */; };
+		E10B96132751A35500C8C12E /* Edulink_Homework.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B96122751A35500C8C12E /* Edulink_Homework.swift */; };
 		E17E14A1274C19B10090F822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14A0274C19B10090F822 /* AppDelegate.swift */; };
-		E17E14A5274C19B20090F822 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14A4274C19B20090F822 /* ViewController.swift */; };
-		E17E14A8274C19B20090F822 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E17E14A6274C19B20090F822 /* Main.storyboard */; };
 		E17E14AA274C19B30090F822 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E17E14A9274C19B30090F822 /* Assets.xcassets */; };
 		E17E14AD274C19B30090F822 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E17E14AB274C19B30090F822 /* LaunchScreen.storyboard */; };
 		E17E14B6274C1A3C0090F822 /* SerializedSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E17E14B5274C1A3C0090F822 /* SerializedSwift */; };
@@ -20,19 +32,35 @@
 		E17E14C8274C20610090F822 /* EdulinkRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14C7274C20610090F822 /* EdulinkRequests.swift */; };
 		E17E14CA274C211D0090F822 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14C9274C211D0090F822 /* Transformers.swift */; };
 		E17E14CC274C25010090F822 /* EdulinkBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14CB274C25010090F822 /* EdulinkBase.swift */; };
+		E197455D2751298900EEB853 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197455C2751298900EEB853 /* OnboardingViewController.swift */; };
+		E197456027512B4800EEB853 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197455F27512B4800EEB853 /* Bundle+Extensions.swift */; };
+		E197456327512D6600EEB853 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197456227512D6600EEB853 /* ThemeManager.swift */; };
 		E1BDD309274C63BE00056027 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BDD308274C63BE00056027 /* User.swift */; };
-		E1C2125C274CF8F70030BE0C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C2125B274CF8F40030BE0C /* Constants.swift */; };
-		E1C21260274CFD160030BE0C /* EdulinkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C2125F274CFD160030BE0C /* EdulinkStatus.swift */; };
+		E1CDE49827502F1B00AA7769 /* Edulink_Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDE49627502F1B00AA7769 /* Edulink_Status.swift */; };
 		E1CEBD8D274C2F80009F35D4 /* AuthenticatedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD8C274C2F80009F35D4 /* AuthenticatedUser.swift */; };
 		E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD8E274C3AB9009F35D4 /* SchoolDetails.swift */; };
 		E1CEBD91274C5F8E009F35D4 /* Establishment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD90274C5F8E009F35D4 /* Establishment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E10B95E8275139D600C8C12E /* SchoolCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolCodeViewController.swift; sourceTree = "<group>"; };
+		E10B95EB27513A3100C8C12E /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
+		E10B95ED27513AD900C8C12E /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
+		E10B95EF27513E7E00C8C12E /* KeyboardAwareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAwareViewController.swift; sourceTree = "<group>"; };
+		E10B95F62751554B00C8C12E /* Centralis-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Centralis-Bridging-Header.h"; sourceTree = "<group>"; };
+		E10B95F82751566700C8C12E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		E10B95FA2751566B00C8C12E /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		E10B95FC275160C000C8C12E /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
+		E10B95FE275164D800C8C12E /* CentralisNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralisNavigationController.swift; sourceTree = "<group>"; };
+		E10B9600275167AD00C8C12E /* UserPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPasswordViewController.swift; sourceTree = "<group>"; };
+		E10B96032751773D00C8C12E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E10B9606275178F500C8C12E /* CentralisTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralisTabBarController.swift; sourceTree = "<group>"; };
+		E10B96082751865E00C8C12E /* BaseSubtitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseSubtitleCell.swift; sourceTree = "<group>"; };
+		E10B96092751865E00C8C12E /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		E10B960D27518B0800C8C12E /* QuickLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLoginViewController.swift; sourceTree = "<group>"; };
+		E10B96122751A35500C8C12E /* Edulink_Homework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Homework.swift; sourceTree = "<group>"; };
 		E17E149D274C19B10090F822 /* Centralis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Centralis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E17E14A0274C19B10090F822 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E17E14A4274C19B20090F822 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E17E14A7274C19B20090F822 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E17E14A9274C19B30090F822 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E17E14AC274C19B30090F822 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E17E14AE274C19B30090F822 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -43,9 +71,11 @@
 		E17E14C7274C20610090F822 /* EdulinkRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdulinkRequests.swift; sourceTree = "<group>"; };
 		E17E14C9274C211D0090F822 /* Transformers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformers.swift; sourceTree = "<group>"; };
 		E17E14CB274C25010090F822 /* EdulinkBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdulinkBase.swift; sourceTree = "<group>"; };
+		E197455C2751298900EEB853 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		E197455F27512B4800EEB853 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
+		E197456227512D6600EEB853 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		E1BDD308274C63BE00056027 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		E1C2125B274CF8F40030BE0C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		E1C2125F274CFD160030BE0C /* EdulinkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdulinkStatus.swift; sourceTree = "<group>"; };
+		E1CDE49627502F1B00AA7769 /* Edulink_Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edulink_Status.swift; sourceTree = "<group>"; };
 		E1CEBD8C274C2F80009F35D4 /* AuthenticatedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedUser.swift; sourceTree = "<group>"; };
 		E1CEBD8E274C3AB9009F35D4 /* SchoolDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolDetails.swift; sourceTree = "<group>"; };
 		E1CEBD90274C5F8E009F35D4 /* Establishment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Establishment.swift; sourceTree = "<group>"; };
@@ -56,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E10B961127518EFF00C8C12E /* SQLite in Frameworks */,
 				E17E14B9274C1A470090F822 /* Evander in Frameworks */,
 				E17E14B6274C1A3C0090F822 /* SerializedSwift in Frameworks */,
 			);
@@ -64,11 +95,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E10B95E72751398F00C8C12E /* Login View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E10B95E8275139D600C8C12E /* SchoolCodeViewController.swift */,
+				E10B9600275167AD00C8C12E /* UserPasswordViewController.swift */,
+			);
+			path = "Login View Controller";
+			sourceTree = "<group>";
+		};
+		E10B95F72751566700C8C12E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E10B95FA2751566B00C8C12E /* SafariServices.framework */,
+				E10B95F82751566700C8C12E /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E10B9602275176B200C8C12E /* Home View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E10B96032751773D00C8C12E /* HomeViewController.swift */,
+			);
+			path = "Home View Controller";
+			sourceTree = "<group>";
+		};
+		E10B9605275178CB00C8C12E /* Centralis Tab Bar Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E10B9606275178F500C8C12E /* CentralisTabBarController.swift */,
+			);
+			path = "Centralis Tab Bar Controller";
+			sourceTree = "<group>";
+		};
+		E10B960C27518AF100C8C12E /* Quick Login Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E10B960D27518B0800C8C12E /* QuickLoginViewController.swift */,
+			);
+			path = "Quick Login Controller";
+			sourceTree = "<group>";
+		};
 		E17E1494274C19B10090F822 = {
 			isa = PBXGroup;
 			children = (
 				E17E149F274C19B10090F822 /* Centralis */,
 				E17E149E274C19B10090F822 /* Products */,
+				E10B95F72751566700C8C12E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,15 +157,14 @@
 		E17E149F274C19B10090F822 /* Centralis */ = {
 			isa = PBXGroup;
 			children = (
+				E197455A2751295E00EEB853 /* UI */,
 				E17E14C3274C1DDF0090F822 /* Centralis.entitlements */,
 				E17E14BA274C1A700090F822 /* Backend */,
 				E17E14A0274C19B10090F822 /* AppDelegate.swift */,
-				E17E14A4274C19B20090F822 /* ViewController.swift */,
-				E17E14A6274C19B20090F822 /* Main.storyboard */,
 				E17E14A9274C19B30090F822 /* Assets.xcassets */,
 				E17E14AB274C19B30090F822 /* LaunchScreen.storyboard */,
 				E17E14AE274C19B30090F822 /* Info.plist */,
-				E1C2125B274CF8F40030BE0C /* Constants.swift */,
+				E10B95F62751554B00C8C12E /* Centralis-Bridging-Header.h */,
 			);
 			path = Centralis;
 			sourceTree = "<group>";
@@ -99,6 +172,7 @@
 		E17E14BA274C1A700090F822 /* Backend */ = {
 			isa = PBXGroup;
 			children = (
+				E197455E27512B3700EEB853 /* Extensions */,
 				E17E14C4274C1EBE0090F822 /* Login Manager */,
 				E17E14C0274C1B220090F822 /* Models */,
 				E17E14BF274C1B050090F822 /* Contrib */,
@@ -146,10 +220,55 @@
 			path = "Login Manager";
 			sourceTree = "<group>";
 		};
+		E197455A2751295E00EEB853 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				E10B960C27518AF100C8C12E /* Quick Login Controller */,
+				E10B9605275178CB00C8C12E /* Centralis Tab Bar Controller */,
+				E10B9602275176B200C8C12E /* Home View Controller */,
+				E10B95E72751398F00C8C12E /* Login View Controller */,
+				E197456127512D3C00EEB853 /* Common */,
+				E197455B2751296800EEB853 /* Onboarding */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		E197455B2751296800EEB853 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				E197455C2751298900EEB853 /* OnboardingViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		E197455E27512B3700EEB853 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E197455F27512B4800EEB853 /* Bundle+Extensions.swift */,
+				E10B95FC275160C000C8C12E /* URL+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E197456127512D3C00EEB853 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E10B96082751865E00C8C12E /* BaseSubtitleCell.swift */,
+				E10B96092751865E00C8C12E /* BaseTableViewController.swift */,
+				E197456227512D6600EEB853 /* ThemeManager.swift */,
+				E10B95EB27513A3100C8C12E /* RoundedTextField.swift */,
+				E10B95ED27513AD900C8C12E /* LoadingButton.swift */,
+				E10B95EF27513E7E00C8C12E /* KeyboardAwareViewController.swift */,
+				E10B95FE275164D800C8C12E /* CentralisNavigationController.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		E1C2125E274CFCF20030BE0C /* API Requests */ = {
 			isa = PBXGroup;
 			children = (
-				E1C2125F274CFD160030BE0C /* EdulinkStatus.swift */,
+				E1CDE49627502F1B00AA7769 /* Edulink_Status.swift */,
+				E10B96122751A35500C8C12E /* Edulink_Homework.swift */,
 			);
 			path = "API Requests";
 			sourceTree = "<group>";
@@ -173,6 +292,7 @@
 			packageProductDependencies = (
 				E17E14B5274C1A3C0090F822 /* SerializedSwift */,
 				E17E14B8274C1A470090F822 /* Evander */,
+				E10B961027518EFF00C8C12E /* SQLite */,
 			);
 			productName = Centralis;
 			productReference = E17E149D274C19B10090F822 /* Centralis.app */;
@@ -205,6 +325,7 @@
 			packageReferences = (
 				E17E14B4274C1A3C0090F822 /* XCRemoteSwiftPackageReference "SerializedSwift" */,
 				E17E14B7274C1A470090F822 /* XCRemoteSwiftPackageReference "Evander" */,
+				E10B960F27518EFF00C8C12E /* XCRemoteSwiftPackageReference "SQLite" */,
 			);
 			productRefGroup = E17E149E274C19B10090F822 /* Products */;
 			projectDirPath = "";
@@ -222,7 +343,6 @@
 			files = (
 				E17E14AD274C19B30090F822 /* LaunchScreen.storyboard in Resources */,
 				E17E14AA274C19B30090F822 /* Assets.xcassets in Resources */,
-				E17E14A8274C19B20090F822 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,18 +354,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1BDD309274C63BE00056027 /* User.swift in Sources */,
-				E17E14A5274C19B20090F822 /* ViewController.swift in Sources */,
 				E17E14C8274C20610090F822 /* EdulinkRequests.swift in Sources */,
+				E10B960A2751865E00C8C12E /* BaseSubtitleCell.swift in Sources */,
+				E10B95EE27513AD900C8C12E /* LoadingButton.swift in Sources */,
 				E17E14CC274C25010090F822 /* EdulinkBase.swift in Sources */,
 				E17E14C2274C1B2F0090F822 /* UserLogin.swift in Sources */,
-				E1C21260274CFD160030BE0C /* EdulinkStatus.swift in Sources */,
+				E10B95FD275160C000C8C12E /* URL+Extensions.swift in Sources */,
 				E17E14CA274C211D0090F822 /* Transformers.swift in Sources */,
 				E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */,
+				E197456027512B4800EEB853 /* Bundle+Extensions.swift in Sources */,
+				E10B95F027513E7E00C8C12E /* KeyboardAwareViewController.swift in Sources */,
+				E10B95EC27513A3100C8C12E /* RoundedTextField.swift in Sources */,
+				E10B96042751773D00C8C12E /* HomeViewController.swift in Sources */,
+				E10B9607275178F500C8C12E /* CentralisTabBarController.swift in Sources */,
+				E197455D2751298900EEB853 /* OnboardingViewController.swift in Sources */,
 				E17E14A1274C19B10090F822 /* AppDelegate.swift in Sources */,
+				E10B95FF275164D800C8C12E /* CentralisNavigationController.swift in Sources */,
 				E1CEBD8D274C2F80009F35D4 /* AuthenticatedUser.swift in Sources */,
+				E10B96132751A35500C8C12E /* Edulink_Homework.swift in Sources */,
+				E10B960B2751865E00C8C12E /* BaseTableViewController.swift in Sources */,
 				E17E14BD274C1ABA0090F822 /* EdulinkManager.swift in Sources */,
+				E10B9601275167AD00C8C12E /* UserPasswordViewController.swift in Sources */,
+				E197456327512D6600EEB853 /* ThemeManager.swift in Sources */,
 				E1CEBD91274C5F8E009F35D4 /* Establishment.swift in Sources */,
-				E1C2125C274CF8F70030BE0C /* Constants.swift in Sources */,
+				E10B95E9275139D600C8C12E /* SchoolCodeViewController.swift in Sources */,
+				E1CDE49827502F1B00AA7769 /* Edulink_Status.swift in Sources */,
+				E10B960E27518B0800C8C12E /* QuickLoginViewController.swift in Sources */,
 				E17E14C6274C1ECD0090F822 /* LoginManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,14 +387,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		E17E14A6274C19B20090F822 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E17E14A7274C19B20090F822 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E17E14AB274C19B30090F822 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -401,7 +527,6 @@
 				INFOPLIST_FILE = Centralis/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -412,7 +537,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.CentralisRewritten;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Centralis/Centralis-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -431,7 +558,6 @@
 				INFOPLIST_FILE = Centralis/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -442,7 +568,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.CentralisRewritten;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Centralis/Centralis-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -472,6 +600,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E10B960F27518EFF00C8C12E /* XCRemoteSwiftPackageReference "SQLite" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.2;
+			};
+		};
 		E17E14B4274C1A3C0090F822 /* XCRemoteSwiftPackageReference "SerializedSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dejanskledar/SerializedSwift";
@@ -491,6 +627,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E10B961027518EFF00C8C12E /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E10B960F27518EFF00C8C12E /* XCRemoteSwiftPackageReference "SQLite" */;
+			productName = SQLite;
+		};
 		E17E14B5274C1A3C0090F822 /* SerializedSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E17E14B4274C1A3C0090F822 /* XCRemoteSwiftPackageReference "SerializedSwift" */;
