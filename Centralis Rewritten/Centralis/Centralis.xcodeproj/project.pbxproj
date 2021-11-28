@@ -21,6 +21,9 @@
 		E10B960E27518B0800C8C12E /* QuickLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B960D27518B0800C8C12E /* QuickLoginViewController.swift */; };
 		E10B961127518EFF00C8C12E /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = E10B961027518EFF00C8C12E /* SQLite */; };
 		E10B96132751A35500C8C12E /* Edulink_Homework.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B96122751A35500C8C12E /* Edulink_Homework.swift */; };
+		E10B96162752605E00C8C12E /* PersistenceDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B96152752605E00C8C12E /* PersistenceDatabase.swift */; };
+		E15B5BCC275306720003A56D /* HomeworkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15B5BCA275306720003A56D /* HomeworkCell.swift */; };
+		E15B5BCD275306720003A56D /* HomeworkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E15B5BCB275306720003A56D /* HomeworkCell.xib */; };
 		E17E14A1274C19B10090F822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14A0274C19B10090F822 /* AppDelegate.swift */; };
 		E17E14AA274C19B30090F822 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E17E14A9274C19B30090F822 /* Assets.xcassets */; };
 		E17E14AD274C19B30090F822 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E17E14AB274C19B30090F822 /* LaunchScreen.storyboard */; };
@@ -35,6 +38,9 @@
 		E197455D2751298900EEB853 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197455C2751298900EEB853 /* OnboardingViewController.swift */; };
 		E197456027512B4800EEB853 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197455F27512B4800EEB853 /* Bundle+Extensions.swift */; };
 		E197456327512D6600EEB853 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197456227512D6600EEB853 /* ThemeManager.swift */; };
+		E1B8C18D27528FAA001FF9FD /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8C18C27528FAA001FF9FD /* Int+Extensions.swift */; };
+		E1B8C18F27529646001FF9FD /* Thread+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8C18E27529646001FF9FD /* Thread+Extensions.swift */; };
+		E1B8C1912752A0AD001FF9FD /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8C1902752A0AD001FF9FD /* NotificationManager.swift */; };
 		E1BDD309274C63BE00056027 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BDD308274C63BE00056027 /* User.swift */; };
 		E1CDE49827502F1B00AA7769 /* Edulink_Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDE49627502F1B00AA7769 /* Edulink_Status.swift */; };
 		E1CEBD8D274C2F80009F35D4 /* AuthenticatedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD8C274C2F80009F35D4 /* AuthenticatedUser.swift */; };
@@ -59,6 +65,9 @@
 		E10B96092751865E00C8C12E /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		E10B960D27518B0800C8C12E /* QuickLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLoginViewController.swift; sourceTree = "<group>"; };
 		E10B96122751A35500C8C12E /* Edulink_Homework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Homework.swift; sourceTree = "<group>"; };
+		E10B96152752605E00C8C12E /* PersistenceDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceDatabase.swift; sourceTree = "<group>"; };
+		E15B5BCA275306720003A56D /* HomeworkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkCell.swift; sourceTree = "<group>"; };
+		E15B5BCB275306720003A56D /* HomeworkCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeworkCell.xib; sourceTree = "<group>"; };
 		E17E149D274C19B10090F822 /* Centralis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Centralis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E17E14A0274C19B10090F822 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E17E14A9274C19B30090F822 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,6 +83,9 @@
 		E197455C2751298900EEB853 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		E197455F27512B4800EEB853 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		E197456227512D6600EEB853 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		E1B8C18C27528FAA001FF9FD /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
+		E1B8C18E27529646001FF9FD /* Thread+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Thread+Extensions.swift"; sourceTree = "<group>"; };
+		E1B8C1902752A0AD001FF9FD /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		E1BDD308274C63BE00056027 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E1CDE49627502F1B00AA7769 /* Edulink_Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edulink_Status.swift; sourceTree = "<group>"; };
 		E1CEBD8C274C2F80009F35D4 /* AuthenticatedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedUser.swift; sourceTree = "<group>"; };
@@ -137,6 +149,24 @@
 			path = "Quick Login Controller";
 			sourceTree = "<group>";
 		};
+		E10B96142752605000C8C12E /* Persistence Database */ = {
+			isa = PBXGroup;
+			children = (
+				E10B96152752605E00C8C12E /* PersistenceDatabase.swift */,
+				E1B8C1902752A0AD001FF9FD /* NotificationManager.swift */,
+			);
+			path = "Persistence Database";
+			sourceTree = "<group>";
+		};
+		E15B5BC92753060F0003A56D /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E15B5BCA275306720003A56D /* HomeworkCell.swift */,
+				E15B5BCB275306720003A56D /* HomeworkCell.xib */,
+			);
+			path = "Table View Cells";
+			sourceTree = "<group>";
+		};
 		E17E1494274C19B10090F822 = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +202,7 @@
 		E17E14BA274C1A700090F822 /* Backend */ = {
 			isa = PBXGroup;
 			children = (
+				E10B96142752605000C8C12E /* Persistence Database */,
 				E197455E27512B3700EEB853 /* Extensions */,
 				E17E14C4274C1EBE0090F822 /* Login Manager */,
 				E17E14C0274C1B220090F822 /* Models */,
@@ -223,6 +254,7 @@
 		E197455A2751295E00EEB853 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				E15B5BC92753060F0003A56D /* Table View Cells */,
 				E10B960C27518AF100C8C12E /* Quick Login Controller */,
 				E10B9605275178CB00C8C12E /* Centralis Tab Bar Controller */,
 				E10B9602275176B200C8C12E /* Home View Controller */,
@@ -246,6 +278,8 @@
 			children = (
 				E197455F27512B4800EEB853 /* Bundle+Extensions.swift */,
 				E10B95FC275160C000C8C12E /* URL+Extensions.swift */,
+				E1B8C18C27528FAA001FF9FD /* Int+Extensions.swift */,
+				E1B8C18E27529646001FF9FD /* Thread+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -343,6 +377,7 @@
 			files = (
 				E17E14AD274C19B30090F822 /* LaunchScreen.storyboard in Resources */,
 				E17E14AA274C19B30090F822 /* Assets.xcassets in Resources */,
+				E15B5BCD275306720003A56D /* HomeworkCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1BDD309274C63BE00056027 /* User.swift in Sources */,
+				E10B96162752605E00C8C12E /* PersistenceDatabase.swift in Sources */,
 				E17E14C8274C20610090F822 /* EdulinkRequests.swift in Sources */,
 				E10B960A2751865E00C8C12E /* BaseSubtitleCell.swift in Sources */,
 				E10B95EE27513AD900C8C12E /* LoadingButton.swift in Sources */,
@@ -361,6 +397,7 @@
 				E17E14C2274C1B2F0090F822 /* UserLogin.swift in Sources */,
 				E10B95FD275160C000C8C12E /* URL+Extensions.swift in Sources */,
 				E17E14CA274C211D0090F822 /* Transformers.swift in Sources */,
+				E1B8C18D27528FAA001FF9FD /* Int+Extensions.swift in Sources */,
 				E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */,
 				E197456027512B4800EEB853 /* Bundle+Extensions.swift in Sources */,
 				E10B95F027513E7E00C8C12E /* KeyboardAwareViewController.swift in Sources */,
@@ -368,13 +405,16 @@
 				E10B96042751773D00C8C12E /* HomeViewController.swift in Sources */,
 				E10B9607275178F500C8C12E /* CentralisTabBarController.swift in Sources */,
 				E197455D2751298900EEB853 /* OnboardingViewController.swift in Sources */,
+				E15B5BCC275306720003A56D /* HomeworkCell.swift in Sources */,
 				E17E14A1274C19B10090F822 /* AppDelegate.swift in Sources */,
 				E10B95FF275164D800C8C12E /* CentralisNavigationController.swift in Sources */,
 				E1CEBD8D274C2F80009F35D4 /* AuthenticatedUser.swift in Sources */,
 				E10B96132751A35500C8C12E /* Edulink_Homework.swift in Sources */,
 				E10B960B2751865E00C8C12E /* BaseTableViewController.swift in Sources */,
+				E1B8C1912752A0AD001FF9FD /* NotificationManager.swift in Sources */,
 				E17E14BD274C1ABA0090F822 /* EdulinkManager.swift in Sources */,
 				E10B9601275167AD00C8C12E /* UserPasswordViewController.swift in Sources */,
+				E1B8C18F27529646001FF9FD /* Thread+Extensions.swift in Sources */,
 				E197456327512D6600EEB853 /* ThemeManager.swift in Sources */,
 				E1CEBD91274C5F8E009F35D4 /* Establishment.swift in Sources */,
 				E10B95E9275139D600C8C12E /* SchoolCodeViewController.swift in Sources */,
@@ -523,6 +563,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Centralis/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -554,6 +595,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Centralis/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

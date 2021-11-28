@@ -28,9 +28,8 @@ public final class LoginManager {
               let data = dataTypeRef as? Data else { return (status, nil) }
         return (status, try? JSONDecoder().decode(UserLogin.self, from: data))
     }
-    
+
     @discardableResult public class func save(login: UserLogin?) -> OSStatus {
-        NSLog("CEntralis \("\(appIdentifierPrefix)group.amywhile.centralis")")
         if let login = login  {
             let encoded = (try? JSONEncoder().encode(login)) ?? Data()
             let query: [String: Any] = [
@@ -46,9 +45,46 @@ public final class LoginManager {
                 kSecClass as String       : kSecClassGenericPassword as String,
                 kSecAttrAccount as String : "Centralis.SavedLogins",
                 kSecAttrAccessGroup as String: "\(appIdentifierPrefix)group.amywhile.centralis" ]
+            Self.cacheUser = nil
             return SecItemDelete(query as CFDictionary)
         }
-        
+    }
+    
+    public static var cacheUser: AuthenticatedUser? {
+        get {
+            let query: [String: Any] = [
+                kSecClass as String       : kSecClassGenericPassword,
+                kSecAttrAccount as String : "Centralis.CachedUser",
+                kSecReturnData as String  : kCFBooleanTrue!,
+                kSecAttrAccessGroup as String: "\(appIdentifierPrefix)group.amywhile.centralis",
+                kSecMatchLimit as String  : kSecMatchLimitOne ]
+            
+            var dataTypeRef: AnyObject? = nil
+
+            let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
+            
+            guard status == noErr,
+                  let data = dataTypeRef as? Data else { return nil }
+            return try? JSONDecoder().decode(AuthenticatedUser.self, from: data)
+        }
+        set(login) {
+            if let login = login {
+                let encoded = (try? JSONEncoder().encode(login)) ?? Data()
+                let query: [String: Any] = [
+                    kSecClass as String       : kSecClassGenericPassword as String,
+                    kSecAttrAccount as String : "Centralis.CachedUser",
+                    kSecAttrAccessGroup as String: "\(appIdentifierPrefix)group.amywhile.centralis",
+                    kSecValueData as String: encoded ]
+                SecItemDelete(query as CFDictionary)
+                SecItemAdd(query as CFDictionary, nil)
+            } else {
+                let query: [String: Any] = [
+                    kSecClass as String       : kSecClassGenericPassword as String,
+                    kSecAttrAccount as String : "Centralis.CachedUser",
+                    kSecAttrAccessGroup as String: "\(appIdentifierPrefix)group.amywhile.centralis"]
+                SecItemDelete(query as CFDictionary)
+            }
+        }
     }
     
     public class func loadSchool(from code: String, _ completion: @escaping (String?, SchoolDetails?) -> Void) {
@@ -81,24 +117,37 @@ public final class LoginManager {
     }
     
     public class func login(_ login: UserLogin, _ completion: @escaping (String?, AuthenticatedUser?) -> Void) {
-        EvanderNetworking.edulinkDict(url: login.server, method: "EduLink.Login", params: [
-            .custom(key: "establishment_id", value: login.schoolID),
-            .custom(key: "fcm_token_old", value: "none"),
-            .custom(key: "from_app", value: false),
-            .custom(key: "password", value: login.password),
-            .custom(key: "username", value: login.username)]) { _, _, error, result in
-                guard let result = result,
-                      let jsonData = try? JSONSerialization.data(withJSONObject: result) else {
-                   return completion(error ?? "Unknown Error", nil)
+        func _login() {
+            EvanderNetworking.edulinkDict(url: login.server, method: "EduLink.Login", params: [
+                .custom(key: "establishment_id", value: login.schoolID),
+                .custom(key: "fcm_token_old", value: "none"),
+                .custom(key: "from_app", value: false),
+                .custom(key: "password", value: login.password),
+                .custom(key: "username", value: login.username)]) { _, _, error, result in
+                    guard let result = result,
+                          let jsonData = try? JSONSerialization.data(withJSONObject: result) else {
+                       return completion(error ?? "Unknown Error", nil)
+                    }
+                    do {
+                        let user = try JSONDecoder().decode(AuthenticatedUser.self, from: jsonData)
+                        EdulinkManager.shared.authenticatedUser = user
+                        user.login = login
+                        return completion(nil, user)
+                    } catch {
+                        return completion(error.localizedDescription, nil)
+                    }
+            }
+        }
+        if let cacheUser = cacheUser {
+            EdulinkManager.shared.authenticatedUser = cacheUser
+            Ping.ping { error, success in
+                if success {
+                    return completion(nil, cacheUser)
                 }
-                do {
-                    let user = try JSONDecoder().decode(AuthenticatedUser.self, from: jsonData)
-                    EdulinkManager.shared.authenticatedUser = user
-                    user.login = login
-                    return completion(nil, user)
-                } catch {
-                    return completion(error.localizedDescription, nil)
-                }
+                _login()
+            }
+        } else {
+            _login()
         }
     }
 }

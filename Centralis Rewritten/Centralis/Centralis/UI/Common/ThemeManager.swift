@@ -24,7 +24,7 @@ final class ThemeManager {
         NotificationCenter.default.post(name: ThemeManager.ThemeUpdate, object: nil)
     }
         
-    static var backgroundColour: UIColor {
+    static var secondaryBackgroundColour: UIColor {
         UIColor(dynamicProvider: { traitCollection in
             if traitCollection.userInterfaceStyle == .dark {
                 return .systemGray6
@@ -34,7 +34,7 @@ final class ThemeManager {
         })
     }
     
-    static var secondaryBackgroundColour: UIColor {
+    static var backgroundColour: UIColor {
         UIColor(dynamicProvider: { traitCollection in
             if traitCollection.userInterfaceStyle == .dark {
                 return .black

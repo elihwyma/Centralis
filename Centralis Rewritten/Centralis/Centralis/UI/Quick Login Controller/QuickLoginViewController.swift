@@ -7,21 +7,18 @@
 
 import UIKit
 
-class QuickLoginViewController: UIViewController {
+class ProcessingViewController: UIViewController {
     
-    private let login: UserLogin
-    
-    private var activityIndicator: UIActivityIndicatorView = {
+    public var activityIndicator: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView(style: .large)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.hidesWhenStopped = true
         return view
     }()
     
-    private var label: UILabel = {
+    public var label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Connecting to EduLink"
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
@@ -29,7 +26,7 @@ class QuickLoginViewController: UIViewController {
         return label
     }()
     
-    private var errorLabel: UILabel = {
+    public var errorLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .systemRed
@@ -40,7 +37,7 @@ class QuickLoginViewController: UIViewController {
         return label
     }()
     
-    private lazy var logoutButton: LoadingButton = {
+    public lazy var logoutButton: LoadingButton = {
         let button = LoadingButton(primaryAction: UIAction(handler: { [weak self] _ in
             guard let `self` = self else { return }
             self.retryButton.isEnabled = false
@@ -60,12 +57,11 @@ class QuickLoginViewController: UIViewController {
         return button
     }()
     
-    private lazy var retryButton: LoadingButton = {
+    public lazy var retryButton: LoadingButton = {
         let button = LoadingButton(primaryAction: UIAction(handler: { [weak self] _ in
             guard let `self` = self else { return }
             self.retryButton.isEnabled = false
             self.logoutButton.isEnabled = false
-            self.loginToAccount()
         }))
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .tintColor
@@ -78,16 +74,6 @@ class QuickLoginViewController: UIViewController {
         button.layer.cornerRadius = 25
         return button
     }()
-    
-    init(login: UserLogin) {
-        self.login = login
-        super.init(nibName: nil, bundle: nil)
-        self.loginToAccount()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,7 +109,7 @@ class QuickLoginViewController: UIViewController {
         logoutButton.alpha = 0
     }
     
-    private func set(error: String?) {
+    public func set(error: String?) {
         UIView.animate(withDuration: 0.3) { [weak self] in
             guard let `self` = self else { return }
             if let error = error {
@@ -146,19 +132,89 @@ class QuickLoginViewController: UIViewController {
         }
     }
     
+    
+    public func retryAction() {
+        
+    }
+}
+
+class QuickLoginViewController: ProcessingViewController {
+    private let login: UserLogin
+    
     private func loginToAccount() {
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         LoginManager.login(login) { [weak self] error, authenticatedUser in
             DispatchQueue.main.async {
                 if authenticatedUser != nil {
+                    if self != nil {
+                        if PersistenceDatabase.shared.hasIndexed {
+                            (UIApplication.shared.delegate as! AppDelegate).setRootViewController(CentralisTabBarController.shared)
+                        } else {
+                            (UIApplication.shared.delegate as! AppDelegate).setRootViewController(IndexingViewController())
+                        }
+                    }
+                    return
+                }
+                self?.set(error: error ?? "Unknown Error")
+            }
+        }
+    }
+    
+    public class func viewControllerFor(login: UserLogin) -> UIViewController {
+        if PersistenceDatabase.shared.hasIndexed {
+            let vc = QuickLoginViewController(login: login)
+            vc.loginToAccount()
+            return CentralisTabBarController.shared
+        } else {
+            return QuickLoginViewController(login: login)
+        }
+    }
+    
+    init(login: UserLogin) {
+        self.login = login
+        super.init(nibName: nil, bundle: nil)
+        label.text = "Connecting to EduLink"
+        self.loginToAccount()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override public func retryAction() {
+        self.loginToAccount()
+    }
+    
+}
+
+class IndexingViewController: ProcessingViewController {
+    
+    override public func retryAction() {
+        indexAccount()
+    }
+    
+    public func indexAccount() {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        PersistenceDatabase.persistenceIndex { [weak self] error, success in
+            Thread.mainBlock {
+                if success {
                     (UIApplication.shared.delegate as! AppDelegate).setRootViewController(CentralisTabBarController.shared)
                     return
                 }
                 self?.set(error: error ?? "Unknown Error")
             }
-            
         }
     }
     
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        label.text = "Indexing your account"
+        indexAccount()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

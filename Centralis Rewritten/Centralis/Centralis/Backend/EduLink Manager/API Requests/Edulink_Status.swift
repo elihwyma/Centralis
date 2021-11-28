@@ -44,19 +44,20 @@ public struct Session: Serializable {
 
 public final class Ping {
     
-    public class func ping(_ completion: @escaping (String) -> ()) {
+    public class func ping(_ completion: @escaping (String?, Bool) -> ()) {
         EvanderNetworking.edulinkDict(method: "EduLink.Ping", params: []) { success, _, message, _ in
             if success {
                 EdulinkManager.shared.session?.expires = 1800
+                completion(nil, true)
                 return
             } else if let login = EdulinkManager.shared.authenticatedUser?.login {
                 LoginManager.login(login) { error, _ in
                     if let error = error {
-                        return completion(error)
+                        return completion(error, false)
                     }
                 }
             } else {
-                return completion("Unable to do anything wtf?")
+                return completion("Unable to do anything wtf?", false)
             }
         }
     }

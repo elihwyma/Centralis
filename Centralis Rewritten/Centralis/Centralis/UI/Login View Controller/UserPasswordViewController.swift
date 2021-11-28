@@ -97,7 +97,7 @@ class UserPasswordViewController: KeyboardAwareViewController {
                             self.loginButton.isLoading = false
                             return
                         }
-                        (UIApplication.shared.delegate as! AppDelegate).setRootViewController(CentralisTabBarController.shared)
+                        (UIApplication.shared.delegate as! AppDelegate).setRootViewController(IndexingViewController())
                     } else {
                         self.errorLabel.text = error ?? "Unknown Error"
                         self.loginButton.isLoading = false

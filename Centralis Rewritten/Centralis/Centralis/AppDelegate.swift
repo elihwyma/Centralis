@@ -15,9 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        //EdulinkManager.shared.signout()
         self.window = UIWindow(frame: UIScreen.main.bounds)
         if let login = LoginManager.loadLogin().1 {
-            window?.rootViewController = CentralisNavigationController(rootViewController: QuickLoginViewController(login: login))
+            window?.rootViewController = CentralisNavigationController(rootViewController: QuickLoginViewController.viewControllerFor(login: login))
         } else {
             window?.rootViewController = CentralisNavigationController(rootViewController: OnboardingViewController())
         }
@@ -46,6 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                           animations: nil,
                           completion: nil)
     }
-
+    
 }
 

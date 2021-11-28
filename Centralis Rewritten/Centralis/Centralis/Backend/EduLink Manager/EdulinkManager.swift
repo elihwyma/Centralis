@@ -20,7 +20,7 @@ final public class EdulinkManager {
                 self.pingTimer?.invalidate()
                 guard self.session != nil else { return }
                 self.pingTimer = Timer.scheduledTimer(withTimeInterval: 300, repeats: true) { timer in
-                    Edulink_Ping.ping { error in
+                    Ping.ping { error, _ in
                         #warning("This Error Needs to be handled")
                     }
                 }
@@ -31,6 +31,9 @@ final public class EdulinkManager {
     public var pingTimer: Timer?
     
     public func signout() {
+        try? PersistenceDatabase.shared.resetDatabase()
+        NotificationManager.shared.removeAllNotifications()
+        LoginManager.save(login: nil)
         Self.shared = EdulinkManager()
     }
 }
