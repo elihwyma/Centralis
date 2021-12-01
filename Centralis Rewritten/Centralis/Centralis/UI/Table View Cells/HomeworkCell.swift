@@ -8,16 +8,113 @@
 import UIKit
 
 class HomeworkCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    private class DescriptionLabel: UILabel {
+        
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+            
+            font = UIFont.systemFont(ofSize: 12)
+            textColor = .darkGray
+            translatesAutoresizingMaskIntoConstraints = false
+            heightAnchor.constraint(equalToConstant: 15).isActive = true
+        }
+        
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
     }
+    
+    private class DescriptionImage: UIImageView {
+        
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+            
+            NSLayoutConstraint.activate([
+                heightAnchor.constraint(equalToConstant: 10),
+                widthAnchor.constraint(equalToConstant: 10)
+            ])
+            layer.masksToBounds = true
+            layer.cornerCurve = .continuous
+            layer.cornerRadius = 10 / 4
+            contentMode = .scaleAspectFill
+            tintColor = .lightGray
+            translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
+    }
+    
+    private let title: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 751), for: .vertical)
+        let variableHeight = label.heightAnchor.constraint(equalToConstant: 20)
+        variableHeight.priority = UILayoutPriority(rawValue: 750)
+        NSLayoutConstraint.activate([
+            variableHeight,
+            label.heightAnchor.constraint(greaterThanOrEqualToConstant: 20)
+        ])
+        label.numberOfLines = 2
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let timeLabel = DescriptionLabel(frame: .zero)
+    private let timeImage = DescriptionImage(frame: .zero)
+    
+    private let teacherLabel = DescriptionLabel(frame: .zero)
+    private let teacherImage = DescriptionImage(frame: .zero)
+    
+    private let subjectLabel = DescriptionLabel(frame: .zero)
+    private let subjectImage = DescriptionImage(frame: .zero)
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        contentView.addSubview(timeLabel)
+        contentView.addSubview(timeImage)
+        contentView.addSubview(teacherLabel)
+        contentView.addSubview(teacherImage)
+        contentView.addSubview(subjectLabel)
+        contentView.addSubview(subjectImage)
+        contentView.addSubview(title)
+        
+        NSLayoutConstraint.activate([
+            title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            title.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            
+            timeImage.leadingAnchor.constraint(equalTo: title.leadingAnchor),
+            timeImage.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 8),
+            
+            timeLabel.leadingAnchor.constraint(equalTo: timeImage.trailingAnchor, constant: 5),
+            timeLabel.trailingAnchor.constraint(equalTo: timeLabel.trailingAnchor, constant: -10),
+            timeLabel.centerYAnchor.constraint(equalTo: timeImage.centerYAnchor),
+            
+            teacherImage.topAnchor.constraint(equalTo: timeImage.bottomAnchor, constant: 8),
+            teacherImage.leadingAnchor.constraint(equalTo: timeLabel.leadingAnchor),
+            
+            teacherLabel.trailingAnchor.constraint(equalTo: timeLabel.trailingAnchor),
+            teacherLabel.leadingAnchor.constraint(equalTo: timeLabel.leadingAnchor),
+            teacherLabel.centerYAnchor.constraint(equalTo: teacherImage.centerYAnchor),
+            
+            subjectImage.topAnchor.constraint(equalTo: teacherImage.bottomAnchor, constant: 8),
+            subjectImage.trailingAnchor.constraint(equalTo: timeImage.trailingAnchor),
+            subjectImage.leadingAnchor.constraint(equalTo: timeImage.leadingAnchor),
+            
+            subjectLabel.leadingAnchor.constraint(equalTo: timeLabel.leadingAnchor),
+            subjectLabel.trailingAnchor.constraint(equalTo: timeLabel.trailingAnchor),
+            subjectLabel.centerYAnchor.constraint(equalTo: subjectImage.centerYAnchor)
+        ])
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
 }

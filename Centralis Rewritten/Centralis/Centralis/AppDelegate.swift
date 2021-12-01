@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import BackgroundTasks
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,8 +30,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appearance.configureWithTransparentBackground()
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.amywhile.centralis.backgroundindex",
+                                        using: nil) { (task) in
+            self.handleAppRefreshTask(task: task as! BGAppRefreshTask)
+        }
 
         return true
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        NSLog("[Centralis] Scheduled Background Index")
+        scheduleBackgroundIndex()
     }
     
     func setRootViewController(_ vc: UIViewController, animated: Bool = true) {
@@ -46,6 +58,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                           options: .transitionCrossDissolve,
                           animations: nil,
                           completion: nil)
+    }
+    
+    private func handleAppRefreshTask(task: BGAppRefreshTask) {
+        let content = UNMutableNotificationContent()
+        content.title = "Background Task"
+        content.body = "Background task successfully called!"
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger))
+        guard let login = LoginManager.loadLogin().1 else { return task.setTaskCompleted(success: false) }
+        LoginManager.login(login) { _, user in
+            if user != nil {
+                PersistenceDatabase.backgroundRefresh {
+                    task.setTaskCompleted(success: true)
+                }
+            } else {
+                return task.setTaskCompleted(success: false)
+            }
+        }
+        scheduleBackgroundIndex()
+    }
+    
+    func scheduleBackgroundIndex() {
+        let indexTask = BGAppRefreshTaskRequest(identifier: "com.amywhile.centralis.backgroundindex")
+        indexTask.earliestBeginDate = Date(timeIntervalSinceNow: 60)
+        do {
+            try BGTaskScheduler.shared.submit(indexTask)
+        } catch {
+            print("Unable to submit task: \(error.localizedDescription)")
+        }
     }
     
 }
