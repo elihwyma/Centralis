@@ -29,7 +29,7 @@ class BaseTableViewController: UITableViewController {
             cell = myClass.init(style: style, reuseIdentifier: reuseIdentifier)
             cell?.selectionStyle = UITableViewCell.SelectionStyle.gray
         }
-        cell?.backgroundColor = .backgroundColor
+        cell?.backgroundColor = .secondaryBackgroundColor
         return cell ?? UITableViewCell()
     }
 }

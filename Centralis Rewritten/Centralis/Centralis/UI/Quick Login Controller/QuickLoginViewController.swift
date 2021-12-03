@@ -161,13 +161,13 @@ class QuickLoginViewController: ProcessingViewController {
         }
     }
     
-    public class func viewControllerFor(login: UserLogin) -> UIViewController {
+    public class func viewController(for login: UserLogin) -> UIViewController {
         if PersistenceDatabase.shared.hasIndexed {
             let vc = QuickLoginViewController(login: login)
             vc.loginToAccount()
             return CentralisTabBarController.shared
         } else {
-            return QuickLoginViewController(login: login)
+            return CentralisNavigationController(rootViewController: QuickLoginViewController(login: login))
         }
     }
     

@@ -38,7 +38,7 @@
 		E197455D2751298900EEB853 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197455C2751298900EEB853 /* OnboardingViewController.swift */; };
 		E197456027512B4800EEB853 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197455F27512B4800EEB853 /* Bundle+Extensions.swift */; };
 		E197456327512D6600EEB853 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197456227512D6600EEB853 /* ThemeManager.swift */; };
-		E1B8C18D27528FAA001FF9FD /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8C18C27528FAA001FF9FD /* Int+Extensions.swift */; };
+		E1B8C18D27528FAA001FF9FD /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8C18C27528FAA001FF9FD /* Date+Extensions.swift */; };
 		E1B8C18F27529646001FF9FD /* Thread+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8C18E27529646001FF9FD /* Thread+Extensions.swift */; };
 		E1B8C1912752A0AD001FF9FD /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8C1902752A0AD001FF9FD /* NotificationManager.swift */; };
 		E1BDD309274C63BE00056027 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BDD308274C63BE00056027 /* User.swift */; };
@@ -83,7 +83,7 @@
 		E197455C2751298900EEB853 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		E197455F27512B4800EEB853 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		E197456227512D6600EEB853 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
-		E1B8C18C27528FAA001FF9FD /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
+		E1B8C18C27528FAA001FF9FD /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		E1B8C18E27529646001FF9FD /* Thread+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Thread+Extensions.swift"; sourceTree = "<group>"; };
 		E1B8C1902752A0AD001FF9FD /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		E1BDD308274C63BE00056027 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -278,7 +278,7 @@
 			children = (
 				E197455F27512B4800EEB853 /* Bundle+Extensions.swift */,
 				E10B95FC275160C000C8C12E /* URL+Extensions.swift */,
-				E1B8C18C27528FAA001FF9FD /* Int+Extensions.swift */,
+				E1B8C18C27528FAA001FF9FD /* Date+Extensions.swift */,
 				E1B8C18E27529646001FF9FD /* Thread+Extensions.swift */,
 			);
 			path = Extensions;
@@ -397,7 +397,7 @@
 				E17E14C2274C1B2F0090F822 /* UserLogin.swift in Sources */,
 				E10B95FD275160C000C8C12E /* URL+Extensions.swift in Sources */,
 				E17E14CA274C211D0090F822 /* Transformers.swift in Sources */,
-				E1B8C18D27528FAA001FF9FD /* Int+Extensions.swift in Sources */,
+				E1B8C18D27528FAA001FF9FD /* Date+Extensions.swift in Sources */,
 				E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */,
 				E197456027512B4800EEB853 /* Bundle+Extensions.swift in Sources */,
 				E10B95F027513E7E00C8C12E /* KeyboardAwareViewController.swift in Sources */,

@@ -78,7 +78,6 @@ public final class Homework: EdulinkBase {
                   let jsonCurrent = try? JSONSerialization.data(withJSONObject: current),
                   let jsonPast = try? JSONSerialization.data(withJSONObject: past) else { return completion(error ?? "Unknown Error", nil) }
             do {
-                NSLog("\(current.count) \(past.count)")
                 let current = try JSONDecoder().decode([Homework].self, from: jsonCurrent)
                 let past = try JSONDecoder().decode([Homework].self, from: jsonPast)
                 var allHomework = current + past

@@ -37,7 +37,7 @@ class HomeworkCell: UITableViewCell {
             ])
             layer.masksToBounds = true
             layer.cornerCurve = .continuous
-            layer.cornerRadius = 10 / 4
+            layer.cornerRadius = 10 / 2
             contentMode = .scaleAspectFill
             tintColor = .lightGray
             translatesAutoresizingMaskIntoConstraints = false
@@ -85,7 +85,7 @@ class HomeworkCell: UITableViewCell {
         contentView.addSubview(title)
         
         NSLayoutConstraint.activate([
-            title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             title.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             
@@ -97,7 +97,7 @@ class HomeworkCell: UITableViewCell {
             timeLabel.centerYAnchor.constraint(equalTo: timeImage.centerYAnchor),
             
             teacherImage.topAnchor.constraint(equalTo: timeImage.bottomAnchor, constant: 8),
-            teacherImage.leadingAnchor.constraint(equalTo: timeLabel.leadingAnchor),
+            teacherImage.leadingAnchor.constraint(equalTo: timeImage.leadingAnchor),
             
             teacherLabel.trailingAnchor.constraint(equalTo: timeLabel.trailingAnchor),
             teacherLabel.leadingAnchor.constraint(equalTo: timeLabel.leadingAnchor),
@@ -109,8 +109,36 @@ class HomeworkCell: UITableViewCell {
             
             subjectLabel.leadingAnchor.constraint(equalTo: timeLabel.leadingAnchor),
             subjectLabel.trailingAnchor.constraint(equalTo: timeLabel.trailingAnchor),
-            subjectLabel.centerYAnchor.constraint(equalTo: subjectImage.centerYAnchor)
+            subjectLabel.centerYAnchor.constraint(equalTo: subjectImage.centerYAnchor),
+            
+            subjectImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
+        
+        teacherImage.image = UIImage(systemName: "person.crop.circle")
+        timeImage.image = UIImage(systemName: "clock")
+    }
+    
+    public func set(homework: Homework) {
+        if homework.completed {
+            subjectImage.backgroundColor = .systemGreen
+        } else if homework.isDueToday || homework.isDueTomorrow {
+            subjectImage.backgroundColor = .systemRed
+        } else {
+            subjectImage.backgroundColor = .systemYellow
+        }
+        
+        if homework.isDueToday {
+            timeLabel.text = "Due Today"
+        } else if homework.isDueTomorrow {
+            timeLabel.text = "Due Tomorrow"
+        } else if homework.isCurrent {
+            timeLabel.text  = "Due in \(homework.due_date?.days(sinceDate: Date()) ?? 0) days"
+        } else {
+            timeLabel.text  = "Due \(homework.due_date?.days(sinceDate: Date()) ?? 0) days ago"
+        }
+        teacherLabel.text = homework.set_by
+        title.text = homework.activity
+        subjectLabel.text = homework.subject
     }
     
     required init?(coder: NSCoder) {

@@ -24,8 +24,9 @@ extension Date {
     public init?(timeSince1970: Int64?) {
         if let timeSince1970 = timeSince1970 {
             self.init(timeIntervalSince1970: TimeInterval(timeSince1970))
+        } else {
+            return nil
         }
-        return nil
     }
     
     var dayAfter: Date {

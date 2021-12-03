@@ -36,6 +36,9 @@ final public class PersistenceDatabase {
         self.schemaVersion = DatabaseSchemaVersion.version01000.rawValue
         
         HomeworkDatabase.createTable(database: database)
+        if hasIndexed {
+            self.homework = HomeworkDatabase.getHomework(database: database)
+        }
     }
     
     private var schemaVersion: Int32 {
@@ -46,9 +49,7 @@ final public class PersistenceDatabase {
     }
     
     public var hasIndexed: Bool {
-        // swiftlint:disable:next force_cast force_try
         get { databaseFolder.appendingPathComponent(".INDEXED").exists }
-        // swiftlint:disable:next force_try
         set(indexed) {
             if indexed {
                 try? Data().write(to: databaseFolder.appendingPathComponent(".INDEXED"))
