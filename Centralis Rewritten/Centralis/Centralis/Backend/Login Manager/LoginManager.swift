@@ -132,6 +132,11 @@ public final class LoginManager {
                         let user = try JSONDecoder().decode(AuthenticatedUser.self, from: jsonData)
                         EdulinkManager.shared.authenticatedUser = user
                         user.login = login
+                        if PersistenceDatabase.shared.hasIndexed {
+                            PersistenceDatabase.backgroundRefresh {
+                                NSLog("[Sileo] Background Refresh")
+                            }
+                        }
                         return completion(nil, user)
                     } catch {
                         return completion(error.localizedDescription, nil)

@@ -35,6 +35,7 @@
 		E17E14C8274C20610090F822 /* EdulinkRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14C7274C20610090F822 /* EdulinkRequests.swift */; };
 		E17E14CA274C211D0090F822 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14C9274C211D0090F822 /* Transformers.swift */; };
 		E17E14CC274C25010090F822 /* EdulinkBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14CB274C25010090F822 /* EdulinkBase.swift */; };
+		E19621A6275BC2A50065B446 /* NSAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19621A5275BC2A50065B446 /* NSAttributedString+Extensions.swift */; };
 		E197455D2751298900EEB853 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197455C2751298900EEB853 /* OnboardingViewController.swift */; };
 		E197456027512B4800EEB853 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197455F27512B4800EEB853 /* Bundle+Extensions.swift */; };
 		E197456327512D6600EEB853 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197456227512D6600EEB853 /* ThemeManager.swift */; };
@@ -80,6 +81,7 @@
 		E17E14C7274C20610090F822 /* EdulinkRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdulinkRequests.swift; sourceTree = "<group>"; };
 		E17E14C9274C211D0090F822 /* Transformers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformers.swift; sourceTree = "<group>"; };
 		E17E14CB274C25010090F822 /* EdulinkBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdulinkBase.swift; sourceTree = "<group>"; };
+		E19621A5275BC2A50065B446 /* NSAttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extensions.swift"; sourceTree = "<group>"; };
 		E197455C2751298900EEB853 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		E197455F27512B4800EEB853 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		E197456227512D6600EEB853 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
@@ -187,8 +189,8 @@
 		E17E149F274C19B10090F822 /* Centralis */ = {
 			isa = PBXGroup;
 			children = (
-				E197455A2751295E00EEB853 /* UI */,
 				E17E14C3274C1DDF0090F822 /* Centralis.entitlements */,
+				E197455A2751295E00EEB853 /* UI */,
 				E17E14BA274C1A700090F822 /* Backend */,
 				E17E14A0274C19B10090F822 /* AppDelegate.swift */,
 				E17E14A9274C19B30090F822 /* Assets.xcassets */,
@@ -294,6 +296,7 @@
 				E10B95ED27513AD900C8C12E /* LoadingButton.swift */,
 				E10B95EF27513E7E00C8C12E /* KeyboardAwareViewController.swift */,
 				E10B95FE275164D800C8C12E /* CentralisNavigationController.swift */,
+				E19621A5275BC2A50065B446 /* NSAttributedString+Extensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				E10B95EE27513AD900C8C12E /* LoadingButton.swift in Sources */,
 				E17E14CC274C25010090F822 /* EdulinkBase.swift in Sources */,
 				E17E14C2274C1B2F0090F822 /* UserLogin.swift in Sources */,
+				E19621A6275BC2A50065B446 /* NSAttributedString+Extensions.swift in Sources */,
 				E10B95FD275160C000C8C12E /* URL+Extensions.swift in Sources */,
 				E17E14CA274C211D0090F822 /* Transformers.swift in Sources */,
 				E1B8C18D27528FAA001FF9FD /* Date+Extensions.swift in Sources */,

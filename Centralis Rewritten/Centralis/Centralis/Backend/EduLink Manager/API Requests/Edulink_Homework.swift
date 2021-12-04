@@ -94,6 +94,7 @@ public final class Homework: EdulinkBase {
     }
     
     public func retrieveDescription(_ completion: @escaping (String?, String?) -> Void) {
+        guard source == "EduLink" || source == "MicrosoftTeams" else { return }
         EvanderNetworking.edulinkDict(method: "EduLink.HomeworkDetails", params: [
             .custom(key: "source", value: source),
             .custom(key: "homework_id", value: id)
@@ -101,6 +102,9 @@ public final class Homework: EdulinkBase {
             guard let result = result,
                   let homework = result["homework"] as? [String: Any],
                   let description = homework["description"] as? String else { return completion(error ?? "Unknown Error", nil) }
+            if description == self?.description {
+                return
+            }
             if let `self` = self {
                 self.description = description
                 PersistenceDatabase.HomeworkDatabase.updateDescription(homework: self)

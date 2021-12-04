@@ -52,4 +52,13 @@ class HomeViewController: BaseTableViewController {
         cell.set(homework: homework[indexPath.row])
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if let homeworkCell = tableView.cellForRow(at: indexPath) as? HomeworkCell {
+            tableView.beginUpdates()
+            homeworkCell.toggleDescription()
+            tableView.endUpdates()
+        }
+    }
 }

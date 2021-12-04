@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,11 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="92" id="KGk-i7-Jjw" customClass="HomeworkCell" customModule="Centralis" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="92"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="90" id="KGk-i7-Jjw" customClass="HomeworkCell" customModule="Centralis" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="92"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Title Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bbf-Og-XqI" userLabel="title">
@@ -79,8 +79,17 @@
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="XjI-v7-laj">
+                        <rect key="frame" x="152.5" y="72" width="15" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="15" id="F3H-Kg-iJA"/>
+                            <constraint firstAttribute="height" constant="15" id="yAo-xy-YDd"/>
+                        </constraints>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="XjI-v7-laj" secondAttribute="bottom" constant="8" id="5i7-qt-lte"/>
+                    <constraint firstItem="XjI-v7-laj" firstAttribute="top" secondItem="FbD-If-Rp6" secondAttribute="bottom" constant="-10" id="6RB-t5-yC9"/>
                     <constraint firstItem="CaB-tL-Vow" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="6tj-7x-46I"/>
                     <constraint firstItem="DQb-2n-cmt" firstAttribute="leading" secondItem="z1z-Ec-h1G" secondAttribute="trailing" constant="5" id="7x1-ym-qjj"/>
                     <constraint firstAttribute="trailing" secondItem="BRq-aX-Q8f" secondAttribute="trailing" constant="10" id="Ayw-sI-1QA"/>
@@ -92,6 +101,7 @@
                     <constraint firstItem="CaB-tL-Vow" firstAttribute="top" secondItem="Bt5-yO-MmP" secondAttribute="bottom" constant="8" id="K5h-qL-vM2"/>
                     <constraint firstItem="BRq-aX-Q8f" firstAttribute="centerY" secondItem="Bt5-yO-MmP" secondAttribute="centerY" id="MW9-NZ-m36"/>
                     <constraint firstItem="z1z-Ec-h1G" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="OZk-xg-7s8"/>
+                    <constraint firstItem="XjI-v7-laj" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="TkL-EK-GSp"/>
                     <constraint firstAttribute="trailingMargin" secondItem="FbD-If-Rp6" secondAttribute="trailing" constant="10" id="Ut0-VC-HqC"/>
                     <constraint firstItem="Bbf-Og-XqI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="VmN-Ic-0bW"/>
                     <constraint firstAttribute="trailing" secondItem="DQb-2n-cmt" secondAttribute="trailing" constant="10" id="Zt2-QM-1Rl"/>
@@ -102,7 +112,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="131.8840579710145" y="146.65178571428569"/>
+            <point key="canvasLocation" x="137.68115942028987" y="142.63392857142856"/>
         </tableViewCell>
     </objects>
     <resources>
