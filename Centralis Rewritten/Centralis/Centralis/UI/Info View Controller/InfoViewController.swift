@@ -81,6 +81,7 @@ class InfoViewController: BaseTableViewController {
             case 0:
                 EdulinkManager.shared.signout()
                 (UIApplication.shared.delegate as! AppDelegate).setRootViewController(CentralisNavigationController(rootViewController: OnboardingViewController()))
+                CentralisTabBarController.shared.selectedIndex = 0
             default: return
             }
         default: return

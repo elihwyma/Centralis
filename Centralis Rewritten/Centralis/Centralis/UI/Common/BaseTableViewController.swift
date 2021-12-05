@@ -18,6 +18,7 @@ class BaseTableViewController: UITableViewController {
                                                name: ThemeManager.ThemeUpdate,
                                                object: nil)
     }
+    
     func reusableCell(withStyle style: UITableViewCell.CellStyle, reuseIdentifier: String) -> UITableViewCell {
         self.reusableCell(withStyle: style, reuseIdentifier: reuseIdentifier, cellClass: UITableViewCell.self)
     }
