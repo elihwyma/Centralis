@@ -196,7 +196,8 @@ class HomeworkCell: UITableViewCell {
                 guard let `self` = self,
                       homework == self.homework else { return }
                 DispatchQueue.main.async {
-                    if let error = error {
+                    if let error = error,
+                       homework?.description == nil {
                         NSLog("[Centralis] Error = \(error)")
                         setDescription("Error When Loading Description: \(error)")
                     } else if let description = description {

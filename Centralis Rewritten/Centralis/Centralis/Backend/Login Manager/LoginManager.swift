@@ -116,7 +116,7 @@ public final class LoginManager {
         }
     }
     
-    public class func login(_ login: UserLogin, _ completion: @escaping (String?, AuthenticatedUser?) -> Void) {
+    public class func login(_ login: UserLogin, _indexBypass: Bool = false, _ completion: @escaping (String?, AuthenticatedUser?) -> Void) {
         func _login() {
             EvanderNetworking.edulinkDict(url: login.server, method: "EduLink.Login", params: [
                 .custom(key: "establishment_id", value: login.schoolID),
@@ -132,9 +132,11 @@ public final class LoginManager {
                         let user = try JSONDecoder().decode(AuthenticatedUser.self, from: jsonData)
                         EdulinkManager.shared.authenticatedUser = user
                         user.login = login
-                        if PersistenceDatabase.shared.hasIndexed {
-                            PersistenceDatabase.backgroundRefresh {
-                                NSLog("[Sileo] Background Refresh")
+                        if !_indexBypass {
+                            if PersistenceDatabase.shared.hasIndexed {
+                                PersistenceDatabase.backgroundRefresh {
+                                    NSLog("[Sileo] Background Refresh")
+                                }
                             }
                         }
                         return completion(nil, user)

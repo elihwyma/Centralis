@@ -23,7 +23,6 @@
 		E10B96132751A35500C8C12E /* Edulink_Homework.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B96122751A35500C8C12E /* Edulink_Homework.swift */; };
 		E10B96162752605E00C8C12E /* PersistenceDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B96152752605E00C8C12E /* PersistenceDatabase.swift */; };
 		E15B5BCC275306720003A56D /* HomeworkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15B5BCA275306720003A56D /* HomeworkCell.swift */; };
-		E15B5BCD275306720003A56D /* HomeworkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E15B5BCB275306720003A56D /* HomeworkCell.xib */; };
 		E17E14A1274C19B10090F822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14A0274C19B10090F822 /* AppDelegate.swift */; };
 		E17E14AA274C19B30090F822 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E17E14A9274C19B30090F822 /* Assets.xcassets */; };
 		E17E14AD274C19B30090F822 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E17E14AB274C19B30090F822 /* LaunchScreen.storyboard */; };
@@ -253,9 +252,17 @@
 			path = "Login Manager";
 			sourceTree = "<group>";
 		};
+		E19621A7275BD6930065B446 /* Homework View Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Homework View Controller";
+			sourceTree = "<group>";
+		};
 		E197455A2751295E00EEB853 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				E19621A7275BD6930065B446 /* Homework View Controller */,
 				E15B5BC92753060F0003A56D /* Table View Cells */,
 				E10B960C27518AF100C8C12E /* Quick Login Controller */,
 				E10B9605275178CB00C8C12E /* Centralis Tab Bar Controller */,
@@ -380,7 +387,6 @@
 			files = (
 				E17E14AD274C19B30090F822 /* LaunchScreen.storyboard in Resources */,
 				E17E14AA274C19B30090F822 /* Assets.xcassets in Resources */,
-				E15B5BCD275306720003A56D /* HomeworkCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +573,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
+				ENABLE_BITCODE = NO;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Centralis/Info.plist;
@@ -599,6 +606,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
+				ENABLE_BITCODE = NO;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Centralis/Info.plist;

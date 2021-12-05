@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger))
         guard let login = LoginManager.loadLogin().1 else { return task.setTaskCompleted(success: false) }
-        LoginManager.login(login) { _, user in
+        LoginManager.login(login, _indexBypass: true) { _, user in
             if user != nil {
                 PersistenceDatabase.backgroundRefresh {
                     task.setTaskCompleted(success: true)
