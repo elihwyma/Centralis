@@ -51,3 +51,20 @@ public class BaseSubtitleCell: UITableViewCell {
     }
     
 }
+
+protocol BaseTableViewCell: AnyObject {
+    func trailingSwipeActionsConfiguration() -> UISwipeActionsConfiguration?
+    func leadingSwipeActionsConfiguration() -> UISwipeActionsConfiguration?
+}
+
+extension BaseTableViewCell {
+    
+    func trailingSwipeActionsConfiguration() -> UISwipeActionsConfiguration? {
+        nil
+    }
+    
+    func leadingSwipeActionsConfiguration() -> UISwipeActionsConfiguration? {
+        nil
+    }
+    
+}

@@ -7,6 +7,7 @@
 
 import Foundation
 import UserNotifications
+import Evander
 
 final public class NotificationManager {
     
@@ -39,9 +40,12 @@ final public class NotificationManager {
         center.removePendingNotificationRequests(withIdentifiers: [identifier])
     }
     
-    public func scheduleHomework(homework: [Homework]) {
+    public func scheduleHomework(homework: [Homework], _ bypass: Bool = false) {
+        guard UserDefaults.standard.optionalBool("Notifications.Homework", fallback: true) else { return }
         var homework = homework
-        homework.removeAll { !$0.isCurrent || $0.notificationState == .notified || $0.completed || $0.notificationState == .past }
+        if !bypass {
+            homework.removeAll { !$0.isCurrent || $0.notificationState == .notified || $0.completed || $0.notificationState == .past }
+        }
         for homework in homework {
             defer {
                 homework.notificationState = .notified
@@ -54,7 +58,7 @@ final public class NotificationManager {
                 content.subtitle = homework.set_by
                 content.body = "\(homework.activity)"
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
-                center.add(UNNotificationRequest(identifier: "\(String(describing: homework.id))-Tomorrow",
+                center.add(UNNotificationRequest(identifier: "\(String(describing: homework.id))-Tomorrow-$Homework",
                                                  content: content,
                                                  trigger: trigger))
                 continue
@@ -65,7 +69,7 @@ final public class NotificationManager {
                 content.subtitle = homework.set_by
                 content.body = "\(homework.activity)"
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-                center.add(UNNotificationRequest(identifier: "\(String(describing: homework.id))-Future",
+                center.add(UNNotificationRequest(identifier: "\(String(describing: homework.id))-Future-$Homework",
                                                  content: content,
                                                  trigger: trigger))
             }
@@ -74,10 +78,23 @@ final public class NotificationManager {
     }
     
     public func deleteHomework(_ homework: Homework) {
-        center.removePendingNotificationRequests(withIdentifiers: ["\(homework.id!)-Future", "\(homework.id!)-Tomorrow"])
-        center.removeDeliveredNotifications(withIdentifiers: ["\(homework.id!)-Future", "\(homework.id!)-Tomorrow"])
+        center.removePendingNotificationRequests(withIdentifiers: ["\(homework.id!)-Future-$Homework", "\(homework.id!)-Tomorrow-$Homework"])
+        center.removeDeliveredNotifications(withIdentifiers: ["\(homework.id!)-Future-$Homework", "\(homework.id!)-Tomorrow-$Homework"])
     }
     
+    public func deleteAllHomework() {
+        center.getPendingNotificationRequests { requests in
+            var requests = requests
+            requests = requests.filter { $0.identifier.contains("$Homework") }
+            self.center.removePendingNotificationRequests(withIdentifiers: requests.map { $0.identifier })
+        }
+    }
+    
+    public func scheduleAllHomework() {
+        let homework = PersistenceDatabase.shared.homework.map { $0.1 }.filter { $0.isCurrent }
+        scheduleHomework(homework: homework, true)
+    }
+        
     public func homeworkChangeCompleted(homework: Homework) {
         if homework.completed {
             deleteHomework(homework)

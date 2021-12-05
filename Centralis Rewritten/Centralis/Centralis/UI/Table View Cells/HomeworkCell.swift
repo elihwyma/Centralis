@@ -7,9 +7,10 @@
 
 import UIKit
 
-class HomeworkCell: UITableViewCell {
+class HomeworkCell: UITableViewCell, BaseTableViewCell {
     
     public var homework: Homework?
+    public weak var delegate: VariableCellDelegate?
     
     private class DescriptionLabel: UILabel {
         
@@ -196,12 +197,13 @@ class HomeworkCell: UITableViewCell {
                 guard let `self` = self,
                       homework == self.homework else { return }
                 DispatchQueue.main.async {
-                    if let error = error,
-                       homework?.description == nil {
-                        NSLog("[Centralis] Error = \(error)")
-                        setDescription("Error When Loading Description: \(error)")
-                    } else if let description = description {
-                        setDescription(description)
+                    self.delegate?.changeContentSize {
+                        if let error = error,
+                           homework?.description == nil {
+                            setDescription("Error When Loading Description: \(error)")
+                        } else if let description = description {
+                            setDescription(description)
+                        }
                     }
                 }
             })
@@ -216,18 +218,24 @@ class HomeworkCell: UITableViewCell {
         }
     }
     
+    private func setState(homework: Homework) {
+        Thread.mainBlock {
+            if homework.completed {
+                subjectImage.backgroundColor = .systemGreen
+            } else if homework.isDueToday || homework.isDueTomorrow || !homework.isCurrent {
+                subjectImage.backgroundColor = .systemRed
+            } else {
+                subjectImage.backgroundColor = .systemYellow
+            }
+        }
+    }
+    
     public func set(homework: Homework) {
         self.homework = homework
         if loadingTopAnchor.constant != -10 {
             toggleDescription()
         }
-        if homework.completed {
-            subjectImage.backgroundColor = .systemGreen
-        } else if homework.isDueToday || homework.isDueTomorrow {
-            subjectImage.backgroundColor = .systemRed
-        } else {
-            subjectImage.backgroundColor = .systemYellow
-        }
+        setState(homework: homework)
         
         if homework.isDueToday {
             timeLabel.text = "Due Today"
@@ -236,7 +244,7 @@ class HomeworkCell: UITableViewCell {
         } else if homework.isCurrent {
             timeLabel.text  = "Due in \(homework.due_date?.days(sinceDate: Date()) ?? 0) days"
         } else {
-            timeLabel.text  = "Due \(homework.due_date?.days(sinceDate: Date()) ?? 0) days ago"
+            timeLabel.text  = "Due \(abs(homework.due_date?.days(sinceDate: Date()) ?? 0)) days ago"
         }
         teacherLabel.text = homework.set_by
         title.text = homework.activity
@@ -247,4 +255,23 @@ class HomeworkCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func trailingSwipeActionsConfiguration() -> UISwipeActionsConfiguration? {
+        guard let homework = homework else { return nil }
+        let complete = UIContextualAction(style: .normal, title: !homework.completed ? "Complete" : "Un-Complete") { [weak self] _, _, completion in
+            guard let `self` = self,
+                  self.homework == homework else { return completion(true) }
+            homework.complete(complete: !homework.completed) { [weak self] error, completed in
+                guard let `self` = self,
+                      error == nil,
+                      self.homework == homework else { return }
+                self.setState(homework: homework)
+            }
+            completion(true)
+        }
+        return UISwipeActionsConfiguration(actions: [complete])
+    }
+}
+
+protocol VariableCellDelegate: AnyObject {
+    func changeContentSize(_ update: () -> Void)
 }

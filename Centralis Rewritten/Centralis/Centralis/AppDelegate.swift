@@ -19,18 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //EdulinkManager.shared.signout()
         self.window = UIWindow(frame: UIScreen.main.bounds)
+
         if let login = LoginManager.loadLogin().1 {
             window?.rootViewController = QuickLoginViewController.viewController(for: login)
         } else {
             window?.rootViewController = CentralisNavigationController(rootViewController: OnboardingViewController())
         }
         window?.makeKeyAndVisible()
-        
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
-        UINavigationBar.appearance().standardAppearance = appearance
-        UINavigationBar.appearance().scrollEdgeAppearance = appearance
-        
+    
         BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.amywhile.centralis.backgroundindex",
                                         using: nil) { (task) in
             self.handleAppRefreshTask(task: task as! BGAppRefreshTask)

@@ -34,7 +34,7 @@ class HomeViewController: BaseTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        "Upcoming Homework"
+        "Current Homework"
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -49,6 +49,7 @@ class HomeViewController: BaseTableViewController {
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.HomeworkCell", for: indexPath) as! HomeworkCell
+        cell.delegate = self
         cell.set(homework: homework[indexPath.row])
         return cell
     }
@@ -59,6 +60,8 @@ class HomeViewController: BaseTableViewController {
             tableView.beginUpdates()
             homeworkCell.toggleDescription()
             tableView.endUpdates()
+        } else if indexPath.section == 0 && indexPath.row == homework.count {
+            navigationController?.pushViewController(HomeworkViewController(style: .insetGrouped), animated: true)
         }
     }
 }

@@ -32,4 +32,22 @@ class BaseTableViewController: UITableViewController {
         cell?.backgroundColor = .secondaryBackgroundColor
         return cell ?? UITableViewCell()
     }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        (tableView.cellForRow(at: indexPath) as? BaseTableViewCell)?.trailingSwipeActionsConfiguration()
+    }
+    
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        (tableView.cellForRow(at: indexPath) as? BaseTableViewCell)?.leadingSwipeActionsConfiguration()
+    }
+}
+
+extension BaseTableViewController: VariableCellDelegate {
+    
+    func changeContentSize(_ update: () -> Void) {
+        tableView.beginUpdates()
+        update()
+        tableView.endUpdates()
+    }
+    
 }

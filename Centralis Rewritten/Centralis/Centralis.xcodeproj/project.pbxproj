@@ -35,6 +35,10 @@
 		E17E14CA274C211D0090F822 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14C9274C211D0090F822 /* Transformers.swift */; };
 		E17E14CC274C25010090F822 /* EdulinkBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14CB274C25010090F822 /* EdulinkBase.swift */; };
 		E19621A6275BC2A50065B446 /* NSAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19621A5275BC2A50065B446 /* NSAttributedString+Extensions.swift */; };
+		E19621AC275CFDA10065B446 /* HomeworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19621AB275CFDA10065B446 /* HomeworkViewController.swift */; };
+		E19621AF275D04970065B446 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19621AE275D04970065B446 /* InfoViewController.swift */; };
+		E19621B1275D05EB0065B446 /* SettingsSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19621B0275D05EB0065B446 /* SettingsSwitchTableViewCell.swift */; };
+		E19621B3275D076F0065B446 /* ClosureSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19621B2275D076F0065B446 /* ClosureSwitchCell.swift */; };
 		E197455D2751298900EEB853 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197455C2751298900EEB853 /* OnboardingViewController.swift */; };
 		E197456027512B4800EEB853 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197455F27512B4800EEB853 /* Bundle+Extensions.swift */; };
 		E197456327512D6600EEB853 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197456227512D6600EEB853 /* ThemeManager.swift */; };
@@ -67,7 +71,6 @@
 		E10B96122751A35500C8C12E /* Edulink_Homework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Homework.swift; sourceTree = "<group>"; };
 		E10B96152752605E00C8C12E /* PersistenceDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceDatabase.swift; sourceTree = "<group>"; };
 		E15B5BCA275306720003A56D /* HomeworkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkCell.swift; sourceTree = "<group>"; };
-		E15B5BCB275306720003A56D /* HomeworkCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeworkCell.xib; sourceTree = "<group>"; };
 		E17E149D274C19B10090F822 /* Centralis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Centralis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E17E14A0274C19B10090F822 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E17E14A9274C19B30090F822 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -81,6 +84,10 @@
 		E17E14C9274C211D0090F822 /* Transformers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformers.swift; sourceTree = "<group>"; };
 		E17E14CB274C25010090F822 /* EdulinkBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdulinkBase.swift; sourceTree = "<group>"; };
 		E19621A5275BC2A50065B446 /* NSAttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extensions.swift"; sourceTree = "<group>"; };
+		E19621AB275CFDA10065B446 /* HomeworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkViewController.swift; sourceTree = "<group>"; };
+		E19621AE275D04970065B446 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		E19621B0275D05EB0065B446 /* SettingsSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSwitchTableViewCell.swift; sourceTree = "<group>"; };
+		E19621B2275D076F0065B446 /* ClosureSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureSwitchCell.swift; sourceTree = "<group>"; };
 		E197455C2751298900EEB853 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		E197455F27512B4800EEB853 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		E197456227512D6600EEB853 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
@@ -162,8 +169,9 @@
 		E15B5BC92753060F0003A56D /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
+				E19621B0275D05EB0065B446 /* SettingsSwitchTableViewCell.swift */,
+				E19621B2275D076F0065B446 /* ClosureSwitchCell.swift */,
 				E15B5BCA275306720003A56D /* HomeworkCell.swift */,
-				E15B5BCB275306720003A56D /* HomeworkCell.xib */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
@@ -255,13 +263,23 @@
 		E19621A7275BD6930065B446 /* Homework View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E19621AB275CFDA10065B446 /* HomeworkViewController.swift */,
 			);
 			path = "Homework View Controller";
+			sourceTree = "<group>";
+		};
+		E19621AD275D04500065B446 /* Info View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E19621AE275D04970065B446 /* InfoViewController.swift */,
+			);
+			path = "Info View Controller";
 			sourceTree = "<group>";
 		};
 		E197455A2751295E00EEB853 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				E19621AD275D04500065B446 /* Info View Controller */,
 				E19621A7275BD6930065B446 /* Homework View Controller */,
 				E15B5BC92753060F0003A56D /* Table View Cells */,
 				E10B960C27518AF100C8C12E /* Quick Login Controller */,
@@ -400,6 +418,8 @@
 				E1BDD309274C63BE00056027 /* User.swift in Sources */,
 				E10B96162752605E00C8C12E /* PersistenceDatabase.swift in Sources */,
 				E17E14C8274C20610090F822 /* EdulinkRequests.swift in Sources */,
+				E19621B3275D076F0065B446 /* ClosureSwitchCell.swift in Sources */,
+				E19621B1275D05EB0065B446 /* SettingsSwitchTableViewCell.swift in Sources */,
 				E10B960A2751865E00C8C12E /* BaseSubtitleCell.swift in Sources */,
 				E10B95EE27513AD900C8C12E /* LoadingButton.swift in Sources */,
 				E17E14CC274C25010090F822 /* EdulinkBase.swift in Sources */,
@@ -419,7 +439,9 @@
 				E17E14A1274C19B10090F822 /* AppDelegate.swift in Sources */,
 				E10B95FF275164D800C8C12E /* CentralisNavigationController.swift in Sources */,
 				E1CEBD8D274C2F80009F35D4 /* AuthenticatedUser.swift in Sources */,
+				E19621AF275D04970065B446 /* InfoViewController.swift in Sources */,
 				E10B96132751A35500C8C12E /* Edulink_Homework.swift in Sources */,
+				E19621AC275CFDA10065B446 /* HomeworkViewController.swift in Sources */,
 				E10B960B2751865E00C8C12E /* BaseTableViewController.swift in Sources */,
 				E1B8C1912752A0AD001FF9FD /* NotificationManager.swift in Sources */,
 				E17E14BD274C1ABA0090F822 /* EdulinkManager.swift in Sources */,

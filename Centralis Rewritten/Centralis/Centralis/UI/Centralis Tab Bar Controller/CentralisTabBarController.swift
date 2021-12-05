@@ -14,7 +14,7 @@ final class CentralisTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewControllers = [homeViewController]
+        viewControllers = [homeViewController, infoViewController]
 
         self.updateCentralisColours()
         NotificationCenter.default.addObserver(self,
@@ -33,6 +33,16 @@ final class CentralisTabBarController: UITabBarController {
         let tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house"))
         navController.tabBarItem = tabBarItem
         viewController.title = "Home"
+        navController.navigationBar.prefersLargeTitles = true
+        return navController
+    }()
+    
+    public var infoViewController: CentralisNavigationController = {
+        let viewController = InfoViewController(style: .insetGrouped)
+        let navController = CentralisNavigationController(rootViewController: viewController)
+        let tabBarItem = UITabBarItem(title: "Info", image: UIImage(systemName: "i.circle"), selectedImage: UIImage(systemName: "i.circle"))
+        navController.tabBarItem = tabBarItem
+        viewController.title = "Info"
         navController.navigationBar.prefersLargeTitles = true
         return navController
     }()
