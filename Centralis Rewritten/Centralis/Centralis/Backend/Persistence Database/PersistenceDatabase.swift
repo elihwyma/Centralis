@@ -105,8 +105,8 @@ final public class PersistenceDatabase {
     
     struct HomeworkDatabase {
         static let id = Expression<String>("id")
-        static let available_date = Expression<Int64?>("available_date")
-        static let due_date = Expression<Int64?>("due_date")
+        static let available_date = Expression<Date?>("available_date")
+        static let due_date = Expression<Date?>("due_date")
         static let completed = Expression<Bool>("completed")
         static let description = Expression<String?>("description")
         static let activity = Expression<String>("activity")
@@ -141,8 +141,8 @@ final public class PersistenceDatabase {
                     if count ?? 0 > 0 { continue }
                     _ = try? database.run(homeworkTable.insert(
                         id <- homework.id,
-                        available_date <- homework.available_date?.timeIntervalSince1970.int64,
-                        due_date <- homework.due_date?.timeIntervalSince1970.int64,
+                        available_date <- homework.available_date,
+                        due_date <- homework.due_date,
                         completed <- homework.completed,
                         description <- homework.description,
                         activity <- homework.activity,
@@ -170,9 +170,9 @@ final public class PersistenceDatabase {
                                              notified)
             do {
                 for stub in try database.prepare(query) {
-                    let homework = Homework(available_date: Date(timeSince1970: stub[available_date]),
+                    let homework = Homework(available_date: stub[available_date],
                                             completed: stub[completed],
-                                            due_date: Date(timeSince1970: stub[due_date]),
+                                            due_date: stub[due_date],
                                             description: stub[description],
                                             activity: stub[activity],
                                             source: stub[source],
@@ -197,7 +197,7 @@ final public class PersistenceDatabase {
                 for new in newHomework where new != current[new.id] {
                     let homework = homeworkTable.filter(id == new.id)
                     _ = try? persistence.database.run(homework.update(
-                        due_date <- new.due_date?.timeIntervalSince1970.int64,
+                        due_date <- new.due_date,
                         activity <- new.activity
                     ))
                     let current = current[new.id]
@@ -239,6 +239,16 @@ final public class PersistenceDatabase {
                 }
             }
         }
+    }
+    
+    struct TimetableDatabase {
+        
+        static let timetableTable = Table("Timetable")
+        
+        static func createTable(database: Connection){
+            _ = try? database
+        }
+        
     }
 }
 

@@ -80,12 +80,10 @@ public final class Homework: EdulinkBase {
                 let current = try JSONDecoder().decode([Homework].self, from: jsonCurrent)
                 let past = try JSONDecoder().decode([Homework].self, from: jsonPast)
                 var allHomework = current + past
-                if indexing {
-                    return completion(nil, allHomework)
-                } else {
+                if !indexing {
                     PersistenceDatabase.HomeworkDatabase.changes(newHomework: &allHomework)
-                    return completion(nil, allHomework)
                 }
+                return completion(nil, allHomework)
             } catch {
                 return completion(error.localizedDescription, nil)
             }
