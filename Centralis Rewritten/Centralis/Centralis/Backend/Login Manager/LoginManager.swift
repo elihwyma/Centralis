@@ -115,7 +115,7 @@ public final class LoginManager {
             }
         }
     }
-    
+        
     public class func login(_ login: UserLogin, _indexBypass: Bool = false, _ completion: @escaping (String?, AuthenticatedUser?) -> Void) {
         func _login() {
             EvanderNetworking.edulinkDict(url: login.server, method: "EduLink.Login", params: [
@@ -135,7 +135,7 @@ public final class LoginManager {
                         if !_indexBypass {
                             if PersistenceDatabase.shared.hasIndexed {
                                 PersistenceDatabase.backgroundRefresh {
-                                    NSLog("[Sileo] Background Refresh")
+                                    NSLog("[Centralis] Background Refresh")
                                 }
                             }
                         }

@@ -242,7 +242,7 @@ class HomeworkCell: UITableViewCell, BaseTableViewCell {
         } else if homework.isDueTomorrow {
             timeLabel.text = "Due Tomorrow"
         } else if homework.isCurrent {
-            timeLabel.text  = "Due in \(homework.due_date?.days(sinceDate: Date()) ?? 0) days"
+            timeLabel.text  = "Due in \((homework.due_date?.days(sinceDate: Date()) ?? 0) + 1) days"
         } else {
             timeLabel.text  = "Due \(abs(homework.due_date?.days(sinceDate: Date()) ?? 0)) days ago"
         }

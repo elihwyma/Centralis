@@ -64,7 +64,7 @@ final public class PersistenceDatabase {
         let `self` = PersistenceDatabase.shared
         let loadGroup = DispatchGroup()
         loadGroup.enter()
-        Homework.updatedHomework(indexing: true) { [weak self] error, homework in
+        Homework.updateHomework(indexing: true) { [weak self] error, homework in
             guard let homework = homework,
                   let database = self?.database else {
                 return completion(error ?? "Unknown Error", false)
@@ -84,7 +84,11 @@ final public class PersistenceDatabase {
     public class func backgroundRefresh(_ completion: @escaping () -> Void) {
         let loadGroup = DispatchGroup()
         loadGroup.enter()
-        Homework.updatedHomework { _, _ in
+        loadGroup.enter()
+        Homework.updateHomework { _, _ in
+            loadGroup.leave()
+        }
+        Timetable.updateTimetable { _, _ in
             loadGroup.leave()
         }
         loadGroup.notify(queue: .global(qos: .background)) {

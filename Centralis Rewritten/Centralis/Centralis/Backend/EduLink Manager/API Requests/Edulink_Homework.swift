@@ -8,7 +8,6 @@
 import Foundation
 import Evander
 import SerializedSwift
-import SQLite
 
 public final class Homework: EdulinkBase {
     
@@ -69,7 +68,7 @@ public final class Homework: EdulinkBase {
         return false
     }
     
-    public class func updatedHomework(indexing: Bool = false, _ completion: @escaping (String?, [Homework]?) -> Void) {
+    public class func updateHomework(indexing: Bool = false, _ completion: @escaping (String?, [Homework]?) -> Void) {
         EvanderNetworking.edulinkDict(method: "EduLink.Homework", params: [.format(value: 2)]) { _, _, error, result in
             guard let result = result,
                   let homework = result["homework"] as? [String: Any],

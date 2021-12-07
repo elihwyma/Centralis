@@ -22,6 +22,7 @@
 		E10B961127518EFF00C8C12E /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = E10B961027518EFF00C8C12E /* SQLite */; };
 		E10B96132751A35500C8C12E /* Edulink_Homework.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B96122751A35500C8C12E /* Edulink_Homework.swift */; };
 		E10B96162752605E00C8C12E /* PersistenceDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B96152752605E00C8C12E /* PersistenceDatabase.swift */; };
+		E12D63C7275F71F0008DAB00 /* Edulink_Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12D63C6275F71F0008DAB00 /* Edulink_Timetable.swift */; };
 		E15B5BCC275306720003A56D /* HomeworkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15B5BCA275306720003A56D /* HomeworkCell.swift */; };
 		E17E14A1274C19B10090F822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14A0274C19B10090F822 /* AppDelegate.swift */; };
 		E17E14AA274C19B30090F822 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E17E14A9274C19B30090F822 /* Assets.xcassets */; };
@@ -70,6 +71,7 @@
 		E10B960D27518B0800C8C12E /* QuickLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLoginViewController.swift; sourceTree = "<group>"; };
 		E10B96122751A35500C8C12E /* Edulink_Homework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Homework.swift; sourceTree = "<group>"; };
 		E10B96152752605E00C8C12E /* PersistenceDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceDatabase.swift; sourceTree = "<group>"; };
+		E12D63C6275F71F0008DAB00 /* Edulink_Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Timetable.swift; sourceTree = "<group>"; };
 		E15B5BCA275306720003A56D /* HomeworkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkCell.swift; sourceTree = "<group>"; };
 		E17E149D274C19B10090F822 /* Centralis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Centralis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E17E14A0274C19B10090F822 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 			children = (
 				E1CDE49627502F1B00AA7769 /* Edulink_Status.swift */,
 				E10B96122751A35500C8C12E /* Edulink_Homework.swift */,
+				E12D63C6275F71F0008DAB00 /* Edulink_Timetable.swift */,
 			);
 			path = "API Requests";
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				E1CEBD91274C5F8E009F35D4 /* Establishment.swift in Sources */,
 				E10B95E9275139D600C8C12E /* SchoolCodeViewController.swift in Sources */,
 				E1CDE49827502F1B00AA7769 /* Edulink_Status.swift in Sources */,
+				E12D63C7275F71F0008DAB00 /* Edulink_Timetable.swift in Sources */,
 				E10B960E27518B0800C8C12E /* QuickLoginViewController.swift in Sources */,
 				E17E14C6274C1ECD0090F822 /* LoginManager.swift in Sources */,
 			);

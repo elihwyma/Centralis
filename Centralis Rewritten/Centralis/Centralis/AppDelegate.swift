@@ -39,6 +39,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         scheduleBackgroundIndex()
     }
     
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        typealias lM = LoginManager
+        guard let login = lM.loadLogin().1 else { return }
+        LoginManager.login(login) { error, _ in
+            if let error = error {
+                NSLog("[Centralis] Error = \(error)")
+                #warning("[Centralis] Handle the Error")
+            }
+        }
+    }
+    
     func setRootViewController(_ vc: UIViewController, animated: Bool = true) {
         guard animated, let window = self.window else {
             self.window?.rootViewController = vc

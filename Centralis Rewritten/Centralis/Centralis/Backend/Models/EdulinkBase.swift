@@ -8,7 +8,7 @@
 import Foundation
 import SerializedSwift
 
-public class EdulinkBase: Serializable, Equatable {
+public class EdulinkBase: Serializable, Equatable, Identifiable {
     
     @SerializedTransformable<IDTransformer> var id: String!
     
