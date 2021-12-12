@@ -6,17 +6,17 @@
         "repositoryURL": "https://github.com/elihwyma/Evander",
         "state": {
           "branch": "main",
-          "revision": "3e92fb1ef3cb76f139bb685414d656d16655596d",
+          "revision": "8079037a31927ded608af8a15e5abcd6730bfbb1",
           "version": null
         }
       },
       {
         "package": "SerializedSwift",
-        "repositoryURL": "https://github.com/dejanskledar/SerializedSwift",
+        "repositoryURL": "https://github.com/elihwyma/SerializedSwift",
         "state": {
-          "branch": null,
-          "revision": "9ed26f1561156c42374280ebdbf92bf5327bc8b5",
-          "version": "0.2.0"
+          "branch": "master",
+          "revision": "2f0e121c87bd59283d1bb6613c1aaaa1289a42e7",
+          "version": null
         }
       },
       {

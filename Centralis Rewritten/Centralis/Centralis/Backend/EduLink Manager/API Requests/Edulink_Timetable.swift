@@ -50,8 +50,9 @@ final public class Timetable: EdulinkBase {
         @Serialized var name: String
     }
     
-    fileprivate final class _Room: EdulinkStore {
+    fileprivate final class _Room: EdulinkBase {
         @Serialized(default: false) var moved: Bool
+        @Serialized var name: String?
     }
     
     fileprivate final class _TeachingGroup: EdulinkStore {
@@ -59,21 +60,12 @@ final public class Timetable: EdulinkBase {
     }
     
     fileprivate final class _Lesson: Serializable {
-        @SerializedTransformable<IDTransformer> var period_id: String!
+        @SerializedTransformable<IDTransformer>(fallback: "-1") var period_id: String!
         @Serialized var room: _Room
         @Serialized var teachers: String
         @Serialized var teaching_group: _TeachingGroup
         
         required public init() {}
-        
-        required public convenience init(from decoder: Decoder) throws {
-            self.init()
-            try decode(from: decoder)
-            
-            if period_id == nil {
-                period_id = "-1"
-            }
-        }
     }
     
     public final class Period: Codable {
@@ -168,7 +160,7 @@ final public class Timetable: EdulinkBase {
                 if !indexing {
                     
                 }
-                return completion(nil, convert(weeks))
+                return completion(nil, convertedWeeks)
             } catch {
                 return completion(error.localizedDescription, nil)
             }

@@ -27,7 +27,6 @@
 		E17E14A1274C19B10090F822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14A0274C19B10090F822 /* AppDelegate.swift */; };
 		E17E14AA274C19B30090F822 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E17E14A9274C19B30090F822 /* Assets.xcassets */; };
 		E17E14AD274C19B30090F822 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E17E14AB274C19B30090F822 /* LaunchScreen.storyboard */; };
-		E17E14B6274C1A3C0090F822 /* SerializedSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E17E14B5274C1A3C0090F822 /* SerializedSwift */; };
 		E17E14B9274C1A470090F822 /* Evander in Frameworks */ = {isa = PBXBuildFile; productRef = E17E14B8274C1A470090F822 /* Evander */; };
 		E17E14BD274C1ABA0090F822 /* EdulinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14BC274C1ABA0090F822 /* EdulinkManager.swift */; };
 		E17E14C2274C1B2F0090F822 /* UserLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14C1274C1B2F0090F822 /* UserLogin.swift */; };
@@ -35,6 +34,7 @@
 		E17E14C8274C20610090F822 /* EdulinkRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14C7274C20610090F822 /* EdulinkRequests.swift */; };
 		E17E14CA274C211D0090F822 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14C9274C211D0090F822 /* Transformers.swift */; };
 		E17E14CC274C25010090F822 /* EdulinkBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14CB274C25010090F822 /* EdulinkBase.swift */; };
+		E17FDF93276676EF002F8FF0 /* SerializedSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E17FDF92276676EF002F8FF0 /* SerializedSwift */; };
 		E19621A6275BC2A50065B446 /* NSAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19621A5275BC2A50065B446 /* NSAttributedString+Extensions.swift */; };
 		E19621AC275CFDA10065B446 /* HomeworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19621AB275CFDA10065B446 /* HomeworkViewController.swift */; };
 		E19621AF275D04970065B446 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19621AE275D04970065B446 /* InfoViewController.swift */; };
@@ -108,9 +108,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E17FDF93276676EF002F8FF0 /* SerializedSwift in Frameworks */,
 				E10B961127518EFF00C8C12E /* SQLite in Frameworks */,
 				E17E14B9274C1A470090F822 /* Evander in Frameworks */,
-				E17E14B6274C1A3C0090F822 /* SerializedSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,9 +355,9 @@
 			);
 			name = Centralis;
 			packageProductDependencies = (
-				E17E14B5274C1A3C0090F822 /* SerializedSwift */,
 				E17E14B8274C1A470090F822 /* Evander */,
 				E10B961027518EFF00C8C12E /* SQLite */,
+				E17FDF92276676EF002F8FF0 /* SerializedSwift */,
 			);
 			productName = Centralis;
 			productReference = E17E149D274C19B10090F822 /* Centralis.app */;
@@ -388,9 +388,9 @@
 			);
 			mainGroup = E17E1494274C19B10090F822;
 			packageReferences = (
-				E17E14B4274C1A3C0090F822 /* XCRemoteSwiftPackageReference "SerializedSwift" */,
 				E17E14B7274C1A470090F822 /* XCRemoteSwiftPackageReference "Evander" */,
 				E10B960F27518EFF00C8C12E /* XCRemoteSwiftPackageReference "SQLite" */,
+				E17FDF91276676EF002F8FF0 /* XCRemoteSwiftPackageReference "SerializedSwift" */,
 			);
 			productRefGroup = E17E149E274C19B10090F822 /* Products */;
 			projectDirPath = "";
@@ -688,19 +688,19 @@
 				minimumVersion = 0.9.2;
 			};
 		};
-		E17E14B4274C1A3C0090F822 /* XCRemoteSwiftPackageReference "SerializedSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/dejanskledar/SerializedSwift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.0;
-			};
-		};
 		E17E14B7274C1A470090F822 /* XCRemoteSwiftPackageReference "Evander" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/elihwyma/Evander";
 			requirement = {
 				branch = main;
+				kind = branch;
+			};
+		};
+		E17FDF91276676EF002F8FF0 /* XCRemoteSwiftPackageReference "SerializedSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elihwyma/SerializedSwift";
+			requirement = {
+				branch = master;
 				kind = branch;
 			};
 		};
@@ -712,15 +712,15 @@
 			package = E10B960F27518EFF00C8C12E /* XCRemoteSwiftPackageReference "SQLite" */;
 			productName = SQLite;
 		};
-		E17E14B5274C1A3C0090F822 /* SerializedSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E17E14B4274C1A3C0090F822 /* XCRemoteSwiftPackageReference "SerializedSwift" */;
-			productName = SerializedSwift;
-		};
 		E17E14B8274C1A470090F822 /* Evander */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E17E14B7274C1A470090F822 /* XCRemoteSwiftPackageReference "Evander" */;
 			productName = Evander;
+		};
+		E17FDF92276676EF002F8FF0 /* SerializedSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E17FDF91276676EF002F8FF0 /* XCRemoteSwiftPackageReference "SerializedSwift" */;
+			productName = SerializedSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

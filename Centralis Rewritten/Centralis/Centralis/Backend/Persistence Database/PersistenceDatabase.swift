@@ -22,6 +22,7 @@ final public class PersistenceDatabase {
     private let databaseFolder = EvanderNetworking._cacheDirectory.appendingPathComponent("Database")
     
     private(set) public lazy var homework: [String: Homework] = HomeworkDatabase.getHomework(database: database)
+    private(set) public lazy var timetable: [Timetable.Week] = TimetableDatabase.getTimetable(database: database)
     
     private init() {
         _ = NotificationManager.shared
@@ -29,6 +30,7 @@ final public class PersistenceDatabase {
             try? FileManager.default.createDirectory(at: databaseFolder, withIntermediateDirectories: true)
         }
         let databaseURL = databaseFolder.appendingPathComponent("CentralisPersistence.sqlite3")
+        NSLog("URL = \(databaseURL)")
         guard let database = try? Connection(databaseURL.path) else {
             fatalError("Database Connection failed")
         }
@@ -36,9 +38,7 @@ final public class PersistenceDatabase {
         self.schemaVersion = DatabaseSchemaVersion.version01000.rawValue
         
         HomeworkDatabase.createTable(database: database)
-        if hasIndexed {
-            self.homework = HomeworkDatabase.getHomework(database: database)
-        }
+        TimetableDatabase.createTable(database: database)
     }
     
     private var schemaVersion: Int32 {
@@ -64,6 +64,7 @@ final public class PersistenceDatabase {
         let `self` = PersistenceDatabase.shared
         let loadGroup = DispatchGroup()
         loadGroup.enter()
+        loadGroup.enter()
         Homework.updateHomework(indexing: true) { [weak self] error, homework in
             guard let homework = homework,
                   let database = self?.database else {
@@ -73,6 +74,14 @@ final public class PersistenceDatabase {
             var tmp = [String: Homework]()
             homework.forEach { tmp[$0.id] = $0 }
             self?.homework = tmp
+            loadGroup.leave()
+        }
+        Timetable.updateTimetable(indexing: true) { [weak self] error, weeks in
+            guard let weeks = weeks,
+                  let database = self?.database else {
+                      return completion(error ?? "Unknown Error", false)
+            }
+            TimetableDatabase.saveTimetable(weeks: weeks, database: database)
             loadGroup.leave()
         }
         loadGroup.notify(queue: .main) { [weak self] in
@@ -243,12 +252,123 @@ final public class PersistenceDatabase {
     
     struct TimetableDatabase {
         
-        static let timetableTable = Table("Timetable")
+        static let weekTable = Table("Week")
+        static let dayTable = Table("Day")
+        static let periodTable = Table("Period")
+        
+        static let id_key = Expression<Int64>("id_key")
+        static let parent_key = Expression<Int64>("parent_key")
+        static let name = Expression<String>("name")
+        static let date = Expression<Date>("date")
+        
+        static let empty = Expression<Bool>("empty")
+        static let end_time = Expression<String>("end_time")
+        static let start_time = Expression<String>("start_time")
+        static let id = Expression<String>("id")
+        static let moved = Expression<Bool?>("moved")
+        static let subject = Expression<String?>("subject")
+        static let room = Expression<String?>("room")
+        static let teachers = Expression<String?>("teachers")
         
         static func createTable(database: Connection){
-            _ = try? database
+            _ = try? database.run(weekTable.create(ifNotExists: true,
+                                                       block: { tbd in
+                tbd.column(id_key, primaryKey: .autoincrement)
+                tbd.column(name)
+            }))
+            _ = try? database.run(dayTable.create(ifNotExists: true,
+                                                       block: { tbd in
+                tbd.column(id_key, primaryKey: .autoincrement)
+                tbd.column(parent_key)
+                tbd.column(name)
+                tbd.column(date)
+            }))
+            _ = try? database.run(periodTable.create(ifNotExists: true,
+                                                       block: { tbd in
+                tbd.column(parent_key)
+                tbd.column(empty)
+                tbd.column(end_time)
+                tbd.column(start_time)
+                tbd.column(id)
+                tbd.column(moved)
+                tbd.column(subject)
+                tbd.column(room)
+                tbd.column(teachers)
+                tbd.column(name)
+            }))
         }
         
+        static func saveTimetable(weeks: [Timetable.Week], database: Connection) {
+            try? database.transaction {
+                for week in weeks {
+                    guard let weekID = try? database.run(weekTable.insert(
+                        name <- week.name
+                    )) else { continue }
+                    for day in week.days {
+                        guard let dayID = try? database.run(dayTable.insert(
+                            parent_key <- weekID,
+                            name <- day.name,
+                            date <- day.date
+                        )) else { continue }
+                        for period in day.periods {
+                            _ = try? database.run(periodTable.insert(
+                                parent_key <- dayID,
+                                empty <- period.empty,
+                                end_time <- period.end_time,
+                                start_time <- period.start_time,
+                                id <- period.id,
+                                moved <- period.moved,
+                                subject <- period.subject,
+                                room <- period.room,
+                                teachers <- period.teachers,
+                                name <- period.name
+                            ))
+                        }
+                    }
+                }
+            }
+        }
+        
+        static func getTimetable(database: Connection) -> [Timetable.Week] {
+            var weeks = [Timetable.Week]()
+            let query = weekTable.select(
+                id_key,
+                name
+            )
+            do {
+                for weekStub in try database.prepare(query) {
+                    let week = Timetable.Week(name: weekStub[name], days: [])
+                    let query = dayTable.select(
+                        id_key,
+                        parent_key,
+                        name,
+                        date
+                    ).filter(parent_key == weekStub[id_key])
+                    
+                    for dayStub in try database.prepare(query) {
+                        let day = Timetable.Day(name: dayStub[name], date: dayStub[date], periods: [])
+                        let query = periodTable.select(
+                            parent_key,
+                            empty,
+                            end_time,
+                            start_time,
+                            id,
+                            moved,
+                            subject,
+                            room,
+                            teachers,
+                            name
+                        ).filter(parent_key == dayStub[id_key])
+                
+                        let periods: [Timetable.Period] = try database.prepare(query).map { try $0.decode() }
+                        day.periods = periods
+                        week.days.append(day)
+                    }
+                    weeks.append(week)
+                }
+            } catch {}
+            return weeks
+        }
     }
 }
 
