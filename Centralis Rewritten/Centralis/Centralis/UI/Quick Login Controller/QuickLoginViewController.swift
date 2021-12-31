@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Evander
 
 class ProcessingViewController: UIViewController {
     
@@ -110,7 +111,7 @@ class ProcessingViewController: UIViewController {
     }
     
     public func set(error: String?) {
-        UIView.animate(withDuration: 0.3) { [weak self] in
+        FRUIView.animate(withDuration: 0.3) { [weak self] in
             guard let `self` = self else { return }
             if let error = error {
                 self.retryButton.isEnabled = true

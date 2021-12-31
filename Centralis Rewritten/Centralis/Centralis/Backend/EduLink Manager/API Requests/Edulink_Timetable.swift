@@ -68,14 +68,14 @@ final public class Timetable: EdulinkBase {
         required public init() {}
     }
     
-    public final class Period: Codable {
+    public final class Period: Codable, Equatable {
         var empty: Bool
         var end_time: String
         var start_time: String
         var name: String
         var id: String
         
-        var moved: Bool?
+        var moved: Bool
         var subject: String?
         var room: String?
         var teachers: String?
@@ -87,14 +87,26 @@ final public class Timetable: EdulinkBase {
             name = period.name
             id = period.id
             
-            moved = lesson?.room.moved
+            moved = lesson?.room.moved ?? false
             subject = lesson?.teaching_group.subject
             room = lesson?.room.name
             teachers = lesson?.teachers
         }
+        
+        public static func == (lhs: Timetable.Period, rhs: Timetable.Period) -> Bool {
+            return lhs.empty == rhs.empty &&
+            lhs.end_time == rhs.end_time &&
+            lhs.start_time == rhs.start_time &&
+            lhs.name == rhs.name &&
+            lhs.id == rhs.id &&
+            lhs.moved == rhs.moved &&
+            lhs.subject == rhs.subject &&
+            lhs.room == rhs.room &&
+            lhs.teachers == rhs.teachers
+        }
     }
     
-    public final class Day: Codable {
+    public final class Day: Codable, Equatable {
         var name: String
         var date: Date
         var periods: [Period]
@@ -103,6 +115,12 @@ final public class Timetable: EdulinkBase {
             self.name = name 
             self.date = date
             self.periods = periods
+        }
+        
+        public static func == (lhs: Timetable.Day, rhs: Timetable.Day) -> Bool {
+            return lhs.name == rhs.name &&
+            lhs.date == rhs.date &&
+            lhs.periods == rhs.periods
         }
     }
     

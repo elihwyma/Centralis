@@ -13,12 +13,13 @@ import SQLite3
 enum DatabaseSchemaVersion: Int32 {
     case versionNil = 0
     case version01000 = 1
+    case version01001 = 2
 }
 
 final public class PersistenceDatabase {
     
     static private (set) public var shared = PersistenceDatabase()
-    private let database: Connection
+    private var database: Connection
     private let databaseFolder = EvanderNetworking._cacheDirectory.appendingPathComponent("Database")
     
     private(set) public lazy var homework: [String: Homework] = HomeworkDatabase.getHomework(database: database)
@@ -35,7 +36,7 @@ final public class PersistenceDatabase {
             fatalError("Database Connection failed")
         }
         self.database = database
-        self.schemaVersion = DatabaseSchemaVersion.version01000.rawValue
+        self.schemaVersion = DatabaseSchemaVersion.version01001.rawValue
         
         HomeworkDatabase.createTable(database: database)
         TimetableDatabase.createTable(database: database)
@@ -265,7 +266,7 @@ final public class PersistenceDatabase {
         static let end_time = Expression<String>("end_time")
         static let start_time = Expression<String>("start_time")
         static let id = Expression<String>("id")
-        static let moved = Expression<Bool?>("moved")
+        static let moved = Expression<Bool>("moved")
         static let subject = Expression<String?>("subject")
         static let room = Expression<String?>("room")
         static let teachers = Expression<String?>("teachers")

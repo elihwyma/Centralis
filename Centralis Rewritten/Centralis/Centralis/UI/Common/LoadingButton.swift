@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Evander
 
 class LoadingButton: UIButton {
 
@@ -26,7 +27,7 @@ class LoadingButton: UIButton {
 
     public var isLoading: Bool = false {
         didSet {
-            UIView.animate(withDuration: 0.1) { [weak self] in
+            FRUIView.animate(withDuration: 0.1) { [weak self] in
                 if self?.isLoading ?? false {
                     self?.activityIndicator.isHidden = false
                     self?.activityIndicator.startAnimating()
