@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Evander
 
 class HomeworkCell: BasicInfoCell {
     

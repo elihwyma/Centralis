@@ -50,6 +50,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let error = error {
                 NSLog("[Centralis] Error = \(error)")
                 #warning("[Centralis] Handle the Error")
+            } else {
+                PersistenceDatabase.backgroundRefresh {
+                    
+                }
             }
         }
     }

@@ -16,8 +16,28 @@ class HomeworkViewController: BaseTableViewController {
         super.viewDidLoad()
 
         tableView.register(HomeworkCell.self, forCellReuseIdentifier: "Centralis.HomeworkCell")
+        index(false)
+        
+        self.title = "Homework"
+        NotificationCenter.default.addObserver(self, selector: #selector(persistenceReload), name: PersistenceDatabase.persistenceReload, object: nil)
+    }
+    
+    @objc private func persistenceReload() {
+        if !Thread.isMainThread {
+            DispatchQueue.main.async { [weak self] in
+                self?.persistenceReload()
+            }
+            return
+        }
+        index()
+    }
+    
+    private func index(_ reload: Bool = true) {
+        if reload {
+            tableView.beginUpdates()
+        }
         let homework = PersistenceDatabase.shared.homework.map { $0.1 }
-        currentHomework = homework.filter { $0.isCurrent }
+        var currentHomework = homework.filter { $0.isCurrent }
         currentHomework.sort { one, two -> Bool in
             if let one = one.due_date,
                let two = two.due_date {
@@ -25,8 +45,14 @@ class HomeworkViewController: BaseTableViewController {
             }
             return false
         }
+        if currentHomework != self.currentHomework {
+            self.currentHomework = currentHomework
+            if reload {
+                tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+            }
+        }
         
-        pastHomework = homework.filter { !$0.isCurrent }
+        var pastHomework = homework.filter { !$0.isCurrent }
         pastHomework.sort { one, two -> Bool in
             if let one = one.due_date,
                let two = two.due_date {
@@ -34,10 +60,17 @@ class HomeworkViewController: BaseTableViewController {
             }
             return false
         }
-        self.title = "Homework"
+        if pastHomework != self.pastHomework {
+            self.pastHomework = pastHomework
+            if reload {
+                tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
+            }
+        }
+        
+        if reload {
+            tableView.endUpdates()
+        }
     }
-
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         2

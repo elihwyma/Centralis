@@ -14,14 +14,35 @@ class TimetableViewController: BaseTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let first = weeks.first {
-            days = first.days
-            title = first.name
-        }
+    
         tableView.register(PeriodCell.self, forCellReuseIdentifier: "Centralis.PeriodCell")
         
+        index(false)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Choose Week", style: .done, target: self, action: #selector(changeWeek))
+        NotificationCenter.default.addObserver(self, selector: #selector(persistenceReload), name: PersistenceDatabase.persistenceReload, object: nil)
+    }
+    
+    private func index(_ reload: Bool = true) {
+        let weeks = PersistenceDatabase.shared.timetable
+        if let (week, _) = Timetable.getCurrent(weeks) {
+            if title != week.name {
+                self.title = week.name
+            }
+            if days != week.days {
+                self.days = week.days
+                tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+            }
+        }
+    }
+    
+    @objc private func persistenceReload() {
+        if !Thread.isMainThread {
+            DispatchQueue.main.async { [weak self] in
+                self?.persistenceReload()
+            }
+            return
+        }
+        index()
     }
     
     public func select(week: Timetable.Week) {

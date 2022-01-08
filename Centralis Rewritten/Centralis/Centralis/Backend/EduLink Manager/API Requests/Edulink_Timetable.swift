@@ -124,13 +124,17 @@ final public class Timetable: EdulinkBase {
         }
     }
     
-    public final class Week: Codable {
+    public final class Week: Codable, Equatable {
         var name: String
         var days: [Day]
         
         init(name: String, days: [Day]) {
             self.name = name
             self.days = days
+        }
+        
+        public static func == (lhs: Timetable.Week, rhs: Timetable.Week) -> Bool {
+            lhs.days == rhs.days && lhs.name == rhs.name
         }
     }
     
@@ -144,13 +148,23 @@ final public class Timetable: EdulinkBase {
                 }
             }
         }
-        let first = weeks[0]
-        guard let day = first.days.first else { return nil }
+        let today = Date()
+        for week in weeks {
+            for day in week.days {
+                if today < day.date {
+                    return (week, day)
+                }
+            }
+        }
+        let first = weeks.last!
+        guard let day = first.days.last else { return nil }
         return (first, day)
     }
     
     private class func convert(_ _weeks: [_Week]) -> [Week] {
-        _weeks.map { week -> Week in
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d MMM y"
+        return _weeks.map { week -> Week in
             let days = week.days.compactMap { day -> Day? in
                 guard let date = day.date else { return nil }
                 let periods = day.periods.map { period -> Period in
@@ -158,7 +172,13 @@ final public class Timetable: EdulinkBase {
                 }
                 return Day(name: day.name, date: date, periods: periods)
             }
-            return Week(name: week.name, days: days)
+            let name: String = {
+                if let day = days.first {
+                    return formatter.string(from: day.date)
+                }
+                return week.name
+            }()
+            return Week(name: name, days: days)
         }
     }
     
@@ -174,9 +194,9 @@ final public class Timetable: EdulinkBase {
             }
             do {
                 let weeks = try JSONDecoder().decode([_Week].self, from: weeksCurrent)
-                let convertedWeeks = convert(weeks)
+                var convertedWeeks = convert(weeks)
                 if !indexing {
-                    
+                    PersistenceDatabase.TimetableDatabase.changes(newWeeks: &convertedWeeks)
                 }
                 return completion(nil, convertedWeeks)
             } catch {

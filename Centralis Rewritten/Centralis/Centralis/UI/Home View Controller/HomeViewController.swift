@@ -19,6 +19,13 @@ class HomeViewController: BaseTableViewController {
         tableView.register(PeriodCell.self, forCellReuseIdentifier: "Centralis.PeriodCell")
         // Do any additional setup after loading the view.
         
+        NotificationCenter.default.addObserver(self, selector: #selector(persistenceReload), name: PersistenceDatabase.persistenceReload, object: nil)
+    }
+    
+    private func index(_ reload: Bool = true) {
+        if reload {
+            tableView.beginUpdates()
+        }
         var homework = PersistenceDatabase.shared.homework.map { $0.1 }
         homework = homework.filter { $0.isCurrent }
         homework.sort { one, two -> Bool in
@@ -28,12 +35,41 @@ class HomeViewController: BaseTableViewController {
             }
             return false
         }
-        self.homework = homework
+        if homework != self.homework {
+            self.homework = homework
+            if reload {
+                tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+            }
+        }
         
         let timetable = PersistenceDatabase.shared.timetable
         if let (_, today) = Timetable.getCurrent(timetable) {
-            self.today = today
+            if today != self.today {
+                self.today = today
+                if reload {
+                    tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
+                }
+            }
         }
+        if reload {
+            tableView.endUpdates()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        index()
+    }
+    
+    @objc private func persistenceReload() {
+        if !Thread.isMainThread {
+            DispatchQueue.main.async { [weak self] in
+                self?.persistenceReload()
+            }
+            return
+        }
+        index()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

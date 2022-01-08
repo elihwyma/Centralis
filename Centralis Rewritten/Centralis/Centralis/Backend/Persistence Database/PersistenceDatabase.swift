@@ -25,6 +25,8 @@ final public class PersistenceDatabase {
     private(set) public lazy var homework: [String: Homework] = HomeworkDatabase.getHomework(database: database)
     private(set) public lazy var timetable: [Timetable.Week] = TimetableDatabase.getTimetable(database: database)
     
+    static let persistenceReload = Notification.Name(rawValue: "Centralis/PersistenceReload")
+    
     private init() {
         _ = NotificationManager.shared
         if !databaseFolder.dirExists {
@@ -99,9 +101,11 @@ final public class PersistenceDatabase {
             loadGroup.leave()
         }
         Timetable.updateTimetable { _, _ in
+            Self.shared.timetable = TimetableDatabase.getTimetable(database: Self.shared.database)
             loadGroup.leave()
         }
         loadGroup.notify(queue: .global(qos: .background)) {
+            NotificationCenter.default.post(name: persistenceReload, object: nil)
             completion()
         }
     }
@@ -369,6 +373,60 @@ final public class PersistenceDatabase {
                 }
             } catch {}
             return weeks
+        }
+        
+        static func changes(newWeeks: inout [Timetable.Week]) {
+            let persistence = PersistenceDatabase.shared
+            let database = persistence.database
+            let current = persistence.timetable
+            try? database.transaction {
+                newWeeks = newWeeks.filter { !current.contains($0) }
+                let previousDates = Array(current.map { $0.days.map { $0.date } }.joined())
+                for week in newWeeks {
+                    if let first = week.days.first {
+                        let previous = previousDates.contains(first.date)
+                        // The database already contains this week but some details may not be the same
+                        if previous {
+                            let previousWeek: Timetable.Week = {
+                                for current in current {
+                                    let dates = current.days.map { $0.date }
+                                    if dates.contains(first.date) {
+                                        return current
+                                    }
+                                }
+                                fatalError()
+                            }()
+                            let weekIDQuery = dayTable.select(
+                                parent_key,
+                                date,
+                                id
+                            ).filter(date == (previousWeek.days.first?.date ?? first.date))
+                            var id: Int64? = nil
+                            for stub in try database.prepare(weekIDQuery) {
+                                id = stub[parent_key]
+                                break
+                            }
+                            for day in previousWeek.days {
+                                let dayID = dayTable.select(
+                                    id_key,
+                                    date
+                                ).filter(date == day.date)
+                                for stub in try database.prepare(dayID) {
+                                    let periodQuery = periodTable.filter(parent_key == stub[id_key])
+                                    _ = try? database.run(periodQuery.delete())
+                                    let dayQuery = dayTable.filter(date == day.date)
+                                    _ = try? database.run(dayQuery.delete())
+                                }
+                            }
+                            if let id = id {
+                                let weekQuery = weekTable.filter(id == id_key)
+                                _ = try? database.run(weekQuery.delete())
+                            }
+                        }
+                    }
+                }
+            }
+            saveTimetable(weeks: newWeeks, database: database)
         }
     }
 }
