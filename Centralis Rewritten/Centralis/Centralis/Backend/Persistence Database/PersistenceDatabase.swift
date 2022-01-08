@@ -328,6 +328,9 @@ final public class PersistenceDatabase {
                                 teachers <- period.teachers,
                                 name <- period.name
                             ))
+                            if period.moved {
+                                NotificationManager.shared.scheduleRoomChange(date: day.date, period: period)
+                            }
                         }
                     }
                 }

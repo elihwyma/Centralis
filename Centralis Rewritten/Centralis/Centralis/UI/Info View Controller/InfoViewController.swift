@@ -35,7 +35,7 @@ class InfoViewController: BaseTableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch _section(for: section) {
-        case .notifications: return 1
+        case .notifications: return 2
         case .account: return 1
         }
     }
@@ -50,6 +50,17 @@ class InfoViewController: BaseTableViewController {
                 cell.control.isOn = UserDefaults.standard.optionalBool("Notifications.Homework", fallback: true)
                 cell.callback = { state in
                     UserDefaults.standard.set(state, forKey: "Notifications.Homework")
+                    if !state {
+                        NotificationManager.shared.deleteAllHomework()
+                    } else {
+                        NotificationManager.shared.scheduleAllHomework()
+                    }
+                }
+            case 1:
+                cell.amyPogLabel.text = "Room Changes"
+                cell.control.isOn = UserDefaults.standard.optionalBool("Notifications.RoomChange", fallback: true)
+                cell.callback = { state in
+                    UserDefaults.standard.set(state, forKey: "Notifications.RoomChange")
                     if !state {
                         NotificationManager.shared.deleteAllHomework()
                     } else {

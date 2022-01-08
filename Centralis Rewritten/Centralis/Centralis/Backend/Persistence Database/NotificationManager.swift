@@ -27,6 +27,15 @@ final public class NotificationManager {
         return calendar.date(from: components)!
     }
     
+    private func convertToEarly(_ date: Date) -> Date {
+        let calendar = Calendar.current
+        var components = calendar.dateComponents([.month, .day, .year], from: date)
+        components.hour = 8
+        components.minute = 0
+        components.second = 0
+        return calendar.date(from: components)!
+    }
+    
     init() {
         center.requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in }
     }
@@ -106,5 +115,25 @@ final public class NotificationManager {
     public func homeworkChangeDate(homework: Homework) {
         deleteHomework(homework)
         scheduleHomework(homework: [homework])
+    }
+    
+    public func scheduleRoomChange(date: Date, period: Timetable.Period) {
+        guard UserDefaults.standard.optionalBool("Notifications.RoomChange", fallback: true),
+              let room = period.room,
+              let teacher = period.teachers,
+              let subject = period.subject else { return }
+        let converted = convertToEarly(date)
+        let content = UNMutableNotificationContent()
+        content.title = "Room Change for \(subject)"
+        content.subtitle = subject
+        content.body = "You're in \(room) for \(subject) today with \(teacher)"
+        var interval = Date().distance(to: converted)
+        if interval <= 0 {
+            interval = 1
+        }
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
+        center.add(UNNotificationRequest(identifier: "\(period.id)-Future-$RoomChange",
+                                         content: content,
+                                         trigger: trigger))
     }
 }

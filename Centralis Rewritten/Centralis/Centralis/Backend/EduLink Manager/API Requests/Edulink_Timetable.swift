@@ -157,7 +157,7 @@ final public class Timetable: EdulinkBase {
             }
         }
         let first = weeks.last!
-        guard let day = first.days.last else { return nil }
+        guard let day = first.days.first else { return nil }
         return (first, day)
     }
     
