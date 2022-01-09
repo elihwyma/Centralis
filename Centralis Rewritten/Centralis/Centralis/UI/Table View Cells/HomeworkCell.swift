@@ -107,7 +107,7 @@ class HomeworkCell: BasicInfoCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func trailingSwipeActionsConfiguration() -> UISwipeActionsConfiguration? {
+    override func trailingSwipeActionsConfiguration() -> UISwipeActionsConfiguration? {
         guard let homework = homework else { return nil }
         let complete = UIContextualAction(style: .normal, title: !homework.completed ? "Complete" : "Un-Complete") { [weak self] _, _, completion in
             guard let `self` = self,
