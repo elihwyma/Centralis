@@ -24,6 +24,7 @@ final public class PersistenceDatabase {
     
     private(set) public lazy var homework: [String: Homework] = HomeworkDatabase.getHomework(database: database)
     private(set) public lazy var timetable: [Timetable.Week] = TimetableDatabase.getTimetable(database: database)
+    private(set) public lazy var messages: [String: Message] = [:]
     
     static let persistenceReload = Notification.Name(rawValue: "Centralis/PersistenceReload")
     
@@ -105,8 +106,7 @@ final public class PersistenceDatabase {
             Self.shared.timetable = TimetableDatabase.getTimetable(database: Self.shared.database)
             loadGroup.leave()
         }
-        Message.updateMessages { error, messages in
-            print("messages = \(messages) error = \(error)")
+        Message.updateMessages { _, _ in
             loadGroup.leave()
         }
         loadGroup.notify(queue: .global(qos: .background)) {
@@ -444,6 +444,111 @@ final public class PersistenceDatabase {
         static let senderTable = Table("MessageSenders")
         static let attachmentTable = Table("MessageAttachments")
         
+        static let date = Expression<Date?>("date")
+        static let read = Expression<Date?>("read")
+        static let type = Expression<String>("type")
+        static let subject = Expression<String?>("subject")
+        static let body = Expression<String?>("body")
+        static let sender = Expression<String>("sender")
+        
+        static let filename = Expression<String>("filename")
+        static let filesize = Expression<Int64>("filesize")
+        static let mime_type = Expression<String>("mime_type")
+        static let parent = Expression<String>("parent")
+        
+        static let name = Expression<String>("name")
+        static let id = Expression<String>("id")
+        
+        static func createTable(database: Connection){
+            _ = try? database.run(messageTable.create(ifNotExists: true,
+                                                      block: { tbd in
+                tbd.column(date)
+                tbd.column(read)
+                tbd.column(type)
+                tbd.column(subject)
+                tbd.column(body)
+                tbd.column(sender)
+            }))
+            _ = try? database.run(attachmentTable.create(ifNotExists: true,
+                                                         block: { tbd in
+                tbd.column(filename)
+                tbd.column(filesize)
+                tbd.column(mime_type)
+                tbd.column(parent)
+            }))
+            _ = try? database.run(senderTable.create(ifNotExists: true,
+                                                     block: { tbd in
+                tbd.column(type)
+                tbd.column(name)
+                tbd.column(id)
+            }))
+        }
+        
+        static func saveMessages(_ messages: [String: Message]) {
+            let database = PersistenceDatabase.shared.database
+            try? database.transaction {
+                for message in Array(messages.values) {
+                    _ = try? database.run(messageTable.insert(
+                        date <- message.date,
+                        read <- message.date,
+                        type <- message.type,
+                        subject <- message.subject,
+                        body <- message.body,
+                        sender <- message.sender.id
+                    ))
+                    let count = try? database.scalar(senderTable.filter(id == message.sender.id).count)
+                    if count == 0 {
+                        _ = try? database.run(senderTable.insert(
+                            type <- message.sender.type,
+                            name <- message.sender.name,
+                            id <- message.sender.id
+                        ))
+                    }
+                    for attachment in message.attachments {
+                        _ = try? database.run(attachmentTable.insert(
+                            filename <- attachment.filename,
+                            filesize <- Int64(attachment.filesize),
+                            mime_type <- attachment.mime_type,
+                            parent <- message.id
+                        ))
+                    }
+                }
+            }
+        }
+        
+        static func getMessages(database: Connection) -> [String: Message] {
+            var senders = [String: Sender]()
+            let senderQuery = senderTable.select(
+                type,
+                name,
+                id
+            )
+            do {
+                for sender in try database.prepare(senderQuery) {
+                    let sender = Sender(id: sender[id],
+                                        type: sender[type],
+                                        name: sender[name])
+                    senders[sender.id] = sender
+                }
+            } catch {}
+            
+            var attachments = [String: Attachment]()
+            let attachmentQuery = attachmentTable.select(
+                filename,
+                filesize,
+                mime_type,
+                id,
+                parent
+            )
+            do {
+                for attachment in try database.prepare(attachmentQuery) {
+                    let _attachment = Attachment(id: attachment[id],
+                                                filename: attachment[filename],
+                                                 filesize: Int(attachment[filesize]),
+                                                mime_type: attachment[mime_type])
+                    attachments[attachment[parent]] = _attachment
+                }
+            } catch {}
+        }
     }
 }
-

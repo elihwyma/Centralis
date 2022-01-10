@@ -20,7 +20,23 @@ public final class Message: EdulinkBase {
     @Serialized(default: [Attachment]()) var attachments: [Attachment]
     @Serialized var sender: Sender
     
-    public class func updateMessages(totalPages: Int? = nil, currentPage: Int? = nil, messages: [Message] = [], _ completion: @escaping (String?, [Message]?) -> Void) {
+    init(id: String, date: Date?, read: Date?, type: String, subject: String?, body: String?, attachments: [Attachment], sender: Sender) {
+        super.init()
+        self.id = id
+        self.date = date
+        self.read = read
+        self.type = type
+        self.subject = subject
+        self.body = body
+        self.attachments = attachments
+        self.sender = sender
+    }
+    
+    required public init() {
+        fatalError("init() has not been implemented")
+    }
+    
+    public class func updateMessages(totalPages: Int? = nil, currentPage: Int? = nil, messages: [String: Message] = PersistenceDatabase.shared.messages, _ completion: @escaping (String?, [String: Message]?) -> Void) {
         var totalPages = totalPages
         var messages = messages
         EvanderNetworking.edulinkDict(method: "Communicator.Inbox", params: [.custom(key: "page", value: currentPage ?? 1),
@@ -37,9 +53,14 @@ public final class Message: EdulinkBase {
             do {
                 let jsonMessages = try JSONSerialization.data(withJSONObject: messageArray)
                 let _messages = try JSONDecoder().decode([Message].self, from: jsonMessages)
-                messages += _messages
-                if totalPages == currentPage {
-                    
+                var hasAll = true
+                for message in _messages {
+                    if messages[message.id] == nil {
+                        hasAll = false
+                        messages[message.id] = message
+                    }
+                }
+                if totalPages == currentPage || hasAll {
                     return completion(nil, messages)
                 } else {
                     let target = (currentPage ?? 1) + 1
@@ -53,12 +74,36 @@ public final class Message: EdulinkBase {
 }
 
 public class Attachment: EdulinkBase {
+    
     @Serialized(default: "Untitled File") var filename: String
     @Serialized(default: 0) var filesize: Int
     @Serialized(default: "application/pdf") var mime_type: String
+    
+    init(id: String, filename: String, filesize: Int, mime_type: String) {
+        super.init()
+        self.id = id
+        self.filename = filename
+        self.filesize = filesize
+        self.mime_type = mime_type
+    }
+    
+    required public init() {
+        fatalError("init() has not been implemented")
+    }
 }
 
 public class Sender: EdulinkBase {
     @Serialized(default: "employee") var type: String
     @Serialized(default: "Unknown Sender") var name: String
+    
+    init(id: String, type: String, name: String) {
+        super.init()
+        self.id = id
+        self.type = type
+        self.name = name
+    }
+    
+    required public init() {
+        fatalError("init() has not been implemented")
+    }
 }
