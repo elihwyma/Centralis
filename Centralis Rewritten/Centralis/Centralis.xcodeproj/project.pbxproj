@@ -54,6 +54,7 @@
 		E1CEBD8D274C2F80009F35D4 /* AuthenticatedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD8C274C2F80009F35D4 /* AuthenticatedUser.swift */; };
 		E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD8E274C3AB9009F35D4 /* SchoolDetails.swift */; };
 		E1CEBD91274C5F8E009F35D4 /* Establishment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD90274C5F8E009F35D4 /* Establishment.swift */; };
+		E1F6BB97278CC6B000E7A360 /* Edulink_Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F6BB96278CC6B000E7A360 /* Edulink_Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +108,7 @@
 		E1CEBD8C274C2F80009F35D4 /* AuthenticatedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedUser.swift; sourceTree = "<group>"; };
 		E1CEBD8E274C3AB9009F35D4 /* SchoolDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolDetails.swift; sourceTree = "<group>"; };
 		E1CEBD90274C5F8E009F35D4 /* Establishment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Establishment.swift; sourceTree = "<group>"; };
+		E1F6BB96278CC6B000E7A360 /* Edulink_Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Message.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -351,6 +353,7 @@
 				E1CDE49627502F1B00AA7769 /* Edulink_Status.swift */,
 				E10B96122751A35500C8C12E /* Edulink_Homework.swift */,
 				E12D63C6275F71F0008DAB00 /* Edulink_Timetable.swift */,
+				E1F6BB96278CC6B000E7A360 /* Edulink_Message.swift */,
 			);
 			path = "API Requests";
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				E10B9601275167AD00C8C12E /* UserPasswordViewController.swift in Sources */,
 				E1B8C18F27529646001FF9FD /* Thread+Extensions.swift in Sources */,
 				E197456327512D6600EEB853 /* ThemeManager.swift in Sources */,
+				E1F6BB97278CC6B000E7A360 /* Edulink_Message.swift in Sources */,
 				E1CEBD91274C5F8E009F35D4 /* Establishment.swift in Sources */,
 				E10B95E9275139D600C8C12E /* SchoolCodeViewController.swift in Sources */,
 				E1CDE49827502F1B00AA7769 /* Edulink_Status.swift in Sources */,
@@ -617,14 +621,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4673;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Centralis/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Centralis;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -634,7 +636,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -652,14 +654,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4673;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Centralis/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Centralis;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -669,7 +669,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;

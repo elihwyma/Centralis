@@ -97,11 +97,16 @@ final public class PersistenceDatabase {
         let loadGroup = DispatchGroup()
         loadGroup.enter()
         loadGroup.enter()
+        loadGroup.enter()
         Homework.updateHomework { _, _ in
             loadGroup.leave()
         }
         Timetable.updateTimetable { _, _ in
             Self.shared.timetable = TimetableDatabase.getTimetable(database: Self.shared.database)
+            loadGroup.leave()
+        }
+        Message.updateMessages { error, messages in
+            print("messages = \(messages) error = \(error)")
             loadGroup.leave()
         }
         loadGroup.notify(queue: .global(qos: .background)) {
@@ -431,6 +436,14 @@ final public class PersistenceDatabase {
             }
             saveTimetable(weeks: newWeeks, database: database)
         }
+    }
+    
+    struct MessageDatabase {
+        
+        static let messageTable = Table("Messages")
+        static let senderTable = Table("MessageSenders")
+        static let attachmentTable = Table("MessageAttachments")
+        
     }
 }
 
