@@ -44,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
+        NotificationCenter.default.post(name: PersistenceDatabase.persistenceReload, object: nil)
         typealias lM = LoginManager
         guard let login = lM.loadLogin().1 else { return }
         LoginManager.login(login) { error, _ in

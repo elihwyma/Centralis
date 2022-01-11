@@ -49,6 +49,7 @@
 		E1B8C18D27528FAA001FF9FD /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8C18C27528FAA001FF9FD /* Date+Extensions.swift */; };
 		E1B8C18F27529646001FF9FD /* Thread+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8C18E27529646001FF9FD /* Thread+Extensions.swift */; };
 		E1B8C1912752A0AD001FF9FD /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8C1902752A0AD001FF9FD /* NotificationManager.swift */; };
+		E1B92690278D96D7001EEDAC /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B9268F278D96D7001EEDAC /* MessagesViewController.swift */; };
 		E1BDD309274C63BE00056027 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BDD308274C63BE00056027 /* User.swift */; };
 		E1CDE49827502F1B00AA7769 /* Edulink_Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDE49627502F1B00AA7769 /* Edulink_Status.swift */; };
 		E1CEBD8D274C2F80009F35D4 /* AuthenticatedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD8C274C2F80009F35D4 /* AuthenticatedUser.swift */; };
@@ -103,6 +104,7 @@
 		E1B8C18C27528FAA001FF9FD /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		E1B8C18E27529646001FF9FD /* Thread+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Thread+Extensions.swift"; sourceTree = "<group>"; };
 		E1B8C1902752A0AD001FF9FD /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		E1B9268F278D96D7001EEDAC /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		E1BDD308274C63BE00056027 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E1CDE49627502F1B00AA7769 /* Edulink_Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edulink_Status.swift; sourceTree = "<group>"; };
 		E1CEBD8C274C2F80009F35D4 /* AuthenticatedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedUser.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 		E197455A2751295E00EEB853 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				E1B9268E278D96B6001EEDAC /* Messages View Controller */,
 				E1A23526277F6FC8004563C9 /* Timetable View Controller */,
 				E19621AD275D04500065B446 /* Info View Controller */,
 				E19621A7275BD6930065B446 /* Homework View Controller */,
@@ -345,6 +348,14 @@
 				E1A23527277F6FF9004563C9 /* TimetableViewController.swift */,
 			);
 			path = "Timetable View Controller";
+			sourceTree = "<group>";
+		};
+		E1B9268E278D96B6001EEDAC /* Messages View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E1B9268F278D96D7001EEDAC /* MessagesViewController.swift */,
+			);
+			path = "Messages View Controller";
 			sourceTree = "<group>";
 		};
 		E1C2125E274CFCF20030BE0C /* API Requests */ = {
@@ -480,6 +491,7 @@
 				E12D63C7275F71F0008DAB00 /* Edulink_Timetable.swift in Sources */,
 				E10B960E27518B0800C8C12E /* QuickLoginViewController.swift in Sources */,
 				E1A23525277F5D24004563C9 /* TimetableCell.swift in Sources */,
+				E1B92690278D96D7001EEDAC /* MessagesViewController.swift in Sources */,
 				E17E14C6274C1ECD0090F822 /* LoginManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

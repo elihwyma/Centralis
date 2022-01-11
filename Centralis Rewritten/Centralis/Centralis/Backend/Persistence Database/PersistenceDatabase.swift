@@ -24,7 +24,7 @@ final public class PersistenceDatabase {
     
     private(set) public lazy var homework: [String: Homework] = HomeworkDatabase.getHomework(database: database)
     private(set) public lazy var timetable: [Timetable.Week] = TimetableDatabase.getTimetable(database: database)
-    private(set) public lazy var messages: [String: Message] = [:]
+    private(set) public lazy var messages: [String: Message] = MessageDatabase.getMessages(database: database)
     
     static let persistenceReload = Notification.Name(rawValue: "Centralis/PersistenceReload")
     
@@ -43,6 +43,7 @@ final public class PersistenceDatabase {
         
         HomeworkDatabase.createTable(database: database)
         TimetableDatabase.createTable(database: database)
+        MessageDatabase.createTable(database: database)
     }
     
     private var schemaVersion: Int32 {
@@ -468,6 +469,7 @@ final public class PersistenceDatabase {
                 tbd.column(subject)
                 tbd.column(body)
                 tbd.column(sender)
+                tbd.column(id)
             }))
             _ = try? database.run(attachmentTable.create(ifNotExists: true,
                                                          block: { tbd in
@@ -495,6 +497,7 @@ final public class PersistenceDatabase {
                         subject <- message.subject,
                         body <- message.body,
                         sender <- message.sender.id
+                        id <- message.id
                     ))
                     let count = try? database.scalar(senderTable.filter(id == message.sender.id).count)
                     if count == 0 {
@@ -532,7 +535,7 @@ final public class PersistenceDatabase {
                 }
             } catch {}
             
-            var attachments = [String: Attachment]()
+            var attachments = [String: [Attachment]]()
             let attachmentQuery = attachmentTable.select(
                 filename,
                 filesize,
@@ -546,9 +549,42 @@ final public class PersistenceDatabase {
                                                 filename: attachment[filename],
                                                  filesize: Int(attachment[filesize]),
                                                 mime_type: attachment[mime_type])
-                    attachments[attachment[parent]] = _attachment
+                    if let array = attachments[attachment[parent]] {
+                        attachments[attachment[parent]] = array += [_attachment]
+                    } else {
+                        attachments[attachment[parent]] = [_attachment]
+                    }
                 }
             } catch {}
+            
+            var messages = [String: Message]()
+            let messageQuery = messageTable.select(
+                date,
+                read,
+                type,
+                subject,
+                body,
+                sender,
+                id
+            )
+            do {
+                for message in try database.prepare(messageQuery) {
+                    let id = message[id]
+                    let attachments = attachments[id] ?? []
+                    guard let sender = senders[message[sender]] else { continue }
+                    let _message = Message(id: id,
+                                           date: message[date],
+                                           read: message[read],
+                                           type: message[type],
+                                           subject: message[subject],
+                                           body: message[body],
+                                           attachments: attachments,
+                                           sender: sender)
+                    messages[_message.id] = _message
+                 }
+            } catch {}
+            
+            return messages
         }
     }
 }

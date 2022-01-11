@@ -80,7 +80,9 @@ final class CentralisTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewControllers = [homeViewController, infoViewController]
+        viewControllers = [homeViewController,
+                           messagesViewController,
+                           infoViewController]
 
         self.updateCentralisColours()
         NotificationCenter.default.addObserver(self,
@@ -103,17 +105,30 @@ final class CentralisTabBarController: UITabBarController {
     public var homeViewController: CentralisNavigationController = {
         let viewController = HomeViewController(style: .insetGrouped)
         let navController = CentralisNavigationController(rootViewController: viewController)
-        let tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house"))
+        let image = UIImage(systemName: "house")
+        let tabBarItem = UITabBarItem(title: "Home", image: image, selectedImage: image)
         navController.tabBarItem = tabBarItem
         viewController.title = "Home"
         navController.navigationBar.prefersLargeTitles = true
         return navController
     }()
     
+    public var messagesViewController: CentralisNavigationController = {
+        let viewController = MessagesViewController(style: .insetGrouped)
+        let navController = CentralisNavigationController(rootViewController: viewController)
+        let image = UIImage(systemName: "envelope")
+        let tabBarItem = UITabBarItem(title: "Messages", image: image, selectedImage: image)
+        navController.tabBarItem = tabBarItem
+        viewController.title = "Messages"
+        navController.navigationBar.prefersLargeTitles = true
+        return navController
+    }
+    
     public var infoViewController: CentralisNavigationController = {
         let viewController = InfoViewController(style: .insetGrouped)
         let navController = CentralisNavigationController(rootViewController: viewController)
-        let tabBarItem = UITabBarItem(title: "Info", image: UIImage(systemName: "i.circle"), selectedImage: UIImage(systemName: "i.circle"))
+        let image = UIImage(systemName: "i.circle")
+        let tabBarItem = UITabBarItem(title: "Info", image: image, selectedImage: image)
         navController.tabBarItem = tabBarItem
         viewController.title = "Info"
         navController.navigationBar.prefersLargeTitles = true
