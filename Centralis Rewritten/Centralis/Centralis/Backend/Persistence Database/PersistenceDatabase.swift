@@ -496,7 +496,7 @@ final public class PersistenceDatabase {
                         type <- message.type,
                         subject <- message.subject,
                         body <- message.body,
-                        sender <- message.sender.id
+                        sender <- message.sender.id,
                         id <- message.id
                     ))
                     let count = try? database.scalar(senderTable.filter(id == message.sender.id).count)
@@ -550,7 +550,7 @@ final public class PersistenceDatabase {
                                                  filesize: Int(attachment[filesize]),
                                                 mime_type: attachment[mime_type])
                     if let array = attachments[attachment[parent]] {
-                        attachments[attachment[parent]] = array += [_attachment]
+                        attachments[attachment[parent]] = array + [_attachment]
                     } else {
                         attachments[attachment[parent]] = [_attachment]
                     }

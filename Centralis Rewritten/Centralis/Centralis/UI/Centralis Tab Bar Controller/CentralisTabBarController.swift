@@ -122,7 +122,7 @@ final class CentralisTabBarController: UITabBarController {
         viewController.title = "Messages"
         navController.navigationBar.prefersLargeTitles = true
         return navController
-    }
+    }()
     
     public var infoViewController: CentralisNavigationController = {
         let viewController = InfoViewController(style: .insetGrouped)

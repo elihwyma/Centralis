@@ -32,9 +32,7 @@ public final class Message: EdulinkBase {
         self.sender = sender
     }
     
-    required public init() {
-        fatalError("init() has not been implemented")
-    }
+    required public init() {}
     
     public class func updateMessages(totalPages: Int? = nil, currentPage: Int? = nil, messages: [String: Message] = PersistenceDatabase.shared.messages, _ completion: @escaping (String?, [String: Message]?) -> Void) {
         var totalPages = totalPages
@@ -87,9 +85,8 @@ public class Attachment: EdulinkBase {
         self.mime_type = mime_type
     }
     
-    required public init() {
-        fatalError("init() has not been implemented")
-    }
+    required public init() {}
+    
 }
 
 public class Sender: EdulinkBase {
@@ -103,7 +100,6 @@ public class Sender: EdulinkBase {
         self.name = name
     }
     
-    required public init() {
-        fatalError("init() has not been implemented")
-    }
+    required public init() {}
+    
 }
