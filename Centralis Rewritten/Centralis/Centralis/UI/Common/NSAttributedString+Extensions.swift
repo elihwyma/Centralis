@@ -7,7 +7,7 @@
 
 import UIKit
 
-public extension NSAttributedString {
+public extension NSMutableAttributedString {
     
     convenience init(html: String) throws {
         let htmlString = """

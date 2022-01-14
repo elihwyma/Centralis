@@ -136,4 +136,13 @@ final public class NotificationManager {
                                          content: content,
                                          trigger: trigger))
     }
+    
+    public func notifyMessage(message: Message) {
+        guard UserDefaults.standard.optionalBool("Notifications.NewMessages", fallback: true) else { return }
+        let content = UNMutableNotificationContent()
+        content.title = "New Message from \(message.sender.name)"
+        content.subtitle = message.subject ?? ""
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        center.add(UNNotificationRequest(identifier: "\(message.id ?? "-1")-Message-$NewMessage", content: content, trigger: trigger))
+    }
 }

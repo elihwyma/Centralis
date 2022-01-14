@@ -20,6 +20,10 @@ public final class Message: EdulinkBase {
     @Serialized(default: [Attachment]()) var attachments: [Attachment]
     @Serialized var sender: Sender
     
+    public static func ==(lhs: Message, rhs: Message) -> Bool {
+        lhs.id == rhs.id && rhs.read == lhs.read
+    }
+    
     init(id: String, date: Date?, read: Date?, type: String, subject: String?, body: String?, attachments: [Attachment], sender: Sender) {
         super.init()
         self.id = id
@@ -34,7 +38,7 @@ public final class Message: EdulinkBase {
     
     required public init() {}
     
-    public class func updateMessages(totalPages: Int? = nil, currentPage: Int? = nil, messages: [String: Message] = PersistenceDatabase.shared.messages, _ completion: @escaping (String?, [String: Message]?) -> Void) {
+    public class func updateMessages(totalPages: Int? = nil, currentPage: Int? = nil, messages: [String: Message] = PersistenceDatabase.shared.messages, indexing: Bool = false, _ completion: @escaping (String?, [String: Message]?) -> Void) {
         var totalPages = totalPages
         var messages = messages
         EvanderNetworking.edulinkDict(method: "Communicator.Inbox", params: [.custom(key: "page", value: currentPage ?? 1),
@@ -51,14 +55,17 @@ public final class Message: EdulinkBase {
             do {
                 let jsonMessages = try JSONSerialization.data(withJSONObject: messageArray)
                 let _messages = try JSONDecoder().decode([Message].self, from: jsonMessages)
-                var hasAll = true
                 for message in _messages {
-                    if messages[message.id] == nil {
-                        hasAll = false
-                        messages[message.id] = message
+                    if !indexing && messages[message.id] == nil {
+                        NotificationManager.shared.notifyMessage(message: message)
                     }
+                    if let original = messages[message.id],
+                       original.read != message.read {
+                        PersistenceDatabase.MessageDatabase.updateReadStatus(message: message)
+                    }
+                    messages[message.id] = message
                 }
-                if totalPages == currentPage || hasAll {
+                if totalPages == currentPage {
                     PersistenceDatabase.MessageDatabase.saveMessages(messages)
                     Photos.shared.loadForMessages()
                     Thread.mainBlock {
@@ -67,7 +74,7 @@ public final class Message: EdulinkBase {
                     return completion(nil, messages)
                 } else {
                     let target = (currentPage ?? 1) + 1
-                    updateMessages(totalPages: totalPages, currentPage: target, messages: messages, completion)
+                    updateMessages(totalPages: totalPages, currentPage: target, messages: messages, indexing: indexing, completion)
                 }
             } catch {
                 return completion(error.localizedDescription, nil)

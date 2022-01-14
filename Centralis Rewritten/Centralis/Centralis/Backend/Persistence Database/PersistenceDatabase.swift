@@ -90,7 +90,7 @@ final public class PersistenceDatabase {
             TimetableDatabase.saveTimetable(weeks: weeks, database: database)
             loadGroup.leave()
         }
-        Message.updateMessages { error, messages in
+        Message.updateMessages(indexing: true) { error, messages in
             guard messages != nil else {
                 return completion(error ?? "Unknown Error", false)
             }

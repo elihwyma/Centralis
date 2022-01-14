@@ -35,7 +35,6 @@
 		E17E14CA274C211D0090F822 /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14C9274C211D0090F822 /* Transformers.swift */; };
 		E17E14CC274C25010090F822 /* EdulinkBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14CB274C25010090F822 /* EdulinkBase.swift */; };
 		E17FDF93276676EF002F8FF0 /* SerializedSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E17FDF92276676EF002F8FF0 /* SerializedSwift */; };
-		E183B1F92791AAA6004C6C65 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = E183B1F82791AAA6004C6C65 /* View.xib */; };
 		E183B1FB2791BA20004C6C65 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183B1FA2791BA20004C6C65 /* MessageViewController.swift */; };
 		E19621A6275BC2A50065B446 /* NSAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19621A5275BC2A50065B446 /* NSAttributedString+Extensions.swift */; };
 		E19621AC275CFDA10065B446 /* HomeworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19621AB275CFDA10065B446 /* HomeworkViewController.swift */; };
@@ -94,7 +93,6 @@
 		E17E14C7274C20610090F822 /* EdulinkRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdulinkRequests.swift; sourceTree = "<group>"; };
 		E17E14C9274C211D0090F822 /* Transformers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformers.swift; sourceTree = "<group>"; };
 		E17E14CB274C25010090F822 /* EdulinkBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdulinkBase.swift; sourceTree = "<group>"; };
-		E183B1F82791AAA6004C6C65 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		E183B1FA2791BA20004C6C65 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		E19621A5275BC2A50065B446 /* NSAttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extensions.swift"; sourceTree = "<group>"; };
 		E19621AB275CFDA10065B446 /* HomeworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkViewController.swift; sourceTree = "<group>"; };
@@ -384,7 +382,6 @@
 				E12D63C6275F71F0008DAB00 /* Edulink_Timetable.swift */,
 				E1F6BB96278CC6B000E7A360 /* Edulink_Message.swift */,
 				E1F6BB9A278E102500E7A360 /* Edulink_Photos.swift */,
-				E183B1F82791AAA6004C6C65 /* View.xib */,
 			);
 			path = "API Requests";
 			sourceTree = "<group>";
@@ -458,7 +455,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E17E14AD274C19B30090F822 /* LaunchScreen.storyboard in Resources */,
-				E183B1F92791AAA6004C6C65 /* View.xib in Resources */,
 				E17E14AA274C19B30090F822 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

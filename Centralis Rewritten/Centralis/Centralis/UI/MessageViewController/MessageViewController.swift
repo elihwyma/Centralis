@@ -143,6 +143,8 @@ class MessageViewController: UIViewController {
         ])
         navigationItem.largeTitleDisplayMode = .never
         layoutMessage()
+        
+        view.backgroundColor = .backgroundColor
     }
     
     private func layoutMessage() {
@@ -161,6 +163,19 @@ class MessageViewController: UIViewController {
         } else {
             dateLabel.text = "No Date"
         }
+        if let body = message.body {
+            if let attributedString = try? NSMutableAttributedString(html: body) {
+                bodyTextView.attributedText = attributedString
+                print(body)
+            } else {
+                bodyTextView.text = "Failed to parse message body"
+            }
+        }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
         if let body = message.body {
             if let attributedString = try? NSMutableAttributedString(html: body) {
                 bodyTextView.attributedText = attributedString
