@@ -10,10 +10,10 @@ import SQLite
 import Evander
 import SQLite3
 
-enum DatabaseSchemaVersion: Int32 {
-    case versionNil = 0
-    case version01000 = 1
-    case version01001 = 2
+enum DatabaseSchemaVersion: String {
+    case versionNil = "0"
+    case version01000 = "1.0"
+    case version01001 = "1.0k"
 }
 
 final public class PersistenceDatabase {
@@ -39,25 +39,25 @@ final public class PersistenceDatabase {
             fatalError("Database Connection failed")
         }
         self.database = database
-        self.schemaVersion = DatabaseSchemaVersion.version01001.rawValue
         
         HomeworkDatabase.createTable(database: database)
         TimetableDatabase.createTable(database: database)
         MessageDatabase.createTable(database: database)
     }
-    
-    private var schemaVersion: Int32 {
-        // swiftlint:disable:next force_cast force_try
-        get { Int32(try! database.scalar("PRAGMA user_version") as! Int64) }
-        // swiftlint:disable:next force_try
-        set { try! database.run("PRAGMA user_version = \(newValue)") }
-    }
-    
+
     public var hasIndexed: Bool {
-        get { databaseFolder.appendingPathComponent(".INDEXED").exists }
+        get {
+            let manifest = databaseFolder.appendingPathComponent(".INDEXED")
+            if manifest.exists,
+                let text = try? String(contentsOf: manifest),
+               text == DatabaseSchemaVersion.version01001.rawValue {
+                return true
+            }
+            return false
+        }
         set(indexed) {
             if indexed {
-                try? Data().write(to: databaseFolder.appendingPathComponent(".INDEXED"))
+                try? DatabaseSchemaVersion.version01001.rawValue.write(to: databaseFolder.appendingPathComponent(".INDEXED"), atomically: false, encoding: .utf8)
             } else {
                 try? FileManager.default.removeItem(at: databaseFolder.appendingPathComponent(".INDEXED"))
             }
@@ -68,6 +68,7 @@ final public class PersistenceDatabase {
         try? PersistenceDatabase.shared.resetDatabase()
         let `self` = PersistenceDatabase.shared
         let loadGroup = DispatchGroup()
+        loadGroup.enter()
         loadGroup.enter()
         loadGroup.enter()
         Homework.updateHomework(indexing: true) { [weak self] error, homework in
@@ -87,6 +88,12 @@ final public class PersistenceDatabase {
                       return completion(error ?? "Unknown Error", false)
             }
             TimetableDatabase.saveTimetable(weeks: weeks, database: database)
+            loadGroup.leave()
+        }
+        Message.updateMessages { error, messages in
+            guard messages != nil else {
+                return completion(error ?? "Unknown Error", false)
+            }
             loadGroup.leave()
         }
         loadGroup.notify(queue: .main) { [weak self] in
@@ -110,6 +117,7 @@ final public class PersistenceDatabase {
         Message.updateMessages { _, _ in
             loadGroup.leave()
         }
+            
         loadGroup.notify(queue: .global(qos: .background)) {
             NotificationCenter.default.post(name: persistenceReload, object: nil)
             completion()
@@ -280,6 +288,7 @@ final public class PersistenceDatabase {
         static let subject = Expression<String?>("subject")
         static let room = Expression<String?>("room")
         static let teachers = Expression<String?>("teachers")
+        static let group = Expression<String?>("group")
         
         static func createTable(database: Connection){
             _ = try? database.run(weekTable.create(ifNotExists: true,
@@ -306,6 +315,7 @@ final public class PersistenceDatabase {
                 tbd.column(room)
                 tbd.column(teachers)
                 tbd.column(name)
+                tbd.column(group)
             }))
         }
         
@@ -332,7 +342,8 @@ final public class PersistenceDatabase {
                                 subject <- period.subject,
                                 room <- period.room,
                                 teachers <- period.teachers,
-                                name <- period.name
+                                name <- period.name,
+                                group <- period.group
                             ))
                             if period.moved {
                                 NotificationManager.shared.scheduleRoomChange(date: day.date, period: period)
@@ -371,7 +382,8 @@ final public class PersistenceDatabase {
                             subject,
                             room,
                             teachers,
-                            name
+                            name,
+                            group
                         ).filter(parent_key == dayStub[id_key])
                 
                         let periods: [Timetable.Period] = try database.prepare(query).map { try $0.decode() }
@@ -469,20 +481,21 @@ final public class PersistenceDatabase {
                 tbd.column(subject)
                 tbd.column(body)
                 tbd.column(sender)
-                tbd.column(id)
+                tbd.column(id, unique: true)
             }))
             _ = try? database.run(attachmentTable.create(ifNotExists: true,
                                                          block: { tbd in
                 tbd.column(filename)
                 tbd.column(filesize)
                 tbd.column(mime_type)
+                tbd.column(id, unique: true)
                 tbd.column(parent)
             }))
             _ = try? database.run(senderTable.create(ifNotExists: true,
                                                      block: { tbd in
                 tbd.column(type)
                 tbd.column(name)
-                tbd.column(id)
+                tbd.column(id, unique: true)
             }))
         }
         
@@ -492,7 +505,7 @@ final public class PersistenceDatabase {
                 for message in Array(messages.values) {
                     _ = try? database.run(messageTable.insert(
                         date <- message.date,
-                        read <- message.date,
+                        read <- message.read,
                         type <- message.type,
                         subject <- message.subject,
                         body <- message.body,
@@ -512,10 +525,14 @@ final public class PersistenceDatabase {
                             filename <- attachment.filename,
                             filesize <- Int64(attachment.filesize),
                             mime_type <- attachment.mime_type,
-                            parent <- message.id
+                            parent <- message.id,
+                            id <- attachment.id
                         ))
                     }
                 }
+            }
+            for (key, value) in Array(messages) {
+                PersistenceDatabase.shared.messages[key] = value
             }
         }
         
@@ -546,9 +563,9 @@ final public class PersistenceDatabase {
             do {
                 for attachment in try database.prepare(attachmentQuery) {
                     let _attachment = Attachment(id: attachment[id],
-                                                filename: attachment[filename],
+                                                 filename: attachment[filename],
                                                  filesize: Int(attachment[filesize]),
-                                                mime_type: attachment[mime_type])
+                                                 mime_type: attachment[mime_type])
                     if let array = attachments[attachment[parent]] {
                         attachments[attachment[parent]] = array + [_attachment]
                     } else {
@@ -585,6 +602,11 @@ final public class PersistenceDatabase {
             } catch {}
             
             return messages
+        }
+        
+        static func updateReadStatus(message: Message) {
+            let messageFilter = messageTable.filter(id == message.id)
+            _ = try? PersistenceDatabase.shared.database.run(messageFilter.update(read <- message.read))
         }
     }
 }

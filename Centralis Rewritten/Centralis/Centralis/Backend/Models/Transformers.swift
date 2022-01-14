@@ -94,10 +94,12 @@ public class DateConverter: Transformable {
             dateComponents.timeZone = TimeZone.current
             
             let splitTime = String(splitParts[1]).split(separator: ":")
-            guard splitTime.count == 3 else { return nil }
+            guard splitTime.count == 3 || splitTime.count == 2 else { return nil }
             dateComponents.hour = Int(splitTime[0])
             dateComponents.minute = Int(splitTime[1])
-            dateComponents.second = Int(splitTime[2])
+            if splitTime.count == 3 {
+                dateComponents.second = Int(splitTime[2])
+            }
         } else if string.contains("-") {
             // Example "2019-05-20"
             let splitDay = string.split(separator: "-")
@@ -109,7 +111,8 @@ public class DateConverter: Transformable {
             dateComponents.timeZone = TimeZone.current
         }
         let calendar = Calendar.current
-        return calendar.date(from: dateComponents)
+        let date = calendar.date(from: dateComponents)
+        return date
     }
     
     public static func transformToJSON(value: Date?) -> String? {

@@ -59,6 +59,11 @@ public final class Message: EdulinkBase {
                     }
                 }
                 if totalPages == currentPage || hasAll {
+                    PersistenceDatabase.MessageDatabase.saveMessages(messages)
+                    Photos.shared.loadForMessages()
+                    Thread.mainBlock {
+                        CentralisTabBarController.shared.messagesViewController.tabBarItem.badgeValue = "\(unread)"
+                    }
                     return completion(nil, messages)
                 } else {
                     let target = (currentPage ?? 1) + 1
@@ -68,6 +73,26 @@ public final class Message: EdulinkBase {
                 return completion(error.localizedDescription, nil)
             }
         }
+    }
+    
+    public func markAsRead(_ completion: @escaping () -> Void) {
+        EvanderNetworking.edulinkDict(method: "Communicator.MessageMarkRead", params: [.custom(key: "message_id", value: (Int(id!) ?? 0))]) { [weak self] _, _, error, _ in
+            guard let self = self else { return }
+            if error == nil {
+                self.read = Date()
+                PersistenceDatabase.MessageDatabase.updateReadStatus(message: self)
+                Thread.mainBlock {
+                    CentralisTabBarController.shared.messagesViewController.tabBarItem.badgeValue = "\(Self.unread)"
+                }
+                completion()
+            }
+        }
+    }
+    
+    public static var unread: Int {
+        var messages = Array(PersistenceDatabase.shared.messages.values)
+        messages = messages.filter { $0.read == nil }
+        return messages.count
     }
 }
 

@@ -10,10 +10,10 @@ import Evander
 
 public extension EvanderNetworking {
     
-    class func request<T: Any>(url: URL, type: T.Type = [String: Any].self as! T.Type, method: String, params: [EdulinkParameters], _ completion: @escaping ((Bool, Int?, Error?, T?) -> Void)) {
+    class func request<T: Any>(url: URL, type: T.Type = [String: Any].self as! T.Type, method: String, params: [EdulinkParameters], timeout: Double, _ completion: @escaping ((Bool, Int?, Error?, T?) -> Void)) {
         var url = URLComponents(string: url.absoluteString)!
         url.queryItems = [URLQueryItem(name: "method", value: method)]
-        var request = URLRequest(url: url.url!, timeoutInterval: 10)
+        var request = URLRequest(url: url.url!, timeoutInterval: timeout)
         request.setValue(method, forHTTPHeaderField: "x-api-method")
         request.setValue("application/json;charset=utf-8", forHTTPHeaderField: "Content-Type")
         guard let encoded = generateBody(method: method, params: params) else { return completion(false, nil, "Failed to Encode JSON Body", nil) }
@@ -22,12 +22,12 @@ public extension EvanderNetworking {
         self.request(request: request, type: type, cache: .init(localCache: false, skipNetwork: false), completion)
     }
         
-    class func request<T: Any>(type: T.Type = [String: Any].self as! T.Type, method: String, params: [EdulinkParameters], _ completion: @escaping ((Bool, Int?, Error?, T?) -> Void)) {
+    class func request<T: Any>(type: T.Type = [String: Any].self as! T.Type, method: String, params: [EdulinkParameters], timeout: Double, _ completion: @escaping ((Bool, Int?, Error?, T?) -> Void)) {
         guard let authenticatedUser = EdulinkManager.shared.authenticatedUser,
               let server = authenticatedUser.server else { return completion(false, nil, "No User is Currently Logged in", nil) }
         var url = URLComponents(string: server.absoluteString)!
         url.queryItems = [URLQueryItem(name: "method", value: method)]
-        var request = URLRequest(url: url.url!, timeoutInterval: 10)
+        var request = URLRequest(url: url.url!, timeoutInterval: timeout)
         request.setValue(method, forHTTPHeaderField: "x-api-method")
         request.setValue("application/json;charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(authenticatedUser.authtoken)", forHTTPHeaderField: "Authorization")
@@ -38,8 +38,9 @@ public extension EvanderNetworking {
         self.request(request: request, type: type, cache: .init(localCache: true, skipNetwork: false), completion)
     }
     
-    class func edulinkDict(method: String, params: [EdulinkParameters], _ completion: @escaping ((Bool, Int?, String?, [String: Any]?) -> Void)) {
-        request(type: [String: Any].self, method: method, params: params) { success, code, error, dict in
+    class func edulinkDict(method: String, params: [EdulinkParameters], timeout: Double = 10, _ completion: @escaping ((Bool, Int?, String?, [String: Any]?) -> Void)) {
+        request(type: [String: Any].self, method: method, params: params, timeout: timeout) { success, code, error, dict in
+            print("Method \(method)")
             guard success,
                   let dict = dict else {
                 return completion(false, code, error?.localizedDescription ?? "Failed to Connect to EduLink", nil)
@@ -53,9 +54,10 @@ public extension EvanderNetworking {
             completion(true, code, nil, result)
         }
     }
-    
-    class func edulinkDict(url: URL, method: String, params: [EdulinkParameters], _ completion: @escaping ((Bool, Int?, String?, [String: Any]?) -> Void)) {
-        request(url: url, type: [String: Any].self, method: method, params: params) { success, code, error, dict in
+
+    class func edulinkDict(url: URL, method: String, params: [EdulinkParameters], timeout: Double = 10, _ completion: @escaping ((Bool, Int?, String?, [String: Any]?) -> Void)) {
+        request(url: url, type: [String: Any].self, method: method, params: params, timeout: timeout) { success, code, error, dict in
+            print("Method \(method)")
             guard success,
                   let dict = dict else {
                 return completion(false, code, error?.localizedDescription ?? "Failed to Connect to EduLink", nil)
