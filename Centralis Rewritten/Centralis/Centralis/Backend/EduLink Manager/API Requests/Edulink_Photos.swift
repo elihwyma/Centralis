@@ -37,7 +37,7 @@ final public class Photos {
         queue += check
         EvanderNetworking.edulinkDict(method: "EduLink.TeacherPhotos", params: [
             .custom(key: "employee_ids", value: check),
-            .custom(key: "size", value: size)
+            .custom(key: "size", value: Int(downscaled?.height ?? CGFloat(size)))
         ], timeout: 30) { _, _, error, result in
             guard let result = result,
                   let photos = result["employee_photos"] as? [[String: Any]] else { return }
@@ -71,15 +71,22 @@ final public class Photos {
         if let image = imageCache.object(forKey: id as NSString) {
             return image
         }
-        if let data = try? Data(contentsOf: self.imagesFolder.appendingPathComponent("\(id).png")),
-           var image = UIImage(data: data) {
-            image = ImageProcessing.downsample(image: image, to: size) ?? image
-            return image
-        }
-        getEmployeePictures(for: [id], downscaled: size) {
-            if let image = self.imageCache.object(forKey: id as NSString) {
-                completion(image)
+        if self.imagesFolder.appendingPathComponent("\(id).png").exists {
+            backgroundQueue.async {
+                if let data = try? Data(contentsOf: self.imagesFolder.appendingPathComponent("\(id).png")),
+                   var image = UIImage(data: data) {
+                    image = ImageProcessing.downsample(image: image, to: size) ?? image
+                    self.imageCache.setObject(image, forKey: id as NSString)
+                    completion(image)
+                }
             }
+        } else {
+            getEmployeePictures(for: [id], downscaled: size) {
+                if let image = self.imageCache.object(forKey: id as NSString) {
+                    completion(image)
+                }
+            }
+            return UIImage(systemName: "person.crop.circle")
         }
         return nil
     }

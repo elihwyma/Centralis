@@ -23,9 +23,13 @@ class MessagesViewController: BaseTableViewController {
         }
         var messages = Array(PersistenceDatabase.shared.messages.values)
         messages.sort { $0.date ?? Date() > $1.date ?? Date() }
-        self.messages = messages
+        if messages != self.messages {
+            self.messages = messages
+            if reload {
+                tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+            }
+        }
         if reload {
-            tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
             tableView.endUpdates()
         }
     }
@@ -54,5 +58,11 @@ class MessagesViewController: BaseTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.MessageCell", for: indexPath) as! MessageTableViewCell
         cell.set(message: messages[indexPath.row])
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewController = MessageViewController(message: messages[indexPath.row])
+        navigationController?.pushViewController(viewController, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

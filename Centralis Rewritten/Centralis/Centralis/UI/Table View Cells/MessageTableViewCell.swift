@@ -18,7 +18,7 @@ class MessageTableViewCell: UITableViewCell, BaseTableViewCell {
             view.heightAnchor.constraint(equalToConstant: 45),
             view.widthAnchor.constraint(equalToConstant: 45)
         ])
-        view.contentMode = .scaleAspectFit
+        view.contentMode = .scaleAspectFill
         view.layer.cornerRadius = 45 / 2
         view.layer.masksToBounds = true
         view.layer.cornerCurve = .continuous
@@ -110,14 +110,13 @@ class MessageTableViewCell: UITableViewCell, BaseTableViewCell {
             dateLabel.text = "No Date"
         }
         unreadView.backgroundColor = message.read == nil ? .tintColor : .clear
-        
         teacherView.image = Photos.shared.getImage(for: message.sender.id, size: teacherView.bounds.size, { [weak self] image in
             guard let self = self,
                   self.message == message else { return }
             Thread.mainBlock {
                 self.teacherView.image = image
             }
-        }) ?? UIImage(systemName: "person.crop.circle")
+        })
     }
     
     func leadingSwipeActionsConfiguration() -> UISwipeActionsConfiguration? {
