@@ -14,6 +14,7 @@ enum DatabaseSchemaVersion: String {
     case versionNil = "0"
     case version01000 = "1.0"
     case version01001 = "1.0k"
+    case version01002 = "1.0ke"
 }
 
 final public class PersistenceDatabase {
@@ -43,6 +44,8 @@ final public class PersistenceDatabase {
         HomeworkDatabase.createTable(database: database)
         TimetableDatabase.createTable(database: database)
         MessageDatabase.createTable(database: database)
+        
+        _ = hasIndexed
     }
 
     public var hasIndexed: Bool {
@@ -50,14 +53,14 @@ final public class PersistenceDatabase {
             let manifest = databaseFolder.appendingPathComponent(".INDEXED")
             if manifest.exists,
                 let text = try? String(contentsOf: manifest),
-               text == DatabaseSchemaVersion.version01001.rawValue {
+               text == DatabaseSchemaVersion.version01002.rawValue {
                 return true
             }
             return false
         }
         set(indexed) {
             if indexed {
-                try? DatabaseSchemaVersion.version01001.rawValue.write(to: databaseFolder.appendingPathComponent(".INDEXED"), atomically: false, encoding: .utf8)
+                try? DatabaseSchemaVersion.version01002.rawValue.write(to: databaseFolder.appendingPathComponent(".INDEXED"), atomically: false, encoding: .utf8)
             } else {
                 try? FileManager.default.removeItem(at: databaseFolder.appendingPathComponent(".INDEXED"))
             }

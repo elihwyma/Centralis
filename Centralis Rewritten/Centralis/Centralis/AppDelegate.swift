@@ -76,11 +76,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func handleAppRefreshTask(task: BGAppRefreshTask) {
-        let content = UNMutableNotificationContent()
-        content.title = "Background Task"
-        content.body = "Background task successfully called!"
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-        UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger))
         guard let login = LoginManager.loadLogin().1 else { return task.setTaskCompleted(success: false) }
         LoginManager.login(login, _indexBypass: true) { _, user in
             if user != nil {

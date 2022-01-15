@@ -237,7 +237,6 @@
 				E17E14C4274C1EBE0090F822 /* Login Manager */,
 				E17E14C0274C1B220090F822 /* Models */,
 				E17E14BF274C1B050090F822 /* Contrib */,
-				E17E14BB274C1A760090F822 /* EduLink Manager */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -255,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				E17E14C7274C20610090F822 /* EdulinkRequests.swift */,
+				E17E14BB274C1A760090F822 /* EduLink Manager */,
 			);
 			path = Contrib;
 			sourceTree = "<group>";
@@ -653,7 +653,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 845768945764;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
@@ -668,7 +668,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -686,7 +686,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 845768945764;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
@@ -701,7 +701,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;

@@ -20,6 +20,8 @@ public final class Message: EdulinkBase {
     @Serialized(default: [Attachment]()) var attachments: [Attachment]
     @Serialized var sender: Sender
     
+    public static let attachmentFolder = EvanderNetworking._cacheDirectory.appendingPathComponent("Attachments")
+    
     public static func ==(lhs: Message, rhs: Message) -> Bool {
         lhs.id == rhs.id && rhs.read == lhs.read
     }
@@ -101,6 +103,26 @@ public final class Message: EdulinkBase {
         messages = messages.filter { $0.read == nil }
         return messages.count
     }
+    
+    public func getAttachment(attachment: Attachment, completion: @escaping (String?, URL?) -> Void) {
+        EvanderNetworking.edulinkDict(method: "Communicator.AttachmentFetch", params: [
+            .format(value: 2),
+            .custom(key: "message_id", value: Int(self.id!) ?? -1),
+            .custom(key: "attachment_id", value: Int(attachment.id) ?? -1)
+        ]) { _, _, error, result in
+            guard let result = result,
+                  let _attachment = result["attachment"] as? [String: Any] else { return completion(error ?? "Unknown Error", nil) }
+            if let content = _attachment["content"] as? String {
+                guard let data = Data(base64Encoded: content) else { return completion("Failed to parse attachment data", nil) }
+                try? data.write(to: attachment.fileDestination)
+                return completion(nil, attachment.fileDestination)
+            } else if let _url = _attachment["url"] as? String,
+                      let url = URL(string: _url) {
+                return completion(nil, url)
+            }
+            return completion("No Attachment was returned", nil)
+        }
+    }
 }
 
 public class Attachment: EdulinkBase {
@@ -118,6 +140,10 @@ public class Attachment: EdulinkBase {
     }
     
     required public init() {}
+    
+    public var fileDestination: URL {
+        Message.attachmentFolder.appendingPathComponent("\(id!)_\(filename)")
+    }
     
 }
 

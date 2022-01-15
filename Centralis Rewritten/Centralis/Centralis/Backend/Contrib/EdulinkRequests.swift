@@ -22,7 +22,7 @@ public extension EvanderNetworking {
         self.request(request: request, type: type, cache: .init(localCache: false, skipNetwork: false), completion)
     }
         
-    class func request<T: Any>(type: T.Type = [String: Any].self as! T.Type, method: String, params: [EdulinkParameters], timeout: Double, _ completion: @escaping ((Bool, Int?, Error?, T?) -> Void)) {
+    class func request<T: Any>(type: T.Type = [String: Any].self as! T.Type, method: String, params: [EdulinkParameters], timeout: Double, headers: [String: String], _ completion: @escaping ((Bool, Int?, Error?, T?) -> Void)) {
         guard let authenticatedUser = EdulinkManager.shared.authenticatedUser,
               let server = authenticatedUser.server else { return completion(false, nil, "No User is Currently Logged in", nil) }
         var url = URLComponents(string: server.absoluteString)!
@@ -31,15 +31,17 @@ public extension EvanderNetworking {
         request.setValue(method, forHTTPHeaderField: "x-api-method")
         request.setValue("application/json;charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(authenticatedUser.authtoken)", forHTTPHeaderField: "Authorization")
-        
+        for (key, header) in headers {
+            request.setValue(header, forHTTPHeaderField: key)
+        }
         guard let encoded = generateBody(method: method, params: params) else { return completion(false, nil, "Failed to Encode JSON Body", nil) }
         request.httpBody = encoded
         request.httpMethod = "POST"
         self.request(request: request, type: type, cache: .init(localCache: true, skipNetwork: false), completion)
     }
     
-    class func edulinkDict(method: String, params: [EdulinkParameters], timeout: Double = 10, _ completion: @escaping ((Bool, Int?, String?, [String: Any]?) -> Void)) {
-        request(type: [String: Any].self, method: method, params: params, timeout: timeout) { success, code, error, dict in
+    class func edulinkDict(method: String, params: [EdulinkParameters], timeout: Double = 10, headers: [String: String] = [:], _ completion: @escaping ((Bool, Int?, String?, [String: Any]?) -> Void)) {
+        request(type: [String: Any].self, method: method, params: params, timeout: timeout, headers: headers) { success, code, error, dict in
             print("Method \(method)")
             guard success,
                   let dict = dict else {

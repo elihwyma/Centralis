@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import QuickLook
+import Evander
 
 class MessageViewController: UIViewController {
     
     public let message: Message
+    private var targetURL: URL?
+    
     init(message: Message) {
         self.message = message
         super.init(nibName: nil, bundle: nil)
@@ -84,6 +88,7 @@ class MessageViewController: UIViewController {
             variableConstraint,
             view.heightAnchor.constraint(greaterThanOrEqualToConstant: 0)
         ])
+        view.isUserInteractionEnabled = true
         return view
     }()
 
@@ -148,6 +153,10 @@ class MessageViewController: UIViewController {
     }
     
     private func layoutMessage() {
+        if message.read == nil {
+            message.markAsRead {}
+        }
+        
         teacherView.image = Photos.shared.getImage(for: message.sender.id, size: teacherView.bounds.size, { [weak self] image in
             guard let self = self else { return }
             Thread.mainBlock {
@@ -166,9 +175,106 @@ class MessageViewController: UIViewController {
         if let body = message.body {
             if let attributedString = try? NSMutableAttributedString(html: body) {
                 bodyTextView.attributedText = attributedString
-                print(body)
             } else {
                 bodyTextView.text = "Failed to parse message body"
+            }
+        }
+        
+        for (index, attachment) in message.attachments.enumerated() {
+            let control = UIControl()
+            control.translatesAutoresizingMaskIntoConstraints = false
+            control.tag = index
+            let view = UIStackView()
+            view.translatesAutoresizingMaskIntoConstraints = false
+            view.heightAnchor.constraint(equalToConstant: 30).isActive = true
+            view.axis = .horizontal
+            view.isUserInteractionEnabled = false
+            let label = UILabel()
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.text = attachment.filename
+            label.isUserInteractionEnabled = false
+            let image = UIImageView()
+            image.translatesAutoresizingMaskIntoConstraints = false
+            image.image = UIImage(systemName: "arrow.down.circle")
+            image.contentMode = .scaleAspectFit
+            image.isUserInteractionEnabled = false
+            control.addSubview(view)
+            view.addArrangedSubview(label)
+            view.addArrangedSubview(image)
+            
+            NSLayoutConstraint.activate([
+                view.heightAnchor.constraint(equalToConstant: 30),
+                control.topAnchor.constraint(equalTo: view.topAnchor),
+                control.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                control.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                control.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                image.heightAnchor.constraint(equalToConstant: 25),
+                image.widthAnchor.constraint(equalToConstant: 25)
+            ])
+            
+            control.addTarget(self, action: #selector(downloadAttachment(_:)), for: .touchUpInside)
+            self.embedStackView.addArrangedSubview(control)
+        }
+    }
+    
+    @objc private func downloadAttachment(_ control: UIControl) {
+        let attachment = message.attachments[control.tag]
+        if Message.attachmentFolder.dirExists {
+            if attachment.fileDestination.exists {
+                return display(with: attachment.fileDestination)
+            }
+        } else {
+            try? FileManager.default.createDirectory(at: Message.attachmentFolder, withIntermediateDirectories: true)
+        }
+        
+        let alert = UIAlertController(title: "Downloading \(attachment.filename)", message: "Resolving", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(alert, animated: true) { [weak self] in
+            guard let self = self else { return }
+            var foundLabel: UILabel?
+            @discardableResult func findTheFuckingLabel(_ view: UIView) -> Bool {
+                for view in view.subviews {
+                    if let label = view as? UILabel,
+                       label.text == "Resolving" {
+                        foundLabel = label
+                        return true
+                    }
+                    if findTheFuckingLabel(view) {
+                        return true
+                    }
+                }
+                return false
+            }
+            findTheFuckingLabel(alert.view)
+            self.message.getAttachment(attachment: attachment) { error, url in
+                guard let url = url else {
+                    Thread.mainBlock {
+                        foundLabel?.text = error ?? "Unknown Error"
+                    }
+                    return
+                }
+                if url.isFileURL {
+                    return self.display(with: url)
+                } else {
+                    let downloader = EvanderDownloader(url: url)
+                    downloader.make()
+                    downloader.progressCallback = { progress in
+                        let percent = progress.fractionCompleted * 100.0
+                        Thread.mainBlock {
+                            foundLabel?.text = "\(Int(percent))% downloaded"
+                        }
+                    }
+                    downloader.errorCallback = { _, error, _ in
+                        Thread.mainBlock {
+                            foundLabel?.text = error?.localizedDescription
+                        }
+                    }
+                    downloader.didFinishCallback = { _, url in
+                        try? FileManager.default.moveItem(at: url, to: attachment.fileDestination)
+                        self.display(with: attachment.fileDestination)
+                    }
+                    downloader.resume()
+                }
             }
         }
     }
@@ -183,5 +289,32 @@ class MessageViewController: UIViewController {
                 bodyTextView.text = "Failed to parse message body"
             }
         }
+    }
+    
+    private func display(with url: URL) {
+        if !Thread.isMainThread {
+            DispatchQueue.main.async {
+                self.display(with: url)
+            }
+            return
+        }
+        self.dismiss(animated: true)
+        
+        targetURL = url
+        let quickLookViewController = QLPreviewController()
+        quickLookViewController.dataSource = self
+        quickLookViewController.currentPreviewItemIndex = 0
+        present(quickLookViewController, animated: true)
+    }
+}
+
+extension MessageViewController: QLPreviewControllerDataSource {
+    
+    func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
+        1
+    }
+    
+    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+        targetURL! as NSURL
     }
 }
