@@ -229,6 +229,7 @@ class MessageViewController: UIViewController {
         
         let alert = UIAlertController(title: "Downloading \(attachment.filename)", message: "Resolving", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.view.tintColor = .tintColor
         present(alert, animated: true) { [weak self] in
             guard let self = self else { return }
             var foundLabel: UILabel?
@@ -302,6 +303,7 @@ class MessageViewController: UIViewController {
         
         targetURL = url
         let quickLookViewController = QLPreviewController()
+        quickLookViewController.view.tintColor = .tintColor
         quickLookViewController.dataSource = self
         quickLookViewController.currentPreviewItemIndex = 0
         present(quickLookViewController, animated: true)
