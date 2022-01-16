@@ -221,11 +221,14 @@ final public class PersistenceDatabase {
             let persistence = PersistenceDatabase.shared
             let current = persistence.homework
             try? persistence.database.transaction {
+                // Set the notification state of all past homework to past
                 for (_, current) in current where current.notificationState != .past && !current.isCurrent {
                     let homework = homeworkTable.filter(id == current.id)
                     _ = try? persistence.database.run(homework.update(notified <- Homework.NotificationState.past.rawValue))
                 }
-                for new in newHomework where new != current[new.id] {
+                
+                // Update info about homework that has been edited
+                for new in newHomework where current[new.id] != nil && current[new.id]! != new {
                     let homework = homeworkTable.filter(id == new.id)
                     _ = try? persistence.database.run(homework.update(
                         due_date <- new.due_date,
@@ -236,7 +239,9 @@ final public class PersistenceDatabase {
                     current?.activity = new.activity
                     NotificationManager.shared.homeworkChangeDate(homework: new)
                 }
-                for new in newHomework where new.completed != current[new.id]?.completed {
+                
+                // Update the completed status of any homework marked completed elsewhere
+                for new in newHomework where current[new.id] != nil && new.completed != current[new.id]!.completed {
                     let homework = homeworkTable.filter(id == new.id)
                     _ = try? persistence.database.run(homework.update(
                         completed <- new.completed
@@ -246,6 +251,8 @@ final public class PersistenceDatabase {
                     NotificationManager.shared.homeworkChangeCompleted(homework: new)
                 }
             }
+            
+            // Remove any pre-existing homework
             newHomework.removeAll { current[$0.id] != nil }
             newHomework.forEach { persistence.homework[$0.id] = $0 }
             saveHomework(homework: newHomework, notificationState: nil, database: persistence.database)

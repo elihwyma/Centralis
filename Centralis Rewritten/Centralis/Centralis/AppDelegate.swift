@@ -31,16 +31,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         window?.makeKeyAndVisible()
         Message.setUnread()
-        BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.amywhile.centralis.backgroundindex",
-                                        using: nil) { (task) in
-            self.handleAppRefreshTask(task: task as! BGAppRefreshTask)
-        }
+        
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
 
         return true
     }
     
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        scheduleBackgroundIndex()
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        guard let login = LoginManager.loadLogin().1 else { return completionHandler(.newData) }
+        LoginManager.login(login, _indexBypass: true) { error, user in
+            if user != nil {
+                PersistenceDatabase.backgroundRefresh {
+                    completionHandler(.newData)
+                }
+            } else {
+                return completionHandler(.newData)
+            }
+        }
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -74,30 +81,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                           animations: nil,
                           completion: nil)
     }
-    
-    private func handleAppRefreshTask(task: BGAppRefreshTask) {
-        guard let login = LoginManager.loadLogin().1 else { return task.setTaskCompleted(success: false) }
-        LoginManager.login(login, _indexBypass: true) { _, user in
-            if user != nil {
-                PersistenceDatabase.backgroundRefresh {
-                    task.setTaskCompleted(success: true)
-                }
-            } else {
-                return task.setTaskCompleted(success: false)
-            }
-        }
-        scheduleBackgroundIndex()
-    }
-    
-    func scheduleBackgroundIndex() {
-        let indexTask = BGAppRefreshTaskRequest(identifier: "com.amywhile.centralis.backgroundindex")
-        indexTask.earliestBeginDate = Date(timeIntervalSinceNow: 60)
-        do {
-            try BGTaskScheduler.shared.submit(indexTask)
-        } catch {
-            print("Unable to submit task: \(error.localizedDescription)")
-        }
-    }
-    
 }
 

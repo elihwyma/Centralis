@@ -25,6 +25,8 @@ public final class Homework: EdulinkBase {
             return .past
         } else if isDueTomorrow {
             return .dayBefore
+        } else if completed {
+            return .notified
         } else {
             return .new
         }
