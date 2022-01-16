@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = CentralisNavigationController(rootViewController: OnboardingViewController())
         }
         window?.makeKeyAndVisible()
-    
+        Message.setUnread()
         BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.amywhile.centralis.backgroundindex",
                                         using: nil) { (task) in
             self.handleAppRefreshTask(task: task as! BGAppRefreshTask)

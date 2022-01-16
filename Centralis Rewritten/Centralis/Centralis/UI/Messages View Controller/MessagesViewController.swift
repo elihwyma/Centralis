@@ -15,6 +15,7 @@ class MessagesViewController: BaseTableViewController {
         super.viewDidLoad()
         
         tableView.register(MessageTableViewCell.self, forCellReuseIdentifier: "Centralis.MessageCell")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Mark all as read", style: .plain, target: self, action: #selector(markAllAsRead))
     }
     
     private func index(_ reload: Bool = true) {
@@ -32,6 +33,10 @@ class MessagesViewController: BaseTableViewController {
         if reload {
             tableView.endUpdates()
         }
+    }
+    
+    @objc private func markAllAsRead() {
+        Message.markAllAsRead {}
     }
     
     override func viewWillAppear(_ animated: Bool) {

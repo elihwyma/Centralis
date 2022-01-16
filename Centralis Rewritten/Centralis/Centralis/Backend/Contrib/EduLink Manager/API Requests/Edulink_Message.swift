@@ -8,6 +8,7 @@
 import Foundation
 import Evander
 import SerializedSwift
+import UIKit
 
 public final class Message: EdulinkBase {
     
@@ -70,9 +71,7 @@ public final class Message: EdulinkBase {
                 if totalPages == currentPage {
                     PersistenceDatabase.MessageDatabase.saveMessages(messages)
                     Photos.shared.loadForMessages()
-                    Thread.mainBlock {
-                        CentralisTabBarController.shared.messagesViewController.tabBarItem.badgeValue = "\(unread)"
-                    }
+                    Self.setUnread()
                     return completion(nil, messages)
                 } else {
                     let target = (currentPage ?? 1) + 1
@@ -90,9 +89,7 @@ public final class Message: EdulinkBase {
             if error == nil {
                 self.read = Date()
                 PersistenceDatabase.MessageDatabase.updateReadStatus(message: self)
-                Thread.mainBlock {
-                    CentralisTabBarController.shared.messagesViewController.tabBarItem.badgeValue = "\(Self.unread)"
-                }
+                Self.setUnread()
                 completion()
             }
         }
@@ -102,6 +99,19 @@ public final class Message: EdulinkBase {
         var messages = Array(PersistenceDatabase.shared.messages.values)
         messages = messages.filter { $0.read == nil }
         return messages.count
+    }
+    
+    public class func setUnread() {
+        if !Thread.isMainThread {
+            DispatchQueue.main.async {
+                setUnread()
+            }
+            return
+        }
+        let unread = unread
+        let unreadString: String? = unread == 0 ? nil : "\(unread)"
+        CentralisTabBarController.shared.messagesViewController.tabBarItem.badgeValue = unreadString
+        UIApplication.shared.applicationIconBadgeNumber = unread
     }
     
     public func getAttachment(attachment: Attachment, completion: @escaping (String?, URL?) -> Void) {
@@ -121,6 +131,19 @@ public final class Message: EdulinkBase {
                 return completion(nil, url)
             }
             return completion("No Attachment was returned", nil)
+        }
+    }
+    
+    public class func markAllAsRead(_ completion: @escaping () -> Void) {
+        EvanderNetworking.edulinkDict(method: "Communicator.MessageMarkAllRead", params: []) { _, _, error, _ in
+            if error == nil {
+                for message in Array(PersistenceDatabase.shared.messages.values) where message.read == nil {
+                    message.read = Date()
+                    PersistenceDatabase.MessageDatabase.updateReadStatus(message: message)
+                }
+                setUnread()
+                completion()
+            }
         }
     }
 }

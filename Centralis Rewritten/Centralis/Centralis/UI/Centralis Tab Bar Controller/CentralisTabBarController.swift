@@ -121,7 +121,6 @@ final class CentralisTabBarController: UITabBarController {
         navController.tabBarItem = tabBarItem
         viewController.title = "Messages"
         navController.navigationBar.prefersLargeTitles = true
-        tabBarItem.badgeValue = "\(Message.unread)"
         return navController
     }()
     
