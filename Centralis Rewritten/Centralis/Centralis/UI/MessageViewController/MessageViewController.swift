@@ -153,6 +153,12 @@ class MessageViewController: UIViewController {
     }
     
     private func layoutMessage() {
+        if !Thread.isMainThread {
+            DispatchQueue.main.async { [weak self] in
+                self?.layoutMessage()
+            }
+            return
+        }
         if message.read == nil {
             message.markAsRead {}
         }
@@ -282,12 +288,14 @@ class MessageViewController: UIViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-
-        if let body = message.body {
-            if let attributedString = try? NSMutableAttributedString(html: body) {
-                bodyTextView.attributedText = attributedString
-            } else {
-                bodyTextView.text = "Failed to parse message body"
+        
+        Thread.mainBlock { [weak self] in
+            if let body = self?.message.body {
+                if let attributedString = try? NSMutableAttributedString(html: body) {
+                    self?.bodyTextView.attributedText = attributedString
+                } else {
+                    self?.bodyTextView.text = "Failed to parse message body"
+                }
             }
         }
     }

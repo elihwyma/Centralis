@@ -9,7 +9,7 @@ import UIKit
 
 class MessageTableViewCell: UITableViewCell, BaseTableViewCell {
     
-    private var message: Message?
+    public var message: Message?
     
     private var teacherView: UIImageView = {
         let view = UIImageView()
@@ -46,7 +46,7 @@ class MessageTableViewCell: UITableViewCell, BaseTableViewCell {
         return label
     }()
     
-    private var unreadView: UIView = {
+    public var unreadView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false

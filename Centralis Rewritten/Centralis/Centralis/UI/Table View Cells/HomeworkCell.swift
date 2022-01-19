@@ -20,6 +20,12 @@ class HomeworkCell: BasicInfoCell {
     }
 
     public func toggleDescription() {
+        if !Thread.isMainThread {
+            DispatchQueue.main.async { [weak self] in
+                self?.toggleDescription()
+            }
+            return
+        }
         if loadingTopAnchor.constant == -10 {
             loadingTopAnchor.constant = 8
             
