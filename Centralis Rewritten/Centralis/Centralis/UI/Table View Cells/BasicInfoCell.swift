@@ -168,14 +168,6 @@ class BasicInfoCell: UITableViewCell, BaseTableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func trailingSwipeActionsConfiguration() -> UISwipeActionsConfiguration? {
-        return nil
-    }
-    
-    func leadingSwipeActionsConfiguration() -> UISwipeActionsConfiguration? {
-        return nil
-    }
-    
 }
 
 protocol VariableCellDelegate: AnyObject {

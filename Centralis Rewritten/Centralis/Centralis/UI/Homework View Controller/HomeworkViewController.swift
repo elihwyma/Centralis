@@ -45,9 +45,11 @@ class HomeworkViewController: BaseTableViewController {
             }
             return false
         }
-        self.currentHomework = currentHomework
-        if reload {
-            tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+        if currentHomework != self.currentHomework {
+            self.currentHomework = currentHomework
+            if reload {
+                tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+            }
         }
         
         var pastHomework = homework.filter { !$0.isCurrent }
@@ -58,9 +60,11 @@ class HomeworkViewController: BaseTableViewController {
             }
             return false
         }
-        self.pastHomework = pastHomework
-        if reload {
-            tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
+        if pastHomework != self.pastHomework {
+            self.pastHomework = pastHomework
+            if reload {
+                tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
+            }
         }
         
         if reload {

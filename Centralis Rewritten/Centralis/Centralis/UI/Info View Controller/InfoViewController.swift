@@ -35,7 +35,7 @@ class InfoViewController: BaseTableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch _section(for: section) {
-        case .notifications: return 3
+        case .notifications: return 2
         case .account: return 1
         }
     }
@@ -62,14 +62,10 @@ class InfoViewController: BaseTableViewController {
                 cell.callback = { state in
                     UserDefaults.standard.set(state, forKey: "Notifications.RoomChange")
                     if !state {
-                        NotificationManager.shared.deleteAllRoomChange()
+                        NotificationManager.shared.deleteAllHomework()
+                    } else {
+                        NotificationManager.shared.scheduleAllHomework()
                     }
-                }
-            case 2:
-                cell.amyPogLabel.text = "New Messages"
-                cell.control.isOn = UserDefaults.standard.optionalBool("Notifications.NewMessages", fallback: true)
-                cell.callback = { state in
-                    UserDefaults.standard.set(state, forKey: "Notifications.NewMessages")
                 }
             default: fatalError()
             }
