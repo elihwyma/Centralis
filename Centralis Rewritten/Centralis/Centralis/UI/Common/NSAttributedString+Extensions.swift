@@ -7,7 +7,7 @@
 
 import UIKit
 
-public extension NSAttributedString {
+public extension NSMutableAttributedString {
     
     convenience init(html: String) throws {
         let htmlString = """
@@ -35,6 +35,7 @@ public extension NSAttributedString {
         body > *:last-child {
             margin-bottom: 0;
         }
+        * { background-color: transparent !important; color: inherit !important; }
         </style>
         <body>\(html)</body>
         </html>
@@ -42,6 +43,8 @@ public extension NSAttributedString {
         
         let data = Data(htmlString.utf8)
         try self.init(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
+        
+        addAttributes([.foregroundColor: UIColor.label], range: NSRange(location: 0, length: length))
     }
     
     private static var cssVariables: String {

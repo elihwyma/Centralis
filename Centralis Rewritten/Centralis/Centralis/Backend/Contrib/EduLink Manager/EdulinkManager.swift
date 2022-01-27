@@ -35,5 +35,6 @@ final public class EdulinkManager {
         NotificationManager.shared.removeAllNotifications()
         LoginManager.save(login: nil)
         Self.shared = EdulinkManager()
+        Message.setUnread()
     }
 }

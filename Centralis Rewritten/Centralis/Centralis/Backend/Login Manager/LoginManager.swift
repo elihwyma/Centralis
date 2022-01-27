@@ -118,12 +118,18 @@ public final class LoginManager {
         
     public class func login(_ login: UserLogin, _indexBypass: Bool = false, _ completion: @escaping (String?, AuthenticatedUser?) -> Void) {
         func _login() {
+            let dict: [String: AnyHashable] = [
+                "format": 2,
+                "git_sha": "84e0228c54d65a8e79aa8dda48095d307c6049df",
+                "version": "4.0.48"
+            ]
             EvanderNetworking.edulinkDict(url: login.server, method: "EduLink.Login", params: [
                 .custom(key: "establishment_id", value: login.schoolID),
                 .custom(key: "fcm_token_old", value: "none"),
                 .custom(key: "from_app", value: false),
                 .custom(key: "password", value: login.password),
-                .custom(key: "username", value: login.username)]) { _, _, error, result in
+                .custom(key: "username", value: login.username),
+                .custom(key: "ui_info", value: dict)]) { _, _, error, result in
                     guard let result = result,
                           let jsonData = try? JSONSerialization.data(withJSONObject: result) else {
                        return completion(error ?? "Unknown Error", nil)

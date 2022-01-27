@@ -79,6 +79,7 @@ final public class Timetable: EdulinkBase {
         var subject: String?
         var room: String?
         var teachers: String?
+        var group: String?
         
         fileprivate init(lesson: _Lesson?, period: _Period) {
             empty = period.empty
@@ -91,6 +92,7 @@ final public class Timetable: EdulinkBase {
             subject = lesson?.teaching_group.subject
             room = lesson?.room.name
             teachers = lesson?.teachers
+            group = lesson?.teaching_group.name
         }
         
         public static func == (lhs: Timetable.Period, rhs: Timetable.Period) -> Bool {

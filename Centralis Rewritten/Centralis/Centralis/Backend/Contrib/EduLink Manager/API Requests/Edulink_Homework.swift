@@ -25,6 +25,8 @@ public final class Homework: EdulinkBase {
             return .past
         } else if isDueTomorrow {
             return .dayBefore
+        } else if completed {
+            return .notified
         } else {
             return .new
         }
@@ -111,6 +113,7 @@ public final class Homework: EdulinkBase {
     }
     
     public func complete(complete: Bool, _ completion: @escaping (String?, Bool?) -> Void) {
+        guard let id = Int(self.id) else { return completion("Failed to load homework ID", nil) }
         EvanderNetworking.edulinkDict(method: "EduLink.HomeworkCompleted", params: [
             .custom(key: "completed", value: complete ? "true" : "false"),
             .custom(key: "homework_id", value: id),

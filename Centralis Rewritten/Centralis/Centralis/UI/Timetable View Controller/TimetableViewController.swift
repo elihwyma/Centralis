@@ -30,8 +30,8 @@ class TimetableViewController: BaseTableViewController {
             }
             if days != week.days {
                 self.days = week.days
-                tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
             }
+            tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
         }
     }
     

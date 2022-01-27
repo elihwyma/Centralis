@@ -10,10 +10,11 @@ import SQLite
 import Evander
 import SQLite3
 
-enum DatabaseSchemaVersion: Int32 {
-    case versionNil = 0
-    case version01000 = 1
-    case version01001 = 2
+enum DatabaseSchemaVersion: String {
+    case versionNil = "0"
+    case version01000 = "1.0"
+    case version01001 = "1.0k"
+    case version01002 = "1.0ke"
 }
 
 final public class PersistenceDatabase {
@@ -24,6 +25,7 @@ final public class PersistenceDatabase {
     
     private(set) public lazy var homework: [String: Homework] = HomeworkDatabase.getHomework(database: database)
     private(set) public lazy var timetable: [Timetable.Week] = TimetableDatabase.getTimetable(database: database)
+    private(set) public lazy var messages: [String: Message] = MessageDatabase.getMessages(database: database)
     
     static let persistenceReload = Notification.Name(rawValue: "Centralis/PersistenceReload")
     
@@ -38,24 +40,27 @@ final public class PersistenceDatabase {
             fatalError("Database Connection failed")
         }
         self.database = database
-        self.schemaVersion = DatabaseSchemaVersion.version01001.rawValue
         
         HomeworkDatabase.createTable(database: database)
         TimetableDatabase.createTable(database: database)
+        MessageDatabase.createTable(database: database)
+        
+        _ = hasIndexed
     }
-    
-    private var schemaVersion: Int32 {
-        // swiftlint:disable:next force_cast force_try
-        get { Int32(try! database.scalar("PRAGMA user_version") as! Int64) }
-        // swiftlint:disable:next force_try
-        set { try! database.run("PRAGMA user_version = \(newValue)") }
-    }
-    
+
     public var hasIndexed: Bool {
-        get { databaseFolder.appendingPathComponent(".INDEXED").exists }
+        get {
+            let manifest = databaseFolder.appendingPathComponent(".INDEXED")
+            if manifest.exists,
+                let text = try? String(contentsOf: manifest),
+               text == DatabaseSchemaVersion.version01002.rawValue {
+                return true
+            }
+            return false
+        }
         set(indexed) {
             if indexed {
-                try? Data().write(to: databaseFolder.appendingPathComponent(".INDEXED"))
+                try? DatabaseSchemaVersion.version01002.rawValue.write(to: databaseFolder.appendingPathComponent(".INDEXED"), atomically: false, encoding: .utf8)
             } else {
                 try? FileManager.default.removeItem(at: databaseFolder.appendingPathComponent(".INDEXED"))
             }
@@ -66,6 +71,7 @@ final public class PersistenceDatabase {
         try? PersistenceDatabase.shared.resetDatabase()
         let `self` = PersistenceDatabase.shared
         let loadGroup = DispatchGroup()
+        loadGroup.enter()
         loadGroup.enter()
         loadGroup.enter()
         Homework.updateHomework(indexing: true) { [weak self] error, homework in
@@ -87,6 +93,12 @@ final public class PersistenceDatabase {
             TimetableDatabase.saveTimetable(weeks: weeks, database: database)
             loadGroup.leave()
         }
+        Message.updateMessages(indexing: true) { error, messages in
+            guard messages != nil else {
+                return completion(error ?? "Unknown Error", false)
+            }
+            loadGroup.leave()
+        }
         loadGroup.notify(queue: .main) { [weak self] in
             self?.hasIndexed = true
             completion(nil, true)
@@ -97,6 +109,7 @@ final public class PersistenceDatabase {
         let loadGroup = DispatchGroup()
         loadGroup.enter()
         loadGroup.enter()
+        loadGroup.enter()
         Homework.updateHomework { _, _ in
             loadGroup.leave()
         }
@@ -104,6 +117,10 @@ final public class PersistenceDatabase {
             Self.shared.timetable = TimetableDatabase.getTimetable(database: Self.shared.database)
             loadGroup.leave()
         }
+        Message.updateMessages { _, _ in
+            loadGroup.leave()
+        }
+            
         loadGroup.notify(queue: .global(qos: .background)) {
             NotificationCenter.default.post(name: persistenceReload, object: nil)
             completion()
@@ -204,11 +221,14 @@ final public class PersistenceDatabase {
             let persistence = PersistenceDatabase.shared
             let current = persistence.homework
             try? persistence.database.transaction {
+                // Set the notification state of all past homework to past
                 for (_, current) in current where current.notificationState != .past && !current.isCurrent {
                     let homework = homeworkTable.filter(id == current.id)
                     _ = try? persistence.database.run(homework.update(notified <- Homework.NotificationState.past.rawValue))
                 }
-                for new in newHomework where new != current[new.id] {
+                
+                // Update info about homework that has been edited
+                for new in newHomework where current[new.id] != nil && current[new.id]! != new {
                     let homework = homeworkTable.filter(id == new.id)
                     _ = try? persistence.database.run(homework.update(
                         due_date <- new.due_date,
@@ -219,7 +239,9 @@ final public class PersistenceDatabase {
                     current?.activity = new.activity
                     NotificationManager.shared.homeworkChangeDate(homework: new)
                 }
-                for new in newHomework where new.completed != current[new.id]?.completed {
+                
+                // Update the completed status of any homework marked completed elsewhere
+                for new in newHomework where current[new.id] != nil && new.completed != current[new.id]!.completed {
                     let homework = homeworkTable.filter(id == new.id)
                     _ = try? persistence.database.run(homework.update(
                         completed <- new.completed
@@ -229,6 +251,8 @@ final public class PersistenceDatabase {
                     NotificationManager.shared.homeworkChangeCompleted(homework: new)
                 }
             }
+            
+            // Remove any pre-existing homework
             newHomework.removeAll { current[$0.id] != nil }
             newHomework.forEach { persistence.homework[$0.id] = $0 }
             saveHomework(homework: newHomework, notificationState: nil, database: persistence.database)
@@ -274,6 +298,7 @@ final public class PersistenceDatabase {
         static let subject = Expression<String?>("subject")
         static let room = Expression<String?>("room")
         static let teachers = Expression<String?>("teachers")
+        static let group = Expression<String?>("group")
         
         static func createTable(database: Connection){
             _ = try? database.run(weekTable.create(ifNotExists: true,
@@ -300,6 +325,7 @@ final public class PersistenceDatabase {
                 tbd.column(room)
                 tbd.column(teachers)
                 tbd.column(name)
+                tbd.column(group)
             }))
         }
         
@@ -326,7 +352,8 @@ final public class PersistenceDatabase {
                                 subject <- period.subject,
                                 room <- period.room,
                                 teachers <- period.teachers,
-                                name <- period.name
+                                name <- period.name,
+                                group <- period.group
                             ))
                             if period.moved {
                                 NotificationManager.shared.scheduleRoomChange(date: day.date, period: period)
@@ -365,7 +392,8 @@ final public class PersistenceDatabase {
                             subject,
                             room,
                             teachers,
-                            name
+                            name,
+                            group
                         ).filter(parent_key == dayStub[id_key])
                 
                         let periods: [Timetable.Period] = try database.prepare(query).map { try $0.decode() }
@@ -432,5 +460,163 @@ final public class PersistenceDatabase {
             saveTimetable(weeks: newWeeks, database: database)
         }
     }
+    
+    struct MessageDatabase {
+        
+        static let messageTable = Table("Messages")
+        static let senderTable = Table("MessageSenders")
+        static let attachmentTable = Table("MessageAttachments")
+        
+        static let date = Expression<Date?>("date")
+        static let read = Expression<Date?>("read")
+        static let type = Expression<String>("type")
+        static let subject = Expression<String?>("subject")
+        static let body = Expression<String?>("body")
+        static let sender = Expression<String>("sender")
+        
+        static let filename = Expression<String>("filename")
+        static let filesize = Expression<Int64>("filesize")
+        static let mime_type = Expression<String>("mime_type")
+        static let parent = Expression<String>("parent")
+        
+        static let name = Expression<String>("name")
+        static let id = Expression<String>("id")
+        
+        static func createTable(database: Connection){
+            _ = try? database.run(messageTable.create(ifNotExists: true,
+                                                      block: { tbd in
+                tbd.column(date)
+                tbd.column(read)
+                tbd.column(type)
+                tbd.column(subject)
+                tbd.column(body)
+                tbd.column(sender)
+                tbd.column(id, unique: true)
+            }))
+            _ = try? database.run(attachmentTable.create(ifNotExists: true,
+                                                         block: { tbd in
+                tbd.column(filename)
+                tbd.column(filesize)
+                tbd.column(mime_type)
+                tbd.column(id, unique: true)
+                tbd.column(parent)
+            }))
+            _ = try? database.run(senderTable.create(ifNotExists: true,
+                                                     block: { tbd in
+                tbd.column(type)
+                tbd.column(name)
+                tbd.column(id, unique: true)
+            }))
+        }
+        
+        static func saveMessages(_ messages: [String: Message]) {
+            let database = PersistenceDatabase.shared.database
+            try? database.transaction {
+                for message in Array(messages.values) {
+                    _ = try? database.run(messageTable.insert(
+                        date <- message.date,
+                        read <- message.read,
+                        type <- message.type,
+                        subject <- message.subject,
+                        body <- message.body,
+                        sender <- message.sender.id,
+                        id <- message.id
+                    ))
+                    let count = try? database.scalar(senderTable.filter(id == message.sender.id).count)
+                    if count == 0 {
+                        _ = try? database.run(senderTable.insert(
+                            type <- message.sender.type,
+                            name <- message.sender.name,
+                            id <- message.sender.id
+                        ))
+                    }
+                    for attachment in message.attachments {
+                        _ = try? database.run(attachmentTable.insert(
+                            filename <- attachment.filename,
+                            filesize <- Int64(attachment.filesize),
+                            mime_type <- attachment.mime_type,
+                            parent <- message.id,
+                            id <- attachment.id
+                        ))
+                    }
+                }
+            }
+            for (key, value) in Array(messages) {
+                PersistenceDatabase.shared.messages[key] = value
+            }
+        }
+        
+        static func getMessages(database: Connection) -> [String: Message] {
+            var senders = [String: Sender]()
+            let senderQuery = senderTable.select(
+                type,
+                name,
+                id
+            )
+            do {
+                for sender in try database.prepare(senderQuery) {
+                    let sender = Sender(id: sender[id],
+                                        type: sender[type],
+                                        name: sender[name])
+                    senders[sender.id] = sender
+                }
+            } catch {}
+            
+            var attachments = [String: [Attachment]]()
+            let attachmentQuery = attachmentTable.select(
+                filename,
+                filesize,
+                mime_type,
+                id,
+                parent
+            )
+            do {
+                for attachment in try database.prepare(attachmentQuery) {
+                    let _attachment = Attachment(id: attachment[id],
+                                                 filename: attachment[filename],
+                                                 filesize: Int(attachment[filesize]),
+                                                 mime_type: attachment[mime_type])
+                    if let array = attachments[attachment[parent]] {
+                        attachments[attachment[parent]] = array + [_attachment]
+                    } else {
+                        attachments[attachment[parent]] = [_attachment]
+                    }
+                }
+            } catch {}
+            
+            var messages = [String: Message]()
+            let messageQuery = messageTable.select(
+                date,
+                read,
+                type,
+                subject,
+                body,
+                sender,
+                id
+            )
+            do {
+                for message in try database.prepare(messageQuery) {
+                    let id = message[id]
+                    let attachments = attachments[id] ?? []
+                    guard let sender = senders[message[sender]] else { continue }
+                    let _message = Message(id: id,
+                                           date: message[date],
+                                           read: message[read],
+                                           type: message[type],
+                                           subject: message[subject],
+                                           body: message[body],
+                                           attachments: attachments,
+                                           sender: sender)
+                    messages[_message.id] = _message
+                 }
+            } catch {}
+            
+            return messages
+        }
+        
+        static func updateReadStatus(message: Message) {
+            let messageFilter = messageTable.filter(id == message.id)
+            _ = try? PersistenceDatabase.shared.database.run(messageFilter.update(read <- message.read))
+        }
+    }
 }
-

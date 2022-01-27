@@ -35,11 +35,9 @@ class HomeViewController: BaseTableViewController {
             }
             return false
         }
-        if homework != self.homework {
-            self.homework = homework
-            if reload {
-                tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-            }
+        self.homework = homework
+        if reload {
+            tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
         }
         
         let timetable = PersistenceDatabase.shared.timetable
@@ -78,7 +76,6 @@ class HomeViewController: BaseTableViewController {
         case 1: return (today?.periods.count ?? 0) + 1
         default: return 0
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
