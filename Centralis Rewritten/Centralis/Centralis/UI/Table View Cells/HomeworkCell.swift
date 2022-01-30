@@ -38,10 +38,12 @@ class HomeworkCell: BasicInfoCell {
                     descriptionHeightAnchor.priority = UILayoutPriority(250)
                     descriptionVariableHeightAnchor.isActive = true
                 }
-                if let attributedString = try? NSMutableAttributedString(html: text) {
-                    descriptionTextView.attributedText = attributedString
-                } else {
-                    descriptionTextView.text = text
+                if UIApplication.shared.applicationState == .active {
+                    if let attributedString = try? NSMutableAttributedString(html: text) {
+                        descriptionTextView.attributedText = attributedString
+                    } else {
+                        descriptionTextView.text = text
+                    }
                 }
             }
             if let description = homework?.description {

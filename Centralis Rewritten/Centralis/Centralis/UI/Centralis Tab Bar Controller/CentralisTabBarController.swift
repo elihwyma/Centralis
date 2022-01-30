@@ -125,7 +125,7 @@ final class CentralisTabBarController: UITabBarController {
         if expanded == self.tabBarExpanded && animated { return }
         let animationBlock: () -> Void = { [self] in
             for view in viewControllers ?? [] {
-                view.additionalSafeAreaInsets.bottom = expanded ? 0 : 60
+                view.additionalSafeAreaInsets.bottom = expanded ? 60 : 0
             }
             popupBottom.constant = expanded ? 0 : 60
             self.view.layoutIfNeeded()

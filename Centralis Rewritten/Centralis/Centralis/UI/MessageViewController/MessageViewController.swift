@@ -13,6 +13,7 @@ class MessageViewController: UIViewController {
     
     public let message: Message
     private var targetURL: URL?
+    private var activeLock: Bool = false
     
     init(message: Message) {
         self.message = message
@@ -152,6 +153,18 @@ class MessageViewController: UIViewController {
         view.backgroundColor = .backgroundColor
     }
     
+    @objc private func didBecomeActive() {
+        if activeLock {
+            guard let body = message.body else { return }
+            if let attributedString = try? NSMutableAttributedString(html: body) {
+                self.bodyTextView.attributedText = attributedString
+            } else {
+                self.bodyTextView.text = "Failed to parse message body"
+            }
+            activeLock = false
+        }
+    }
+    
     private func layoutMessage() {
         if !Thread.isMainThread {
             DispatchQueue.main.async { [weak self] in
@@ -178,12 +191,17 @@ class MessageViewController: UIViewController {
         } else {
             dateLabel.text = "No Date"
         }
-        if let body = message.body {
-            if let attributedString = try? NSMutableAttributedString(html: body) {
-                bodyTextView.attributedText = attributedString
-            } else {
-                bodyTextView.text = "Failed to parse message body"
+        
+        if UIApplication.shared.applicationState == .active {
+            if let body = message.body {
+                if let attributedString = try? NSMutableAttributedString(html: body) {
+                    bodyTextView.attributedText = attributedString
+                } else {
+                    bodyTextView.text = "Failed to parse message body"
+                }
             }
+        } else {
+            activeLock = true
         }
         
         for (index, attachment) in message.attachments.enumerated() {
@@ -291,10 +309,14 @@ class MessageViewController: UIViewController {
         
         Thread.mainBlock { [weak self] in
             if let body = self?.message.body {
-                if let attributedString = try? NSMutableAttributedString(html: body) {
-                    self?.bodyTextView.attributedText = attributedString
+                if UIApplication.shared.applicationState == .active {
+                    if let attributedString = try? NSMutableAttributedString(html: body) {
+                        self?.bodyTextView.attributedText = attributedString
+                    } else {
+                        self?.bodyTextView.text = "Failed to parse message body"
+                    }
                 } else {
-                    self?.bodyTextView.text = "Failed to parse message body"
+                    self?.activeLock = true
                 }
             }
         }

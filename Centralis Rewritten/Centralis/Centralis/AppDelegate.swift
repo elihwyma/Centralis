@@ -61,10 +61,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.post(name: PersistenceDatabase.persistenceReload, object: nil)
         typealias lM = LoginManager
         guard let login = lM.loadLogin().1 else { return }
+        CentralisTabBarController.shared.set(title: "Reconnecting", subtitle: "Reconnecting to EduLink", progress: 0)
         LoginManager.login(login) { error, _ in
             if let error = error {
-                NSLog("[Centralis] Error = \(error)")
-                #warning("[Centralis] Handle the Error")
+                CentralisTabBarController.shared.set(title: "Error Connecting", subtitle: error, progress: 0.5)
             } else {
                 PersistenceDatabase.backgroundRefresh {
                     
