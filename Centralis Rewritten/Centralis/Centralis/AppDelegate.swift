@@ -31,7 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
 
         if let login = LoginManager.loadLogin().1 {
-            window?.rootViewController = QuickLoginViewController.viewController(for: login)
+            window?.rootViewController = CentralisTabBarController.shared
+            LoginMiddleware.shared.login(with: login)
         } else {
             window?.rootViewController = CentralisNavigationController(rootViewController: OnboardingViewController())
         }

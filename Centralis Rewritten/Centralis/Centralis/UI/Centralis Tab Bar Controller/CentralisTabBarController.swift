@@ -12,12 +12,84 @@ final class CentralisTabBarController: UITabBarController {
     
     static let shared = CentralisTabBarController()
     
-    private let popupView: UIView = {
+    private lazy var popupView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .red
+        view.backgroundColor = UIColor(dynamicProvider: { traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                return UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.00)
+            } else {
+                return UIColor(red: 0.99, green: 1.00, blue: 1.00, alpha: 1.00)
+            }
+        })
+        
+        let labelStackView = UIStackView()
+        labelStackView.translatesAutoresizingMaskIntoConstraints = false
+        labelStackView.axis = .vertical
+        labelStackView.distribution = .fillProportionally
+        labelStackView.alignment = .leading
+        labelStackView.addArrangedSubview(titleLabel)
+        labelStackView.addArrangedSubview(subtitleLabel)
+        
+        view.addSubview(labelStackView)
+        view.addSubview(progressBar)
+        NSLayoutConstraint.activate([
+            view.heightAnchor.constraint(equalToConstant: 60),
+            
+            labelStackView.heightAnchor.constraint(equalToConstant: 45),
+            labelStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            labelStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            labelStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 6.5),
+            
+            progressBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            progressBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            progressBar.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
         return view
     }()
+    private var progressBar: UIProgressView = {
+        let view = UIProgressView()
+        view.tintColor = .tintColor
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.heightAnchor.constraint(equalToConstant: 0.7).isActive = true
+        view.progressViewStyle = .bar
+        return view
+    }()
+    private var titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 19, weight: .bold)
+        label.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        return label
+    }()
+    private var subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 13)
+        label.adjustsFontSizeToFitWidth = true
+        label.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        return label
+    }()
+    
+    public var currentProgress: Float {
+        set {
+            Thread.mainBlock { [self] in
+                progressBar.progress = newValue
+            }
+        }
+        get {
+            if Thread.isMainThread {
+                return progressBar.progress
+            } else {
+                var progress: Float = 0
+                DispatchQueue.main.sync(flags: .barrier) {
+                    progress = self.progressBar.progress
+                }
+                return progress
+            }
+        }
+    }
+    
     private lazy var popupBottom = popupView.bottomAnchor.constraint(equalTo: tabBar.topAnchor, constant: 60)
     private var tabBarExpanded = false
     
@@ -38,18 +110,18 @@ final class CentralisTabBarController: UITabBarController {
         NSLayoutConstraint.activate([
             popupView.widthAnchor.constraint(equalTo: tabBar.widthAnchor),
             popupBottom,
-            popupView.heightAnchor.constraint(equalToConstant: 60)
         ])
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.setExpanded(true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                self.setExpanded(false)
-            }
-        }
+        NSLog("[Centralis] Tab bar background = \(tabBar.backgroundColor)")
     }
     
     public func setExpanded(_ expanded: Bool, animated: Bool = true) {
+        if !Thread.isMainThread {
+            DispatchQueue.main.async { [self] in
+                self.setExpanded(expanded, animated: animated)
+            }
+            return
+        }
         if expanded == self.tabBarExpanded && animated { return }
         let animationBlock: () -> Void = { [self] in
             for view in viewControllers ?? [] {
@@ -69,11 +141,20 @@ final class CentralisTabBarController: UITabBarController {
         }
     }
     
-    public func set(message: String, progress: Float) {
-        
-        if !self.tabBarExpanded {
-            
+    public func set(title: String, subtitle: String, progress: Float) {
+        if !Thread.isMainThread {
+            DispatchQueue.main.async { [self] in
+                self.set(title: title, subtitle: subtitle, progress: progress)
+            }
+            return
         }
+        NSLog("Title: \(title), Subtitle: \(subtitle), Progress: \(progress)")
+        if !self.tabBarExpanded {
+            self.setExpanded(true)
+        }
+        titleLabel.text = title
+        subtitleLabel.text = subtitle
+        progressBar.progress = progress
     }
     
     @objc private func updateCentralisColours() {

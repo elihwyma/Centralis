@@ -16,6 +16,7 @@ class MessagesViewController: BaseTableViewController {
         
         tableView.register(MessageTableViewCell.self, forCellReuseIdentifier: "Centralis.MessageCell")
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Mark all as read", style: .plain, target: self, action: #selector(markAllAsRead))
+        NotificationCenter.default.addObserver(self, selector: #selector(persistenceReload), name: PersistenceDatabase.persistenceReload, object: nil)
     }
     
     private func index(_ reload: Bool = true) {

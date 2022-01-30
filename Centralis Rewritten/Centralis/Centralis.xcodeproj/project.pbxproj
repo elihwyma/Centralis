@@ -56,6 +56,7 @@
 		E1CEBD8D274C2F80009F35D4 /* AuthenticatedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD8C274C2F80009F35D4 /* AuthenticatedUser.swift */; };
 		E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD8E274C3AB9009F35D4 /* SchoolDetails.swift */; };
 		E1CEBD91274C5F8E009F35D4 /* Establishment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD90274C5F8E009F35D4 /* Establishment.swift */; };
+		E1E51EF327A6DA9C00C81413 /* LoginMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E51EF227A6DA9C00C81413 /* LoginMiddleware.swift */; };
 		E1F6BB97278CC6B000E7A360 /* Edulink_Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F6BB96278CC6B000E7A360 /* Edulink_Message.swift */; };
 		E1F6BB9B278E102500E7A360 /* Edulink_Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F6BB9A278E102500E7A360 /* Edulink_Photos.swift */; };
 		E1F6BB9D2790BF9500E7A360 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F6BB9C2790BF9500E7A360 /* MessageTableViewCell.swift */; };
@@ -114,6 +115,7 @@
 		E1CEBD8C274C2F80009F35D4 /* AuthenticatedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedUser.swift; sourceTree = "<group>"; };
 		E1CEBD8E274C3AB9009F35D4 /* SchoolDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolDetails.swift; sourceTree = "<group>"; };
 		E1CEBD90274C5F8E009F35D4 /* Establishment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Establishment.swift; sourceTree = "<group>"; };
+		E1E51EF227A6DA9C00C81413 /* LoginMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMiddleware.swift; sourceTree = "<group>"; };
 		E1F6BB96278CC6B000E7A360 /* Edulink_Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Message.swift; sourceTree = "<group>"; };
 		E1F6BB9A278E102500E7A360 /* Edulink_Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Photos.swift; sourceTree = "<group>"; };
 		E1F6BB9C2790BF9500E7A360 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				E17E14C5274C1ECD0090F822 /* LoginManager.swift */,
+				E1E51EF227A6DA9C00C81413 /* LoginMiddleware.swift */,
 			);
 			path = "Login Manager";
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				E197455D2751298900EEB853 /* OnboardingViewController.swift in Sources */,
 				E15B5BCC275306720003A56D /* BasicInfoCell.swift in Sources */,
 				E17E14A1274C19B10090F822 /* AppDelegate.swift in Sources */,
+				E1E51EF327A6DA9C00C81413 /* LoginMiddleware.swift in Sources */,
 				E10B95FF275164D800C8C12E /* CentralisNavigationController.swift in Sources */,
 				E1CEBD8D274C2F80009F35D4 /* AuthenticatedUser.swift in Sources */,
 				E19621AF275D04970065B446 /* InfoViewController.swift in Sources */,

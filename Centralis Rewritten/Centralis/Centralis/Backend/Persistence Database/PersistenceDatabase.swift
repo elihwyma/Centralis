@@ -106,23 +106,35 @@ final public class PersistenceDatabase {
     }
     
     public class func backgroundRefresh(_ completion: @escaping () -> Void) {
+        CentralisTabBarController.shared.set(title: "Refreshing Data", subtitle: "This may take a moment", progress: 0.5)
+        var currentProgress = CentralisTabBarController.shared.currentProgress
+        
         let loadGroup = DispatchGroup()
-        loadGroup.enter()
-        loadGroup.enter()
-        loadGroup.enter()
-        Homework.updateHomework { _, _ in
+        
+        let numberOfTasks = 3
+        for _ in 1...numberOfTasks {
+            loadGroup.enter()
+        }
+        let perGroup = (1.0 - currentProgress) / Float(numberOfTasks)
+        func completeTask() {
+            currentProgress += perGroup
+            CentralisTabBarController.shared.currentProgress = currentProgress
             loadGroup.leave()
+            
+        }
+        Homework.updateHomework { _, _ in
+            completeTask()
         }
         Timetable.updateTimetable { _, _ in
             Self.shared.timetable = TimetableDatabase.getTimetable(database: Self.shared.database)
-            loadGroup.leave()
+            completeTask()
         }
         Message.updateMessages { _, _ in
-            loadGroup.leave()
+            completeTask()
         }
-            
         loadGroup.notify(queue: .global(qos: .background)) {
             NotificationCenter.default.post(name: persistenceReload, object: nil)
+            CentralisTabBarController.shared.setExpanded(false)
             completion()
         }
     }
