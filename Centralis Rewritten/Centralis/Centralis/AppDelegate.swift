@@ -59,18 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         NotificationCenter.default.post(name: PersistenceDatabase.persistenceReload, object: nil)
-        typealias lM = LoginManager
-        guard let login = lM.loadLogin().1 else { return }
-        CentralisTabBarController.shared.set(title: "Reconnecting", subtitle: "Reconnecting to EduLink", progress: 0)
-        LoginManager.login(login) { error, _ in
-            if let error = error {
-                CentralisTabBarController.shared.set(title: "Error Connecting", subtitle: error, progress: 0.5)
-            } else {
-                PersistenceDatabase.backgroundRefresh {
-                    
-                }
-            }
-        }
+        LoginManager.reconnectCurrent()
     }
     
     func setRootViewController(_ vc: UIViewController, animated: Bool = true) {

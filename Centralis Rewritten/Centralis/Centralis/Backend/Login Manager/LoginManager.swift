@@ -163,4 +163,18 @@ public final class LoginManager {
             _login()
         }
     }
+    
+    public class func reconnectCurrent() {
+        guard let userLogin = loadLogin().1 else { return }
+        CentralisTabBarController.shared.set(title: "Reconnecting", subtitle: "Reconnecting to EduLink", progress: 0)
+        login(userLogin) { error, _ in
+            if let error = error {
+                CentralisTabBarController.shared.set(title: "Error Connecting", subtitle: error, progress: 0.5)
+            } else {
+                PersistenceDatabase.backgroundRefresh {
+                    
+                }
+            }
+        }
+    }
 }

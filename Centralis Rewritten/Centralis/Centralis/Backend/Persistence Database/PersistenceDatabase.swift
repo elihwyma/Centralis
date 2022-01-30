@@ -117,20 +117,27 @@ final public class PersistenceDatabase {
         }
         let perGroup = (1.0 - currentProgress) / Float(numberOfTasks)
         func completeTask() {
-            currentProgress += perGroup
-            CentralisTabBarController.shared.currentProgress = currentProgress
-            loadGroup.leave()
+            
             
         }
-        Homework.updateHomework { _, _ in
-            completeTask()
+        func completeTask(with error: String?) {
+            if let error = error {
+                CentralisTabBarController.shared.set(title: "Error When Refreshing", subtitle: error, progress: currentProgress)
+            } else {
+                currentProgress += perGroup
+                CentralisTabBarController.shared.currentProgress = currentProgress
+            }
+            loadGroup.leave()
         }
-        Timetable.updateTimetable { _, _ in
+        Homework.updateHomework { error, _ in
+            completeTask(with: error)
+        }
+        Timetable.updateTimetable { error, _ in
             Self.shared.timetable = TimetableDatabase.getTimetable(database: Self.shared.database)
-            completeTask()
+            completeTask(with: error)
         }
-        Message.updateMessages { _, _ in
-            completeTask()
+        Message.updateMessages { error, _ in
+            completeTask(with: error)
         }
         loadGroup.notify(queue: .global(qos: .background)) {
             NotificationCenter.default.post(name: persistenceReload, object: nil)
@@ -415,6 +422,7 @@ final public class PersistenceDatabase {
                     weeks.append(week)
                 }
             } catch {}
+            Timetable.orderWeeks(&weeks)
             return weeks
         }
         

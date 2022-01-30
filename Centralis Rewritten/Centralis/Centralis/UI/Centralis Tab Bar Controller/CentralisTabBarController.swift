@@ -111,8 +111,6 @@ final class CentralisTabBarController: UITabBarController {
             popupView.widthAnchor.constraint(equalTo: tabBar.widthAnchor),
             popupBottom,
         ])
-        
-        NSLog("[Centralis] Tab bar background = \(tabBar.backgroundColor)")
     }
     
     public func setExpanded(_ expanded: Bool, animated: Bool = true) {
@@ -154,7 +152,9 @@ final class CentralisTabBarController: UITabBarController {
         }
         titleLabel.text = title
         subtitleLabel.text = subtitle
-        progressBar.progress = progress
+        FRUIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseInOut) { [self] in
+            progressBar.progress = progress
+        }
     }
     
     @objc private func updateCentralisColours() {

@@ -79,6 +79,9 @@ class MessagesViewController: BaseTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewController = MessageViewController(message: messages[indexPath.row])
+        if let cell = tableView.cellForRow(at: indexPath) as? MessageTableViewCell {
+            cell.unreadView.backgroundColor = .clear
+        }
         navigationController?.pushViewController(viewController, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }

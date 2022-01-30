@@ -163,6 +163,16 @@ final public class Timetable: EdulinkBase {
         return (first, day)
     }
     
+    public class func orderWeeks(_ weeks: inout [Week]) {
+        weeks = weeks.sorted { week1, week2 -> Bool in
+            if let firstDate = week1.days.first?.date,
+               let secondDate = week2.days.first?.date {
+                return firstDate < secondDate
+            }
+            return false
+        }
+    }
+    
     private class func convert(_ _weeks: [_Week]) -> [Week] {
         let formatter = DateFormatter()
         formatter.dateFormat = "d MMM y"
