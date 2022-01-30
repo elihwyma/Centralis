@@ -42,7 +42,6 @@ public extension EvanderNetworking {
     
     class func edulinkDict(method: String, params: [EdulinkParameters], timeout: Double = 10, headers: [String: String] = [:], _ completion: @escaping ((Bool, Int?, String?, [String: Any]?) -> Void)) {
         request(type: [String: Any].self, method: method, params: params, timeout: timeout, headers: headers) { success, code, error, dict in
-            print("Method \(method)")
             guard success,
                   let dict = dict else {
                 return completion(false, code, error?.localizedDescription ?? "Failed to Connect to EduLink", nil)
@@ -59,7 +58,6 @@ public extension EvanderNetworking {
 
     class func edulinkDict(url: URL, method: String, params: [EdulinkParameters], timeout: Double = 10, _ completion: @escaping ((Bool, Int?, String?, [String: Any]?) -> Void)) {
         request(url: url, type: [String: Any].self, method: method, params: params, timeout: timeout) { success, code, error, dict in
-            print("Method \(method)")
             guard success,
                   let dict = dict else {
                 return completion(false, code, error?.localizedDescription ?? "Failed to Connect to EduLink", nil)

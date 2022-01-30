@@ -19,7 +19,6 @@ final public class Reachability {
         let monitor = NWPathMonitor()
         monitor.start(queue: serialQueue)
         monitor.pathUpdateHandler = { path in
-            print("Why teh fuck is the uypdate handler running now with \(dump(path))")
             let connected = self.connected
             self.path = path
             if connected != self.connected {

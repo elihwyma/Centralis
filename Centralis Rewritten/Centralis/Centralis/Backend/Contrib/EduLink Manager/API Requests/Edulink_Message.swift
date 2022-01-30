@@ -73,7 +73,6 @@ public final class Message: EdulinkBase {
                     messages[message.id] = message
                 }
                 if totalPages == currentPage {
-                    print(archived)
                     if !archived {
                         return updateMessages(messages: messages, archived: true, indexing: indexing, completion)
                     }

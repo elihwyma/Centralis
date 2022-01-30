@@ -28,7 +28,6 @@ public final class LoginMiddleware: ReachabilityChange {
     }
     
     public func statusDidChange(connected: Bool) {
-        print("Why the fuck did you stop caring?")
         if !connected {
             CentralisTabBarController.shared.set(title: "Poor Connection", subtitle: "No Connection Could be Made", progress: 0)
         } else {

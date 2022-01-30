@@ -33,7 +33,6 @@ final public class Photos {
             check.append(id)
         }
         if check.isEmpty { return }
-        print(check)
         queue += check
         EvanderNetworking.edulinkDict(method: "EduLink.TeacherPhotos", params: [
             .custom(key: "employee_ids", value: check),

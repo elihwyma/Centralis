@@ -70,9 +70,6 @@ public final class LoginManager {
         set(login) {
             if let login = login {
                 let encoded = (try? JSONEncoder().encode(login)) ?? Data()
-                let test = EvanderNetworking._cacheDirectory.appendingPathComponent("Test.json")
-                try! encoded.write(to: test)
-                print("Test directoryt = \(test)")
                 let query: [String: Any] = [
                     kSecClass as String       : kSecClassGenericPassword as String,
                     kSecAttrAccount as String : "Centralis.CachedUser",
@@ -153,7 +150,6 @@ public final class LoginManager {
                         let user = try JSONDecoder().decode(AuthenticatedUser.self, from: jsonData)
                         user.server = login.server
                         user.login = login
-                        print("User is working fine here, \(user.user.id)")
                         EdulinkManager.shared.authenticatedUser = user
                         cacheUser = user
                         handleIndex()
@@ -165,7 +161,6 @@ public final class LoginManager {
         }
         if let cacheUser = cacheUser {
             EdulinkManager.shared.authenticatedUser = cacheUser
-            print("So why is it fucking up here \(cacheUser.user.id)")
             Ping.ping { error, success in
                 if success {
                     handleIndex()
