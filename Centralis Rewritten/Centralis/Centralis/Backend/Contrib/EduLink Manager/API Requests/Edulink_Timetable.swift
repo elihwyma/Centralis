@@ -60,7 +60,7 @@ final public class Timetable: EdulinkBase {
     }
     
     fileprivate final class _Lesson: Serializable {
-        @SerializedTransformable<IDTransformer>(fallback: "-1") var period_id: String!
+        @SerializedTransformableString<IDTransformer>(fallback: "-1") var period_id: String!
         @Serialized var room: _Room
         @Serialized var teachers: String
         @Serialized var teaching_group: _TeachingGroup

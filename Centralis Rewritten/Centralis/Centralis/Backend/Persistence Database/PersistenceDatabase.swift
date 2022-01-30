@@ -11,10 +11,10 @@ import Evander
 import SQLite3
 
 enum DatabaseSchemaVersion: String {
-    case versionNil = "0"
     case version01000 = "1.0"
     case version01001 = "1.0k"
     case version01002 = "1.0ke"
+    case version01003 = "1.0ke5"
 }
 
 final public class PersistenceDatabase {
@@ -40,12 +40,15 @@ final public class PersistenceDatabase {
             fatalError("Database Connection failed")
         }
         self.database = database
+        if !hasIndexed {
+            homework = [:]
+            timetable = []
+            messages = [:]
+        }
         
         HomeworkDatabase.createTable(database: database)
         TimetableDatabase.createTable(database: database)
         MessageDatabase.createTable(database: database)
-        
-        _ = hasIndexed
     }
 
     public var hasIndexed: Bool {
@@ -53,14 +56,14 @@ final public class PersistenceDatabase {
             let manifest = databaseFolder.appendingPathComponent(".INDEXED")
             if manifest.exists,
                 let text = try? String(contentsOf: manifest),
-               text == DatabaseSchemaVersion.version01002.rawValue {
+               text == DatabaseSchemaVersion.version01003.rawValue {
                 return true
             }
             return false
         }
         set(indexed) {
             if indexed {
-                try? DatabaseSchemaVersion.version01002.rawValue.write(to: databaseFolder.appendingPathComponent(".INDEXED"), atomically: false, encoding: .utf8)
+                try? DatabaseSchemaVersion.version01003.rawValue.write(to: databaseFolder.appendingPathComponent(".INDEXED"), atomically: false, encoding: .utf8)
             } else {
                 try? FileManager.default.removeItem(at: databaseFolder.appendingPathComponent(".INDEXED"))
             }
@@ -101,6 +104,7 @@ final public class PersistenceDatabase {
         }
         loadGroup.notify(queue: .main) { [weak self] in
             self?.hasIndexed = true
+            CentralisTabBarController.shared.setExpanded(false)
             completion(nil, true)
         }
     }
@@ -351,6 +355,7 @@ final public class PersistenceDatabase {
         static func saveTimetable(weeks: [Timetable.Week], database: Connection) {
             try? database.transaction {
                 for week in weeks {
+                    if week.days.isEmpty { continue }
                     guard let weekID = try? database.run(weekTable.insert(
                         name <- week.name
                     )) else { continue }
@@ -423,9 +428,10 @@ final public class PersistenceDatabase {
                 }
             } catch {}
             Timetable.orderWeeks(&weeks)
+            weeks.removeAll { $0.days.isEmpty }
             return weeks
         }
-        
+   
         static func changes(newWeeks: inout [Timetable.Week]) {
             let persistence = PersistenceDatabase.shared
             let database = persistence.database
@@ -493,6 +499,7 @@ final public class PersistenceDatabase {
         static let subject = Expression<String?>("subject")
         static let body = Expression<String?>("body")
         static let sender = Expression<String>("sender")
+        static let archived = Expression<Bool>("archived")
         
         static let filename = Expression<String>("filename")
         static let filesize = Expression<Int64>("filesize")
@@ -511,6 +518,7 @@ final public class PersistenceDatabase {
                 tbd.column(subject)
                 tbd.column(body)
                 tbd.column(sender)
+                tbd.column(archived)
                 tbd.column(id, unique: true)
             }))
             _ = try? database.run(attachmentTable.create(ifNotExists: true,
@@ -540,7 +548,8 @@ final public class PersistenceDatabase {
                         subject <- message.subject,
                         body <- message.body,
                         sender <- message.sender.id,
-                        id <- message.id
+                        id <- message.id,
+                        archived <- message.archived
                     ))
                     let count = try? database.scalar(senderTable.filter(id == message.sender.id).count)
                     if count == 0 {
@@ -612,7 +621,8 @@ final public class PersistenceDatabase {
                 subject,
                 body,
                 sender,
-                id
+                id,
+                archived
             )
             do {
                 for message in try database.prepare(messageQuery) {
@@ -625,6 +635,7 @@ final public class PersistenceDatabase {
                                            type: message[type],
                                            subject: message[subject],
                                            body: message[body],
+                                           archived: message[archived],
                                            attachments: attachments,
                                            sender: sender)
                     messages[_message.id] = _message

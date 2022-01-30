@@ -74,7 +74,9 @@ final class CentralisTabBarController: UITabBarController {
     public var currentProgress: Float {
         set {
             Thread.mainBlock { [self] in
-                progressBar.progress = newValue
+                FRUIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseInOut) { [self] in
+                    progressBar.progress = newValue
+                }
             }
         }
         get {
@@ -129,6 +131,9 @@ final class CentralisTabBarController: UITabBarController {
             self.view.layoutIfNeeded()
         }
         self.tabBarExpanded = expanded
+        if !expanded {
+            currentProgress = 0.0
+        }
         if animated {
             FRUIView.animate(withDuration: 0.1,
                            delay: 0,
@@ -152,9 +157,7 @@ final class CentralisTabBarController: UITabBarController {
         }
         titleLabel.text = title
         subtitleLabel.text = subtitle
-        FRUIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseInOut) { [self] in
-            progressBar.progress = progress
-        }
+        currentProgress = progress
     }
     
     @objc private func updateCentralisColours() {

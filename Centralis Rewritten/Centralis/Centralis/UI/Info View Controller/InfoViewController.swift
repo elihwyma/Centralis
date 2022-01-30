@@ -13,12 +13,16 @@ class InfoViewController: BaseTableViewController {
     private enum Section {
         case notifications
         case account
+        case debug
+        case message
     }
     
     private func _section(for section: Int) -> Section {
         switch section {
         case 0: return .notifications
-        case 1: return .account
+        case 1: return .message
+        case 2: return .debug
+        case 3: return .account
         default: fatalError()
         }
     }
@@ -27,16 +31,19 @@ class InfoViewController: BaseTableViewController {
         super.viewDidLoad()
 
         tableView.register(ClosureSwitchTableViewCell.self, forCellReuseIdentifier: "Centralis.ClosureSwitchTableViewCell")
+        tableView.register(SettingsSwitchTableViewCell.self, forCellReuseIdentifier: "Centralis.SettingsSwitchTableViewCell")
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        4
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch _section(for: section) {
         case .notifications: return 3
         case .account: return 1
+        case .debug: return 1
+        case .message: return 1
         }
     }
     
@@ -78,6 +85,19 @@ class InfoViewController: BaseTableViewController {
             let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.DefaultCell")
             cell.textLabel?.text = "Sign Out"
             return cell
+        case .debug:
+            let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.DefaultCell")
+            cell.textLabel?.text = "Force Refresh"
+            return cell
+        case .message:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.SettingsSwitchTableViewCell") as! SettingsSwitchTableViewCell
+            switch indexPath.row {
+            case 0:
+                cell.amyPogLabel.text = "Archive Old Messages"
+                cell.defaultKey = "Messages.AutoArchive"
+                return cell
+            default: fatalError()
+            }
         }
     }
     
@@ -85,6 +105,8 @@ class InfoViewController: BaseTableViewController {
         switch _section(for: section) {
         case .notifications: return "Notification Settings"
         case .account: return "Account"
+        case .debug: return "Debug"
+        case .message: return "Message Settings"
         }
     }
     
@@ -99,6 +121,8 @@ class InfoViewController: BaseTableViewController {
                 CentralisTabBarController.shared.selectedIndex = 0
             default: return
             }
+        case .debug:
+            PersistenceDatabase.backgroundRefresh {}
         default: return
         }
     }

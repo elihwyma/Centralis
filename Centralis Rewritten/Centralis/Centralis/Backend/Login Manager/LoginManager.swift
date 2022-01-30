@@ -5,7 +5,7 @@
 //  Created by Andromeda on 22/11/2021.
 //
 
-import Foundation
+import UIKit
 import Evander
 
 public final class LoginManager {
@@ -70,6 +70,9 @@ public final class LoginManager {
         set(login) {
             if let login = login {
                 let encoded = (try? JSONEncoder().encode(login)) ?? Data()
+                let test = EvanderNetworking._cacheDirectory.appendingPathComponent("Test.json")
+                try! encoded.write(to: test)
+                print("Test directoryt = \(test)")
                 let query: [String: Any] = [
                     kSecClass as String       : kSecClassGenericPassword as String,
                     kSecAttrAccount as String : "Centralis.CachedUser",
@@ -117,6 +120,18 @@ public final class LoginManager {
     }
         
     public class func login(_ login: UserLogin, _indexBypass: Bool = false, _ completion: @escaping (String?, AuthenticatedUser?) -> Void) {
+        func handleIndex() {
+            if !_indexBypass {
+                if !PersistenceDatabase.shared.hasIndexed {
+                    _ = try? PersistenceDatabase.shared.resetDatabase()
+                    Thread.mainBlock {
+                        (UIApplication.shared.delegate as! AppDelegate).setRootViewController(IndexingViewController())
+                    }
+                } else {
+                    PersistenceDatabase.backgroundRefresh {}
+                }
+            }
+        }
         func _login() {
             let dict: [String: AnyHashable] = [
                 "format": 2,
@@ -136,15 +151,12 @@ public final class LoginManager {
                     }
                     do {
                         let user = try JSONDecoder().decode(AuthenticatedUser.self, from: jsonData)
-                        EdulinkManager.shared.authenticatedUser = user
+                        user.server = login.server
                         user.login = login
-                        if !_indexBypass {
-                            if PersistenceDatabase.shared.hasIndexed {
-                                PersistenceDatabase.backgroundRefresh {
-                                    NSLog("[Centralis] Background Refresh")
-                                }
-                            }
-                        }
+                        print("User is working fine here, \(user.user.id)")
+                        EdulinkManager.shared.authenticatedUser = user
+                        cacheUser = user
+                        handleIndex()
                         return completion(nil, user)
                     } catch {
                         return completion(error.localizedDescription, nil)
@@ -153,8 +165,10 @@ public final class LoginManager {
         }
         if let cacheUser = cacheUser {
             EdulinkManager.shared.authenticatedUser = cacheUser
+            print("So why is it fucking up here \(cacheUser.user.id)")
             Ping.ping { error, success in
                 if success {
+                    handleIndex()
                     return completion(nil, cacheUser)
                 }
                 _login()

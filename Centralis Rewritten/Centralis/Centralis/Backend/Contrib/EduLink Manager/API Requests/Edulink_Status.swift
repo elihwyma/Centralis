@@ -46,6 +46,7 @@ public final class Ping {
     
     public class func ping(_ completion: @escaping (String?, Bool) -> ()) {
         EvanderNetworking.edulinkDict(method: "EduLink.Ping", params: []) { success, _, message, _ in
+            print("Ping Message = \(message)")
             if success {
                 EdulinkManager.shared.session?.expires = 1800
                 completion(nil, true)

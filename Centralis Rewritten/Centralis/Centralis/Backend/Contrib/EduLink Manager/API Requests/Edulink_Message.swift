@@ -17,6 +17,7 @@ public final class Message: EdulinkBase {
     @Serialized(default: "email") var type: String
     @Serialized var subject: String?
     @Serialized var body: String?
+    var archived: Bool = false
     
     @Serialized(default: [Attachment]()) var attachments: [Attachment]
     @Serialized var sender: Sender
@@ -27,7 +28,7 @@ public final class Message: EdulinkBase {
         lhs.id == rhs.id && rhs.read == lhs.read
     }
     
-    init(id: String, date: Date?, read: Date?, type: String, subject: String?, body: String?, attachments: [Attachment], sender: Sender) {
+    init(id: String, date: Date?, read: Date?, type: String, subject: String?, body: String?, archived: Bool, attachments: [Attachment], sender: Sender) {
         super.init()
         self.id = id
         self.date = date
@@ -37,15 +38,17 @@ public final class Message: EdulinkBase {
         self.body = body
         self.attachments = attachments
         self.sender = sender
+        self.archived = archived
     }
     
     required public init() {}
     
-    public class func updateMessages(totalPages: Int? = nil, currentPage: Int? = nil, messages: [String: Message] = PersistenceDatabase.shared.messages, indexing: Bool = false, _ completion: @escaping (String?, [String: Message]?) -> Void) {
+    public class func updateMessages(totalPages: Int? = nil, currentPage: Int = 1, messages: [String: Message] = PersistenceDatabase.shared.messages, archived: Bool = false, indexing: Bool = false, _ completion: @escaping (String?, [String: Message]?) -> Void) {
         var totalPages = totalPages
         var messages = messages
-        EvanderNetworking.edulinkDict(method: "Communicator.Inbox", params: [.custom(key: "page", value: currentPage ?? 1),
-                                                                             .custom(key: "per_page", value: 50)]) { _, _, error, result in
+        EvanderNetworking.edulinkDict(method: "Communicator.Inbox", params: [.custom(key: "page", value: currentPage),
+                                                                             .custom(key: "per_page", value: 50),
+                                                                             .custom(key: "archived", value: archived)]) { _, _, error, result in
             guard let result = result else {
                 return completion(error ?? "Unknown Error", nil)
             }
@@ -58,6 +61,7 @@ public final class Message: EdulinkBase {
             do {
                 let jsonMessages = try JSONSerialization.data(withJSONObject: messageArray)
                 let _messages = try JSONDecoder().decode([Message].self, from: jsonMessages)
+                _messages.forEach { $0.archived = archived }
                 for message in _messages {
                     if !indexing && messages[message.id] == nil {
                         NotificationManager.shared.notifyMessage(message: message)
@@ -69,13 +73,17 @@ public final class Message: EdulinkBase {
                     messages[message.id] = message
                 }
                 if totalPages == currentPage {
+                    print(archived)
+                    if !archived {
+                        return updateMessages(messages: messages, archived: true, indexing: indexing, completion)
+                    }
                     PersistenceDatabase.MessageDatabase.saveMessages(messages)
                     Photos.shared.loadForMessages()
                     Self.setUnread()
                     return completion(nil, messages)
                 } else {
-                    let target = (currentPage ?? 1) + 1
-                    updateMessages(totalPages: totalPages, currentPage: target, messages: messages, indexing: indexing, completion)
+                    let target = currentPage + 1
+                    updateMessages(totalPages: totalPages, currentPage: target, messages: messages, archived: archived, indexing: indexing, completion)
                 }
             } catch {
                 return completion(error.localizedDescription, nil)

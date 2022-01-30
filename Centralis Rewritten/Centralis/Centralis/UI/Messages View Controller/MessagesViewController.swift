@@ -10,6 +10,7 @@ import UIKit
 class MessagesViewController: BaseTableViewController {
     
     var messages = [Message]()
+    var showArchived: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,9 @@ class MessagesViewController: BaseTableViewController {
         }
         var messages = Array(PersistenceDatabase.shared.messages.values)
         messages.sort { $0.date ?? Date() > $1.date ?? Date() }
+        if !showArchived {
+            messages.removeAll { $0.archived }
+        }
         if messages != self.messages {
             self.messages = messages
             if reload {
