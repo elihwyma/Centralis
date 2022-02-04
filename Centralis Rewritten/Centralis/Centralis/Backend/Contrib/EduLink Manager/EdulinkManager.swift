@@ -24,7 +24,7 @@ final public class EdulinkManager {
                     guard self.session != nil else { return }
                     self.pingTimer = Timer.scheduledTimer(withTimeInterval: 300, repeats: true) { timer in
                         Ping.ping { error, _ in
-                            #warning("This Error Needs to be handled")
+                            CentralisTabBarController.shared.set(title: "Error with ping", subtitle: error ?? "Unknown Error", progress: 0)
                         }
                     }
                     RunLoop.current.run()
