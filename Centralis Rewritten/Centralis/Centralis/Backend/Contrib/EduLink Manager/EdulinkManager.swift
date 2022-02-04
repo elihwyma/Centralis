@@ -7,6 +7,7 @@
 
 import Foundation
 import Evander
+import UIKit
 
 final public class EdulinkManager {
     
@@ -15,16 +16,19 @@ final public class EdulinkManager {
     public var pingQueue = DispatchQueue(label: "Centralis.PingQueue", qos: .background)
     public var session: Session? {
         didSet {
-            pingQueue.async { [weak self] in
-                guard let `self` = self else { return }
-                self.pingTimer?.invalidate()
-                guard self.session != nil else { return }
-                self.pingTimer = Timer.scheduledTimer(withTimeInterval: 300, repeats: true) { timer in
-                    Ping.ping { error, _ in
-                        #warning("This Error Needs to be handled")
+            Thread.mainBlock { [weak self] in
+                guard UIApplication.shared.applicationState == .active else { return }
+                self?.pingQueue.async { [weak self] in
+                    guard let `self` = self else { return }
+                    self.pingTimer?.invalidate()
+                    guard self.session != nil else { return }
+                    self.pingTimer = Timer.scheduledTimer(withTimeInterval: 300, repeats: true) { timer in
+                        Ping.ping { error, _ in
+                            #warning("This Error Needs to be handled")
+                        }
                     }
+                    RunLoop.current.run()
                 }
-                RunLoop.current.run()
             }
         }
     }
@@ -35,5 +39,6 @@ final public class EdulinkManager {
         NotificationManager.shared.removeAllNotifications()
         LoginManager.save(login: nil)
         Self.shared = EdulinkManager()
+        Message.setUnread()
     }
 }

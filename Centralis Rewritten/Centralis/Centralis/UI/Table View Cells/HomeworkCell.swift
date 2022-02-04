@@ -20,6 +20,12 @@ class HomeworkCell: BasicInfoCell {
     }
 
     public func toggleDescription() {
+        if !Thread.isMainThread {
+            DispatchQueue.main.async { [weak self] in
+                self?.toggleDescription()
+            }
+            return
+        }
         if loadingTopAnchor.constant == -10 {
             loadingTopAnchor.constant = 8
             
@@ -32,10 +38,12 @@ class HomeworkCell: BasicInfoCell {
                     descriptionHeightAnchor.priority = UILayoutPriority(250)
                     descriptionVariableHeightAnchor.isActive = true
                 }
-                if let attributedString = try? NSMutableAttributedString(html: text) {
-                    descriptionTextView.attributedText = attributedString
-                } else {
-                    descriptionTextView.text = text
+                if UIApplication.shared.applicationState == .active {
+                    if let attributedString = try? NSMutableAttributedString(html: text) {
+                        descriptionTextView.attributedText = attributedString
+                    } else {
+                        descriptionTextView.text = text
+                    }
                 }
             }
             if let description = homework?.description {
@@ -107,7 +115,7 @@ class HomeworkCell: BasicInfoCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func trailingSwipeActionsConfiguration() -> UISwipeActionsConfiguration? {
+    override func trailingSwipeActionsConfiguration() -> UISwipeActionsConfiguration? {
         guard let homework = homework else { return nil }
         let complete = UIContextualAction(style: .normal, title: !homework.completed ? "Complete" : "Un-Complete") { [weak self] _, _, completion in
             guard let `self` = self,

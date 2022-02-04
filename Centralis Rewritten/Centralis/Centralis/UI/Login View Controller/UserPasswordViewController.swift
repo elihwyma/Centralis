@@ -87,7 +87,7 @@ class UserPasswordViewController: KeyboardAwareViewController {
             self.loginButton.isLoading = true
             let login = UserLogin(server: self.details.server, schoolID: self.details.school_id, schoolCode: self.details.code, username: username, password: password)
             self.loginButton.isLoading = true
-            LoginManager.login(login) { [weak self] error, authenticatedUser in
+            LoginManager.login(login, _indexBypass: true) { [weak self] error, authenticatedUser in
                 guard let `self` = self else { return }
                 DispatchQueue.main.async {
                     if let user = authenticatedUser {

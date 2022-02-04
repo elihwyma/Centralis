@@ -60,7 +60,7 @@ final public class Timetable: EdulinkBase {
     }
     
     fileprivate final class _Lesson: Serializable {
-        @SerializedTransformable<IDTransformer>(fallback: "-1") var period_id: String!
+        @SerializedTransformableString<IDTransformer>(fallback: "-1") var period_id: String!
         @Serialized var room: _Room
         @Serialized var teachers: String
         @Serialized var teaching_group: _TeachingGroup
@@ -79,6 +79,7 @@ final public class Timetable: EdulinkBase {
         var subject: String?
         var room: String?
         var teachers: String?
+        var group: String?
         
         fileprivate init(lesson: _Lesson?, period: _Period) {
             empty = period.empty
@@ -91,6 +92,7 @@ final public class Timetable: EdulinkBase {
             subject = lesson?.teaching_group.subject
             room = lesson?.room.name
             teachers = lesson?.teachers
+            group = lesson?.teaching_group.name
         }
         
         public static func == (lhs: Timetable.Period, rhs: Timetable.Period) -> Bool {
@@ -159,6 +161,16 @@ final public class Timetable: EdulinkBase {
         let first = weeks.last!
         guard let day = first.days.first else { return nil }
         return (first, day)
+    }
+    
+    public class func orderWeeks(_ weeks: inout [Week]) {
+        weeks = weeks.sorted { week1, week2 -> Bool in
+            if let firstDate = week1.days.first?.date,
+               let secondDate = week2.days.first?.date {
+                return firstDate < secondDate
+            }
+            return false
+        }
     }
     
     private class func convert(_ _weeks: [_Week]) -> [Week] {

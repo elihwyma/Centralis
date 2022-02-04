@@ -28,10 +28,7 @@ class TimetableViewController: BaseTableViewController {
             if title != week.name {
                 self.title = week.name
             }
-            if days != week.days {
-                self.days = week.days
-                tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-            }
+            select(week: week)
         }
     }
     

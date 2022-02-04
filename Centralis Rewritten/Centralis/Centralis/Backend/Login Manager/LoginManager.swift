@@ -5,7 +5,7 @@
 //  Created by Andromeda on 22/11/2021.
 //
 
-import Foundation
+import UIKit
 import Evander
 
 public final class LoginManager {
@@ -117,28 +117,42 @@ public final class LoginManager {
     }
         
     public class func login(_ login: UserLogin, _indexBypass: Bool = false, _ completion: @escaping (String?, AuthenticatedUser?) -> Void) {
+        func handleIndex() {
+            if !_indexBypass {
+                if !PersistenceDatabase.shared.hasIndexed {
+                    _ = try? PersistenceDatabase.shared.resetDatabase()
+                    Thread.mainBlock {
+                        (UIApplication.shared.delegate as! AppDelegate).setRootViewController(IndexingViewController())
+                    }
+                } else {
+                    PersistenceDatabase.backgroundRefresh {}
+                }
+            }
+        }
         func _login() {
+            let dict: [String: AnyHashable] = [
+                "format": 2,
+                "git_sha": "84e0228c54d65a8e79aa8dda48095d307c6049df",
+                "version": "4.0.48"
+            ]
             EvanderNetworking.edulinkDict(url: login.server, method: "EduLink.Login", params: [
                 .custom(key: "establishment_id", value: login.schoolID),
                 .custom(key: "fcm_token_old", value: "none"),
                 .custom(key: "from_app", value: false),
                 .custom(key: "password", value: login.password),
-                .custom(key: "username", value: login.username)]) { _, _, error, result in
+                .custom(key: "username", value: login.username),
+                .custom(key: "ui_info", value: dict)]) { _, _, error, result in
                     guard let result = result,
                           let jsonData = try? JSONSerialization.data(withJSONObject: result) else {
                        return completion(error ?? "Unknown Error", nil)
                     }
                     do {
                         let user = try JSONDecoder().decode(AuthenticatedUser.self, from: jsonData)
-                        EdulinkManager.shared.authenticatedUser = user
+                        user.server = login.server
                         user.login = login
-                        if !_indexBypass {
-                            if PersistenceDatabase.shared.hasIndexed {
-                                PersistenceDatabase.backgroundRefresh {
-                                    NSLog("[Centralis] Background Refresh")
-                                }
-                            }
-                        }
+                        EdulinkManager.shared.authenticatedUser = user
+                        cacheUser = user
+                        handleIndex()
                         return completion(nil, user)
                     } catch {
                         return completion(error.localizedDescription, nil)
@@ -149,12 +163,27 @@ public final class LoginManager {
             EdulinkManager.shared.authenticatedUser = cacheUser
             Ping.ping { error, success in
                 if success {
+                    handleIndex()
                     return completion(nil, cacheUser)
                 }
                 _login()
             }
         } else {
             _login()
+        }
+    }
+    
+    public class func reconnectCurrent() {
+        guard let userLogin = loadLogin().1 else { return }
+        CentralisTabBarController.shared.set(title: "Reconnecting", subtitle: "Reconnecting to EduLink", progress: 0)
+        login(userLogin) { error, _ in
+            if let error = error {
+                CentralisTabBarController.shared.set(title: "Error Connecting", subtitle: error, progress: 0.5)
+            } else {
+                PersistenceDatabase.backgroundRefresh {
+                    
+                }
+            }
         }
     }
 }

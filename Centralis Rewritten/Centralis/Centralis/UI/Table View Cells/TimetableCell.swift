@@ -23,7 +23,11 @@ class PeriodCell: BasicInfoCell {
     }
     
     public func set(period: Timetable.Period) {
-        title.text = period.subject ?? "Free Period"
+        if let subject = period.subject {
+            title.text = "\(subject) - \(period.group ?? "Unknown Group")"
+        } else {
+            title.text = "Free Period"
+        }
         primaryLabel.text = "\(period.start_time) - \(period.end_time)"
         if period.moved {
             secondaryImage.image = nil

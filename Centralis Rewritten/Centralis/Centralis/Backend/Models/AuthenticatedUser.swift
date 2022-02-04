@@ -15,7 +15,7 @@ final public class AuthenticatedUser: Serializable {
             self.server = login?.server
         }
     }
-    public var server: URL?
+    @Serialized public var server: URL?
     @Serialized var establishment: Establishment
     @Serialized var user: User
     @Serialized var personal_menu: [EdulinkStore]

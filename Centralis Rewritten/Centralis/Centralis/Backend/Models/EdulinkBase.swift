@@ -10,9 +10,13 @@ import SerializedSwift
 
 public class EdulinkBase: Serializable, Equatable, Identifiable {
     
-    @SerializedTransformable<IDTransformer>(fallback: "-1") var id: String!
+    @SerializedTransformableString<IDTransformer>(fallback: "-1") var id: String!
     
-    required public init() {}
+    required public init() {
+        if id == nil {
+            id = "-1"
+        }
+    }
 }
 
 public class EdulinkStore: EdulinkBase {
