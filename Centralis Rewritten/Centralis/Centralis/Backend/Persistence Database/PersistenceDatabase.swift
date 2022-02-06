@@ -105,6 +105,12 @@ final public class PersistenceDatabase {
             }
             loadGroup.leave()
         }
+        Document.updateDocuments { error, documents in
+            guard documents != nil else {
+                return completion(error ?? "Unknown Error", false)
+            }
+            loadGroup.leave()
+        }
         loadGroup.notify(queue: .main) { [weak self] in
             self?.hasIndexed = true
             CentralisTabBarController.shared.setExpanded(false)
@@ -118,15 +124,11 @@ final public class PersistenceDatabase {
         
         let loadGroup = DispatchGroup()
         
-        let numberOfTasks = 3
+        let numberOfTasks = 4
         for _ in 1...numberOfTasks {
             loadGroup.enter()
         }
         let perGroup = (1.0 - currentProgress) / Float(numberOfTasks)
-        func completeTask() {
-            
-            
-        }
         func completeTask(with error: String?) {
             if let error = error {
                 CentralisTabBarController.shared.set(title: "Error When Refreshing", subtitle: error, progress: currentProgress)
@@ -144,6 +146,9 @@ final public class PersistenceDatabase {
             completeTask(with: error)
         }
         Message.updateMessages { error, _ in
+            completeTask(with: error)
+        }
+        Document.updateDocuments { error, _ in
             completeTask(with: error)
         }
         loadGroup.notify(queue: .global(qos: .background)) {
@@ -699,8 +704,21 @@ final public class PersistenceDatabase {
         
         static func changes(documents: [Document]) {
             let persistence = PersistenceDatabase.shared
-            let current = persistence.documents
-            
+            let database = persistence.database
+            var current = persistence.documents
+            try? database.transaction {
+                for document in documents {
+                    if let old = current[document.id] {
+                        if old == document { continue }
+                        _ = try? database.run(documentTable.filter(id == document.id).update(document))
+                        current[document.id] = document
+                        continue
+                    }
+                    _ = try? database.run(documentTable.insert(document))
+                    current[document.id] = document
+                }
+            }
+            persistence.documents = current
         }
         
     }
