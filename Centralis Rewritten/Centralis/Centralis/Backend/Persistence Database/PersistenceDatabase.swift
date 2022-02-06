@@ -38,7 +38,6 @@ final public class PersistenceDatabase {
             try? FileManager.default.createDirectory(at: databaseFolder, withIntermediateDirectories: true)
         }
         let databaseURL = databaseFolder.appendingPathComponent("CentralisPersistence.sqlite3")
-        NSLog("URL = \(databaseURL)")
         guard let database = try? Connection(databaseURL.path) else {
             fatalError("Database Connection failed")
         }
@@ -103,6 +102,7 @@ final public class PersistenceDatabase {
                       return completion(error ?? "Unknown Error", false)
             }
             TimetableDatabase.saveTimetable(weeks: weeks, database: database)
+            Self.shared.timetable = TimetableDatabase.getTimetable(database: Self.shared.database)
             loadGroup.leave()
         }
         Message.updateMessages(indexing: true) { error, messages in

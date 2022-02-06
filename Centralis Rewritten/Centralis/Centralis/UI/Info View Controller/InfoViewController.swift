@@ -15,10 +15,18 @@ class InfoViewController: BaseTableViewController {
         case account
         case debug
         case message
+        case fullApp
     }
     
     private func _section(for section: Int) -> Section {
-        switch section {
+        var buffer = 0
+        #if APPCLIP
+        if section == 0 {
+            return .fullApp
+        }
+        buffer++
+        #endif
+        switch section - buffer {
         case 0: return .notifications
         case 1: return .message
         case 2: return .debug
@@ -35,7 +43,11 @@ class InfoViewController: BaseTableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        4
+        var number = 4
+        #if APPCLIP
+        number++
+        #endif
+        return number
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,6 +56,7 @@ class InfoViewController: BaseTableViewController {
         case .account: return 1
         case .debug: return 1
         case .message: return 1
+        case .fullApp: return 1
         }
     }
     
@@ -98,6 +111,10 @@ class InfoViewController: BaseTableViewController {
                 return cell
             default: fatalError()
             }
+        case .fullApp:
+            let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.DefaultCell")
+            cell.textLabel?.text = "Download"
+            return cell
         }
     }
     
@@ -107,6 +124,14 @@ class InfoViewController: BaseTableViewController {
         case .account: return "Account"
         case .debug: return "Debug"
         case .message: return "Message Settings"
+        case .fullApp: return "Full App"
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        switch _section(for: section) {
+        case .fullApp: return "Get the full app for the best experience!"
+        default: return nil
         }
     }
     
@@ -123,6 +148,8 @@ class InfoViewController: BaseTableViewController {
             }
         case .debug:
             PersistenceDatabase.backgroundRefresh {}
+        case .fullApp:
+            UIApplication.shared.open(URL(string: "https://testflight.apple.com/join/DNeTt2Q4")!)
         default: return
         }
     }

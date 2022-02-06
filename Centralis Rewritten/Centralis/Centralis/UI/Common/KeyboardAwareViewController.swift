@@ -17,8 +17,9 @@ public class KeyboardAwareViewController: UIViewController {
     }
     
     @objc private func _keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+        if var keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
+                keyboardSize.size.height += 40.0
                 keyboardWillShow(with: keyboardSize)
             }
         }

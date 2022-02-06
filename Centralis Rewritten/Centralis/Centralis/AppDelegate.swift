@@ -39,11 +39,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         Message.setUnread()
         
+        #if !APPCLIP
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
-
+        #endif
+        
         return true
     }
     
+    #if !APPCLIP
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         guard let login = LoginManager.loadLogin().1 else { return completionHandler(.newData) }
         LoginManager.login(login, _indexBypass: true) { error, user in
@@ -56,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    #endif
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         NotificationCenter.default.post(name: PersistenceDatabase.persistenceReload, object: nil)

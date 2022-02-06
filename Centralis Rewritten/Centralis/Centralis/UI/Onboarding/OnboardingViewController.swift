@@ -14,7 +14,7 @@ class OnboardingViewController: UIViewController {
         let view = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 50, height: 32)))
         view.addSubview(iconNavBarIconView)
         iconNavBarIconView.center = view.center
-        iconNavBarIconView.image = UIImage(named: Bundle.main.iconFileName)
+        iconNavBarIconView.image = UIImage(named: Bundle.main.iconFileName) ?? UIImage(named: "AppIcon60x60")
         iconNavBarIconView.contentMode = .scaleAspectFill
         iconNavBarIconView.layer.masksToBounds = true
         iconNavBarIconView.layer.cornerRadius = 32 / 4

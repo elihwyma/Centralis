@@ -10,15 +10,20 @@ import Evander
 
 public final class LoginManager {
     
+    #if !APPCLIP
     static let appIdentifierPrefix = Bundle.main.infoDictionary!["AppIdentifierPrefix"] as! String
-        
+    #endif
+    
     public class func loadLogin() -> (OSStatus, UserLogin?) {
-        let query: [String: Any] = [
+        var query: [String: Any] = [
             kSecClass as String       : kSecClassGenericPassword,
             kSecAttrAccount as String : "Centralis.SavedLogins",
             kSecReturnData as String  : kCFBooleanTrue!,
-            kSecAttrAccessGroup as String: "\(appIdentifierPrefix)group.amywhile.centralis",
             kSecMatchLimit as String  : kSecMatchLimitOne ]
+        
+        #if !APPCLIP
+        query[kSecAttrAccessGroup as String] = "\(appIdentifierPrefix)group.amywhile.centralis"
+        #endif
         
         var dataTypeRef: AnyObject? = nil
 
@@ -32,19 +37,26 @@ public final class LoginManager {
     @discardableResult public class func save(login: UserLogin?) -> OSStatus {
         if let login = login  {
             let encoded = (try? JSONEncoder().encode(login)) ?? Data()
-            let query: [String: Any] = [
+            var query: [String: Any] = [
                 kSecClass as String       : kSecClassGenericPassword as String,
                 kSecAttrAccount as String : "Centralis.SavedLogins",
-                kSecAttrAccessGroup as String: "\(appIdentifierPrefix)group.amywhile.centralis",
                 kSecValueData as String: encoded ]
+            
+            #if !APPCLIP
+            query[kSecAttrAccessGroup as String] = "\(appIdentifierPrefix)group.amywhile.centralis"
+            #endif
 
             SecItemDelete(query as CFDictionary)
             return SecItemAdd(query as CFDictionary, nil)
         } else {
-            let query: [String: Any] = [
+            var query: [String: Any] = [
                 kSecClass as String       : kSecClassGenericPassword as String,
-                kSecAttrAccount as String : "Centralis.SavedLogins",
-                kSecAttrAccessGroup as String: "\(appIdentifierPrefix)group.amywhile.centralis" ]
+                kSecAttrAccount as String : "Centralis.SavedLogins" ]
+            
+            #if !APPCLIP
+            query[kSecAttrAccessGroup as String] = "\(appIdentifierPrefix)group.amywhile.centralis"
+            #endif
+            
             Self.cacheUser = nil
             return SecItemDelete(query as CFDictionary)
         }
@@ -52,12 +64,15 @@ public final class LoginManager {
     
     public static var cacheUser: AuthenticatedUser? {
         get {
-            let query: [String: Any] = [
+            var query: [String: Any] = [
                 kSecClass as String       : kSecClassGenericPassword,
                 kSecAttrAccount as String : "Centralis.CachedUser",
                 kSecReturnData as String  : kCFBooleanTrue!,
-                kSecAttrAccessGroup as String: "\(appIdentifierPrefix)group.amywhile.centralis",
                 kSecMatchLimit as String  : kSecMatchLimitOne ]
+            
+            #if !APPCLIP
+            query[kSecAttrAccessGroup as String] = "\(appIdentifierPrefix)group.amywhile.centralis"
+            #endif
             
             var dataTypeRef: AnyObject? = nil
 
@@ -70,18 +85,22 @@ public final class LoginManager {
         set(login) {
             if let login = login {
                 let encoded = (try? JSONEncoder().encode(login)) ?? Data()
-                let query: [String: Any] = [
+                var query: [String: Any] = [
                     kSecClass as String       : kSecClassGenericPassword as String,
                     kSecAttrAccount as String : "Centralis.CachedUser",
-                    kSecAttrAccessGroup as String: "\(appIdentifierPrefix)group.amywhile.centralis",
                     kSecValueData as String: encoded ]
+                #if !APPCLIP
+                query[kSecAttrAccessGroup as String] = "\(appIdentifierPrefix)group.amywhile.centralis"
+                #endif
                 SecItemDelete(query as CFDictionary)
                 SecItemAdd(query as CFDictionary, nil)
             } else {
-                let query: [String: Any] = [
+                var query: [String: Any] = [
                     kSecClass as String       : kSecClassGenericPassword as String,
-                    kSecAttrAccount as String : "Centralis.CachedUser",
-                    kSecAttrAccessGroup as String: "\(appIdentifierPrefix)group.amywhile.centralis"]
+                    kSecAttrAccount as String : "Centralis.CachedUser"]
+                #if !APPCLIP
+                query[kSecAttrAccessGroup as String] = "\(appIdentifierPrefix)group.amywhile.centralis"
+                #endif
                 SecItemDelete(query as CFDictionary)
             }
         }
