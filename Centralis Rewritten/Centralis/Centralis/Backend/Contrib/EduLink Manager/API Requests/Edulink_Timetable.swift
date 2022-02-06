@@ -150,12 +150,12 @@ final public class Timetable: EdulinkBase {
                 }
             }
         }
+        let weeks = orderWeeks(weeks)
         let today = Date()
         for week in weeks {
-            for day in week.days {
-                if today < day.date {
-                    return (week, day)
-                }
+            guard let first = week.days.first else { continue }
+            if today < first.date {
+                return (week, first)
             }
         }
         let first = weeks.last!
