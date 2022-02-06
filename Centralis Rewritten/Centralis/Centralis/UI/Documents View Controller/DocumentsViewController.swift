@@ -92,7 +92,12 @@ class DocumentsViewController: BaseTableViewController {
     
     @objc private func downloadDocument(_ indexPath: IndexPath) {
         let document = documents[indexPath.row]
-        if !Document.documentsFolder.dirExists {
+        if Document.documentsFolder.dirExists {
+            if document.fileDestination.exists {
+                self.display(with: document.fileDestination)
+                return
+            }
+        } else {
             try? FileManager.default.createDirectory(at: Document.documentsFolder, withIntermediateDirectories: true)
         }
         

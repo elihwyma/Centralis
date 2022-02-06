@@ -20,7 +20,7 @@ public final class Document: EdulinkBase {
     public static let documentsFolder = EvanderNetworking._cacheDirectory.appendingPathComponent("Documents")
     
     public var fileDestination: URL {
-        Self.documentsFolder.appendingPathComponent("\(id!)_\(secondaryFilename ?? filename)")
+        Self.documentsFolder.appendingPathComponent("\(id!)_\(last_updated?.timeIntervalSince1970 ?? 0)_\(secondaryFilename ?? filename)")
     }
     
     public class func updateDocuments(_ completion: @escaping (String?, [Document]?) -> Void) {
