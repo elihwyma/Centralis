@@ -9,7 +9,7 @@ import UIKit
 
 class TimetableViewController: BaseTableViewController {
     
-    public var weeks = PersistenceDatabase.shared.timetable
+    public var weeks = Timetable.orderWeeks(PersistenceDatabase.shared.timetable)
     public lazy var days = [Timetable.Day]()
 
     override func viewDidLoad() {
@@ -24,6 +24,7 @@ class TimetableViewController: BaseTableViewController {
     
     private func index(_ reload: Bool = true) {
         let weeks = PersistenceDatabase.shared.timetable
+        self.weeks = Timetable.orderWeeks(weeks)
         if let (week, _) = Timetable.getCurrent(weeks) {
             if title != week.name {
                 self.title = week.name
