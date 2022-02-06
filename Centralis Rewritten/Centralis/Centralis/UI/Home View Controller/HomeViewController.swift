@@ -74,6 +74,7 @@ class HomeViewController: BaseTableViewController {
         switch section {
         case 0: return homework.count + 1
         case 1: return (today?.periods.count ?? 0) + 1
+        case 2: return 1
         default: return 0
         }
     }
@@ -82,12 +83,13 @@ class HomeViewController: BaseTableViewController {
         switch section {
         case 0: return "Current Homework"
         case 1: return "\(today?.name ?? "Today")'s Lessons"
+        case 2: return "More"
         default: return nil
         }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        3
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -113,6 +115,15 @@ class HomeViewController: BaseTableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.PeriodCell", for: indexPath) as! PeriodCell
             cell.set(period: today!.periods[indexPath.row])
             return cell
+        case 2:
+            switch indexPath.row {
+            case 0:
+                let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.DefaultCell")
+                cell.accessoryType = .disclosureIndicator
+                cell.textLabel?.text = "Documents"
+                return cell
+            default: return UITableViewCell()
+            }
         default: return UITableViewCell()
         }
         
@@ -128,6 +139,12 @@ class HomeViewController: BaseTableViewController {
             navigationController?.pushViewController(HomeworkViewController(style: .insetGrouped), animated: true)
         } else if indexPath.section == 1 && indexPath.row == (today?.periods.count ?? 0) {
             navigationController?.pushViewController(TimetableViewController(style: .insetGrouped), animated: true)
+        } else if indexPath.section == 2 {
+            switch indexPath.row {
+            case 0:
+                navigationController?.pushViewController(DocumentsViewController(style: .insetGrouped), animated: true)
+            default: return
+            }
         }
     }
 }

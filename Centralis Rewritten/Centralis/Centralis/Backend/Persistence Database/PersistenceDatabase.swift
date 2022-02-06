@@ -80,6 +80,7 @@ final public class PersistenceDatabase {
         loadGroup.enter()
         loadGroup.enter()
         loadGroup.enter()
+        loadGroup.enter()
         Homework.updateHomework(indexing: true) { [weak self] error, homework in
             guard let homework = homework,
                   let database = self?.database else {

@@ -15,6 +15,13 @@ public final class Document: EdulinkBase {
     @Serialized var filename: String
     @Serialized var summary: String
     @Serialized var type: String
+    var secondaryFilename: String?
+    
+    public static let documentsFolder = EvanderNetworking._cacheDirectory.appendingPathComponent("Documents")
+    
+    public var fileDestination: URL {
+        Self.documentsFolder.appendingPathComponent("\(id!)_\(secondaryFilename ?? filename)")
+    }
     
     public class func updateDocuments(_ completion: @escaping (String?, [Document]?) -> Void) {
         EvanderNetworking.edulinkDict(method: "EduLink.Documents", params: [.learner_id]) { _, _, error, result in
@@ -28,6 +35,27 @@ public final class Document: EdulinkBase {
             } catch {
                 return completion(error.localizedDescription, nil)
             }
+        }
+    }
+    
+    public func getDocument(completion: @escaping (String?, URL?) -> Void) {
+        EvanderNetworking.edulinkDict(method: "EduLink.Document", params: [
+            .format(value: 2),
+            .custom(key: "document_id", value: Int(id) ?? -1)
+        ]) { [weak self] _, _, error, result  in
+            guard let result = result,
+                  let _document = result["result"] as? [String: Any],
+                  let `self` = self else { return completion(error ?? "Unknown Error", nil) }
+            if let content = _document["content"] as? String {
+                guard let data = Data(base64Encoded: content) else { return completion("Failed to parse document data", nil) }
+                try? data.write(to: self.fileDestination)
+                return completion(nil, self.fileDestination)
+            } else if let _url = _document["url"] as? String,
+                      let url = URL(string: _url) {
+                self.secondaryFilename = _document["filename"] as? String
+                return completion(nil, url)
+            }
+            return completion("No Document was returned", nil)
         }
     }
     

@@ -42,6 +42,8 @@
 		E19621AF275D04970065B446 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19621AE275D04970065B446 /* InfoViewController.swift */; };
 		E19621B1275D05EB0065B446 /* SettingsSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19621B0275D05EB0065B446 /* SettingsSwitchTableViewCell.swift */; };
 		E19621B3275D076F0065B446 /* ClosureSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19621B2275D076F0065B446 /* ClosureSwitchCell.swift */; };
+		E196618627B02C7E00793007 /* DocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E196618527B02C7E00793007 /* DocumentsViewController.swift */; };
+		E196618827B02CBB00793007 /* DocumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E196618727B02CBB00793007 /* DocumentCell.swift */; };
 		E197455D2751298900EEB853 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197455C2751298900EEB853 /* OnboardingViewController.swift */; };
 		E197456027512B4800EEB853 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197455F27512B4800EEB853 /* Bundle+Extensions.swift */; };
 		E197456327512D6600EEB853 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197456227512D6600EEB853 /* ThemeManager.swift */; };
@@ -102,6 +104,8 @@
 		E19621AE275D04970065B446 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		E19621B0275D05EB0065B446 /* SettingsSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSwitchTableViewCell.swift; sourceTree = "<group>"; };
 		E19621B2275D076F0065B446 /* ClosureSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureSwitchCell.swift; sourceTree = "<group>"; };
+		E196618527B02C7E00793007 /* DocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsViewController.swift; sourceTree = "<group>"; };
+		E196618727B02CBB00793007 /* DocumentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCell.swift; sourceTree = "<group>"; };
 		E197455C2751298900EEB853 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		E197455F27512B4800EEB853 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		E197456227512D6600EEB853 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 				E1A23522277F58CF004563C9 /* HomeworkCell.swift */,
 				E1A23524277F5D24004563C9 /* TimetableCell.swift */,
 				E1F6BB9C2790BF9500E7A360 /* MessageTableViewCell.swift */,
+				E196618727B02CBB00793007 /* DocumentCell.swift */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
@@ -311,9 +316,18 @@
 			path = "Info View Controller";
 			sourceTree = "<group>";
 		};
+		E196618427B02C5900793007 /* Documents View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E196618527B02C7E00793007 /* DocumentsViewController.swift */,
+			);
+			path = "Documents View Controller";
+			sourceTree = "<group>";
+		};
 		E197455A2751295E00EEB853 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				E196618427B02C5900793007 /* Documents View Controller */,
 				E183B1F32791A83A004C6C65 /* MessageViewController */,
 				E1B9268E278D96B6001EEDAC /* Messages View Controller */,
 				E1A23526277F6FC8004563C9 /* Timetable View Controller */,
@@ -502,11 +516,13 @@
 				E19621AF275D04970065B446 /* InfoViewController.swift in Sources */,
 				E1A23523277F58CF004563C9 /* HomeworkCell.swift in Sources */,
 				E10B96132751A35500C8C12E /* Edulink_Homework.swift in Sources */,
+				E196618827B02CBB00793007 /* DocumentCell.swift in Sources */,
 				E19621AC275CFDA10065B446 /* HomeworkViewController.swift in Sources */,
 				E1A23528277F6FF9004563C9 /* TimetableViewController.swift in Sources */,
 				E10B960B2751865E00C8C12E /* BaseTableViewController.swift in Sources */,
 				E1B8C1912752A0AD001FF9FD /* NotificationManager.swift in Sources */,
 				E17E14BD274C1ABA0090F822 /* EdulinkManager.swift in Sources */,
+				E196618627B02C7E00793007 /* DocumentsViewController.swift in Sources */,
 				E10B9601275167AD00C8C12E /* UserPasswordViewController.swift in Sources */,
 				E197456327512D6600EEB853 /* ThemeManager.swift in Sources */,
 				E1F6BB97278CC6B000E7A360 /* Edulink_Message.swift in Sources */,
