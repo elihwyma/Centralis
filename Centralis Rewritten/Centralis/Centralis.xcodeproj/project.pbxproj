@@ -44,6 +44,8 @@
 		E19621B3275D076F0065B446 /* ClosureSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19621B2275D076F0065B446 /* ClosureSwitchCell.swift */; };
 		E196618627B02C7E00793007 /* DocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E196618527B02C7E00793007 /* DocumentsViewController.swift */; };
 		E196618827B02CBB00793007 /* DocumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E196618727B02CBB00793007 /* DocumentCell.swift */; };
+		E19661A727B03AA700793007 /* Edulink_Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19661A627B03AA700793007 /* Edulink_Links.swift */; };
+		E19661AA27B0443C00793007 /* LinksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19661A927B0443C00793007 /* LinksViewController.swift */; };
 		E197455D2751298900EEB853 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197455C2751298900EEB853 /* OnboardingViewController.swift */; };
 		E197456027512B4800EEB853 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197455F27512B4800EEB853 /* Bundle+Extensions.swift */; };
 		E197456327512D6600EEB853 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197456227512D6600EEB853 /* ThemeManager.swift */; };
@@ -64,6 +66,19 @@
 		E1F6BB9B278E102500E7A360 /* Edulink_Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F6BB9A278E102500E7A360 /* Edulink_Photos.swift */; };
 		E1F6BB9D2790BF9500E7A360 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F6BB9C2790BF9500E7A360 /* MessageTableViewCell.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E19661A527B0379800793007 /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E10B95E8275139D600C8C12E /* SchoolCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolCodeViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +121,8 @@
 		E19621B2275D076F0065B446 /* ClosureSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureSwitchCell.swift; sourceTree = "<group>"; };
 		E196618527B02C7E00793007 /* DocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsViewController.swift; sourceTree = "<group>"; };
 		E196618727B02CBB00793007 /* DocumentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCell.swift; sourceTree = "<group>"; };
+		E19661A627B03AA700793007 /* Edulink_Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Links.swift; sourceTree = "<group>"; };
+		E19661A927B0443C00793007 /* LinksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksViewController.swift; sourceTree = "<group>"; };
 		E197455C2751298900EEB853 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		E197455F27512B4800EEB853 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		E197456227512D6600EEB853 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
@@ -324,9 +341,18 @@
 			path = "Documents View Controller";
 			sourceTree = "<group>";
 		};
+		E19661A827B0442400793007 /* Links View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E19661A927B0443C00793007 /* LinksViewController.swift */,
+			);
+			path = "Links View Controller";
+			sourceTree = "<group>";
+		};
 		E197455A2751295E00EEB853 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				E19661A827B0442400793007 /* Links View Controller */,
 				E196618427B02C5900793007 /* Documents View Controller */,
 				E183B1F32791A83A004C6C65 /* MessageViewController */,
 				E1B9268E278D96B6001EEDAC /* Messages View Controller */,
@@ -402,6 +428,7 @@
 				E1F6BB96278CC6B000E7A360 /* Edulink_Message.swift */,
 				E1F6BB9A278E102500E7A360 /* Edulink_Photos.swift */,
 				E150BC2C27AD5F84001D34AD /* Edulink_Documents.swift */,
+				E19661A627B03AA700793007 /* Edulink_Links.swift */,
 			);
 			path = "API Requests";
 			sourceTree = "<group>";
@@ -416,6 +443,7 @@
 				E17E1499274C19B10090F822 /* Sources */,
 				E17E149A274C19B10090F822 /* Frameworks */,
 				E17E149B274C19B10090F822 /* Resources */,
+				E19661A527B0379800793007 /* Embed App Clips */,
 			);
 			buildRules = (
 			);
@@ -438,7 +466,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1310;
+				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					E17E149C274C19B10090F822 = {
@@ -500,12 +528,14 @@
 				E17E14CA274C211D0090F822 /* Transformers.swift in Sources */,
 				E1B8C18D27528FAA001FF9FD /* Date+Extensions.swift in Sources */,
 				E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */,
+				E19661A727B03AA700793007 /* Edulink_Links.swift in Sources */,
 				E19D9FAD27A71732005C8398 /* Reachability.swift in Sources */,
 				E197456027512B4800EEB853 /* Bundle+Extensions.swift in Sources */,
 				E10B95F027513E7E00C8C12E /* KeyboardAwareViewController.swift in Sources */,
 				E10B95EC27513A3100C8C12E /* RoundedTextField.swift in Sources */,
 				E10B96042751773D00C8C12E /* HomeViewController.swift in Sources */,
 				E10B9607275178F500C8C12E /* CentralisTabBarController.swift in Sources */,
+				E19661AA27B0443C00793007 /* LinksViewController.swift in Sources */,
 				E1F6BB9D2790BF9500E7A360 /* MessageTableViewCell.swift in Sources */,
 				E197455D2751298900EEB853 /* OnboardingViewController.swift in Sources */,
 				E15B5BCC275306720003A56D /* BasicInfoCell.swift in Sources */,
@@ -679,7 +709,7 @@
 				CLANG_TIDY_MISC_REDUNDANT_EXPRESSION = YES;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 845768945768;
+				CURRENT_PROJECT_VERSION = 845768945770;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
@@ -718,7 +748,7 @@
 				CLANG_TIDY_MISC_REDUNDANT_EXPRESSION = YES;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 845768945768;
+				CURRENT_PROJECT_VERSION = 845768945770;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;

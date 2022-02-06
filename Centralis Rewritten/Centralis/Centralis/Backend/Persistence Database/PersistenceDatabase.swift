@@ -15,7 +15,7 @@ enum DatabaseSchemaVersion: String {
     case version01001 = "1.0k"
     case version01002 = "1.0ke"
     case version01003 = "1.0ke5"
-    case version01004 = "1.0ke6"
+    case version01004 = "1.0ke7"
 }
 
 final public class PersistenceDatabase {
@@ -27,7 +27,8 @@ final public class PersistenceDatabase {
     private(set) public lazy var homework: [String: Homework] = HomeworkDatabase.getHomework(database: database)
     private(set) public lazy var timetable: [Timetable.Week] = TimetableDatabase.getTimetable(database: database)
     private(set) public lazy var messages: [String: Message] = MessageDatabase.getMessages(database: database)
-    private(set) public lazy var documents: [String: Document] = [:]
+    private(set) public lazy var documents: [String: Document] = DocumentDatabase.getDocuments(database: database)
+    private(set) public lazy var links: [String: Link] = LinkDatabase.getLinks(database: database)
     
     static let persistenceReload = Notification.Name(rawValue: "Centralis/PersistenceReload")
     
@@ -47,11 +48,14 @@ final public class PersistenceDatabase {
             timetable = []
             messages = [:]
             documents = [:]
+            links = [:]
         }
         
         HomeworkDatabase.createTable(database: database)
         TimetableDatabase.createTable(database: database)
         MessageDatabase.createTable(database: database)
+        LinkDatabase.createTable(database: database)
+        DocumentDatabase.createTable(database: database)
     }
 
     public var hasIndexed: Bool {
@@ -77,6 +81,7 @@ final public class PersistenceDatabase {
         try? PersistenceDatabase.shared.resetDatabase()
         let `self` = PersistenceDatabase.shared
         let loadGroup = DispatchGroup()
+        loadGroup.enter()
         loadGroup.enter()
         loadGroup.enter()
         loadGroup.enter()
@@ -112,6 +117,12 @@ final public class PersistenceDatabase {
             }
             loadGroup.leave()
         }
+        Link.updateLinks { error, links in
+            guard links != nil else {
+                return completion(error ?? "Unknown Error", false)
+            }
+            loadGroup.leave()
+        }
         loadGroup.notify(queue: .main) { [weak self] in
             self?.hasIndexed = true
             CentralisTabBarController.shared.setExpanded(false)
@@ -125,7 +136,7 @@ final public class PersistenceDatabase {
         
         let loadGroup = DispatchGroup()
         
-        let numberOfTasks = 4
+        let numberOfTasks = 5
         for _ in 1...numberOfTasks {
             loadGroup.enter()
         }
@@ -150,6 +161,9 @@ final public class PersistenceDatabase {
             completeTask(with: error)
         }
         Document.updateDocuments { error, _ in
+            completeTask(with: error)
+        }
+        Link.updateLinks { error, _ in
             completeTask(with: error)
         }
         loadGroup.notify(queue: .global(qos: .background)) {
@@ -694,15 +708,7 @@ final public class PersistenceDatabase {
             } catch {}
             return documents
         }
-    
-        static func saveDocuments(documents: [Document], database: Connection) {
-            try? database.transaction {
-                for document in documents {
-                    _ = try? database.run(documentTable.insert(document))
-                }
-            }
-        }
-        
+
         static func changes(documents: [Document]) {
             let persistence = PersistenceDatabase.shared
             let database = persistence.database
@@ -721,6 +727,74 @@ final public class PersistenceDatabase {
             }
             persistence.documents = current
         }
+    }
+    
+    struct LinkDatabase {
+        static let id = Expression<String>("id")
+        static let name = Expression<String>("name")
+        static let url = Expression<URL>("url")
+        static let position = Expression<Int>("position")
+        static let linkTable = Table("Links")
+        
+        static func createTable(database: Connection) {
+            _ = try? database.run(linkTable.create(ifNotExists: true,
+                                                       block: { tbd in
+                tbd.column(id, primaryKey: true)
+                tbd.column(name)
+                tbd.column(url)
+                tbd.column(position)
+            }))
+        }
+        
+        static func getLinks(database: Connection) -> [String: Link] {
+            var links = [String: Link]()
+            let query = linkTable.select(
+                id,
+                name,
+                url,
+                position
+            )
+            do {
+                let _links: [Link] = try database.prepare(query).map { try $0.decode() }
+                _links.forEach { links[$0.id] = $0 }
+            } catch {}
+            return links
+        }
+
+        static func changes(links: [Link]) {
+            let persistence = PersistenceDatabase.shared
+            let database = persistence.database
+            var current = persistence.links
+            try? database.transaction {
+                for link in links {
+                    if let old = current[link.id] {
+                        if old == link { continue }
+                        _ = try? database.run(linkTable.filter(id == link.id).update(link))
+                        current[link.id] = link
+                        continue
+                    }
+                    _ = try? database.run(linkTable.insert(link))
+                    current[link.id] = link
+                }
+            }
+            persistence.links = current
+        }
         
     }
+}
+
+extension URL: Value {
+
+    public static var declaredDatatype: String {
+        String.declaredDatatype
+    }
+
+    public static func fromDatatypeValue(_ stringValue: String) -> URL {
+        URL(string: stringValue)!
+    }
+
+    public var datatypeValue: String {
+        absoluteString
+    }
+
 }

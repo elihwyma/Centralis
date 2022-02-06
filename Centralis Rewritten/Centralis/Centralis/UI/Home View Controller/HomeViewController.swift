@@ -74,7 +74,7 @@ class HomeViewController: BaseTableViewController {
         switch section {
         case 0: return homework.count + 1
         case 1: return (today?.periods.count ?? 0) + 1
-        case 2: return 1
+        case 2: return 2
         default: return 0
         }
     }
@@ -116,14 +116,16 @@ class HomeViewController: BaseTableViewController {
             cell.set(period: today!.periods[indexPath.row])
             return cell
         case 2:
+            let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.DefaultCell")
+            cell.accessoryType = .disclosureIndicator
             switch indexPath.row {
             case 0:
-                let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.DefaultCell")
-                cell.accessoryType = .disclosureIndicator
                 cell.textLabel?.text = "Documents"
-                return cell
-            default: return UITableViewCell()
+            case 1:
+                cell.textLabel?.text = "Links"
+            default: return cell
             }
+            return cell
         default: return UITableViewCell()
         }
         
@@ -143,6 +145,8 @@ class HomeViewController: BaseTableViewController {
             switch indexPath.row {
             case 0:
                 navigationController?.pushViewController(DocumentsViewController(style: .insetGrouped), animated: true)
+            case 1:
+                navigationController?.pushViewController(LinksViewController(style: .insetGrouped), animated: true)
             default: return
             }
         }
