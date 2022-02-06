@@ -1,0 +1,1 @@
+git+https://github.com/elihwyma/PyAPNs2.git@5e4a938cd2e24249f6345aac27ba783defa5a63f

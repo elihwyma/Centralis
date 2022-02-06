@@ -15,6 +15,7 @@ enum DatabaseSchemaVersion: String {
     case version01001 = "1.0k"
     case version01002 = "1.0ke"
     case version01003 = "1.0ke5"
+    case version01004 = "1.0ke6"
 }
 
 final public class PersistenceDatabase {
@@ -26,6 +27,7 @@ final public class PersistenceDatabase {
     private(set) public lazy var homework: [String: Homework] = HomeworkDatabase.getHomework(database: database)
     private(set) public lazy var timetable: [Timetable.Week] = TimetableDatabase.getTimetable(database: database)
     private(set) public lazy var messages: [String: Message] = MessageDatabase.getMessages(database: database)
+    private(set) public lazy var documents: [String: Document] = [:]
     
     static let persistenceReload = Notification.Name(rawValue: "Centralis/PersistenceReload")
     
@@ -44,6 +46,7 @@ final public class PersistenceDatabase {
             homework = [:]
             timetable = []
             messages = [:]
+            documents = [:]
         }
         
         HomeworkDatabase.createTable(database: database)
@@ -649,5 +652,56 @@ final public class PersistenceDatabase {
             let messageFilter = messageTable.filter(id == message.id)
             _ = try? PersistenceDatabase.shared.database.run(messageFilter.update(read <- message.read))
         }
+    }
+    
+    struct DocumentDatabase {
+        static let id = Expression<String>("id")
+        static let last_updated = Expression<Date?>("last_updated")
+        static let filename = Expression<String>("filename")
+        static let summary = Expression<String>("summary")
+        static let type = Expression<String>("type")
+        static let documentTable = Table("Documents")
+        
+        static func createTable(database: Connection) {
+            _ = try? database.run(documentTable.create(ifNotExists: true,
+                                                       block: { tbd in
+                tbd.column(id, primaryKey: true)
+                tbd.column(last_updated)
+                tbd.column(filename)
+                tbd.column(summary)
+                tbd.column(type)
+            }))
+        }
+        
+        static func getDocuments(database: Connection) -> [String: Document] {
+            var documents = [String: Document]()
+            let query = documentTable.select(
+                id,
+                last_updated,
+                filename,
+                summary,
+                type
+            )
+            do {
+                let _documents: [Document] = try database.prepare(query).map { try $0.decode() }
+                _documents.forEach { documents[$0.id] = $0 }
+            } catch {}
+            return documents
+        }
+    
+        static func saveDocuments(documents: [Document], database: Connection) {
+            try? database.transaction {
+                for document in documents {
+                    _ = try? database.run(documentTable.insert(document))
+                }
+            }
+        }
+        
+        static func changes(documents: [Document]) {
+            let persistence = PersistenceDatabase.shared
+            let current = persistence.documents
+            
+        }
+        
     }
 }
