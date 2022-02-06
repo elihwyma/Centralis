@@ -14,7 +14,7 @@ final public class EdulinkManager {
     static var shared = EdulinkManager()
     public var authenticatedUser: AuthenticatedUser?
     public var pingQueue = DispatchQueue(label: "Centralis.PingQueue", qos: .background)
-    public var session: Session? {
+    public var session: Session? /*{
         didSet {
             Thread.mainBlock { [weak self] in
                 guard UIApplication.shared.applicationState == .active else { return }
@@ -33,7 +33,7 @@ final public class EdulinkManager {
         }
     }
     public var pingTimer: Timer?
-    
+    */
     public func signout() {
         try? PersistenceDatabase.shared.resetDatabase()
         NotificationManager.shared.removeAllNotifications()

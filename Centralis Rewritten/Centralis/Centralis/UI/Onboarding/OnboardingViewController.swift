@@ -50,6 +50,11 @@ class OnboardingViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
+        if let login = LoginManager.loadLogin().1 {
+            (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = CentralisTabBarController.shared
+            LoginMiddleware.shared.login(with: login)
+        }
+        
         super.viewDidLoad()
         
         view.backgroundColor = .backgroundColor

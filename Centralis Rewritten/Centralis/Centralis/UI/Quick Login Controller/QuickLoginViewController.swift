@@ -146,7 +146,7 @@ class QuickLoginViewController: ProcessingViewController {
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         LoginManager.login(login) { [weak self] error, authenticatedUser in
-            DispatchQueue.main.async {
+            Thread.mainBlock {
                 if authenticatedUser != nil {
                     if self != nil {
                         if PersistenceDatabase.shared.hasIndexed {

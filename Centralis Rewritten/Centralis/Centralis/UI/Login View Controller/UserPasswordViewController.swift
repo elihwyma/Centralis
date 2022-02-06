@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Evander
 
 class UserPasswordViewController: KeyboardAwareViewController {
     
@@ -89,7 +90,7 @@ class UserPasswordViewController: KeyboardAwareViewController {
             self.loginButton.isLoading = true
             LoginManager.login(login, _indexBypass: true) { [weak self] error, authenticatedUser in
                 guard let `self` = self else { return }
-                DispatchQueue.main.async {
+                Thread.mainBlock {
                     if let user = authenticatedUser {
                         let status = LoginManager.save(login: login)
                         if status != noErr {
