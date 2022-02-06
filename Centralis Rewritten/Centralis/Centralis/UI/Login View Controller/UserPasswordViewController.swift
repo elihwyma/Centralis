@@ -10,10 +10,21 @@ import Evander
 
 class UserPasswordViewController: KeyboardAwareViewController {
     
-    private let details: SchoolDetails
+    private let server: URL
+    private let schoolCode: String
+    private let schoolID: String
     
     init(details: SchoolDetails) {
-        self.details = details
+        self.server = details.server
+        self.schoolCode = details.code
+        self.schoolID = details.school_id
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    init(login: UserLogin) {
+        self.server = login.server
+        self.schoolCode = login.schoolCode
+        self.schoolID = login.schoolID
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -63,7 +74,7 @@ class UserPasswordViewController: KeyboardAwareViewController {
         return field
     }()
     
-    private var errorLabel: UILabel = {
+    public var errorLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .systemRed
@@ -86,7 +97,7 @@ class UserPasswordViewController: KeyboardAwareViewController {
                       return
             }
             self.loginButton.isLoading = true
-            let login = UserLogin(server: self.details.server, schoolID: self.details.school_id, schoolCode: self.details.code, username: username, password: password)
+            let login = UserLogin(server: self.server, schoolID: self.schoolID, schoolCode: self.schoolCode, username: username, password: password)
             self.loginButton.isLoading = true
             LoginManager.login(login, _indexBypass: true) { [weak self] error, authenticatedUser in
                 guard let `self` = self else { return }

@@ -21,8 +21,10 @@ public final class LoginMiddleware: ReachabilityChange {
             Thread.mainBlock {
                 if let error = error {
                     if error == "The username or password is incorrect. Please try typing your password again" {
+                        let viewController = UserPasswordViewController(login: login)
+                        viewController.errorLabel.text = error
                         EdulinkManager.shared.signout()
-                        (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = CentralisNavigationController(rootViewController: OnboardingViewController())
+                        (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = viewController
                     }
                     CentralisTabBarController.shared.set(title: "Failed to Connect", subtitle: error, progress: 0)
                 }
