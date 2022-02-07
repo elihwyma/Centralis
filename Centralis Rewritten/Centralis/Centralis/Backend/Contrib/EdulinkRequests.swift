@@ -11,6 +11,11 @@ import Evander
 public extension EvanderNetworking {
     
     class func request<T: Any>(url: URL, type: T.Type = [String: Any].self as! T.Type, method: String, params: [EdulinkParameters], timeout: Double, _ completion: @escaping ((Bool, Int?, Error?, T?) -> Void)) {
+        if url.absoluteString == "https://api.anamy.gay/centralis/demo/" {
+            let url = url.appendingPathComponent(method)
+            self.request(url: url, type: type, cache: .init(localCache: true, skipNetwork: false), completion)
+            return
+        }
         var url = URLComponents(string: url.absoluteString)!
         url.queryItems = [URLQueryItem(name: "method", value: method)]
         var request = URLRequest(url: url.url!, timeoutInterval: timeout)
@@ -25,6 +30,12 @@ public extension EvanderNetworking {
     class func request<T: Any>(type: T.Type = [String: Any].self as! T.Type, method: String, params: [EdulinkParameters], timeout: Double, headers: [String: String], _ completion: @escaping ((Bool, Int?, Error?, T?) -> Void)) {
         guard let authenticatedUser = EdulinkManager.shared.authenticatedUser,
               let server = authenticatedUser.server else { return completion(false, nil, "No User is Currently Logged in", nil) }
+        if server.absoluteString == "https://api.anamy.gay/centralis/demo/" {
+            let url = server.appendingPathComponent(method)
+            NSLog("[Centralis] Requesting url \(url)")
+            self.request(url: url, type: type, cache: .init(localCache: true, skipNetwork: false), completion)
+            return
+        }
         var url = URLComponents(string: server.absoluteString)!
         url.queryItems = [URLQueryItem(name: "method", value: method)]
         var request = URLRequest(url: url.url!, timeoutInterval: timeout)
@@ -47,6 +58,7 @@ public extension EvanderNetworking {
                 return completion(false, code, error?.localizedDescription ?? "Failed to Connect to EduLink", nil)
             }
             guard let result = dict["result"] as? [String: Any] else {
+                NSLog("[Centralis] Failed with dict \(dict)")
                 return completion(false, code, "Failed to Parse Response", nil)
             }
             if !(result["success"] as? Bool ?? false) {

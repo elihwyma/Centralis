@@ -105,6 +105,8 @@
 		E196621C27B0627700793007 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = E196621B27B0627700793007 /* SQLite */; };
 		E196621E27B0627A00793007 /* SerializedSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E196621D27B0627A00793007 /* SerializedSwift */; };
 		E196621F27B068A300793007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E17E14A9274C19B30090F822 /* Assets.xcassets */; };
+		E196622127B06DC900793007 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E196622027B06DC900793007 /* SceneDelegate.swift */; };
+		E196622227B06DD500793007 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E196622027B06DC900793007 /* SceneDelegate.swift */; };
 		E197455D2751298900EEB853 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197455C2751298900EEB853 /* OnboardingViewController.swift */; };
 		E197456027512B4800EEB853 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197455F27512B4800EEB853 /* Bundle+Extensions.swift */; };
 		E197456327512D6600EEB853 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197456227512D6600EEB853 /* ThemeManager.swift */; };
@@ -210,6 +212,7 @@
 		E19661D927B0611600793007 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E19661DB27B0611600793007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E19661DC27B0611600793007 /* CentralisAppClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CentralisAppClip.entitlements; sourceTree = "<group>"; };
+		E196622027B06DC900793007 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E197455C2751298900EEB853 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		E197455F27512B4800EEB853 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		E197456227512D6600EEB853 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
@@ -349,6 +352,7 @@
 				E197455A2751295E00EEB853 /* UI */,
 				E17E14BA274C1A700090F822 /* Backend */,
 				E17E14A0274C19B10090F822 /* AppDelegate.swift */,
+				E196622027B06DC900793007 /* SceneDelegate.swift */,
 				E17E14A9274C19B30090F822 /* Assets.xcassets */,
 				E17E14AB274C19B30090F822 /* LaunchScreen.storyboard */,
 				E17E14AE274C19B30090F822 /* Info.plist */,
@@ -674,6 +678,7 @@
 				E17E14C2274C1B2F0090F822 /* UserLogin.swift in Sources */,
 				E19621A6275BC2A50065B446 /* NSAttributedString+Extensions.swift in Sources */,
 				E10B95FD275160C000C8C12E /* URL+Extensions.swift in Sources */,
+				E196622127B06DC900793007 /* SceneDelegate.swift in Sources */,
 				E17E14CA274C211D0090F822 /* Transformers.swift in Sources */,
 				E1B8C18D27528FAA001FF9FD /* Date+Extensions.swift in Sources */,
 				E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */,
@@ -734,6 +739,7 @@
 				E19661F627B061F400793007 /* LoginMiddleware.swift in Sources */,
 				E196620627B0620500793007 /* UserPasswordViewController.swift in Sources */,
 				E19661E827B061EB00793007 /* Edulink_Timetable.swift in Sources */,
+				E196622227B06DD500793007 /* SceneDelegate.swift in Sources */,
 				E19661F427B061F100793007 /* AuthenticatedUser.swift in Sources */,
 				E196620327B0620100793007 /* LoadingButton.swift in Sources */,
 				E19661F727B061F600793007 /* Bundle+Extensions.swift in Sources */,
@@ -784,6 +790,7 @@
 /* Begin PBXTargetDependency section */
 		E19661DE27B0611600793007 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = E19661CA27B0611400793007 /* CentralisAppClip */;
 			targetProxy = E19661DD27B0611600793007 /* PBXContainerItemProxy */;
 		};
@@ -935,7 +942,7 @@
 				CLANG_TIDY_MISC_REDUNDANT_EXPRESSION = YES;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 845768945772;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
@@ -946,15 +953,14 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -975,7 +981,7 @@
 				CLANG_TIDY_MISC_REDUNDANT_EXPRESSION = YES;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 845768945772;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
@@ -986,17 +992,16 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LLVM_LTO = YES;
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -1014,7 +1019,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CentralisAppClip/CentralisAppClip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 845768945772;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -1032,7 +1037,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG APPCLIP";
@@ -1049,7 +1054,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CentralisAppClip/CentralisAppClip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 845768945772;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				GCC_PREPROCESSOR_DEFINITIONS = "APPCLIP=1";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1064,7 +1069,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APPCLIP;

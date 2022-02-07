@@ -10,11 +10,9 @@ import BackgroundTasks
 import UserNotifications
 import Evander
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    var window: UIWindow?
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         EvanderNetworking._cacheDirectory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.amywhile.centralis")!.appendingPathComponent("Library")
@@ -25,19 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if #available(iOS 15.0, *) {
             UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
         }
-        //try? PersistenceDatabase.shared.resetDatabase()
-        _ = PersistenceDatabase.shared.timetable
-        //EdulinkManager.shared.signout()
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-
-        if let login = LoginManager.loadLogin().1 {
-            window?.rootViewController = CentralisTabBarController.shared
-            LoginMiddleware.shared.login(with: login)
-        } else {
-            window?.rootViewController = CentralisNavigationController(rootViewController: OnboardingViewController())
-        }
-        window?.makeKeyAndVisible()
-        Message.setUnread()
         
         #if !APPCLIP
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
@@ -61,11 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     #endif
     
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        NotificationCenter.default.post(name: PersistenceDatabase.persistenceReload, object: nil)
-        LoginManager.reconnectCurrent()
-    }
-    
     func setRootViewController(_ vc: UIViewController, animated: Bool = true) {
         guard animated, let window = self.window else {
             self.window?.rootViewController = vc
@@ -81,5 +61,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                           animations: nil,
                           completion: nil)
     }
+}
+
+extension UIApplicationDelegate {
+    
+    var window: UIWindow? {
+        UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+    }
+        
 }
 

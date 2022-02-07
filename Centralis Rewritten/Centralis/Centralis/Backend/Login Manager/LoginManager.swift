@@ -107,17 +107,8 @@ public final class LoginManager {
     }
     
     public class func loadSchool(from code: String, _ completion: @escaping (String?, SchoolDetails?) -> Void) {
-        let url = URL(string: "https://provisioning.edulinkone.com")!
-        EvanderNetworking.edulinkDict(url: url, method: "School.FromCode", params: [.custom(key: "code", value: code)]) { _, _, error, result in
-            guard let result = result,
-                  let school = result["school"] as? [String: Any],
-                  let _server = school["server"] as? String,
-                  let server = URL(string: _server),
-                  let _school_id = school["school_id"] else {
-                return completion(error?.localizedDescription ?? "Unknown Error", nil)
-            }
-            let school_id = String(describing: _school_id)
-            EvanderNetworking.edulinkDict(url: server, method: "EduLink.SchoolDetails", params: [.custom(key: "establishment_id", value: school_id),
+        func getDetails(with id: String, url: URL) {
+            EvanderNetworking.edulinkDict(url: url, method: "EduLink.SchoolDetails", params: [.custom(key: "establishment_id", value: id),
                                                                                                  .custom(key: "from_app", value: false)]) { _, _, error, result in
                 guard let result = result,
                       let _establishment = result["establishment"] as? [String: Any],
@@ -130,8 +121,23 @@ public final class LoginManager {
                 } catch {
                     return completion(error.localizedDescription, nil)
                 }
-                completion(nil, SchoolDetails(server: server, school_id: school_id, code: code, establishment: establishment))
+                completion(nil, SchoolDetails(server: url, school_id: id, code: code, establishment: establishment))
             }
+        }
+        if code == "DemoSchool" {
+            return getDetails(with: "1", url: URL(string: "https://api.anamy.gay/centralis/demo/")!)
+        }
+        let url = URL(string: "https://provisioning.edulinkone.com")!
+        EvanderNetworking.edulinkDict(url: url, method: "School.FromCode", params: [.custom(key: "code", value: code)]) { _, _, error, result in
+            guard let result = result,
+                  let school = result["school"] as? [String: Any],
+                  let _server = school["server"] as? String,
+                  let server = URL(string: _server),
+                  let _school_id = school["school_id"] else {
+                return completion(error?.localizedDescription ?? "Unknown Error", nil)
+            }
+            let school_id = String(describing: _school_id)
+            getDetails(with: school_id, url: server)
         }
     }
         

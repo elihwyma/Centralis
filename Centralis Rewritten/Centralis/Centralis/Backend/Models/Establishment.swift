@@ -12,6 +12,7 @@ final public class Establishment: Serializable {
     
     @SerializedTransformable<Base64> var logo: Data?
     @Serialized var name: String
+    /*
     @Serialized var rooms: [Room]
     @Serialized var year_groups: [EdulinkStore]
     @Serialized var community_groups: [EdulinkStore]
@@ -53,6 +54,6 @@ final public class Establishment: Serializable {
         @Serialized var description: String
         
     }
-    
+    */
     required public init() {}
 }

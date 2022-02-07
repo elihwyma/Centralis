@@ -16,7 +16,7 @@ public class IDTransformer: Transformable {
     }
     
     public static func transformFromJSON(value: IDConverter?) -> String? {
-        return value?.value
+        value?.value ?? "-1"
     }
         
     public typealias From = IDConverter
@@ -60,8 +60,7 @@ public struct IDConverter: Codable, Equatable, Hashable {
             value = String(x)
             return
         }
-        let error = DecodingError.typeMismatch(IDConverter.self, .init(codingPath: decoder.codingPath, debugDescription: "Failed to Parse You Fuckers"))
-        throw error
+        value = "-1"
     }
     
     public init?(value: String?) {

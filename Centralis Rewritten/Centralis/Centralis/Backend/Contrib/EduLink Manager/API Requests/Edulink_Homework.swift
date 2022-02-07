@@ -12,13 +12,13 @@ import SerializedSwift
 public final class Homework: EdulinkBase {
     
     @SerializedTransformable<DateConverter> var available_date: Date?
-    @Serialized var completed: Bool
+    @Serialized(default: false) var completed: Bool
     @SerializedTransformable<DateConverter> var due_date: Date?
     @Serialized var description: String?
     @Serialized(default: "No Activity") var activity: String
-    @Serialized var source: String
-    @Serialized var set_by: String
-    @Serialized var subject: String
+    @Serialized(default: "EduLink") var source: String
+    @Serialized(default: "Unknown") var set_by: String
+    @Serialized(default: "Unknown") var subject: String
 
     public lazy var notificationState: NotificationState = {
         if !isCurrent {

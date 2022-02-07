@@ -21,7 +21,7 @@ final public class AuthenticatedUser: Serializable {
     @Serialized var personal_menu: [EdulinkStore]
     @Serialized var authtoken: String
     @Serialized(default: false) var can_create_messages: Bool
-    @Serialized var session: Session
+    @Serialized var session: Session?
  
     required public init() {}
     

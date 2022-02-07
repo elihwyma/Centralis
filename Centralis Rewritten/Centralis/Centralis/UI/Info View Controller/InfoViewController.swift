@@ -7,6 +7,9 @@
 
 import UIKit
 import Evander
+#if APPCLIP
+import StoreKit
+#endif
 
 class InfoViewController: BaseTableViewController {
     
@@ -19,18 +22,12 @@ class InfoViewController: BaseTableViewController {
     }
     
     private func _section(for section: Int) -> Section {
-        var buffer = 0
-        #if APPCLIP
-        if section == 0 {
-            return .fullApp
-        }
-        buffer++
-        #endif
-        switch section - buffer {
-        case 0: return .notifications
-        case 1: return .message
-        case 2: return .debug
-        case 3: return .account
+        switch section {
+        case 0: return .fullApp
+        case 1: return .notifications
+        case 2: return .message
+        case 3: return .debug
+        case 4: return .account
         default: fatalError()
         }
     }
@@ -40,14 +37,29 @@ class InfoViewController: BaseTableViewController {
 
         tableView.register(ClosureSwitchTableViewCell.self, forCellReuseIdentifier: "Centralis.ClosureSwitchTableViewCell")
         tableView.register(SettingsSwitchTableViewCell.self, forCellReuseIdentifier: "Centralis.SettingsSwitchTableViewCell")
-    }
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        var number = 4
+        
         #if APPCLIP
-        number++
+        displayOverlay()
         #endif
-        return number
+    }
+    
+    #if APPCLIP
+    func displayOverlay() {
+        return
+        guard let scene = UIApplication.shared.connectedScenes
+                .filter({$0.activationState == .foregroundActive})
+                .map({$0 as? UIWindowScene})
+                .compactMap({$0})
+                .first else { return }
+
+        let config = SKOverlay.AppClipConfiguration(position: .bottomRaised)
+        let overlay = SKOverlay(configuration: config)
+        overlay.present(in: scene)
+    }
+    #endif
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        5
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -113,7 +125,7 @@ class InfoViewController: BaseTableViewController {
             }
         case .fullApp:
             let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.DefaultCell")
-            cell.textLabel?.text = "Download"
+            cell.textLabel?.text = "Join"
             return cell
         }
     }
@@ -124,13 +136,13 @@ class InfoViewController: BaseTableViewController {
         case .account: return "Account"
         case .debug: return "Debug"
         case .message: return "Message Settings"
-        case .fullApp: return "Full App"
+        case .fullApp: return "Testflight"
         }
     }
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch _section(for: section) {
-        case .fullApp: return "Get the full app for the best experience!"
+        case .fullApp: return "Join the Testflight for the latest changes"
         default: return nil
         }
     }
