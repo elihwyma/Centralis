@@ -16,18 +16,14 @@ class InfoViewController: BaseTableViewController {
     private enum Section {
         case notifications
         case account
-        case debug
         case message
-        case fullApp
     }
     
     private func _section(for section: Int) -> Section {
         switch section {
-        case 0: return .fullApp
-        case 1: return .notifications
-        case 2: return .message
-        case 3: return .debug
-        case 4: return .account
+        case 0: return .notifications
+        case 1: return .message
+        case 2: return .account
         default: fatalError()
         }
     }
@@ -45,7 +41,6 @@ class InfoViewController: BaseTableViewController {
     
     #if APPCLIP
     func displayOverlay() {
-        return
         guard let scene = UIApplication.shared.connectedScenes
                 .filter({$0.activationState == .foregroundActive})
                 .map({$0 as? UIWindowScene})
@@ -59,16 +54,14 @@ class InfoViewController: BaseTableViewController {
     #endif
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        5
+        3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch _section(for: section) {
         case .notifications: return 3
         case .account: return 1
-        case .debug: return 1
         case .message: return 1
-        case .fullApp: return 1
         }
     }
     
@@ -110,10 +103,6 @@ class InfoViewController: BaseTableViewController {
             let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.DefaultCell")
             cell.textLabel?.text = "Sign Out"
             return cell
-        case .debug:
-            let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.DefaultCell")
-            cell.textLabel?.text = "Force Refresh"
-            return cell
         case .message:
             let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.SettingsSwitchTableViewCell") as! SettingsSwitchTableViewCell
             switch indexPath.row {
@@ -123,10 +112,6 @@ class InfoViewController: BaseTableViewController {
                 return cell
             default: fatalError()
             }
-        case .fullApp:
-            let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.DefaultCell")
-            cell.textLabel?.text = "Join"
-            return cell
         }
     }
     
@@ -134,19 +119,10 @@ class InfoViewController: BaseTableViewController {
         switch _section(for: section) {
         case .notifications: return "Notification Settings"
         case .account: return "Account"
-        case .debug: return "Debug"
         case .message: return "Message Settings"
-        case .fullApp: return "Testflight"
         }
     }
-    
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        switch _section(for: section) {
-        case .fullApp: return "Join the Testflight for the latest changes"
-        default: return nil
-        }
-    }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch _section(for: indexPath.section) {
@@ -158,10 +134,6 @@ class InfoViewController: BaseTableViewController {
                 CentralisTabBarController.shared.selectedIndex = 0
             default: return
             }
-        case .debug:
-            PersistenceDatabase.backgroundRefresh {}
-        case .fullApp:
-            UIApplication.shared.open(URL(string: "https://testflight.apple.com/join/DNeTt2Q4")!)
         default: return
         }
     }
