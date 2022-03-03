@@ -110,6 +110,10 @@
 		E197455D2751298900EEB853 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197455C2751298900EEB853 /* OnboardingViewController.swift */; };
 		E197456027512B4800EEB853 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197455F27512B4800EEB853 /* Bundle+Extensions.swift */; };
 		E197456327512D6600EEB853 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197456227512D6600EEB853 /* ThemeManager.swift */; };
+		E19A428027CFA24A0053435F /* Edulink_Catering.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19A427F27CFA24A0053435F /* Edulink_Catering.swift */; };
+		E19A428127CFA24B0053435F /* Edulink_Catering.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19A427F27CFA24A0053435F /* Edulink_Catering.swift */; };
+		E19A428427D0F1010053435F /* CateringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19A428327D0F1010053435F /* CateringViewController.swift */; };
+		E19A428527D0F1020053435F /* CateringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19A428327D0F1010053435F /* CateringViewController.swift */; };
 		E19D9FAD27A71732005C8398 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19D9FAC27A71732005C8398 /* Reachability.swift */; };
 		E1A23523277F58CF004563C9 /* HomeworkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A23522277F58CF004563C9 /* HomeworkCell.swift */; };
 		E1A23525277F5D24004563C9 /* TimetableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A23524277F5D24004563C9 /* TimetableCell.swift */; };
@@ -216,6 +220,8 @@
 		E197455C2751298900EEB853 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		E197455F27512B4800EEB853 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		E197456227512D6600EEB853 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		E19A427F27CFA24A0053435F /* Edulink_Catering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Catering.swift; sourceTree = "<group>"; };
+		E19A428327D0F1010053435F /* CateringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CateringViewController.swift; sourceTree = "<group>"; };
 		E19D9FAC27A71732005C8398 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		E1A23522277F58CF004563C9 /* HomeworkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkCell.swift; sourceTree = "<group>"; };
 		E1A23524277F5D24004563C9 /* TimetableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableCell.swift; sourceTree = "<group>"; };
@@ -468,6 +474,7 @@
 		E197455A2751295E00EEB853 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				E19A428227D0F0C70053435F /* Catering View Controller */,
 				E19661A827B0442400793007 /* Links View Controller */,
 				E196618427B02C5900793007 /* Documents View Controller */,
 				E183B1F32791A83A004C6C65 /* MessageViewController */,
@@ -519,6 +526,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		E19A428227D0F0C70053435F /* Catering View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E19A428327D0F1010053435F /* CateringViewController.swift */,
+			);
+			path = "Catering View Controller";
+			sourceTree = "<group>";
+		};
 		E1A23526277F6FC8004563C9 /* Timetable View Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,6 +560,7 @@
 				E1F6BB9A278E102500E7A360 /* Edulink_Photos.swift */,
 				E150BC2C27AD5F84001D34AD /* Edulink_Documents.swift */,
 				E19661A627B03AA700793007 /* Edulink_Links.swift */,
+				E19A427F27CFA24A0053435F /* Edulink_Catering.swift */,
 			);
 			path = "API Requests";
 			sourceTree = "<group>";
@@ -674,6 +690,7 @@
 				E19621B1275D05EB0065B446 /* SettingsSwitchTableViewCell.swift in Sources */,
 				E10B960A2751865E00C8C12E /* BaseSubtitleCell.swift in Sources */,
 				E10B95EE27513AD900C8C12E /* LoadingButton.swift in Sources */,
+				E19A428027CFA24A0053435F /* Edulink_Catering.swift in Sources */,
 				E17E14CC274C25010090F822 /* EdulinkBase.swift in Sources */,
 				E17E14C2274C1B2F0090F822 /* UserLogin.swift in Sources */,
 				E19621A6275BC2A50065B446 /* NSAttributedString+Extensions.swift in Sources */,
@@ -717,6 +734,7 @@
 				E12D63C7275F71F0008DAB00 /* Edulink_Timetable.swift in Sources */,
 				E10B960E27518B0800C8C12E /* QuickLoginViewController.swift in Sources */,
 				E1A23525277F5D24004563C9 /* TimetableCell.swift in Sources */,
+				E19A428427D0F1010053435F /* CateringViewController.swift in Sources */,
 				E1B92690278D96D7001EEDAC /* MessagesViewController.swift in Sources */,
 				E183B1FB2791BA20004C6C65 /* MessageViewController.swift in Sources */,
 				E196620927B0620E00793007 /* CentralisTabBarController.swift in Sources */,
@@ -735,6 +753,7 @@
 				E19661EE27B061F100793007 /* SchoolDetails.swift in Sources */,
 				E196620827B0620D00793007 /* CentralisTabBarController.swift in Sources */,
 				E196620D27B0621500793007 /* HomeworkCell.swift in Sources */,
+				E19A428127CFA24B0053435F /* Edulink_Catering.swift in Sources */,
 				E196620727B0620900793007 /* HomeViewController.swift in Sources */,
 				E19661F627B061F400793007 /* LoginMiddleware.swift in Sources */,
 				E196620627B0620500793007 /* UserPasswordViewController.swift in Sources */,
@@ -778,6 +797,7 @@
 				E19661E527B061E300793007 /* EdulinkManager.swift in Sources */,
 				E196620127B0620100793007 /* KeyboardAwareViewController.swift in Sources */,
 				E19661F527B061F400793007 /* LoginManager.swift in Sources */,
+				E19A428527D0F1020053435F /* CateringViewController.swift in Sources */,
 				E19661FB27B061F900793007 /* NotificationManager.swift in Sources */,
 				E19661EA27B061EB00793007 /* Edulink_Photos.swift in Sources */,
 				E196621327B0623400793007 /* InfoViewController.swift in Sources */,
@@ -942,7 +962,7 @@
 				CLANG_TIDY_MISC_REDUNDANT_EXPRESSION = YES;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
@@ -981,7 +1001,7 @@
 				CLANG_TIDY_MISC_REDUNDANT_EXPRESSION = YES;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
@@ -1019,7 +1039,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CentralisAppClip/CentralisAppClip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -1054,7 +1074,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CentralisAppClip/CentralisAppClip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				GCC_PREPROCESSOR_DEFINITIONS = "APPCLIP=1";
 				GENERATE_INFOPLIST_FILE = YES;

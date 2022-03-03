@@ -50,6 +50,9 @@ class HomeViewController: BaseTableViewController {
             }
         }
         if reload {
+            tableView.reloadSections(IndexSet(integer: 2), with: .automatic)
+        }
+        if reload {
             tableView.endUpdates()
         }
     }
@@ -74,7 +77,7 @@ class HomeViewController: BaseTableViewController {
         switch section {
         case 0: return homework.count + 1
         case 1: return (today?.periods.count ?? 0) + 1
-        case 2: return 2
+        case 2: return 3
         default: return 0
         }
     }
@@ -123,6 +126,8 @@ class HomeViewController: BaseTableViewController {
                 cell.textLabel?.text = "Documents"
             case 1:
                 cell.textLabel?.text = "Links"
+            case 2:
+                cell.textLabel?.text = "Catering - \(PersistenceDatabase.shared.catering.stringBalance)"
             default: return cell
             }
             return cell
@@ -147,6 +152,8 @@ class HomeViewController: BaseTableViewController {
                 navigationController?.pushViewController(DocumentsViewController(style: .insetGrouped), animated: true)
             case 1:
                 navigationController?.pushViewController(LinksViewController(style: .insetGrouped), animated: true)
+            case 2:
+                navigationController?.pushViewController(CateringViewController(style: .insetGrouped), animated: true)
             default: return
             }
         }

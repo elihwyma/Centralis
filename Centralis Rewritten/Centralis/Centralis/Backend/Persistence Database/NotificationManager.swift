@@ -153,4 +153,12 @@ final public class NotificationManager {
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         center.add(UNNotificationRequest(identifier: "\(message.id ?? "-1")-Message-$NewMessage", content: content, trigger: trigger))
     }
+    
+    public func notifyLowBalance(balance: String) {
+        let content = UNMutableNotificationContent()
+        content.title = "Low Catering Balance"
+        content.subtitle = "Your balance is currently \(balance)"
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        center.add(UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger))
+    }
 }

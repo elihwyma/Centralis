@@ -21,6 +21,7 @@ enum DatabaseSchemaVersion: String {
 final public class PersistenceDatabase {
     
     static private (set) public var shared = PersistenceDatabase()
+    static let domainDefaults = UserDefaults(suiteName: "group.amywhile.centralis")!
     private var database: Connection
     private let databaseFolder = EvanderNetworking._cacheDirectory.appendingPathComponent("Database")
     
@@ -29,6 +30,7 @@ final public class PersistenceDatabase {
     private(set) public lazy var messages: [String: Message] = MessageDatabase.getMessages(database: database)
     private(set) public lazy var documents: [String: Document] = DocumentDatabase.getDocuments(database: database)
     private(set) public lazy var links: [String: Link] = LinkDatabase.getLinks(database: database)
+    private(set) public lazy var catering: Catering = CateringDatabase.getCatering(database: database)
     
     static let persistenceReload = Notification.Name(rawValue: "Centralis/PersistenceReload")
     
@@ -55,6 +57,7 @@ final public class PersistenceDatabase {
         MessageDatabase.createTable(database: database)
         LinkDatabase.createTable(database: database)
         DocumentDatabase.createTable(database: database)
+        CateringDatabase.createTable(database: database)
     }
 
     public var hasIndexed: Bool {
@@ -80,6 +83,7 @@ final public class PersistenceDatabase {
         try? PersistenceDatabase.shared.resetDatabase()
         let `self` = PersistenceDatabase.shared
         let loadGroup = DispatchGroup()
+        loadGroup.enter()
         loadGroup.enter()
         loadGroup.enter()
         loadGroup.enter()
@@ -123,6 +127,12 @@ final public class PersistenceDatabase {
             }
             loadGroup.leave()
         }
+        Catering.updateCatering { error, catering in
+            guard catering != nil else {
+                return completion(error ?? "Unknown Error", false)
+            }
+            loadGroup.leave()
+        }
         loadGroup.notify(queue: .main) { [weak self] in
             self?.hasIndexed = true
             CentralisTabBarController.shared.setExpanded(false)
@@ -136,7 +146,7 @@ final public class PersistenceDatabase {
         
         let loadGroup = DispatchGroup()
         
-        let numberOfTasks = 5
+        let numberOfTasks = 6
         for _ in 1...numberOfTasks {
             loadGroup.enter()
         }
@@ -164,6 +174,9 @@ final public class PersistenceDatabase {
             completeTask(with: error)
         }
         Link.updateLinks { error, _ in
+            completeTask(with: error)
+        }
+        Catering.updateCatering { error, _ in
             completeTask(with: error)
         }
         loadGroup.notify(queue: .global(qos: .background)) {
@@ -781,6 +794,67 @@ final public class PersistenceDatabase {
         }
         
     }
+    
+    struct CateringDatabase {
+        static let date = Expression<Date>("date")
+        static let items = Expression<Data>("items")
+        static let transactionTable = Table("Transactions")
+        
+        static func createTable(database: Connection) {
+            _ = try? database.run(transactionTable.create(ifNotExists: true,
+                                        block: { tbd in
+                tbd.column(date, primaryKey: true)
+                tbd.column(items)
+            }))
+        }
+        
+        static func getCatering(database: Connection) -> Catering {
+            let balance = PersistenceDatabase.domainDefaults.double(forKey: "CateringBalance")
+            let query = transactionTable.select(
+                date,
+                items
+            )
+            let decoder = JSONDecoder()
+            var transactions = [Catering.Transaction]()
+            do {
+                for transactionStub in try database.prepare(query) {
+                    let date = transactionStub[date]
+                    let data = transactionStub[items]
+                    let items = try decoder.decode([Catering.Transaction.Item].self, from: data)
+                    let transaction = Catering.Transaction(date: date, items: items)
+                    transactions.append(transaction)
+                }
+            } catch {}
+            return .init(balance: balance, transactions: transactions)
+        }
+        
+        static func saveCatering(catering: Catering) {
+            PersistenceDatabase.domainDefaults.set(catering.balance, forKey: "CateringBalance")
+            let shared = PersistenceDatabase.shared
+            let old = shared.catering
+            let database = shared.database
+            let oldDates = old.transactions.map { $0.date! }
+            
+            let encoder = JSONEncoder()
+            try? database.transaction {
+                for transaction in catering.transactions where !oldDates.contains(transaction.date!) {
+                    do {
+                        let data = try encoder.encode(transaction.items)
+                        _ = try? database.run(transactionTable.insert(
+                            date <- transaction.date!,
+                            items <- data
+                        ))
+                    } catch {}
+                }
+            }
+            shared.catering = catering
+            
+            if old.balance.sign == .plus && catering.balance.sign == .minus {
+                NotificationManager.shared.notifyLowBalance(balance: catering.stringBalance)
+            }
+        }
+    }
+
 }
 
 extension URL: Value {
