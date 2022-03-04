@@ -37,7 +37,7 @@ public final class Catering: Serializable {
             @Serialized var price: Double
             
             public var stringPrice: String {
-                String(format: "£%.2f", price)
+                String(format: "£%.2f", abs(price)) 
             }
         }
         

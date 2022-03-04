@@ -21,7 +21,7 @@ class CateringViewController: BaseTableViewController {
 
     private func index(_ reload: Bool = true) {
         if reload {
-            tableView.beginUpdates()
+            //tableView.beginUpdates()
         }
         
         let catering = PersistenceDatabase.shared.catering
@@ -32,7 +32,9 @@ class CateringViewController: BaseTableViewController {
         if catering.transactions != self.catering.transactions {
             self.catering = catering
             if reload {
+                /*
                 let newCount = catering.transactions.isEmpty ? 1 : catering.transactions.count
+                NSLog("[Centralis] \(originalCount) \(newCount)")
                 if originalCount == newCount {
                     tableView.reloadSections(IndexSet(integersIn: 0..<newCount), with: .automatic)
                 } else if originalCount > newCount {
@@ -43,10 +45,12 @@ class CateringViewController: BaseTableViewController {
                     tableView.insertSections(IndexSet(integersIn: originalCount..<newCount), with: .automatic)
                     tableView.reloadSections(IndexSet(integersIn: 0..<diff), with: .automatic)
                 }
+                 */
+                tableView.reloadData()
             }
         }
         if reload {
-            tableView.endUpdates()
+            //tableView.endUpdates()
         }
     }
     
@@ -71,7 +75,7 @@ class CateringViewController: BaseTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        catering.transactions.isEmpty ? 1 : catering.transactions[section].items.count + 1
+        catering.transactions.isEmpty ? 1 : catering.transactions[section].items.count
     }
     
     private let dateFormatter: DateFormatter = {
@@ -79,21 +83,20 @@ class CateringViewController: BaseTableViewController {
         formatter.dateFormat = "HH:mm E, d MMM y"
         return formatter
     }()
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        catering.transactions.isEmpty ? nil : dateFormatter.string(from: catering.transactions[section].date!)
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if catering.transactions.isEmpty {
-            let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Catering.DateCell")
+            let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Catering.NoTransactions")
             cell.isUserInteractionEnabled = true
             cell.textLabel?.text = "No Transactions"
             return cell
-        } else if indexPath.row == 0 {
-            let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Catering.DateCell")
-            cell.textLabel?.text = dateFormatter.string(from: catering.transactions[indexPath.section].date!)
-            cell.isUserInteractionEnabled = false
-            return cell
         } else {
             let cell = self.reusableCell(withStyle: .value1, reuseIdentifier: "Catering.ItemCell")
-            let item = catering.transactions[indexPath.section].items[indexPath.row - 1]
+            let item = catering.transactions[indexPath.section].items[indexPath.row]
             cell.textLabel?.text = item.item
             cell.detailTextLabel?.text = item.stringPrice
             cell.isUserInteractionEnabled = false
