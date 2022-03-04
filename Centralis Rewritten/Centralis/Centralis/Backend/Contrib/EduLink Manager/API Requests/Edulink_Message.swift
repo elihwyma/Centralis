@@ -97,6 +97,13 @@ public final class Message: EdulinkBase {
                 self.read = Date()
                 PersistenceDatabase.MessageDatabase.updateReadStatus(message: self)
                 Self.setUnread()
+                Thread.mainBlock {
+                    (CentralisTabBarController.shared.messagesViewController.viewControllers[0] as! MessagesViewController).refreshReadState()
+                    let unread = Self.unread
+                    let unreadString: String? = unread == 0 ? nil : "\(unread)"
+                    CentralisTabBarController.shared.messagesViewController.tabBarItem.badgeValue = unreadString
+                    UIApplication.shared.applicationIconBadgeNumber = unread
+                }
                 completion()
             }
         }
@@ -106,6 +113,10 @@ public final class Message: EdulinkBase {
         var messages = Array(PersistenceDatabase.shared.messages.values)
         messages = messages.filter { $0.read == nil }
         return messages.count
+    }
+    
+    public var unread: Int {
+        Self.unread
     }
     
     public class func setUnread() {

@@ -40,7 +40,7 @@ class MessagesViewController: BaseTableViewController {
         }
     }
     
-    private func refreshReadState() {
+    public func refreshReadState() {
         for cell in self.tableView.visibleCells as? [MessageTableViewCell] ?? [] {
             guard let message = cell.message else { continue }
             cell.unreadView.backgroundColor = message.read == nil ? .tintColor : .clear
@@ -48,11 +48,7 @@ class MessagesViewController: BaseTableViewController {
     }
     
     @objc private func markAllAsRead() {
-        Message.markAllAsRead { [weak self] in
-            Thread.mainBlock {
-                self?.refreshReadState()
-            }
-        }
+        Message.markAllAsRead {}
     }
     
     override func viewWillAppear(_ animated: Bool) {
