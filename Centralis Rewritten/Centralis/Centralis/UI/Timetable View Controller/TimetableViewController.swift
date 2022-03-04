@@ -11,6 +11,7 @@ class TimetableViewController: BaseTableViewController {
     
     public var weeks = Timetable.orderWeeks(PersistenceDatabase.shared.timetable)
     public lazy var days = [Timetable.Day]()
+    private var selectedName: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,10 @@ class TimetableViewController: BaseTableViewController {
     private func index(_ reload: Bool = true) {
         let weeks = PersistenceDatabase.shared.timetable
         self.weeks = Timetable.orderWeeks(weeks)
-        if let (week, _) = Timetable.getCurrent(weeks) {
+        if let selectedName = selectedName,
+           let selectedWeek = self.weeks.first(where: { $0.name == selectedName }){
+            select(week: selectedWeek)
+        } else if let (week, _) = Timetable.getCurrent(weeks) {
             if title != week.name {
                 self.title = week.name
             }
@@ -67,6 +71,7 @@ class TimetableViewController: BaseTableViewController {
         for week in weeks {
             alert.addAction(UIAlertAction(title: week.name, style: .default, handler: { [weak self] _ in
                 guard let self = self else { return }
+                self.selectedName = week.name
                 self.select(week: week)
             }))
         }
