@@ -12,8 +12,8 @@ import SwiftSoup
 
 let SCHOOLUSER = "calday"
 let SCHOOLPASSWORD = "matrix"
-let USERNAME = "2073"
-let PASSWORD = "hgc"
+let USERNAME = "2112"
+let PASSWORD = "liw"
 
 class ViewController: UIViewController {
     
@@ -75,6 +75,22 @@ class ViewController: UIViewController {
             let text = try p.text()
             
             parsedTasks.append((text, link))
+        }
+        return parsedTasks
+    }
+    
+    func getPrevious(from document: Document) throws -> [(String, String, Date, Int)] {
+        var parsedTasks: [(String, String, Date, Int)] = []
+        let tasks = try document.select("div").filter { $0.hasClass("accordion-group accordion-blue") }
+        for task in tasks {
+            let dateCompleted = Int(try task.attr("date_completed")) ?? 0
+            let percent = Int(try task.attr("percent")) ?? 0
+            let topic = try task.attr("topic")
+            guard let linkButton = try task.select("div").last(where: { (try? $0.attr("class")) == "portal-button" }) else { continue }
+            let linkButtonHref = try linkButton.select("a")
+            let link = try linkButtonHref.attr("href")
+            
+            parsedTasks.append((topic, link, Date(timeIntervalSince1970: TimeInterval(dateCompleted)), percent))
         }
         return parsedTasks
     }
@@ -148,22 +164,35 @@ class ViewController: UIViewController {
                     NSLog("[*] Logged into User")
                     guard let doc: Document = try? SwiftSoup.parse(str) else { return completion("Failed to parse HTML") }
                     guard let parsedTasks = try? self.getHomework(from: doc) else { return completion("Failed to get tasks") }
-                    guard !parsedTasks.isEmpty else { return completion("No Current Set Tasks") }
-                    var index = 0
-                    func doTask() {
-                        self.completeTask(task: parsedTasks[index]) { error in
-                            if let error = error {
-                                NSLog("[x] Error when completion: \(error)")
-                            } else {
-                                index++
-                                if index == parsedTasks.count {
-                                    return
+                    
+                    NSLog("[*] Getting list of previous tasks")
+                    RequestsHandler.request(url: "https://app.mymaths.co.uk/myportal/student/my_results", type: Data.self, method: "GET", headers: myMathsHeaders) { one, two, three, data in
+                        print("\(one) \(two) \(three) \(data)")
+                        guard let data = data else { return }
+                        let str = String(decoding: data, as: UTF8.self)
+                        Thread.mainBlock {
+                            self.webView.loadHTMLString(str, baseURL: nil)
+                        }
+                        guard let doc: Document = try? SwiftSoup.parse(str) else { return completion("Failed to parse HTML") }
+                        guard let previousTasks = try? self.getPrevious(from: doc) else { return completion("Failed to get previous tasks") }
+                        print(previousTasks)
+                        guard !parsedTasks.isEmpty else { return completion("No Current Set Tasks") }
+                        var index = 0
+                        func doTask() {
+                            self.completeTask(task: parsedTasks[index]) { error in
+                                if let error = error {
+                                    NSLog("[x] Error when completion: \(error)")
+                                } else {
+                                    index++
+                                    if index == parsedTasks.count {
+                                        return
+                                    }
+                                    doTask()
                                 }
-                                doTask()
                             }
                         }
+                        // doTask()
                     }
-                    doTask()
                 }
             }
         }
