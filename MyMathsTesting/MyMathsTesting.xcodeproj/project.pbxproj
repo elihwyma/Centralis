@@ -14,7 +14,6 @@
 		E1B5197727A9A968001E6C43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1B5197627A9A968001E6C43 /* Assets.xcassets */; };
 		E1B5197A27A9A968001E6C43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1B5197827A9A968001E6C43 /* LaunchScreen.storyboard */; };
 		E1B5198327A9A9A9001E6C43 /* Evander in Frameworks */ = {isa = PBXBuildFile; productRef = E1B5198227A9A9A9001E6C43 /* Evander */; };
-		E1B5198627A9B9B9001E6C43 /* ReqestsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B5198527A9B9B9001E6C43 /* ReqestsHandler.swift */; };
 		E1B5198927A9C479001E6C43 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = E1B5198827A9C479001E6C43 /* SwiftSoup */; };
 /* End PBXBuildFile section */
 
@@ -163,7 +162,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1B5198627A9B9B9001E6C43 /* ReqestsHandler.swift in Sources */,
 				E1B5197227A9A966001E6C43 /* ViewController.swift in Sources */,
 				E1B5196E27A9A966001E6C43 /* AppDelegate.swift in Sources */,
 				E1B5197027A9A966001E6C43 /* SceneDelegate.swift in Sources */,

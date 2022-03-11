@@ -114,7 +114,7 @@ class ViewController: UIViewController {
         HTTPCookieStorage.shared.cookies?.forEach(HTTPCookieStorage.shared.deleteCookie)
         var myMathsHeaders = genericMyMathsHeaders
         NSLog("[*] Attempting Login")
-        RequestsHandler.request(url: "https://login.mymaths.co.uk/login", type: Data.self, method: "GET", headers: myMathsHeaders) { one, two, three, data in
+        EvanderNetworking.request(url: "https://login.mymaths.co.uk/login", type: Data.self, method: "GET", headers: myMathsHeaders) { one, two, three, data in
             guard let data = data else { return }
             let str = String(decoding: data, as: UTF8.self)
             
@@ -129,7 +129,7 @@ class ViewController: UIViewController {
                 "commit": "Log+in"
             ]
             
-            RequestsHandler.request(url: "https://login.mymaths.co.uk/login", type: Data.self, method: "POST", headers: myMathsHeaders, form: formData) { one, two, three, data in
+            EvanderNetworking.request(url: "https://login.mymaths.co.uk/login", type: Data.self, method: "POST", headers: myMathsHeaders, form: formData) { one, two, three, data in
                 guard let data = data else { return }
                 let str = String(decoding: data, as: UTF8.self)
                 if str.contains("Your username or password doesn&#39;t look right. Please try again.") {
@@ -151,7 +151,7 @@ class ViewController: UIViewController {
 
                 myMathsHeaders["Referer"] = "https://app.mymaths.co.uk/myportal/library/9"
                 myMathsHeaders.removeValue(forKey: "TE")
-                RequestsHandler.request(url: "https://app.mymaths.co.uk/myportal/student/authenticate", type: Data.self, method: "POST", headers: myMathsHeaders, form: formData) { one, two, three, data in
+                EvanderNetworking.request(url: "https://app.mymaths.co.uk/myportal/student/authenticate", type: Data.self, method: "POST", headers: myMathsHeaders, form: formData) { one, two, three, data in
                     guard let data = data else { return }
                     let str = String(decoding: data, as: UTF8.self)
                     Thread.mainBlock {
@@ -166,7 +166,7 @@ class ViewController: UIViewController {
                     guard let parsedTasks = try? self.getHomework(from: doc) else { return completion("Failed to get tasks") }
                     
                     NSLog("[*] Getting list of previous tasks")
-                    RequestsHandler.request(url: "https://app.mymaths.co.uk/myportal/student/my_results", type: Data.self, method: "GET", headers: myMathsHeaders) { one, two, three, data in
+                    EvanderNetworking.request(url: "https://app.mymaths.co.uk/myportal/student/my_results", type: Data.self, method: "GET", headers: myMathsHeaders) { one, two, three, data in
                         print("\(one) \(two) \(three) \(data)")
                         guard let data = data else { return }
                         let str = String(decoding: data, as: UTF8.self)
@@ -202,7 +202,7 @@ class ViewController: UIViewController {
         var myMathsHeaders = genericMyMathsHeaders
         NSLog("[*] Attempting Task \(task.0)")
         myMathsHeaders["Referer"] = "https://app.mymaths.co.uk/myportal/student/my_homework"
-        RequestsHandler.request(url: "https://app.mymaths.co.uk\(task.1)", type: Data.self, headers: myMathsHeaders) { one, two, three, data in
+        EvanderNetworking.request(url: "https://app.mymaths.co.uk\(task.1)", type: Data.self, headers: myMathsHeaders) { one, two, three, data in
             guard let data = data else { return }
             let str = String(decoding: data, as: UTF8.self)
             Thread.mainBlock {
@@ -225,7 +225,7 @@ class ViewController: UIViewController {
                 "authToken": ""
             ]
             NSLog("[*] Loaded Task")
-            RequestsHandler.request(url: "https://app.mymaths.co.uk/api/legacy/auth", type: Data.self, method: "POST", headers: myMathsHeaders, form: formData) { one, two, three, data in
+            EvanderNetworking.request(url: "https://app.mymaths.co.uk/api/legacy/auth", type: Data.self, method: "POST", headers: myMathsHeaders, form: formData) { one, two, three, data in
                 guard let data = data else { return }
                 let str = String(decoding: data, as: UTF8.self)
                 
@@ -236,14 +236,14 @@ class ViewController: UIViewController {
                     "realID": _realID
                 ]
                 NSLog("[*] Authenticated Task")
-                RequestsHandler.request(url: "https://app.mymaths.co.uk/api/legacy/launch", type: Data.self, method: "POST", headers: myMathsHeaders, form: formData) { one, two, three, data in
+                EvanderNetworking.request(url: "https://app.mymaths.co.uk/api/legacy/launch", type: Data.self, method: "POST", headers: myMathsHeaders, form: formData) { one, two, three, data in
                     guard let data = data else { return }
                     let str = String(decoding: data, as: UTF8.self)
                     
                     var connectionData = Self.parseResponseForm(str)
                     guard connectionData["login"] == "1" else { return completion("Not Logged in???? 1") }
                     NSLog("[*] Launched Task")
-                    RequestsHandler.request(url: "https://contentapi.mymaths.co.uk/partial_save", type: Data.self, method: "OPTIONS", headers: myMathsHeaders) { one, two, three, data in
+                    EvanderNetworking.request(url: "https://contentapi.mymaths.co.uk/partial_save", type: Data.self, method: "OPTIONS", headers: myMathsHeaders) { one, two, three, data in
                         guard two == 204 else { return }
                         
                         let formData: [String: String] = [
@@ -252,7 +252,7 @@ class ViewController: UIViewController {
                             "authToken": connectionData["authToken"] ?? "No Auth"
                         ]
                         NSLog("[*] Created Session")
-                        RequestsHandler.request(url: "https://app.mymaths.co.uk/api/legacy/auth", type: Data.self, method: "POST", headers: myMathsHeaders, form: formData) { one, two, three, data in
+                        EvanderNetworking.request(url: "https://app.mymaths.co.uk/api/legacy/auth", type: Data.self, method: "POST", headers: myMathsHeaders, form: formData) { one, two, three, data in
                             guard let data = data else { return }
                             let str = String(decoding: data, as: UTF8.self)
                             connectionData = Self.parseResponseForm(str)
@@ -280,7 +280,7 @@ class ViewController: UIViewController {
                                 "sCode": "\(sCode)",
                                 "studentID": connectionData["studentID"] ?? "No ID"
                             ]
-                            RequestsHandler.request(url: "https://app.mymaths.co.uk/api/legacy/save/mark", type: Data.self, method: "POST", headers: myMathsHeaders, form: formData) { one, two, three, data in
+                            EvanderNetworking.request(url: "https://app.mymaths.co.uk/api/legacy/save/mark", type: Data.self, method: "POST", headers: myMathsHeaders, form: formData) { one, two, three, data in
                                 guard two == 200 else { return completion("Failed to set mark") }
                                 NSLog("[*] Successfully got full marks on \(task.0)")
                                 completion(nil)
