@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,8 @@
 		E10B961127518EFF00C8C12E /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = E10B961027518EFF00C8C12E /* SQLite */; };
 		E10B96132751A35500C8C12E /* Edulink_Homework.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B96122751A35500C8C12E /* Edulink_Homework.swift */; };
 		E10B96162752605E00C8C12E /* PersistenceDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B96152752605E00C8C12E /* PersistenceDatabase.swift */; };
+		E12993ED27DB908E007AC00B /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = E12993EC27DB908E007AC00B /* SwiftSoup */; };
+		E12993EF27DB909A007AC00B /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = E12993EE27DB909A007AC00B /* SwiftSoup */; };
 		E12D63C7275F71F0008DAB00 /* Edulink_Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12D63C6275F71F0008DAB00 /* Edulink_Timetable.swift */; };
 		E150BC2D27AD5F84001D34AD /* Edulink_Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150BC2C27AD5F84001D34AD /* Edulink_Documents.swift */; };
 		E15B5BCC275306720003A56D /* BasicInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15B5BCA275306720003A56D /* BasicInfoCell.swift */; };
@@ -114,6 +116,8 @@
 		E19A428127CFA24B0053435F /* Edulink_Catering.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19A427F27CFA24A0053435F /* Edulink_Catering.swift */; };
 		E19A428427D0F1010053435F /* CateringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19A428327D0F1010053435F /* CateringViewController.swift */; };
 		E19A428527D0F1020053435F /* CateringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19A428327D0F1010053435F /* CateringViewController.swift */; };
+		E19A429C27DB91200053435F /* MyMaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19A429B27DB91200053435F /* MyMaths.swift */; };
+		E19A429D27DB91200053435F /* MyMaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19A429B27DB91200053435F /* MyMaths.swift */; };
 		E19D9FAD27A71732005C8398 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19D9FAC27A71732005C8398 /* Reachability.swift */; };
 		E1A23523277F58CF004563C9 /* HomeworkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A23522277F58CF004563C9 /* HomeworkCell.swift */; };
 		E1A23525277F5D24004563C9 /* TimetableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A23524277F5D24004563C9 /* TimetableCell.swift */; };
@@ -222,6 +226,7 @@
 		E197456227512D6600EEB853 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		E19A427F27CFA24A0053435F /* Edulink_Catering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Catering.swift; sourceTree = "<group>"; };
 		E19A428327D0F1010053435F /* CateringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CateringViewController.swift; sourceTree = "<group>"; };
+		E19A429B27DB91200053435F /* MyMaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMaths.swift; sourceTree = "<group>"; };
 		E19D9FAC27A71732005C8398 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		E1A23522277F58CF004563C9 /* HomeworkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkCell.swift; sourceTree = "<group>"; };
 		E1A23524277F5D24004563C9 /* TimetableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableCell.swift; sourceTree = "<group>"; };
@@ -246,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E17FDF93276676EF002F8FF0 /* SerializedSwift in Frameworks */,
+				E12993ED27DB908E007AC00B /* SwiftSoup in Frameworks */,
 				E10B961127518EFF00C8C12E /* SQLite in Frameworks */,
 				E17E14B9274C1A470090F822 /* Evander in Frameworks */,
 			);
@@ -256,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E196621E27B0627A00793007 /* SerializedSwift in Frameworks */,
+				E12993EF27DB909A007AC00B /* SwiftSoup in Frameworks */,
 				E196621C27B0627700793007 /* SQLite in Frameworks */,
 				E196621A27B0627100793007 /* Evander in Frameworks */,
 			);
@@ -370,6 +377,7 @@
 		E17E14BA274C1A700090F822 /* Backend */ = {
 			isa = PBXGroup;
 			children = (
+				E19A429A27DB91010053435F /* MyMaths */,
 				E10B96142752605000C8C12E /* Persistence Database */,
 				E197455E27512B3700EEB853 /* Extensions */,
 				E17E14C4274C1EBE0090F822 /* Login Manager */,
@@ -534,6 +542,14 @@
 			path = "Catering View Controller";
 			sourceTree = "<group>";
 		};
+		E19A429A27DB91010053435F /* MyMaths */ = {
+			isa = PBXGroup;
+			children = (
+				E19A429B27DB91200053435F /* MyMaths.swift */,
+			);
+			path = MyMaths;
+			sourceTree = "<group>";
+		};
 		E1A23526277F6FC8004563C9 /* Timetable View Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -588,6 +604,7 @@
 				E17E14B8274C1A470090F822 /* Evander */,
 				E10B961027518EFF00C8C12E /* SQLite */,
 				E17FDF92276676EF002F8FF0 /* SerializedSwift */,
+				E12993EC27DB908E007AC00B /* SwiftSoup */,
 			);
 			productName = Centralis;
 			productReference = E17E149D274C19B10090F822 /* Centralis.app */;
@@ -610,6 +627,7 @@
 				E196621927B0627100793007 /* Evander */,
 				E196621B27B0627700793007 /* SQLite */,
 				E196621D27B0627A00793007 /* SerializedSwift */,
+				E12993EE27DB909A007AC00B /* SwiftSoup */,
 			);
 			productName = CentralisAppClip;
 			productReference = E19661CB27B0611400793007 /* CentralisAppClip.app */;
@@ -634,7 +652,7 @@
 				};
 			};
 			buildConfigurationList = E17E1498274C19B10090F822 /* Build configuration list for PBXProject "Centralis" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -646,6 +664,7 @@
 				E17E14B7274C1A470090F822 /* XCRemoteSwiftPackageReference "Evander" */,
 				E10B960F27518EFF00C8C12E /* XCRemoteSwiftPackageReference "SQLite" */,
 				E17FDF91276676EF002F8FF0 /* XCRemoteSwiftPackageReference "SerializedSwift" */,
+				E12993EB27DB908E007AC00B /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = E17E149E274C19B10090F822 /* Products */;
 			projectDirPath = "";
@@ -717,6 +736,7 @@
 				E1A23523277F58CF004563C9 /* HomeworkCell.swift in Sources */,
 				E10B96132751A35500C8C12E /* Edulink_Homework.swift in Sources */,
 				E196618827B02CBB00793007 /* DocumentCell.swift in Sources */,
+				E19A429C27DB91200053435F /* MyMaths.swift in Sources */,
 				E19621AC275CFDA10065B446 /* HomeworkViewController.swift in Sources */,
 				E1A23528277F6FF9004563C9 /* TimetableViewController.swift in Sources */,
 				E10B960B2751865E00C8C12E /* BaseTableViewController.swift in Sources */,
@@ -780,6 +800,7 @@
 				E19661FA27B061F900793007 /* PersistenceDatabase.swift in Sources */,
 				E196620E27B0621500793007 /* DocumentCell.swift in Sources */,
 				E196620027B0620100793007 /* ThemeManager.swift in Sources */,
+				E19A429D27DB91200053435F /* MyMaths.swift in Sources */,
 				E196621127B0621500793007 /* BasicInfoCell.swift in Sources */,
 				E196621027B0621500793007 /* TimetableCell.swift in Sources */,
 				E19661E727B061E800793007 /* Edulink_Documents.swift in Sources */,
@@ -1140,6 +1161,14 @@
 				minimumVersion = 0.9.2;
 			};
 		};
+		E12993EB27DB908E007AC00B /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.8;
+			};
+		};
 		E17E14B7274C1A470090F822 /* XCRemoteSwiftPackageReference "Evander" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/elihwyma/Evander";
@@ -1163,6 +1192,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E10B960F27518EFF00C8C12E /* XCRemoteSwiftPackageReference "SQLite" */;
 			productName = SQLite;
+		};
+		E12993EC27DB908E007AC00B /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E12993EB27DB908E007AC00B /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+		E12993EE27DB909A007AC00B /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E12993EB27DB908E007AC00B /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
 		};
 		E17E14B8274C1A470090F822 /* Evander */ = {
 			isa = XCSwiftPackageProductDependency;
