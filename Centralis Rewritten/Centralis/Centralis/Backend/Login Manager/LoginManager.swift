@@ -62,6 +62,53 @@ public final class LoginManager {
         }
     }
     
+    @discardableResult public class func saveMyMaths(login: MyMaths.MyMathsLogin?) -> OSStatus {
+        if let login = login  {
+            let encoded = (try? JSONEncoder().encode(login)) ?? Data()
+            var query: [String: Any] = [
+                kSecClass as String       : kSecClassGenericPassword as String,
+                kSecAttrAccount as String : "Centralis.MyMaths.SavedLogins",
+                kSecValueData as String: encoded ]
+            
+            #if !APPCLIP
+            query[kSecAttrAccessGroup as String] = "\(appIdentifierPrefix)group.amywhile.centralis"
+            #endif
+
+            SecItemDelete(query as CFDictionary)
+            return SecItemAdd(query as CFDictionary, nil)
+        } else {
+            var query: [String: Any] = [
+                kSecClass as String       : kSecClassGenericPassword as String,
+                kSecAttrAccount as String : "Centralis.MyMaths.SavedLogins" ]
+            
+            #if !APPCLIP
+            query[kSecAttrAccessGroup as String] = "\(appIdentifierPrefix)group.amywhile.centralis"
+            #endif
+            
+            return SecItemDelete(query as CFDictionary)
+        }
+    }
+    
+    public class func loadMyMathsLogin() -> (OSStatus, MyMaths.MyMathsLogin?) {
+        var query: [String: Any] = [
+            kSecClass as String       : kSecClassGenericPassword,
+            kSecAttrAccount as String : "Centralis.MyMaths.SavedLogins",
+            kSecReturnData as String  : kCFBooleanTrue!,
+            kSecMatchLimit as String  : kSecMatchLimitOne ]
+        
+        #if !APPCLIP
+        query[kSecAttrAccessGroup as String] = "\(appIdentifierPrefix)group.amywhile.centralis"
+        #endif
+        
+        var dataTypeRef: AnyObject? = nil
+
+        let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
+        
+        guard status == noErr,
+              let data = dataTypeRef as? Data else { return (status, nil) }
+        return (status, try? JSONDecoder().decode(MyMaths.MyMathsLogin.self, from: data))
+    }
+    
     public static var cacheUser: AuthenticatedUser? {
         get {
             var query: [String: Any] = [

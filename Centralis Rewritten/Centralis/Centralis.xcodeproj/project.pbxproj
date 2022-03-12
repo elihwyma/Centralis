@@ -126,6 +126,16 @@
 		E1B8C1912752A0AD001FF9FD /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8C1902752A0AD001FF9FD /* NotificationManager.swift */; };
 		E1B92690278D96D7001EEDAC /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B9268F278D96D7001EEDAC /* MessagesViewController.swift */; };
 		E1BDD309274C63BE00056027 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BDD308274C63BE00056027 /* User.swift */; };
+		E1C29F1D27DBE3F2003B16E9 /* MyMathsLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C29F1C27DBE3F2003B16E9 /* MyMathsLoginViewController.swift */; };
+		E1C29F1E27DBE3F2003B16E9 /* MyMathsLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C29F1C27DBE3F2003B16E9 /* MyMathsLoginViewController.swift */; };
+		E1C29F2027DC0636003B16E9 /* MyMathsTaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C29F1F27DC0636003B16E9 /* MyMathsTaskList.swift */; };
+		E1C29F2127DC0636003B16E9 /* MyMathsTaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C29F1F27DC0636003B16E9 /* MyMathsTaskList.swift */; };
+		E1C29F2327DCFB9F003B16E9 /* MyMathsTaskCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C29F2227DCFB9F003B16E9 /* MyMathsTaskCompletionViewController.swift */; };
+		E1C29F2427DCFB9F003B16E9 /* MyMathsTaskCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C29F2227DCFB9F003B16E9 /* MyMathsTaskCompletionViewController.swift */; };
+		E1C29F2627DD36E3003B16E9 /* ProgressSubtitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C29F2527DD36E3003B16E9 /* ProgressSubtitleCell.swift */; };
+		E1C29F2727DD36E3003B16E9 /* ProgressSubtitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C29F2527DD36E3003B16E9 /* ProgressSubtitleCell.swift */; };
+		E1C29F2927DD3785003B16E9 /* TimeConfigSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C29F2827DD3785003B16E9 /* TimeConfigSelection.swift */; };
+		E1C29F2A27DD3785003B16E9 /* TimeConfigSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C29F2827DD3785003B16E9 /* TimeConfigSelection.swift */; };
 		E1CDE49827502F1B00AA7769 /* Edulink_Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDE49627502F1B00AA7769 /* Edulink_Status.swift */; };
 		E1CEBD8D274C2F80009F35D4 /* AuthenticatedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD8C274C2F80009F35D4 /* AuthenticatedUser.swift */; };
 		E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD8E274C3AB9009F35D4 /* SchoolDetails.swift */; };
@@ -235,6 +245,11 @@
 		E1B8C1902752A0AD001FF9FD /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		E1B9268F278D96D7001EEDAC /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		E1BDD308274C63BE00056027 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E1C29F1C27DBE3F2003B16E9 /* MyMathsLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMathsLoginViewController.swift; sourceTree = "<group>"; };
+		E1C29F1F27DC0636003B16E9 /* MyMathsTaskList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMathsTaskList.swift; sourceTree = "<group>"; };
+		E1C29F2227DCFB9F003B16E9 /* MyMathsTaskCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMathsTaskCompletionViewController.swift; sourceTree = "<group>"; };
+		E1C29F2527DD36E3003B16E9 /* ProgressSubtitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSubtitleCell.swift; sourceTree = "<group>"; };
+		E1C29F2827DD3785003B16E9 /* TimeConfigSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeConfigSelection.swift; sourceTree = "<group>"; };
 		E1CDE49627502F1B00AA7769 /* Edulink_Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edulink_Status.swift; sourceTree = "<group>"; };
 		E1CEBD8C274C2F80009F35D4 /* AuthenticatedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedUser.swift; sourceTree = "<group>"; };
 		E1CEBD8E274C3AB9009F35D4 /* SchoolDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolDetails.swift; sourceTree = "<group>"; };
@@ -482,6 +497,7 @@
 		E197455A2751295E00EEB853 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				E1C29F1B27DBE35B003B16E9 /* MyMaths View Controller */,
 				E19A428227D0F0C70053435F /* Catering View Controller */,
 				E19661A827B0442400793007 /* Links View Controller */,
 				E196618427B02C5900793007 /* Documents View Controller */,
@@ -579,6 +595,18 @@
 				E19A427F27CFA24A0053435F /* Edulink_Catering.swift */,
 			);
 			path = "API Requests";
+			sourceTree = "<group>";
+		};
+		E1C29F1B27DBE35B003B16E9 /* MyMaths View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E1C29F1C27DBE3F2003B16E9 /* MyMathsLoginViewController.swift */,
+				E1C29F1F27DC0636003B16E9 /* MyMathsTaskList.swift */,
+				E1C29F2227DCFB9F003B16E9 /* MyMathsTaskCompletionViewController.swift */,
+				E1C29F2527DD36E3003B16E9 /* ProgressSubtitleCell.swift */,
+				E1C29F2827DD3785003B16E9 /* TimeConfigSelection.swift */,
+			);
+			path = "MyMaths View Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -705,7 +733,9 @@
 				E1BDD309274C63BE00056027 /* User.swift in Sources */,
 				E10B96162752605E00C8C12E /* PersistenceDatabase.swift in Sources */,
 				E17E14C8274C20610090F822 /* EdulinkRequests.swift in Sources */,
+				E1C29F2327DCFB9F003B16E9 /* MyMathsTaskCompletionViewController.swift in Sources */,
 				E19621B3275D076F0065B446 /* ClosureSwitchCell.swift in Sources */,
+				E1C29F1D27DBE3F2003B16E9 /* MyMathsLoginViewController.swift in Sources */,
 				E19621B1275D05EB0065B446 /* SettingsSwitchTableViewCell.swift in Sources */,
 				E10B960A2751865E00C8C12E /* BaseSubtitleCell.swift in Sources */,
 				E10B95EE27513AD900C8C12E /* LoadingButton.swift in Sources */,
@@ -720,6 +750,7 @@
 				E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */,
 				E19661A727B03AA700793007 /* Edulink_Links.swift in Sources */,
 				E19D9FAD27A71732005C8398 /* Reachability.swift in Sources */,
+				E1C29F2927DD3785003B16E9 /* TimeConfigSelection.swift in Sources */,
 				E197456027512B4800EEB853 /* Bundle+Extensions.swift in Sources */,
 				E10B95F027513E7E00C8C12E /* KeyboardAwareViewController.swift in Sources */,
 				E10B95EC27513A3100C8C12E /* RoundedTextField.swift in Sources */,
@@ -740,6 +771,7 @@
 				E19621AC275CFDA10065B446 /* HomeworkViewController.swift in Sources */,
 				E1A23528277F6FF9004563C9 /* TimetableViewController.swift in Sources */,
 				E10B960B2751865E00C8C12E /* BaseTableViewController.swift in Sources */,
+				E1C29F2027DC0636003B16E9 /* MyMathsTaskList.swift in Sources */,
 				E1B8C1912752A0AD001FF9FD /* NotificationManager.swift in Sources */,
 				E17E14BD274C1ABA0090F822 /* EdulinkManager.swift in Sources */,
 				E196618627B02C7E00793007 /* DocumentsViewController.swift in Sources */,
@@ -759,6 +791,7 @@
 				E183B1FB2791BA20004C6C65 /* MessageViewController.swift in Sources */,
 				E196620927B0620E00793007 /* CentralisTabBarController.swift in Sources */,
 				E17E14C6274C1ECD0090F822 /* LoginManager.swift in Sources */,
+				E1C29F2627DD36E3003B16E9 /* ProgressSubtitleCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -769,7 +802,9 @@
 				E19661EF27B061F100793007 /* User.swift in Sources */,
 				E196621727B0624000793007 /* DocumentsViewController.swift in Sources */,
 				E19661F227B061F100793007 /* Establishment.swift in Sources */,
+				E1C29F2427DCFB9F003B16E9 /* MyMathsTaskCompletionViewController.swift in Sources */,
 				E196620C27B0621500793007 /* ClosureSwitchCell.swift in Sources */,
+				E1C29F1E27DBE3F2003B16E9 /* MyMathsLoginViewController.swift in Sources */,
 				E19661EE27B061F100793007 /* SchoolDetails.swift in Sources */,
 				E196620827B0620D00793007 /* CentralisTabBarController.swift in Sources */,
 				E196620D27B0621500793007 /* HomeworkCell.swift in Sources */,
@@ -784,6 +819,7 @@
 				E19661F727B061F600793007 /* Bundle+Extensions.swift in Sources */,
 				E196621627B0623D00793007 /* MessageViewController.swift in Sources */,
 				E19661ED27B061EE00793007 /* EdulinkRequests.swift in Sources */,
+				E1C29F2A27DD3785003B16E9 /* TimeConfigSelection.swift in Sources */,
 				E19661E427B061E000793007 /* Reachability.swift in Sources */,
 				E19661EC27B061EB00793007 /* Edulink_Status.swift in Sources */,
 				E196620B27B0621500793007 /* SettingsSwitchTableViewCell.swift in Sources */,
@@ -804,6 +840,7 @@
 				E196621127B0621500793007 /* BasicInfoCell.swift in Sources */,
 				E196621027B0621500793007 /* TimetableCell.swift in Sources */,
 				E19661E727B061E800793007 /* Edulink_Documents.swift in Sources */,
+				E1C29F2127DC0636003B16E9 /* MyMathsTaskList.swift in Sources */,
 				E196620A27B0621100793007 /* QuickLoginViewController.swift in Sources */,
 				E19661FE27B0620100793007 /* NSAttributedString+Extensions.swift in Sources */,
 				E196620427B0620100793007 /* BaseSubtitleCell.swift in Sources */,
@@ -823,6 +860,7 @@
 				E19661EA27B061EB00793007 /* Edulink_Photos.swift in Sources */,
 				E196621327B0623400793007 /* InfoViewController.swift in Sources */,
 				E19661F327B061F100793007 /* EdulinkBase.swift in Sources */,
+				E1C29F2727DD36E3003B16E9 /* ProgressSubtitleCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

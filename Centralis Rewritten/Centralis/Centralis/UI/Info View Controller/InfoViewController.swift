@@ -17,6 +17,7 @@ class InfoViewController: BaseTableViewController {
         case notifications
         case account
         case message
+        case mymaths
     }
     
     private func _section(for section: Int) -> Section {
@@ -24,6 +25,7 @@ class InfoViewController: BaseTableViewController {
         case 0: return .notifications
         case 1: return .message
         case 2: return .account
+        case 3: return .mymaths
         default: fatalError()
         }
     }
@@ -54,7 +56,7 @@ class InfoViewController: BaseTableViewController {
     #endif
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        3
+        4
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,6 +64,7 @@ class InfoViewController: BaseTableViewController {
         case .notifications: return 3
         case .account: return 1
         case .message: return 1
+        case .mymaths: return 1
         }
     }
     
@@ -102,6 +105,7 @@ class InfoViewController: BaseTableViewController {
         case .account:
             let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.DefaultCell")
             cell.textLabel?.text = "Sign Out"
+            cell.accessoryType = .disclosureIndicator
             return cell
         case .message:
             let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.SettingsSwitchTableViewCell") as! SettingsSwitchTableViewCell
@@ -112,6 +116,11 @@ class InfoViewController: BaseTableViewController {
                 return cell
             default: fatalError()
             }
+        case .mymaths:
+            let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.DefaultCell")
+            cell.textLabel?.text = "MyMaths"
+            cell.accessoryType = .disclosureIndicator
+            return cell
         }
     }
     
@@ -120,6 +129,7 @@ class InfoViewController: BaseTableViewController {
         case .notifications: return "Notification Settings"
         case .account: return "Account"
         case .message: return "Message Settings"
+        case .mymaths: return "MyMaths"
         }
     }
 
@@ -134,6 +144,8 @@ class InfoViewController: BaseTableViewController {
                 CentralisTabBarController.shared.selectedIndex = 0
             default: return
             }
+        case .mymaths:
+            navigationController?.pushViewController(MyMathsLoginViewController(nibName: nil, bundle: nil), animated: true)
         default: return
         }
     }

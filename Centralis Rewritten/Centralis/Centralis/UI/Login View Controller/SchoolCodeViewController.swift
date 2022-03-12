@@ -98,9 +98,6 @@ class SchoolCodeViewController: KeyboardAwareViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         view.addGestureRecognizer(tapGesture)
         
-        view.backgroundColor = .backgroundColor
-        view.tintColor = .tintColor
-        navigationController?.navigationBar.tintColor = .tintColor
         view.addSubview(label)
         view.addSubview(field)
         view.addSubview(nextButton)

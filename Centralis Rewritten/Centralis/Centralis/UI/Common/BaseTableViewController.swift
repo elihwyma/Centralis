@@ -31,6 +31,7 @@ class BaseTableViewController: UITableViewController {
             cell?.selectionStyle = UITableViewCell.SelectionStyle.gray
         }
         cell?.backgroundColor = .secondaryBackgroundColor
+        cell?.tintColor = .tintColor
         return cell ?? UITableViewCell()
     }
     
