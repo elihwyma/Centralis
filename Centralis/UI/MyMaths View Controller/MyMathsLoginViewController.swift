@@ -21,6 +21,7 @@ final class MyMathsLoginViewController: KeyboardAwareViewController {
         field.layer.cornerRadius = 10
         field.layer.cornerCurve = .continuous
         field.backgroundColor = .secondaryBackgroundColor
+        field.isSecureTextEntry = true
         field.delegate = self
         return field
     }

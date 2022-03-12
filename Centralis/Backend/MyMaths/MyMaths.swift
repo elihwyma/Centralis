@@ -27,7 +27,12 @@ final public class MyMaths {
         }
     }
     
-    public class CurrentTasks {
+    public class CurrentTasks: Equatable {
+        
+        public static func == (lhs: MyMaths.CurrentTasks, rhs: MyMaths.CurrentTasks) -> Bool {
+            lhs.url == rhs.url
+        }
+        
         let name: String
         let url: String
         

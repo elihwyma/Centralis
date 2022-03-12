@@ -14,10 +14,18 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
         let task: MyMaths.CurrentTasks
         var remainingTime = 0
         var startTime = 0
-        var isCompeted = false
+        var isCompeted = false {
+            didSet {
+                guard isCompeted else { return }
+                let pastTask: MyMaths.PastTasks = .init(name: task.name, url: task.url, date: Date(), percent: 100)
+                delegate?.complete(task: pastTask)
+            }
+        }
+        private weak var delegate: TaskListDelegate?
         
-        init(task: MyMaths.CurrentTasks) {
+        init(task: MyMaths.CurrentTasks, delegate: TaskListDelegate) {
             self.task = task
+            self.delegate = delegate
         }
         
         public var progress: Float {
@@ -32,9 +40,11 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
             UIApplication.shared.isIdleTimerDisabled = hasStarted
         }
     }
+    private weak var delegate: TaskListDelegate?
     
-    init(tasks: [MyMaths.CurrentTasks]) {
-        self.tasks = tasks.map { .init(task: $0) }
+    init(tasks: [MyMaths.CurrentTasks], delegate: TaskListDelegate) {
+        self.tasks = tasks.map { .init(task: $0, delegate: delegate) }
+        self.delegate = delegate
         super.init(style: .insetGrouped)
     }
     
@@ -114,7 +124,22 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
             return
         }
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Start", style: .done, target: self, action: #selector(startWarning))
-        
+        var canContinue = false
+        for task in tasks {
+            if !task.isCompeted {
+                canContinue = true
+            }
+        }
+        navigationItem.rightBarButtonItem?.isEnabled = canContinue
+        if !canContinue {
+            let alert = UIAlertController(title: "Finished", message: "All tasks have been finished with 100%", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Close", style: .default, handler: { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            }))
+            alert.view.tintColor = .tintColor
+            self.present(alert, animated: true)
+            return
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

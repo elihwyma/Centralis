@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol TaskListDelegate: AnyObject {
+    func complete(task: MyMaths.PastTasks)
+}
+
 class MyMathsTaskList: BaseTableViewController {
     
     private var currentTasks: [MyMaths.CurrentTasks]
@@ -39,7 +43,9 @@ class MyMathsTaskList: BaseTableViewController {
         selectedTasks[0].forEach { tasks.append(currentTasks[$0]) }
         selectedTasks[1].forEach { tasks.append(pastTasks[$0]) }
         if tasks.isEmpty { return }
-        navigationController?.pushViewController(MyMathsTaskCompletionViewController(tasks: tasks), animated: true)
+        navigationController?.pushViewController(MyMathsTaskCompletionViewController(tasks: tasks, delegate: self), animated: true)
+        selectedTasks[0] = []
+        selectedTasks[1] = []
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -94,6 +100,34 @@ class MyMathsTaskList: BaseTableViewController {
             selectedTasks[indexPath.section].append(indexPath.row)
             cell.accessoryType = .checkmark
         }
+    }
+    
+}
+
+extension MyMathsTaskList: TaskListDelegate {
+    
+    func complete(task: MyMaths.PastTasks) {
+        tableView.beginUpdates()
+        if let index = currentTasks.firstIndex(where: { $0 == task }) {
+            currentTasks.remove(at: index)
+            if currentTasks.isEmpty {
+                tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+            } else {
+                tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+            }
+            pastTasks.insert(task, at: 0)
+            tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+        }
+        if let pastIndex = pastTasks.firstIndex(where: { $0 == task }) {
+            pastTasks.remove(at: pastIndex)
+            pastTasks.insert(task, at: 0)
+            tableView.deleteRows(at: [IndexPath(row: pastIndex, section: 1)], with: .automatic)
+            tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+        } else {
+            pastTasks.insert(task, at: 0)
+            tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+        }
+        tableView.endUpdates()
     }
     
 }
