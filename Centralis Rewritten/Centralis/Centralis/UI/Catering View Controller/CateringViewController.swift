@@ -15,7 +15,7 @@ class CateringViewController: BaseTableViewController {
         super.viewDidLoad()
         
         tableView.separatorStyle = .none
-        title = "Balanace: \(catering.stringBalance)"
+        title = "Balance: \(catering.stringBalance)"
         NotificationCenter.default.addObserver(self, selector: #selector(persistenceReload), name: PersistenceDatabase.persistenceReload, object: nil)
     }
 
@@ -26,7 +26,7 @@ class CateringViewController: BaseTableViewController {
         
         let catering = PersistenceDatabase.shared.catering
         let originalCount = self.catering.transactions.isEmpty ? 1 : self.catering.transactions.count
-        title = "Balanace: \(catering.stringBalance)"
+        title = "Balance: \(catering.stringBalance)"
         catering.transactions .sort { $0.date! > $1.date! }
         catering.transactions.forEach { $0.items.sort { $0.item < $1.item } }
         if catering.transactions != self.catering.transactions {
