@@ -37,6 +37,8 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
             self.task = task
             self.delegate = delegate
         }
+        public var formData: [String: String]?
+        public var state = ""
         
         public var progress: Float {
             Float(currentTime) / Float(startTime)
@@ -52,6 +54,10 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
         }
     }
     private weak var delegate: TaskListDelegate?
+    
+    func cellMacro(index: Int) -> ProgressSubtitleCell? {
+        tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ProgressSubtitleCell
+    }
     
     init(tasks: [MyMaths.CurrentTasks], delegate: TaskListDelegate) {
         self.tasks = tasks.map { .init(task: $0, delegate: delegate) }
@@ -96,26 +102,54 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
             navigationItem.rightBarButtonItem?.isEnabled = false
             var index = 0
             func runTask() {
-                MyMaths.shared.completeTask(task: tasks[index].task) { log in
-                    // Again do something with this, not sure yet
-                    print(log)
-                } completion: { [weak self] error in
+                let task = tasks[index]
+                MyMaths.shared.completeTask(task: task.task) { [weak self] log in
+                    Thread.mainBlock {
+                        if let cell = self?.cellMacro(index: index) {
+                            task.state = log
+                            cell.detailTextLabel?.text = log
+                        }
+                    }
+                } completion: { [weak self] error, formData in
                     if let error = error {
-                        // Do something, not sure what yet
-                        print(error)
-                    } else {
                         Thread.mainBlock {
-                            guard let `self` = self else { return }
-                            self.tasks[index].isCompeted = true
-                            let indexPath = IndexPath(row: index, section: 0)
-                            if let cell = self.tableView.cellForRow(at: indexPath) as? ProgressSubtitleCell {
-                                cell.accessoryType = .checkmark
+                            if let cell = self?.cellMacro(index: index) {
+                                task.state = error
+                                cell.detailTextLabel?.text = error
                             }
-                            index++
-                            if index == self.tasks.count {
-                                return self.cancel()
+                        }
+                        return
+                    } else if let formData = formData {
+                        MyMaths.shared.complete(with: formData, task: task.task) { log in
+                            Thread.mainBlock {
+                                if let cell = self?.cellMacro(index: index) {
+                                    task.state = log
+                                    cell.detailTextLabel?.text = log
+                                }
                             }
-                            runTask()
+                        } completion: { error in
+                            if let error = error {
+                                Thread.mainBlock {
+                                    if let cell = self?.cellMacro(index: index) {
+                                        task.state = error
+                                        cell.detailTextLabel?.text = error
+                                    }
+                                }
+                                return
+                            }
+                            Thread.mainBlock {
+                                guard let `self` = self else { return }
+                                self.tasks[index].isCompeted = true
+                                let indexPath = IndexPath(row: index, section: 0)
+                                if let cell = self.tableView.cellForRow(at: indexPath) as? ProgressSubtitleCell {
+                                    cell.accessoryType = .checkmark
+                                }
+                                index++
+                                if index == self.tasks.count {
+                                    return self.cancel()
+                                }
+                                runTask()
+                            }
                         }
                     }
                 }
@@ -125,9 +159,56 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
         } else {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancel))
             randomTimes(for: selectedConfig)
-            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(cycle), userInfo: nil, repeats: true)
-            hasStarted = true
+            var index = 0
+            guard !tasks.isEmpty else { return self.cancel() }
+            func runTask(_ self: MyMathsTaskCompletionViewController) {
+                let task = self.tasks[index]
+                Thread.mainBlock {
+                    if let cell = self.cellMacro(index: index) {
+                        task.state = "Starting Task"
+                        cell.detailTextLabel?.text = task.state
+                    }
+                }
+                MyMaths.shared.completeTask(task: task.task) { [weak self] log in
+                    Thread.mainBlock {
+                        if let cell = self?.cellMacro(index: index) {
+                            task.state = log
+                            cell.detailTextLabel?.text = log
+                        }
+                    }
+                } completion: { [weak self] error, formData in
+                    Thread.mainBlock {
+                        if let error = error {
+                            if let cell = self?.cellMacro(index: index) {
+                                task.state = error
+                                cell.detailTextLabel?.text = error
+                            }
+                            return
+                        } else {
+                            task.formData = formData
+                            guard let self = self else { return }
+                            index++
+                            if index == self.tasks.count {
+                                self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.cycle), userInfo: nil, repeats: true)
+                                self.hasStarted = true
+                                self.tasks.forEach { $0.state = "Started" }
+                                for cell in self.tableView.visibleCells where cell is ProgressSubtitleCell {
+                                    (cell as! ProgressSubtitleCell).detailTextLabel?.text = task.state
+                                }
+                            } else {
+                                runTask(self)
+                            }
+                        }
+                    }
+                }
+            }
+            runTask(self)
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        timer?.invalidate()
     }
     
     @objc private func cycle() {
@@ -140,20 +221,27 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
         }
         for (index, task) in tasks.enumerated() where !task.isCompeted {
             task.currentTime++
-            guard let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ProgressSubtitleCell else { continue }
+            guard let cell = self.cellMacro(index: index) else { continue }
             if task.currentTime ==  task.startTime {
                 guard !task.isRunning else { continue }
                 task.isRunning = true
-                MyMaths.shared.completeTask(task: task.task) { log in
-                    print(log)
+                guard let formData = task.formData else { continue }
+                MyMaths.shared.complete(with: formData, task: task.task) { [weak self, weak task] log in
+                    if let cell = self?.cellMacro(index: index) {
+                        task?.state = log
+                        cell.detailTextLabel?.text = log
+                    }
                 } completion: { [weak self, weak task] error in
                     if let error = error {
-                        print(error)
+                        if let cell = self?.cellMacro(index: index) {
+                            task?.state = error
+                            cell.detailTextLabel?.text = error
+                        }
                         return
                     }
                     Thread.mainBlock {
                         task?.isCompeted = true
-                        if let cell = self?.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ProgressSubtitleCell {
+                        if let cell = self?.cellMacro(index: index) {
                             cell.accessoryType = .checkmark
                             cell.setProgress(1)
                         }
@@ -235,6 +323,7 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyMaths.ProgressSubtitleCell", for: indexPath) as! ProgressSubtitleCell
             let task = tasks[indexPath.row]
             cell.textLabel?.text = task.task.name
+            cell.detailTextLabel?.text = task.state
             if hasStarted {
                 cell.setProgress(task.progress)
             } else {

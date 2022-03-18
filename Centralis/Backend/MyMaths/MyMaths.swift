@@ -118,7 +118,7 @@ final public class MyMaths {
         return parsedTasks
     }
     
-    public func completeTask(task: CurrentTasks, logging: @escaping (String) -> Void, completion: @escaping (String?) -> Void) {
+    public func completeTask(task: CurrentTasks, logging: @escaping (String) -> Void, completion: @escaping (String?, [String: String]?) -> Void) {
         var myMathsHeaders = genericMyMathsHeaders
         logging("[*] Attempting Task \(task.name)")
         myMathsHeaders["Referer"] = "https://app.mymaths.co.uk/myportal/student/my_homework"
@@ -128,12 +128,12 @@ final public class MyMaths {
 
             guard let range = str.range(of: "taskID="),
                   let taskID = String(str[range.upperBound...]).components(separatedBy: "&").first else {
-                return completion("Failed to get task ID")
+                return completion("Failed to get task ID", nil)
             }
             var realID = task.url
             realID.removeFirst()
             guard let _realID = realID.components(separatedBy: "-").first else {
-                return completion("Failed to get task real ID")
+                return completion("Failed to get task real ID", nil)
             }
             
             myMathsHeaders["Referer"] = "https://static.mymaths.co.uk"
@@ -148,7 +148,7 @@ final public class MyMaths {
                 let str = String(decoding: data, as: UTF8.self)
                 
                 let connectionData = Self.parseResponseForm(str)
-                guard let authCode = connectionData["authCode"] else { return completion("Failed to get authCode") }
+                guard let authCode = connectionData["authCode"] else { return completion("Failed to get authCode", nil) }
                 let formData: [String: String] = [
                     "taskID": taskID,
                     "realID": _realID
@@ -159,7 +159,7 @@ final public class MyMaths {
                     let str = String(decoding: data, as: UTF8.self)
                     
                     var connectionData = Self.parseResponseForm(str)
-                    guard connectionData["login"] == "1" else { return completion("Not Logged in???? 1") }
+                    guard connectionData["login"] == "1" else { return completion("Not Logged in???? 1", nil) }
                     logging("[*] Launched Task")
                     EvanderNetworking.request(url: "https://contentapi.mymaths.co.uk/partial_save", type: Data.self, method: "OPTIONS", headers: myMathsHeaders) { one, two, three, data in
                         guard two == 204 else { return }
@@ -174,7 +174,7 @@ final public class MyMaths {
                             guard let data = data else { return }
                             let str = String(decoding: data, as: UTF8.self)
                             connectionData = Self.parseResponseForm(str)
-                            guard connectionData["logged"] == "yes" else { return completion("Not Logged in???? 2") }
+                            guard connectionData["logged"] == "yes" else { return completion("Not Logged in???? 2", nil) }
    
                             let q1Score = 99
                             let q2Score = 99
@@ -190,7 +190,7 @@ final public class MyMaths {
                             
                             guard let _authToken = connectionData["authToken"],
                                   let studentID = connectionData["studentID"] else {
-                                      return completion("Failed to get Student ID from MyMaths")
+                                      return completion("Failed to get Student ID from MyMaths", nil)
                             }
                             
                             let formData: [String: String] = [
@@ -204,15 +204,19 @@ final public class MyMaths {
                                 "sCode": "\(sCode)",
                                 "studentID": studentID
                             ]
-                            EvanderNetworking.request(url: "https://app.mymaths.co.uk/api/legacy/save/mark", type: Data.self, method: "POST", headers: myMathsHeaders, form: formData) { one, two, three, data in
-                                guard two == 200 else { return completion("Failed to set mark") }
-                                logging("[*] Successfully got full marks on \(task.name)")
-                                completion(nil)
-                            }
+                            completion(nil, formData)
                         }
                     }
                 }
             }
+        }
+    }
+    
+    public func complete(with data: [String: String], task: CurrentTasks, logging: @escaping (String) -> Void, completion: @escaping (String?) -> Void) {
+        EvanderNetworking.request(url: "https://app.mymaths.co.uk/api/legacy/save/mark", type: Data.self, method: "POST", headers: genericMyMathsHeaders, form: data) { one, two, three, data in
+            guard two == 200 else { return completion("Failed to set mark") }
+            logging("[*] Successfully got full marks on \(task.name)")
+            completion(nil)
         }
     }
     
