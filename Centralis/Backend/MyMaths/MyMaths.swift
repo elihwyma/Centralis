@@ -94,9 +94,8 @@ final public class MyMaths {
             let linkButtonHref = try linkButton.select("a")
             let link = try linkButtonHref.attr("href")
             
-            guard let nameRef = try task.select("div").first(where: { (try? $0.attr("class")) == "span9 offset1" }),
-                  let p = try nameRef.select("p").first() else { continue }
-            let text = try p.text()
+            guard let nameRef = try task.select("span").first(where: { (try? $0.attr("class")) == "topic_name_task" }) else { continue }
+            let text = try nameRef.text()
             
             parsedTasks.append(.init(name: text, url: link))
         }
@@ -220,7 +219,7 @@ final public class MyMaths {
     public func getTasks(login: MyMathsLogin, logging: @escaping (String) -> Void, count: Int = 0, _ completion: @escaping (String?, [CurrentTasks]?, [PastTasks]?) -> ()) {
         HTTPCookieStorage.shared.cookies?.forEach(HTTPCookieStorage.shared.deleteCookie)
         guard Reachability.shared.connected else {
-            return completion("[x] No Active Internet Connection", nil, nil)
+            return completion("No Active Internet Connection", nil, nil)
         }
         var myMathsHeaders = genericMyMathsHeaders
         logging("[*] Attempting Login")

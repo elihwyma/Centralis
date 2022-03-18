@@ -117,15 +117,16 @@ extension MyMathsTaskList: TaskListDelegate {
             }
             pastTasks.insert(task, at: 0)
             tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
-        }
-        if let pastIndex = pastTasks.firstIndex(where: { $0 == task }) {
-            pastTasks.remove(at: pastIndex)
-            pastTasks.insert(task, at: 0)
-            tableView.deleteRows(at: [IndexPath(row: pastIndex, section: 1)], with: .automatic)
-            tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
         } else {
-            pastTasks.insert(task, at: 0)
-            tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+            if let pastIndex = pastTasks.firstIndex(where: { $0 == task }) {
+                pastTasks.remove(at: pastIndex)
+                pastTasks.insert(task, at: 0)
+                tableView.deleteRows(at: [IndexPath(row: pastIndex, section: 1)], with: .automatic)
+                tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+            } else {
+                pastTasks.insert(task, at: 0)
+                tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+            }
         }
         tableView.endUpdates()
     }

@@ -10,10 +10,20 @@ import Evander
 
 class MyMathsTaskCompletionViewController: BaseTableViewController {
     
-    class Task {
+    final class Task: Equatable {
+        
+        static func == (lhs: MyMathsTaskCompletionViewController.Task, rhs: MyMathsTaskCompletionViewController.Task) -> Bool {
+            lhs.task == rhs.task
+        }
+        
         let task: MyMaths.CurrentTasks
-        var remainingTime = 0
-        var startTime = 0
+        var currentTime = 0
+        var startTime = 0 {
+            didSet {
+                currentTime = 0
+            }
+        }
+        var isRunning = false
         var isCompeted = false {
             didSet {
                 guard isCompeted else { return }
@@ -29,10 +39,11 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
         }
         
         public var progress: Float {
-            Float(remainingTime) / Float(startTime)
+            Float(currentTime) / Float(startTime)
         }
     }
     
+    private var timer: Timer?
     private let tasks: [Task]
     private var selectedConfig: TimeConfig = .instant
     private var hasStarted = false {
@@ -113,7 +124,60 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
             runTask()
         } else {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancel))
+            randomTimes(for: selectedConfig)
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(cycle), userInfo: nil, repeats: true)
+            hasStarted = true
         }
+    }
+    
+    @objc private func cycle() {
+        print("Cycle")
+        if !Thread.isMainThread {
+            DispatchQueue.main.async { [weak self] in
+                self?.cycle()
+            }
+            return
+        }
+        for (index, task) in tasks.enumerated() where !task.isCompeted {
+            task.currentTime++
+            guard let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ProgressSubtitleCell else { continue }
+            if task.currentTime ==  task.startTime {
+                guard !task.isRunning else { continue }
+                task.isRunning = true
+                MyMaths.shared.completeTask(task: task.task) { log in
+                    print(log)
+                } completion: { [weak self, weak task] error in
+                    if let error = error {
+                        print(error)
+                        return
+                    }
+                    Thread.mainBlock {
+                        task?.isCompeted = true
+                        if let cell = self?.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ProgressSubtitleCell {
+                            cell.accessoryType = .checkmark
+                            cell.setProgress(1)
+                        }
+                        var shouldBreak = true
+                        for task in self?.tasks ?? [] {
+                            if !task.isCompeted {
+                                shouldBreak = false
+                            }
+                        }
+                        if shouldBreak {
+                            self?.cancel()
+                        }
+                    }
+                }
+            } else {
+                print(task.progress)
+                cell.setProgress(task.progress)
+            }
+        }
+    }
+    
+    private func randomTimes(for config: TimeConfig) {
+        let range = config == .medium ? 300...420 : 420...720
+        tasks.forEach { $0.startTime = Int.random(in: range)  }
     }
     
     @objc private func cancel() {
@@ -123,6 +187,8 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
             }
             return
         }
+        timer?.invalidate()
+        hasStarted = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Start", style: .done, target: self, action: #selector(startWarning))
         var canContinue = false
         for task in tasks {
@@ -130,6 +196,7 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
                 canContinue = true
             }
         }
+        tasks.forEach { $0.isRunning = false }
         navigationItem.rightBarButtonItem?.isEnabled = canContinue
         if !canContinue {
             let alert = UIAlertController(title: "Finished", message: "All tasks have been finished with 100%", preferredStyle: .alert)
@@ -170,8 +237,11 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
             cell.textLabel?.text = task.task.name
             if hasStarted {
                 cell.setProgress(task.progress)
+            } else {
+                cell.setProgress(0)
             }
             cell.accessoryType = task.isCompeted ? .checkmark : .none
+            cell.task = task
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyMaths.TimeConfigSelectionCell", for: indexPath) as! TimeConfigSelectionCell

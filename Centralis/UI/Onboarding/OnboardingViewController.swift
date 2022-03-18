@@ -49,6 +49,22 @@ class OnboardingViewController: UIViewController {
         return button
     }()
     
+    private lazy var myMathsButton: UIButton = {
+        let button = UIButton(primaryAction: UIAction(handler: { [weak self] _ in
+            self?.navigationController?.pushViewController(MyMathsLoginViewController(nibName: nil, bundle: nil), animated: true)
+        }))
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .tintColor
+        button.setTitle("MyMaths", for: .normal)
+        button.setTitleColor(.label, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        button.layer.masksToBounds = true
+        button.layer.cornerCurve = .continuous
+        button.layer.cornerRadius = 25
+        return button
+    }()
+    
     override func viewDidLoad() {
         if let login = LoginManager.loadLogin().1 {
             (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = CentralisTabBarController.shared
@@ -65,6 +81,7 @@ class OnboardingViewController: UIViewController {
         
         view.addSubview(label)
         view.addSubview(loginButton)
+        view.addSubview(myMathsButton)
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
             label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25),
@@ -72,7 +89,11 @@ class OnboardingViewController: UIViewController {
             
             loginButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25),
             loginButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -25),
-            loginButton.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 50)
+            loginButton.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 50),
+            
+            myMathsButton.leadingAnchor.constraint(equalTo: loginButton.leadingAnchor),
+            myMathsButton.trailingAnchor.constraint(equalTo: loginButton.trailingAnchor),
+            myMathsButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 12.5)
         ])
     }
     
