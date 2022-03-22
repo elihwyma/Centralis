@@ -219,7 +219,9 @@ public final class LoginManager {
                        return completion(error ?? "Unknown Error", nil)
                     }
                     do {
+                        print("Login Result = \(result)")
                         let user = try JSONDecoder().decode(AuthenticatedUser.self, from: jsonData)
+                        print(user.capabilities)
                         user.server = login.server
                         user.login = login
                         EdulinkManager.shared.authenticatedUser = user

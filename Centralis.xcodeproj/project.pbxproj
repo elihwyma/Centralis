@@ -122,6 +122,8 @@
 		E1A23523277F58CF004563C9 /* HomeworkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A23522277F58CF004563C9 /* HomeworkCell.swift */; };
 		E1A23525277F5D24004563C9 /* TimetableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A23524277F5D24004563C9 /* TimetableCell.swift */; };
 		E1A23528277F6FF9004563C9 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A23527277F6FF9004563C9 /* TimetableViewController.swift */; };
+		E1A4C65F27EA5B74000B0821 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A4C65E27EA5B74000B0821 /* PermissionManager.swift */; };
+		E1A4C66027EA5B74000B0821 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A4C65E27EA5B74000B0821 /* PermissionManager.swift */; };
 		E1B8C18D27528FAA001FF9FD /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8C18C27528FAA001FF9FD /* Date+Extensions.swift */; };
 		E1B8C1912752A0AD001FF9FD /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8C1902752A0AD001FF9FD /* NotificationManager.swift */; };
 		E1B92690278D96D7001EEDAC /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B9268F278D96D7001EEDAC /* MessagesViewController.swift */; };
@@ -241,6 +243,7 @@
 		E1A23522277F58CF004563C9 /* HomeworkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkCell.swift; sourceTree = "<group>"; };
 		E1A23524277F5D24004563C9 /* TimetableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableCell.swift; sourceTree = "<group>"; };
 		E1A23527277F6FF9004563C9 /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
+		E1A4C65E27EA5B74000B0821 /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 		E1B8C18C27528FAA001FF9FD /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		E1B8C1902752A0AD001FF9FD /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		E1B9268F278D96D7001EEDAC /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
@@ -428,6 +431,7 @@
 				E17E14C9274C211D0090F822 /* Transformers.swift */,
 				E17E14CB274C25010090F822 /* EdulinkBase.swift */,
 				E1CEBD8C274C2F80009F35D4 /* AuthenticatedUser.swift */,
+				E1A4C65E27EA5B74000B0821 /* PermissionManager.swift */,
 				E1CEBD8E274C3AB9009F35D4 /* SchoolDetails.swift */,
 				E1CEBD90274C5F8E009F35D4 /* Establishment.swift */,
 				E1BDD308274C63BE00056027 /* User.swift */,
@@ -741,6 +745,7 @@
 				E10B95EE27513AD900C8C12E /* LoadingButton.swift in Sources */,
 				E19A428027CFA24A0053435F /* Edulink_Catering.swift in Sources */,
 				E17E14CC274C25010090F822 /* EdulinkBase.swift in Sources */,
+				E1A4C65F27EA5B74000B0821 /* PermissionManager.swift in Sources */,
 				E17E14C2274C1B2F0090F822 /* UserLogin.swift in Sources */,
 				E19621A6275BC2A50065B446 /* NSAttributedString+Extensions.swift in Sources */,
 				E10B95FD275160C000C8C12E /* URL+Extensions.swift in Sources */,
@@ -810,6 +815,7 @@
 				E196620D27B0621500793007 /* HomeworkCell.swift in Sources */,
 				E19A428127CFA24B0053435F /* Edulink_Catering.swift in Sources */,
 				E196620727B0620900793007 /* HomeViewController.swift in Sources */,
+				E1A4C66027EA5B74000B0821 /* PermissionManager.swift in Sources */,
 				E19661F627B061F400793007 /* LoginMiddleware.swift in Sources */,
 				E196620627B0620500793007 /* UserPasswordViewController.swift in Sources */,
 				E19661E827B061EB00793007 /* Edulink_Timetable.swift in Sources */,

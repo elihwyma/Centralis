@@ -10,12 +10,13 @@ import Evander
 
 final class MyMathsLoginViewController: KeyboardAwareViewController {
     
-    private func genericField(name: String) -> RoundedTextField {
+    private func genericField(name: String, type: UITextContentType) -> RoundedTextField {
         let field = RoundedTextField()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.heightAnchor.constraint(equalToConstant: 37.5).isActive = true
         field.autocorrectionType = .no
-        field.textContentType  = .username
+        field.textContentType  = type
+        field.autocapitalizationType = .none
         field.placeholder = name
         field.layer.masksToBounds = true
         field.layer.cornerRadius = 10
@@ -54,10 +55,10 @@ final class MyMathsLoginViewController: KeyboardAwareViewController {
         return textView
     }()
     
-    private lazy var schoolUser: RoundedTextField = genericField(name: "School Username")
-    private lazy var schoolPass: RoundedTextField = genericField(name: "School Password")
-    private lazy var username: RoundedTextField = genericField(name: "Username")
-    private lazy var password: RoundedTextField = genericField(name: "Password")
+    private lazy var schoolUser: RoundedTextField = genericField(name: "School Username", type: .username)
+    private lazy var schoolPass: RoundedTextField = genericField(name: "School Password", type: .password)
+    private lazy var username: RoundedTextField = genericField(name: "Username", type: .username)
+    private lazy var password: RoundedTextField = genericField(name: "Password", type: .password)
 
     override func viewDidLoad() {
         super.viewDidLoad()

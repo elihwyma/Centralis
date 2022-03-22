@@ -22,6 +22,7 @@ final public class AuthenticatedUser: Serializable {
     @Serialized var authtoken: String
     @Serialized(default: false) var can_create_messages: Bool
     @Serialized var session: Session?
+    @Serialized var capabilities: [AnyHashable?: AnyHashable?]
  
     required public init() {}
     
