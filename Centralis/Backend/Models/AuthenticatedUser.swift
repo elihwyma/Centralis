@@ -22,11 +22,19 @@ final public class AuthenticatedUser: Serializable {
     @Serialized var authtoken: String
     @Serialized(default: false) var can_create_messages: Bool
     @Serialized var session: Session?
-    @Serialized var capabilities: [AnyHashable?: AnyHashable?]
+    @Serialized var capabilities: Capabilities?
  
     required public init() {}
     
     public lazy var learner_id: String = {
         user.id
     }()
+}
+
+public struct Capabilities: Serializable {
+    
+    public init() {}
+    
+    @Serialized("communicator.enabled", default: false) var communicator_enabled: Bool
+    
 }

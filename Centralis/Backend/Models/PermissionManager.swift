@@ -31,13 +31,10 @@ final public class PermissionManager {
     public func reloadPermissions() {
         guard let menus = EdulinkManager.shared.authenticatedUser?.personal_menu else { return permissions.removeAll() }
         permissions = menus.compactMap { Permission(rawValue: $0.name) }
-        /*
-        if let capabilities = EdulinkManager.shared.authenticatedUser?.capabilities,
-           (capabilities["communicator.enabled"] as? Bool ?? false) {
+        if EdulinkManager.shared.authenticatedUser?.capabilities?.communicator_enabled ?? false {
             permissions.append(.messages)
         }
-         */
-        print("Permissions = \(permissions) \(EdulinkManager.shared.authenticatedUser?.capabilities)")
+        print("Permissions = \(permissions)")
     }
     
 }
