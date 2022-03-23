@@ -34,7 +34,6 @@ final public class PermissionManager {
         if EdulinkManager.shared.authenticatedUser?.capabilities?.communicator_enabled ?? false {
             permissions.append(.messages)
         }
-        print("Permissions = \(permissions)")
     }
     
 }
