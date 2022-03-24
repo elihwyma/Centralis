@@ -12,7 +12,12 @@ import UIKit
 final public class EdulinkManager {
     
     static var shared = EdulinkManager()
-    public var authenticatedUser: AuthenticatedUser?
+    public var authenticatedUser: AuthenticatedUser? {
+        didSet {
+            print("Set the user")
+            PermissionManager.shared.reloadPermissions()
+        }
+    }
     public var pingQueue = DispatchQueue(label: "Centralis.PingQueue", qos: .background)
     public var session: Session? /*{
         didSet {
@@ -39,6 +44,7 @@ final public class EdulinkManager {
         NotificationManager.shared.removeAllNotifications()
         LoginManager.save(login: nil)
         Self.shared = EdulinkManager()
+        PermissionManager.shared.reloadPermissions()
         Message.setUnread()
     }
 }
