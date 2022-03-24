@@ -215,6 +215,7 @@ final public class MyMaths {
     public func complete(with data: [String: String], task: CurrentTasks, logging: @escaping (String) -> Void, completion: @escaping (String?) -> Void) {
         EvanderNetworking.request(url: "https://app.mymaths.co.uk/api/legacy/save/mark", type: Data.self, method: "POST", headers: genericMyMathsHeaders, form: data) { one, two, three, data in
             guard two == 200 else { return completion("Failed to set mark") }
+    
             logging("[*] Successfully got full marks on \(task.name)")
             completion(nil)
         }

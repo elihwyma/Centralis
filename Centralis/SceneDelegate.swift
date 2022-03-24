@@ -26,7 +26,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = CentralisNavigationController(rootViewController: OnboardingViewController())
         }
         window?.makeKeyAndVisible()
-        print("Made the window scene")
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -212,7 +212,6 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
     }
     
     @objc private func cycle() {
-        print("Cycle")
         if !Thread.isMainThread {
             DispatchQueue.main.async { [weak self] in
                 self?.cycle()
@@ -227,15 +226,19 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
                 task.isRunning = true
                 guard let formData = task.formData else { continue }
                 MyMaths.shared.complete(with: formData, task: task.task) { [weak self, weak task] log in
-                    if let cell = self?.cellMacro(index: index) {
-                        task?.state = log
-                        cell.detailTextLabel?.text = log
+                    Thread.mainBlock {
+                        if let cell = self?.cellMacro(index: index) {
+                            task?.state = log
+                            cell.detailTextLabel?.text = log
+                        }
                     }
                 } completion: { [weak self, weak task] error in
                     if let error = error {
-                        if let cell = self?.cellMacro(index: index) {
-                            task?.state = error
-                            cell.detailTextLabel?.text = error
+                        Thread.mainBlock {
+                            if let cell = self?.cellMacro(index: index) {
+                                task?.state = error
+                                cell.detailTextLabel?.text = error
+                            }
                         }
                         return
                     }
@@ -257,7 +260,6 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
                     }
                 }
             } else {
-                print(task.progress)
                 cell.setProgress(task.progress)
             }
         }
