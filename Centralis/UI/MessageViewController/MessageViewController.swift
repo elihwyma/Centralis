@@ -252,7 +252,12 @@ class MessageViewController: UIViewController {
         }
         
         let alert = UIAlertController(title: "Downloading \(attachment.filename)", message: "Resolving", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        var cancel = false
+        var downloader: EvanderDownloader?
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            cancel = true
+            downloader?.cancel()
+        })
         alert.view.tintColor = .tintColor
         present(alert, animated: true) { [weak self] in
             guard let self = self else { return }
@@ -272,7 +277,8 @@ class MessageViewController: UIViewController {
             }
             findTheFuckingLabel(alert.view)
             self.message.getAttachment(attachment: attachment) { error, url in
-                guard let url = url else {
+                guard let url = url,
+                      !cancel else {
                     Thread.mainBlock {
                         foundLabel?.text = error ?? "Unknown Error"
                     }
@@ -281,24 +287,27 @@ class MessageViewController: UIViewController {
                 if url.isFileURL {
                     return self.display(with: url)
                 } else {
-                    let downloader = EvanderDownloader(url: url)
-                    downloader.make()
-                    downloader.progressCallback = { progress in
+                    downloader = EvanderDownloader(url: url)
+                    downloader?.make()
+                    downloader?.progressCallback = { progress in
+                        guard !cancel else { return }
                         let percent = progress.fractionCompleted * 100.0
                         Thread.mainBlock {
                             foundLabel?.text = "\(Int(percent))% downloaded"
                         }
                     }
-                    downloader.errorCallback = { _, error, _ in
+                    downloader?.errorCallback = { _, error, _ in
+                        guard !cancel else { return }
                         Thread.mainBlock {
                             foundLabel?.text = error?.localizedDescription
                         }
                     }
-                    downloader.didFinishCallback = { _, url in
+                    downloader?.didFinishCallback = { _, url in
+                        guard !cancel else { return }
                         try? FileManager.default.moveItem(at: url, to: attachment.fileDestination)
                         self.display(with: attachment.fileDestination)
                     }
-                    downloader.resume()
+                    downloader?.resume()
                 }
             }
         }

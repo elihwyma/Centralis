@@ -17,6 +17,7 @@ public final class Link: EdulinkBase {
     
     public class func updateLinks(_ completion: @escaping (String?, [Link]?) -> Void) {
         EvanderNetworking.edulinkDict(method: "EduLink.ExternalLinks", params: []) { _, _, error, result in
+            guard PermissionManager.contains(.links) else { return completion(nil, []) }
             guard let result = result,
                   let links = result["links"] as? [[String: Any]],
                   let jsonLinks = try? JSONSerialization.data(withJSONObject: links) else { return completion(error ?? "Unknown Error", nil) }

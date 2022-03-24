@@ -36,4 +36,8 @@ final public class PermissionManager {
         }
     }
     
+    public class func contains(_ permission: Permission) -> Bool {
+        PermissionManager.shared.permissions.contains(permission)
+    }
+    
 }

@@ -207,6 +207,7 @@ final public class Timetable: EdulinkBase {
     }
     
     public class func updateTimetable(indexing: Bool = false, for week: Date = Date(), _ completion: @escaping (String?, [Week]?) -> Void) {
+        guard PermissionManager.contains(.timetable) else { return completion(nil, []) }
         EvanderNetworking.edulinkDict(method: "EduLink.Timetable", params: [
             .learner_id,
             .custom(key: "date", value: date(for: week))

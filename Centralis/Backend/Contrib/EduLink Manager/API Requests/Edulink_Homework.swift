@@ -71,6 +71,7 @@ public final class Homework: EdulinkBase {
     }
     
     public class func updateHomework(indexing: Bool = false, _ completion: @escaping (String?, [Homework]?) -> Void) {
+        guard PermissionManager.contains(.homework) else { return completion(nil, []) }
         EvanderNetworking.edulinkDict(method: "EduLink.Homework", params: [.format(value: 2)]) { _, _, error, result in
             guard let result = result,
                   let homework = result["homework"] as? [String: Any],

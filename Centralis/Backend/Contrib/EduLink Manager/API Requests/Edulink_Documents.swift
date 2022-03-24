@@ -25,6 +25,7 @@ public final class Document: EdulinkBase {
     
     public class func updateDocuments(_ completion: @escaping (String?, [Document]?) -> Void) {
         EvanderNetworking.edulinkDict(method: "EduLink.Documents", params: [.learner_id]) { _, _, error, result in
+            guard PermissionManager.contains(.documents) else { return completion(nil, []) }
             guard let result = result,
                   let documents = result["documents"] as? [[String: Any]],
                   let jsonDocuments = try? JSONSerialization.data(withJSONObject: documents) else { return completion(error ?? "Unknown Error", nil) }

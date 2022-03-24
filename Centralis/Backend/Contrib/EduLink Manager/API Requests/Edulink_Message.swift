@@ -44,6 +44,7 @@ public final class Message: EdulinkBase {
     required public init() {}
     
     public class func updateMessages(totalPages: Int? = nil, currentPage: Int = 1, messages: [String: Message] = PersistenceDatabase.shared.messages, archived: Bool = false, indexing: Bool = false, _ completion: @escaping (String?, [String: Message]?) -> Void) {
+        guard PermissionManager.contains(.messages) else { return completion(nil, [:]) }
         var totalPages = totalPages
         var messages = messages
         EvanderNetworking.edulinkDict(method: "Communicator.Inbox", params: [.custom(key: "page", value: currentPage),
@@ -99,10 +100,7 @@ public final class Message: EdulinkBase {
                 Self.setUnread()
                 Thread.mainBlock {
                     (CentralisTabBarController.shared.messagesViewController.viewControllers[0] as! MessagesViewController).refreshReadState()
-                    let unread = Self.unread
-                    let unreadString: String? = unread == 0 ? nil : "\(unread)"
-                    CentralisTabBarController.shared.messagesViewController.tabBarItem.badgeValue = unreadString
-                    UIApplication.shared.applicationIconBadgeNumber = unread
+                    Self.setUnread()
                 }
                 completion()
             }

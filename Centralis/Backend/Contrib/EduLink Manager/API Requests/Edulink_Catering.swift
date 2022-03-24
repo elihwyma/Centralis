@@ -51,6 +51,7 @@ public final class Catering: Serializable {
 
     public class func updateCatering(_ completion: @escaping (String?, Catering?) -> Void) {
         EvanderNetworking.edulinkDict(method: "EduLink.Catering", params: []) { _, _, error, result in
+            guard PermissionManager.contains(.catering) else { return completion(nil, Catering(balance: 0.0, transactions: [])) }
             guard let result = result,
                   let jsonResult = try? JSONSerialization.data(withJSONObject: result) else { return completion(error ?? "Unknown Error", nil) }
             do {

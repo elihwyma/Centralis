@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Evander
 
 class HomeViewController: BaseTableViewController {
+    
+    private var currentPermissions: [PermissionManager.Permission] = []
     
     public var homework = [Homework]()
     public var today: Timetable.Day?
@@ -17,12 +20,107 @@ class HomeViewController: BaseTableViewController {
         
         tableView.register(HomeworkCell.self, forCellReuseIdentifier: "Centralis.HomeworkCell")
         tableView.register(PeriodCell.self, forCellReuseIdentifier: "Centralis.PeriodCell")
-        // Do any additional setup after loading the view.
-        
+  
         NotificationCenter.default.addObserver(self, selector: #selector(persistenceReload), name: PersistenceDatabase.persistenceReload, object: nil)
     }
     
+    public func iCalendar() {
+        let alert = UIAlertController(title: "iCalendar", message: "Loading Calendars", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            
+        }))
+    }
+    
+    enum Section {
+        case homework
+        case timetable
+        case other
+    }
+    
+    enum MoreSection {
+        case documents
+        case links
+        case catering
+        case icalendar
+    }
+    
+    public var moreCount: Int {
+        let document = currentPermissions.contains(.documents)
+        let links = currentPermissions.contains(.links)
+        let catering = currentPermissions.contains(.catering)
+        
+        var count = 1
+        if document {
+            count++
+        }
+        if links {
+            count++
+        }
+        if catering {
+            count++
+        }
+        return count
+    }
+    
+    public func moreSection(for section: Int) -> MoreSection {
+        var sections: [MoreSection] = []
+        if currentPermissions.contains(.documents) {
+            sections.append(.documents)
+        }
+        if currentPermissions.contains(.links) {
+            sections.append(.links)
+        }
+        if currentPermissions.contains(.catering) {
+            sections.append(.catering)
+        }
+        sections.append(.icalendar)
+        return sections[section]
+    }
+    
+    public var sectionCount: Int {
+        let homework = currentPermissions.contains(.homework)
+        let timetable = currentPermissions.contains(.timetable)
+        let more = currentPermissions.contains(.documents) || currentPermissions.contains(.links) || currentPermissions.contains(.catering)
+        
+        var count = 0
+        if homework {
+            count++
+        }
+        if timetable {
+            count++
+        }
+        if more {
+            count++
+        }
+        return count
+    }
+    
+    public func which(for section: Int) -> Section {
+        let homework = currentPermissions.contains(.homework)
+        let timetable = currentPermissions.contains(.timetable)
+        let more = moreCount != 0
+        
+        var sections: [Section] = []
+        if homework {
+            sections.append(.homework)
+        }
+        if timetable {
+            sections.append(.timetable)
+        }
+        if more {
+            sections.append(.other)
+        }
+        return sections[section]
+    }
+    
     private func index(_ reload: Bool = true) {
+        var reload = reload
+        let newCurrentPermissions = PermissionManager.shared.permissions
+        let override = newCurrentPermissions != currentPermissions
+        currentPermissions = newCurrentPermissions
+        if override {
+            reload = false
+        }
         if reload {
             tableView.beginUpdates()
         }
@@ -55,6 +153,9 @@ class HomeViewController: BaseTableViewController {
         if reload {
             tableView.endUpdates()
         }
+        if override {
+            tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,30 +175,28 @@ class HomeViewController: BaseTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0: return homework.count + 1
-        case 1: return (today?.periods.count ?? 0) + 1
-        case 2: return 3
-        default: return 0
+        switch which(for: section) {
+        case .timetable: return (today?.periods.count ?? 0) + 1
+        case .homework: return homework.count + 1
+        case .other: return moreCount
         }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0: return "Current Homework"
-        case 1: return "\(today?.name ?? "Today")'s Lessons"
-        case 2: return "More"
-        default: return nil
+        switch which(for: section) {
+        case .homework: return "Current Homework"
+        case .timetable: return "\(today?.name ?? "Today")'s Lessons"
+        case .other: return "More"
         }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        3
+        sectionCount
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
+        switch which(for: indexPath.section) {
+        case .homework:
             if indexPath.row == homework.count {
                 let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.DefaultCell")
                 cell.accessoryType = .disclosureIndicator
@@ -108,7 +207,7 @@ class HomeViewController: BaseTableViewController {
             cell.delegate = self
             cell.set(homework: homework[indexPath.row])
             return cell
-        case 1:
+        case .timetable:
             if indexPath.row == (today?.periods.count ?? 0) {
                 let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.DefaultCell")
                 cell.accessoryType = .disclosureIndicator
@@ -118,43 +217,45 @@ class HomeViewController: BaseTableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.PeriodCell", for: indexPath) as! PeriodCell
             cell.set(period: today!.periods[indexPath.row])
             return cell
-        case 2:
+        case .other:
             let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.DefaultCell")
             cell.accessoryType = .disclosureIndicator
-            switch indexPath.row {
-            case 0:
+            switch moreSection(for: indexPath.row) {
+            case .documents:
                 cell.textLabel?.text = "Documents"
-            case 1:
+            case .links:
                 cell.textLabel?.text = "Links"
-            case 2:
+            case .catering:
                 cell.textLabel?.text = "Catering - \(PersistenceDatabase.shared.catering.stringBalance)"
-            default: return cell
+            case .icalendar:
+                cell.textLabel?.text = "iCalendar"
             }
             return cell
-        default: return UITableViewCell()
         }
         
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let section = which(for: indexPath.section)
         if let homeworkCell = tableView.cellForRow(at: indexPath) as? HomeworkCell {
             tableView.beginUpdates()
             homeworkCell.toggleDescription()
             tableView.endUpdates()
-        } else if indexPath.section == 0 && indexPath.row == homework.count {
+        } else if section == .homework && indexPath.row == homework.count {
             navigationController?.pushViewController(HomeworkViewController(style: .insetGrouped), animated: true)
-        } else if indexPath.section == 1 && indexPath.row == (today?.periods.count ?? 0) {
+        } else if section == .timetable && indexPath.row == (today?.periods.count ?? 0) {
             navigationController?.pushViewController(TimetableViewController(style: .insetGrouped), animated: true)
-        } else if indexPath.section == 2 {
-            switch indexPath.row {
-            case 0:
+        } else if section == .other {
+            switch moreSection(for: indexPath.row) {
+            case .documents:
                 navigationController?.pushViewController(DocumentsViewController(style: .insetGrouped), animated: true)
-            case 1:
+            case .links:
                 navigationController?.pushViewController(LinksViewController(style: .insetGrouped), animated: true)
-            case 2:
+            case .catering:
                 navigationController?.pushViewController(CateringViewController(style: .insetGrouped), animated: true)
-            default: return
+            case .icalendar:
+                self.iCalendar()
             }
         }
     }

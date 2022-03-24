@@ -21,6 +21,8 @@
 		E10B961127518EFF00C8C12E /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = E10B961027518EFF00C8C12E /* SQLite */; };
 		E10B96132751A35500C8C12E /* Edulink_Homework.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B96122751A35500C8C12E /* Edulink_Homework.swift */; };
 		E10B96162752605E00C8C12E /* PersistenceDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B96152752605E00C8C12E /* PersistenceDatabase.swift */; };
+		E12690E027EC77A800929C21 /* Edulink_iCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12690DF27EC77A800929C21 /* Edulink_iCalendar.swift */; };
+		E12690E127EC77A900929C21 /* Edulink_iCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12690DF27EC77A800929C21 /* Edulink_iCalendar.swift */; };
 		E12993ED27DB908E007AC00B /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = E12993EC27DB908E007AC00B /* SwiftSoup */; };
 		E12993EF27DB909A007AC00B /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = E12993EE27DB909A007AC00B /* SwiftSoup */; };
 		E12D63C7275F71F0008DAB00 /* Edulink_Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12D63C6275F71F0008DAB00 /* Edulink_Timetable.swift */; };
@@ -199,6 +201,7 @@
 		E10B960D27518B0800C8C12E /* QuickLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLoginViewController.swift; sourceTree = "<group>"; };
 		E10B96122751A35500C8C12E /* Edulink_Homework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Homework.swift; sourceTree = "<group>"; };
 		E10B96152752605E00C8C12E /* PersistenceDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceDatabase.swift; sourceTree = "<group>"; };
+		E12690DF27EC77A800929C21 /* Edulink_iCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_iCalendar.swift; sourceTree = "<group>"; };
 		E12D63C6275F71F0008DAB00 /* Edulink_Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Timetable.swift; sourceTree = "<group>"; };
 		E150BC2C27AD5F84001D34AD /* Edulink_Documents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Documents.swift; sourceTree = "<group>"; };
 		E15B5BCA275306720003A56D /* BasicInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoCell.swift; sourceTree = "<group>"; };
@@ -595,6 +598,7 @@
 				E150BC2C27AD5F84001D34AD /* Edulink_Documents.swift */,
 				E19661A627B03AA700793007 /* Edulink_Links.swift */,
 				E19A427F27CFA24A0053435F /* Edulink_Catering.swift */,
+				E12690DF27EC77A800929C21 /* Edulink_iCalendar.swift */,
 			);
 			path = "API Requests";
 			sourceTree = "<group>";
@@ -764,6 +768,7 @@
 				E15B5BCC275306720003A56D /* BasicInfoCell.swift in Sources */,
 				E17E14A1274C19B10090F822 /* AppDelegate.swift in Sources */,
 				E1E51EF327A6DA9C00C81413 /* LoginMiddleware.swift in Sources */,
+				E12690E027EC77A800929C21 /* Edulink_iCalendar.swift in Sources */,
 				E10B95FF275164D800C8C12E /* CentralisNavigationController.swift in Sources */,
 				E1CEBD8D274C2F80009F35D4 /* AuthenticatedUser.swift in Sources */,
 				E19621AF275D04970065B446 /* InfoViewController.swift in Sources */,
@@ -834,6 +839,7 @@
 				E19661F827B061F600793007 /* URL+Extensions.swift in Sources */,
 				E196621427B0623700793007 /* TimetableViewController.swift in Sources */,
 				E19661FC27B061FE00793007 /* OnboardingViewController.swift in Sources */,
+				E12690E127EC77A900929C21 /* Edulink_iCalendar.swift in Sources */,
 				E19661FF27B0620100793007 /* RoundedTextField.swift in Sources */,
 				E196620227B0620100793007 /* CentralisNavigationController.swift in Sources */,
 				E19661F027B061F100793007 /* Transformers.swift in Sources */,
