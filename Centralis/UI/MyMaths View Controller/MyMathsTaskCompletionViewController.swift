@@ -48,6 +48,7 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
     private var timer: Timer?
     private let tasks: [Task]
     private var selectedConfig: TimeConfig = .instant
+    private var sequential = false
     private var hasStarted = false {
         didSet {
             UIApplication.shared.isIdleTimerDisabled = hasStarted
@@ -75,6 +76,7 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
         title = "MyMaths Hax"
         tableView.register(ProgressSubtitleCell.self, forCellReuseIdentifier: "MyMaths.ProgressSubtitleCell")
         tableView.register(TimeConfigSelectionCell.self, forCellReuseIdentifier: "MyMaths.TimeConfigSelectionCell")
+        tableView.register(ClosureSwitchTableViewCell.self, forCellReuseIdentifier: "Centralis.ClosureSwitchTableViewCell")
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Start", style: .done, target: self, action: #selector(startWarning))
     }
     
@@ -91,13 +93,16 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
             self?.start()
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        alert.view.tintColor = .tintColor
         self.present(alert, animated: true)
     }
     
     @objc private func start() {
         // Should be impossible regardless but I don't like crashes, sanity check I suppose
         guard !tasks.isEmpty else { return }
+        
+        let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as! ClosureSwitchTableViewCell
+        cell.control.isEnabled = false
+        
         if selectedConfig == .instant {
             navigationItem.rightBarButtonItem?.isEnabled = false
             var index = 0
@@ -262,6 +267,9 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
             } else {
                 cell.setProgress(task.progress)
             }
+            if sequential {
+                break
+            }
         }
     }
     
@@ -277,6 +285,10 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
             }
             return
         }
+        
+        let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as! ClosureSwitchTableViewCell
+        cell.control.isEnabled = true
+        
         timer?.invalidate()
         hasStarted = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Start", style: .done, target: self, action: #selector(startWarning))
@@ -293,7 +305,6 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
             alert.addAction(UIAlertAction(title: "Close", style: .default, handler: { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
             }))
-            alert.view.tintColor = .tintColor
             self.present(alert, animated: true)
             return
         }
@@ -314,11 +325,11 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return tasks.count
-        case 1: return 1
+        case 1: return 2
         default: return 0
         }
     }
-    
+        
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
@@ -335,10 +346,24 @@ class MyMathsTaskCompletionViewController: BaseTableViewController {
             cell.task = task
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MyMaths.TimeConfigSelectionCell", for: indexPath) as! TimeConfigSelectionCell
-            cell.segmentedControl.selectedSegmentIndex = selectedConfig.rawValue
-            cell.delegate = self
-            return cell
+            switch indexPath.row {
+            case 0:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "MyMaths.TimeConfigSelectionCell", for: indexPath) as! TimeConfigSelectionCell
+                cell.segmentedControl.selectedSegmentIndex = selectedConfig.rawValue
+                cell.delegate = self
+                return cell
+            case 1:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Centralis.ClosureSwitchTableViewCell") as! ClosureSwitchTableViewCell
+                cell.amyPogLabel.text = "Sequential"
+                cell.control.isOn = sequential
+                cell.control.isEnabled = !hasStarted
+                cell.callback = { [weak self] state in
+                    self?.sequential = state
+                }
+                return cell
+            default: return UITableViewCell()
+            }
+            
         default:
             return UITableViewCell()
         }

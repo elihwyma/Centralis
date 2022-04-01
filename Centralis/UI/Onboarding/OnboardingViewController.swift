@@ -38,7 +38,6 @@ class OnboardingViewController: UIViewController {
             self?.presentLoginController()
         }))
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .tintColor
         button.setTitle("Login", for: .normal)
         button.setTitleColor(.label, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)

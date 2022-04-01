@@ -47,7 +47,6 @@ class ProcessingViewController: UIViewController {
             (UIApplication.shared.delegate as! AppDelegate).setRootViewController(CentralisNavigationController(rootViewController: OnboardingViewController()))
         }))
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .tintColor
         button.setTitle("Signout", for: .normal)
         button.setTitleColor(.label, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
@@ -65,7 +64,6 @@ class ProcessingViewController: UIViewController {
             self.logoutButton.isEnabled = false
         }))
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .tintColor
         button.setTitle("Retry", for: .normal)
         button.setTitleColor(.label, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)

@@ -78,7 +78,6 @@ class TimetableViewController: BaseTableViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { [weak self] _ in
             self?.dismiss(animated: true)
         }))
-        alert.view.tintColor = .tintColor
         self.present(alert, animated: true)
     }
 

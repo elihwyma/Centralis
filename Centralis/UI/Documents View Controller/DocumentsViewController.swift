@@ -84,7 +84,6 @@ class DocumentsViewController: BaseTableViewController {
         self.dismiss(animated: true)
         targetURL = url
         let quickLookViewController = QLPreviewController()
-        quickLookViewController.view.tintColor = .tintColor
         quickLookViewController.dataSource = self
         quickLookViewController.currentPreviewItemIndex = 0
         present(quickLookViewController, animated: true)
@@ -108,24 +107,9 @@ class DocumentsViewController: BaseTableViewController {
             cancel = true
             downloader?.cancel()
         })
-        alert.view.tintColor = .tintColor
         present(alert, animated: true) { [weak self] in
             guard let self = self else { return }
-            var foundLabel: UILabel?
-            @discardableResult func findTheFuckingLabel(_ view: UIView) -> Bool {
-                for view in view.subviews {
-                    if let label = view as? UILabel,
-                       label.text == "Resolving" {
-                        foundLabel = label
-                        return true
-                    }
-                    if findTheFuckingLabel(view) {
-                        return true
-                    }
-                }
-                return false
-            }
-            findTheFuckingLabel(alert.view)
+            let foundLabel = alert.label(with: "Resolving")
             document.getDocument { error, url in
                 guard let url = url,
                       !cancel else {

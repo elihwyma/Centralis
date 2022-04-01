@@ -13,8 +13,6 @@ public class KeyboardAwareViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .backgroundColor
-        view.tintColor = .tintColor
-        navigationController?.navigationBar.tintColor = .tintColor
         
         NotificationCenter.default.addObserver(self, selector: #selector(_keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(_keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)

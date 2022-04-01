@@ -12,7 +12,6 @@ class ProgressSubtitleCell: UITableViewCell {
     
     private var progressBar: UIProgressView = {
         let view = UIProgressView()
-        view.tintColor = .tintColor
         view.translatesAutoresizingMaskIntoConstraints = false
         view.heightAnchor.constraint(equalToConstant: 1.5).isActive = true
         view.progressViewStyle = .bar

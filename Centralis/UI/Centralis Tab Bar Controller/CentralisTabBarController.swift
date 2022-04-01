@@ -49,7 +49,6 @@ final class CentralisTabBarController: UITabBarController {
     }()
     private var progressBar: UIProgressView = {
         let view = UIProgressView()
-        view.tintColor = .tintColor
         view.translatesAutoresizingMaskIntoConstraints = false
         view.heightAnchor.constraint(equalToConstant: 0.7).isActive = true
         view.progressViewStyle = .bar
@@ -102,12 +101,6 @@ final class CentralisTabBarController: UITabBarController {
                            messagesViewController,
                            infoViewController]
 
-        self.updateCentralisColours()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateCentralisColours),
-                                               name: ThemeManager.ThemeUpdate,
-                                               object: nil)
-        
         view.insertSubview(popupView, belowSubview: tabBar)
         NSLayoutConstraint.activate([
             popupView.widthAnchor.constraint(equalTo: tabBar.widthAnchor),
@@ -158,10 +151,6 @@ final class CentralisTabBarController: UITabBarController {
         titleLabel.text = title
         subtitleLabel.text = subtitle
         currentProgress = progress
-    }
-    
-    @objc private func updateCentralisColours() {
-        view.tintColor = .tintColor
     }
     
     public var homeViewController: CentralisNavigationController = {

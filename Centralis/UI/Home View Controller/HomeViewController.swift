@@ -7,6 +7,7 @@
 
 import UIKit
 import Evander
+import SafariServices
 
 class HomeViewController: BaseTableViewController {
     
@@ -26,9 +27,37 @@ class HomeViewController: BaseTableViewController {
     
     public func iCalendar() {
         let alert = UIAlertController(title: "iCalendar", message: "Loading Calendars", preferredStyle: .alert)
+        var cancel = false
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-            
+            cancel = true
         }))
+        self.present(alert, animated: true) { [self] in
+            let label = alert.label(with: "Loading Calendars")
+            ICalendar.getCalendars { error, calendars in
+                guard let calendars = calendars,
+                      !cancel else {
+                    label?.text = error ?? "Unknown Error"
+                    return
+                }
+                let alert = UIAlertController(title: "Calendars", message: nil, preferredStyle: .actionSheet)
+                if let popoverController = alert.popoverPresentationController {
+                    popoverController.sourceView = self.view
+                    popoverController.sourceRect = self.view.frame
+                }
+                for calendar in calendars {
+                    alert.addAction(UIAlertAction(title: calendar.description, style: .default, handler: { _ in
+                        let view = SFSafariViewController(url: calendar.url)
+                        self.present(view, animated: true)
+                    }))
+                }
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                Thread.mainBlock {
+                    self.dismiss(animated: true) { [self] in
+                        present(alert, animated: true)
+                    }
+                }
+            }
+        }
     }
     
     enum Section {
@@ -260,3 +289,4 @@ class HomeViewController: BaseTableViewController {
         }
     }
 }
+
