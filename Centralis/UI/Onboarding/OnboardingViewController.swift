@@ -37,6 +37,7 @@ class OnboardingViewController: UIViewController {
         let button = UIButton(primaryAction: UIAction(handler: { [weak self] _ in
             self?.presentLoginController()
         }))
+        button.backgroundColor = .tintColor
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Login", for: .normal)
         button.setTitleColor(.label, for: .normal)

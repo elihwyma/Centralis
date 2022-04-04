@@ -21,7 +21,7 @@ enum DatabaseSchemaVersion: String {
 final public class PersistenceDatabase {
     
     static private (set) public var shared = PersistenceDatabase()
-    static let domainDefaults = UserDefaults(suiteName: "group.amywhile.centralis")!
+    static public let domainDefaults = UserDefaults(suiteName: "group.amywhile.centralis")!
     private var database: Connection
     private let databaseFolder = EvanderNetworking._cacheDirectory.appendingPathComponent("Database")
     

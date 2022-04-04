@@ -15,6 +15,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
+        
+        let currentResetVersion = 0x00000001
+        if PersistenceDatabase.domainDefaults.integer(forKey: "Version") < currentResetVersion {
+            EdulinkManager.shared.signout()
+            PersistenceDatabase.domainDefaults.set(currentResetVersion, forKey: "Version")
+        }
+        
         if let login = LoginManager.loadLogin().1 {
             window?.rootViewController = CentralisTabBarController.shared
             Message.setUnread()
