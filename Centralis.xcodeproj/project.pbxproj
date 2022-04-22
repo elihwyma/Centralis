@@ -28,6 +28,8 @@
 		E12993ED27DB908E007AC00B /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = E12993EC27DB908E007AC00B /* SwiftSoup */; };
 		E12993EF27DB909A007AC00B /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = E12993EE27DB909A007AC00B /* SwiftSoup */; };
 		E12D63C7275F71F0008DAB00 /* Edulink_Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12D63C6275F71F0008DAB00 /* Edulink_Timetable.swift */; };
+		E149969227FAF3D400FC039E /* Edulink_Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E149969127FAF3D400FC039E /* Edulink_Attendance.swift */; };
+		E149969327FAF3D500FC039E /* Edulink_Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E149969127FAF3D400FC039E /* Edulink_Attendance.swift */; };
 		E150BC2D27AD5F84001D34AD /* Edulink_Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150BC2C27AD5F84001D34AD /* Edulink_Documents.swift */; };
 		E15B5BCC275306720003A56D /* BasicInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15B5BCA275306720003A56D /* BasicInfoCell.swift */; };
 		E17E14A1274C19B10090F822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14A0274C19B10090F822 /* AppDelegate.swift */; };
@@ -206,6 +208,7 @@
 		E11E553C27F1B21300FEA9D7 /* UIAlertController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extensions.swift"; sourceTree = "<group>"; };
 		E12690DF27EC77A800929C21 /* Edulink_iCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_iCalendar.swift; sourceTree = "<group>"; };
 		E12D63C6275F71F0008DAB00 /* Edulink_Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Timetable.swift; sourceTree = "<group>"; };
+		E149969127FAF3D400FC039E /* Edulink_Attendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Attendance.swift; sourceTree = "<group>"; };
 		E150BC2C27AD5F84001D34AD /* Edulink_Documents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Documents.swift; sourceTree = "<group>"; };
 		E15B5BCA275306720003A56D /* BasicInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoCell.swift; sourceTree = "<group>"; };
 		E17E149D274C19B10090F822 /* Centralis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Centralis.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -603,6 +606,7 @@
 				E19661A627B03AA700793007 /* Edulink_Links.swift */,
 				E19A427F27CFA24A0053435F /* Edulink_Catering.swift */,
 				E12690DF27EC77A800929C21 /* Edulink_iCalendar.swift */,
+				E149969127FAF3D400FC039E /* Edulink_Attendance.swift */,
 			);
 			path = "API Requests";
 			sourceTree = "<group>";
@@ -783,6 +787,7 @@
 				E19A429C27DB91200053435F /* MyMaths.swift in Sources */,
 				E19621AC275CFDA10065B446 /* HomeworkViewController.swift in Sources */,
 				E1A23528277F6FF9004563C9 /* TimetableViewController.swift in Sources */,
+				E149969227FAF3D400FC039E /* Edulink_Attendance.swift in Sources */,
 				E10B960B2751865E00C8C12E /* BaseTableViewController.swift in Sources */,
 				E1C29F2027DC0636003B16E9 /* MyMathsTaskList.swift in Sources */,
 				E1B8C1912752A0AD001FF9FD /* NotificationManager.swift in Sources */,
@@ -855,6 +860,7 @@
 				E19A429D27DB91200053435F /* MyMaths.swift in Sources */,
 				E196621127B0621500793007 /* BasicInfoCell.swift in Sources */,
 				E196621027B0621500793007 /* TimetableCell.swift in Sources */,
+				E149969327FAF3D500FC039E /* Edulink_Attendance.swift in Sources */,
 				E19661E727B061E800793007 /* Edulink_Documents.swift in Sources */,
 				E1C29F2127DC0636003B16E9 /* MyMathsTaskList.swift in Sources */,
 				E196620A27B0621100793007 /* QuickLoginViewController.swift in Sources */,

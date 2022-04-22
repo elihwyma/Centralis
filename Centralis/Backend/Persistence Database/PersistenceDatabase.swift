@@ -146,7 +146,7 @@ final public class PersistenceDatabase {
         
         let loadGroup = DispatchGroup()
         
-        let numberOfTasks = 6
+        let numberOfTasks = 7
         for _ in 1...numberOfTasks {
             loadGroup.enter()
         }
@@ -177,6 +177,9 @@ final public class PersistenceDatabase {
             completeTask(with: error)
         }
         Catering.updateCatering { error, _ in
+            completeTask(with: error)
+        }
+        Attendance.updateAttendance { error, _ in
             completeTask(with: error)
         }
         loadGroup.notify(queue: .global(qos: .background)) {
