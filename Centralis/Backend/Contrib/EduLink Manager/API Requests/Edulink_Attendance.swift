@@ -41,6 +41,7 @@ final public class Attendance: Serializable {
     }
     
     public class func updateAttendance(_ completion: @escaping (String?, Attendance?) -> Void) {
+        guard PermissionManager.contains(.attendance) else { return completion(nil, Attendance()) }
         EvanderNetworking.edulinkDict(method: "EduLink.Attendance", params: [
             .learner_id,
             .format(value: 3)
@@ -58,5 +59,10 @@ final public class Attendance: Serializable {
     }
     
     public init() {}
+    
+    public init(lesson: [Lesson] = [], statutory: [Lesson] = []) {
+        self.lesson = lesson
+        self.statutory = statutory
+    }
     
 }

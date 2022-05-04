@@ -31,6 +31,7 @@ final public class PersistenceDatabase {
     private(set) public lazy var documents: [String: Document] = DocumentDatabase.getDocuments(database: database)
     private(set) public lazy var links: [String: Link] = LinkDatabase.getLinks(database: database)
     private(set) public lazy var catering: Catering = CateringDatabase.getCatering(database: database)
+    private(set) public lazy var attendance: Attendance = AttendanceDatabase.getAttendance(database: database)
     
     static let persistenceReload = Notification.Name(rawValue: "Centralis/PersistenceReload")
     
@@ -50,6 +51,7 @@ final public class PersistenceDatabase {
             messages = [:]
             documents = [:]
             links = [:]
+            attendance = Attendance()
         }
         
         HomeworkDatabase.createTable(database: database)
@@ -58,6 +60,7 @@ final public class PersistenceDatabase {
         LinkDatabase.createTable(database: database)
         DocumentDatabase.createTable(database: database)
         CateringDatabase.createTable(database: database)
+        AttendanceDatabase.createTable(database: database)
     }
 
     public var hasIndexed: Bool {
@@ -83,12 +86,11 @@ final public class PersistenceDatabase {
         try? PersistenceDatabase.shared.resetDatabase()
         let `self` = PersistenceDatabase.shared
         let loadGroup = DispatchGroup()
-        loadGroup.enter()
-        loadGroup.enter()
-        loadGroup.enter()
-        loadGroup.enter()
-        loadGroup.enter()
-        loadGroup.enter()
+        
+        let numberOfTasks = 7
+        for _ in 1...numberOfTasks {
+            loadGroup.enter()
+        }
         Homework.updateHomework(indexing: true) { [weak self] error, homework in
             guard let homework = homework,
                   let database = self?.database else {
@@ -129,6 +131,12 @@ final public class PersistenceDatabase {
         }
         Catering.updateCatering { error, catering in
             guard catering != nil else {
+                return completion(error ?? "Unknown Error", false)
+            }
+            loadGroup.leave()
+        }
+        Attendance.updateAttendance { error, attendance in
+            guard attendance != nil else {
                 return completion(error ?? "Unknown Error", false)
             }
             loadGroup.leave()
@@ -856,6 +864,77 @@ final public class PersistenceDatabase {
                 NotificationManager.shared.notifyLowBalance(balance: catering.stringBalance)
             }
         }
+    }
+    
+    struct AttendanceDatabase {
+        
+        enum AttendanceType: Int {
+            case lesson = 0
+            case statutory = 1
+        }
+        
+        static let attendanceTable = Table("Attendance")
+        static let attendance = Expression<Data>("attendance")
+        static let type = Expression<AttendanceType.RawValue>("type")
+        
+        static func createTable(database: Connection) {
+            _ = try? database.run(attendanceTable.create(ifNotExists: true,
+                                                         block: { tbd in
+                tbd.column(attendance)
+                tbd.column(type)
+            }))
+        }
+        
+        static func saveAttendance(attendance: Attendance) {
+            let shared = PersistenceDatabase.shared
+            let database = shared.database
+            
+            try? database.transaction {
+                _ = try database.prepare("DELETE from Attendance")
+                
+                let encoder = JSONEncoder()
+                for lesson in attendance.lesson {
+                    let data = try encoder.encode(lesson)
+                    _ = try database.run(attendanceTable.insert(
+                        AttendanceDatabase.attendance <- data,
+                        type <- 0
+                    ))
+                }
+                
+                for lesson in attendance.statutory {
+                    let data = try encoder.encode(lesson)
+                    _ = try database.run(attendanceTable.insert(
+                        AttendanceDatabase.attendance <- data,
+                        type <- 1
+                    ))
+                }
+            }
+        }
+        
+        static func getAttendance(database: Connection) -> Attendance {
+            let query = attendanceTable.select(
+                attendance,
+                type
+            )
+            let decoder = JSONDecoder()
+            var lessons = [Attendance.Lesson]()
+            var statutory = [Attendance.Lesson]()
+            do {
+                for attendance in try database.prepare(query) {
+                    let lesson = try decoder.decode(Attendance.Lesson.self, from: attendance[AttendanceDatabase.attendance])
+                    switch AttendanceType(rawValue: attendance[type]) {
+                    case .lesson: lessons.append(lesson)
+                    case .statutory: statutory.append(lesson)
+                    case .none: break
+                    }
+                }
+            } catch {}
+            
+            lessons.sort { $0.lesson < $1.lesson }
+            statutory.sort { $0.lesson > $1.lesson }
+            return .init(lesson: lessons, statutory: statutory)
+        }
+        
     }
 
 }
