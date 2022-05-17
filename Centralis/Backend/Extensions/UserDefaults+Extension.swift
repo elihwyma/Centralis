@@ -14,6 +14,8 @@ extension UserDefaults {
         for key in dict.keys {
             removeObject(forKey: key)
         }
+        
+        PersistenceDatabase.domainDefaults.set(currentResetVersion, forKey: "Version")
     }
     
 }

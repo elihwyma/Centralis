@@ -96,7 +96,7 @@ final public class PersistenceDatabase {
         Homework.updateHomework(indexing: true) { [weak self] error, homework in
             guard let homework = homework,
                   let database = self?.database else {
-                return completion(error ?? "Unknown Error", false)
+                return completion(error ?? "Unknown Homework Error", false)
             }
             HomeworkDatabase.saveHomework(homework: homework, notificationState: .dayBefore, database: database)
             var tmp = [String: Homework]()
@@ -107,7 +107,7 @@ final public class PersistenceDatabase {
         Timetable.updateTimetable(indexing: true) { [weak self] error, weeks in
             guard let weeks = weeks,
                   let database = self?.database else {
-                      return completion(error ?? "Unknown Error", false)
+                      return completion(error ?? "Unknown Timetable Error", false)
             }
             TimetableDatabase.saveTimetable(weeks: weeks, database: database)
             Self.shared.timetable = TimetableDatabase.getTimetable(database: Self.shared.database)
@@ -115,37 +115,37 @@ final public class PersistenceDatabase {
         }
         Message.updateMessages(indexing: true) { error, messages in
             guard messages != nil else {
-                return completion(error ?? "Unknown Error", false)
+                return completion(error ?? "Unknown Messages Error", false)
             }
             loadGroup.leave()
         }
         Document.updateDocuments { error, documents in
             guard documents != nil else {
-                return completion(error ?? "Unknown Error", false)
+                return completion(error ?? "Unknown Documents Error", false)
             }
             loadGroup.leave()
         }
         Link.updateLinks { error, links in
             guard links != nil else {
-                return completion(error ?? "Unknown Error", false)
+                return completion(error ?? "Unknown Links Error", false)
             }
             loadGroup.leave()
         }
         Catering.updateCatering { error, catering in
             guard catering != nil else {
-                return completion(error ?? "Unknown Error", false)
+                return completion(error ?? "Unknown Catering Error", false)
             }
             loadGroup.leave()
         }
         Attendance.updateAttendance { error, attendance in
             guard attendance != nil else {
-                return completion(error ?? "Unknown Error", false)
+                return completion(error ?? "Unknown Attendance Error", false)
             }
             loadGroup.leave()
         }
         Personal.updatePersonal { error, personal in
-            guard personal != personal else {
-                return completion(error ?? "Unknown Error", false)
+            guard personal != nil else {
+                return completion(error ?? "Unknown Personal Error", false)
             }
             loadGroup.leave()
         }

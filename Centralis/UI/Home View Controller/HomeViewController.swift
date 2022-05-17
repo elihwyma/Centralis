@@ -70,6 +70,7 @@ class HomeViewController: BaseTableViewController {
         case documents
         case links
         case catering
+        case attendance
         case icalendar
     }
     
@@ -77,12 +78,16 @@ class HomeViewController: BaseTableViewController {
         let document = currentPermissions.contains(.documents)
         let links = currentPermissions.contains(.links)
         let catering = currentPermissions.contains(.catering)
+        let attendance = currentPermissions.contains(.attendance)
         
         var count = 1
         if document {
             count++
         }
         if links {
+            count++
+        }
+        if attendance {
             count++
         }
         if catering {
@@ -101,6 +106,9 @@ class HomeViewController: BaseTableViewController {
         }
         if currentPermissions.contains(.catering) {
             sections.append(.catering)
+        }
+        if currentPermissions.contains(.attendance) {
+            sections.append(.attendance)
         }
         sections.append(.icalendar)
         return sections[section]
@@ -256,6 +264,8 @@ class HomeViewController: BaseTableViewController {
                 cell.textLabel?.text = "Links"
             case .catering:
                 cell.textLabel?.text = "Catering - \(PersistenceDatabase.shared.catering.stringBalance)"
+            case .attendance:
+                cell.textLabel?.text = "Attendance"
             case .icalendar:
                 cell.textLabel?.text = "iCalendar"
             }
@@ -283,6 +293,8 @@ class HomeViewController: BaseTableViewController {
                 navigationController?.pushViewController(LinksViewController(style: .insetGrouped), animated: true)
             case .catering:
                 navigationController?.pushViewController(CateringViewController(style: .insetGrouped), animated: true)
+            case .attendance:
+                navigationController?.pushViewController(AttendanceViewController(style: .insetGrouped), animated: true)
             case .icalendar:
                 self.iCalendar()
             }

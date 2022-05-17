@@ -7,6 +7,8 @@
 
 import UIKit
 
+let currentResetVersion = 0x00000001
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -16,7 +18,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         
-        let currentResetVersion = 0x00000001
         if PersistenceDatabase.domainDefaults.integer(forKey: "Version") < currentResetVersion {
             EdulinkManager.shared.signout()
             PersistenceDatabase.domainDefaults.set(currentResetVersion, forKey: "Version")

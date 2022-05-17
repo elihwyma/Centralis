@@ -15,6 +15,12 @@ public final class ChartedProgressView: UIView {
         layer.cornerCurve = .continuous
         layer.masksToBounds = true
         
+        setRegions(regions: regions)
+    }
+    
+    public func setRegions(regions: [(UIColor, Float)]) {
+        subviews.forEach { $0.removeFromSuperview() }
+        
         var lastView: UIView?
         for region in regions {
             let view = UIView(frame: .zero)
@@ -31,6 +37,7 @@ public final class ChartedProgressView: UIView {
             lastView = view
         }
     }
+    
 
     public override func layoutSubviews() {
         super.layoutSubviews()

@@ -155,6 +155,8 @@
 		E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD8E274C3AB9009F35D4 /* SchoolDetails.swift */; };
 		E1CEBD91274C5F8E009F35D4 /* Establishment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD90274C5F8E009F35D4 /* Establishment.swift */; };
 		E1E51EF327A6DA9C00C81413 /* LoginMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E51EF227A6DA9C00C81413 /* LoginMiddleware.swift */; };
+		E1F482902834358E000D90C7 /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F4828F2834358E000D90C7 /* AttendanceViewController.swift */; };
+		E1F482912834358E000D90C7 /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F4828F2834358E000D90C7 /* AttendanceViewController.swift */; };
 		E1F6BB97278CC6B000E7A360 /* Edulink_Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F6BB96278CC6B000E7A360 /* Edulink_Message.swift */; };
 		E1F6BB9B278E102500E7A360 /* Edulink_Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F6BB9A278E102500E7A360 /* Edulink_Photos.swift */; };
 		E1F6BB9D2790BF9500E7A360 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F6BB9C2790BF9500E7A360 /* MessageTableViewCell.swift */; };
@@ -275,6 +277,7 @@
 		E1CEBD8E274C3AB9009F35D4 /* SchoolDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolDetails.swift; sourceTree = "<group>"; };
 		E1CEBD90274C5F8E009F35D4 /* Establishment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Establishment.swift; sourceTree = "<group>"; };
 		E1E51EF227A6DA9C00C81413 /* LoginMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMiddleware.swift; sourceTree = "<group>"; };
+		E1F4828F2834358E000D90C7 /* AttendanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
 		E1F6BB96278CC6B000E7A360 /* Edulink_Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Message.swift; sourceTree = "<group>"; };
 		E1F6BB9A278E102500E7A360 /* Edulink_Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Photos.swift; sourceTree = "<group>"; };
 		E1F6BB9C2790BF9500E7A360 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -517,6 +520,7 @@
 		E197455A2751295E00EEB853 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				E1F4828E28343573000D90C7 /* Attendance View Controller */,
 				E1C29F1B27DBE35B003B16E9 /* MyMaths View Controller */,
 				E19A428227D0F0C70053435F /* Catering View Controller */,
 				E19661A827B0442400793007 /* Links View Controller */,
@@ -633,6 +637,14 @@
 				E1C29F2827DD3785003B16E9 /* TimeConfigSelection.swift */,
 			);
 			path = "MyMaths View Controller";
+			sourceTree = "<group>";
+		};
+		E1F4828E28343573000D90C7 /* Attendance View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E1F4828F2834358E000D90C7 /* AttendanceViewController.swift */,
+			);
+			path = "Attendance View Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -777,6 +789,7 @@
 				E1B8C18D27528FAA001FF9FD /* Date+Extensions.swift in Sources */,
 				E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */,
 				E19661A727B03AA700793007 /* Edulink_Links.swift in Sources */,
+				E1F482902834358E000D90C7 /* AttendanceViewController.swift in Sources */,
 				E11E553D27F1B21300FEA9D7 /* UIAlertController+Extensions.swift in Sources */,
 				E19D9FAD27A71732005C8398 /* Reachability.swift in Sources */,
 				E1C29F2927DD3785003B16E9 /* TimeConfigSelection.swift in Sources */,
@@ -853,6 +866,7 @@
 				E196620327B0620100793007 /* LoadingButton.swift in Sources */,
 				E19661F727B061F600793007 /* Bundle+Extensions.swift in Sources */,
 				E196621627B0623D00793007 /* MessageViewController.swift in Sources */,
+				E1F482912834358E000D90C7 /* AttendanceViewController.swift in Sources */,
 				E11E553E27F1B21300FEA9D7 /* UIAlertController+Extensions.swift in Sources */,
 				E19661ED27B061EE00793007 /* EdulinkRequests.swift in Sources */,
 				E1C29F2A27DD3785003B16E9 /* TimeConfigSelection.swift in Sources */,
