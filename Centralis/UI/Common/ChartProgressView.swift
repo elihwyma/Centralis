@@ -9,7 +9,7 @@ import UIKit
 
 public final class ChartedProgressView: UIView {
     
-    public init(regions: [(UIColor, Float)]) {
+    public init(regions: [(UIColor, Double)]) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerCurve = .continuous
@@ -18,7 +18,7 @@ public final class ChartedProgressView: UIView {
         setRegions(regions: regions)
     }
     
-    public func setRegions(regions: [(UIColor, Float)]) {
+    public func setRegions(regions: [(UIColor, Double)]) {
         subviews.forEach { $0.removeFromSuperview() }
         
         var lastView: UIView?

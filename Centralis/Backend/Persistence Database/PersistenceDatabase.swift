@@ -901,26 +901,32 @@ final public class PersistenceDatabase {
             let shared = PersistenceDatabase.shared
             let database = shared.database
             
-            try? database.transaction {
-                _ = try database.prepare("DELETE from Attendance")
-                
-                let encoder = JSONEncoder()
-                for lesson in attendance.lesson {
-                    let data = try encoder.encode(lesson)
-                    _ = try database.run(attendanceTable.insert(
-                        AttendanceDatabase.attendance <- data,
-                        type <- 0
-                    ))
+            do {
+                try database.transaction {
+                    _ = try database.prepare("DELETE from Attendance")
+                    
+                    let encoder = JSONEncoder()
+                    for lesson in attendance.lesson {
+                        let data = try encoder.encode(lesson)
+                        _ = try database.run(attendanceTable.insert(
+                            AttendanceDatabase.attendance <- data,
+                            type <- 0
+                        ))
+                    }
+                    
+                    for lesson in attendance.statutory {
+                        let data = try encoder.encode(lesson)
+                        _ = try database.run(attendanceTable.insert(
+                            AttendanceDatabase.attendance <- data,
+                            type <- 1
+                        ))
+                    }
                 }
-                
-                for lesson in attendance.statutory {
-                    let data = try encoder.encode(lesson)
-                    _ = try database.run(attendanceTable.insert(
-                        AttendanceDatabase.attendance <- data,
-                        type <- 1
-                    ))
-                }
+            } catch {
+                print(error.localizedDescription)
             }
+            shared.attendance = attendance
+            
         }
         
         static func getAttendance(database: Connection) -> Attendance {
@@ -933,6 +939,7 @@ final public class PersistenceDatabase {
             var statutory = [Attendance.Lesson]()
             do {
                 for attendance in try database.prepare(query) {
+                    print("Query")
                     let lesson = try decoder.decode(Attendance.Lesson.self, from: attendance[AttendanceDatabase.attendance])
                     switch AttendanceType(rawValue: attendance[type]) {
                     case .lesson: lessons.append(lesson)
@@ -943,6 +950,7 @@ final public class PersistenceDatabase {
             } catch {}
             
             lessons.sort { $0.lesson < $1.lesson }
+            print("Hmm? \(lessons) \(statutory)")
             statutory.sort { $0.lesson > $1.lesson }
             return .init(lesson: lessons, statutory: statutory)
         }

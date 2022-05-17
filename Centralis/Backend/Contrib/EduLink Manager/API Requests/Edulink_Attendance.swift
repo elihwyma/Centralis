@@ -5,10 +5,9 @@
 //  Created by Somica on 04/04/2022.
 //
 
-import Foundation
 import SerializedSwift
 import Evander
-import CoreGraphics
+import UIKit
 
 final public class Attendance: Serializable {
     
@@ -18,7 +17,7 @@ final public class Attendance: Serializable {
         case absent
         case late
      
-        var rawValue: CGColor {
+        var rawValue: UIColor {
             switch self {
             case .present: return #colorLiteral(red: 0.3568627451, green: 0.5490196078, blue: 0.3529411765, alpha: 1) //5B8C5A
             case .unauthorised: return #colorLiteral(red: 0.2470588235, green: 0.5333333333, blue: 0.7725490196, alpha: 1) //3F88C5
@@ -46,11 +45,19 @@ final public class Attendance: Serializable {
         @Serialized(default: 0) var late: Int
         @Serialized(default: 0) var unauthorised: Int
         
+        public lazy var total: Int = {
+            present + absent + late + unauthorised
+        }()
+        
+        public lazy var fractionalValues: (present: Double, absent: Double, late: Double, unauthorised: Double) = {
+            return (Double(present) / Double(total), Double(absent) / Double(total), Double(late) / Double(total), Double(unauthorised) / Double(total))
+        }()
+        
         public init() {}
     }
     
     public class Lesson: Serializable {
-        @Serialized(alternateKey: "month") var lesson: String
+        @Serialized("subject", alternateKey: "month") var lesson: String
         @Serialized(default: []) var exceptions: [Exception]
         @Serialized var values: Values
         
@@ -68,6 +75,7 @@ final public class Attendance: Serializable {
                       return completion(error ?? "Unknown Error", nil) }
             do {
                 let attendance = try JSONDecoder().decode(Attendance.self, from: jsonData)
+                PersistenceDatabase.AttendanceDatabase.saveAttendance(attendance: attendance)
                 completion(nil, attendance)
             } catch {
                 completion(error.localizedDescription, nil)

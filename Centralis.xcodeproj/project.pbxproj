@@ -157,6 +157,8 @@
 		E1E51EF327A6DA9C00C81413 /* LoginMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E51EF227A6DA9C00C81413 /* LoginMiddleware.swift */; };
 		E1F482902834358E000D90C7 /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F4828F2834358E000D90C7 /* AttendanceViewController.swift */; };
 		E1F482912834358E000D90C7 /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F4828F2834358E000D90C7 /* AttendanceViewController.swift */; };
+		E1F4829328343B83000D90C7 /* AttendanceViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F4829228343B83000D90C7 /* AttendanceViewCell.swift */; };
+		E1F4829428343B83000D90C7 /* AttendanceViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F4829228343B83000D90C7 /* AttendanceViewCell.swift */; };
 		E1F6BB97278CC6B000E7A360 /* Edulink_Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F6BB96278CC6B000E7A360 /* Edulink_Message.swift */; };
 		E1F6BB9B278E102500E7A360 /* Edulink_Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F6BB9A278E102500E7A360 /* Edulink_Photos.swift */; };
 		E1F6BB9D2790BF9500E7A360 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F6BB9C2790BF9500E7A360 /* MessageTableViewCell.swift */; };
@@ -278,6 +280,7 @@
 		E1CEBD90274C5F8E009F35D4 /* Establishment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Establishment.swift; sourceTree = "<group>"; };
 		E1E51EF227A6DA9C00C81413 /* LoginMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMiddleware.swift; sourceTree = "<group>"; };
 		E1F4828F2834358E000D90C7 /* AttendanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
+		E1F4829228343B83000D90C7 /* AttendanceViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceViewCell.swift; sourceTree = "<group>"; };
 		E1F6BB96278CC6B000E7A360 /* Edulink_Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Message.swift; sourceTree = "<group>"; };
 		E1F6BB9A278E102500E7A360 /* Edulink_Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Photos.swift; sourceTree = "<group>"; };
 		E1F6BB9C2790BF9500E7A360 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -373,6 +376,7 @@
 				E1A23524277F5D24004563C9 /* TimetableCell.swift */,
 				E1F6BB9C2790BF9500E7A360 /* MessageTableViewCell.swift */,
 				E196618727B02CBB00793007 /* DocumentCell.swift */,
+				E1F4829228343B83000D90C7 /* AttendanceViewCell.swift */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
@@ -782,6 +786,7 @@
 				E145D3CB2832F40300EC84C0 /* ChartProgressView.swift in Sources */,
 				E1A4C65F27EA5B74000B0821 /* PermissionManager.swift in Sources */,
 				E17E14C2274C1B2F0090F822 /* UserLogin.swift in Sources */,
+				E1F4829328343B83000D90C7 /* AttendanceViewCell.swift in Sources */,
 				E19621A6275BC2A50065B446 /* NSAttributedString+Extensions.swift in Sources */,
 				E10B95FD275160C000C8C12E /* URL+Extensions.swift in Sources */,
 				E196622127B06DC900793007 /* SceneDelegate.swift in Sources */,
@@ -859,6 +864,7 @@
 				E145D3CC2832F40300EC84C0 /* ChartProgressView.swift in Sources */,
 				E1A4C66027EA5B74000B0821 /* PermissionManager.swift in Sources */,
 				E19661F627B061F400793007 /* LoginMiddleware.swift in Sources */,
+				E1F4829428343B83000D90C7 /* AttendanceViewCell.swift in Sources */,
 				E196620627B0620500793007 /* UserPasswordViewController.swift in Sources */,
 				E19661E827B061EB00793007 /* Edulink_Timetable.swift in Sources */,
 				E196622227B06DD500793007 /* SceneDelegate.swift in Sources */,
