@@ -25,7 +25,7 @@ class CateringViewController: BaseTableViewController {
         }
         
         let catering = PersistenceDatabase.shared.catering
-        let originalCount = self.catering.transactions.isEmpty ? 1 : self.catering.transactions.count
+        // let originalCount = self.catering.transactions.isEmpty ? 1 : self.catering.transactions.count
         title = "Balance: \(catering.stringBalance)"
         catering.transactions .sort { $0.date! > $1.date! }
         catering.transactions.forEach { $0.items.sort { $0.item < $1.item } }

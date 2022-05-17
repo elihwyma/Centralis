@@ -8,8 +8,25 @@
 import Foundation
 import SerializedSwift
 import Evander
+import CoreGraphics
 
 final public class Attendance: Serializable {
+    
+    enum Colours {
+        case present
+        case unauthorised
+        case absent
+        case late
+     
+        var rawValue: CGColor {
+            switch self {
+            case .present: return #colorLiteral(red: 0.3568627451, green: 0.5490196078, blue: 0.3529411765, alpha: 1) //5B8C5A
+            case .unauthorised: return #colorLiteral(red: 0.2470588235, green: 0.5333333333, blue: 0.7725490196, alpha: 1) //3F88C5
+            case .absent: return #colorLiteral(red: 0.9411764706, green: 0.5294117647, blue: 0, alpha: 1) //F08700
+            case .late: return #colorLiteral(red: 0.8901960784, green: 0.3960784314, blue: 0.3568627451, alpha: 1) //E3655B 
+            }
+        }
+    }
     
     @Serialized(default: []) var lesson: [Lesson]
     @Serialized(default: []) var statutory: [Lesson]

@@ -32,6 +32,7 @@ final public class PersistenceDatabase {
     private(set) public lazy var links: [String: Link] = LinkDatabase.getLinks(database: database)
     private(set) public lazy var catering: Catering = CateringDatabase.getCatering(database: database)
     private(set) public lazy var attendance: Attendance = AttendanceDatabase.getAttendance(database: database)
+    private(set) public lazy var personal: Personal = PersonalDatabase.getPersonal()
     
     static let persistenceReload = Notification.Name(rawValue: "Centralis/PersistenceReload")
     
@@ -52,6 +53,7 @@ final public class PersistenceDatabase {
             documents = [:]
             links = [:]
             attendance = Attendance()
+            personal = Personal()
         }
         
         HomeworkDatabase.createTable(database: database)
@@ -87,7 +89,7 @@ final public class PersistenceDatabase {
         let `self` = PersistenceDatabase.shared
         let loadGroup = DispatchGroup()
         
-        let numberOfTasks = 7
+        let numberOfTasks = 8
         for _ in 1...numberOfTasks {
             loadGroup.enter()
         }
@@ -141,6 +143,12 @@ final public class PersistenceDatabase {
             }
             loadGroup.leave()
         }
+        Personal.updatePersonal { error, personal in
+            guard personal != personal else {
+                return completion(error ?? "Unknown Error", false)
+            }
+            loadGroup.leave()
+        }
         loadGroup.notify(queue: .main) { [weak self] in
             self?.hasIndexed = true
             CentralisTabBarController.shared.setExpanded(false)
@@ -154,7 +162,7 @@ final public class PersistenceDatabase {
         
         let loadGroup = DispatchGroup()
         
-        let numberOfTasks = 7
+        let numberOfTasks = 8
         for _ in 1...numberOfTasks {
             loadGroup.enter()
         }
@@ -190,6 +198,9 @@ final public class PersistenceDatabase {
         Attendance.updateAttendance { error, _ in
             completeTask(with: error)
         }
+        Personal.updatePersonal { error, _ in
+            completeTask(with: error)
+        }
         loadGroup.notify(queue: .global(qos: .background)) {
             NotificationCenter.default.post(name: persistenceReload, object: nil)
             CentralisTabBarController.shared.setExpanded(false)
@@ -201,6 +212,7 @@ final public class PersistenceDatabase {
         sqlite3_close(database.handle)
         try FileManager.default.removeItem(at: databaseFolder.appendingPathComponent("CentralisPersistence.sqlite3"))
         hasIndexed = false
+        Self.domainDefaults.removeAllKeys()
         Self.shared = PersistenceDatabase()
     }
     
@@ -933,6 +945,25 @@ final public class PersistenceDatabase {
             lessons.sort { $0.lesson < $1.lesson }
             statutory.sort { $0.lesson > $1.lesson }
             return .init(lesson: lessons, statutory: statutory)
+        }
+        
+    }
+    
+    struct PersonalDatabase {
+        
+        static func getPersonal() -> Personal {
+            guard let data = PersistenceDatabase.domainDefaults.data(forKey: "Personal"),
+                  let personal = try? JSONDecoder().decode(Personal.self, from: data)
+            else {
+                return Personal()
+            }
+            return personal
+        }
+        
+        static func save(personal: Personal) {
+            guard let data = try? JSONEncoder().encode(personal) else { return }
+            PersistenceDatabase.shared.personal = personal
+            PersistenceDatabase.domainDefaults.set(data, forKey: "Personal")
         }
         
     }
