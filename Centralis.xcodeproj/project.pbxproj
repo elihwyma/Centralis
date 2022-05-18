@@ -36,6 +36,8 @@
 		E149969327FAF3D500FC039E /* Edulink_Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E149969127FAF3D400FC039E /* Edulink_Attendance.swift */; };
 		E150BC2D27AD5F84001D34AD /* Edulink_Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150BC2C27AD5F84001D34AD /* Edulink_Documents.swift */; };
 		E15B5BCC275306720003A56D /* BasicInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15B5BCA275306720003A56D /* BasicInfoCell.swift */; };
+		E17CB8862834F3CF006ADE67 /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17CB8852834F3CF006ADE67 /* AccountInfoViewController.swift */; };
+		E17CB8872834F3CF006ADE67 /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17CB8852834F3CF006ADE67 /* AccountInfoViewController.swift */; };
 		E17E14A1274C19B10090F822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14A0274C19B10090F822 /* AppDelegate.swift */; };
 		E17E14AA274C19B30090F822 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E17E14A9274C19B30090F822 /* Assets.xcassets */; };
 		E17E14AD274C19B30090F822 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E17E14AB274C19B30090F822 /* LaunchScreen.storyboard */; };
@@ -221,6 +223,7 @@
 		E149969127FAF3D400FC039E /* Edulink_Attendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Attendance.swift; sourceTree = "<group>"; };
 		E150BC2C27AD5F84001D34AD /* Edulink_Documents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Documents.swift; sourceTree = "<group>"; };
 		E15B5BCA275306720003A56D /* BasicInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoCell.swift; sourceTree = "<group>"; };
+		E17CB8852834F3CF006ADE67 /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
 		E17E149D274C19B10090F822 /* Centralis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Centralis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E17E14A0274C19B10090F822 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E17E14A9274C19B30090F822 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -377,6 +380,21 @@
 			path = "Table View Cells";
 			sourceTree = "<group>";
 		};
+		E17CB8842834F376006ADE67 /* Account Info View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E17CB8852834F3CF006ADE67 /* AccountInfoViewController.swift */,
+			);
+			path = "Account Info View Controller";
+			sourceTree = "<group>";
+		};
+		E17CB8882834F3D9006ADE67 /* Theme View Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Theme View Controller";
+			sourceTree = "<group>";
+		};
 		E17E1494274C19B10090F822 = {
 			isa = PBXGroup;
 			children = (
@@ -520,6 +538,8 @@
 		E197455A2751295E00EEB853 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				E17CB8882834F3D9006ADE67 /* Theme View Controller */,
+				E17CB8842834F376006ADE67 /* Account Info View Controller */,
 				E1F4828E28343573000D90C7 /* Attendance View Controller */,
 				E1C29F1B27DBE35B003B16E9 /* MyMaths View Controller */,
 				E19A428227D0F0C70053435F /* Catering View Controller */,
@@ -776,6 +796,7 @@
 				E1C29F1D27DBE3F2003B16E9 /* MyMathsLoginViewController.swift in Sources */,
 				E19621B1275D05EB0065B446 /* SettingsSwitchTableViewCell.swift in Sources */,
 				E10B960A2751865E00C8C12E /* BaseSubtitleCell.swift in Sources */,
+				E17CB8862834F3CF006ADE67 /* AccountInfoViewController.swift in Sources */,
 				E10B95EE27513AD900C8C12E /* LoadingButton.swift in Sources */,
 				E19A428027CFA24A0053435F /* Edulink_Catering.swift in Sources */,
 				E17E14CC274C25010090F822 /* EdulinkBase.swift in Sources */,
@@ -853,6 +874,7 @@
 				E1C29F1E27DBE3F2003B16E9 /* MyMathsLoginViewController.swift in Sources */,
 				E19661EE27B061F100793007 /* SchoolDetails.swift in Sources */,
 				E196620827B0620D00793007 /* CentralisTabBarController.swift in Sources */,
+				E17CB8872834F3CF006ADE67 /* AccountInfoViewController.swift in Sources */,
 				E196620D27B0621500793007 /* HomeworkCell.swift in Sources */,
 				E19A428127CFA24B0053435F /* Edulink_Catering.swift in Sources */,
 				E196620727B0620900793007 /* HomeViewController.swift in Sources */,

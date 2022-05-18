@@ -52,7 +52,7 @@ public extension NSMutableAttributedString {
         // DepictionKit. Some are provided for HTML depictions to take advantage of.
         // TODO: Also try and come up with more that might be useful?
         """
-        --tint-color: \(ThemeManager.tintColor.cssString);
+        --tint-color: \(UIColor.tintColor.cssString);
         --content-background-color: \("#fff");
         --highlight-color: \("#c00");
         --separator-color: \(UIColor.separator.cssString);
