@@ -39,18 +39,12 @@ public class ClosureSwitchTableViewCell: UITableViewCell {
         amyPogLabel.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
         amyPogLabel.setContentCompressionResistancePriority(UILayoutPriority(749), for: .horizontal)
 
-        self.updateCentralisColours()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateCentralisColours),
-                                               name: ThemeManager.ThemeUpdate,
-                                               object: nil)
+        backgroundColor = .secondaryBackgroundColor
+        control.onTintColor = .tintColor
     }
     
     @objc private func didChange(sender: UISwitch!) {
         callback?(sender.isOn)
     }
     
-    @objc private func updateCentralisColours() {
-        control.onTintColor = .tintColor
-    }
 }

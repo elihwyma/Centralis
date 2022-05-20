@@ -34,6 +34,11 @@ class ThemeViewController: BaseTableViewController {
 
         title = "Theme"
         tableView.register(ThemeSelectorCell.self, forCellReuseIdentifier: "Centralis.ThemeSelectorCell")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .done, target: self, action: #selector(reset))
+    }
+    
+    @objc private func reset() {
+        ThemeManager.shared.reset()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

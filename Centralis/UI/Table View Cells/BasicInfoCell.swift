@@ -120,6 +120,8 @@ class BasicInfoCell: UITableViewCell, BaseTableViewCell {
         contentView.addSubview(loadingIndicator)
         contentView.addSubview(descriptionTextView)
         
+        backgroundColor = .secondaryBackgroundColor
+        
         NSLayoutConstraint.activate([
             title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),

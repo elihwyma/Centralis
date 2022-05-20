@@ -79,6 +79,7 @@ public class ThemeSelectorCell: UITableViewCell {
         
         lightThemeView.addTarget(self, action: #selector(lightModePressed), for: .touchUpInside)
         darkThemeView.addTarget(self, action: #selector(darkModePressed), for: .touchUpInside)
+        backgroundColor = .secondaryBackgroundColor
     }
     
     public func set(name: String, light: String, dark: String, presentationController: UIViewController?) {

@@ -63,6 +63,8 @@ class MessageTableViewCell: UITableViewCell, BaseTableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        backgroundColor = .secondaryBackgroundColor
+        
         let rootStackView = UIStackView()
         rootStackView.translatesAutoresizingMaskIntoConstraints = false
         rootStackView.axis = .horizontal

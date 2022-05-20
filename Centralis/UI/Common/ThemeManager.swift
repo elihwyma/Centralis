@@ -66,6 +66,16 @@ final class ThemeManager {
         setColors()
     }
     
+    public func reset() {
+        for key in PersistenceDatabase.domainDefaults.dictionaryRepresentation().keys {
+            if key.hasPrefix("Theme.") {
+                PersistenceDatabase.domainDefaults.removeObject(forKey: key)
+            }
+        }
+        setColors()
+        NotificationCenter.default.post(name: ThemeManager.ThemeUpdate, object: nil)
+    }
+    
     @discardableResult public class func color(_ forKey: String, set: UIColor? = nil) -> UIColor {
         defer {
             if set != nil {

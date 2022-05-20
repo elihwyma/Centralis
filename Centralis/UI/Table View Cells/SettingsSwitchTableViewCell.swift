@@ -48,11 +48,8 @@ class SettingsSwitchTableViewCell: UITableViewCell {
         amyPogLabel.setContentHuggingPriority(UILayoutPriority(251), for: .vertical)
         amyPogLabel.setContentCompressionResistancePriority(UILayoutPriority(749), for: .horizontal)
 
-        self.updateCentralisColours()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateCentralisColours),
-                                               name: ThemeManager.ThemeUpdate,
-                                               object: nil)
+        backgroundColor = .secondaryBackgroundColor
+        control.onTintColor = .tintColor
     }
     
     @objc private func didChange(sender: UISwitch!) {
@@ -60,8 +57,5 @@ class SettingsSwitchTableViewCell: UITableViewCell {
             UserDefaults.standard.setValue(sender.isOn, forKey: key); NotificationCenter.default.post(name: Notification.Name(key), object: nil)
         }
     }
-    
-    @objc private func updateCentralisColours() {
-        control.onTintColor = .tintColor
-    }
+ 
 }
