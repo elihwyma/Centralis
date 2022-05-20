@@ -31,7 +31,6 @@ class AttendanceViewController: BaseTableViewController {
     public var state: State = .lesson {
         didSet {
             title = state.title
-            print("Set teh title")
         }
     }
 
