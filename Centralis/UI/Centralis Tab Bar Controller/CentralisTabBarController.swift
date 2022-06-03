@@ -15,14 +15,7 @@ final class CentralisTabBarController: UITabBarController {
     private lazy var popupView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(dynamicProvider: { traitCollection in
-            if traitCollection.userInterfaceStyle == .dark {
-                return UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.00)
-            } else {
-                return UIColor(red: 0.99, green: 1.00, blue: 1.00, alpha: 1.00)
-            }
-        })
-        
+    
         let labelStackView = UIStackView()
         labelStackView.translatesAutoresizingMaskIntoConstraints = false
         labelStackView.axis = .vertical
@@ -106,6 +99,14 @@ final class CentralisTabBarController: UITabBarController {
             popupView.widthAnchor.constraint(equalTo: tabBar.widthAnchor),
             popupBottom,
         ])
+        
+        setTheme()
+        NotificationCenter.default.addObserver(self, selector: #selector(setTheme), name: ThemeManager.ThemeUpdate, object: nil)
+    }
+    
+    @objc private func setTheme() {
+        tabBar.backgroundColor = .secondaryBackgroundColor
+        popupView.backgroundColor = .secondaryBackgroundColor
     }
     
     public func setExpanded(_ expanded: Bool, animated: Bool = true) {

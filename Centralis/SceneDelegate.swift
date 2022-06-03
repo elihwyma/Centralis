@@ -18,6 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         
+        _ = ThemeManager.shared
+        
         if PersistenceDatabase.domainDefaults.integer(forKey: "Version") < currentResetVersion {
             EdulinkManager.shared.signout()
             PersistenceDatabase.domainDefaults.set(currentResetVersion, forKey: "Version")
@@ -32,6 +34,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         window?.makeKeyAndVisible()
         window?.tintColor = .tintColor
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(themeDidChange), name: ThemeManager.ThemeUpdate, object: nil)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -60,7 +64,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidEnterBackground(_ scene: UIScene) {
         hasEnteredBackground = true
     }
-
+    
+    @objc private func themeDidChange() {
+        window?.tintColor = .tintColor
+    }
 
 }
 

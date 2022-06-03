@@ -13,7 +13,7 @@ final public class Reachability {
     public static let shared: Reachability = Reachability()
     public weak var delegate: ReachabilityChange?
     
-    private let serialQueue = DispatchQueue(label: "com.amywhile.Valery/Reachability", qos: .background)
+    private let serialQueue = DispatchQueue(label: "com.amywhile.Centralis/Reachability", qos: .background)
     
     private lazy var pathMonitor: NWPathMonitor = {
         let monitor = NWPathMonitor()

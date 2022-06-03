@@ -12,10 +12,10 @@ extension UserDefaults {
     public func removeAllKeys() {
         let dict = dictionaryRepresentation()
         for key in dict.keys {
+            if key.hasPrefix("Theme.") { continue }
+            if key == "Version" { continue }
             removeObject(forKey: key)
         }
-        
-        PersistenceDatabase.domainDefaults.set(currentResetVersion, forKey: "Version")
     }
     
 }
