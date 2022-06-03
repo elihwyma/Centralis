@@ -39,7 +39,6 @@ class AttendanceViewController: BaseTableViewController {
 
         state = .lesson
         records = PersistenceDatabase.shared.attendance.lesson
-        print(records)
         tableView.register(AttendanceViewCell.self, forCellReuseIdentifier: "Centralis.AttendanceCell")
         NotificationCenter.default.addObserver(self, selector: #selector(persistenceReload), name: PersistenceDatabase.persistenceReload, object: nil)
     }

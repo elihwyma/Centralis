@@ -14,7 +14,8 @@ class HomeworkViewController: BaseTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        emptyLabel.text = "No Homework 🎉"
         tableView.register(HomeworkCell.self, forCellReuseIdentifier: "Centralis.HomeworkCell")
         index(false)
         
@@ -62,7 +63,7 @@ class HomeworkViewController: BaseTableViewController {
         if reload {
             tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
         }
-        
+        emptyLabel.isHidden = !(currentHomework.isEmpty && pastHomework.isEmpty)
         if reload {
             tableView.endUpdates()
         }
@@ -93,7 +94,11 @@ class HomeworkViewController: BaseTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        section == 0 ? "Current Homework" : "Past Homework"
+        switch section {
+        case 0: return currentHomework.isEmpty ? nil : "Current Homework"
+        case 1: return pastHomework.isEmpty ? nil : "Past Homework"
+        default: return nil
+        }
     }
 
 }

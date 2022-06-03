@@ -15,6 +15,7 @@ class MessagesViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        emptyLabel.text = "No Messages"
         tableView.register(MessageTableViewCell.self, forCellReuseIdentifier: "Centralis.MessageCell")
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Mark all as read", style: .plain, target: self, action: #selector(markAllAsRead))
         NotificationCenter.default.addObserver(self, selector: #selector(persistenceReload), name: PersistenceDatabase.persistenceReload, object: nil)
@@ -35,6 +36,7 @@ class MessagesViewController: BaseTableViewController {
                 tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
             }
         }
+        emptyLabel.isHidden = !messages.isEmpty
         if reload {
             tableView.endUpdates()
         }

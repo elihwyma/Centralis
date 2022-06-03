@@ -9,9 +9,27 @@ import UIKit
 
 class BaseTableViewController: UITableViewController {
     
+    public var emptyLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "No Data Available"
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        label.adjustsFontSizeToFitWidth = true
+        label.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        label.isHidden = true
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(emptyLabel)
+        NSLayoutConstraint.activate([
+            emptyLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
+            emptyLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            emptyLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15)
+        ])
         tableView.backgroundColor = .backgroundColor
         NotificationCenter.default.addObserver(self.tableView!,
                                                selector: #selector(tableView.reloadData),

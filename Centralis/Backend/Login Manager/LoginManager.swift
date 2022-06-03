@@ -213,10 +213,25 @@ public final class LoginManager {
                 .custom(key: "from_app", value: false),
                 .custom(key: "password", value: login.password),
                 .custom(key: "username", value: login.username),
-                .custom(key: "ui_info", value: dict)]) { _, _, error, result in
+                .custom(key: "ui_info", value: dict)]) { _, status, error, result in
                     guard let result = result,
                           let jsonData = try? JSONSerialization.data(withJSONObject: result) else {
-                       return completion(error ?? "Unknown Error", nil)
+                        if status != 200 && Reachability.shared.connected {
+                            // Either network is offline or the URL has changed
+                            loadSchool(from: login.schoolCode) { error, schoolDetails in
+                                if let details = schoolDetails,
+                                   details.server != login.server {
+                                    login.server = details.server
+                                    save(login: login)
+                                    Self.login(login, _indexBypass: _indexBypass, completion)
+                                } else {
+                                    return completion(error ?? "Unknown Error", nil)
+                                }
+                            }
+                            return
+                        } else {
+                            return completion(error ?? "Unknown Error", nil)
+                        }
                     }
                     do {
                         let user = try JSONDecoder().decode(AuthenticatedUser.self, from: jsonData)

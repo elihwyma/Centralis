@@ -14,7 +14,6 @@ final public class EdulinkManager {
     static var shared = EdulinkManager()
     public var authenticatedUser: AuthenticatedUser? {
         didSet {
-            print("Set the user")
             PermissionManager.shared.reloadPermissions()
         }
     }

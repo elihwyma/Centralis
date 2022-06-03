@@ -15,7 +15,8 @@ class TimetableViewController: BaseTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        emptyLabel.text = "No Lessons This Week 🎉"
         tableView.register(PeriodCell.self, forCellReuseIdentifier: "Centralis.PeriodCell")
         
         index(false)
@@ -27,7 +28,7 @@ class TimetableViewController: BaseTableViewController {
         let weeks = PersistenceDatabase.shared.timetable
         self.weeks = Timetable.orderWeeks(weeks)
         if let selectedName = selectedName,
-           let selectedWeek = self.weeks.first(where: { $0.name == selectedName }){
+           let selectedWeek = self.weeks.first(where: { $0.name == selectedName }) {
             select(week: selectedWeek)
         } else if let (week, _) = Timetable.getCurrent(weeks) {
             if title != week.name {
@@ -49,9 +50,36 @@ class TimetableViewController: BaseTableViewController {
     
     public func select(week: Timetable.Week) {
         if week.days == days { return }
-        let originalCount = days.count
+        //tableView.beginUpdates()
+        //let originalDays = days
+        //let originalCount = tableView.numberOfSections
         days = week.days
+        days.removeAll { $0.periods.count == 0 }
+        emptyLabel.isHidden = !days.isEmpty
+        
+        /*
         let newCount = days.count
+        func addCells(bounding: Int) {
+            for k in 0...bounding {
+                let originalCount = originalDays[safe: k]?.periods.count ?? 0
+                let newCount = week.days[safe: k]?.periods.count ?? 0
+                if originalCount == newCount { continue }
+                
+                var rows = [IndexPath]()
+                if originalCount > newCount {
+                    for i in newCount..<originalCount {
+                        rows.append(IndexPath(row: i, section: k))
+                    }
+                    tableView.deleteRows(at: rows, with: .automatic)
+                } else {
+                    for i in originalCount..<newCount {
+                        rows.append(IndexPath(row: i, section: k))
+                    }
+                    tableView.insertRows(at: rows, with: .automatic)
+                }
+            }
+        }
+        addCells(bounding: newCount)
         if originalCount == newCount {
             tableView.reloadSections(IndexSet(integersIn: 0..<newCount), with: .automatic)
         } else if originalCount > newCount {
@@ -62,6 +90,9 @@ class TimetableViewController: BaseTableViewController {
             tableView.insertSections(IndexSet(integersIn: originalCount..<newCount), with: .automatic)
             tableView.reloadSections(IndexSet(integersIn: 0..<diff), with: .automatic)
         }
+        tableView.endUpdates()
+         */
+        tableView.reloadData()
         title = week.name
     }
     
@@ -99,4 +130,10 @@ class TimetableViewController: BaseTableViewController {
         return cell
     }
     
+}
+
+extension Collection {
+    subscript (safe index: Index) -> Element? {
+        indices.contains(index) ? self[index] : nil
+    }
 }
