@@ -10,7 +10,15 @@ import Evander
 
 final class CentralisTabBarController: UITabBarController {
     
-    static let shared = CentralisTabBarController()
+    static let shared: CentralisTabBarController = {
+        if Thread.isMainThread {
+            return CentralisTabBarController()
+        } else {
+            var controller: CentralisTabBarController?
+            DispatchQueue.main.sync { controller = CentralisTabBarController() }
+            return controller!
+        }
+    }()
     
     private lazy var popupView: UIView = {
         let view = UIView()
