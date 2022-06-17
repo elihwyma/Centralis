@@ -9,8 +9,13 @@ import UIKit
 import UserNotifications
 import Evander
 
-@main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+let currentResetVersion = 0x00000001
+
+// @main
+final class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var window: UIWindow?
+    var hasEnteredBackground = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -26,6 +31,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if !APPCLIP
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         #endif
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        _ = ThemeManager.shared
+        
+        if PersistenceDatabase.domainDefaults.integer(forKey: "Version") < currentResetVersion {
+            EdulinkManager.shared.signout()
+            PersistenceDatabase.domainDefaults.set(currentResetVersion, forKey: "Version")
+        }
+        
+        if let login = LoginManager.loadLogin().1 {
+            window?.rootViewController = CentralisTabBarController.shared
+            Message.setUnread()
+            LoginMiddleware.shared.login(with: login)
+        } else {
+            window?.rootViewController = CentralisNavigationController(rootViewController: OnboardingViewController())
+        }
+        window?.makeKeyAndVisible()
+        window?.tintColor = .tintColor
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(themeDidChange), name: ThemeManager.ThemeUpdate, object: nil)
         
         return true
     }
@@ -60,13 +86,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                           animations: nil,
                           completion: nil)
     }
-}
-
-extension UIApplicationDelegate {
     
-    var window: UIWindow? {
-        UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+    @objc private func themeDidChange() {
+        window?.tintColor = .tintColor
     }
-        
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        hasEnteredBackground = true
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        guard hasEnteredBackground else { return }
+        NotificationCenter.default.post(name: PersistenceDatabase.persistenceReload, object: nil)
+        LoginManager.reconnectCurrent()
+    }
 }
 

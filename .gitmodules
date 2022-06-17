@@ -1,0 +1,3 @@
+[submodule "UIKit"]
+	path = UIKit
+	url = https://github.com/flowkey/UIKit-cross-platform.git

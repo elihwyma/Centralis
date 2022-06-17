@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E1081EF1285D009F00C67AC9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1081EF0285D009F00C67AC9 /* main.swift */; };
+		E1081EF2285D009F00C67AC9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1081EF0285D009F00C67AC9 /* main.swift */; };
 		E10B95E9275139D600C8C12E /* SchoolCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B95E8275139D600C8C12E /* SchoolCodeViewController.swift */; };
 		E10B95EC27513A3100C8C12E /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B95EB27513A3100C8C12E /* RoundedTextField.swift */; };
 		E10B95EE27513AD900C8C12E /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10B95ED27513AD900C8C12E /* LoadingButton.swift */; };
@@ -119,8 +121,6 @@
 		E196621C27B0627700793007 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = E196621B27B0627700793007 /* SQLite */; };
 		E196621E27B0627A00793007 /* SerializedSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E196621D27B0627A00793007 /* SerializedSwift */; };
 		E196621F27B068A300793007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E17E14A9274C19B30090F822 /* Assets.xcassets */; };
-		E196622127B06DC900793007 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E196622027B06DC900793007 /* SceneDelegate.swift */; };
-		E196622227B06DD500793007 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E196622027B06DC900793007 /* SceneDelegate.swift */; };
 		E197455D2751298900EEB853 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197455C2751298900EEB853 /* OnboardingViewController.swift */; };
 		E197456027512B4800EEB853 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197455F27512B4800EEB853 /* Bundle+Extensions.swift */; };
 		E197456327512D6600EEB853 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E197456227512D6600EEB853 /* ThemeManager.swift */; };
@@ -205,6 +205,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E1081EF0285D009F00C67AC9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		E10B95E8275139D600C8C12E /* SchoolCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolCodeViewController.swift; sourceTree = "<group>"; };
 		E10B95EB27513A3100C8C12E /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 		E10B95ED27513AD900C8C12E /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
@@ -433,6 +434,7 @@
 				E197455A2751295E00EEB853 /* UI */,
 				E17E14BA274C1A700090F822 /* Backend */,
 				E17E14A0274C19B10090F822 /* AppDelegate.swift */,
+				E1081EF0285D009F00C67AC9 /* main.swift */,
 				E196622027B06DC900793007 /* SceneDelegate.swift */,
 				E17E14A9274C19B30090F822 /* Assets.xcassets */,
 				E17E14AB274C19B30090F822 /* LaunchScreen.storyboard */,
@@ -806,6 +808,7 @@
 				E1C29F2327DCFB9F003B16E9 /* MyMathsTaskCompletionViewController.swift in Sources */,
 				E19621B3275D076F0065B446 /* ClosureSwitchCell.swift in Sources */,
 				E1C29F1D27DBE3F2003B16E9 /* MyMathsLoginViewController.swift in Sources */,
+				E1081EF1285D009F00C67AC9 /* main.swift in Sources */,
 				E19621B1275D05EB0065B446 /* SettingsSwitchTableViewCell.swift in Sources */,
 				E10B960A2751865E00C8C12E /* BaseSubtitleCell.swift in Sources */,
 				E17CB8862834F3CF006ADE67 /* AccountInfoViewController.swift in Sources */,
@@ -818,7 +821,6 @@
 				E1F4829328343B83000D90C7 /* AttendanceViewCell.swift in Sources */,
 				E19621A6275BC2A50065B446 /* NSAttributedString+Extensions.swift in Sources */,
 				E10B95FD275160C000C8C12E /* URL+Extensions.swift in Sources */,
-				E196622127B06DC900793007 /* SceneDelegate.swift in Sources */,
 				E17E14CA274C211D0090F822 /* Transformers.swift in Sources */,
 				E1B8C18D27528FAA001FF9FD /* Date+Extensions.swift in Sources */,
 				E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */,
@@ -887,6 +889,7 @@
 				E1C29F2427DCFB9F003B16E9 /* MyMathsTaskCompletionViewController.swift in Sources */,
 				E196620C27B0621500793007 /* ClosureSwitchCell.swift in Sources */,
 				E1C29F1E27DBE3F2003B16E9 /* MyMathsLoginViewController.swift in Sources */,
+				E1081EF2285D009F00C67AC9 /* main.swift in Sources */,
 				E19661EE27B061F100793007 /* SchoolDetails.swift in Sources */,
 				E196620827B0620D00793007 /* CentralisTabBarController.swift in Sources */,
 				E17CB8872834F3CF006ADE67 /* AccountInfoViewController.swift in Sources */,
@@ -899,7 +902,6 @@
 				E1F4829428343B83000D90C7 /* AttendanceViewCell.swift in Sources */,
 				E196620627B0620500793007 /* UserPasswordViewController.swift in Sources */,
 				E19661E827B061EB00793007 /* Edulink_Timetable.swift in Sources */,
-				E196622227B06DD500793007 /* SceneDelegate.swift in Sources */,
 				E19661F427B061F100793007 /* AuthenticatedUser.swift in Sources */,
 				E196620327B0620100793007 /* LoadingButton.swift in Sources */,
 				E19661F727B061F600793007 /* Bundle+Extensions.swift in Sources */,
