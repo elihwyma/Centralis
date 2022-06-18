@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LinksViewController: BaseTableViewController {
+class LinksViewController: CentralisDataViewController {
     
     var links = [Link]()
 
@@ -15,10 +15,9 @@ class LinksViewController: BaseTableViewController {
         super.viewDidLoad()
 
         title = "Links"
-        NotificationCenter.default.addObserver(self, selector: #selector(persistenceReload), name: PersistenceDatabase.persistenceReload, object: nil)
     }
 
-    private func index(_ reload: Bool = true) {
+    override public func index(_ reload: Bool = true) {
         if reload {
             tableView.beginUpdates()
         }
@@ -33,22 +32,6 @@ class LinksViewController: BaseTableViewController {
         if reload {
             tableView.endUpdates()
         }
-    }
-    
-    @objc private func persistenceReload() {
-        if !Thread.isMainThread {
-            DispatchQueue.main.async { [weak self] in
-                self?.persistenceReload()
-            }
-            return
-        }
-        index()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        index()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

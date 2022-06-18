@@ -156,6 +156,8 @@
 		E1C29F2727DD36E3003B16E9 /* ProgressSubtitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C29F2527DD36E3003B16E9 /* ProgressSubtitleCell.swift */; };
 		E1C29F2927DD3785003B16E9 /* TimeConfigSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C29F2827DD3785003B16E9 /* TimeConfigSelection.swift */; };
 		E1C29F2A27DD3785003B16E9 /* TimeConfigSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C29F2827DD3785003B16E9 /* TimeConfigSelection.swift */; };
+		E1CC595B285E02DD000914CF /* CentralisDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC595A285E02DD000914CF /* CentralisDataViewController.swift */; };
+		E1CC595C285E02DD000914CF /* CentralisDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC595A285E02DD000914CF /* CentralisDataViewController.swift */; };
 		E1CDE49827502F1B00AA7769 /* Edulink_Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CDE49627502F1B00AA7769 /* Edulink_Status.swift */; };
 		E1CEBD8D274C2F80009F35D4 /* AuthenticatedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD8C274C2F80009F35D4 /* AuthenticatedUser.swift */; };
 		E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD8E274C3AB9009F35D4 /* SchoolDetails.swift */; };
@@ -284,6 +286,7 @@
 		E1C29F2227DCFB9F003B16E9 /* MyMathsTaskCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMathsTaskCompletionViewController.swift; sourceTree = "<group>"; };
 		E1C29F2527DD36E3003B16E9 /* ProgressSubtitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSubtitleCell.swift; sourceTree = "<group>"; };
 		E1C29F2827DD3785003B16E9 /* TimeConfigSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeConfigSelection.swift; sourceTree = "<group>"; };
+		E1CC595A285E02DD000914CF /* CentralisDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralisDataViewController.swift; sourceTree = "<group>"; };
 		E1CDE49627502F1B00AA7769 /* Edulink_Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edulink_Status.swift; sourceTree = "<group>"; };
 		E1CEBD8C274C2F80009F35D4 /* AuthenticatedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedUser.swift; sourceTree = "<group>"; };
 		E1CEBD8E274C3AB9009F35D4 /* SchoolDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolDetails.swift; sourceTree = "<group>"; };
@@ -607,6 +610,7 @@
 				E19621A5275BC2A50065B446 /* NSAttributedString+Extensions.swift */,
 				E11E553C27F1B21300FEA9D7 /* UIAlertController+Extensions.swift */,
 				E145D3CA2832F40300EC84C0 /* ChartProgressView.swift */,
+				E1CC595A285E02DD000914CF /* CentralisDataViewController.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -820,6 +824,7 @@
 				E17E14C2274C1B2F0090F822 /* UserLogin.swift in Sources */,
 				E1F4829328343B83000D90C7 /* AttendanceViewCell.swift in Sources */,
 				E19621A6275BC2A50065B446 /* NSAttributedString+Extensions.swift in Sources */,
+				E1CC595B285E02DD000914CF /* CentralisDataViewController.swift in Sources */,
 				E10B95FD275160C000C8C12E /* URL+Extensions.swift in Sources */,
 				E17E14CA274C211D0090F822 /* Transformers.swift in Sources */,
 				E1B8C18D27528FAA001FF9FD /* Date+Extensions.swift in Sources */,
@@ -901,6 +906,7 @@
 				E19661F627B061F400793007 /* LoginMiddleware.swift in Sources */,
 				E1F4829428343B83000D90C7 /* AttendanceViewCell.swift in Sources */,
 				E196620627B0620500793007 /* UserPasswordViewController.swift in Sources */,
+				E1CC595C285E02DD000914CF /* CentralisDataViewController.swift in Sources */,
 				E19661E827B061EB00793007 /* Edulink_Timetable.swift in Sources */,
 				E19661F427B061F100793007 /* AuthenticatedUser.swift in Sources */,
 				E196620327B0620100793007 /* LoadingButton.swift in Sources */,

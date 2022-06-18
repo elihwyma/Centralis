@@ -30,6 +30,16 @@ final public class Attendance: Serializable {
     @Serialized(default: []) var lesson: [Lesson]
     @Serialized(default: []) var statutory: [Lesson]
     
+    public var statutoryYear: Lesson {
+        let values = Values()
+        var exceptions = [Exception]()
+        for month in statutory {
+            values += month.values
+            exceptions += month.exceptions
+        }
+        return Lesson(from: "Statutory Year", with: exceptions, values: values)
+    }
+    
     public struct Exception: Serializable {
         @SerializedTransformable<DateConverter> var date: Date?
         @Serialized(default: "Not Provided") var description: String
@@ -54,6 +64,13 @@ final public class Attendance: Serializable {
         }()
         
         public init() {}
+        
+        public static func +=(lhs: Values, rhs: Values) {
+            lhs.present += rhs.present
+            lhs.absent += rhs.absent
+            lhs.late += rhs.late
+            lhs.unauthorised += rhs.unauthorised
+        }
     }
     
     public class Lesson: Serializable {
@@ -62,6 +79,12 @@ final public class Attendance: Serializable {
         @Serialized var values: Values
         
         required public init() {}
+        
+        public init(from lesson: String, with exceptions: [Exception], values: Values) {
+            self.lesson = lesson
+            self.exceptions = exceptions
+            self.values = values
+        }
     }
     
     public class func updateAttendance(_ completion: @escaping (String?, Attendance?) -> Void) {
@@ -75,6 +98,7 @@ final public class Attendance: Serializable {
                       return completion(error ?? "Unknown Error", nil) }
             do {
                 let attendance = try JSONDecoder().decode(Attendance.self, from: jsonData)
+                attendance.statutory.sort { $0.lesson < $1.lesson }
                 PersistenceDatabase.AttendanceDatabase.saveAttendance(attendance: attendance)
                 completion(nil, attendance)
             } catch {

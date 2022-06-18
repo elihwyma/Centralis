@@ -189,7 +189,9 @@ public final class LoginManager {
     }
         
     public class func login(_ login: UserLogin, _indexBypass: Bool = false, _ completion: @escaping (String?, AuthenticatedUser?) -> Void) {
+        PersistenceDatabase.shared.isRefreshing = true
         func handleIndex() {
+            PersistenceDatabase.shared.isRefreshing = false
             if !_indexBypass {
                 if !PersistenceDatabase.shared.hasIndexed {
                     _ = try? PersistenceDatabase.shared.resetDatabase()

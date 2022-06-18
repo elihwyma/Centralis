@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AttendanceViewController: BaseTableViewController {
+class AttendanceViewController: CentralisDataViewController {
     
     public var records: [Attendance.Lesson] = [] {
         didSet {
@@ -16,14 +16,18 @@ class AttendanceViewController: BaseTableViewController {
     }
     public var expanded: [Bool] = [Bool]()
     
+    public var selectedMonth: Attendance.Lesson?
+    
     enum State {
         case lesson
-        case statutory
+        case statutoryMonth
+        case statutoryYear
         
         var title: String {
             switch self {
             case .lesson: return "Lesson Attendance"
-            case .statutory: return "Statutory Attendance"
+            case .statutoryMonth: return "Statutory Month"
+            case .statutoryYear: return "Statutory Year"
             }
         }
     }
@@ -31,6 +35,15 @@ class AttendanceViewController: BaseTableViewController {
     public var state: State = .lesson {
         didSet {
             title = state.title
+            if state != .statutoryMonth {
+                selectedMonth = nil
+            }
+            
+            switch state {
+            case .lesson: navigationItem.rightBarButtonItem?.title = "Lessons"
+            case .statutoryMonth: navigationItem.rightBarButtonItem?.title = selectedMonth?.lesson
+            case .statutoryYear: navigationItem.rightBarButtonItem?.title = "Year"
+            }
         }
     }
     
@@ -40,10 +53,37 @@ class AttendanceViewController: BaseTableViewController {
         state = .lesson
         records = PersistenceDatabase.shared.attendance.lesson
         tableView.register(AttendanceViewCell.self, forCellReuseIdentifier: "Centralis.AttendanceCell")
-        NotificationCenter.default.addObserver(self, selector: #selector(persistenceReload), name: PersistenceDatabase.persistenceReload, object: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Lessons", style: .plain, target: self, action: #selector(changeState(_:)))
     }
     
-    private func index(_ reload: Bool = true) {
+    @objc private func changeState(_ sender: Any) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        if let popoverController = alert.popoverPresentationController {
+           popoverController.barButtonItem = sender as? UIBarButtonItem
+        }
+        
+        alert.addAction(UIAlertAction(title: "Lesson Attendance", style: .default, handler: { [weak self] _ in
+            self?.state = .lesson
+            self?.index()
+        }))
+        alert.addAction(UIAlertAction(title: "Statutory Year", style: .default, handler: { [weak self] _ in
+            self?.state = .statutoryYear
+            self?.index()
+        }))
+        
+        for month in PersistenceDatabase.shared.attendance.statutory {
+            alert.addAction(UIAlertAction(title: month.lesson, style: .default, handler: { [weak self] _ in
+                self?.state = .statutoryMonth
+                self?.selectedMonth = month
+                self?.index()
+            }))
+        }
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(alert, animated: true)
+    }
+    
+    override public func index(_ reload: Bool = true) {
         if reload {
             //tableView.beginUpdates()
         }
@@ -55,22 +95,6 @@ class AttendanceViewController: BaseTableViewController {
         if reload {
             //tableView.endUpdates()
         }
-    }
-    
-    @objc private func persistenceReload() {
-        if !Thread.isMainThread {
-            DispatchQueue.main.async { [weak self] in
-                self?.persistenceReload()
-            }
-            return
-        }
-        index()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        index()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

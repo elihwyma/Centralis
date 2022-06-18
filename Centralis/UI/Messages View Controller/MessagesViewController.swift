@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MessagesViewController: BaseTableViewController {
+class MessagesViewController: CentralisDataViewController {
     
     var messages = [Message]()
     var showArchived: Bool = false
@@ -18,27 +18,18 @@ class MessagesViewController: BaseTableViewController {
         emptyLabel.text = "No Messages"
         tableView.register(MessageTableViewCell.self, forCellReuseIdentifier: "Centralis.MessageCell")
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Mark all as read", style: .plain, target: self, action: #selector(markAllAsRead))
-        NotificationCenter.default.addObserver(self, selector: #selector(persistenceReload), name: PersistenceDatabase.persistenceReload, object: nil)
     }
     
-    private func index(_ reload: Bool = true) {
-        if reload {
-            tableView.beginUpdates()
-        }
+    override public func index(_ reload: Bool = true) {
         var messages = Array(PersistenceDatabase.shared.messages.values)
         messages.sort { $0.date ?? Date() > $1.date ?? Date() }
         if !showArchived {
             messages.removeAll { $0.archived }
         }
-        if messages != self.messages {
-            self.messages = messages
-            if reload {
-                tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-            }
-        }
+        self.messages = messages
         emptyLabel.isHidden = !messages.isEmpty
         if reload {
-            tableView.endUpdates()
+            tableView.reloadData()
         }
     }
     
@@ -52,21 +43,9 @@ class MessagesViewController: BaseTableViewController {
     @objc private func markAllAsRead() {
         Message.markAllAsRead {}
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        index()
-    }
-    
-    @objc private func persistenceReload() {
-        if !Thread.isMainThread {
-            DispatchQueue.main.async { [weak self] in
-                self?.persistenceReload()
-            }
-            return
-        }
-        index()
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

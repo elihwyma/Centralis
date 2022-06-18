@@ -34,6 +34,8 @@ final public class PersistenceDatabase {
     private(set) public lazy var attendance: Attendance = AttendanceDatabase.getAttendance(database: database)
     private(set) public lazy var personal: Personal = PersonalDatabase.getPersonal()
     
+    public var isRefreshing = false
+    
     static let persistenceReload = Notification.Name(rawValue: "Centralis/PersistenceReload")
     
     private init() {
@@ -156,7 +158,9 @@ final public class PersistenceDatabase {
         }
     }
     
-    public class func backgroundRefresh(_ completion: @escaping () -> Void) {
+    @discardableResult public class func backgroundRefresh(_ completion: @escaping () -> Void) -> Bool {
+        guard !Self.shared.isRefreshing else { return false }
+        Self.shared.isRefreshing = true
         CentralisTabBarController.shared.set(title: "Refreshing Data", subtitle: "This may take a moment", progress: 0.5)
         var currentProgress = CentralisTabBarController.shared.currentProgress
         
@@ -202,10 +206,12 @@ final public class PersistenceDatabase {
             completeTask(with: error)
         }
         loadGroup.notify(queue: .global(qos: .background)) {
+            Self.shared.isRefreshing = false
             NotificationCenter.default.post(name: persistenceReload, object: nil)
             CentralisTabBarController.shared.setExpanded(false)
             completion()
         }
+        return true
     }
     
     public func resetDatabase() throws {

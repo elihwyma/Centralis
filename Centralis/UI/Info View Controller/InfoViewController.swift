@@ -7,9 +7,6 @@
 
 import UIKit
 import Evander
-#if APPCLIP
-import StoreKit
-#endif
 
 class InfoViewController: BaseTableViewController {
     
@@ -37,25 +34,7 @@ class InfoViewController: BaseTableViewController {
 
         tableView.register(ClosureSwitchTableViewCell.self, forCellReuseIdentifier: "Centralis.ClosureSwitchTableViewCell")
         tableView.register(SettingsSwitchTableViewCell.self, forCellReuseIdentifier: "Centralis.SettingsSwitchTableViewCell")
-        
-        #if APPCLIP
-        displayOverlay()
-        #endif
     }
-    
-    #if APPCLIP
-    func displayOverlay() {
-        guard let scene = UIApplication.shared.connectedScenes
-                .filter({$0.activationState == .foregroundActive})
-                .map({$0 as? UIWindowScene})
-                .compactMap({$0})
-                .first else { return }
-
-        let config = SKOverlay.AppClipConfiguration(position: .bottomRaised)
-        let overlay = SKOverlay(configuration: config)
-        overlay.present(in: scene)
-    }
-    #endif
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         5

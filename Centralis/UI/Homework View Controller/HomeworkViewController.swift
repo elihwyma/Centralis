@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeworkViewController: BaseTableViewController {
+class HomeworkViewController: CentralisDataViewController {
     
     public var currentHomework = [Homework]()
     public var pastHomework = [Homework]()
@@ -20,20 +20,9 @@ class HomeworkViewController: BaseTableViewController {
         index(false)
         
         self.title = "Homework"
-        NotificationCenter.default.addObserver(self, selector: #selector(persistenceReload), name: PersistenceDatabase.persistenceReload, object: nil)
     }
-    
-    @objc private func persistenceReload() {
-        if !Thread.isMainThread {
-            DispatchQueue.main.async { [weak self] in
-                self?.persistenceReload()
-            }
-            return
-        }
-        index()
-    }
-    
-    private func index(_ reload: Bool = true) {
+
+    override public func index(_ reload: Bool = true) {
         if reload {
             tableView.beginUpdates()
         }

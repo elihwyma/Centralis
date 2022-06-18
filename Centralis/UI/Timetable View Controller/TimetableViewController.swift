@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TimetableViewController: BaseTableViewController {
+class TimetableViewController: CentralisDataViewController {
     
     public var weeks = Timetable.orderWeeks(PersistenceDatabase.shared.timetable)
     public lazy var days = [Timetable.Day]()
@@ -21,10 +21,9 @@ class TimetableViewController: BaseTableViewController {
         
         index(false)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Choose Week", style: .done, target: self, action: #selector(changeWeek))
-        NotificationCenter.default.addObserver(self, selector: #selector(persistenceReload), name: PersistenceDatabase.persistenceReload, object: nil)
     }
     
-    private func index(_ reload: Bool = true) {
+    override public func index(_ reload: Bool = true) {
         let weeks = PersistenceDatabase.shared.timetable
         self.weeks = Timetable.orderWeeks(weeks)
         if let selectedName = selectedName,
@@ -36,16 +35,6 @@ class TimetableViewController: BaseTableViewController {
             }
             select(week: week)
         }
-    }
-    
-    @objc private func persistenceReload() {
-        if !Thread.isMainThread {
-            DispatchQueue.main.async { [weak self] in
-                self?.persistenceReload()
-            }
-            return
-        }
-        index()
     }
     
     public func select(week: Timetable.Week) {

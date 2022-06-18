@@ -9,7 +9,7 @@ import UIKit
 import Evander
 import SafariServices
 
-class HomeViewController: BaseTableViewController {
+class HomeViewController: CentralisDataViewController {
     
     private var currentPermissions: [PermissionManager.Permission] = []
     
@@ -21,8 +21,6 @@ class HomeViewController: BaseTableViewController {
         
         tableView.register(HomeworkCell.self, forCellReuseIdentifier: "Centralis.HomeworkCell")
         tableView.register(PeriodCell.self, forCellReuseIdentifier: "Centralis.PeriodCell")
-  
-        NotificationCenter.default.addObserver(self, selector: #selector(persistenceReload), name: PersistenceDatabase.persistenceReload, object: nil)
     }
     
     public func iCalendar() {
@@ -150,7 +148,7 @@ class HomeViewController: BaseTableViewController {
         return sections[section]
     }
     
-    private func index(_ reload: Bool = true) {
+    override public func index(_ reload: Bool = true) {
         var reload = reload
         let newCurrentPermissions = PermissionManager.shared.permissions
         let override = newCurrentPermissions != currentPermissions
@@ -193,22 +191,6 @@ class HomeViewController: BaseTableViewController {
         if override {
             tableView.reloadData()
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        index()
-    }
-    
-    @objc private func persistenceReload() {
-        if !Thread.isMainThread {
-            DispatchQueue.main.async { [weak self] in
-                self?.persistenceReload()
-            }
-            return
-        }
-        index()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
