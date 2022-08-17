@@ -151,7 +151,7 @@ class HomeViewController: CentralisDataViewController {
     override public func index(_ reload: Bool = true) {
         var reload = reload
         let newCurrentPermissions = PermissionManager.shared.permissions
-        let override = newCurrentPermissions != currentPermissions
+        let override = true// newCurrentPermissions != currentPermissions
         currentPermissions = newCurrentPermissions
         if override {
             reload = false
