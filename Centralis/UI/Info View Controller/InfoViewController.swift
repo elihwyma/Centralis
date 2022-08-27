@@ -14,7 +14,6 @@ class InfoViewController: BaseTableViewController {
         case notifications
         case account
         case message
-        case mymaths
         case theme
     }
     
@@ -24,7 +23,6 @@ class InfoViewController: BaseTableViewController {
         case 1: return .theme
         case 2: return .message
         case 3: return .account
-        case 4: return .mymaths
         default: fatalError()
         }
     }
@@ -46,7 +44,6 @@ class InfoViewController: BaseTableViewController {
         case .theme: return 1
         case .account: return 1
         case .message: return 1
-        case .mymaths: return 1
         }
     }
     
@@ -98,11 +95,6 @@ class InfoViewController: BaseTableViewController {
                 return cell
             default: fatalError()
             }
-        case .mymaths:
-            let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.DefaultCell")
-            cell.textLabel?.text = "MyMaths"
-            cell.accessoryType = .disclosureIndicator
-            return cell
         case .theme:
             let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.DefaultCell")
             cell.textLabel?.text = "Theme Settings"
@@ -116,7 +108,6 @@ class InfoViewController: BaseTableViewController {
         case .notifications: return "Notification Settings"
         case .account: return "Account"
         case .message: return "Message Settings"
-        case .mymaths: return "MyMaths"
         case .theme: return "Theme"
         }
     }
@@ -132,8 +123,6 @@ class InfoViewController: BaseTableViewController {
                 CentralisTabBarController.shared.selectedIndex = 0
             default: return
             }
-        case .mymaths:
-            navigationController?.pushViewController(MyMathsLoginViewController(nibName: nil, bundle: nil), animated: true)
         case .theme:
             navigationController?.pushViewController(ThemeViewController(style: .insetGrouped), animated: true)
         default: return

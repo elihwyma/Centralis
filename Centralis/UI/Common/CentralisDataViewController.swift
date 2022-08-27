@@ -20,13 +20,20 @@ class CentralisDataViewController: BaseTableViewController {
     }
     
     @objc private func refresh() {
-        let cancel = PersistenceDatabase.backgroundRefresh {
-            Thread.mainBlock { [weak self] in
+        guard let login = LoginManager.loadLogin().1 else { return }
+        LoginManager.login(login, _indexBypass: true) { [weak self] error, user in
+            if user != nil {
+                let cancel = PersistenceDatabase.backgroundRefresh {
+                    Thread.mainBlock { [weak self] in
+                        self?.refreshControl!.endRefreshing()
+                    }
+                }
+                if !cancel {
+                    self?.refreshControl!.endRefreshing()
+                }
+            } else {
                 self?.refreshControl!.endRefreshing()
             }
-        }
-        if !cancel {
-            refreshControl!.endRefreshing()
         }
     }
 

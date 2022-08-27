@@ -135,6 +135,14 @@
 		E19A429C27DB91200053435F /* MyMaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19A429B27DB91200053435F /* MyMaths.swift */; };
 		E19A429D27DB91200053435F /* MyMaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19A429B27DB91200053435F /* MyMaths.swift */; };
 		E19D9FAD27A71732005C8398 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19D9FAC27A71732005C8398 /* Reachability.swift */; };
+		E19DF62B28BA9DDC00138AD8 /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DF62A28BA9DDC00138AD8 /* BaseCollectionViewController.swift */; };
+		E19DF62C28BA9DDC00138AD8 /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DF62A28BA9DDC00138AD8 /* BaseCollectionViewController.swift */; };
+		E19DF62E28BA9EA300138AD8 /* TeacherPictureDumperController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DF62D28BA9EA300138AD8 /* TeacherPictureDumperController.swift */; };
+		E19DF62F28BA9EA300138AD8 /* TeacherPictureDumperController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DF62D28BA9EA300138AD8 /* TeacherPictureDumperController.swift */; };
+		E19DF63128BA9FCA00138AD8 /* CollectionViewImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DF63028BA9FCA00138AD8 /* CollectionViewImageCell.swift */; };
+		E19DF63228BA9FCA00138AD8 /* CollectionViewImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DF63028BA9FCA00138AD8 /* CollectionViewImageCell.swift */; };
+		E19DF63428BAAF6700138AD8 /* IndicatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DF63328BAAF6700138AD8 /* IndicatorCell.swift */; };
+		E19DF63528BAAF6700138AD8 /* IndicatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19DF63328BAAF6700138AD8 /* IndicatorCell.swift */; };
 		E1A23523277F58CF004563C9 /* HomeworkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A23522277F58CF004563C9 /* HomeworkCell.swift */; };
 		E1A23525277F5D24004563C9 /* TimetableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A23524277F5D24004563C9 /* TimetableCell.swift */; };
 		E1A23528277F6FF9004563C9 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A23527277F6FF9004563C9 /* TimetableViewController.swift */; };
@@ -142,6 +150,8 @@
 		E1A4A7BA28226EAC00CF2DCD /* Edulink_Personal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A4A7B828226EAC00CF2DCD /* Edulink_Personal.swift */; };
 		E1A4C65F27EA5B74000B0821 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A4C65E27EA5B74000B0821 /* PermissionManager.swift */; };
 		E1A4C66027EA5B74000B0821 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A4C65E27EA5B74000B0821 /* PermissionManager.swift */; };
+		E1B711BD28BA9A2C00006DAD /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B711BC28BA9A2C00006DAD /* ToolsViewController.swift */; };
+		E1B711BE28BA9A2C00006DAD /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B711BC28BA9A2C00006DAD /* ToolsViewController.swift */; };
 		E1B8C18D27528FAA001FF9FD /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8C18C27528FAA001FF9FD /* Date+Extensions.swift */; };
 		E1B8C1912752A0AD001FF9FD /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8C1902752A0AD001FF9FD /* NotificationManager.swift */; };
 		E1B92690278D96D7001EEDAC /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B9268F278D96D7001EEDAC /* MessagesViewController.swift */; };
@@ -272,11 +282,16 @@
 		E19A428327D0F1010053435F /* CateringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CateringViewController.swift; sourceTree = "<group>"; };
 		E19A429B27DB91200053435F /* MyMaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMaths.swift; sourceTree = "<group>"; };
 		E19D9FAC27A71732005C8398 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		E19DF62A28BA9DDC00138AD8 /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewController.swift; sourceTree = "<group>"; };
+		E19DF62D28BA9EA300138AD8 /* TeacherPictureDumperController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherPictureDumperController.swift; sourceTree = "<group>"; };
+		E19DF63028BA9FCA00138AD8 /* CollectionViewImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewImageCell.swift; sourceTree = "<group>"; };
+		E19DF63328BAAF6700138AD8 /* IndicatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorCell.swift; sourceTree = "<group>"; };
 		E1A23522277F58CF004563C9 /* HomeworkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkCell.swift; sourceTree = "<group>"; };
 		E1A23524277F5D24004563C9 /* TimetableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableCell.swift; sourceTree = "<group>"; };
 		E1A23527277F6FF9004563C9 /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
 		E1A4A7B828226EAC00CF2DCD /* Edulink_Personal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Personal.swift; sourceTree = "<group>"; };
 		E1A4C65E27EA5B74000B0821 /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
+		E1B711BC28BA9A2C00006DAD /* ToolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsViewController.swift; sourceTree = "<group>"; };
 		E1B8C18C27528FAA001FF9FD /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		E1B8C1902752A0AD001FF9FD /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		E1B9268F278D96D7001EEDAC /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
@@ -555,6 +570,9 @@
 		E197455A2751295E00EEB853 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				E19DF62928BA9C4000138AD8 /* Teacher Picture Dumper */,
+				E197456127512D3C00EEB853 /* Common */,
+				E1B711BB28BA99E700006DAD /* Tools View Controller */,
 				E17CB8882834F3D9006ADE67 /* Theme View Controller */,
 				E17CB8842834F376006ADE67 /* Account Info View Controller */,
 				E1F4828E28343573000D90C7 /* Attendance View Controller */,
@@ -572,7 +590,6 @@
 				E10B9605275178CB00C8C12E /* Centralis Tab Bar Controller */,
 				E10B9602275176B200C8C12E /* Home View Controller */,
 				E10B95E72751398F00C8C12E /* Login View Controller */,
-				E197456127512D3C00EEB853 /* Common */,
 				E197455B2751296800EEB853 /* Onboarding */,
 			);
 			path = UI;
@@ -611,6 +628,7 @@
 				E11E553C27F1B21300FEA9D7 /* UIAlertController+Extensions.swift */,
 				E145D3CA2832F40300EC84C0 /* ChartProgressView.swift */,
 				E1CC595A285E02DD000914CF /* CentralisDataViewController.swift */,
+				E19DF62A28BA9DDC00138AD8 /* BaseCollectionViewController.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -631,12 +649,30 @@
 			path = MyMaths;
 			sourceTree = "<group>";
 		};
+		E19DF62928BA9C4000138AD8 /* Teacher Picture Dumper */ = {
+			isa = PBXGroup;
+			children = (
+				E19DF62D28BA9EA300138AD8 /* TeacherPictureDumperController.swift */,
+				E19DF63028BA9FCA00138AD8 /* CollectionViewImageCell.swift */,
+				E19DF63328BAAF6700138AD8 /* IndicatorCell.swift */,
+			);
+			path = "Teacher Picture Dumper";
+			sourceTree = "<group>";
+		};
 		E1A23526277F6FC8004563C9 /* Timetable View Controller */ = {
 			isa = PBXGroup;
 			children = (
 				E1A23527277F6FF9004563C9 /* TimetableViewController.swift */,
 			);
 			path = "Timetable View Controller";
+			sourceTree = "<group>";
+		};
+		E1B711BB28BA99E700006DAD /* Tools View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E1B711BC28BA9A2C00006DAD /* ToolsViewController.swift */,
+			);
+			path = "Tools View Controller";
 			sourceTree = "<group>";
 		};
 		E1B9268E278D96B6001EEDAC /* Messages View Controller */ = {
@@ -831,7 +867,9 @@
 				E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */,
 				E19661A727B03AA700793007 /* Edulink_Links.swift in Sources */,
 				E1F482902834358E000D90C7 /* AttendanceViewController.swift in Sources */,
+				E19DF63128BA9FCA00138AD8 /* CollectionViewImageCell.swift in Sources */,
 				E11E553D27F1B21300FEA9D7 /* UIAlertController+Extensions.swift in Sources */,
+				E19DF63428BAAF6700138AD8 /* IndicatorCell.swift in Sources */,
 				E19D9FAD27A71732005C8398 /* Reachability.swift in Sources */,
 				E1C29F2927DD3785003B16E9 /* TimeConfigSelection.swift in Sources */,
 				E197456027512B4800EEB853 /* Bundle+Extensions.swift in Sources */,
@@ -850,6 +888,7 @@
 				E19621AF275D04970065B446 /* InfoViewController.swift in Sources */,
 				E1A23523277F58CF004563C9 /* HomeworkCell.swift in Sources */,
 				E10F656528229F43007E7091 /* UserDefaults+Extension.swift in Sources */,
+				E19DF62E28BA9EA300138AD8 /* TeacherPictureDumperController.swift in Sources */,
 				E10B96132751A35500C8C12E /* Edulink_Homework.swift in Sources */,
 				E196618827B02CBB00793007 /* DocumentCell.swift in Sources */,
 				E19A429C27DB91200053435F /* MyMaths.swift in Sources */,
@@ -858,6 +897,7 @@
 				E1A23528277F6FF9004563C9 /* TimetableViewController.swift in Sources */,
 				E149969227FAF3D400FC039E /* Edulink_Attendance.swift in Sources */,
 				E10B960B2751865E00C8C12E /* BaseTableViewController.swift in Sources */,
+				E1B711BD28BA9A2C00006DAD /* ToolsViewController.swift in Sources */,
 				E1C29F2027DC0636003B16E9 /* MyMathsTaskList.swift in Sources */,
 				E1B8C1912752A0AD001FF9FD /* NotificationManager.swift in Sources */,
 				E17E14BD274C1ABA0090F822 /* EdulinkManager.swift in Sources */,
@@ -879,6 +919,7 @@
 				E1B92690278D96D7001EEDAC /* MessagesViewController.swift in Sources */,
 				E183B1FB2791BA20004C6C65 /* MessageViewController.swift in Sources */,
 				E196620927B0620E00793007 /* CentralisTabBarController.swift in Sources */,
+				E19DF62B28BA9DDC00138AD8 /* BaseCollectionViewController.swift in Sources */,
 				E17E14C6274C1ECD0090F822 /* LoginManager.swift in Sources */,
 				E1C29F2627DD36E3003B16E9 /* ProgressSubtitleCell.swift in Sources */,
 			);
@@ -913,7 +954,9 @@
 				E19661F727B061F600793007 /* Bundle+Extensions.swift in Sources */,
 				E196621627B0623D00793007 /* MessageViewController.swift in Sources */,
 				E1F482912834358E000D90C7 /* AttendanceViewController.swift in Sources */,
+				E19DF63228BA9FCA00138AD8 /* CollectionViewImageCell.swift in Sources */,
 				E11E553E27F1B21300FEA9D7 /* UIAlertController+Extensions.swift in Sources */,
+				E19DF63528BAAF6700138AD8 /* IndicatorCell.swift in Sources */,
 				E19661ED27B061EE00793007 /* EdulinkRequests.swift in Sources */,
 				E1C29F2A27DD3785003B16E9 /* TimeConfigSelection.swift in Sources */,
 				E19661E427B061E000793007 /* Reachability.swift in Sources */,
@@ -932,6 +975,7 @@
 				E19661F027B061F100793007 /* Transformers.swift in Sources */,
 				E19661FA27B061F900793007 /* PersistenceDatabase.swift in Sources */,
 				E10F656628229F4D007E7091 /* UserDefaults+Extension.swift in Sources */,
+				E19DF62F28BA9EA300138AD8 /* TeacherPictureDumperController.swift in Sources */,
 				E196620E27B0621500793007 /* DocumentCell.swift in Sources */,
 				E196620027B0620100793007 /* ThemeManager.swift in Sources */,
 				E19A429D27DB91200053435F /* MyMaths.swift in Sources */,
@@ -940,6 +984,7 @@
 				E196621027B0621500793007 /* TimetableCell.swift in Sources */,
 				E149969327FAF3D500FC039E /* Edulink_Attendance.swift in Sources */,
 				E19661E727B061E800793007 /* Edulink_Documents.swift in Sources */,
+				E1B711BE28BA9A2C00006DAD /* ToolsViewController.swift in Sources */,
 				E1C29F2127DC0636003B16E9 /* MyMathsTaskList.swift in Sources */,
 				E196620A27B0621100793007 /* QuickLoginViewController.swift in Sources */,
 				E19661FE27B0620100793007 /* NSAttributedString+Extensions.swift in Sources */,
@@ -961,6 +1006,7 @@
 				E19661FB27B061F900793007 /* NotificationManager.swift in Sources */,
 				E19661EA27B061EB00793007 /* Edulink_Photos.swift in Sources */,
 				E196621327B0623400793007 /* InfoViewController.swift in Sources */,
+				E19DF62C28BA9DDC00138AD8 /* BaseCollectionViewController.swift in Sources */,
 				E19661F327B061F100793007 /* EdulinkBase.swift in Sources */,
 				E1C29F2727DD36E3003B16E9 /* ProgressSubtitleCell.swift in Sources */,
 			);
@@ -1123,12 +1169,13 @@
 				CLANG_TIDY_MISC_REDUNDANT_EXPRESSION = YES;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Centralis/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "To save profile pictures to your photo libary";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1138,7 +1185,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
@@ -1162,12 +1209,13 @@
 				CLANG_TIDY_MISC_REDUNDANT_EXPRESSION = YES;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = YES;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Centralis/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "To save profile pictures to your photo libary";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1178,7 +1226,7 @@
 					"@executable_path/Frameworks",
 				);
 				LLVM_LTO = YES;
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
@@ -1200,7 +1248,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CentralisAppClip/CentralisAppClip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1219,7 +1267,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG APPCLIP";
@@ -1236,7 +1284,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CentralisAppClip/CentralisAppClip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "APPCLIP=1";
@@ -1252,7 +1300,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APPCLIP;

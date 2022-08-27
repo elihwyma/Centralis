@@ -11,11 +11,23 @@ import Evander
 final public class Photos {
     
     private let imagesFolder = EvanderNetworking._cacheDirectory.appendingPathComponent("EdulinkImages")
-    private let backgroundQueue = DispatchQueue(label: "com.amywhile.Centralis/PhotosQueue")
+    static let backgroundQueue: DispatchQueue = {
+        let queue = DispatchQueue(label: "com.amywhile.Centralis/PhotosQueue")
+        queue.setSpecific(key: Photos.queueKey, value: Photos.queueContext)
+        return queue
+    }()
+    static let queueKey = DispatchSpecificKey<Int>()
+    static let queueContext = 848932579834
+    
+    public var cancelDump: Bool = false
+    
+    
     private let imageCache = NSCache<NSString, UIImage>()
     public static let shared = Photos()
     private var queue = [String]()
     private var exists = [String]()
+    
+    
     
     init() {
         if !imagesFolder.dirExists {
@@ -71,7 +83,7 @@ final public class Photos {
             return image
         }
         if self.imagesFolder.appendingPathComponent("\(id).png").exists {
-            backgroundQueue.async {
+            Self.backgroundQueue.async {
                 if let data = try? Data(contentsOf: self.imagesFolder.appendingPathComponent("\(id).png")),
                    var image = UIImage(data: data) {
                     image = ImageProcessing.downsample(image: image, to: size) ?? image
@@ -110,6 +122,46 @@ final public class Photos {
             }
         }
          */
+    }
+    
+    public func dumpAllEmployeePhotos(imageCompletion: @escaping (UIImage) -> (), completion: @escaping () -> ()) {
+        let array = SafeArray<UIImage>(queue: Self.backgroundQueue, key: Self.queueKey, context: Self.queueContext)
+        func handleImages() {
+            while let image = array.first {
+                array.remove(at: 0)
+                if let downscaled = ImageProcessing.downsample(image: image) {
+                    imageCompletion(downscaled)
+                }
+            }
+        }
+        func work(from: Int) {
+            if cancelDump {
+                cancelDump = false
+                return completion()
+            }
+            let to = from + 1000
+            if from > 100000 {
+                return completion()
+            }
+            let range = from...to
+            let string = range.map { String($0) }
+            EvanderNetworking.edulinkDict(method: "EduLink.TeacherPhotos", params: [
+                .custom(key: "employee_ids", value: string),
+                .custom(key: "size", value: 1024)
+            ], timeout: 120) { _, _, error, result in
+                guard let result = result,
+                      let photos = result["employee_photos"] as? [[String: Any]] else { return }
+                for _photo in photos {
+                    guard let photo = _photo["photo"] as? String,
+                          let base64 = Data(base64Encoded: photo),
+                          let image = UIImage(data: base64) else { continue }
+                    array.append(image)
+                }
+                handleImages()
+                work(from: to + 1)
+            }
+        }
+        work(from: 0)
     }
     
 }

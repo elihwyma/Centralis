@@ -100,7 +100,8 @@ final class CentralisTabBarController: UITabBarController {
         
         viewControllers = [homeViewController,
                            messagesViewController,
-                           infoViewController]
+                           infoViewController,
+                           toolsViewController]
 
         view.insertSubview(popupView, belowSubview: tabBar)
         NSLayoutConstraint.activate([
@@ -191,6 +192,17 @@ final class CentralisTabBarController: UITabBarController {
         let tabBarItem = UITabBarItem(title: "Info", image: image, selectedImage: image)
         navController.tabBarItem = tabBarItem
         viewController.title = "Info"
+        navController.navigationBar.prefersLargeTitles = true
+        return navController
+    }()
+    
+    public var toolsViewController: CentralisNavigationController = {
+        let viewController = ToolsViewController(style: .insetGrouped)
+        let navController = CentralisNavigationController(rootViewController: viewController)
+        let image = UIImage(systemName: "wrench.and.screwdriver")
+        let tabBarItem = UITabBarItem(title: "Tools", image: image, selectedImage: image)
+        navController.tabBarItem = tabBarItem
+        viewController.title = "Tools"
         navController.navigationBar.prefersLargeTitles = true
         return navController
     }()
