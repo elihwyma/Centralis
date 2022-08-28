@@ -35,7 +35,7 @@ class InfoViewController: BaseTableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        5
+        4
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
