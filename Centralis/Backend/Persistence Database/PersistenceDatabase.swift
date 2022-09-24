@@ -10,12 +10,22 @@ import SQLite
 import Evander
 import SQLite3
 
-enum DatabaseSchemaVersion: String {
-    case version01000 = "1.0"
-    case version01001 = "1.0k"
-    case version01002 = "1.0ke"
-    case version01003 = "1.0ke5"
-    case version01004 = "1.0ke7"
+enum DatabaseSchemaVersion {
+    case version01000
+    case version01001
+    case version01002
+    case version01003
+    case version01004
+    
+    var rawValue: String {
+        switch self {
+        case .version01000: return "1.0"
+        case .version01001: return "1.0k"
+        case .version01002: return "1.0ke"
+        case .version01003: return "1.0ke5"
+        case .version01004: return "1.0ke7"
+        }
+    }
 }
 
 final public class PersistenceDatabase {

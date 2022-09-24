@@ -36,6 +36,11 @@
 		E145D3CC2832F40300EC84C0 /* ChartProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E145D3CA2832F40300EC84C0 /* ChartProgressView.swift */; };
 		E149969227FAF3D400FC039E /* Edulink_Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E149969127FAF3D400FC039E /* Edulink_Attendance.swift */; };
 		E149969327FAF3D500FC039E /* Edulink_Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E149969127FAF3D400FC039E /* Edulink_Attendance.swift */; };
+		E14D519828C1423A00B72688 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19661C327B04A6700793007 /* PassKit.framework */; };
+		E14D519B28C14FEE00B72688 /* StudentIDCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D519A28C14FEE00B72688 /* StudentIDCreator.swift */; };
+		E14D519C28C14FEE00B72688 /* StudentIDCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D519A28C14FEE00B72688 /* StudentIDCreator.swift */; };
+		E14D519F28C1504A00B72688 /* StudentID.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D519E28C1504A00B72688 /* StudentID.swift */; };
+		E14D51A028C1504A00B72688 /* StudentID.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D519E28C1504A00B72688 /* StudentID.swift */; };
 		E150BC2D27AD5F84001D34AD /* Edulink_Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150BC2C27AD5F84001D34AD /* Edulink_Documents.swift */; };
 		E15B5BCC275306720003A56D /* BasicInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15B5BCA275306720003A56D /* BasicInfoCell.swift */; };
 		E17CB8862834F3CF006ADE67 /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17CB8852834F3CF006ADE67 /* AccountInfoViewController.swift */; };
@@ -173,6 +178,8 @@
 		E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD8E274C3AB9009F35D4 /* SchoolDetails.swift */; };
 		E1CEBD91274C5F8E009F35D4 /* Establishment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CEBD90274C5F8E009F35D4 /* Establishment.swift */; };
 		E1E51EF327A6DA9C00C81413 /* LoginMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E51EF227A6DA9C00C81413 /* LoginMiddleware.swift */; };
+		E1E7395C28BEC32200D500F2 /* EduLink_Employees.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E7395B28BEC32200D500F2 /* EduLink_Employees.swift */; };
+		E1E7395D28BEC32200D500F2 /* EduLink_Employees.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E7395B28BEC32200D500F2 /* EduLink_Employees.swift */; };
 		E1F482902834358E000D90C7 /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F4828F2834358E000D90C7 /* AttendanceViewController.swift */; };
 		E1F482912834358E000D90C7 /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F4828F2834358E000D90C7 /* AttendanceViewController.swift */; };
 		E1F4829328343B83000D90C7 /* AttendanceViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F4829228343B83000D90C7 /* AttendanceViewCell.swift */; };
@@ -240,6 +247,8 @@
 		E12D63C6275F71F0008DAB00 /* Edulink_Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Timetable.swift; sourceTree = "<group>"; };
 		E145D3CA2832F40300EC84C0 /* ChartProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartProgressView.swift; sourceTree = "<group>"; };
 		E149969127FAF3D400FC039E /* Edulink_Attendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Attendance.swift; sourceTree = "<group>"; };
+		E14D519A28C14FEE00B72688 /* StudentIDCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentIDCreator.swift; sourceTree = "<group>"; };
+		E14D519E28C1504A00B72688 /* StudentID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentID.swift; sourceTree = "<group>"; };
 		E150BC2C27AD5F84001D34AD /* Edulink_Documents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Documents.swift; sourceTree = "<group>"; };
 		E15B5BCA275306720003A56D /* BasicInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoCell.swift; sourceTree = "<group>"; };
 		E17CB8852834F3CF006ADE67 /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
@@ -307,6 +316,7 @@
 		E1CEBD8E274C3AB9009F35D4 /* SchoolDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolDetails.swift; sourceTree = "<group>"; };
 		E1CEBD90274C5F8E009F35D4 /* Establishment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Establishment.swift; sourceTree = "<group>"; };
 		E1E51EF227A6DA9C00C81413 /* LoginMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMiddleware.swift; sourceTree = "<group>"; };
+		E1E7395B28BEC32200D500F2 /* EduLink_Employees.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduLink_Employees.swift; sourceTree = "<group>"; };
 		E1F4828F2834358E000D90C7 /* AttendanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
 		E1F4829228343B83000D90C7 /* AttendanceViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceViewCell.swift; sourceTree = "<group>"; };
 		E1F6BB96278CC6B000E7A360 /* Edulink_Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Message.swift; sourceTree = "<group>"; };
@@ -320,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E17FDF93276676EF002F8FF0 /* SerializedSwift in Frameworks */,
+				E14D519828C1423A00B72688 /* PassKit.framework in Frameworks */,
 				E12993ED27DB908E007AC00B /* SwiftSoup in Frameworks */,
 				E10B961127518EFF00C8C12E /* SQLite in Frameworks */,
 				E17E14B9274C1A470090F822 /* Evander in Frameworks */,
@@ -394,6 +405,22 @@
 			path = "Persistence Database";
 			sourceTree = "<group>";
 		};
+		E14D519928C14FBD00B72688 /* StudentID Creator */ = {
+			isa = PBXGroup;
+			children = (
+				E14D519A28C14FEE00B72688 /* StudentIDCreator.swift */,
+			);
+			path = "StudentID Creator";
+			sourceTree = "<group>";
+		};
+		E14D519D28C1503600B72688 /* Amy API Shit */ = {
+			isa = PBXGroup;
+			children = (
+				E14D519E28C1504A00B72688 /* StudentID.swift */,
+			);
+			path = "Amy API Shit";
+			sourceTree = "<group>";
+		};
 		E15B5BC92753060F0003A56D /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -464,6 +491,8 @@
 		E17E14BA274C1A700090F822 /* Backend */ = {
 			isa = PBXGroup;
 			children = (
+				E14D519D28C1503600B72688 /* Amy API Shit */,
+				E1E7395A28BEC2D700D500F2 /* EduLink */,
 				E19A429A27DB91010053435F /* MyMaths */,
 				E10B96142752605000C8C12E /* Persistence Database */,
 				E197455E27512B3700EEB853 /* Extensions */,
@@ -474,20 +503,9 @@
 			path = Backend;
 			sourceTree = "<group>";
 		};
-		E17E14BB274C1A760090F822 /* EduLink Manager */ = {
-			isa = PBXGroup;
-			children = (
-				E1C2125E274CFCF20030BE0C /* API Requests */,
-				E17E14BC274C1ABA0090F822 /* EdulinkManager.swift */,
-			);
-			path = "EduLink Manager";
-			sourceTree = "<group>";
-		};
 		E17E14BF274C1B050090F822 /* Contrib */ = {
 			isa = PBXGroup;
 			children = (
-				E17E14C7274C20610090F822 /* EdulinkRequests.swift */,
-				E17E14BB274C1A760090F822 /* EduLink Manager */,
 				E19D9FAC27A71732005C8398 /* Reachability.swift */,
 			);
 			path = Contrib;
@@ -570,6 +588,7 @@
 		E197455A2751295E00EEB853 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				E14D519928C14FBD00B72688 /* StudentID Creator */,
 				E19DF62928BA9C4000138AD8 /* Teacher Picture Dumper */,
 				E197456127512D3C00EEB853 /* Common */,
 				E1B711BB28BA99E700006DAD /* Tools View Controller */,
@@ -683,24 +702,6 @@
 			path = "Messages View Controller";
 			sourceTree = "<group>";
 		};
-		E1C2125E274CFCF20030BE0C /* API Requests */ = {
-			isa = PBXGroup;
-			children = (
-				E1CDE49627502F1B00AA7769 /* Edulink_Status.swift */,
-				E10B96122751A35500C8C12E /* Edulink_Homework.swift */,
-				E12D63C6275F71F0008DAB00 /* Edulink_Timetable.swift */,
-				E1F6BB96278CC6B000E7A360 /* Edulink_Message.swift */,
-				E1F6BB9A278E102500E7A360 /* Edulink_Photos.swift */,
-				E150BC2C27AD5F84001D34AD /* Edulink_Documents.swift */,
-				E19661A627B03AA700793007 /* Edulink_Links.swift */,
-				E19A427F27CFA24A0053435F /* Edulink_Catering.swift */,
-				E12690DF27EC77A800929C21 /* Edulink_iCalendar.swift */,
-				E1A4A7B828226EAC00CF2DCD /* Edulink_Personal.swift */,
-				E149969127FAF3D400FC039E /* Edulink_Attendance.swift */,
-			);
-			path = "API Requests";
-			sourceTree = "<group>";
-		};
 		E1C29F1B27DBE35B003B16E9 /* MyMaths View Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -711,6 +712,27 @@
 				E1C29F2827DD3785003B16E9 /* TimeConfigSelection.swift */,
 			);
 			path = "MyMaths View Controller";
+			sourceTree = "<group>";
+		};
+		E1E7395A28BEC2D700D500F2 /* EduLink */ = {
+			isa = PBXGroup;
+			children = (
+				E1CDE49627502F1B00AA7769 /* Edulink_Status.swift */,
+				E17E14BC274C1ABA0090F822 /* EdulinkManager.swift */,
+				E10B96122751A35500C8C12E /* Edulink_Homework.swift */,
+				E12D63C6275F71F0008DAB00 /* Edulink_Timetable.swift */,
+				E1F6BB96278CC6B000E7A360 /* Edulink_Message.swift */,
+				E1F6BB9A278E102500E7A360 /* Edulink_Photos.swift */,
+				E150BC2C27AD5F84001D34AD /* Edulink_Documents.swift */,
+				E19661A627B03AA700793007 /* Edulink_Links.swift */,
+				E19A427F27CFA24A0053435F /* Edulink_Catering.swift */,
+				E12690DF27EC77A800929C21 /* Edulink_iCalendar.swift */,
+				E1A4A7B828226EAC00CF2DCD /* Edulink_Personal.swift */,
+				E149969127FAF3D400FC039E /* Edulink_Attendance.swift */,
+				E17E14C7274C20610090F822 /* EdulinkRequests.swift */,
+				E1E7395B28BEC32200D500F2 /* EduLink_Employees.swift */,
+			);
+			path = EduLink;
 			sourceTree = "<group>";
 		};
 		E1F4828E28343573000D90C7 /* Attendance View Controller */ = {
@@ -851,6 +873,7 @@
 				E1081EF1285D009F00C67AC9 /* main.swift in Sources */,
 				E19621B1275D05EB0065B446 /* SettingsSwitchTableViewCell.swift in Sources */,
 				E10B960A2751865E00C8C12E /* BaseSubtitleCell.swift in Sources */,
+				E1E7395C28BEC32200D500F2 /* EduLink_Employees.swift in Sources */,
 				E17CB8862834F3CF006ADE67 /* AccountInfoViewController.swift in Sources */,
 				E10B95EE27513AD900C8C12E /* LoadingButton.swift in Sources */,
 				E19A428027CFA24A0053435F /* Edulink_Catering.swift in Sources */,
@@ -884,6 +907,7 @@
 				E1E51EF327A6DA9C00C81413 /* LoginMiddleware.swift in Sources */,
 				E12690E027EC77A800929C21 /* Edulink_iCalendar.swift in Sources */,
 				E10B95FF275164D800C8C12E /* CentralisNavigationController.swift in Sources */,
+				E14D519B28C14FEE00B72688 /* StudentIDCreator.swift in Sources */,
 				E1CEBD8D274C2F80009F35D4 /* AuthenticatedUser.swift in Sources */,
 				E19621AF275D04970065B446 /* InfoViewController.swift in Sources */,
 				E1A23523277F58CF004563C9 /* HomeworkCell.swift in Sources */,
@@ -907,6 +931,7 @@
 				E1F6BB97278CC6B000E7A360 /* Edulink_Message.swift in Sources */,
 				E1A4A7B928226EAC00CF2DCD /* Edulink_Personal.swift in Sources */,
 				E199E12C283648AF00E130E9 /* ThemeViewController.swift in Sources */,
+				E14D519F28C1504A00B72688 /* StudentID.swift in Sources */,
 				E1CEBD91274C5F8E009F35D4 /* Establishment.swift in Sources */,
 				E1F6BB9B278E102500E7A360 /* Edulink_Photos.swift in Sources */,
 				E10B95E9275139D600C8C12E /* SchoolCodeViewController.swift in Sources */,
@@ -938,6 +963,7 @@
 				E1081EF2285D009F00C67AC9 /* main.swift in Sources */,
 				E19661EE27B061F100793007 /* SchoolDetails.swift in Sources */,
 				E196620827B0620D00793007 /* CentralisTabBarController.swift in Sources */,
+				E1E7395D28BEC32200D500F2 /* EduLink_Employees.swift in Sources */,
 				E17CB8872834F3CF006ADE67 /* AccountInfoViewController.swift in Sources */,
 				E196620D27B0621500793007 /* HomeworkCell.swift in Sources */,
 				E19A428127CFA24B0053435F /* Edulink_Catering.swift in Sources */,
@@ -971,6 +997,7 @@
 				E19661FC27B061FE00793007 /* OnboardingViewController.swift in Sources */,
 				E12690E127EC77A900929C21 /* Edulink_iCalendar.swift in Sources */,
 				E19661FF27B0620100793007 /* RoundedTextField.swift in Sources */,
+				E14D519C28C14FEE00B72688 /* StudentIDCreator.swift in Sources */,
 				E196620227B0620100793007 /* CentralisNavigationController.swift in Sources */,
 				E19661F027B061F100793007 /* Transformers.swift in Sources */,
 				E19661FA27B061F900793007 /* PersistenceDatabase.swift in Sources */,
@@ -994,6 +1021,7 @@
 				E19661FD27B0620100793007 /* BaseTableViewController.swift in Sources */,
 				E1A4A7BA28226EAC00CF2DCD /* Edulink_Personal.swift in Sources */,
 				E199E12D283648AF00E130E9 /* ThemeViewController.swift in Sources */,
+				E14D51A028C1504A00B72688 /* StudentID.swift in Sources */,
 				E19661E627B061E500793007 /* Edulink_Links.swift in Sources */,
 				E19661F127B061F100793007 /* UserLogin.swift in Sources */,
 				E196621527B0623A00793007 /* MessagesViewController.swift in Sources */,
@@ -1169,10 +1197,10 @@
 				CLANG_TIDY_MISC_REDUNDANT_EXPRESSION = YES;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = YES;
-				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Centralis/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "To save profile pictures to your photo libary";
@@ -1181,6 +1209,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1188,7 +1217,7 @@
 				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -1209,10 +1238,10 @@
 				CLANG_TIDY_MISC_REDUNDANT_EXPRESSION = YES;
 				CODE_SIGN_ENTITLEMENTS = Centralis/Centralis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = YES;
-				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = NO;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Centralis/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "To save profile pictures to your photo libary";
@@ -1221,6 +1250,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1230,7 +1260,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -1248,7 +1278,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CentralisAppClip/CentralisAppClip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1284,7 +1314,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CentralisAppClip/CentralisAppClip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "APPCLIP=1";

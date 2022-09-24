@@ -147,7 +147,7 @@ extension SchoolCodeViewController: UITextFieldDelegate {
         return true
     }
     
-     @objc private func dismissKeyboard (_ sender: Any) {
+    @objc private func dismissKeyboard (_ sender: Any) {
         field.resignFirstResponder()
     }
 }

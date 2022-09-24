@@ -12,16 +12,19 @@ class ToolsViewController: BaseTableViewController {
     private enum Section {
         case mymaths
         case photos
+        case studentid
         
         var title: String? {
             switch self {
             case .mymaths: return "MyMaths Haxx"
             case .photos: return "EduLink Photos"
+            case .studentid: return "Student ID"
             }
         }
         
         var footer: String? {
             switch self {
+            case .studentid: return "This can be used to generate a \"fake\" student ID. This is enough to get a student discount in most stores and prove your definitely real age"
             default: return nil
             }
         }
@@ -31,18 +34,20 @@ class ToolsViewController: BaseTableViewController {
         switch section {
         case 0: return .mymaths
         case 1: return .photos
+        case 2: return .studentid
         default: fatalError()
         }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        3
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch _section(for: section) {
         case .mymaths: return 1
         case .photos: return 1
+        case .studentid: return 1
         }
     }
     
@@ -69,6 +74,11 @@ class ToolsViewController: BaseTableViewController {
             default: fatalError()
             }
             return cell
+        case .studentid:
+            let cell = self.reusableCell(withStyle: .default, reuseIdentifier: "Centralis.DefaultCell")
+            cell.textLabel?.text = "Student ID"
+            cell.accessoryType = .disclosureIndicator
+            return cell
         }
     }
     
@@ -83,6 +93,8 @@ class ToolsViewController: BaseTableViewController {
                 navigationController?.pushViewController(TeacherPictureDumperController(collectionViewLayout: UICollectionViewFlowLayout()), animated: true)
             default: return
             }
+        case .studentid:
+            navigationController?.pushViewController(StudentIDCreator(nibName: nil, bundle: nil), animated: true)
         }
     }
 
