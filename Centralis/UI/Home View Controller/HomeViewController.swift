@@ -43,8 +43,9 @@ class HomeViewController: CentralisDataViewController {
                     popoverController.sourceRect = self.view.frame
                 }
                 for calendar in calendars {
+                    guard let url = calendar.url else { continue }
                     alert.addAction(UIAlertAction(title: calendar.description, style: .default, handler: { _ in
-                        let view = SFSafariViewController(url: calendar.url)
+                        let view = SFSafariViewController(url: url)
                         self.present(view, animated: true)
                     }))
                 }
@@ -56,6 +57,12 @@ class HomeViewController: CentralisDataViewController {
                 }
             }
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.present(AlwaysOnlineViewController.create(), animated: true)
     }
     
     enum Section {

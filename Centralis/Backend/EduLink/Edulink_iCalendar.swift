@@ -14,7 +14,7 @@ final public class ICalendar: Serializable {
     @Serialized(default: true) var enabled: Bool
     @Serialized var description: String
     @Serialized var type: String
-    @Serialized var url: URL
+    @Serialized var url: URL?
     
     required public init() {}
     

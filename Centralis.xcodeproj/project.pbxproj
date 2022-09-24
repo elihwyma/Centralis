@@ -41,6 +41,12 @@
 		E14D519C28C14FEE00B72688 /* StudentIDCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D519A28C14FEE00B72688 /* StudentIDCreator.swift */; };
 		E14D519F28C1504A00B72688 /* StudentID.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D519E28C1504A00B72688 /* StudentID.swift */; };
 		E14D51A028C1504A00B72688 /* StudentID.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D519E28C1504A00B72688 /* StudentID.swift */; };
+		E150222C28DF8B1B0081A435 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150222B28DF8B1B0081A435 /* Constants.swift */; };
+		E150222D28DF8B1B0081A435 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150222B28DF8B1B0081A435 /* Constants.swift */; };
+		E150223028DF8E090081A435 /* AlwaysOnlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150222F28DF8E090081A435 /* AlwaysOnlineViewController.swift */; };
+		E150223128DF8E090081A435 /* AlwaysOnlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150222F28DF8E090081A435 /* AlwaysOnlineViewController.swift */; };
+		E150223328DFA2830081A435 /* AlwaysOnlineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150223228DFA2830081A435 /* AlwaysOnlineManager.swift */; };
+		E150223428DFA2830081A435 /* AlwaysOnlineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150223228DFA2830081A435 /* AlwaysOnlineManager.swift */; };
 		E150BC2D27AD5F84001D34AD /* Edulink_Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150BC2C27AD5F84001D34AD /* Edulink_Documents.swift */; };
 		E15B5BCC275306720003A56D /* BasicInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15B5BCA275306720003A56D /* BasicInfoCell.swift */; };
 		E17CB8862834F3CF006ADE67 /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17CB8852834F3CF006ADE67 /* AccountInfoViewController.swift */; };
@@ -249,6 +255,10 @@
 		E149969127FAF3D400FC039E /* Edulink_Attendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Attendance.swift; sourceTree = "<group>"; };
 		E14D519A28C14FEE00B72688 /* StudentIDCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentIDCreator.swift; sourceTree = "<group>"; };
 		E14D519E28C1504A00B72688 /* StudentID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentID.swift; sourceTree = "<group>"; };
+		E150222728DF881D0081A435 /* Centralis-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Centralis-iOS.entitlements"; sourceTree = "<group>"; };
+		E150222B28DF8B1B0081A435 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E150222F28DF8E090081A435 /* AlwaysOnlineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlwaysOnlineViewController.swift; sourceTree = "<group>"; };
+		E150223228DFA2830081A435 /* AlwaysOnlineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlwaysOnlineManager.swift; sourceTree = "<group>"; };
 		E150BC2C27AD5F84001D34AD /* Edulink_Documents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Documents.swift; sourceTree = "<group>"; };
 		E15B5BCA275306720003A56D /* BasicInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoCell.swift; sourceTree = "<group>"; };
 		E17CB8852834F3CF006ADE67 /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
@@ -259,7 +269,7 @@
 		E17E14AE274C19B30090F822 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E17E14BC274C1ABA0090F822 /* EdulinkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdulinkManager.swift; sourceTree = "<group>"; };
 		E17E14C1274C1B2F0090F822 /* UserLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogin.swift; sourceTree = "<group>"; };
-		E17E14C3274C1DDF0090F822 /* Centralis.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Centralis.entitlements; sourceTree = "<group>"; };
+		E17E14C3274C1DDF0090F822 /* Centralis-macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Centralis-macOS.entitlements"; sourceTree = "<group>"; };
 		E17E14C5274C1ECD0090F822 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		E17E14C7274C20610090F822 /* EdulinkRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdulinkRequests.swift; sourceTree = "<group>"; };
 		E17E14C9274C211D0090F822 /* Transformers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformers.swift; sourceTree = "<group>"; };
@@ -281,7 +291,6 @@
 		E19661D927B0611600793007 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E19661DB27B0611600793007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E19661DC27B0611600793007 /* CentralisAppClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CentralisAppClip.entitlements; sourceTree = "<group>"; };
-		E196622027B06DC900793007 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E197455C2751298900EEB853 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		E197455F27512B4800EEB853 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		E197456227512D6600EEB853 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
@@ -417,8 +426,17 @@
 			isa = PBXGroup;
 			children = (
 				E14D519E28C1504A00B72688 /* StudentID.swift */,
+				E150223228DFA2830081A435 /* AlwaysOnlineManager.swift */,
 			);
 			path = "Amy API Shit";
+			sourceTree = "<group>";
+		};
+		E150222E28DF8D5F0081A435 /* Always Online View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E150222F28DF8E090081A435 /* AlwaysOnlineViewController.swift */,
+			);
+			path = "Always Online View Controller";
 			sourceTree = "<group>";
 		};
 		E15B5BC92753060F0003A56D /* Table View Cells */ = {
@@ -475,12 +493,13 @@
 		E17E149F274C19B10090F822 /* Centralis */ = {
 			isa = PBXGroup;
 			children = (
-				E17E14C3274C1DDF0090F822 /* Centralis.entitlements */,
+				E17E14C3274C1DDF0090F822 /* Centralis-macOS.entitlements */,
+				E150222728DF881D0081A435 /* Centralis-iOS.entitlements */,
 				E197455A2751295E00EEB853 /* UI */,
 				E17E14BA274C1A700090F822 /* Backend */,
 				E17E14A0274C19B10090F822 /* AppDelegate.swift */,
+				E150222B28DF8B1B0081A435 /* Constants.swift */,
 				E1081EF0285D009F00C67AC9 /* main.swift */,
-				E196622027B06DC900793007 /* SceneDelegate.swift */,
 				E17E14A9274C19B30090F822 /* Assets.xcassets */,
 				E17E14AB274C19B30090F822 /* LaunchScreen.storyboard */,
 				E17E14AE274C19B30090F822 /* Info.plist */,
@@ -588,6 +607,7 @@
 		E197455A2751295E00EEB853 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				E150222E28DF8D5F0081A435 /* Always Online View Controller */,
 				E14D519928C14FBD00B72688 /* StudentID Creator */,
 				E19DF62928BA9C4000138AD8 /* Teacher Picture Dumper */,
 				E197456127512D3C00EEB853 /* Common */,
@@ -875,6 +895,7 @@
 				E10B960A2751865E00C8C12E /* BaseSubtitleCell.swift in Sources */,
 				E1E7395C28BEC32200D500F2 /* EduLink_Employees.swift in Sources */,
 				E17CB8862834F3CF006ADE67 /* AccountInfoViewController.swift in Sources */,
+				E150222C28DF8B1B0081A435 /* Constants.swift in Sources */,
 				E10B95EE27513AD900C8C12E /* LoadingButton.swift in Sources */,
 				E19A428027CFA24A0053435F /* Edulink_Catering.swift in Sources */,
 				E17E14CC274C25010090F822 /* EdulinkBase.swift in Sources */,
@@ -882,6 +903,7 @@
 				E1A4C65F27EA5B74000B0821 /* PermissionManager.swift in Sources */,
 				E17E14C2274C1B2F0090F822 /* UserLogin.swift in Sources */,
 				E1F4829328343B83000D90C7 /* AttendanceViewCell.swift in Sources */,
+				E150223328DFA2830081A435 /* AlwaysOnlineManager.swift in Sources */,
 				E19621A6275BC2A50065B446 /* NSAttributedString+Extensions.swift in Sources */,
 				E1CC595B285E02DD000914CF /* CentralisDataViewController.swift in Sources */,
 				E10B95FD275160C000C8C12E /* URL+Extensions.swift in Sources */,
@@ -940,6 +962,7 @@
 				E12D63C7275F71F0008DAB00 /* Edulink_Timetable.swift in Sources */,
 				E10B960E27518B0800C8C12E /* QuickLoginViewController.swift in Sources */,
 				E1A23525277F5D24004563C9 /* TimetableCell.swift in Sources */,
+				E150223028DF8E090081A435 /* AlwaysOnlineViewController.swift in Sources */,
 				E19A428427D0F1010053435F /* CateringViewController.swift in Sources */,
 				E1B92690278D96D7001EEDAC /* MessagesViewController.swift in Sources */,
 				E183B1FB2791BA20004C6C65 /* MessageViewController.swift in Sources */,
@@ -965,6 +988,7 @@
 				E196620827B0620D00793007 /* CentralisTabBarController.swift in Sources */,
 				E1E7395D28BEC32200D500F2 /* EduLink_Employees.swift in Sources */,
 				E17CB8872834F3CF006ADE67 /* AccountInfoViewController.swift in Sources */,
+				E150222D28DF8B1B0081A435 /* Constants.swift in Sources */,
 				E196620D27B0621500793007 /* HomeworkCell.swift in Sources */,
 				E19A428127CFA24B0053435F /* Edulink_Catering.swift in Sources */,
 				E196620727B0620900793007 /* HomeViewController.swift in Sources */,
@@ -972,6 +996,7 @@
 				E1A4C66027EA5B74000B0821 /* PermissionManager.swift in Sources */,
 				E19661F627B061F400793007 /* LoginMiddleware.swift in Sources */,
 				E1F4829428343B83000D90C7 /* AttendanceViewCell.swift in Sources */,
+				E150223428DFA2830081A435 /* AlwaysOnlineManager.swift in Sources */,
 				E196620627B0620500793007 /* UserPasswordViewController.swift in Sources */,
 				E1CC595C285E02DD000914CF /* CentralisDataViewController.swift in Sources */,
 				E19661E827B061EB00793007 /* Edulink_Timetable.swift in Sources */,
@@ -1030,6 +1055,7 @@
 				E19661E527B061E300793007 /* EdulinkManager.swift in Sources */,
 				E196620127B0620100793007 /* KeyboardAwareViewController.swift in Sources */,
 				E19661F527B061F400793007 /* LoginManager.swift in Sources */,
+				E150223128DF8E090081A435 /* AlwaysOnlineViewController.swift in Sources */,
 				E19A428527D0F1020053435F /* CateringViewController.swift in Sources */,
 				E19661FB27B061F900793007 /* NotificationManager.swift in Sources */,
 				E19661EA27B061EB00793007 /* Edulink_Photos.swift in Sources */,
@@ -1071,6 +1097,147 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E150222828DF88C30081A435 /* Release-macOS */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release-macOS";
+		};
+		E150222928DF88C30081A435 /* Release-macOS */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_OPTIMIZATION = space;
+				CLANG_STATIC_ANALYZER_MODE = deep;
+				CLANG_TIDY_BUGPRONE_REDUNDANT_BRANCH_CONDITION = YES;
+				CLANG_TIDY_MISC_REDUNDANT_EXPRESSION = YES;
+				CODE_SIGN_ENTITLEMENTS = "Centralis/Centralis-macOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
+				DEVELOPMENT_TEAM = 7J8FJX4SRX;
+				ENABLE_BITCODE = NO;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Centralis/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "To save profile pictures to your photo libary";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				LLVM_LTO = YES;
+				MARKETING_VERSION = 1.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
+				SWIFT_OPTIMIZE_OBJECT_LIFETIME = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Release-macOS";
+		};
+		E150222A28DF88C30081A435 /* Release-macOS */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CentralisAppClip/CentralisAppClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
+				DEVELOPMENT_TEAM = 7J8FJX4SRX;
+				ENABLE_BITCODE = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = "APPCLIP=1";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CentralisAppClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Centralis;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				MARKETING_VERSION = 1.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APPCLIP;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Release-macOS";
+		};
 		E17E14AF274C19B30090F822 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1195,11 +1362,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_TIDY_BUGPRONE_REDUNDANT_BRANCH_CONDITION = YES;
 				CLANG_TIDY_MISC_REDUNDANT_EXPRESSION = YES;
-				CODE_SIGN_ENTITLEMENTS = Centralis/Centralis.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Centralis/Centralis-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Centralis/Info.plist;
@@ -1213,6 +1380,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis;
@@ -1236,11 +1407,11 @@
 				CLANG_STATIC_ANALYZER_MODE = deep;
 				CLANG_TIDY_BUGPRONE_REDUNDANT_BRANCH_CONDITION = YES;
 				CLANG_TIDY_MISC_REDUNDANT_EXPRESSION = YES;
-				CODE_SIGN_ENTITLEMENTS = Centralis/Centralis.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Centralis/Centralis-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Centralis/Info.plist;
@@ -1254,6 +1425,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				LLVM_LTO = YES;
 				MARKETING_VERSION = 1.3;
@@ -1280,7 +1455,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"APPCLIP=1",
@@ -1296,6 +1471,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis.Clip;
@@ -1316,7 +1495,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = "APPCLIP=1";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CentralisAppClip/Info.plist;
@@ -1329,6 +1508,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis.Clip;
@@ -1348,6 +1531,7 @@
 			buildConfigurations = (
 				E17E14AF274C19B30090F822 /* Debug */,
 				E17E14B0274C19B30090F822 /* Release */,
+				E150222828DF88C30081A435 /* Release-macOS */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1357,6 +1541,7 @@
 			buildConfigurations = (
 				E17E14B2274C19B30090F822 /* Debug */,
 				E17E14B3274C19B30090F822 /* Release */,
+				E150222928DF88C30081A435 /* Release-macOS */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1366,6 +1551,7 @@
 			buildConfigurations = (
 				E19661E127B0611600793007 /* Debug */,
 				E19661E227B0611600793007 /* Release */,
+				E150222A28DF88C30081A435 /* Release-macOS */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
