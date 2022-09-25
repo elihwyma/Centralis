@@ -47,6 +47,10 @@
 		E150223128DF8E090081A435 /* AlwaysOnlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150222F28DF8E090081A435 /* AlwaysOnlineViewController.swift */; };
 		E150223328DFA2830081A435 /* AlwaysOnlineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150223228DFA2830081A435 /* AlwaysOnlineManager.swift */; };
 		E150223428DFA2830081A435 /* AlwaysOnlineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150223228DFA2830081A435 /* AlwaysOnlineManager.swift */; };
+		E150223C28DFD88D0081A435 /* AppleAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150223B28DFD88C0081A435 /* AppleAuth.swift */; };
+		E150223D28DFD88D0081A435 /* AppleAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150223B28DFD88C0081A435 /* AppleAuth.swift */; };
+		E150224228DFD8980081A435 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150223F28DFD8980081A435 /* AuthenticationService.swift */; };
+		E150224328DFD8980081A435 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150223F28DFD8980081A435 /* AuthenticationService.swift */; };
 		E150BC2D27AD5F84001D34AD /* Edulink_Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150BC2C27AD5F84001D34AD /* Edulink_Documents.swift */; };
 		E15B5BCC275306720003A56D /* BasicInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15B5BCA275306720003A56D /* BasicInfoCell.swift */; };
 		E17CB8862834F3CF006ADE67 /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17CB8852834F3CF006ADE67 /* AccountInfoViewController.swift */; };
@@ -259,6 +263,8 @@
 		E150222B28DF8B1B0081A435 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E150222F28DF8E090081A435 /* AlwaysOnlineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlwaysOnlineViewController.swift; sourceTree = "<group>"; };
 		E150223228DFA2830081A435 /* AlwaysOnlineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlwaysOnlineManager.swift; sourceTree = "<group>"; };
+		E150223B28DFD88C0081A435 /* AppleAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleAuth.swift; sourceTree = "<group>"; };
+		E150223F28DFD8980081A435 /* AuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		E150BC2C27AD5F84001D34AD /* Edulink_Documents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Documents.swift; sourceTree = "<group>"; };
 		E15B5BCA275306720003A56D /* BasicInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoCell.swift; sourceTree = "<group>"; };
 		E17CB8852834F3CF006ADE67 /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
@@ -425,6 +431,8 @@
 		E14D519D28C1503600B72688 /* Amy API Shit */ = {
 			isa = PBXGroup;
 			children = (
+				E150223F28DFD8980081A435 /* AuthenticationService.swift */,
+				E150223B28DFD88C0081A435 /* AppleAuth.swift */,
 				E14D519E28C1504A00B72688 /* StudentID.swift */,
 				E150223228DFA2830081A435 /* AlwaysOnlineManager.swift */,
 			);
@@ -901,6 +909,7 @@
 				E17E14CC274C25010090F822 /* EdulinkBase.swift in Sources */,
 				E145D3CB2832F40300EC84C0 /* ChartProgressView.swift in Sources */,
 				E1A4C65F27EA5B74000B0821 /* PermissionManager.swift in Sources */,
+				E150223C28DFD88D0081A435 /* AppleAuth.swift in Sources */,
 				E17E14C2274C1B2F0090F822 /* UserLogin.swift in Sources */,
 				E1F4829328343B83000D90C7 /* AttendanceViewCell.swift in Sources */,
 				E150223328DFA2830081A435 /* AlwaysOnlineManager.swift in Sources */,
@@ -910,6 +919,7 @@
 				E17E14CA274C211D0090F822 /* Transformers.swift in Sources */,
 				E1B8C18D27528FAA001FF9FD /* Date+Extensions.swift in Sources */,
 				E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */,
+				E150224228DFD8980081A435 /* AuthenticationService.swift in Sources */,
 				E19661A727B03AA700793007 /* Edulink_Links.swift in Sources */,
 				E1F482902834358E000D90C7 /* AttendanceViewController.swift in Sources */,
 				E19DF63128BA9FCA00138AD8 /* CollectionViewImageCell.swift in Sources */,
@@ -994,6 +1004,7 @@
 				E196620727B0620900793007 /* HomeViewController.swift in Sources */,
 				E145D3CC2832F40300EC84C0 /* ChartProgressView.swift in Sources */,
 				E1A4C66027EA5B74000B0821 /* PermissionManager.swift in Sources */,
+				E150223D28DFD88D0081A435 /* AppleAuth.swift in Sources */,
 				E19661F627B061F400793007 /* LoginMiddleware.swift in Sources */,
 				E1F4829428343B83000D90C7 /* AttendanceViewCell.swift in Sources */,
 				E150223428DFA2830081A435 /* AlwaysOnlineManager.swift in Sources */,
@@ -1003,6 +1014,7 @@
 				E19661F427B061F100793007 /* AuthenticatedUser.swift in Sources */,
 				E196620327B0620100793007 /* LoadingButton.swift in Sources */,
 				E19661F727B061F600793007 /* Bundle+Extensions.swift in Sources */,
+				E150224328DFD8980081A435 /* AuthenticationService.swift in Sources */,
 				E196621627B0623D00793007 /* MessageViewController.swift in Sources */,
 				E1F482912834358E000D90C7 /* AttendanceViewController.swift in Sources */,
 				E19DF63228BA9FCA00138AD8 /* CollectionViewImageCell.swift in Sources */,

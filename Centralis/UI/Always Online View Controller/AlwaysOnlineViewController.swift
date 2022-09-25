@@ -17,6 +17,8 @@ class AlwaysOnlineViewController: OBSetupAssistantBulletedListController {
                                    contentLayout: 2)
     }
     
+    private var auth = AppleAuth()
+    
     override init!(title arg1: Any!, detailText arg2: Any!, icon arg3: Any!, contentLayout arg4: Int64) {
         super.init(title: arg1, detailText: arg2, icon: arg3, contentLayout: arg4)
         
@@ -57,8 +59,42 @@ class AlwaysOnlineViewController: OBSetupAssistantBulletedListController {
     
     @objc private func setupAlwaysOnline() {
         PersistenceDatabase.domainDefaults.setValue(true, forKey: "AlwaysOnline.Onboarding")
-        AlwaysOnlineManager.shared.registerForOnline { error in
-            print(error)
+        var cancel = false
+        let alert = UIAlertController(title: "Setting up CUM", message: "This should only take a moment", preferredStyle: .alert)
+        let cancelCallback: (() -> Void) = { [weak self, weak alert] in
+            cancel = true
+            Thread.mainBlock {
+                alert?.dismiss(animated: true) {
+                    self?.dismiss(animated: true)
+                }
+            }
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            cancelCallback()
+        })
+        let window = view.window
+        present(alert, animated: true) { [weak alert, weak self] in
+            weak var label = alert?.label(with: "This should only take a moment")
+            weak var cancelLabel = alert?.label(with: "Cancel")
+            AlwaysOnlineManager.shared.registerForOnline { success, error in
+                guard !cancel else { return }
+                Thread.mainBlock {
+                    if !success {
+                        label?.text = "Failed with error: \(error ?? "Unknown Error")"
+                        return
+                    }
+                    cancelLabel?.text = "No Thanks!"
+                    alert?.addAction(UIAlertAction(title: "Yes Please!", style: .default) { _ in
+                        cancelCallback()
+                        self?.auth.authenticate(window: window) { token, identityToken in
+                            guard let token = token,
+                                  let identityToken else { return }
+                            AlwaysOnlineManager.shared.registerForAppleID(token: token, identity: identityToken)
+                        }
+                    })
+                    label?.text = "Would you like to enable Sign in With Apple?"
+                }
+            }
         }
     }
     

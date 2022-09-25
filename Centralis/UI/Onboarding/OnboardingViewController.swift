@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 class OnboardingViewController: UIViewController {
+    
+    private let appleAuth = AppleAuth()
+    private var isWorking = false
     
     private var iconNavBarIconView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: 32, height: 32)))
     private lazy var iconNavBarIconViewController: UIView = {
@@ -35,6 +39,7 @@ class OnboardingViewController: UIViewController {
     
     private lazy var loginButton: UIButton = {
         let button = UIButton(primaryAction: UIAction(handler: { [weak self] _ in
+            guard !(self?.isWorking ?? false) else { return }
             self?.presentLoginController()
         }))
         button.backgroundColor = .tintColor
@@ -51,6 +56,7 @@ class OnboardingViewController: UIViewController {
     
     private lazy var myMathsButton: UIButton = {
         let button = UIButton(primaryAction: UIAction(handler: { [weak self] _ in
+            guard !(self?.isWorking ?? false) else { return }
             self?.navigationController?.pushViewController(MyMathsLoginViewController(nibName: nil, bundle: nil), animated: true)
         }))
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -65,10 +71,22 @@ class OnboardingViewController: UIViewController {
         return button
     }()
     
+    private lazy var appleButton: ASAuthorizationAppleIDButton = {
+        let button = ASAuthorizationAppleIDButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(signInWithApple), for: .touchUpInside)
+        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        button.layer.masksToBounds = true
+        button.layer.cornerCurve = .continuous
+        button.layer.cornerRadius = 25
+        return button
+    }()
+    
     override func viewDidLoad() {
         if let login = LoginManager.loadLogin().1 {
             (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = CentralisTabBarController.shared
             LoginMiddleware.shared.login(with: login)
+            return
         }
         
         super.viewDidLoad()
@@ -82,6 +100,7 @@ class OnboardingViewController: UIViewController {
         view.addSubview(label)
         view.addSubview(loginButton)
         view.addSubview(myMathsButton)
+        view.addSubview(appleButton)
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
             label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25),
@@ -93,11 +112,51 @@ class OnboardingViewController: UIViewController {
             
             myMathsButton.leadingAnchor.constraint(equalTo: loginButton.leadingAnchor),
             myMathsButton.trailingAnchor.constraint(equalTo: loginButton.trailingAnchor),
-            myMathsButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 12.5)
+            myMathsButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 12.5),
+            
+            appleButton.leadingAnchor.constraint(equalTo: loginButton.leadingAnchor),
+            appleButton.trailingAnchor.constraint(equalTo: loginButton.trailingAnchor),
+            appleButton.topAnchor.constraint(equalTo: myMathsButton.bottomAnchor, constant: 12.5),
         ])
     }
     
     private func presentLoginController() {
         navigationController?.pushViewController(SchoolCodeViewController(), animated: true)
+    }
+    
+    @objc private func signInWithApple() {
+        isWorking = true
+        appleAuth.authenticate(window: view.window) { [weak self] token, identityToken in
+            guard let token = token,
+                  let identityToken = identityToken else {
+                self?.isWorking = false
+                return
+            }
+            AlwaysOnlineManager.shared.signIn(token: token, identity: identityToken) { error, login in
+                guard let self = self else { return }
+                if let error = error {
+                    Thread.mainBlock {
+                        self.isWorking = false
+                        let alert = UIAlertController(title: "Failed :(", message: "Failed with error: \(error)", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok :(", style: .cancel))
+                        self.present(alert, animated: true)
+                        return
+                    }
+                } else if let login = login {
+                    LoginManager.login(login) { error, _ in
+                        self.isWorking = false
+                        if let error = error {
+                            Thread.mainBlock {
+                                let alert = UIAlertController(title: "Failed :(", message: "Failed with error: \(error)", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "Ok :(", style: .cancel))
+                                self.present(alert, animated: true)
+                            }
+                        } else {
+                            LoginManager.save(login: login)
+                        }
+                    }
+                }
+            }
+        }
     }
 }
