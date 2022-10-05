@@ -79,6 +79,7 @@ class OnboardingViewController: UIViewController {
         button.layer.masksToBounds = true
         button.layer.cornerCurve = .continuous
         button.layer.cornerRadius = 25
+        button.isHidden = true
         return button
     }()
     

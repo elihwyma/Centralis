@@ -40,8 +40,9 @@ public final class LoginManager {
             var query: [String: Any] = [
                 kSecClass as String       : kSecClassGenericPassword as String,
                 kSecAttrAccount as String : "Centralis.SavedLogins",
-                kSecValueData as String: encoded ]
-            
+                kSecValueData as String: encoded,
+                kSecAttrAccessible as String : kSecAttrAccessibleAfterFirstUnlock as String
+            ]
             #if !APPCLIP
             query[kSecAttrAccessGroup as String] = "\(appIdentifierPrefix)group.amywhile.centralis"
             #endif
@@ -51,7 +52,8 @@ public final class LoginManager {
         } else {
             var query: [String: Any] = [
                 kSecClass as String       : kSecClassGenericPassword as String,
-                kSecAttrAccount as String : "Centralis.SavedLogins" ]
+                kSecAttrAccount as String : "Centralis.SavedLogins"
+            ]
             
             #if !APPCLIP
             query[kSecAttrAccessGroup as String] = "\(appIdentifierPrefix)group.amywhile.centralis"
@@ -79,7 +81,9 @@ public final class LoginManager {
         } else {
             var query: [String: Any] = [
                 kSecClass as String       : kSecClassGenericPassword as String,
-                kSecAttrAccount as String : "Centralis.MyMaths.SavedLogins" ]
+                kSecAttrAccount as String : "Centralis.MyMaths.SavedLogins",
+                kSecAttrAccessible as String : kSecAttrAccessibleAfterFirstUnlock as String
+            ]
             
             #if !APPCLIP
             query[kSecAttrAccessGroup as String] = "\(appIdentifierPrefix)group.amywhile.centralis"
@@ -115,7 +119,8 @@ public final class LoginManager {
                 kSecClass as String       : kSecClassGenericPassword,
                 kSecAttrAccount as String : "Centralis.CachedUser",
                 kSecReturnData as String  : kCFBooleanTrue!,
-                kSecMatchLimit as String  : kSecMatchLimitOne ]
+                kSecMatchLimit as String  : kSecMatchLimitOne,
+            ]
             
             #if !APPCLIP
             query[kSecAttrAccessGroup as String] = "\(appIdentifierPrefix)group.amywhile.centralis"
@@ -135,7 +140,9 @@ public final class LoginManager {
                 var query: [String: Any] = [
                     kSecClass as String       : kSecClassGenericPassword as String,
                     kSecAttrAccount as String : "Centralis.CachedUser",
-                    kSecValueData as String: encoded ]
+                    kSecValueData as String: encoded,
+                    kSecAttrAccessible as String : kSecAttrAccessibleAfterFirstUnlock as String
+                ]
                 #if !APPCLIP
                 query[kSecAttrAccessGroup as String] = "\(appIdentifierPrefix)group.amywhile.centralis"
                 #endif

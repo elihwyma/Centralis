@@ -65,7 +65,7 @@ class HomeViewController: CentralisDataViewController {
         if !PersistenceDatabase.domainDefaults.bool(forKey: "AlwaysOnline.Onboarding") {
             AlwaysOnlineManager.shared.checkState { [weak self] success, enabled, siwa in
                 if success && enabled {
-                    self?.present(AlwaysOnlineViewController.create(), animated: true)
+                    // self?.present(AlwaysOnlineViewController.create(), animated: true)
                 }
             }
         }
