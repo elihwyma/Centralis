@@ -77,7 +77,6 @@
 		E19661A727B03AA700793007 /* Edulink_Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19661A627B03AA700793007 /* Edulink_Links.swift */; };
 		E19661AA27B0443C00793007 /* LinksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19661A927B0443C00793007 /* LinksViewController.swift */; };
 		E19661DA27B0611600793007 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E19661D827B0611600793007 /* LaunchScreen.storyboard */; };
-		E19661DF27B0611600793007 /* CentralisAppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = E19661CB27B0611400793007 /* CentralisAppClip.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E19661E327B061DE00793007 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14A0274C19B10090F822 /* AppDelegate.swift */; };
 		E19661E427B061E000793007 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19D9FAC27A71732005C8398 /* Reachability.swift */; };
 		E19661E527B061E300793007 /* EdulinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17E14BC274C1ABA0090F822 /* EdulinkManager.swift */; };
@@ -198,40 +197,6 @@
 		E1F6BB9B278E102500E7A360 /* Edulink_Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F6BB9A278E102500E7A360 /* Edulink_Photos.swift */; };
 		E1F6BB9D2790BF9500E7A360 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F6BB9C2790BF9500E7A360 /* MessageTableViewCell.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		E19661DD27B0611600793007 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E17E1495274C19B10090F822 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E19661CA27B0611400793007;
-			remoteInfo = CentralisAppClip;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		E19661A527B0379800793007 /* Embed App Clips */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
-			dstSubfolderSpec = 16;
-			files = (
-				E19661DF27B0611600793007 /* CentralisAppClip.app in Embed App Clips */,
-			);
-			name = "Embed App Clips";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E19661C127B04A3400793007 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E1081EF0285D009F00C67AC9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -781,13 +746,10 @@
 				E17E1499274C19B10090F822 /* Sources */,
 				E17E149A274C19B10090F822 /* Frameworks */,
 				E17E149B274C19B10090F822 /* Resources */,
-				E19661A527B0379800793007 /* Embed App Clips */,
-				E19661C127B04A3400793007 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E19661DE27B0611600793007 /* PBXTargetDependency */,
 			);
 			name = Centralis;
 			packageProductDependencies = (
@@ -1080,15 +1042,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		E19661DE27B0611600793007 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			platformFilter = ios;
-			target = E19661CA27B0611400793007 /* CentralisAppClip */;
-			targetProxy = E19661DD27B0611600793007 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		E17E14AB274C19B30090F822 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -1377,6 +1330,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Centralis/Centralis-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = NO;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -1400,6 +1354,9 @@
 				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				STRIP_STYLE = debugging;
+				STRIP_SWIFT_SYMBOLS = NO;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;

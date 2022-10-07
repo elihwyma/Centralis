@@ -68,6 +68,21 @@ final public class Photos {
         }
     }
     
+    public func getMyPhoto(learnerID: String, size: Int = 1024, completion: @escaping (String?) -> Void) {
+        EvanderNetworking.edulinkDict(method: "EduLink.LearnerPhotos", params: [
+            .custom(key: "learner_ids", value: [learnerID]),
+            .custom(key: "size", value: size)
+        ], timeout: 30) { _, _, error, result in
+            guard let result = result,
+                  let photos = result["learner_photos"] as? [[String: Any]] else { return completion(nil) }
+            for _photo in photos {
+                guard let photo = _photo["photo"] as? String else { continue }
+                return completion(photo)
+            }
+            return completion(nil)
+        }
+    }
+    
     public func loadForMessages() {
         let _senders = Array(PersistenceDatabase.shared.messages.values).map { $0.sender }
         var senders = [String: Sender]()
@@ -101,7 +116,7 @@ final public class Photos {
         }
         return nil
     }
-    
+    /*
     public class func getStudentPictures(for ids: [String]) {
         /*
         try? FileManager.default.createDirectory(at: imagesFolder, withIntermediateDirectories: true)
@@ -123,7 +138,7 @@ final public class Photos {
         }
          */
     }
-    
+    */
     public func dumpAllEmployeePhotos(imageCompletion: @escaping (UIImage) -> (), completion: @escaping () -> ()) {
         let array = SafeArray<UIImage>(queue: Self.backgroundQueue, key: Self.queueKey, context: Self.queueContext)
         func handleImages() {
