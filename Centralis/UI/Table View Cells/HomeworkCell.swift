@@ -12,6 +12,12 @@ class HomeworkCell: BasicInfoCell {
     
     public var homework: Homework?
     
+    static let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        return formatter
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -102,9 +108,9 @@ class HomeworkCell: BasicInfoCell {
         } else if homework.isDueTomorrow {
             primaryLabel.text = "Due Tomorrow"
         } else if homework.isCurrent {
-            primaryLabel.text  = "Due in \((homework.due_date?.days(sinceDate: Date()) ?? 0) + 1) days"
+            primaryLabel.text  = "Due in \((homework.due_date?.days(sinceDate: Date()) ?? 0) + 1) days - \(Self.formatter.string(from: homework.due_date ?? Date()))"
         } else {
-            primaryLabel.text  = "Due \(abs(homework.due_date?.days(sinceDate: Date()) ?? 0)) days ago"
+            primaryLabel.text  = "Due \(abs(homework.due_date?.days(sinceDate: Date()) ?? 0)) days ago - \(Self.formatter.string(from: homework.due_date ?? Date()))"
         }
         secondaryLabel.text = homework.set_by
         title.text = homework.activity
