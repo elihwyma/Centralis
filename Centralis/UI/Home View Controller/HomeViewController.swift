@@ -58,19 +58,7 @@ class HomeViewController: CentralisDataViewController {
             }
         }
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if !PersistenceDatabase.domainDefaults.bool(forKey: "AlwaysOnline.Onboarding") {
-            AlwaysOnlineManager.shared.checkState { [weak self] success, enabled, siwa in
-                if success && enabled {
-                    // self?.present(AlwaysOnlineViewController.create(), animated: true)
-                }
-            }
-        }
-    }
-    
+  
     enum Section {
         case homework
         case timetable

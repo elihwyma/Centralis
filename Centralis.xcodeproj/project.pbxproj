@@ -41,16 +41,6 @@
 		E14D519C28C14FEE00B72688 /* StudentIDCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D519A28C14FEE00B72688 /* StudentIDCreator.swift */; };
 		E14D519F28C1504A00B72688 /* StudentID.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D519E28C1504A00B72688 /* StudentID.swift */; };
 		E14D51A028C1504A00B72688 /* StudentID.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D519E28C1504A00B72688 /* StudentID.swift */; };
-		E150222C28DF8B1B0081A435 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150222B28DF8B1B0081A435 /* Constants.swift */; };
-		E150222D28DF8B1B0081A435 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150222B28DF8B1B0081A435 /* Constants.swift */; };
-		E150223028DF8E090081A435 /* AlwaysOnlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150222F28DF8E090081A435 /* AlwaysOnlineViewController.swift */; };
-		E150223128DF8E090081A435 /* AlwaysOnlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150222F28DF8E090081A435 /* AlwaysOnlineViewController.swift */; };
-		E150223328DFA2830081A435 /* AlwaysOnlineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150223228DFA2830081A435 /* AlwaysOnlineManager.swift */; };
-		E150223428DFA2830081A435 /* AlwaysOnlineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150223228DFA2830081A435 /* AlwaysOnlineManager.swift */; };
-		E150223C28DFD88D0081A435 /* AppleAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150223B28DFD88C0081A435 /* AppleAuth.swift */; };
-		E150223D28DFD88D0081A435 /* AppleAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150223B28DFD88C0081A435 /* AppleAuth.swift */; };
-		E150224228DFD8980081A435 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150223F28DFD8980081A435 /* AuthenticationService.swift */; };
-		E150224328DFD8980081A435 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150223F28DFD8980081A435 /* AuthenticationService.swift */; };
 		E150BC2D27AD5F84001D34AD /* Edulink_Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E150BC2C27AD5F84001D34AD /* Edulink_Documents.swift */; };
 		E15B5BCC275306720003A56D /* BasicInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15B5BCA275306720003A56D /* BasicInfoCell.swift */; };
 		E17CB8862834F3CF006ADE67 /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17CB8852834F3CF006ADE67 /* AccountInfoViewController.swift */; };
@@ -225,11 +215,6 @@
 		E14D519A28C14FEE00B72688 /* StudentIDCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentIDCreator.swift; sourceTree = "<group>"; };
 		E14D519E28C1504A00B72688 /* StudentID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentID.swift; sourceTree = "<group>"; };
 		E150222728DF881D0081A435 /* Centralis-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Centralis-iOS.entitlements"; sourceTree = "<group>"; };
-		E150222B28DF8B1B0081A435 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		E150222F28DF8E090081A435 /* AlwaysOnlineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlwaysOnlineViewController.swift; sourceTree = "<group>"; };
-		E150223228DFA2830081A435 /* AlwaysOnlineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlwaysOnlineManager.swift; sourceTree = "<group>"; };
-		E150223B28DFD88C0081A435 /* AppleAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleAuth.swift; sourceTree = "<group>"; };
-		E150223F28DFD8980081A435 /* AuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		E150BC2C27AD5F84001D34AD /* Edulink_Documents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edulink_Documents.swift; sourceTree = "<group>"; };
 		E15B5BCA275306720003A56D /* BasicInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoCell.swift; sourceTree = "<group>"; };
 		E17CB8852834F3CF006ADE67 /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
@@ -396,20 +381,9 @@
 		E14D519D28C1503600B72688 /* Amy API Shit */ = {
 			isa = PBXGroup;
 			children = (
-				E150223F28DFD8980081A435 /* AuthenticationService.swift */,
-				E150223B28DFD88C0081A435 /* AppleAuth.swift */,
 				E14D519E28C1504A00B72688 /* StudentID.swift */,
-				E150223228DFA2830081A435 /* AlwaysOnlineManager.swift */,
 			);
 			path = "Amy API Shit";
-			sourceTree = "<group>";
-		};
-		E150222E28DF8D5F0081A435 /* Always Online View Controller */ = {
-			isa = PBXGroup;
-			children = (
-				E150222F28DF8E090081A435 /* AlwaysOnlineViewController.swift */,
-			);
-			path = "Always Online View Controller";
 			sourceTree = "<group>";
 		};
 		E15B5BC92753060F0003A56D /* Table View Cells */ = {
@@ -471,7 +445,6 @@
 				E197455A2751295E00EEB853 /* UI */,
 				E17E14BA274C1A700090F822 /* Backend */,
 				E17E14A0274C19B10090F822 /* AppDelegate.swift */,
-				E150222B28DF8B1B0081A435 /* Constants.swift */,
 				E1081EF0285D009F00C67AC9 /* main.swift */,
 				E17E14A9274C19B30090F822 /* Assets.xcassets */,
 				E17E14AB274C19B30090F822 /* LaunchScreen.storyboard */,
@@ -580,7 +553,6 @@
 		E197455A2751295E00EEB853 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				E150222E28DF8D5F0081A435 /* Always Online View Controller */,
 				E14D519928C14FBD00B72688 /* StudentID Creator */,
 				E19DF62928BA9C4000138AD8 /* Teacher Picture Dumper */,
 				E197456127512D3C00EEB853 /* Common */,
@@ -865,23 +837,19 @@
 				E10B960A2751865E00C8C12E /* BaseSubtitleCell.swift in Sources */,
 				E1E7395C28BEC32200D500F2 /* EduLink_Employees.swift in Sources */,
 				E17CB8862834F3CF006ADE67 /* AccountInfoViewController.swift in Sources */,
-				E150222C28DF8B1B0081A435 /* Constants.swift in Sources */,
 				E10B95EE27513AD900C8C12E /* LoadingButton.swift in Sources */,
 				E19A428027CFA24A0053435F /* Edulink_Catering.swift in Sources */,
 				E17E14CC274C25010090F822 /* EdulinkBase.swift in Sources */,
 				E145D3CB2832F40300EC84C0 /* ChartProgressView.swift in Sources */,
 				E1A4C65F27EA5B74000B0821 /* PermissionManager.swift in Sources */,
-				E150223C28DFD88D0081A435 /* AppleAuth.swift in Sources */,
 				E17E14C2274C1B2F0090F822 /* UserLogin.swift in Sources */,
 				E1F4829328343B83000D90C7 /* AttendanceViewCell.swift in Sources */,
-				E150223328DFA2830081A435 /* AlwaysOnlineManager.swift in Sources */,
 				E19621A6275BC2A50065B446 /* NSAttributedString+Extensions.swift in Sources */,
 				E1CC595B285E02DD000914CF /* CentralisDataViewController.swift in Sources */,
 				E10B95FD275160C000C8C12E /* URL+Extensions.swift in Sources */,
 				E17E14CA274C211D0090F822 /* Transformers.swift in Sources */,
 				E1B8C18D27528FAA001FF9FD /* Date+Extensions.swift in Sources */,
 				E1CEBD8F274C3AB9009F35D4 /* SchoolDetails.swift in Sources */,
-				E150224228DFD8980081A435 /* AuthenticationService.swift in Sources */,
 				E19661A727B03AA700793007 /* Edulink_Links.swift in Sources */,
 				E1F482902834358E000D90C7 /* AttendanceViewController.swift in Sources */,
 				E19DF63128BA9FCA00138AD8 /* CollectionViewImageCell.swift in Sources */,
@@ -934,7 +902,6 @@
 				E12D63C7275F71F0008DAB00 /* Edulink_Timetable.swift in Sources */,
 				E10B960E27518B0800C8C12E /* QuickLoginViewController.swift in Sources */,
 				E1A23525277F5D24004563C9 /* TimetableCell.swift in Sources */,
-				E150223028DF8E090081A435 /* AlwaysOnlineViewController.swift in Sources */,
 				E19A428427D0F1010053435F /* CateringViewController.swift in Sources */,
 				E1B92690278D96D7001EEDAC /* MessagesViewController.swift in Sources */,
 				E183B1FB2791BA20004C6C65 /* MessageViewController.swift in Sources */,
@@ -960,23 +927,19 @@
 				E196620827B0620D00793007 /* CentralisTabBarController.swift in Sources */,
 				E1E7395D28BEC32200D500F2 /* EduLink_Employees.swift in Sources */,
 				E17CB8872834F3CF006ADE67 /* AccountInfoViewController.swift in Sources */,
-				E150222D28DF8B1B0081A435 /* Constants.swift in Sources */,
 				E196620D27B0621500793007 /* HomeworkCell.swift in Sources */,
 				E19A428127CFA24B0053435F /* Edulink_Catering.swift in Sources */,
 				E196620727B0620900793007 /* HomeViewController.swift in Sources */,
 				E145D3CC2832F40300EC84C0 /* ChartProgressView.swift in Sources */,
 				E1A4C66027EA5B74000B0821 /* PermissionManager.swift in Sources */,
-				E150223D28DFD88D0081A435 /* AppleAuth.swift in Sources */,
 				E19661F627B061F400793007 /* LoginMiddleware.swift in Sources */,
 				E1F4829428343B83000D90C7 /* AttendanceViewCell.swift in Sources */,
-				E150223428DFA2830081A435 /* AlwaysOnlineManager.swift in Sources */,
 				E196620627B0620500793007 /* UserPasswordViewController.swift in Sources */,
 				E1CC595C285E02DD000914CF /* CentralisDataViewController.swift in Sources */,
 				E19661E827B061EB00793007 /* Edulink_Timetable.swift in Sources */,
 				E19661F427B061F100793007 /* AuthenticatedUser.swift in Sources */,
 				E196620327B0620100793007 /* LoadingButton.swift in Sources */,
 				E19661F727B061F600793007 /* Bundle+Extensions.swift in Sources */,
-				E150224328DFD8980081A435 /* AuthenticationService.swift in Sources */,
 				E196621627B0623D00793007 /* MessageViewController.swift in Sources */,
 				E1F482912834358E000D90C7 /* AttendanceViewController.swift in Sources */,
 				E19DF63228BA9FCA00138AD8 /* CollectionViewImageCell.swift in Sources */,
@@ -1029,7 +992,6 @@
 				E19661E527B061E300793007 /* EdulinkManager.swift in Sources */,
 				E196620127B0620100793007 /* KeyboardAwareViewController.swift in Sources */,
 				E19661F527B061F400793007 /* LoginManager.swift in Sources */,
-				E150223128DF8E090081A435 /* AlwaysOnlineViewController.swift in Sources */,
 				E19A428527D0F1020053435F /* CateringViewController.swift in Sources */,
 				E19661FB27B061F900793007 /* NotificationManager.swift in Sources */,
 				E19661EA27B061EB00793007 /* Edulink_Photos.swift in Sources */,
@@ -1129,7 +1091,7 @@
 				CLANG_TIDY_MISC_REDUNDANT_EXPRESSION = YES;
 				CODE_SIGN_ENTITLEMENTS = "Centralis/Centralis-macOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = NO;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -1151,7 +1113,7 @@
 					"$(PROJECT_DIR)",
 				);
 				LLVM_LTO = YES;
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
@@ -1329,7 +1291,7 @@
 				CLANG_TIDY_MISC_REDUNDANT_EXPRESSION = YES;
 				CODE_SIGN_ENTITLEMENTS = "Centralis/Centralis-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = NO;
@@ -1351,7 +1313,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -1378,7 +1340,7 @@
 				CLANG_TIDY_MISC_REDUNDANT_EXPRESSION = YES;
 				CODE_SIGN_ENTITLEMENTS = "Centralis/Centralis-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				ENABLE_BITCODE = NO;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -1400,7 +1362,7 @@
 					"$(PROJECT_DIR)",
 				);
 				LLVM_LTO = YES;
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amywhile.Centralis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;

@@ -16,11 +16,18 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var hasEnteredBackground = false
-    
-    public var tokenCallback: ((String?) -> Void)?
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+  
+        let sel = NSSelectorFromString("_setForcedUserInterfaceLayoutDirection:")
+        let imp = UIApplication.shared.method(for: sel)
+        typealias _setForcedUserInterfaceLayoutDirection = @convention(c) (AnyObject, Selector, UIUserInterfaceLayoutDirection) -> Void
+        let swiftable = unsafeBitCast(imp, to: _setForcedUserInterfaceLayoutDirection.self)
+        swiftable(UIApplication.shared, sel, .rightToLeft)
+        
+        
+        
         EvanderNetworking._cacheDirectory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.amywhile.centralis")!.appendingPathComponent("Library")
     
         let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
@@ -72,17 +79,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     #endif
-    
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-        let token = tokenParts.joined()
-        tokenCallback?(token)
-    }
-    
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        tokenCallback?(nil)
-    }
-    
+ 
     func setRootViewController(_ vc: UIViewController, animated: Bool = true) {
         guard animated, let window = self.window else {
             self.window?.rootViewController = vc
